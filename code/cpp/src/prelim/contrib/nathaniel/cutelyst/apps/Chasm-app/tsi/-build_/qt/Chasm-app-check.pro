@@ -1,18 +1,26 @@
 
 
-##  Notes: Overall name of project: Chasm-app
+include(user-specific.pri)
+
+# Other Notes: Overall name of project: Chasm-app
 #  Name of project (lowercase, for source file names): chasm-app
 #  This project's library name (for cmake-based builds): libChasm_app.so
 
 
-##  Comment this out to link and run against
+## comment this out to link and run against
 #  cmake-based builds of the framework
 FEATURE_ALL_VIA_QTC = ALL_VIA_QTC
 
 
-##   This .pri file holds paths specific to the current user
-     # (and is not uploaded to git)
-include(user-specific.pri)
+defined(FEATURE_ALL_VIA_QTC ,var) {
+
+INSTALL_ROOT_DIR = $${PIN_ROOT_DIR}/-build_/via-qtc
+
+} else {
+
+INSTALL_ROOT_DIR=$${PIN_ROOT_DIR}/-build_/install
+
+}
 
 
 ## comment this out to prevent Cutelyst/Application
@@ -59,15 +67,29 @@ INCLUDEPATH += \
 } else {
 
 INCLUDEPATH += \
-  $$INSTALL_ROOT_DIR/include/chasm-app \
+  $$INSTALL_ROOT_DIR/include/cutelyst3-qt5 \
 }
 
 INCLUDEPATH += \
-  chasm-app \
+  Chasm-app \
+
 
 SRC_DIR = $${APPS_ROOT_DIR}/Chasm-app/Chasm-app/src
 
-include(h+s.pri)
+
+HEADERS += \
+  $$SRC_DIR/root.h \
+  $$SRC_DIR/chasm-info.h \
+  $$SRC_DIR/chasm-app.h \
+  $$SRC_DIR/test-controller.h \
+
+
+SOURCES += \
+  $$SRC_DIR/root.cpp \
+  $$SRC_DIR/chasm-info.cpp \
+  $$SRC_DIR/chasm-app.cpp \
+  $$SRC_DIR/test-controller.cpp \
+
 
 DISTFILES += \
   $$SRC_DIR/../CMakeLists.txt \
@@ -84,7 +106,7 @@ LIBS += -L$$INSTALL_ROOT_DIR/lib \
 LIBS += -L$$INSTALL_ROOT_DIR/lib \
   -lCutelyst$${CUTELYST_MAJOR_VERSION}Qt$${QT_MAJOR_VERSION} \
 
-# note: currently this would be 3
+# note: currently this would be Cutelyst3Qt5
 }
 
 
@@ -104,9 +126,8 @@ GRANTLEE_VERSION_STRING = 5.3
 LIBS += -L$$INSTALL_ROOT_DIR/lib/cutelyst$${CUTELYST_MAJOR_VERSION}-qt$${QT_MAJOR_VERSION}-plugins/grantlee/$${GRANTLEE_VERSION_STRING} \
   -lgrantlee-view \
 
-message($$INSTALL_ROOT_DIR/lib/cutelyst$${CUTELYST_MAJOR_VERSION}-qt$${QT_MAJOR_VERSION}-plugins/grantlee/$${GRANTLEE_VERSION_STRING})
-
 # current location of local grantlee -- but this might change ...
 LIBS += -L$$ROOT_DIR/-build_/grantlee/install/lib \
   -lGrantlee_Templates
+
 }

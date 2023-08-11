@@ -104,6 +104,9 @@ bool build_tsi(const QString &filename, const QString &appName)
  QString cutelyst_qt_version_string_ucfirst = "Cutelyst%1Qt%2"_qt
    .arg(CUTELYST_VERSION_MAJOR).arg(QT_VERSION_MAJOR);
 
+ QString grantlee_version_string = "5.3";
+
+
  while(ok)
  {
   {
@@ -213,43 +216,131 @@ cd --
   QString fnlc = filename.toLower();
 
   {
-   QFile data(qd.absoluteFilePath(filename + ".pro"_qt));
-
-   if(data.open(QFile::WriteOnly))
+   QFile data(qd.absoluteFilePath("user-specific.pri"_qt));
+   if((ok = data.open(QFile::WriteOnly)))
    {
     QTextStream out(&data);
     out << R"(
 
 ## auto-generated defines:
 # INSTALL_ROOT_FOLDER: %1 (build via cmake)
-#  or %9 (build via Qt Creator)
-# APPS_ROOT_FOLDER: %2
-# FRAMEWORK_ROOT_FOLDER: %3
+#  or %2 (build via Qt Creator)
+# APPS_ROOT_FOLDER: %3
+# FRAMEWORK_ROOT_FOLDER: %4
 
-# Other Notes: Overall name of project: %4
-#  Name of project (lowercase, for source file names): %5
-#  Qt libraries: %6
-#  This project's library name (for cmake-based builds): %7
+# Other Notes
+#  Qt libraries: %5
 
-
-APPS_ROOT_DIR=%2
-FRAMEWORK_ROOT_DIR=%3
-
-
-## comment this out to link and run against
-#  cmake-based builds of the framework
-FEATURE_ALL_VIA_QTC = ALL_VIA_QTC
+PIN_ROOT_DIR = %6
+APPS_ROOT_DIR = %3
+FRAMEWORK_ROOT_DIR = %4
 
 
 defined(FEATURE_ALL_VIA_QTC ,var) {
 
-INSTALL_ROOT_DIR=%9
+INSTALL_ROOT_DIR = %2
 
 } else {
 
 INSTALL_ROOT_DIR=%1
 
 }
+
+
+###  Paste this into the custom executable to run the server from Qt Creator ...
+
+## For cmake-based builds
+# executable path:
+#   %1/bin/%7
+# command line arguments:
+#   --server --app-file %2/%8/tsi/-build_/lib/%9
+# working directory:
+#   %2/%8/%8
+# add to the environment:
+#   (batch script mode)
+# LD_LIBRARY_PATH=%5:%1/lib:${THIS_APP_EXTRA_LIBS}:$LD_LIBRARY_PATH
+
+
+)"_qt.arg(_INSTALL_ROOT_FOLDER).arg(_BUILD_VIA_QTC_FOLDER).arg(_APPS_ROOT_FOLDER)
+  .arg(_FRAMEWORK_ROOT_FOLDER).arg(QT_LIBS_FOLDER ""_qt).arg(_ROOT_FOLDER)
+  .arg(cutelyst_qt_version_string).arg(filename).arg(lib_file);
+
+   out << R"(
+## For "all-qtc" (Qt Creator) builds
+# executable path:
+#   %1/bin/cutelyst-console
+# command line arguments:
+#   --server --app-file %2/%3/tsi/-build_/via-qtc/%4
+# working directory:
+#   %2/%3/%3
+# add to the environment:
+#   (batch script mode)
+# LD_LIBRARY_PATH=%5:%1/lib:${THIS_APP_EXTRA_LIBS}:$LD_LIBRARY_PATH
+
+######
+)"_qt.arg(_BUILD_VIA_QTC_FOLDER)
+          .arg(_APPS_ROOT_FOLDER)
+            //.arg(CUTELYST_VERSION_MAJOR)
+          .arg(filename).arg(cutelyst_qt_version_string_ucfirst)
+          .arg(QT_LIBS_FOLDER ""_qt);
+
+
+   out << R"(
+
+## For projects using grantlee from a local installation -- version %1
+   #(see FEATURE_USE_LOCAL_GRANTLEE in the main project file)
+
+#  Qt Creator configuration, run environment batch build, add:
+# THIS_APP_EXTRA_LIBS=%2/lib/cutelyst%3-qt%4-plugins/grantlee/%1:%5/-build_/grantlee/install/lib
+
+#  With a build via cmake, replace the first path with
+# %6/lib/cutelyst%3-qt%4-plugins/grantlee/%1
+
+)"_qt.arg(grantlee_version_string).arg(_BUILD_VIA_QTC_FOLDER)
+    .arg(CUTELYST_VERSION_MAJOR).arg(QT_VERSION_MAJOR).arg(_ROOT_FOLDER)
+    .arg(_INSTALL_ROOT_FOLDER);
+   }
+  }
+  {
+   QFile data(qd.absoluteFilePath("h+s.pri"_qt));
+
+   if((ok = data.open(QFile::WriteOnly)))
+   {
+    QTextStream out(&data);
+    out << R"(
+
+HEADERS += \
+  $$SRC_DIR/root.h \
+  $$SRC_DIR/%1.h \
+
+SOURCES += \
+  $$SRC_DIR/root.cpp \
+  $$SRC_DIR/%1.cpp \
+
+)"_qt.arg(fnlc);
+   }
+  }
+  {
+   QFile data(qd.absoluteFilePath(filename + ".pro"_qt));
+
+   if((ok = data.open(QFile::WriteOnly)))
+   {
+    QTextStream out(&data);
+    out << R"(
+
+##  Notes: Overall name of project: %1
+#  Name of project (lowercase, for source file names): %2
+#  This project's library name (for cmake-based builds): %3
+
+
+##  Comment this out to link and run against
+#  cmake-based builds of the framework
+FEATURE_ALL_VIA_QTC = ALL_VIA_QTC
+
+
+##   This .pri file holds paths specific to the current user
+     # (and is not uploaded to git)
+include(user-specific.pri)
 
 
 ## comment this out to prevent Cutelyst/Application
@@ -262,40 +353,34 @@ DEFINES += INSTALL_ROOT_FOLDER=\\\"$${INSTALL_ROOT_DIR}\\\"
 DEFINES += APPS_ROOT_FOLDER=\\\"$${APPS_ROOT_DIR}\\\"
 DEFINES += FRAMEWORK_ROOT_FOLDER=\\\"$${FRAMEWORK_ROOT_DIR}\\\"
 
+)"_qt.arg(filename).arg(fnlc).arg(lib_file);
+
+    //.arg(QT_LIBS_FOLDER ""_qt)
+              //?.arg(_BUILD_VIA_QTC_FOLDER) ;
+            //.arg(cutelyst_qt_version_string)
+            //
 
 
-###  Paste this into the custom executable to run the server from Qt Creator ...
+//    APPS_ROOT_DIR=%2
+//    FRAMEWORK_ROOT_DIR=%3
 
-## For cmake-based builds
-# executable path:
-#   %1/bin/%8
-# command line arguments:
-#   --server --app-file %2/%4/tsi/-build_/lib/%7
-# working directory:
-#   %2/%4/%4
-# add to the environment:
-#   %6:%1/lib:$LD_LIBRARY_PATH
 
-)"_qt.arg(_INSTALL_ROOT_FOLDER).arg(_APPS_ROOT_FOLDER)
-           .arg(_FRAMEWORK_ROOT_FOLDER).arg(filename).arg(fnlc)
-           .arg(QT_LIBS_FOLDER ""_qt).arg(lib_file)
-           .arg(cutelyst_qt_version_string)
-           .arg(_BUILD_VIA_QTC_FOLDER);
+
+//    ###  Paste this into the custom executable to run the server from Qt Creator ...
+
+//    ## For cmake-based builds
+//    # executable path:
+//    #   %1/bin/%8
+//    # command line arguments:
+//    #   --server --app-file %2/%4/tsi/-build_/lib/%7
+//    # working directory:
+//    #   %2/%4/%4
+//    # add to the environment:
+//    #   %6:%1/lib:$LD_LIBRARY_PATH
+
 
 
     out << R"(
-## For "all-qtc" (Qt Creator) builds
-# executable path:
-#   %7/bin/cutelyst-console
-# command line arguments:
-#   --server --app-file %2/%4/tsi/-build_/via-qtc/%8
-# working directory:
-#   %2/%4/%4
-# add to the environment:
-#   %6:%7/lib:$LD_LIBRARY_PATH
-
-######
-
 
 defined(FEATURE_ALL_VIA_QTC ,var) {
 
@@ -333,21 +418,11 @@ INCLUDEPATH += \
 }
 
 INCLUDEPATH += \
-  %4 \
+  %1 \
 
+SRC_DIR = $${APPS_ROOT_DIR}/%2/%2/src
 
-SRC_DIR = $${APPS_ROOT_DIR}/%4/%4/src
-
-
-HEADERS += \
-  $$SRC_DIR/root.h \
-  $$SRC_DIR/%5.h \
-
-
-SOURCES += \
-  $$SRC_DIR/root.cpp \
-  $$SRC_DIR/%5.cpp \
-
+include(h+s.pri)
 
 DISTFILES += \
   $$SRC_DIR/../CMakeLists.txt \
@@ -364,16 +439,15 @@ LIBS += -L$$INSTALL_ROOT_DIR/lib \
 LIBS += -L$$INSTALL_ROOT_DIR/lib \
   -lCutelyst$${CUTELYST_MAJOR_VERSION}Qt$${QT_MAJOR_VERSION} \
 
-# note: currently this would be %9
+# note: currently this would be %3
 }
 
-)"_qt.arg(cutelyst_qt_version_string).arg(_APPS_ROOT_FOLDER)
-  .arg(CUTELYST_VERSION_MAJOR)
-  .arg(filename).arg(fnlc)
-  .arg(QT_LIBS_FOLDER ""_qt).arg(_BUILD_VIA_QTC_FOLDER)
-  .arg(qtc_lib_file).arg(cutelyst_qt_version_string_ucfirst);
+)"_qt.arg(fnlc).arg(filename)
+ // .arg(QT_LIBS_FOLDER ""_qt).arg(_BUILD_VIA_QTC_FOLDER)
+ // .arg(qtc_lib_file)
+           .arg(CUTELYST_VERSION_MAJOR)
+           ;
 
- QString grantlee_version_string = "5.3";
 
     out << R"(
 
@@ -395,19 +469,8 @@ LIBS += -L$$INSTALL_ROOT_DIR/lib/cutelyst$${CUTELYST_MAJOR_VERSION}-qt$${QT_MAJO
 # current location of local grantlee -- but this might change ...
 LIBS += -L$$ROOT_DIR/-build_/grantlee/install/lib \
   -lGrantlee_Templates
-
-
-## For the Qt Creator configuration, add to the LD_LIBRARY_PATH environment:
-#  %2/lib/cutelyst%3-qt%4-plugins/grantlee/%1
-#  %5/-build_/grantlee/install/lib
-
-#  With a build via cmake, replace the first line with
-#  %6/lib/cutelyst%3-qt%4-plugins/grantlee/%1
-
 }
-)"_qt.arg(grantlee_version_string).arg(_BUILD_VIA_QTC_FOLDER)
-     .arg(CUTELYST_VERSION_MAJOR).arg(QT_VERSION_MAJOR).arg(_ROOT_FOLDER)
-     .arg(_INSTALL_ROOT_FOLDER);
+)"_qt.arg(grantlee_version_string);
     data.close();
    }
   }
