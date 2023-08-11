@@ -10,6 +10,10 @@
 **/_unzip
 
 
+**/docker-only/*
+!**/docker-only/NOTES
+
+
 **/-build_/*
 !**/-build_/NOTES
 
