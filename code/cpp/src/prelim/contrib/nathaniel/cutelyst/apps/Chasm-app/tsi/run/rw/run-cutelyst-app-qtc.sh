@@ -3,9 +3,7 @@
 cd ../Chasm-app;
 LD_LIBRARY_PATH=/home/nlevisrael/Qt/5.15.2/gcc_64/lib:\
 /home/nlevisrael/docker/gits/torq-wip/ar/code/cpp/src/prelim/contrib/nathaniel/cutelyst/-build_/via-qtc/lib:\
-$LD_LIBRARY_PATH:\
-/home/nlevisrael/docker/gits/torq-wip/ar/code/cpp/src/prelim/contrib/nathaniel/cutelyst/-build_/via-qtc/lib/cutelyst3-qt5-plugins/grantlee/5.3:\
-/home/nlevisrael/docker/gits/torq-wip/ar/code/cpp/src/prelim/contrib/nathaniel/cutelyst/-build_/grantlee/install/lib \
+$LD_LIBRARY_PATH \
 /home/nlevisrael/docker/gits/torq-wip/ar/code/cpp/src/prelim/contrib/nathaniel/cutelyst/-build_/via-qtc/bin/cutelyst-console --server --app-file /home/nlevisrael/docker/gits/torq-wip/ar/code/cpp/src/prelim/contrib/nathaniel/cutelyst/apps/Chasm-app/tsi/-build_/via-qtc/libChasm-app.so ;
 cd --
 

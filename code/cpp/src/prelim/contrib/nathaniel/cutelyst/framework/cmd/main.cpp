@@ -124,9 +124,29 @@ bool build_tsi(const QString &filename, const QString &appName)
 
    QString app_text = R"(# shell script to launch the cutelyst console ...)";
 
+   QString _neutral_text = R"(# shell script to launch the cutelyst console ...
+#
+
+PIN_ROOT=`pwd`/../../../../..
+PIN_ROOT=$(readlink -f ${PIN_ROOT})
+
+echo "pinned at ${PIN_ROOT}"
+
+QT_DIR=`cat ${PIN_ROOT}/_user-qt`
+
+echo "Qt DIR: ${QT_DIR}"
+
+
+cd ../../../%1;
+## for local grantlee add these libs
+#
+#  %2/lib/%3-plugins/grantlee/%4:\
+#  %5/-build_/grantlee/install/lib
+)"_qt;
+
    QString _text = R"(#=1
 #
-cd ../%1;
+cd ../../../%1;
 LD_LIBRARY_PATH=%3:\
 %2/lib:\
 $LD_LIBRARY_PATH \
@@ -152,8 +172,26 @@ cd --
      .arg(cutelyst_qt_version_string).arg(grantlee_version_string)
      .arg(_ROOT_FOLDER).replace("#="_qt, "%"_qt);
 
+   QString neutral_qtc_text = _neutral_text;
+   QString neutral_text = _neutral_text;
+
+   qd.mkpath("run/user-specific"_qt);
+   qd.mkpath("run/user-neutral"_qt);
+
    {
-    QFile data(qd.absoluteFilePath("run-cutelyst.sh"_qt));
+    QFile data(qd.absoluteFilePath("run/user-specific/NOTES"_qt));
+
+    if((ok = data.open(QFile::WriteOnly)))
+    {
+     QTextStream out(&data);
+     out << "Automatically generated run scripts (not uploaded to git etc.)";
+     data.close();
+    }
+    if(!ok) break;
+   }
+
+   {
+    QFile data(qd.absoluteFilePath("run/user-specific/run-cutelyst.sh"_qt));
 
     if((ok = data.open(QFile::WriteOnly)))
     {
@@ -166,9 +204,23 @@ cd --
     if(!ok) break;
    }
 
+   {
+    QFile data(qd.absoluteFilePath("run/user-neutral/run-cutelyst.sh"_qt));
+
+    if((ok = data.open(QFile::WriteOnly)))
+    {
+     QTextStream out(&data);
+     out << neutral_text.arg(generic_text).arg(generic_run_params);
+
+     data.close();
+     data.setPermissions(QFile::ExeOwner | QFile::ReadOwner  | QFile::WriteOwner);
+    }
+    if(!ok) break;
+   }
+
 
    {
-    QFile data(qd.absoluteFilePath("run-cutelyst-app.sh"_qt));
+    QFile data(qd.absoluteFilePath("run/user-specific/run-cutelyst-app.sh"_qt));
 
     if((ok = data.open(QFile::WriteOnly)))
     {
@@ -182,7 +234,21 @@ cd --
    }
 
    {
-    QFile data(qd.absoluteFilePath("run-cutelyst-qtc.sh"_qt));
+    QFile data(qd.absoluteFilePath("run/user-neutral/run-cutelyst-app.sh"_qt));
+
+    if((ok = data.open(QFile::WriteOnly)))
+    {
+     QTextStream out(&data);
+     out << neutral_text.arg(app_text).arg(run_app_params);
+
+     data.close();
+     data.setPermissions(QFile::ExeOwner | QFile::ReadOwner  | QFile::WriteOwner);
+    }
+    if(!ok) break;
+   }
+
+   {
+    QFile data(qd.absoluteFilePath("run/user-specific/run-cutelyst-qtc.sh"_qt));
 
     if((ok = data.open(QFile::WriteOnly)))
     {
@@ -196,12 +262,40 @@ cd --
    }
 
    {
-    QFile data(qd.absoluteFilePath("run-cutelyst-app-qtc.sh"_qt));
+    QFile data(qd.absoluteFilePath("run/user-neutral/run-cutelyst-qtc.sh"_qt));
+
+    if((ok = data.open(QFile::WriteOnly)))
+    {
+     QTextStream out(&data);
+     out << neutral_qtc_text.arg(generic_text).arg(generic_run_params);
+
+     data.close();
+     data.setPermissions(QFile::ExeOwner | QFile::ReadOwner  | QFile::WriteOwner);
+    }
+    if(!ok) break;
+   }
+
+   {
+    QFile data(qd.absoluteFilePath("run/user-specific/run-cutelyst-app-qtc.sh"_qt));
 
     if((ok = data.open(QFile::WriteOnly)))
     {
      QTextStream out(&data);
      out << qtc_text.arg(app_text).arg(run_app_params_qtc);
+
+     data.close();
+     data.setPermissions(QFile::ExeOwner | QFile::ReadOwner  | QFile::WriteOwner);
+    }
+    if(!ok) break;
+   }
+
+   {
+    QFile data(qd.absoluteFilePath("run/user-neutral/run-cutelyst-app-qtc.sh"_qt));
+
+    if((ok = data.open(QFile::WriteOnly)))
+    {
+     QTextStream out(&data);
+     out << neutral_qtc_text.arg(app_text).arg(run_app_params_qtc);
 
      data.close();
      data.setPermissions(QFile::ExeOwner | QFile::ReadOwner  | QFile::WriteOwner);
