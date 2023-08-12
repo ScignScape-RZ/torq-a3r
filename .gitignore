@@ -15,6 +15,7 @@
 
 **/user-specific*.pri
 **/_user-qt*
+!**/_user-qt.blank
 
 **/run/user-specific/*
 !**/run/user-specific/NOTES

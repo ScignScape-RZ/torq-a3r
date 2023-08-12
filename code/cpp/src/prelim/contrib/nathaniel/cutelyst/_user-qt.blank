@@ -1,0 +1,2 @@
+Rename to _user-qt and enter path to your desired Qt folder, 
+which should in general be one level above where Qt libs are.
