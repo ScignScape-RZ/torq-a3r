@@ -13,7 +13,7 @@
 **/docker-only/*
 !**/docker-only/NOTES
 
-**/user-specific.pri
+**/user-specific*.pri
 
 
 **/-build_/*

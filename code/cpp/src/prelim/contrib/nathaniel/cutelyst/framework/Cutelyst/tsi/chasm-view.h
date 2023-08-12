@@ -11,6 +11,8 @@
 
 #include "chasm-macros.h"
 
+#include "tsi-accessors.h"
+
 class QTranslator;
 
 
@@ -24,10 +26,13 @@ class TSI_IMPORT Chasm_View : public Cutelyst::View
  Q_OBJECT
  Q_DECLARE_PRIVATE(Chasm_View)
 
+ QVector<Cutelyst::View*> alternative_views_;
 
 public:
 
  explicit Chasm_View(QObject *parent = nullptr, const QString &name = QString());
+
+ ACCESSORS__RGET(QVector<Cutelyst::View*> ,alternative_views)
 
  Q_PROPERTY(QStringList include_paths_ READ include_paths WRITE set_include_paths NOTIFY changed)
  QStringList include_paths() const;

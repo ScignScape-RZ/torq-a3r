@@ -1,0 +1,1 @@
+Save this file with a .pri extension and the contents being a full path to the root of this part of the project (it will default to the parent of the folder where this file is located) 

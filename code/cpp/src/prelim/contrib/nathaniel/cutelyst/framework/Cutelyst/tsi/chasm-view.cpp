@@ -98,7 +98,17 @@ QByteArray Chasm_View::render(Cutelyst::Context* c) const
  }
  if(response_file.isEmpty())
  {
-  result = "Controller failed to provide a response file"; //_qt.arg(response_file).toLatin1();
+  if(alternative_views_.isEmpty())
+    result = "Controller failed to provide a response file"; //_qt.arg(response_file).toLatin1();
+  else
+  {
+   for(Cutelyst::View* alt : alternative_views_)
+   {
+    result = alt->render(c);
+   }
+   if(result.isEmpty())
+     result = "No view provided a non-empty response";
+  }
  }
  else
  {

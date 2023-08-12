@@ -14,6 +14,13 @@ FEATURE_ALL_VIA_QTC = ALL_VIA_QTC
      # (and is not uploaded to git)
 include(user-specific.pri)
 
+##   If the code for this app gets shared via (e.g.) git,
+#    the user-specific.pri file will not be uploaded,
+#    so subsequent users could fall back to the following
+#    .pri include and/or use it to generate their own
+#    user-specific.pri
+include(user-neutral.pri)
+
 
 ## comment this out to prevent Cutelyst/Application
 #  from defining the "namespace_class" macro
@@ -92,7 +99,7 @@ LIBS += -L$$INSTALL_ROOT_DIR/lib \
 ## For projects using grantlee from a local installation, uncomment these lines
 #  (change the paths if needed)
 
-FEATURE_USE_LOCAL_GRANTLEE = USE_LOCAL_GRANTLEE
+#FEATURE_USE_LOCAL_GRANTLEE = USE_LOCAL_GRANTLEE
 
 defined(FEATURE_USE_LOCAL_GRANTLEE ,var) {
 
@@ -103,8 +110,6 @@ GRANTLEE_VERSION_STRING = 5.3
 
 LIBS += -L$$INSTALL_ROOT_DIR/lib/cutelyst$${CUTELYST_MAJOR_VERSION}-qt$${QT_MAJOR_VERSION}-plugins/grantlee/$${GRANTLEE_VERSION_STRING} \
   -lgrantlee-view \
-
-message($$INSTALL_ROOT_DIR/lib/cutelyst$${CUTELYST_MAJOR_VERSION}-qt$${QT_MAJOR_VERSION}-plugins/grantlee/$${GRANTLEE_VERSION_STRING})
 
 # current location of local grantlee -- but this might change ...
 LIBS += -L$$ROOT_DIR/-build_/grantlee/install/lib \

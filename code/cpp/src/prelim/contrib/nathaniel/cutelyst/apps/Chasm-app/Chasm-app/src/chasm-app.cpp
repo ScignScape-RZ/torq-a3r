@@ -41,6 +41,8 @@ bool Chasm_app::init()
  grantlee_view_ = new GrantleeView(this);
  grantlee_view_->setIncludePaths({ pathTo("root/src") });
 
+
+ chasm_view_->alternative_views().push_back(grantlee_view_);
  return true;
 }
 
