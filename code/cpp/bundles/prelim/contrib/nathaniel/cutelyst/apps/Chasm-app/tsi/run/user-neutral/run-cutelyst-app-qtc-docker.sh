@@ -17,11 +17,12 @@ echo "docker_app_lib = $docker_app_lib"
 cd ../../../Chasm-app
 LD_LIBRARY_PATH=${QT_DIR}/lib:\
 ${PIN_ROOT}/-build_/via-qtc/lib:\
-$LD_LIBRARY_PATH:${docker_app_lib}:\
+$LD_LIBRARY_PATH:${docker_app_lib}/qt:\
+$LD_LIBRARY_PATH:${docker_app_lib}/system:\
 ${PIN_ROOT}/-build_/via-qtc/lib/cutelyst3-qt5-plugins/grantlee/5.3:\
 ${PIN_ROOT}/-build_/grantlee/install/lib \
 \
-CUTELYST_PLUGINS_DIR="$docker_app_root/-build_/via-qtc/lib/cutelyst3-qt5-plugins;$docker_app_root/-build_/grantlee/install/lib" \
+CUTELYST_PLUGINS_DIR="${PIN_ROOT}/-build_/via-qtc/lib/cutelyst3-qt5-plugins;${PIN_ROOT}/-build_/grantlee/install/lib" \
 \
 ${PIN_ROOT}/-build_/via-qtc/bin/cutelyst-console --server --app-file ${PIN_ROOT}/apps/Chasm-app/tsi/-build_/via-qtc/libChasm-app.so ;
 cd --

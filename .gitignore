@@ -20,6 +20,8 @@
 **/run/user-specific/*
 !**/run/user-specific/NOTES
 
+**/docker/user-specific/*
+
 
 **/-build_/*
 !**/-build_/NOTES

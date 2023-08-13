@@ -1,6 +1,6 @@
 Root folder for shared object files to be copied into a docker instance.
 
 Anything in a folder called "docker-only" (apart from specific exceptions, 
-such as this file) will be hidden from github.
+such as this file) will be hidden from git.
 
 

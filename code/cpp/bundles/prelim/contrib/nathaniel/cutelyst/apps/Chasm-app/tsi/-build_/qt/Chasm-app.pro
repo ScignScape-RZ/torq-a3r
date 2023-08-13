@@ -1,4 +1,6 @@
 
+QT -= gui
+
 
 ##  Notes: Overall name of project: Chasm-app
 #  Name of project (lowercase, for source file names): chasm-app

@@ -147,11 +147,30 @@ Component *Application::createComponentPlugin(const QString &name, QObject *pare
         }
     }
 
-#ifdef ALL_VIA_QTC
-    const QByteArrayList dirs = QByteArrayList{QByteArrayLiteral(CUTELYST_PLUGINS_DIR)};
-#else
-    const QByteArrayList dirs = QByteArrayList{QByteArrayLiteral(CUTELYST_PLUGINS_DIR)} + qgetenv("CUTELYST_PLUGINS_DIR").split(';');
-#endif
+    QByteArray literal_CUTELYST_PLUGINS_DIR = QByteArrayLiteral(CUTELYST_PLUGINS_DIR);
+    if(literal_CUTELYST_PLUGINS_DIR.startsWith('@'))
+    {
+     literal_CUTELYST_PLUGINS_DIR = literal_CUTELYST_PLUGINS_DIR.mid(1);
+     literal_CUTELYST_PLUGINS_DIR.prepend(ROOT_FOLDER);
+    }
+
+    QByteArrayList env_CUTELYST_PLUGINS_DIR = qgetenv("CUTELYST_PLUGINS_DIR").split(';');
+
+    const QByteArrayList dirs = QByteArrayList{literal_CUTELYST_PLUGINS_DIR} + env_CUTELYST_PLUGINS_DIR;
+    const QByteArrayList orig_dirs = QByteArrayList{QByteArrayLiteral(CUTELYST_PLUGINS_DIR)} + env_CUTELYST_PLUGINS_DIR;
+
+//??
+//    QByteArray literal_CUTELYST_PLUGINS_DIR = QByteArrayLiteral(CUTELYST_PLUGINS_DIR);
+//    if(literal_CUTELYST_PLUGINS_DIR.startsWith('@'))
+//    {
+//    }
+//#ifdef ALL_VIA_QTC
+//    QByteArray env_CUTELYST_PLUGINS_DIR = qgetenv("CUTELYST_PLUGINS_DIR");
+//    QByteArrayList env = env_CUTELYST_PLUGINS_DIR.split(';');
+//    const QByteArrayList dirs = QByteArrayList{QByteArrayLiteral(CUTELYST_PLUGINS_DIR)};
+//#else
+//    const QByteArrayList dirs = QByteArrayList{QByteArrayLiteral(CUTELYST_PLUGINS_DIR)} + qgetenv("CUTELYST_PLUGINS_DIR").split(';');
+//#endif
 
     for (const QByteArray &dir : dirs) {
         Component *component = d->createComponentPlugin(name, parent, QString::fromLocal8Bit(dir));
@@ -159,7 +178,7 @@ Component *Application::createComponentPlugin(const QString &name, QObject *pare
             return component;
         }
     }
-    qCDebug(CUTELYST_CORE) << "Did not find plugin" << name << "on" << dirs << "for" << parent;
+    qCDebug(CUTELYST_CORE) << "Did not find plugin" << name << "on" << orig_dirs << "for" << parent;
 
     return nullptr;
 }

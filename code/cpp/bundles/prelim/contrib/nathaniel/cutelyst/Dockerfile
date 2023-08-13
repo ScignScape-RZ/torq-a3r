@@ -8,9 +8,9 @@ FROM phusion/baseimage:jammy-1.0.1
 # Use baseimage-docker's init system.
 #CMD ["/sbin/my_init"]
 
-CMD ["/app/run-default.sh"]
+CMD ["/app/cutelyst/docker/run-default.sh"]
 
-COPY . /app
+COPY . /app/cutelyst
 
 
 # ...put your own build instructions here...
