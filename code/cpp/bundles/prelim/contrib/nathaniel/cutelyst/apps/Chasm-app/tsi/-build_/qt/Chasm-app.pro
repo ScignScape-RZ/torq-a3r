@@ -1,10 +1,12 @@
 
-QT -= gui
-
 
 ##  Notes: Overall name of project: Chasm-app
 #  Name of project (lowercase, for source file names): chasm-app
 #  This project's library name (for cmake-based builds): libChasm_app.so
+
+##  We can assume that server-side code will rarely if ever
+#   need to link against GUI libaries
+QT -= gui
 
 
 ##  Comment this out to link and run against

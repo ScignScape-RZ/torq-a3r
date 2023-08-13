@@ -110,11 +110,19 @@ bool build_tsi(const QString &filename, const QString &appName)
  while(ok)
  {
   {
+#define NEUTRAL_APPS_ROOT_FOLDER "${PIN_ROOT}/apps" // // this should be somewhere else, of course
+
    QString app_params = "--server --app-file "
      APPS_ROOT_FOLDER "/%1/tsi/-build_/%2/%3"_qt; //.arg(filename).arg(lib_file);
 
+   QString neutral_app_params = "--server --app-file "
+     NEUTRAL_APPS_ROOT_FOLDER "/%1/tsi/-build_/%2/%3"_qt; //.arg(filename).arg(lib_file);
+
    QString run_app_params = app_params.arg(filename).arg("lib").arg(lib_file);
    QString run_app_params_qtc = app_params.arg(filename).arg("via-qtc").arg(qtc_lib_file);
+
+   QString neutral_run_app_params = neutral_app_params.arg(filename).arg("lib").arg(lib_file);
+   QString neutral_run_app_params_qtc = neutral_app_params.arg(filename).arg("via-qtc").arg(qtc_lib_file);
 
    QString generic_run_params = "${1:-h} ${@:2:$#}"_qt;
 
@@ -124,8 +132,74 @@ bool build_tsi(const QString &filename, const QString &appName)
 
    QString app_text = R"(# shell script to launch the cutelyst console ...)";
 
-   QString _neutral_text = R"(# shell script to launch the cutelyst console ...
+   QString empty_lib_supplement = "\\";
+
+   QString docker_lib_supplement = R"(${docker_app_lib}/qt:\
+${docker_app_lib}/system:\)";
+
+   QString _text = R"(#=1
+
+#=2
+
+cd ../../../%1;
+
+LD_LIBRARY_PATH=%2:\
+%3/lib:\
+#=3
+$LD_LIBRARY_PATH \
+#=4
+%3/bin/%4 #=5 ;
+
+cd --
+
+##  for local grantlee add these libs (before $LD_LIBRARY_PATH)
 #
+#  %3/lib/%5-plugins/grantlee/%6:\
+#  %7/-build_/grantlee/install/lib:\
+#
+#=6
+
+)"_qt;
+
+   QString text = _text.arg(filename).arg(QT_LIBS_FOLDER ""_qt).arg(_INSTALL_ROOT_FOLDER)
+     .arg(cutelyst_qt_version_string)
+     .arg(cutelyst_qt_version_string).arg(grantlee_version_string)
+     .arg(_ROOT_FOLDER).replace("#="_qt, "%"_qt);
+
+   QString qtc_text = _text.arg(filename).arg(QT_LIBS_FOLDER ""_qt).arg(_BUILD_VIA_QTC_FOLDER)
+     .arg("cutelyst-console")
+     .arg(cutelyst_qt_version_string).arg(grantlee_version_string)
+     .arg(_ROOT_FOLDER).replace("#="_qt, "%"_qt);
+
+   QString neutral_qtc_text = _text.arg(filename).arg("${QT_DIR}/lib")
+     .arg("${PIN_ROOT}/-build_/via-qtc").arg("cutelyst-console")
+     .arg(cutelyst_qt_version_string).arg(grantlee_version_string)
+     .arg("${PIN_ROOT}").replace("#="_qt, "%"_qt);
+
+   QString neutral_text = _text.arg(filename).arg("${QT_DIR}/lib")
+     .arg("${PIN_ROOT}/-build_/install")
+     .arg(cutelyst_qt_version_string)
+     .arg(cutelyst_qt_version_string).arg(grantlee_version_string)
+     .arg("${PIN_ROOT}").replace("#="_qt, "%"_qt);
+
+   QString empty_docker_libs = "\n#\n# additional defines/configuration (for docker, etc.)\n#\n";
+   QString empty_plugin_paths = "\\";
+
+   QString docker_libs = "\ndocker_app_lib=/app/cutelyst/docker/lib/docker-only\n"
+     "echo \"docker_app_lib = $docker_app_lib\"\n";
+   QString plugin_paths = R"(\
+CUTELYST_PLUGINS_DIR="${PIN_ROOT}/-build_/via-qtc/lib/cutelyst3-qt5-plugins" \
+\)";
+
+   QString extra_plugin_paths = R"(#   and this addition to CUTELYST_PLUGINS_DIR, inside the quotes
+#  ;\
+#  ${PIN_ROOT}/-build_/grantlee/install/lib
+#)";
+
+
+   QString empty_extra_plugin_paths = "\n\n# (also you may need to add to CUTELYST_PLUGINS_DIR) ";
+
+   QString neutral_top = R"(
 
 PIN_ROOT=`pwd`/../../../../..
 PIN_ROOT=$(readlink -f ${PIN_ROOT})
@@ -135,45 +209,7 @@ echo "pinned at ${PIN_ROOT}"
 QT_DIR=`cat ${PIN_ROOT}/_user-qt`
 
 echo "Qt DIR: ${QT_DIR}"
-
-
-cd ../../../%1;
-## for local grantlee add these libs
-#
-#  %2/lib/%3-plugins/grantlee/%4:\
-#  %5/-build_/grantlee/install/lib
-)"_qt;
-
-   QString _text = R"(#=1
-#
-cd ../../../%1;
-LD_LIBRARY_PATH=%3:\
-%2/lib:\
-$LD_LIBRARY_PATH \
-%2/bin/%4 #=2 ;
-cd --
-
-## for local grantlee add these libs
-#
-#  %2/lib/%5-plugins/grantlee/%6:\
-#  %7/-build_/grantlee/install/lib
-)"_qt;
-
-//   /home/nlevisrael/docker/gits/torq-wip/ar/code/cpp/src/prelim/contrib/nathaniel/cutelyst/-build_/via-qtc/lib/cutelyst3-qt5-plugins/grantlee/5.3
-   // :/home/nlevisrael/docker/gits/torq-wip/ar/code/cpp/src/prelim/contrib/nathaniel/cutelyst/-build_/grantlee/install/lib \
-
-   QString text = _text.arg(filename).arg(_INSTALL_ROOT_FOLDER)
-     .arg(QT_LIBS_FOLDER ""_qt).arg(cutelyst_qt_version_string)
-     .arg(cutelyst_qt_version_string).arg(grantlee_version_string)
-     .arg(_ROOT_FOLDER).replace("#="_qt, "%"_qt);
-
-   QString qtc_text = _text.arg(filename).arg(_BUILD_VIA_QTC_FOLDER)
-     .arg(QT_LIBS_FOLDER ""_qt).arg("cutelyst-console")
-     .arg(cutelyst_qt_version_string).arg(grantlee_version_string)
-     .arg(_ROOT_FOLDER).replace("#="_qt, "%"_qt);
-
-   QString neutral_qtc_text = _neutral_text;
-   QString neutral_text = _neutral_text;
+)";
 
    qd.mkpath("run/user-specific"_qt);
    qd.mkpath("run/user-neutral"_qt);
@@ -196,7 +232,9 @@ cd --
     if((ok = data.open(QFile::WriteOnly)))
     {
      QTextStream out(&data);
-     out << text.arg(generic_text).arg(generic_run_params);
+     out << text.arg(generic_text).arg(empty_docker_libs)
+       .arg(empty_lib_supplement).arg(empty_plugin_paths)
+       .arg(generic_run_params).arg(empty_extra_plugin_paths);
 
      data.close();
      data.setPermissions(QFile::ExeOwner | QFile::ReadOwner  | QFile::WriteOwner);
@@ -210,7 +248,9 @@ cd --
     if((ok = data.open(QFile::WriteOnly)))
     {
      QTextStream out(&data);
-     out << neutral_text.arg(generic_text).arg(generic_run_params);
+     out << neutral_text.arg(generic_text).arg(neutral_top + empty_docker_libs)
+       .arg(empty_lib_supplement).arg(empty_plugin_paths)
+       .arg(generic_run_params).arg(empty_extra_plugin_paths);
 
      data.close();
      data.setPermissions(QFile::ExeOwner | QFile::ReadOwner  | QFile::WriteOwner);
@@ -225,7 +265,9 @@ cd --
     if((ok = data.open(QFile::WriteOnly)))
     {
      QTextStream out(&data);
-     out << text.arg(app_text).arg(run_app_params);
+     out << text.arg(app_text).arg(empty_docker_libs)
+       .arg(empty_lib_supplement).arg(empty_plugin_paths)
+       .arg(run_app_params).arg(empty_extra_plugin_paths);
 
      data.close();
      data.setPermissions(QFile::ExeOwner | QFile::ReadOwner  | QFile::WriteOwner);
@@ -239,7 +281,9 @@ cd --
     if((ok = data.open(QFile::WriteOnly)))
     {
      QTextStream out(&data);
-     out << neutral_text.arg(app_text).arg(run_app_params);
+     out << neutral_text.arg(app_text).arg(neutral_top + empty_docker_libs)
+       .arg(empty_lib_supplement).arg(empty_plugin_paths)
+       .arg(neutral_run_app_params).arg(empty_extra_plugin_paths);
 
      data.close();
      data.setPermissions(QFile::ExeOwner | QFile::ReadOwner  | QFile::WriteOwner);
@@ -253,7 +297,9 @@ cd --
     if((ok = data.open(QFile::WriteOnly)))
     {
      QTextStream out(&data);
-     out << qtc_text.arg(generic_text).arg(generic_run_params);
+     out << qtc_text.arg(generic_text).arg(empty_docker_libs)
+       .arg(empty_lib_supplement).arg(empty_plugin_paths)
+       .arg(generic_run_params).arg(empty_extra_plugin_paths);
 
      data.close();
      data.setPermissions(QFile::ExeOwner | QFile::ReadOwner  | QFile::WriteOwner);
@@ -267,7 +313,9 @@ cd --
     if((ok = data.open(QFile::WriteOnly)))
     {
      QTextStream out(&data);
-     out << neutral_qtc_text.arg(generic_text).arg(generic_run_params);
+     out << neutral_qtc_text.arg(generic_text).arg(neutral_top + empty_docker_libs)
+       .arg(empty_lib_supplement).arg(empty_plugin_paths)
+       .arg(generic_run_params).arg(empty_extra_plugin_paths);
 
      data.close();
      data.setPermissions(QFile::ExeOwner | QFile::ReadOwner  | QFile::WriteOwner);
@@ -281,7 +329,9 @@ cd --
     if((ok = data.open(QFile::WriteOnly)))
     {
      QTextStream out(&data);
-     out << qtc_text.arg(app_text).arg(run_app_params_qtc);
+     out << qtc_text.arg(app_text).arg(empty_docker_libs)
+       .arg(empty_lib_supplement).arg(empty_plugin_paths)
+       .arg(run_app_params_qtc).arg(empty_extra_plugin_paths);
 
      data.close();
      data.setPermissions(QFile::ExeOwner | QFile::ReadOwner  | QFile::WriteOwner);
@@ -295,13 +345,32 @@ cd --
     if((ok = data.open(QFile::WriteOnly)))
     {
      QTextStream out(&data);
-     out << neutral_qtc_text.arg(app_text).arg(run_app_params_qtc);
+     out << neutral_qtc_text.arg(app_text).arg(neutral_top + empty_docker_libs)
+       .arg(empty_lib_supplement).arg(empty_plugin_paths)
+       .arg(neutral_run_app_params_qtc).arg(empty_extra_plugin_paths);
 
      data.close();
      data.setPermissions(QFile::ExeOwner | QFile::ReadOwner  | QFile::WriteOwner);
     }
     if(!ok) break;
    }
+
+   {
+    QFile data(qd.absoluteFilePath("run/user-neutral/run-cutelyst-app-qtc-docker.sh"_qt));
+
+    if((ok = data.open(QFile::WriteOnly)))
+    {
+     QTextStream out(&data);
+     out << neutral_qtc_text.arg(app_text).arg(neutral_top + docker_libs)
+       .arg(docker_lib_supplement).arg(plugin_paths)
+       .arg(neutral_run_app_params_qtc).arg(extra_plugin_paths);
+
+     data.close();
+     data.setPermissions(QFile::ExeOwner | QFile::ReadOwner  | QFile::WriteOwner);
+    }
+    if(!ok) break;
+   }
+
 
   }
 
@@ -616,6 +685,10 @@ SOURCES += \
 #  Name of project (lowercase, for source file names): %2
 #  This project's library name (for cmake-based builds): %3
 
+##  We can assume that server-side code will rarely if ever
+#   need to link against GUI libaries
+QT -= gui
+
 
 ##  Comment this out to link and run against
 #  cmake-based builds of the framework
@@ -645,31 +718,6 @@ DEFINES += APPS_ROOT_FOLDER=\\\"$${APPS_ROOT_DIR}\\\"
 DEFINES += FRAMEWORK_ROOT_FOLDER=\\\"$${FRAMEWORK_ROOT_DIR}\\\"
 
 )"_qt.arg(filename).arg(fnlc).arg(lib_file);
-
-    //.arg(QT_LIBS_FOLDER ""_qt)
-              //?.arg(_BUILD_VIA_QTC_FOLDER) ;
-            //.arg(cutelyst_qt_version_string)
-            //
-
-
-//    APPS_ROOT_DIR=%2
-//    FRAMEWORK_ROOT_DIR=%3
-
-
-
-//    ###  Paste this into the custom executable to run the server from Qt Creator ...
-
-//    ## For cmake-based builds
-//    # executable path:
-//    #   %1/bin/%8
-//    # command line arguments:
-//    #   --server --app-file %2/%4/tsi/-build_/lib/%7
-//    # working directory:
-//    #   %2/%4/%4
-//    # add to the environment:
-//    #   %6:%1/lib:$LD_LIBRARY_PATH
-
-
 
     out << R"(
 
@@ -1374,3 +1422,74 @@ int main(int argc, char *argv[])
 
  return 0;
 }
+
+
+//   /home/nlevisrael/docker/gits/torq-wip/ar/code/cpp/src/prelim/contrib/nathaniel/cutelyst/-build_/via-qtc/lib/cutelyst3-qt5-plugins/grantlee/5.3
+   // :/home/nlevisrael/docker/gits/torq-wip/ar/code/cpp/src/prelim/contrib/nathaniel/cutelyst/-build_/grantlee/install/lib \
+   //   QString _neutral_text = R"(#=1
+   //PIN_ROOT=`pwd`/../../../../..
+   //PIN_ROOT=$(readlink -f ${PIN_ROOT})
+
+   //echo "pinned at ${PIN_ROOT}"
+
+   //QT_DIR=`cat ${PIN_ROOT}/_user-qt`
+
+   //echo "Qt DIR: ${QT_DIR}"
+
+   //#=2
+
+   //docker_app_lib=/app/cutelyst/docker/lib/docker-only
+   //echo "docker_app_lib = $docker_app_lib"
+
+   //cd ../../../%1;
+
+   //#=3
+
+   //LD_LIBRARY_PATH=${QT_DIR}/lib:\
+   //${PIN_ROOT}/-build_/via-qtc/lib:\
+   //$LD_LIBRARY_PATH:${docker_app_lib}/qt:\
+   //$LD_LIBRARY_PATH:${docker_app_lib}/system:\
+   //\
+   //CUTELYST_PLUGINS_DIR="${PIN_ROOT}/-build_/via-qtc/lib/%3" \
+   //\
+   //${PIN_ROOT}/-build_/via-qtc/bin/cutelyst-console --server --app-file ${PIN_ROOT}/apps/%1/tsi/-build_/via-qtc/libChasm-app.so ;
+   //cd --
+
+   //## for local grantlee add these libs
+   //#
+   //#  %2/lib/%3-plugins/grantlee/%4:\
+   //#  %5/-build_/grantlee/install/lib
+   //#
+   //#   and
+   //#  ;${PIN_ROOT}/-build_/grantlee/install/lib
+   //#   to the CUTELYST_PLUGINS_DIR line
+
+   //)"_qt;
+
+
+   ////docker_app_lib=/app/cutelyst/docker/lib/docker-only
+   ////echo "docker_app_lib = $docker_app_lib"
+
+//.arg(QT_LIBS_FOLDER ""_qt)
+          //?.arg(_BUILD_VIA_QTC_FOLDER) ;
+        //.arg(cutelyst_qt_version_string)
+        //
+
+
+//    APPS_ROOT_DIR=%2
+//    FRAMEWORK_ROOT_DIR=%3
+
+
+
+//    ###  Paste this into the custom executable to run the server from Qt Creator ...
+
+//    ## For cmake-based builds
+//    # executable path:
+//    #   %1/bin/%8
+//    # command line arguments:
+//    #   --server --app-file %2/%4/tsi/-build_/lib/%7
+//    # working directory:
+//    #   %2/%4/%4
+//    # add to the environment:
+//    #   %6:%1/lib:$LD_LIBRARY_PATH
+

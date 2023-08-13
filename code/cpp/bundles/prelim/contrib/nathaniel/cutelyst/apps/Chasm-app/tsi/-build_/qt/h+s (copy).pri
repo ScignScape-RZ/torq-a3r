@@ -2,8 +2,8 @@
 
 HEADERS += \
   $$SRC_DIR/root.h \
-  $$SRC_DIR/chasm-app.h \
   $$SRC_DIR/chasm-info.h \
+  $$SRC_DIR/chasm-app.h \
   $$SRC_DIR/test-controller.h \
 
 
