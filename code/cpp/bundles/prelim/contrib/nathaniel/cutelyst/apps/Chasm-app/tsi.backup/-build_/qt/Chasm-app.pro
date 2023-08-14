@@ -104,7 +104,7 @@ LIBS += -L$$INSTALL_ROOT_DIR/lib \
 ## For projects using grantlee from a local installation, uncomment these lines
 #  (change the paths if needed)
 
-FEATURE_USE_LOCAL_GRANTLEE = USE_LOCAL_GRANTLEE
+#FEATURE_USE_LOCAL_GRANTLEE = USE_LOCAL_GRANTLEE
 
 defined(FEATURE_USE_LOCAL_GRANTLEE ,var) {
 

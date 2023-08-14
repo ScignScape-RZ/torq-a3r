@@ -1,6 +1,4 @@
-# shell script to launch cutelyst generators ...
-# note: the arguments after the cutelyst invocation will pass the -h
-# argument unless this script is called with one or more alternative parameters
+# shell script to launch the cutelyst console ...
 
 
 
@@ -24,7 +22,7 @@ LD_LIBRARY_PATH=${QT_DIR}/lib:\
 ${PIN_ROOT}/-build_/via-qtc/lib:\
 $LD_LIBRARY_PATH \
 \
-${PIN_ROOT}/-build_/via-qtc/bin/cutelyst-console ${1:-h} ${@:2:$#} ;
+${PIN_ROOT}/-build_/via-qtc/bin/cutelyst-console --server --app-file ${PIN_ROOT}/apps/Chasm-app/tsi/-build_/via-qtc/libChasm-app.so ;
 
 cd --
 
