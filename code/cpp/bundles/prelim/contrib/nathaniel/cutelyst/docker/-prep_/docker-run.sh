@@ -1,8 +1,9 @@
-#docker run -p 127.0.0.1:20198:20199 -it -v torq-phusion
-docker run -p 127.0.0.1:20198:20199 -it axiatropicsemantics/torq-a3r-dev 
+trap 'echo "# $BASH_COMMAND"' DEBUG
 
-# "/app/run-default.sh"
-#--entrypoint /bin/bash 
-# /bin/bash 
+HUB=`cat ./user-specific/hub`
 
-# --entrypoint /app/run-test.sh 
+echo "running: ${HUB}"
+
+docker run -p 127.0.0.1:20198:20199 -it ${HUB} 
+
+

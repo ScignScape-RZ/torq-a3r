@@ -28,8 +28,7 @@ ${PIN_ROOT}/-build_/grantlee/install/lib:\
 $LD_LIBRARY_PATH \
 \
 CUTELYST_PLUGINS_DIR="${PIN_ROOT}/-build_/via-qtc/lib/cutelyst3-qt5-plugins;\
-${PIN_ROOT}/-build_/grantlee/install/lib
-" \
+${PIN_ROOT}/-build_/grantlee/install/lib" \
 \
 ${PIN_ROOT}/-build_/via-qtc/bin/cutelyst-console --server --app-file ${PIN_ROOT}/apps/Chasm-app/tsi/-build_/via-qtc/libChasm-app.so ;
 

@@ -83,8 +83,8 @@ bool _copy_qdir_recursive(QString source, QString dest)
  if(!dest_dir.exists())
    dest_dir.mkdir(dest);
 
- qDebug() << "\n\nsource = " << source;
- qDebug() << "dest = " <<dest << "\n";
+// qDebug() << "\n\nsource = " << source;
+// qDebug() << "dest = " <<dest << "\n";
 
  QStringList files = source_dir.entryList(QDir::Files);
  for(int i = 0; i < files.count(); i++)
@@ -92,8 +92,8 @@ bool _copy_qdir_recursive(QString source, QString dest)
   QString src_name = source + QDir::separator() + files[i];
   QString dest_name = dest + QDir::separator() + files[i];
 
-  qDebug() << "\n\nsrc name = " << src_name;
-  qDebug() << "dest name = " << src_name << "\n";
+//  qDebug() << "\n\nsrc name = " << src_name;
+//  qDebug() << "dest name = " << src_name << "\n";
 
   if(QFile::exists(dest_name))
     QFile::remove(dest_name);
@@ -109,8 +109,8 @@ bool _copy_qdir_recursive(QString source, QString dest)
   QString src_name = source + QDir::separator() + files[i];
   QString dest_name = dest + QDir::separator() + files[i];
 
-  qDebug() << "src name = " << src_name;
-  qDebug() << "dest name = " << dest_name;
+//  qDebug() << "src name = " << src_name;
+//  qDebug() << "dest name = " << dest_name;
 
   result = _copy_qdir_recursive(src_name, dest_name);
   if(!result)
@@ -947,8 +947,6 @@ cp ./src/%1 ../../lib  \
  qd.cdUp();
  qd.cdUp();
  qd.cdUp();
-
- qDebug() << "qd = " << qd;
 
  {
   QFile data(qd.absoluteFilePath("NOTES"_qt));
