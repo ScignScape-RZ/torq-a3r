@@ -7,7 +7,7 @@
 paperheight=13.25in,paperwidth=9.25in]{geometry}
 
 
-
+\usepackage{setspace}
 
 \newcommand{\Ldown}[1]{\hspace{-2pt}\raisebox{-1pt}{{%\fontfamily{lmhh}
 \fontsize{14}{11}\selectfont{}{\textnormal{#1.}}}}\hspace{3pt}}
@@ -296,7 +296,7 @@ inner sep=6.5pt, shading angle=90,label={}] (bk) {\ul{#1}};
 
 \vspace*{32pt}
 
-{\setstretch{1.12}
+{\setstretch{1.1}
 
 
 %\section{Overview}
@@ -354,7 +354,7 @@ worked on a \TRI{} data-sharing and software engineering framework that
 we call \TorqAthreeR{} (Translational Research Query Protocol -- Application as a Resource)
 with potential applications to civil/governmental data management.}
 
-\p{In particular, we would like to develop a web service that could supplement and integrate governmental and environmental data for Bergen County and/or New Jersey as a whole, with an emphasis on environmental health, sustainable design, and civil engineering.  We propose to engineer this service with a focus on supporting web-site embedding into standalone, desktop-style computer applications, which is a relatively new way of accessing web resources.  Embedded web sites are used in specially designed standalone applications rather than visited exclusively via web browsers (although conventional browser-based access is still possible).  Web-site embedding allows web services to be enhanced with desktop-style technology that would not ordinarily be available browser-based web applications, such as showing multiple, interconnected multimedia windows simultaneously, or presenting isolated windows with structured data that complements content seen in a primary window --- for example, presenting many details about a building or construction project in a dialog box appearing alongside representations of that building/site in a video, street view tour, or street map.}
+\p{In particular, we would like to develop a web service that could supplement and integrate governmental and environmental data for Bergen County and/or New Jersey as a whole, with an emphasis on environmental health, sustainable design, and civil engineering.  We propose to engineer this service with a focus on supporting web-site embedding into standalone, desktop-style computer applications, which is a relatively new way of accessing web resources.  Embedded web sites are used in specially designed standalone applications rather than visited exclusively via web browsers (although conventional browser-based access is still possible).  Web-site embedding allows web services to be enhanced with desktop-style technology that would not ordinarily be available browser-based web applications, such as showing multiple, interconnected multimedia windows simultaneously, or presenting isolated windows with structured data that complements content seen in a primary window --- for example, presenting details about a building or construction project in a dialog box appearing alongside representations of that building/site in a video, street view tour, or street map.}
 
 \p{Code implementing \TorqAthreeR{} web sites/applications or services 
 can be packaged and shared in a portable manner, so that the site may be run on multiple 
@@ -393,7 +393,14 @@ as if they were working from their own personal copy of the web service.}
 are too large for individual computers, such as \GIS{} tile servers (storing 
 gigabyte-scale collections of digital-cartographic images, to create 
 street maps and other \GIS{} rendering elements) and sizable arrays 
-of video/multimedia files.}
+of video/multimedia files.  Similarly, functionality that is impractical to 
+implement in a cross-platform manner may be encapsulated in a virtual application 
+image (via technologies such as \smbf{docker}) functioning as a local web 
+server, so that native front-ends are driven by back ends with their own 
+virtual operating system.  Apart from use-cases where such virtualization is 
+unavoidable, however, \TorqAthreeR{} could run as wholly native applications 
+with the entire code base on a local computer, while simultaneously deploying a 
+copy of the relevant server-side components on the cloud.}
 
 \p{Overall, \TorqAthreeR{} combines several comparatively new technologies, 
 such as \smbf{QWebChannel} or equivalent bridges 
@@ -451,7 +458,7 @@ requesting information.  Maps such as NYCPlanning's \ZoLa{} system, which provid
 
 \p{Here are several examples of logical interrelationships that are meaningful when integrating diverse forms of multimedia in \AEC{} and \CEI{} contexts:}
 
-\begin{description}[leftmargin=3pt, itemsep=1pt]
+\begin{description}[leftmargin=3pt, itemsep=-1pt]
 
 \item[Building Inspections]  Companies which do residential and/or commercial building inspections 
 --- including several in New Jersey --- have started to offer 360-capture photography as part of the 
@@ -619,7 +626,7 @@ having the opportunity to see sustainable \AEC{} techniques formulated within \C
 %\newgeometry{top=1in, bottom=.75in, left=.6in, right=.6in}
 %\pagestyle{default}
 
-%\vspace*{-28pt}
+%\vspace*{-38pt}
 
 %\sectprevspace{}
 %\sectnum{1.}\secttitle{{Translational Sustainability Informatics}}
@@ -656,7 +663,7 @@ focusing on data management and Software Engineering in the
 Translational Sustainability context.  
 \lTSI{} can combine implementations in several areas, particularly these:
 
-\begin{enumerate}[leftmargin=3pt, itemsep=1pt]
+\begin{enumerate}[leftmargin=3pt, itemsep=-1pt]
 
 \item{} Environmental Science:  Assessing how measurements of environmental health/degradation and climate change --- plus simulations of future climate conditions and the climatological effects of human activities and man-made materials --- can inform proper steps for mitigating our deleterious effects on the environment.  For example, ecological data can document trends before and after climate-mitigation interventions.
 
@@ -669,6 +676,8 @@ Translational Sustainability context. 
 \end{enumerate}
 }
 
+\vspace{-7pt}
+
 \p{Like many \q{informatics} disciplines, \TSI{} can be focused on formalizing canonical representations for data sharing and reuse.  Bioinformatics, as an example, often concentrates on standardized encoding for genomic data (gene sequences, transcriptomes, mutation-evolution) and preserving/annotating diagnostic images; canonical genetic and picture-archive formats ensure that information can be shared across many different access points (multiple hospitals, research centers, diagnostic labs, etc.).  Similarly, geoinformatics is structured around the common reference point of geographic coordinates, through which any data with geospatial components can be cross-referenced --- most familiarly via latitude and longitude, but \GIS{} systems also often use other \GIS{} units, such as those based on tile-map renderings or Mercatur projections.  Geoinformation technology needs to properly annotate information source to indicate which coordinate systems are employed for any given data set (and also provide algorithms for inter-converting between systems, e.g. latitude/longitude to Mercatur formulae).  \lTSI{} can similarly focus on standardized data-representation techniques, coordinate systems, units of measurement, dimensional analysis, and related protocols to ensure interoperability between data sources representing the distinct scientific concentrations feeding in to Sustainability research (ecology, sociology, engineering).}
 
 \p{As with other informatics branches, the proper role for \TSI{} involves best practices formulated for reusable software and application packages --- in short, code models and protocols alongside data models.  For one concrete example, consider sustainability documentation in the context of modular architectural design.  
@@ -679,6 +688,7 @@ There are, for example, plugins to \CAD{} programs which are used to design modu
 
 \p{In short, we envision an application-oriented \TSI{} information model that defines protocols for managing \TSI{} data within user-visible applications (including \CAD{} programs, blueprint viewers, property-management software, and Civic Data engines such as \PRiSM{}) as well as inter-application data sharing operating more behind-the-scenes (i.e., typically not user-visible).  The \TSI{} protocols in this sense can address such concerns as systematic description of user-generated events when viewing \TSI{} data and/or \UI{} components; populating \UI{} components with \TSI{}-related data types; icons and terminology for identifying \TSI{}-specific data and operations in the context of software which is not specific to \TSI{} (e.g., \CAD{} and \AEC{} technology); and standards for representing \UI{} state when sharing data across applications.}
 
+\input{torq-pdf-svg.tex}
 
 %\newpage{}
 
@@ -686,16 +696,16 @@ There are, for example, plugins to \CAD{} programs which are used to design modu
 %\sectnum{1.}\secttitle{{Integrating Disparate Web Resources}}
 %\sectvspace{}
 
-\vspace*{.5em}
+%\vspace*{.5em}
 
 
 \vspace*{10pt}
-{\semihr{0.30\textwidth}}
+{\semihr{0.265\textwidth}}
 \vspace*{6pt}
 %\sectnum{1.}
 \hspace{2pt}\secttitle{{Integrating Disparate Web Resources}}
 \vspace*{4pt}
-{\semihr{0.30\textwidth}}
+{\semihr{0.265\textwidth}}
 
 \vspace*{5pt}
 
@@ -703,7 +713,7 @@ There are, for example, plugins to \CAD{} programs which are used to design modu
 \p{One challenge for Sustainability technology, that can be addressed via \TSI{}, is lack of interoperability between thematically or substantially connected web resources.  An example from earlier --- contemplating a merger of \ZoLa{}, \PRISM{}, and \NJDEP{}'s land-use maps --- yields a good case study: there is no conceptual reason (as opposed to fiat political boundaries) why land-use information should be split at the Hudson River.  It is easy to find additional examples; consider the other relevant project with the name \PRiSM{}, from London, which (adapted to New York City building codes and norms) would be an excellent resource for the New York area (quite possibly, in the other direction, a version of \ZoLa{} via Ember Mapbox Composer would be of value for the London conglomeration as well).  
 Unfortunately, existing resources tend to suffer from a technological siloing effect: in this case, \ZoLa{}, \NJDEP{}, and both \PRISM{}/\PRiSM{}s are each built with different software stacks, and there is no straightforward option to merge them, short of just porting one solution to the other's framework.  There are several different steps which projects can take to mitigate this siloing effect, such as 
 
-\begin{enumerate}[leftmargin=3pt, itemsep=1pt]
+\begin{enumerate}[leftmargin=3pt, itemsep=-1pt]
 
 \item{} Adopt standard vocabulary and conventions for \API{}s and other data-sharing scenarios: Even though they offer only a restricted level of interoperability, projects overlapping with \TSI{} concerns should wherever possible support \API{}s (providing \API{} endpoints as web addresses) and structure them around common nomenclature as recommended by organizations such as \ISI{}, \WRI{}, \NIEHS{}, and the World Food Programme.
 
@@ -729,7 +739,7 @@ metro areas entirely.  \lTSI{}-focused components engineered in New Jersey may l
 unified with Ember Mapbox Composer, from NYCPlanning, for a multi-purpose service addressing 
 both zoning/land-use and environmental/sustainability concerns.}
 
-
+\enlargethispage{1in}
 \thispagestyle{lastpage}
 %\p{}
 

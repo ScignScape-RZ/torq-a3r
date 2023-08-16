@@ -85,7 +85,9 @@ DEFINES += USE_KANS
 DEFINES += USE_AQNS
 
 DEFINES += ROOT_FOLDER=\\\"$$ROOT_DIR\\\"
-DEFINES += DEMO_CVM_FOLDER=\\\"$$ROOT_DIR/../chtr\\\"
+#DEFINES += DEMO_CVM_FOLDER=\\\"$$ROOT_DIR/../chtr\\\"
+
+DEFINES += DEMO_CVM_FOLDER=\\\"$$ROOT_DIR/../torq\\\"
 
 SOURCES += \
   $$SRC_DIR/main.cpp \

@@ -1,0 +1,47 @@
+
+
+\p{By way of illustration, suppose someone searches a list 
+of publications for instances of a query term such as \q{Covid19} 
+infectivity rate.  The assumption behind such a search is that 
+some documents will contain a string of characters matching the 
+search term (perhaps allowing for small variations, such as 
+treating \q{Covid} and \q{COVID} as the same word, or 
+matching \q{infection} as well as \q{infectivity}).  This is a 
+reasonable assumption in the sense that as people read documents 
+they subconsciously form a mental image of character-symbols 
+connecting to form words, so it is usually obvious for \textit{humans} 
+whether a given segment of text includes a given keyword or keyphrase 
+as a proper part.  However, the ways that documents are internally stored 
+can distort the \q{natural} string of characters, with markup and 
+typographical details causing text segments to be interrupted or 
+fragmented.  The difficulties mentioned earlier \visavis{} 
+the \CORDNineteen{} corpus were due in part to formats such as 
+\PDF{} introducing artifacts that distort each document's underlying 
+character sequences.  A fully machine-readable text encoding 
+would need to be a \textit{separate} resource from human-readable 
+documents, one which unambiguously defines a canonical character stream 
+covering the entire document, separate and apart from markup or 
+presentation details.  For instance, the fact that certain characters 
+are typeset in italics or boldface should not alter how they are 
+matched against search queries (although, in some contexts, 
+font choices such as italicization can be relevant --- suppose italics 
+are used to state the title of a book; in this case a search 
+might prioritize keywords that do appear within \textit{titles}, 
+so this particular typographic convention should be taken into account).  
+In effect, machine-readable encoding should permit the full 
+scope of textual content to be queried as a single character stream, 
+while also --- separate and apart from the stream itself (the 
+separation of markup from content is often called \q{standoff annotation}) 
+--- presenting information about text segments' typesetting and discursive 
+details when relevant (i.e., which are book 
+titles, Named Entities, technical terms, and other information that 
+might come into play for search queries).}
+
+
+\p{In sum, data- and resource-management for Translational Informatics naturally 
+extends to natural language content-curation and text mining, so that software 
+components dedicated to text documents should be intrinsic to \TSI{}-related technology.  As with other 
+facets of Translational Research, computational techniques pioneered in biomedical and bioinformatics 
+areas could certainly be extended to other scientific fields, particularly those related to 
+community development and environmental sustainability.}
+

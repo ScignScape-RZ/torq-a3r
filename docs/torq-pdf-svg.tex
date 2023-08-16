@@ -1,0 +1,304 @@
+
+\vspace*{10pt}
+{\semihr{0.26\textwidth}}
+\vspace*{6pt}
+%\sectnum{1.}
+\hspace{2pt}\secttitle{{PDF/SVG Formats and Text Mining}}
+\vspace*{4pt}
+{\semihr{0.26\textwidth}}
+\vspace*{4pt}
+
+
+\p{Earlier comments about multimedia cross-referencing also apply to 
+text documents and, by extension, digital text readers, such as 
+\PDF{} viewers.  Renderers for \PDF{} files 
+do not usually interoperate with multimedia software, 
+so that for example a user could not in general click on a chemical 
+formula referenced in a research paper and then have an option 
+of viewing a corresponding molecular-\ThreeD{} model --- even if the 
+research text and \PDB{} (Protein Data Bank) or 
+\SDF{} (Structure-Data File) formats coexist in 
+one overarching data set.  The \TorqAthreeR{} system 
+incorporates a hybrid \PDF{}/\SVG{} format whose goal 
+is to integrate \PDF{} viewers with multimedia 
+components.  This format works somewhat by analogy to \GIS{} systems: consider 
+a \PDF{} page as akin to a digital map at moderate-to-high zoom levels; 
+then sentences are like city blocks or avenues, \PDF{} page 
+coordinates are analogous to latitude/longitude, 
+and sentence boundaries could be highlighted via 
+geometric formations analogous to shape files.  
+It is easy to direct readers toward a specific 
+page in some other publication, but it is harder to 
+create a reference to a specific \textit{paragraph}, or 
+\textit{sentence}, or even the occurrence of one 
+specific technical term of Named Entity.  The example of 
+geotagging is useful as a point of contrast: latitude and longitude 
+coordinates (or other \GIS{} parameters, such as so-called 
+\XYZ{} triples based on a global Mercatur projection) can be 
+specified with arbitrary precision, so it is possible with one 
+consistent tuple of numbers to unambiguously refer to 
+a precise point on (or at some elevation above or below) the 
+Earth's surface.  Any kind of media (text, images, videos, etc.) is 
+able therefore establish links to \GIS{} maps merely by geotagging 
+specific entities.  The \GIS{} case is unusual, however, 
+in that the entire geoinformatics field is almost entirely devoted 
+to one specific spatial domain (viz., Earth's surface); most 
+data spaces do not have comparable universal coordinate-systems.  
+For example, we can cite one specific page within a text 
+document (which is, perhaps, roughly equivalent to city or 
+county, in the cartographic realm), but we cannot (in general) 
+designate individual points \textit{within} a single text page.}
+
+\p{Via a \PDF{}/\SVG{} hybrid, however, we can 
+cite locations internal to a document page to the 
+scale of fractions of a typographic 
+point, similar to latitude and longitude coordinates 
+on a map.  When displayed, \PDF{}/\SVG{} files thereby 
+become interactive: regions such as page-areas spanned 
+by sentences, paragraphs, or smaller text segments 
+(such as the character-range within a technical term, 
+keyword, acronym, or other Named Entity) can be 
+assigned unique \SVG{} identifiers and take on 
+distinct visual representations, as a cue to the 
+user that these specific areas have special interactive 
+possibilities.  For example, sentences might be highlighted 
+when the mouse hovers on their interior, indicating that 
+the sentence as a whole responds to mouse events; 
+e.g., a context menu whose options might include 
+copying the sentence text.  This is more 
+convenient than the current convention, where 
+text segments are copied by 
+laboriously positioning the cursor at the 
+first letter in a sentence and then dragging the 
+mouse to the end (usually just beyond a closing 
+period or other punctuation mark).  That kind of 
+extended user action can be replaced with a single 
+click, given proper text-encoding and cross-referencing 
+between encoded text-segments and \PDF{} page coordinates.}
+
+\p{Text mining and open data sharing  
+have both emerged as key facets of contemporary 
+scientific research, for related reasons: 
+text mining and data transparency are both 
+techniques for expanding the scope of individual 
+research projects, maximizing the potential 
+for insights and discoveries made possible by 
+pooling multiple projects' data and methodology.  
+However, existing research-oriented technologies reveal 
+limitations that have prevented tech mining and 
+data transparency from benefiting science to their 
+full potential.  Key limitations include: 
+flawed transcription of scientific text into machine-readable 
+documents that are suitable for automated text-mining 
+tools; lack of sufficient structure within published 
+data to fully implement protocols related to 
+microcitations, \q{nanopublications,} and other 
+strategies for designating and tracking the provenance 
+of fine-grained data aggregates within larger-scale 
+research environments; and the absence of rigorous 
+protocols for integrating and cross-referencing data 
+and text across different media and genres, including 
+scientific literature and raw data sets along with 
+multimedia resources (videos, \ThreeD{} models, 
+\GIS{} maps, image-series, etc.).}
+
+\p{The limitations of existing scientific-publishing technologies, 
+in particular, became especially evident during the \smbf{Covid19} 
+pandemic, when scientists sought to unify 
+researcher across many distinct disciplines --- from 
+epidemiology and virology to clinical data, and biomolecular 
+analysis of the \smbf{SARSCOVTwo} infection mechanism.  
+A good example of the interdisciplinary response to the 
+early pandemic was the \CORDNineteen{} corpus (\q{\smbf{Covid19} Open Research Dataset}), 
+curated by the Allen Institute for Artificial Intelligence.  
+This project made thousands of papers about Coronavirus biology 
+freely available, but also compiled structured versions of all 
+articles into a machine-readable format, encouraging programmers 
+to develop text-mining and/or \AI{}-based tools for 
+analyzing the corpus in its entirety.  This project actually helped to 
+spotlight limitations of existing publishing technology: as we 
+reviewed in a 2022 book about \smbf{Covid19} (as well as cancer and cardiac 
+bioinformatics\footnote{\textit{See} \href{https://shop.elsevier.com/books/innovative-data-integration-and-conceptual-space-modeling-for-covid-cancer-and-cardiac-care/neustein/978-0-323-85197-8}{https://shop.elsevier.com/books/innovative-data-integration-and-conceptual-space-modeling-for-covid-cancer-and-cardiac-care/neustein/978-0-323-85197-8}}) 
+the \CORDNineteen{} encoding was far from perfect, with 
+annotation errors and inconsistencies between documents.  
+For example, Named Entities such as chemical compounds were not 
+correctly isolated from one document to the next, which led to missed 
+opportunities for cross-referencing.  The Allen Institute acknowledged 
+from the outset that their text extraction capabilities were limited 
+by the formats (primarily \PDF{}) in which papers were presented, 
+and literally issued a \q{call to action} requesting publishers to 
+provide better-quality machine-readable encodings of text 
+documents.\footnote{\q{CORD-19: The Covid-19 Open Research Dataset} 
+(\dhref{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7251955/}), Section 5.2.}
+We developed a more rigorous 
+text-encoding system for our book about \smbf{Covid19} cited above, 
+but in general the situation as of 2023 has not changed in the 
+intervening three years.}
+
+\p{Anti-patterns in publishing technology  
+going beyond text mining alone: microcitation 
+and cross-referencing practices --- especially when multiple genre and 
+presentation/visualization media are involved --- remain 
+haphazard and often unstandardized.  A comprehensive scientific and/or research corpus will likely 
+encompass assets of diverse genres beyond just text documents: video, \ThreeD{}, \GIS{}, and so 
+forth, as well as domain-specific data sets with their 
+own media/visualization conventions.  In many cases there is 
+no standard system for cross-referencing resources from 
+distinct media --- even when there are obvious overlaps between 
+content expressed in one media/genre and another, such as a 
+chemical compound named (via molecular formulae) in a scientific 
+text and also visualized in a 3-dimensional model.  Or, consider 
+videos documenting the ecological effects of climate change, 
+which could be cross-referenced against \GIS{} maps (via 
+latitude and longitude coordinates).  In a cross-disciplinary 
+context, many different forms of media and visuals can be relevant; 
+\smbf{Covid19} research for instance made extensive use of \GIS{} models  
+(tracking infectivity rates and related epidemiological data across 
+the world) and also \ThreeD{} models (of the virus's notorious 
+\q{spike proteins} in particular), diagnostic images (such as 
+\q{ground-glass opacity} in lung scans) and electron-microscope 
+pictures of the virus itself.  Despite the thematic 
+correlation between these different media, however, the distinct 
+software components which can show and analyze files and data sets 
+of these various categories are often non-interoperable. 
+Part of the problem is that data and file formats specific 
+to individual media genre cannot necessarily be annotated with 
+cross-references to other genres; but an equally significant 
+limitation is that software is not equipped to identify and/or 
+properly utilize such cross-references even when they are available. }
+
+\p{The problems within text corpora and multimedia data sets are 
+interrelated, or at least stem from similar causes: in each 
+case there is ambiguity with respect to the individuation and 
+description of particular information/presentation units,  
+limiting the extent to which disparate software 
+components can interoperate --- in particular,  
+leverage shared data elements as a bridge from one component 
+to another.  This is an underlying issue when attempting to  
+define microcitations mutually recognized 
+by variegated multimedia technologies.  
+Consider again the case of geotagging video frames: 
+restricting \GIS{} coordinates to a specific geographic 
+area is one way to isolate specific parts of a \GIS{} database 
+(or any data set with \GIS{} parameters as one 
+data attribute, which might emerge from disciplines 
+as diverse as epidemiology, sociodemographics, environmental 
+science, ethology, anthropology, etc.).  Likewise, 
+referring to one segment within a video represents a 
+potential form of microcitation (as opposed to the video 
+as a whole).  A microcitation protocol in these two 
+domains would also allow application-level cross-references, 
+so that software components dedicated to showing maps and 
+videos, respectively, would at least have representations 
+of the underlying data links permitting \GIS{} locale 
+to serve as a bridge between video and geospatial media.  
+However, \textit{absent} a common protocol the 
+respective software components (digital map engines and 
+video players) cannot interoperate.}
+
+
+\p{The analogous problem in the domain of text-annotations derives 
+from inconsistent standards with respect to textual citations and 
+references more fine-grained than traditional bibliographic and page 
+references.  As mentioned earlier, existing citation protocols 
+do not incorporate text-spans or spatial locations 
+more detailed than individual  
+pages (except perhaps for specialized disciplines 
+where natural-language texts are themselves objects of 
+study; consider the practice of numbering individual 
+lines of verse, within literary analysis).  With the 
+growing importance of text-mining and scientific corpus analysis, 
+the digital granularity conventionally associated with 
+text encoding in linguistic and humanistic contexts should 
+be extended to academic/scientific works in general.  This entails:
+
+\begin{enumerate}[leftmargin=2pt, itemsep=-1pt]
+
+\item{} A consistent schema for encoding natural-language texts as 
+character streams, with proper disambiguation between glyphs with 
+similar or identical appearance but playing different discursive/semantic 
+roles (e.g., end-of-sentence periods from abbreviation punctuation 
+and decimal points).
+
+\item{} Openly declared conventions employed by each document with 
+respect to the hierarchical nesting between paragraphs, sentences, 
+smaller Named-Entity-like units, and other discursive/intratextual 
+scales.  In other words, documents should clarify (as part of their 
+encoding, markup, and/or metadata) such issues as sentence-boundaries 
+in cases like embedded footnotes, transitions between paragraph 
+and list-style formats, and other rhetorical devices where text 
+deviates from the typical pattern of sentences following each other 
+in sequence.  Likewise, text content that lies outside the 
+normal paragraph/sentence/word hierarchy (e.g., phrases appearing within 
+figure illustrations) should be encoded with its own character-sequence contexts.  
+  
+\item{} A \q{bibliospatial} coordinate system that can specify zero- and 
+two-dimensional points/regions within the spatial extent of individual document 
+pages to arbitrary levels of precision.  For example, an 
+instruction such as \q{highlight the first sentence of the second full paragraph 
+on page 3} should be read as referencing a clearly delineated 
+geometric extent (typically a rectilinear octagon) on one 
+visible (canonically \PDF{}) page.    
+
+\item{} A suite of mathematical algorithms addressing numeric 
+properties of bibliospatial systems --- e.g., second-order 
+rectilinear Voronoi tessellation (related to the problem 
+of mapping mouse/gesture events to the nearest bibliospatial object, 
+such as a sentence, proximate to an event-location). 
+
+\item{} A full mapping between bibliospatial coordinates and encoded 
+machine-readable text: suppose we construe text encoding in terms 
+of character-stream sets, so that text segments are located via 
+(what we might call) \q{intertextual} coordinates.  Localized character 
+streams (that could be cited, copied, cross-referenced, and so forth) 
+could then be demarcated via start/end pairs sampled from one or 
+more larger character streams.  Interop between \textit{machine-readable} 
+and \textit{human-readable} versions of any document is then necessary 
+to fully leverage bibliospatial capabilities; in other 
+words, a full encoding should include mappings between 
+intratextual and bibliospatial coordinates.  
+
+\item{} A protocol for text-to-dataset and text-to-multimedia 
+cross-referencing: that is, text segments marked via both 
+bibliospatial and intratextual coordinates should be 
+formatted in a consistent manner to be cited within computer 
+code and multimedia assets so as to notate that a particular 
+\q{subcontent,} or some region smaller than a multimedia file/resource 
+in its entirety (e.g., a stream of video frames, a set of 
+images within a series, a location visible within one configuration 
+of a 360\textdegree{} photography viewer, etc.) is thematically 
+linked to a region of text.   
+
+\end{enumerate}
+}
+
+\vspace*{-6pt}
+\p{When transitioning from individual documents to larger corpora 
+or textual libraries/collections, a common encoding schema also becomes 
+significant with respect to search queries and information retrieval.  The 
+canonical situation where these concerns come into play is that of 
+finding documents within a collection which match a query search-term.  
+More sophisticated search engines try to consider not only the 
+\textit{presence} of text snippets that match a search-term, but 
+also the \textit{role} of the term in a matching document 
+--- for example, a query intended to locate papers \q{about} 
+\smbf{Covid19} would expect results prioritizing documents that 
+not only contain the character-string \q{\smbf{Covid19}} somewhere, 
+but also are thematically and semantically \textit{focused on} 
+\smbf{Covid19} (in contrast to texts that might mention the 
+pandemic but are mostly about other subjects).    
+Distinguishing actual semantic relevance from \q{false positive} 
+matches (documents which contain a search term but without 
+containing much information \textit{relevant to} the search) 
+is a separate matter from large-scale corpora queries, however, 
+so for the current discussion we'll consider merely the problem 
+of locating documents that do contain a particular query-term 
+(which itself is non-trivial).  The overarching problem is that --- 
+although we intuitively understand natural language as a single-dimensional 
+flow of words and sentences --- the actual data through which 
+documents are composed, stored, and rendered (into human-readable formats, 
+such as \PDF{} pages) are more complex than simple character streams.}
+
+\input{torq-by-way}
+
+

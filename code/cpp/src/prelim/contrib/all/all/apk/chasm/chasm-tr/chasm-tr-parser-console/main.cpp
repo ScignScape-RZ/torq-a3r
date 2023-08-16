@@ -125,7 +125,7 @@ void allocate_mempad(u4& id, u4 size)
 int main(int argc, char *argv[])
 {
 
- ChTR_Document chrd(ROOT_FOLDER "/../chtr/t1/t1.cr");
+ ChTR_Document chrd(ROOT_FOLDER "/../torq/t1/t1.cr");
 
  chrd.parse();
 
