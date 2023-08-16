@@ -31,7 +31,8 @@ It is easy to direct readers toward a specific
 page in some other publication, but it is harder to 
 create a reference to a specific \textit{paragraph}, or 
 \textit{sentence}, or even the occurrence of one 
-specific technical term of Named Entity.  The example of 
+specific technical \textit{term} or Named Entity in a different 
+(or even the same) document.  The example of 
 geotagging is useful as a point of contrast: latitude and longitude 
 coordinates (or other \GIS{} parameters, such as so-called 
 \XYZ{} triples based on a global Mercatur projection) can be 
@@ -39,34 +40,35 @@ specified with arbitrary precision, so it is possible with one
 consistent tuple of numbers to unambiguously refer to 
 a precise point on (or at some elevation above or below) the 
 Earth's surface.  Any kind of media (text, images, videos, etc.) is 
-able therefore establish links to \GIS{} maps merely by geotagging 
+able therefore to embed links toward \GIS{} maps merely by geotagging 
 specific entities.  The \GIS{} case is unusual, however, 
-in that the entire geoinformatics field is almost entirely devoted 
-to one specific spatial domain (viz., Earth's surface); most 
+in that the entire geoinformatics field is centered on 
+one specific spatial domain (viz., Earth's surface); most 
 data spaces do not have comparable universal coordinate-systems.  
 For example, we can cite one specific page within a text 
 document (which is, perhaps, roughly equivalent to city or 
 county, in the cartographic realm), but we cannot (in general) 
 designate individual points \textit{within} a single text page.}
 
-\p{Via a \PDF{}/\SVG{} hybrid, however, we can 
-cite locations internal to a document page to the 
+\p{Via a \PDF{}/\SVG{} hybrid, however, metadata could 
+cite locations internal to a document page within the 
 scale of fractions of a typographic 
 point, similar to latitude and longitude coordinates 
 on a map.  When displayed, \PDF{}/\SVG{} files thereby 
 become interactive: regions such as page-areas spanned 
 by sentences, paragraphs, or smaller text segments 
-(such as the character-range within a technical term, 
-keyword, acronym, or other Named Entity) can be 
+(the character-range within a technical term, 
+keyword, acronym, or other Named Entity, for example) may be 
 assigned unique \SVG{} identifiers and take on 
 distinct visual representations, as a cue to the 
 user that these specific areas have special interactive 
-possibilities.  For example, sentences might be highlighted 
+possibilities.  For instance, sentences might be highlighted 
 when the mouse hovers on their interior, indicating that 
 the sentence as a whole responds to mouse events; 
 e.g., a context menu whose options might include 
-copying the sentence text.  This is more 
-convenient than the current convention, where 
+copying the sentence text (to the system clipboard, or perhaps a 
+digital scratch/\q{notes} pad).  
+This is more convenient than the current convention, where 
 text segments are copied by 
 laboriously positioning the cursor at the 
 first letter in a sentence and then dragging the 
@@ -85,11 +87,11 @@ research projects, maximizing the potential
 for insights and discoveries made possible by 
 pooling multiple projects' data and methodology.  
 However, existing research-oriented technologies reveal 
-limitations that have prevented tech mining and 
+limitations that have prevented text mining and 
 data transparency from benefiting science to their 
 full potential.  Key limitations include: 
 flawed transcription of scientific text into machine-readable 
-documents that are suitable for automated text-mining 
+documents that are suitable for automated text mining 
 tools; lack of sufficient structure within published 
 data to fully implement protocols related to 
 microcitations, \q{nanopublications,} and other 
@@ -105,24 +107,24 @@ multimedia resources (videos, \ThreeD{} models,
 \p{The limitations of existing scientific-publishing technologies, 
 in particular, became especially evident during the \smbf{Covid19} 
 pandemic, when scientists sought to unify 
-researcher across many distinct disciplines --- from 
+research across many distinct disciplines --- from 
 epidemiology and virology to clinical data, and biomolecular 
-analysis of the \smbf{SARSCOVTwo} infection mechanism.  
-A good example of the interdisciplinary response to the 
-early pandemic was the \CORDNineteen{} corpus (\q{\smbf{Covid19} Open Research Dataset}), 
-curated by the Allen Institute for Artificial Intelligence.  
+analysis of the \smbf{SARS-COV-2} infection mechanism.  
+A good example of the interdisciplinary response during that 
+early-pandemic phase was the \CORDNineteen{} corpus (\q{\smbf{Covid19} Open Research Dataset}), 
+curated by the Allen Institute for Artificial Intelligence (\AItwo{}).  
 This project made thousands of papers about Coronavirus biology 
 freely available, but also compiled structured versions of all 
-articles into a machine-readable format, encouraging programmers 
-to develop text-mining and/or \AI{}-based tools for 
-analyzing the corpus in its entirety.  This project actually helped to 
+articles into a machine-readable format --- encouraging programmers 
+to develop text mining and/or \AI{}-based tools for 
+analyzing the corpus in its entirety.  \CORDNineteen{} helped  
 spotlight limitations of existing publishing technology: as we 
 reviewed in a 2022 book about \smbf{Covid19} (as well as cancer and cardiac 
 bioinformatics\footnote{\textit{See} \href{https://shop.elsevier.com/books/innovative-data-integration-and-conceptual-space-modeling-for-covid-cancer-and-cardiac-care/neustein/978-0-323-85197-8}{https://shop.elsevier.com/books/innovative-data-integration-and-conceptual-space-modeling-for-covid-cancer-and-cardiac-care/neustein/978-0-323-85197-8}}) 
-the \CORDNineteen{} encoding was far from perfect, with 
-annotation errors and inconsistencies between documents.  
-For example, Named Entities such as chemical compounds were not 
-correctly isolated from one document to the next, which led to missed 
+the project's encoding protocol was far from perfect, with 
+annotation errors and inconsistencies between individual documents.  
+For example, Named Entities such as chemical compounds were  
+isolated differently/incorrectly from one publication to the next, which led to missed 
 opportunities for cross-referencing.  The Allen Institute acknowledged 
 from the outset that their text extraction capabilities were limited 
 by the formats (primarily \PDF{}) in which papers were presented, 
@@ -131,7 +133,7 @@ provide better-quality machine-readable encodings of text
 documents.\footnote{\q{CORD-19: The Covid-19 Open Research Dataset} 
 (\dhref{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7251955/}), Section 5.2.}
 We developed a more rigorous 
-text-encoding system for our book about \smbf{Covid19} cited above, 
+text\Hyphdash{}encoding system for our book about \smbf{Covid19} cited above, 
 but in general the situation as of 2023 has not changed in the 
 intervening three years.}
 
@@ -162,7 +164,7 @@ correlation between these different media, however, the distinct
 software components which can show and analyze files and data sets 
 of these various categories are often non-interoperable. 
 Part of the problem is that data and file formats specific 
-to individual media genre cannot necessarily be annotated with 
+to individual media genres cannot necessarily be annotated with 
 cross-references to other genres; but an equally significant 
 limitation is that software is not equipped to identify and/or 
 properly utilize such cross-references even when they are available. }
@@ -178,7 +180,7 @@ to another.  This is an underlying issue when attempting to
 define microcitations mutually recognized 
 by variegated multimedia technologies.  
 Consider again the case of geotagging video frames: 
-restricting \GIS{} coordinates to a specific geographic 
+restricting \GIS{} coordinates to a particular geographic 
 area is one way to isolate specific parts of a \GIS{} database 
 (or any data set with \GIS{} parameters as one 
 data attribute, which might emerge from disciplines 
@@ -200,24 +202,26 @@ video players) cannot interoperate.}
 \p{The analogous problem in the domain of text-annotations derives 
 from inconsistent standards with respect to textual citations and 
 references more fine-grained than traditional bibliographic and page 
-references.  As mentioned earlier, existing citation protocols 
+citations.  As mentioned earlier, existing citation/cross-referencing protocols 
 do not incorporate text-spans or spatial locations 
 more detailed than individual  
 pages (except perhaps for specialized disciplines 
-where natural-language texts are themselves objects of 
+where natural language texts are themselves objects of 
 study; consider the practice of numbering individual 
 lines of verse, within literary analysis).  With the 
-growing importance of text-mining and scientific corpus analysis, 
+growing importance of text mining and scientific corpus analysis, 
 the digital granularity conventionally associated with 
 text encoding in linguistic and humanistic contexts should 
-be extended to academic/scientific works in general.  This entails:
+be extended to academic/scientific works in general.  From 
+an engineering/implementational point of view, this might 
+entail the following:
 
 \begin{enumerate}[leftmargin=2pt, itemsep=-1pt]
 
 \item{} A consistent schema for encoding natural-language texts as 
 character streams, with proper disambiguation between glyphs with 
 similar or identical appearance but playing different discursive/semantic 
-roles (e.g., end-of-sentence periods from abbreviation punctuation 
+roles (e.g., end-of-sentence periods versus punctuation for abbreviations,  
 and decimal points).
 
 \item{} Openly declared conventions employed by each document with 
@@ -234,15 +238,15 @@ figure illustrations) should be encoded with its own character-sequence contexts
   
 \item{} A \q{bibliospatial} coordinate system that can specify zero- and 
 two-dimensional points/regions within the spatial extent of individual document 
-pages to arbitrary levels of precision.  For example, an 
+pages to arbitrary levels of precision.  An 
 instruction such as \q{highlight the first sentence of the second full paragraph 
 on page 3} should be read as referencing a clearly delineated 
 geometric extent (typically a rectilinear octagon) on one 
-visible (canonically \PDF{}) page.    
+visible page (canonically \PDF{}, with the relevant coordinate axes).    
 
 \item{} A suite of mathematical algorithms addressing numeric 
-properties of bibliospatial systems --- e.g., second-order 
-rectilinear Voronoi tessellation (related to the problem 
+properties of bibliospatial systems --- for instance, second-order 
+rectilinear Voronoi tessellations (related to the problem 
 of mapping mouse/gesture events to the nearest bibliospatial object, 
 such as a sentence, proximate to an event-location). 
 
