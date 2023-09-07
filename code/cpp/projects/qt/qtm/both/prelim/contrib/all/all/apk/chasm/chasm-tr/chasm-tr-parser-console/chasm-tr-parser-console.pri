@@ -5,11 +5,11 @@
 #           http://www.boost.org/LICENSE_1_0.txt)
 
 
-PROJECT_NAME = chasm-tr-parser-console
-
 include(../build-group.pri)
 
 QT -= gui
+
+
 
 TEMPLATE = app
 
