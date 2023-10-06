@@ -67,7 +67,7 @@ INCLUDEPATH += $$SRC_DIR $$SRC_GROUP_DIR $$SRC_ROOT_DIR
 INCLUDEPATH += $$GAMBIT_INCLUDE_DIR
 
 
-SCRIPTS_DIR = $${SRC_GROUP_DIR}/_scm/scripts
+SCRIPTS_DIR = $${ROOT_DIR}/../_scm/scripts
 
 
 DEFINES += SCRIPTS_FOLDER=\\\"$${SCRIPTS_DIR}\\\"
@@ -89,12 +89,21 @@ HEADERS += \
 
 
 SOURCES += \
-  $$SRC_DIR/main.cpp \
+  \# $$SRC_DIR/main.cpp \
   $$SRC_DIR/chasm-utils.cpp \
+
+SOURCES += \
+  /home/nlevisrael/docker/qpawn/main.cpp
 
 
 !exists($$SRC_DIR/chasm-slib.c):system(touch $$SRC_DIR/chasm-slib.c)
 !exists($$SRC_DIR/chasm-slib_.c):system(touch $$SRC_DIR/chasm-slib_.c)
+
+
+QMAKE_CXXFLAGS += -std=c++2a
+
+#-fmodules-ts
+#std=c++20 -fmodules-ts
 
 
 SOURCES += \

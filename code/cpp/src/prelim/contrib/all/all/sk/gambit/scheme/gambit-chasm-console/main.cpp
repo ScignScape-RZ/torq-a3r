@@ -52,6 +52,152 @@ void test_kw(___SCMOBJ s)
 }
 
 
+void test_fn(___SCMOBJ s)
+{
+ char* cs = nullptr;
+ long r = scheme_kw_to_chars(s, cs);
+
+// char* rr = scm_kw_to_chars(s);
+// printf("\nrr = %s\n", rr);
+// ___release_string(rr);
+
+ printf("\nkw = %s\n", cs);
+
+ if(cs)
+   ___release_string(cs);
+}
+
+
+void test_chin(___SCMOBJ s1, ___SCMOBJ s2)
+{
+ char* cs1 = nullptr;
+ long r1 = scheme_kw_to_chars(s1, cs1);
+
+ char* cs2 = nullptr;
+ long r2 = scheme_kw_to_chars(s2, cs2);
+
+// char* rr = scm_kw_to_chars(s);
+// printf("\nrr = %s\n", rr);
+// ___release_string(rr);
+
+ printf("\n\n\ns1 = %s\n", cs1);
+ printf("\ns2 = %s\n", cs2);
+
+ if(cs1)
+   ___release_string(cs1);
+
+ if(cs2)
+   ___release_string(cs2);
+
+}
+
+
+void test_chout(___SCMOBJ s1, ___SCMOBJ s2)
+{
+ char* cs1 = nullptr;
+ long r1 = scheme_kw_to_chars(s1, cs1);
+
+ char* cs2 = nullptr;
+ long r2 = scheme_kw_to_chars(s2, cs2);
+
+// char* rr = scm_kw_to_chars(s);
+// printf("\nrr = %s\n", rr);
+// ___release_string(rr);
+
+ printf("\n\n\n s1 = %s\n", cs1);
+ printf("\n s2 = %s\n", cs2);
+
+ if(cs1)
+   ___release_string(cs1);
+
+ if(cs2)
+   ___release_string(cs2);
+
+}
+
+
+
+___SCMOBJ current_expr_proceed(___SCMOBJ* sobj = nullptr)
+{
+ static ___SCMOBJ static_sobj = 0;
+ if(sobj)
+   static_sobj = *sobj;
+
+ return static_sobj;
+}
+
+___SCMOBJ get_expr_proceed()
+{
+ return current_expr_proceed();
+}
+
+void store_expr_proceed(___SCMOBJ s1, ___SCMOBJ s2)
+{
+ current_expr_proceed(&s1);
+
+ char* cs1 = nullptr;
+ long r1 = scheme_kw_to_chars(s1, cs1);
+
+ char* cs2 = nullptr;
+ long r2 = scheme_kw_to_chars(s2, cs2);
+
+ printf("\n\n\n s1 = %s\n", cs1);
+ printf("\n s2 = %s\n", cs2);
+
+ if(cs1)
+   ___release_string(cs1);
+
+ if(cs2)
+   ___release_string(cs2);
+
+
+}
+
+
+void expr_proceed(___SCMOBJ s1)
+{
+ char* cs1 = nullptr;
+ long r1 = scheme_kw_to_chars(s1, cs1);
+
+ printf("\n\n\n x = %s\n", cs1);
+
+ if(cs1)
+   ___release_string(cs1);
+}
+
+
+
+___SCMOBJ expr_writer(___SCMOBJ s1)
+{
+ char* cs1 = nullptr;
+ long r1 = scheme_kw_to_chars(s1, cs1);
+
+ printf("\n\n\n s1 = %s\n", cs1);
+
+ if(cs1)
+   ___release_string(cs1);
+
+ return current_expr_proceed();
+}
+
+
+___SCMOBJ get_expr_proceed_1(___SCMOBJ s1)
+{
+ char* cs1 = nullptr;
+ long r1 = scheme_kw_to_chars(s1, cs1);
+
+ printf("\n\n\n sss1 = %s\n", cs1);
+
+ if(cs1)
+   ___release_string(cs1);
+
+ return current_expr_proceed();
+}
+
+
+
+
+
 //int inc(int x)
 //{
 // return x + 1;
@@ -61,6 +207,7 @@ void test_kw(___SCMOBJ s)
 #include <QString>
 
 QString file = SCRIPTS_FOLDER "/t1.scm";
+
 
 
 int main(int argc, char** argv)

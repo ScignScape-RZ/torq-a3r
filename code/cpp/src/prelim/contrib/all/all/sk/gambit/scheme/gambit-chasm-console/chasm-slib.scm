@@ -1,10 +1,27 @@
 
 (c-declare "extern int inc ();") ;;c functions must be declared
 (c-declare "extern void test_symbol ();") ;;c functions must be declared
+(c-declare "extern void test_kw ();") ;;c functions must be declared
+(c-declare "extern void test_fn ();") ;;c functions must be declared
+
 
 (define inc (c-lambda (int) int "inc")) ;;function implemented in C code
 (define test-symbol (c-lambda (scheme-object) void "test_symbol")) ;;function implemented in C code
 (define test-kw (c-lambda (scheme-object) void "test_kw")) ;;function implemented in C code
+
+(define fn.- (c-lambda (scheme-object) void "test_fn")) ;;function implemented in C code
+
+(define <- (c-lambda (scheme-object scheme-object) void "test_chin")) ;;function implemented in C code
+(define >- (c-lambda (scheme-object scheme-object) void "test_chout")) ;;function implemented in C code
+
+(define expr-proceed (c-lambda (scheme-object) void "expr_proceed")) ;;function implemented in C code
+
+(define store-expr-proceed (c-lambda (scheme-object scheme-object) void "store_expr_proceed")) ;;function implemented in C code
+
+(define get-expr-proceed (c-lambda () scheme-object "get_expr_proceed"))
+(define expr-writer (c-lambda (scheme-object) scheme-object "expr_writer")) ;;function implemented in C code
+
+(define get-expr-proceed-1 (c-lambda (scheme-object) scheme-object "get_expr_proceed_1"))
 
 
 (c-define (scm-symbol->chars x) (scheme-object) char-string "scm_symbol_to_chars" "extern"

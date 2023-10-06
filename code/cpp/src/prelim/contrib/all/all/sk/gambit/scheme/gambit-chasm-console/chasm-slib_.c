@@ -3468,7 +3468,15 @@
 "chasm-slib#"
 "chasm-slib#0"
 "chasm-slib#1"
+"chasm-slib#10"
 "chasm-slib#2"
+"chasm-slib#3"
+"chasm-slib#4"
+"chasm-slib#5"
+"chasm-slib#6"
+"chasm-slib#7"
+"chasm-slib#8"
+"chasm-slib#9"
 "circular-list"
 "circular-list?"
 "clear-bit-field"
@@ -8079,7 +8087,15 @@
 "chasm-slib#"
 "chasm-slib#0"
 "chasm-slib#1"
+"chasm-slib#10"
 "chasm-slib#2"
+"chasm-slib#3"
+"chasm-slib#4"
+"chasm-slib#5"
+"chasm-slib#6"
+"chasm-slib#7"
+"chasm-slib#8"
+"chasm-slib#9"
 "close-input-port"
 "close-output-port"
 "close-port"
@@ -9393,6 +9409,8 @@
 "##write-char"
 "##write-char1?"
 "##write-char2?"
+"<-"
+">-"
 "abandoned-mutex-exception?"
 "abort"
 "address-info-family"
@@ -9545,6 +9563,8 @@
 "every-bit-set?"
 "exact-integer?"
 "exit"
+"expr-proceed"
+"expr-writer"
 "expression-parsing-exception-kind"
 "expression-parsing-exception-parameters"
 "expression-parsing-exception-source"
@@ -9611,6 +9631,7 @@
 "fl+*"
 "flonum?"
 "flush-output-port"
+"fn.-"
 "fold"
 "fold-right"
 "for-each"
@@ -9621,6 +9642,8 @@
 "foreign?"
 "gc-report-set!"
 "generate-proper-tail-calls"
+"get-expr-proceed"
+"get-expr-proceed-1"
 "get-output-bytevector"
 "group-info-gid"
 "group-info-members"
@@ -9950,6 +9973,7 @@
 "started-thread-exception?"
 "step"
 "step-level-set!"
+"store-expr-proceed"
 "string"
 "string->list"
 "string->vector"
@@ -16101,74 +16125,138 @@ ___DEF_OLD_SYM_GLO(___S__7b__2e__2e__2e__7d_,___G__7b__2e__2e__2e__7d_)
 ___END_OLD_SYM_GLO
 
 ___BEGIN_NEW_SYM_GLO
-___DEF_SUB_NSTR(___X0,16UL)
+___DEF_SUB_NSTR(___X0,2UL)
+               ___NSTR2(60,45)
+___DEF_NEW_SYM_GLO_SUP(0,___S__3c__2d_,___X0,83311330,___G__3c__2d_)
+___DEF_SUB_NSTR(___X1,2UL)
+               ___NSTR2(62,45)
+___DEF_NEW_SYM_GLO_SUP(___S__3c__2d_,___S__3e__2d_,___X1,16533732,___G__3e__2d_)
+___DEF_SUB_NSTR(___X2,16UL)
                ___NSTR8(99,97,116,99,104,45,97,108)
                ___NSTR8(108,45,101,114,114,111,114,115)
                ___NSTR0
-___DEF_NEW_SYM_GLO_SUP(0,___S_catch_2d_all_2d_errors,___X0,261407954,___G_catch_2d_all_2d_errors)
-___DEF_SUB_NSTR(___X1,10UL)
+___DEF_NEW_SYM_GLO_SUP(___S__3e__2d_,___S_catch_2d_all_2d_errors,___X2,261407954,___G_catch_2d_all_2d_errors)
+___DEF_SUB_NSTR(___X3,10UL)
                ___NSTR8(99,104,97,115,109,45,115,108)
                ___NSTR2(105,98)
-___DEF_NEW_SYM_GLO(___S_catch_2d_all_2d_errors,___S_chasm_2d_slib,___X1,378120184,___G_chasm_2d_slib)
-___DEF_SUB_NSTR(___X2,11UL)
+___DEF_NEW_SYM_GLO(___S_catch_2d_all_2d_errors,___S_chasm_2d_slib,___X3,378120184,___G_chasm_2d_slib)
+___DEF_SUB_NSTR(___X4,11UL)
                ___NSTR8(99,104,97,115,109,45,115,108)
                ___NSTR3(105,98,35)
-___DEF_NEW_SYM_GLO_SUP(___S_chasm_2d_slib,___S_chasm_2d_slib_23_,___X2,364068289,___G_chasm_2d_slib_23_)
-___DEF_SUB_NSTR(___X3,12UL)
-               ___NSTR8(99,104,97,115,109,45,115,108)
-               ___NSTR4(105,98,35,48)
-___DEF_NEW_SYM_GLO_SUP(___S_chasm_2d_slib_23_,___S_chasm_2d_slib_23_0,___X3,438993507,___G_chasm_2d_slib_23_0)
-___DEF_SUB_NSTR(___X4,12UL)
-               ___NSTR8(99,104,97,115,109,45,115,108)
-               ___NSTR4(105,98,35,49)
-___DEF_NEW_SYM_GLO_SUP(___S_chasm_2d_slib_23_0,___S_chasm_2d_slib_23_1,___X4,422215888,___G_chasm_2d_slib_23_1)
+___DEF_NEW_SYM_GLO_SUP(___S_chasm_2d_slib,___S_chasm_2d_slib_23_,___X4,364068289,___G_chasm_2d_slib_23_)
 ___DEF_SUB_NSTR(___X5,12UL)
                ___NSTR8(99,104,97,115,109,45,115,108)
+               ___NSTR4(105,98,35,48)
+___DEF_NEW_SYM_GLO_SUP(___S_chasm_2d_slib_23_,___S_chasm_2d_slib_23_0,___X5,438993507,___G_chasm_2d_slib_23_0)
+___DEF_SUB_NSTR(___X6,12UL)
+               ___NSTR8(99,104,97,115,109,45,115,108)
+               ___NSTR4(105,98,35,49)
+___DEF_NEW_SYM_GLO_SUP(___S_chasm_2d_slib_23_0,___S_chasm_2d_slib_23_1,___X6,422215888,___G_chasm_2d_slib_23_1)
+___DEF_SUB_NSTR(___X7,13UL)
+               ___NSTR8(99,104,97,115,109,45,115,108)
+               ___NSTR5(105,98,35,49,48)
+___DEF_NEW_SYM_GLO_SUP(___S_chasm_2d_slib_23_1,___S_chasm_2d_slib_23_10,___X7,501801120,___G_chasm_2d_slib_23_10)
+___DEF_SUB_NSTR(___X8,12UL)
+               ___NSTR8(99,104,97,115,109,45,115,108)
                ___NSTR4(105,98,35,50)
-___DEF_NEW_SYM_GLO_SUP(___S_chasm_2d_slib_23_1,___S_chasm_2d_slib_23_2,___X5,472548745,___G_chasm_2d_slib_23_2)
-___DEF_SUB_NSTR(___X6,11UL)
+___DEF_NEW_SYM_GLO_SUP(___S_chasm_2d_slib_23_10,___S_chasm_2d_slib_23_2,___X8,472548745,___G_chasm_2d_slib_23_2)
+___DEF_SUB_NSTR(___X9,12UL)
+               ___NSTR8(99,104,97,115,109,45,115,108)
+               ___NSTR4(105,98,35,51)
+___DEF_NEW_SYM_GLO_SUP(___S_chasm_2d_slib_23_2,___S_chasm_2d_slib_23_3,___X9,455771126,___G_chasm_2d_slib_23_3)
+___DEF_SUB_NSTR(___X10,12UL)
+               ___NSTR8(99,104,97,115,109,45,115,108)
+               ___NSTR4(105,98,35,52)
+___DEF_NEW_SYM_GLO_SUP(___S_chasm_2d_slib_23_3,___S_chasm_2d_slib_23_4,___X10,506103983,___G_chasm_2d_slib_23_4)
+___DEF_SUB_NSTR(___X11,12UL)
+               ___NSTR8(99,104,97,115,109,45,115,108)
+               ___NSTR4(105,98,35,53)
+___DEF_NEW_SYM_GLO_SUP(___S_chasm_2d_slib_23_4,___S_chasm_2d_slib_23_5,___X11,489326364,___G_chasm_2d_slib_23_5)
+___DEF_SUB_NSTR(___X12,12UL)
+               ___NSTR8(99,104,97,115,109,45,115,108)
+               ___NSTR4(105,98,35,54)
+___DEF_NEW_SYM_GLO_SUP(___S_chasm_2d_slib_23_5,___S_chasm_2d_slib_23_6,___X12,2788309,___G_chasm_2d_slib_23_6)
+___DEF_SUB_NSTR(___X13,12UL)
+               ___NSTR8(99,104,97,115,109,45,115,108)
+               ___NSTR4(105,98,35,55)
+___DEF_NEW_SYM_GLO_SUP(___S_chasm_2d_slib_23_6,___S_chasm_2d_slib_23_7,___X13,522881602,___G_chasm_2d_slib_23_7)
+___DEF_SUB_NSTR(___X14,12UL)
+               ___NSTR8(99,104,97,115,109,45,115,108)
+               ___NSTR4(105,98,35,56)
+___DEF_NEW_SYM_GLO_SUP(___S_chasm_2d_slib_23_7,___S_chasm_2d_slib_23_8,___X14,36343547,___G_chasm_2d_slib_23_8)
+___DEF_SUB_NSTR(___X15,12UL)
+               ___NSTR8(99,104,97,115,109,45,115,108)
+               ___NSTR4(105,98,35,57)
+___DEF_NEW_SYM_GLO_SUP(___S_chasm_2d_slib_23_8,___S_chasm_2d_slib_23_9,___X15,19565928,___G_chasm_2d_slib_23_9)
+___DEF_SUB_NSTR(___X16,11UL)
                ___NSTR8(101,118,97,108,45,115,116,114)
                ___NSTR3(105,110,103)
-___DEF_NEW_SYM_GLO_SUP(___S_chasm_2d_slib_23_2,___S_eval_2d_string,___X6,382700055,___G_eval_2d_string)
-___DEF_SUB_NSTR(___X7,3UL)
+___DEF_NEW_SYM_GLO_SUP(___S_chasm_2d_slib_23_9,___S_eval_2d_string,___X16,382700055,___G_eval_2d_string)
+___DEF_SUB_NSTR(___X17,12UL)
+               ___NSTR8(101,120,112,114,45,112,114,111)
+               ___NSTR4(99,101,101,100)
+___DEF_NEW_SYM_GLO_SUP(___S_eval_2d_string,___S_expr_2d_proceed,___X17,183164633,___G_expr_2d_proceed)
+___DEF_SUB_NSTR(___X18,11UL)
+               ___NSTR8(101,120,112,114,45,119,114,105)
+               ___NSTR3(116,101,114)
+___DEF_NEW_SYM_GLO_SUP(___S_expr_2d_proceed,___S_expr_2d_writer,___X18,393299446,___G_expr_2d_writer)
+___DEF_SUB_NSTR(___X19,4UL)
+               ___NSTR4(102,110,46,45)
+___DEF_NEW_SYM_GLO_SUP(___S_expr_2d_writer,___S_fn_2e__2d_,___X19,231306468,___G_fn_2e__2d_)
+___DEF_SUB_NSTR(___X20,16UL)
+               ___NSTR8(103,101,116,45,101,120,112,114)
+               ___NSTR8(45,112,114,111,99,101,101,100)
+               ___NSTR0
+___DEF_NEW_SYM_GLO_SUP(___S_fn_2e__2d_,___S_get_2d_expr_2d_proceed,___X20,248558634,___G_get_2d_expr_2d_proceed)
+___DEF_SUB_NSTR(___X21,18UL)
+               ___NSTR8(103,101,116,45,101,120,112,114)
+               ___NSTR8(45,112,114,111,99,101,101,100)
+               ___NSTR2(45,49)
+___DEF_NEW_SYM_GLO_SUP(___S_get_2d_expr_2d_proceed,___S_get_2d_expr_2d_proceed_2d_1,___X21,175339228,___G_get_2d_expr_2d_proceed_2d_1)
+___DEF_SUB_NSTR(___X22,3UL)
                ___NSTR3(105,110,99)
-___DEF_NEW_SYM_GLO_SUP(___S_eval_2d_string,___S_inc,___X7,149527623,___G_inc)
-___DEF_SUB_NSTR(___X8,5UL)
+___DEF_NEW_SYM_GLO_SUP(___S_get_2d_expr_2d_proceed_2d_1,___S_inc,___X22,149527623,___G_inc)
+___DEF_SUB_NSTR(___X23,5UL)
                ___NSTR5(105,110,99,45,99)
-___DEF_NEW_SYM_GLO_SUP(___S_inc,___S_inc_2d_c,___X8,271546247,___G_inc_2d_c)
-___DEF_SUB_NSTR(___X9,16UL)
+___DEF_NEW_SYM_GLO_SUP(___S_inc,___S_inc_2d_c,___X23,271546247,___G_inc_2d_c)
+___DEF_SUB_NSTR(___X24,16UL)
                ___NSTR8(114,101,97,100,45,102,114,111)
                ___NSTR8(109,45,115,116,114,105,110,103)
                ___NSTR0
-___DEF_NEW_SYM_GLO_SUP(___S_inc_2d_c,___S_read_2d_from_2d_string,___X9,12179978,___G_read_2d_from_2d_string)
-___DEF_SUB_NSTR(___X10,9UL)
+___DEF_NEW_SYM_GLO_SUP(___S_inc_2d_c,___S_read_2d_from_2d_string,___X24,12179978,___G_read_2d_from_2d_string)
+___DEF_SUB_NSTR(___X25,9UL)
                ___NSTR8(115,97,121,95,104,101,108,108)
                ___NSTR1(111)
-___DEF_NEW_SYM_GLO_SUP(___S_read_2d_from_2d_string,___S_say__hello,___X10,390573411,___G_say__hello)
-___DEF_SUB_NSTR(___X11,13UL)
+___DEF_NEW_SYM_GLO_SUP(___S_read_2d_from_2d_string,___S_say__hello,___X25,390573411,___G_say__hello)
+___DEF_SUB_NSTR(___X26,13UL)
                ___NSTR8(115,99,109,45,107,119,45,62)
                ___NSTR5(99,104,97,114,115)
-___DEF_NEW_SYM_GLO_SUP(___S_say__hello,___S_scm_2d_kw_2d__3e_chars,___X11,94798125,___G_scm_2d_kw_2d__3e_chars)
-___DEF_SUB_NSTR(___X12,17UL)
+___DEF_NEW_SYM_GLO_SUP(___S_say__hello,___S_scm_2d_kw_2d__3e_chars,___X26,94798125,___G_scm_2d_kw_2d__3e_chars)
+___DEF_SUB_NSTR(___X27,17UL)
                ___NSTR8(115,99,109,45,115,121,109,98)
                ___NSTR8(111,108,45,62,99,104,97,114)
                ___NSTR1(115)
-___DEF_NEW_SYM_GLO_SUP(___S_scm_2d_kw_2d__3e_chars,___S_scm_2d_symbol_2d__3e_chars,___X12,494819651,___G_scm_2d_symbol_2d__3e_chars)
-___DEF_SUB_NSTR(___X13,10UL)
+___DEF_NEW_SYM_GLO_SUP(___S_scm_2d_kw_2d__3e_chars,___S_scm_2d_symbol_2d__3e_chars,___X27,494819651,___G_scm_2d_symbol_2d__3e_chars)
+___DEF_SUB_NSTR(___X28,10UL)
                ___NSTR8(115,116,97,114,116,45,114,101)
                ___NSTR2(112,108)
-___DEF_NEW_SYM_GLO_SUP(___S_scm_2d_symbol_2d__3e_chars,___S_start_2d_repl,___X13,64560311,___G_start_2d_repl)
-___DEF_SUB_NSTR(___X14,7UL)
+___DEF_NEW_SYM_GLO_SUP(___S_scm_2d_symbol_2d__3e_chars,___S_start_2d_repl,___X28,64560311,___G_start_2d_repl)
+___DEF_SUB_NSTR(___X29,18UL)
+               ___NSTR8(115,116,111,114,101,45,101,120)
+               ___NSTR8(112,114,45,112,114,111,99,101)
+               ___NSTR2(101,100)
+___DEF_NEW_SYM_GLO_SUP(___S_start_2d_repl,___S_store_2d_expr_2d_proceed,___X29,108013117,___G_store_2d_expr_2d_proceed)
+___DEF_SUB_NSTR(___X30,7UL)
                ___NSTR7(116,101,115,116,45,107,119)
-___DEF_NEW_SYM_GLO_SUP(___S_start_2d_repl,___S_test_2d_kw,___X14,32795418,___G_test_2d_kw)
-___DEF_SUB_NSTR(___X15,11UL)
+___DEF_NEW_SYM_GLO_SUP(___S_store_2d_expr_2d_proceed,___S_test_2d_kw,___X30,32795418,___G_test_2d_kw)
+___DEF_SUB_NSTR(___X31,11UL)
                ___NSTR8(116,101,115,116,45,115,121,109)
                ___NSTR3(98,111,108)
-___DEF_NEW_SYM_GLO_SUP(___S_test_2d_kw,___S_test_2d_symbol,___X15,105734956,___G_test_2d_symbol)
-___DEF_SUB_NSTR(___X16,15UL)
+___DEF_NEW_SYM_GLO_SUP(___S_test_2d_kw,___S_test_2d_symbol,___X31,105734956,___G_test_2d_symbol)
+___DEF_SUB_NSTR(___X32,15UL)
                ___NSTR8(119,114,105,116,101,45,116,111)
                ___NSTR7(45,115,116,114,105,110,103)
-___DEF_NEW_SYM_GLO_SUP(___S_test_2d_symbol,___S_write_2d_to_2d_string,___X16,223806132,___G_write_2d_to_2d_string)
+___DEF_NEW_SYM_GLO_SUP(___S_test_2d_symbol,___S_write_2d_to_2d_string,___X32,223806132,___G_write_2d_to_2d_string)
 ___END_NEW_SYM_GLO(___S_write_2d_to_2d_string,0)
 
 #endif
