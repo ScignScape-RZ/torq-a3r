@@ -89,11 +89,10 @@ HEADERS += \
 
 
 SOURCES += \
-  \# $$SRC_DIR/main.cpp \
+  $$SRC_DIR/main.cpp \
   $$SRC_DIR/chasm-utils.cpp \
 
-SOURCES += \
-  /home/nlevisrael/docker/qpawn/main.cpp
+
 
 
 !exists($$SRC_DIR/chasm-slib.c):system(touch $$SRC_DIR/chasm-slib.c)
