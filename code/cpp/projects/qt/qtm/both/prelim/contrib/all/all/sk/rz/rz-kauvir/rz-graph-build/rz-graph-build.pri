@@ -31,16 +31,16 @@ LIBS += -L$$TARGETSDIR -lrz-graph-token -lrz-graph-core
 
 
 HEADERS += \
-  $$SRC_DIR/rz-lisp-document.h \
-  $$SRC_DIR/rz-lisp-graph-result-holder.h \
+  $$SRC_DIR/rz-asg-document.h \
+  $$SRC_DIR/rz-asg-result-holder.h \
   $$SRC_DIR/types/core-types.h \
   $$SRC_DIR/types/run-type-codes.h \
-  $$SRC_DIR/types/rz-lisp-empty-tuple.h \
+  $$SRC_DIR/types/rz-asg-empty-tuple.h \
 
 
 SOURCES += \
-    $$SRC_DIR/rz-lisp-document.cpp \
-    $$SRC_DIR/rz-lisp-graph-result-holder.cpp \
+    $$SRC_DIR/rz-asg-document.cpp \
+    $$SRC_DIR/rz-asg-result-holder.cpp \
 
 message(choice: $$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)
 mkpath($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)

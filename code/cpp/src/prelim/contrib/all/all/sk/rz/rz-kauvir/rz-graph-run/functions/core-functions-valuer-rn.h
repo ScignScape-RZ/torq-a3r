@@ -5,6 +5,6 @@
 //           http://www.boost.org/LICENSE_1_0.txt)
 
 
-RZ_LISP_GRAPH_FUNCTION_DECLARE(@, elt_kw, 0, Valuer_RN)
+RZ_ASG_FUNCTION_DECLARE(@, elt_kw, 0, Valuer_RN)
 
-RZ_LISP_GRAPH_FUNCTION_DECLARE(#, elt, 0, Valuer_RN)
+RZ_ASG_FUNCTION_DECLARE(#, elt, 0, Valuer_RN)

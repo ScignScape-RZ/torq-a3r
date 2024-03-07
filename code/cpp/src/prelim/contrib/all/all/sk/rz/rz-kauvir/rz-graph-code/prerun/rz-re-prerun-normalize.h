@@ -32,11 +32,11 @@ _RZNS(GBuild)
 
 USING_RZNS(GBuild)
 
-RZNS_(RECore)
+RZNS_(RZ_Core)
 
 
 class RE_Document;
-class RE_Node;
+class ChasmRZ_Node;
 class RE_Graph;
 
 
@@ -53,6 +53,6 @@ public:
 
 };
 
-_RZNS(RECore)
+_RZNS(RZ_Core)
 
 #endif //RZ_RE_PRERUN_NORMALIZE__H

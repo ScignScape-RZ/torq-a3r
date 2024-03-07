@@ -25,17 +25,17 @@
 
 #include "phr-graph-core/kernel/graph/pgb-ir-build.h"
 
-RZNS_(RECore)
- class RE_Node;
+RZNS_(RZ_Core)
+ class ChasmRZ_Node;
  class RE_Block_Entry;
-_RZNS(RECore)
+_RZNS(RZ_Core)
 
-USING_RZNS(RECore)
+USING_RZNS(RZ_Core)
 
 RZNS_(GBuild)
  class RZ_Lisp_Graph_Visitor;
  class RZ_Graph_Visitor_Phaon;
- class RZ_Lisp_Token;
+ class RZ_ASG_Token;
 _RZNS(GBuild)
 
 USING_RZNS(GBuild)
@@ -87,14 +87,14 @@ private:
  caon_ptr<RPI_Stage_Form> preceding_expression_form_;
 
  MS_Token held_token_;
- caon_ptr<RZ_Lisp_Token> held_sigma_token_;
+ caon_ptr<RZ_ASG_Token> held_sigma_token_;
 
  QString entry_lisp_code_;
 
  int parent_lambda_position_;
 
  void add_form_from_call_entry_node(RZ_Graph_Visitor_Phaon& visitor_phaon,
-   RE_Node& entry_node,
+   ChasmRZ_Node& entry_node,
    caon_ptr<RE_Block_Entry> rbe = nullptr,
    caon_ptr<RPI_Stage_Form> prior_form = nullptr);
 
@@ -144,13 +144,13 @@ public:
 
  void build_phaon_graph();
 
- void scan(RZ_Graph_Visitor_Phaon& visitor_phaon, RE_Node& start_node);
+ void scan(RZ_Graph_Visitor_Phaon& visitor_phaon, ChasmRZ_Node& start_node);
 
  void scan_form_from_start_node(RZ_Graph_Visitor_Phaon& visitor_phaon,
-   RE_Node& start_node);
+   ChasmRZ_Node& start_node);
 
  void scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visitor_phaon,
-   RE_Node& start_node);
+   ChasmRZ_Node& start_node);
 
 };
 

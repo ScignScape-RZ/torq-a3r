@@ -11,10 +11,10 @@
 #include "rz-graph-core/kernel/graph/rz-re-node.h"
 
 
-USING_RZNS(RECore)
+USING_RZNS(RZ_Core)
 
 RZ_SRE_Token::RZ_SRE_Token(caon_ptr<RZ_Graph_Run_Token> run_token,
-  caon_ptr<RE_Node> node)
+  caon_ptr<ChasmRZ_Node> node)
  : run_token_(run_token), node_(node)
 {
 

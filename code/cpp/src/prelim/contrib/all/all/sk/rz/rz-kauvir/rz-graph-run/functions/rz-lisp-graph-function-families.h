@@ -17,7 +17,7 @@
 #include "rzns.h"
 
 RZNS_(GBuild)
-class RZ_Lisp_Graph_Value_Holder;
+class RZ_ASG_Value_Holder;
 class RZ_Lisp_Graph_Result_Holder;
 _RZNS(GBuild)
 
@@ -203,7 +203,7 @@ struct RZ_Lisp_Graph_Function_Run
    qDebug() << "Fam " << Fam;
   }
   template<typename T>
-  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& token, T& t)
+  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& token, T& t)
   {
    qDebug() << "cff " << cff;
    qDebug() << "i " << i;
@@ -212,28 +212,28 @@ struct RZ_Lisp_Graph_Function_Run
    qDebug() << "cff " << cff;
   }
   template<typename T1, typename T2>
-  static void run(RZ_Lisp_Graph_Result_Holder& rh, T1& t, RZ_Lisp_Token& token)
+  static void run(RZ_Lisp_Graph_Result_Holder& rh, T1& t, RZ_ASG_Token& token)
   {
   }
 
   template<typename T1, typename T2>
-  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Opaque_Call& opc, RZ_Lisp_Token& token)
+  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Opaque_Call& opc, RZ_ASG_Token& token)
   {
    RZ_Type_Families::Enum F = Fam;
    qDebug() << F;
   }
 
-  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& t1, RZ_Lisp_Graph_Value_Holder& t2)
+  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& t1, RZ_ASG_Value_Holder& t2)
   {
    RZ_Type_Families::Enum F = Fam;
    qDebug() << F;
   }
 
 
-  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Graph_Value_Holder& t1, RZ_Lisp_Token& t2)
+  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Value_Holder& t1, RZ_ASG_Token& t2)
   {
   }
-  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& start_token)
+  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& start_token)
   {
    qDebug() << "cff " << cff;
    qDebug() << "i " << i;

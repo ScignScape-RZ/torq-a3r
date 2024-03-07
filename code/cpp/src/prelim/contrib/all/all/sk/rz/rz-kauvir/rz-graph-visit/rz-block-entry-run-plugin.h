@@ -11,18 +11,18 @@
 
 #include "flags.h"
 
-#include "rz-lisp-graph-visitor.h"
-#include "rz-lisp-graph-visitor-run-plugin.h"
+#include "rz-asg-visitor.h"
+#include "rz-asg-visitor-run-plugin.h"
 
 #include "rzns.h"
 
 RZNS_(GBuild)
 
 
-class RZ_Lisp_Graph_Visitor;
-class RZ_Lisp_Graph_Visitor_Run_State;
+class RZ_ASG_Visitor;
+class RZ_ASG_Visitor_Run_State;
 
-class RZ_Block_Entry_Run_Plugin : public RZ_Lisp_Graph_Visitor_Run_Plugin
+class RZ_Block_Entry_Run_Plugin : public RZ_ASG_Visitor_Run_Plugin
 {
 
  enum class RZ_Block_Entry_Branch_State
@@ -35,11 +35,11 @@ class RZ_Block_Entry_Run_Plugin : public RZ_Lisp_Graph_Visitor_Run_Plugin
  };
 
 
- RZ_Lisp_Graph_Lexical_Scope::iterator_type lexical_scope_iterator_;
+ RZ_ASG_Lexical_Scope::iterator_type lexical_scope_iterator_;
 
 public:
 
- RZ_Block_Entry_Run_Plugin(RZ_Lisp_Graph_Visitor& main_visitor, RZ_Lisp_Graph_Lexical_Scope::iterator_type l);
+ RZ_Block_Entry_Run_Plugin(RZ_ASG_Visitor& main_visitor, RZ_ASG_Lexical_Scope::iterator_type l);
 
  RZ_Block_Entry_Branch_State state_;
 

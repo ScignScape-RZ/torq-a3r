@@ -19,8 +19,8 @@
 
 RZNS_(GBuild)
 
-class RZ_Lisp_Token;
-class RZ_Lisp_Graph_Result_Holder;
+class RZ_ASG_Token;
+class RZ_ASG_Result_Holder;
 
 _RZNS(GBuild)
 
@@ -77,7 +77,7 @@ public:
    return t << s.to_string();
   }
 
-  friend RZ_Lisp_Graph_Result_Holder& operator<<(RZ_Lisp_Graph_Result_Holder& rh, const RZ_Match_Literal& s)
+  friend RZ_ASG_Result_Holder& operator<<(RZ_ASG_Result_Holder& rh, const RZ_Match_Literal& s)
   {
    rh << s;
    return rh;

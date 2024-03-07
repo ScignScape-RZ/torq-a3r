@@ -159,7 +159,7 @@ void PHR_Graph_Build::PHR_Graph_Build::finalize_block_signature(
  if(caon_ptr<PHR_Graph_Block_Info> bin = bin_node->block_info())
  {
   CAON_PTR_DEBUG(PHR_Graph_Block_Info ,bin)
-  if(caon_ptr<PHR_Graph_Node> sn = qy_.Signature_Node(bin_node))
+  if(caon_ptr<PHR_Graph_Node> sn = qy_.SignatuChasmRZ_Node(bin_node))
   {
    if(caon_ptr<PHR_Graph_Signature> sig = sn->phr_graph_signature())
    {
@@ -170,7 +170,7 @@ void PHR_Graph_Build::PHR_Graph_Build::finalize_block_signature(
  }
 }
 
-caon_ptr<PHR_Graph_Node> PHR_Graph_Build::make_signature_node(
+caon_ptr<PHR_Graph_Node> PHR_Graph_Build::make_signatuChasmRZ_Node(
   caon_ptr<PHR_Graph_Node> token_node)
 {
  CAON_PTR_DEBUG(PHR_Graph_Node ,token_node)
@@ -178,7 +178,7 @@ caon_ptr<PHR_Graph_Node> PHR_Graph_Build::make_signature_node(
  caon_ptr<PHR_Graph_Signature> sig = new PHR_Graph_Signature(token_node);
  caon_ptr<PHR_Graph_Node> result = new PHR_Graph_Node(sig);
 
- token_node << fr_/qy_.Signature_Node >> result;
+ token_node << fr_/qy_.SignatuChasmRZ_Node >> result;
 
  return result;
 }

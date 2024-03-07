@@ -12,7 +12,7 @@
 USING_RZNS(GVal)
 
 RZ_Code_Statement::RZ_Code_Statement(Statement_Kinds statement_kind,
-                                     caon_ptr<RE_Node> node)
+                                     caon_ptr<ChasmRZ_Node> node)
   :  statement_kind_(statement_kind), node_(node)
 {
 }

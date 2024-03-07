@@ -21,8 +21,8 @@
 
 RZNS_(GBuild)
 
-class RZ_Lisp_Token;
-class RZ_Lisp_Graph_Result_Holder;
+class RZ_ASG_Token;
+class RZ_ASG_Result_Holder;
 
 _RZNS(GBuild)
 
@@ -42,13 +42,13 @@ public:
  _flags
 
 private:
- RZ_Lisp_Token* token_;
+ RZ_ASG_Token* token_;
  tString raw_string_;
 
 
 public:
 
- ACCESSORS(RZ_Lisp_Token* ,token)
+ ACCESSORS(RZ_ASG_Token* ,token)
  ACCESSORS(tString ,raw_string)
 
 
@@ -63,7 +63,7 @@ public:
   lhs << s;
  }
 
- RZ_String(RZ_Lisp_Token* t = nullptr):Flags(0),token_(t){}
+ RZ_String(RZ_ASG_Token* t = nullptr):Flags(0),token_(t){}
  RZ_String(tString s):Flags(0),token_(nullptr),raw_string_(s)
  {
   flags.has_raw_string = true;
@@ -89,7 +89,7 @@ public:
    return t << s.to_string();
   }
 
-  friend RZ_Lisp_Graph_Result_Holder& operator<<(RZ_Lisp_Graph_Result_Holder& rh, const RZ_String& s)
+  friend RZ_ASG_Result_Holder& operator<<(RZ_ASG_Result_Holder& rh, const RZ_String& s)
   {
    rh << s;
    return rh;

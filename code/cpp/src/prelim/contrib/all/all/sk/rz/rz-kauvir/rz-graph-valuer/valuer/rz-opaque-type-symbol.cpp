@@ -7,9 +7,9 @@
 #include "rz-opaque-type-symbol.h"
 
 
-#include "rz-graph-core/kernel/graph/rz-re-node.h"
+#include "rz-graph-core/kernel/graph/chasm-rz-node.h"
 
-#include "token/rz-lisp-token.h"
+#include "token/rz-asg-token.h"
 
 USING_RZNS(GVal)
 USING_RZNS(GBuild)
@@ -20,13 +20,13 @@ caon_ptr<RZ_Opaque_Type_Symbol::tNode> RZ_Opaque_Type_Symbol::get_node()
 }
 
 
-caon_ptr<RZ_Lisp_Token> RZ_Opaque_Type_Symbol::get_token()
+caon_ptr<RZ_ASG_Token> RZ_Opaque_Type_Symbol::get_token()
 {
- return get_node()->lisp_token();
+ return get_node()->asg_token();
 }
 
 QString RZ_Opaque_Type_Symbol::get_name()
 {
- return get_node()->lisp_token()->string_value();
+ return get_node()->asg_token()->string_value();
 }
 

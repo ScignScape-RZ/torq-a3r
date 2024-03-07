@@ -75,25 +75,25 @@ RZ_GCALL_IMPLEMENT <RZ_GCALL_C(Do, Core_Class)>
 RZ_GCALL_IMPLEMENT <RZ_GCALL_C(If, Core_Class)>
 {
  template<typename T1, typename T2>
- static void run(RZ_Lisp_Graph_Result_Holder& rh, T1& t1, RZ_Lisp_Graph_Value_Holder& t2)
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, T1& t1, RZ_ASG_Value_Holder& t2)
  {
   //rh.valuer().init_if_block(rh, t1);
  }
 
  template<typename T1, typename T2>
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Graph_Core_Function& t1, RZ_Lisp_Graph_Value_Holder& t2)
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Graph_Core_Function& t1, RZ_ASG_Value_Holder& t2)
  {
   rh.valuer().init_if_block(rh, t1);
  }
 
  template<typename T1, typename T2>
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Opaque_Type_Symbol& ots, RZ_Lisp_Graph_Value_Holder& t2)
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Opaque_Type_Symbol& ots, RZ_ASG_Value_Holder& t2)
  {
   rh.valuer().init_if_block(rh, ots);
  }
 
  template<typename T1, typename T2>
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Opaque_Call& t1, RZ_Lisp_Graph_Value_Holder& t2)
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Opaque_Call& t1, RZ_ASG_Value_Holder& t2)
  {
   rh.valuer().init_if_block(rh, t1);
  }
@@ -103,19 +103,19 @@ RZ_GCALL_IMPLEMENT <RZ_GCALL_C(If, Core_Class)>
 RZ_GCALL_IMPLEMENT <RZ_GCALL_C(Elsif, Core_Class)>
 {
  template<typename T1, typename T2>
- static void run(RZ_Lisp_Graph_Result_Holder& rh, T1& t1, RZ_Lisp_Graph_Value_Holder& t2)
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, T1& t1, RZ_ASG_Value_Holder& t2)
  {
   //rh.valuer().init_if_block(rh, t1);
  }
 
  template<typename T1, typename T2>
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Graph_Core_Function& t1, RZ_Lisp_Graph_Value_Holder& t2)
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Graph_Core_Function& t1, RZ_ASG_Value_Holder& t2)
  {
   rh.valuer().init_elsif_block(rh, t1);
  }
 
  template<typename T1, typename T2>
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Opaque_Call& t1, RZ_Lisp_Graph_Value_Holder& t2)
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Opaque_Call& t1, RZ_ASG_Value_Holder& t2)
  {
   rh.valuer().init_elsif_block(rh, t1);
  }
@@ -126,12 +126,12 @@ RZ_GCALL_IMPLEMENT <RZ_GCALL_C(Elsif, Core_Class)>
 RZ_GCALL_IMPLEMENT <RZ_GCALL_C(Enter_Logical_Scope_##count, Core_Class)> \
 { \
  template<typename T1, typename T2> \
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Phaon_User_Type& uty, RZ_Lisp_Graph_Value_Holder& vh) \
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Phaon_User_Type& uty, RZ_ASG_Value_Holder& vh) \
  { \
   rh.valuer().enter_logical_scope(count, rh, uty); \
  } \
  template<typename T1, typename T2> \
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Opaque_Type_Symbol& ots, RZ_Lisp_Graph_Value_Holder& vh) \
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Opaque_Type_Symbol& ots, RZ_ASG_Value_Holder& vh) \
  { \
   rh.valuer().enter_logical_scope(count, rh, ots); \
  } \
@@ -162,22 +162,22 @@ _RZNS(GRun)
 RZ_GCALL_IMPLEMENT <RZ_GCALL_C(Enter_Logical_Scope_##count, Core_Class)> \
 { \
  template<typename T1, typename T2> \
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_User_Class& cl, RZ_Lisp_Graph_Value_Holder& vh) \
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_User_Class& cl, RZ_ASG_Value_Holder& vh) \
  { \
   rh.valuer().enter_logical_scope(count, rh, cl); \
  } \
  template<typename T1, typename T2> \
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_User_Resource& ur, RZ_Lisp_Graph_Value_Holder& vh) \
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_User_Resource& ur, RZ_ASG_Value_Holder& vh) \
  { \
   rh.valuer().enter_logical_scope(count, rh, ur); \
  } \
  template<typename T1, typename T2> \
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_User_Package& upkg, RZ_Lisp_Graph_Value_Holder& vh) \
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_User_Package& upkg, RZ_ASG_Value_Holder& vh) \
  { \
   rh.valuer().enter_logical_scope(count, rh, upkg); \
  } \
  template<typename T1, typename T2> \
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Opaque_Type_Symbol& ots, RZ_Lisp_Graph_Value_Holder& vh) \
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Opaque_Type_Symbol& ots, RZ_ASG_Value_Holder& vh) \
  { \
   rh.valuer().enter_logical_scope(count, rh, ots); \
  } \

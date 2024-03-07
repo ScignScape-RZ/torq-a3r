@@ -34,7 +34,7 @@
 
 #include "rzns.h"
 
-USING_RZNS(RECore)
+USING_RZNS(RZ_Core)
 
 
 USING_RZNS(GVal)
@@ -63,20 +63,20 @@ int RPI_Block::get_new_hd_code()
 
 void RPI_Block::scan_top_level(RZ_Graph_Visitor_Phaon& visitor_phaon)
 {
- caon_ptr<RE_Node> rn = visitor_phaon.visitor().graph_root_node();
+ caon_ptr<ChasmRZ_Node> rn = visitor_phaon.visitor().graph_root_node();
 
  scan(visitor_phaon, *rn);
 }
 
 void RPI_Block::scan(RZ_Graph_Visitor_Phaon& visitor_phaon,
-  RE_Node& start_node)
+  ChasmRZ_Node& start_node)
 {
  caon_ptr<RZ_Lisp_Graph_Block_Info> rbi;
- if(caon_ptr<RE_Node> ben = visitor_phaon.visitor().find_block_entry_node(&start_node, rbi))
+ if(caon_ptr<ChasmRZ_Node> ben = visitor_phaon.visitor().find_block_entry_node(&start_node, rbi))
  {
-  CAON_PTR_DEBUG(RE_Node ,ben)
+  CAON_PTR_DEBUG(ChasmRZ_Node ,ben)
 
-  caon_ptr<RE_Node> cen = visitor_phaon.visitor().find_run_call_entry(ben);
+  caon_ptr<ChasmRZ_Node> cen = visitor_phaon.visitor().find_run_call_entry(ben);
 
   // // does this need to be more fine-grained?
 
@@ -88,19 +88,19 @@ void RPI_Block::scan(RZ_Graph_Visitor_Phaon& visitor_phaon,
    lexical_scope_ = rbe->lexical_scope();
   }
 
-  CAON_PTR_DEBUG(RE_Node ,cen)
+  CAON_PTR_DEBUG(ChasmRZ_Node ,cen)
 
   if(cen)
   {
    add_form_from_call_entry_node(visitor_phaon, *cen, rbe);
   }
 
-  caon_ptr<RE_Node> current_node = cen;
+  caon_ptr<ChasmRZ_Node> current_node = cen;
   while(current_node)
   {
    if(current_node = visitor_phaon.find_statement_cross_sequence_node(current_node) )
    {
-    CAON_PTR_DEBUG(RE_Node, current_node)
+    CAON_PTR_DEBUG(ChasmRZ_Node, current_node)
     last_form_ = current_form_;
     current_form_ = nullptr;
     add_form_from_call_entry_node(visitor_phaon, *current_node);
@@ -113,7 +113,7 @@ void RPI_Block::scan(RZ_Graph_Visitor_Phaon& visitor_phaon,
 
 
 void RPI_Block::add_form_from_call_entry_node(RZ_Graph_Visitor_Phaon& visitor_phaon,
-  RE_Node& entry_node, caon_ptr<RE_Block_Entry> rbe,
+  ChasmRZ_Node& entry_node, caon_ptr<RE_Block_Entry> rbe,
   caon_ptr<RPI_Stage_Form> prior_form)
 {
  if(current_form_)
@@ -132,7 +132,7 @@ void RPI_Block::add_form_from_call_entry_node(RZ_Graph_Visitor_Phaon& visitor_ph
    current_form_->set_prior_sibling_flags(prior_form);
   }
 
-  caon_ptr<RE_Call_Entry> rce = entry_node.re_call_entry();
+  caon_ptr<RE_Call_Entry> rce = entry_node.chasm_rz_call_entry();
 
   CAON_PTR_DEBUG(RE_Call_Entry ,rce)
 
@@ -150,9 +150,9 @@ void RPI_Block::add_form_from_call_entry_node(RZ_Graph_Visitor_Phaon& visitor_ph
   }
 
   forms_.push_back(current_form_);
-  if(caon_ptr<RE_Node> start_node = visitor_phaon.start_node_from_call_entry_node(&entry_node))
+  if(caon_ptr<ChasmRZ_Node> start_node = visitor_phaon.start_node_from_call_entry_node(&entry_node))
   {
-   CAON_PTR_DEBUG(RE_Node ,start_node)
+   CAON_PTR_DEBUG(ChasmRZ_Node ,start_node)
 
    if(caon_ptr<RZ_Expression_Review> rer = visitor_phaon.get_expression_review_from_entry_node(start_node))
    {
@@ -182,7 +182,7 @@ void RPI_Block::add_form_from_call_entry_node(RZ_Graph_Visitor_Phaon& visitor_ph
 
 
 void RPI_Block::scan_form_from_start_node(RZ_Graph_Visitor_Phaon& visitor_phaon,
-  RE_Node& start_node)
+  ChasmRZ_Node& start_node)
 {
  scan_form_from_statement_entry_node(visitor_phaon, start_node);
  current_form_ = nullptr;
@@ -192,7 +192,7 @@ caon_ptr<RE_Block_Entry> RPI_Block::get_block_entry()
 {
  if(block_info_)
  {
-  if(caon_ptr<RE_Node> ben = block_info_->block_entry_node())
+  if(caon_ptr<ChasmRZ_Node> ben = block_info_->block_entry_node())
   {
    return ben->re_block_entry();
   }
@@ -202,7 +202,7 @@ caon_ptr<RE_Block_Entry> RPI_Block::get_block_entry()
 
 // //  contrary to name, can also be expression entry ...
 void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visitor_phaon,
-  RE_Node& start_node)
+  ChasmRZ_Node& start_node)
 {
  int lambda_count = 0;
  int implicit_added_depth = 0;
@@ -216,9 +216,9 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
   pending_block_info_ = visitor_phaon.check_pending_block_info(&start_node);
  }
 
- if(caon_ptr<RZ_Lisp_Token> tok = start_node.lisp_token())
+ if(caon_ptr<RZ_ASG_Token> tok = start_node.lisp_token())
  {
-  CAON_PTR_DEBUG(RZ_Lisp_Token ,tok)
+  CAON_PTR_DEBUG(RZ_ASG_Token ,tok)
 
   QString fn;
   RZ_Graph_Visitor_Phaon::Special_Form_Flags sff =
@@ -305,7 +305,7 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
    break;
   }
  }
- caon_ptr<RE_Node> current_node = &start_node;
+ caon_ptr<ChasmRZ_Node> current_node = &start_node;
 
  RZ_Lisp_Graph_Visitor::Next_Node_Premise nnp = RZ_Lisp_Graph_Visitor::Next_Node_Premise::N_A;
 
@@ -319,10 +319,10 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
   last_nnp_expr = nnp == RZ_Lisp_Graph_Visitor::Next_Node_Premise::Expression;
 
   // nnp is read-write in visitor_phaon.get_next_node(...)
-  caon_ptr<RE_Node> next_node = visitor_phaon.get_next_node(current_node, nnp);
+  caon_ptr<ChasmRZ_Node> next_node = visitor_phaon.get_next_node(current_node, nnp);
 
-  CAON_PTR_DEBUG(RE_Node ,current_node)
-  CAON_PTR_DEBUG(RE_Node ,next_node)
+  CAON_PTR_DEBUG(ChasmRZ_Node ,current_node)
+  CAON_PTR_DEBUG(ChasmRZ_Node ,next_node)
 
   bool skip_increase_lambda_count = false;
 
@@ -333,9 +333,9 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
 
   case RZ_Lisp_Graph_Visitor::Next_Node_Premise::Normal:
    {
-    if(caon_ptr<RZ_Lisp_Token> next_tok = next_node->lisp_token())
+    if(caon_ptr<RZ_ASG_Token> next_tok = next_node->lisp_token())
     {
-     CAON_PTR_DEBUG(RZ_Lisp_Token ,next_tok)
+     CAON_PTR_DEBUG(RZ_ASG_Token ,next_tok)
 
      if(next_tok->flags.is_dep_marker)
      {
@@ -447,7 +447,7 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
        {
         if(held_sigma_token_)
         {
-         CAON_PTR_DEBUG(RZ_Lisp_Token ,held_sigma_token_)
+         CAON_PTR_DEBUG(RZ_ASG_Token ,held_sigma_token_)
          current_form_->add_s1_fn_element(lt, held_sigma_token_->raw_text());
          held_sigma_token_ = nullptr;
         }
@@ -514,7 +514,7 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
     new_form->set_prior_sibling_flags(current_form_);
     current_form_->add_expression(new_form);
 
-    caon_ptr<RE_Call_Entry> rce = next_node->re_call_entry();
+    caon_ptr<RE_Call_Entry> rce = next_node->chasm_rz_call_entry();
     CAON_PTR_DEBUG(RE_Call_Entry ,rce)
     if( (lambda_count > 0) && !last_nnp_expr )
       new_form->flags.has_preceder_token = true;
@@ -524,8 +524,8 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
      current_form_->add_expression_wrapper(new_form, "defer'", get_new_hd_code());
     }
     current_form_ = new_form;
-    caon_ptr<RE_Node> en = visitor_phaon.visitor().entry_from_call_entry(next_node);
-    CAON_PTR_DEBUG(RE_Node ,en)
+    caon_ptr<ChasmRZ_Node> en = visitor_phaon.visitor().entry_from_call_entry(next_node);
+    CAON_PTR_DEBUG(ChasmRZ_Node ,en)
     scan_form_from_statement_entry_node(visitor_phaon, *en);
     current_form_ = new_form->parent();
 
@@ -550,11 +550,11 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
     caon_ptr<RPI_Block> current_block = new_block;
 
     new_block->set_block_info(rbi);
-    if(caon_ptr<RE_Node> cen = visitor_phaon.call_entry_node_from_block_entry_node(next_node))
+    if(caon_ptr<ChasmRZ_Node> cen = visitor_phaon.call_entry_node_from_block_entry_node(next_node))
     {
      CAON_PTR_DEBUG(RZ_Lisp_Graph_Block_Info ,rbi)
-     CAON_PTR_DEBUG(RE_Node ,cen)
-     if(caon_ptr<RE_Node> nben = rbi->block_entry_node())
+     CAON_PTR_DEBUG(ChasmRZ_Node ,cen)
+     if(caon_ptr<ChasmRZ_Node> nben = rbi->block_entry_node())
      {
       if(caon_ptr<RE_Block_Entry> rbe = nben->re_block_entry())
       {
@@ -566,13 +566,13 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
 
 
      caon_ptr<RZ_Lisp_Graph_Block_Info> nn_bi;
-     caon_ptr<RE_Node> continue_node = visitor_phaon.leave_nested_block(rbi, nn_bi);
+     caon_ptr<ChasmRZ_Node> continue_node = visitor_phaon.leave_nested_block(rbi, nn_bi);
      while(continue_node)
      {
-      caon_ptr<RE_Node> nben = nn_bi->block_entry_node();
-      CAON_PTR_DEBUG(RE_Node ,continue_node)
+      caon_ptr<ChasmRZ_Node> nben = nn_bi->block_entry_node();
+      CAON_PTR_DEBUG(ChasmRZ_Node ,continue_node)
       CAON_PTR_DEBUG(RZ_Lisp_Graph_Block_Info ,nn_bi)
-      CAON_PTR_DEBUG(RE_Node ,nben)
+      CAON_PTR_DEBUG(ChasmRZ_Node ,nben)
       caon_ptr<RE_Block_Entry> nrbe = nben->re_block_entry();
       CAON_PTR_DEBUG(RE_Block_Entry ,nrbe)
 
@@ -580,23 +580,23 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
 
       if(nrbe->flags.elsif_block)
       {
-       if(caon_ptr<RE_Node> sen = nrbe->statement_entry_node())
+       if(caon_ptr<ChasmRZ_Node> sen = nrbe->statement_entry_node())
        {
-        CAON_PTR_DEBUG(RE_Node ,sen)
-        caon_ptr<RE_Node> en = visitor_phaon.visitor().entry_from_call_entry(sen);
-        CAON_PTR_DEBUG(RE_Node ,en)
+        CAON_PTR_DEBUG(ChasmRZ_Node ,sen)
+        caon_ptr<ChasmRZ_Node> en = visitor_phaon.visitor().entry_from_call_entry(sen);
+        CAON_PTR_DEBUG(ChasmRZ_Node ,en)
 
         if(en)
         {
-         caon_ptr<RE_Node> nen = visitor_phaon.visitor().entry_from_call_entry(en);
-         CAON_PTR_DEBUG(RE_Node ,nen)
+         caon_ptr<ChasmRZ_Node> nen = visitor_phaon.visitor().entry_from_call_entry(en);
+         CAON_PTR_DEBUG(ChasmRZ_Node ,nen)
          if(nen)
          {
           expression_form = new RPI_Stage_Form(pgb_, current_form_);
           current_form_ = expression_form;
 
-          caon_ptr<RE_Node> nene = visitor_phaon.visitor().entry_from_call_entry(nen);
-          CAON_PTR_DEBUG(RE_Node ,nene)
+          caon_ptr<ChasmRZ_Node> nene = visitor_phaon.visitor().entry_from_call_entry(nen);
+          CAON_PTR_DEBUG(ChasmRZ_Node ,nene)
 
           scan_form_from_statement_entry_node(visitor_phaon, *nene);
 
@@ -608,8 +608,8 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
 
         caon_ptr<RZ_Lisp_Graph_Block_Info> new_rbi;
 
-        caon_ptr<RE_Node> new_ben = visitor_phaon.visitor().find_block_entry_node(en, new_rbi);
-        CAON_PTR_DEBUG(RE_Node ,new_ben)
+        caon_ptr<ChasmRZ_Node> new_ben = visitor_phaon.visitor().find_block_entry_node(en, new_rbi);
+        CAON_PTR_DEBUG(ChasmRZ_Node ,new_ben)
         CAON_PTR_DEBUG(RZ_Lisp_Graph_Block_Info ,new_rbi)
         if(!new_ben)
         {
@@ -624,9 +624,9 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
          caon_ptr<RPI_Block> new_block = new RPI_Block(pgb_, this);
          new_block->set_block_info(new_rbi);
 
-         if(caon_ptr<RE_Node> new_cen = visitor_phaon.call_entry_node_from_block_entry_node(new_ben))
+         if(caon_ptr<ChasmRZ_Node> new_cen = visitor_phaon.call_entry_node_from_block_entry_node(new_ben))
          {
-          CAON_PTR_DEBUG(RE_Node ,new_cen)
+          CAON_PTR_DEBUG(ChasmRZ_Node ,new_cen)
           new_block->add_form_from_call_entry_node(visitor_phaon, *new_cen);
           current_form_->add_nested_block(new_block);
          }
@@ -637,16 +637,16 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
 
       else if(nrbe->flags.else_block)
       {
-       if(caon_ptr<RE_Node> sen = nrbe->statement_entry_node())
+       if(caon_ptr<ChasmRZ_Node> sen = nrbe->statement_entry_node())
        {
-        CAON_PTR_DEBUG(RE_Node ,sen)
-        caon_ptr<RE_Node> en = visitor_phaon.visitor().entry_from_call_entry(sen);
-        CAON_PTR_DEBUG(RE_Node ,en)
+        CAON_PTR_DEBUG(ChasmRZ_Node ,sen)
+        caon_ptr<ChasmRZ_Node> en = visitor_phaon.visitor().entry_from_call_entry(sen);
+        CAON_PTR_DEBUG(ChasmRZ_Node ,en)
 
         caon_ptr<RZ_Lisp_Graph_Block_Info> new_rbi;
 
-        caon_ptr<RE_Node> new_ben = visitor_phaon.visitor().find_block_entry_node(en, new_rbi);
-        CAON_PTR_DEBUG(RE_Node ,new_ben)
+        caon_ptr<ChasmRZ_Node> new_ben = visitor_phaon.visitor().find_block_entry_node(en, new_rbi);
+        CAON_PTR_DEBUG(ChasmRZ_Node ,new_ben)
         CAON_PTR_DEBUG(RZ_Lisp_Graph_Block_Info ,new_rbi)
 
         if(new_ben)
@@ -654,9 +654,9 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
          caon_ptr<RPI_Block> new_block = new RPI_Block(pgb_, this);
          new_block->set_block_info(new_rbi);
 
-         if(caon_ptr<RE_Node> new_cen = visitor_phaon.call_entry_node_from_block_entry_node(new_ben))
+         if(caon_ptr<ChasmRZ_Node> new_cen = visitor_phaon.call_entry_node_from_block_entry_node(new_ben))
          {
-          CAON_PTR_DEBUG(RE_Node ,new_cen)
+          CAON_PTR_DEBUG(ChasmRZ_Node ,new_cen)
           new_block->add_form_from_call_entry_node(visitor_phaon, *new_cen);
           current_form_->add_nested_block(new_block);
          }
@@ -673,7 +673,7 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
       current_block->set_continue_block(nb);
       current_block = nb;
 
-      if(caon_ptr<RE_Node> cen = visitor_phaon.call_entry_node_from_block_entry_node(nben))
+      if(caon_ptr<ChasmRZ_Node> cen = visitor_phaon.call_entry_node_from_block_entry_node(nben))
       {
        nb->add_form_from_call_entry_node(visitor_phaon, *cen);
       }
@@ -686,23 +686,23 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
   case RZ_Lisp_Graph_Visitor::Next_Node_Premise::Function_Def_Entry:
    {
     QString entry_code;
-    CAON_PTR_DEBUG(RE_Node ,next_node)
-    if(caon_ptr<RE_Function_Def_Entry> fde = next_node->re_function_def_entry())
+    CAON_PTR_DEBUG(ChasmRZ_Node ,next_node)
+    if(caon_ptr<ChasmRZ_Function_Def_Entry> fde = next_node->chasm_rz_function_def_entry())
     {
-     CAON_PTR_DEBUG(RE_Function_Def_Entry ,fde)
-     caon_ptr<RE_Node> prior_node = fde->prior_node();
-     CAON_PTR_DEBUG(RE_Node ,prior_node)
+     CAON_PTR_DEBUG(ChasmRZ_Function_Def_Entry ,fde)
+     caon_ptr<ChasmRZ_Node> prior_node = fde->prior_node();
+     CAON_PTR_DEBUG(ChasmRZ_Node ,prior_node)
 
-     if(caon_ptr<RE_Token> tok = prior_node->re_token())
+     if(caon_ptr<RE_Token> tok = prior_node->chasm_rz_token())
      {
       CAON_PTR_DEBUG(RE_Token ,tok)
       CAON_DEBUG_NOOP
      }
 
-     if(fde->kind() == RE_Function_Def_Kinds::Call_Arrow_Note)
+     if(fde->kind() == ChasmRZ_Function_Def_Kinds::Call_Arrow_Note)
      {
-      caon_ptr<RE_Node> note_node = fde->note_node();
-      QString note = note_node->re_token()->raw_text();
+      caon_ptr<ChasmRZ_Node> note_node = fde->note_node();
+      QString note = note_node->chasm_rz_token()->raw_text();
 
       if(caon_ptr<RZ_Function_Def_Info> function_def_info =
         visitor_phaon.get_function_def_info_from_entry(fde))
@@ -711,7 +711,7 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
        function_def_info->write_phr_signature_code(pgb_, current_form_->step_forms());
       }
      }
-     else if(fde->kind() == RE_Function_Def_Kinds::Call_Arrow_Async)
+     else if(fde->kind() == ChasmRZ_Function_Def_Kinds::Call_Arrow_Async)
      {
       // //?
      }
@@ -723,10 +723,10 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
        QString signature_code = function_def_info->dynamo_signature_code_string();
        MS_Token note {MS_Token_Kinds::Note_Symbol, ":fdef"};
 
-       caon_ptr<RE_Node> prior_node = fde->prior_node();
-       CAON_PTR_DEBUG(RE_Node ,prior_node)
+       caon_ptr<ChasmRZ_Node> prior_node = fde->prior_node();
+       CAON_PTR_DEBUG(ChasmRZ_Node ,prior_node)
 
-       if(caon_ptr<RE_Token> tok = prior_node->re_token())
+       if(caon_ptr<RE_Token> tok = prior_node->chasm_rz_token())
        {
         if(!tok->flags.is_do)
         {
@@ -737,12 +737,12 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
       }
      }
 
-     caon_ptr<RE_Node> fdi_node = fde->node();
-     CAON_PTR_DEBUG(RE_Node ,fdi_node)
+     caon_ptr<ChasmRZ_Node> fdi_node = fde->node();
+     CAON_PTR_DEBUG(ChasmRZ_Node ,fdi_node)
 
-     if(caon_ptr<RE_Node> ben = visitor_phaon.block_entry_node_from_function_def_entry_node(prior_node))
+     if(caon_ptr<ChasmRZ_Node> ben = visitor_phaon.block_entry_node_from_function_def_entry_node(prior_node))
      {
-      CAON_PTR_DEBUG(RE_Node ,ben)
+      CAON_PTR_DEBUG(ChasmRZ_Node ,ben)
       CAON_DEBUG_NOOP
       caon_ptr<RPI_Block> new_block = new RPI_Block(pgb_, this);
 
@@ -770,17 +770,17 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
 
       new_block->set_parent_lambda_position(parent_lambda_position_);
       ++lambda_count;
-      if(caon_ptr<RE_Node> cen = visitor_phaon.call_entry_node_from_block_entry_node(ben))
+      if(caon_ptr<ChasmRZ_Node> cen = visitor_phaon.call_entry_node_from_block_entry_node(ben))
       {
-       CAON_PTR_DEBUG(RE_Node ,cen)
+       CAON_PTR_DEBUG(ChasmRZ_Node ,cen)
        caon_ptr<RE_Block_Entry> rbe = ben->re_block_entry();
        CAON_PTR_DEBUG(RE_Block_Entry ,rbe)
        new_block->add_form_from_call_entry_node(visitor_phaon, *cen, rbe, current_form_);
 
-       caon_ptr<RE_Node> next_statement_node = cen;
+       caon_ptr<ChasmRZ_Node> next_statement_node = cen;
        while(next_statement_node = visitor_phaon.get_next_statement_node(next_statement_node))
        {
-        CAON_PTR_DEBUG(RE_Node ,next_statement_node)
+        CAON_PTR_DEBUG(ChasmRZ_Node ,next_statement_node)
         new_block->add_form_from_call_entry_node(visitor_phaon, *next_statement_node);
        }
 
@@ -806,7 +806,7 @@ void RPI_Block::scan_form_from_statement_entry_node(RZ_Graph_Visitor_Phaon& visi
     }
 
     ++lambda_count;
-    if(caon_ptr<RE_Node> cen = visitor_phaon.call_entry_node_from_block_entry_node(next_node))
+    if(caon_ptr<ChasmRZ_Node> cen = visitor_phaon.call_entry_node_from_block_entry_node(next_node))
     {
      new_block->add_form_from_call_entry_node(visitor_phaon, *cen);
      current_form_->add_nested_block(new_block);

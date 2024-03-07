@@ -9,7 +9,7 @@
 
 #include "rzns.h"
 
-RZNS_(RECore)
+RZNS_(RZ_Core)
 
 enum class RZ_Read_Table_State
 {
@@ -86,7 +86,7 @@ struct RZ_SRE_Result_State
 
 
 
-_RZNS(RECore)
+_RZNS(RZ_Core)
 
 
 #endif //RZ_READ_TABLE_STATE__H

@@ -36,7 +36,7 @@ QString RZ_Graph_Run_Token::text_value() const
  return result;
 }
 
-void RZ_Graph_Run_Token::init_from(RZ_Lisp_Token& rzlt)
+void RZ_Graph_Run_Token::init_from(RZ_ASG_Token& rzlt)
 {
  Flags = 0;
  if(rzlt.flags.is_empty_tuple_indicator)

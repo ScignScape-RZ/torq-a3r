@@ -1,6 +1,6 @@
 
 #include "rz-phaon-user-type.h"
-//?#include "rz-lisp-graph-logical-scope.h"
+//?#include "rz-asg-logical-scope.h"
 
 #include <QString>
 #include <QMap>

@@ -65,7 +65,7 @@ bool RZ_Embed_Branch_Run_Plugin::check_embed_call_entry(RZ_Graph_Embed_Token& rg
 {
  if(rget.entry_node())
  {
-  CAON_EVALUATE_DEBUG(RE_Node ,en ,rget.entry_node())
+  CAON_EVALUATE_DEBUG(ChasmRZ_Node ,en ,rget.entry_node())
   run_state_.flags.on_embed_redirect_branch = false;
   run_state_.flags.on_embed_redirect_entry = true;
   run_state_.set_read_table_state(RZ_Read_Table_State::Expression_Pre_Entry);

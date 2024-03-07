@@ -21,12 +21,12 @@
 
 #include "relae-graph/relae-caon-ptr.h"
 
-RZNS_(RECore)
- class RE_Node;
+RZNS_(RZ_Core)
+ class ChasmRZ_Node;
  class RE_Block_Entry;
-_RZNS(RECore)
+_RZNS(RZ_Core)
 
-USING_RZNS(RECore)
+USING_RZNS(RZ_Core)
 
 RZNS_(GBuild)
  class RZ_Lisp_Graph_Visitor;

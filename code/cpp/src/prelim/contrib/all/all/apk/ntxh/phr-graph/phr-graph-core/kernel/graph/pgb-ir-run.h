@@ -47,7 +47,7 @@ class PGB_IR_Run
   make_statement_info_node, add_fsym_ground_node,
   add_channel_fground_cross_node, add_channel_fground_coentry_node,
   make_block_info_node, add_channel_continue_block_node,
-  make_signature_node, signature,
+  make_signatuChasmRZ_Node, signature,
   enter_anon_signature, leave_anon_signature,
   add_channel_entry_block_node,
   push_expression_entry, pop_expression_entry,

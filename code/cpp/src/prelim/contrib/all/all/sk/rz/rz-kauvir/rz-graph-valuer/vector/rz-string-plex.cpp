@@ -6,25 +6,25 @@
 
 #include "rz-string-plex.h"
 
-#include "valuer/rz-lisp-graph-valuer.h"
+#include "valuer/rz-asg-valuer.h"
 
-#include "rz-graph-core/tuple/rz-re-tuple-info.h"
+#include "rz-graph-core/tuple/chasm-rz-tuple-info.h"
 
-#include "rz-graph-token/token/rz-lisp-token.h"
+#include "rz-graph-token/token/rz-asg-token.h"
 
-#include "rz-graph-core/kernel/grammar/rz-re-string-plex-builder.h"
+#include "rz-graph-core/kernel/grammar/chasm-rz-string-plex-builder.h"
 
 #include "rzns.h"
 
 
 USING_RZNS(GVal)
 
-RZ_String_Plex::RZ_String_Plex(caon_ptr<RE_Tuple_Info> tuple_info,
+RZ_String_Plex::RZ_String_Plex(caon_ptr<ChasmRZ_Tuple_Info> tuple_info,
  RZ_Type_Object& rto, caon_ptr<RZ_String_Plex_Builder> builder)
  :
    tuple_info_(tuple_info), builder_(builder)
 {
- token_representation_ = new RZ_Lisp_Token(tuple_info_->token_representation());
+ token_representation_ = new RZ_ASG_Token(tuple_info_->token_representation());
  token_representation_->flags.is_token_representation = true;
  token_representation_->set_value(caon_ptr<RZ_String_Plex>(this));
  token_representation_->set_type_object(rto);

@@ -5,24 +5,24 @@
 //           http://www.boost.org/LICENSE_1_0.txt)
 
 #include "rz-function-def-info.h"
-#include "rz-graph-core/tuple/rz-re-tuple-info.h"
+#include "rz-graph-core/tuple/chasm-rz-tuple-info.h"
 
-#include "rz-graph-token/token/rz-lisp-token.h"
+#include "rz-graph-token/token/rz-asg-token.h"
 
-#include "rz-graph-core/code/rz-re-function-def-entry.h"
+#include "rz-graph-core/code/chasm-rz-function-def-entry.h"
 
-#include "rz-graph-core/kernel/graph/rz-re-node.h"
+#include "rz-graph-core/kernel/graph/chasm-rz-node.h"
 
-#include "rz-graph-core/kernel/query/rz-re-query.h"
+#include "rz-graph-core/kernel/query/chasm-rz-query.h"
 
 #include "rz-type-formation.h"
 
-#include "rz-graph-core/code/rz-re-function-def-entry.h"
+#include "rz-graph-core/code/chasm-rz-function-def-entry.h"
 #include "rz-function-def-syntax.h"
 
-#include "rz-graph-valuer/scope/rz-lisp-graph-lexical-scope.h"
+#include "rz-graph-valuer/scope/rz-asg-lexical-scope.h"
 
-#include "token/rz-re-token.h"
+#include "token/chasm-rz-token.h"
 
 #include "multistep-token.h"
 #include "multigraph-token.h"
@@ -31,29 +31,29 @@
 
 USING_RZNS(GVal)
 
-RZ_Function_Def_Info::RZ_Function_Def_Info(RE_Function_Def_Entry& function_def_entry
+RZ_Function_Def_Info::RZ_Function_Def_Info(ChasmRZ_Function_Def_Entry& function_def_entry
   , type_name_callback_type type_name_callback, ls_callback_type ls_callback)
  : Flags(0), function_def_entry_(&function_def_entry), type_name_callback_(type_name_callback),
-   ls_callback_(ls_callback), rq_(RE_Query::instance()),
+   ls_callback_(ls_callback), rq_(ChasmRZ_Query::instance()),
    map_key_sequence_ref_node_(nullptr),
    map_key_sequence_order_(0), ref_fdi_(nullptr)
 {
  caon_ptr<tNode> fdef_node = function_def_entry.node();
  switch(function_def_entry.kind())
  {
- case RE_Function_Def_Kinds::Call_Arrow: flags.lambda = true; break;
- case RE_Function_Def_Kinds::Call_Arrow_Async:
+ case ChasmRZ_Function_Def_Kinds::Call_Arrow: flags.lambda = true; break;
+ case ChasmRZ_Function_Def_Kinds::Call_Arrow_Async:
   flags.lambda = true;
   flags.async = true;
   break;
 
- case RE_Function_Def_Kinds::Call_Arrow_No_Def:
+ case ChasmRZ_Function_Def_Kinds::Call_Arrow_No_Def:
   flags.no_def = true;
   flags.lambda = true;
   break;
- case RE_Function_Def_Kinds::Call_Arrow_Type_Expression: flags.type_expression = true; break;
- case RE_Function_Def_Kinds::Call_Arrow_With_Matching: flags.with_matching = true; break;
- case RE_Function_Def_Kinds::Call_Arrow_Monad: flags.lambda = true; flags.monad = true; break;
+ case ChasmRZ_Function_Def_Kinds::Call_Arrow_Type_Expression: flags.type_expression = true; break;
+ case ChasmRZ_Function_Def_Kinds::Call_Arrow_With_Matching: flags.with_matching = true; break;
+ case ChasmRZ_Function_Def_Kinds::Call_Arrow_Monad: flags.lambda = true; flags.monad = true; break;
  default: break;
  }
 
@@ -67,11 +67,11 @@ RZ_Function_Def_Info::RZ_Function_Def_Info(RE_Function_Def_Entry& function_def_e
 
 QString RZ_Function_Def_Info::get_label()
 {
- CAON_PTR_DEBUG(RE_Function_Def_Entry ,function_def_entry_)
+ CAON_PTR_DEBUG(ChasmRZ_Function_Def_Entry ,function_def_entry_)
  QString result;
  if(function_def_entry_->label_node())
  {
-  if(caon_ptr<RE_Token> token = function_def_entry_->label_node()->re_token())
+  if(caon_ptr<ChasmRZ_Token> token = function_def_entry_->label_node()->chasm_rz_token())
   {
    result = token->raw_text();
   }
@@ -104,7 +104,7 @@ QString RZ_Function_Def_Info::sigma_channel_string(const RZ_Function_Def_Syntax&
  return channel_string(Channel_Types::Sigma, syntax);
 }
 
-QString RZ_Function_Def_Info::channel_string(const RZ_Function_Def_Syntax& syntax, caon_ptr<RE_Node> sequence_node)
+QString RZ_Function_Def_Info::channel_string(const RZ_Function_Def_Syntax& syntax, caon_ptr<ChasmRZ_Node> sequence_node)
 {
  QString separator = syntax.symbol_separator();
  QString argument_default_type = syntax.argument_default_type();
@@ -124,9 +124,9 @@ QString RZ_Function_Def_Info::channel_string(const RZ_Function_Def_Syntax& synta
  {
   CAON_PTR_DEBUG(tNode ,sequence_node)
   held_depth_change = depth_change;
-  if(caon_ptr<RZ_Lisp_Token> tok = channel_sequence(sequence_node, depth_change))
+  if(caon_ptr<RZ_ASG_Token> tok = channel_sequence(sequence_node, depth_change))
   {
-   CAON_PTR_DEBUG(RZ_Lisp_Token ,tok)
+   CAON_PTR_DEBUG(RZ_ASG_Token ,tok)
    if(tok->flags.is_empty_tuple_indicator)
    {
     //  for a .() -- but check if this can appear nested...
@@ -145,7 +145,7 @@ QString RZ_Function_Def_Info::channel_string(const RZ_Function_Def_Syntax& synta
      type_expression += QString(-held_depth_change, ')');
     }
 
-   RZ_Lisp_Token& token = *tok;
+   RZ_ASG_Token& token = *tok;
    if(current_depth > 0)
    {
     QString type_symbol = type_name_callback_(token.string_value());
@@ -270,7 +270,7 @@ QString RZ_Function_Def_Info::channel_string(const RZ_Function_Def_Syntax& synta
 }
 
 // //?  should we check symbols for the lexical scope before this ...?
-QString RZ_Function_Def_Info::kauvir_entry_code_string(RZ_Lisp_Graph_Lexical_Scope& ls)
+QString RZ_Function_Def_Info::kauvir_entry_code_string(RZ_ASG_Lexical_Scope& ls)
 {
  QString result = kauvir_entry_code_string_by_channel_type(Channel_Types::Sigma, ls);
  result += kauvir_entry_code_string_by_channel_type(Channel_Types::Lambda, ls);
@@ -328,7 +328,7 @@ QString RZ_Function_Def_Info::dynamo_signature_code_for_empty_channel(QString ca
 
 QString RZ_Function_Def_Info::dynamo_signature_code_string_by_channel_type(Channel_Types ct)
 {
- caon_ptr<RE_Node> sequence_node = nullptr;
+ caon_ptr<ChasmRZ_Node> sequence_node = nullptr;
 
  QString channel_name_code;
 
@@ -365,9 +365,9 @@ QString RZ_Function_Def_Info::dynamo_signature_code_string_by_channel_type(Chann
  while(sequence_node)
  {
   // this advances sequence_node
-  if(caon_ptr<RZ_Lisp_Token> rzlt = channel_sequence(sequence_node, depth_change))
+  if(caon_ptr<RZ_ASG_Token> rzlt = channel_sequence(sequence_node, depth_change))
   {
-   CAON_PTR_DEBUG(RZ_Lisp_Token ,rzlt)
+   CAON_PTR_DEBUG(RZ_ASG_Token ,rzlt)
    if(rzlt->flags.is_empty_tuple_indicator)
    {
     return dynamo_signature_code_for_empty_channel(channel_name_code);
@@ -403,9 +403,9 @@ QString RZ_Function_Def_Info::dynamo_signature_code_string_by_channel_type(Chann
 }
 
 
-QString RZ_Function_Def_Info::kauvir_entry_code_string_by_channel_type(Channel_Types ct, RZ_Lisp_Graph_Lexical_Scope& ls)
+QString RZ_Function_Def_Info::kauvir_entry_code_string_by_channel_type(Channel_Types ct, RZ_ASG_Lexical_Scope& ls)
 {
- caon_ptr<RE_Node> sequence_node;
+ caon_ptr<ChasmRZ_Node> sequence_node;
 
  QString channel_name_code;
 
@@ -435,7 +435,7 @@ QString RZ_Function_Def_Info::kauvir_entry_code_string_by_channel_type(Channel_T
  while(sequence_node)
  {
   // this advances sequence_node
-  if(caon_ptr<RZ_Lisp_Token> rzlt = channel_sequence(sequence_node, depth_change))
+  if(caon_ptr<RZ_ASG_Token> rzlt = channel_sequence(sequence_node, depth_change))
   {
    QString rt = rzlt->raw_text();
    if(rt == "<-")
@@ -470,17 +470,17 @@ QString RZ_Function_Def_Info::kauvir_entry_code_string_by_channel_type(Channel_T
 }
 
 
-caon_ptr<RZ_Lisp_Token> RZ_Function_Def_Info::channel_sequence(caon_ptr<tNode>& sequence_node, signed int& depth_change)
+caon_ptr<RZ_ASG_Token> RZ_Function_Def_Info::channel_sequence(caon_ptr<tNode>& sequence_node, signed int& depth_change)
 {
  // //   Get or init the token and advance
- caon_ptr<RZ_Lisp_Token> result = nullptr;
- CAON_PTR_DEBUG(RE_Node ,sequence_node)
- if(caon_ptr<RE_Token> retok = sequence_node->re_token())
+ caon_ptr<RZ_ASG_Token> result = nullptr;
+ CAON_PTR_DEBUG(ChasmRZ_Node ,sequence_node)
+ if(caon_ptr<ChasmRZ_Token> retok = sequence_node->chasm_rz_token())
  {
-  result = RZ_Lisp_Token::check_init_lisp_token(*retok);
+  result = RZ_ASG_Token::check_init_asg_token(*retok);
   depth_change = 0;
  }
- if(caon_ptr<RE_Node> next_node = rq_.Run_Call_Sequence(sequence_node))
+ if(caon_ptr<ChasmRZ_Node> next_node = rq_.Run_Call_Sequence(sequence_node))
   sequence_node = next_node;
  else if(next_node = rq_.Run_Call_Entry(sequence_node))
  {
@@ -495,13 +495,13 @@ caon_ptr<RZ_Lisp_Token> RZ_Function_Def_Info::channel_sequence(caon_ptr<tNode>& 
  else
  {
   depth_change = -1;
-  caon_ptr<RE_Node> en = entry_nodes_.pop();
-  CAON_PTR_DEBUG(RE_Node ,en)
+  caon_ptr<ChasmRZ_Node> en = entry_nodes_.pop();
+  CAON_PTR_DEBUG(ChasmRZ_Node ,en)
   sequence_node = rq_.Run_Cross_Sequence(en);
-  CAON_PTR_DEBUG(RE_Node ,sequence_node)
+  CAON_PTR_DEBUG(ChasmRZ_Node ,sequence_node)
   if(sequence_node)
   {
-   if(caon_ptr<RE_Node> next_node = rq_.Run_Call_Entry(sequence_node))
+   if(caon_ptr<ChasmRZ_Node> next_node = rq_.Run_Call_Entry(sequence_node))
    {
     entry_nodes_.push(sequence_node);
     sequence_node = rq_.Run_Call_Entry(next_node);
@@ -516,11 +516,11 @@ QString RZ_Function_Def_Info::context_channel_string()
  if(caon_ptr<tNode> context_channel_entry_node = entry_nodes_map_.value(Channel_Types::Context))
  {
   QString result = "[[";
-  CAON_PTR_DEBUG(RE_Node ,context_channel_entry_node)
-  if(caon_ptr<RE_Token> retok = context_channel_entry_node->re_token())
+  CAON_PTR_DEBUG(ChasmRZ_Node ,context_channel_entry_node)
+  if(caon_ptr<ChasmRZ_Token> retok = context_channel_entry_node->chasm_rz_token())
   {
-   CAON_PTR_DEBUG(RE_Token ,retok)
-   caon_ptr<RZ_Lisp_Token> rzlt = RZ_Lisp_Token::check_init_lisp_token(*retok);
+   CAON_PTR_DEBUG(ChasmRZ_Token ,retok)
+   caon_ptr<RZ_ASG_Token> rzlt = RZ_ASG_Token::check_init_asg_token(*retok);
    result += rzlt->string_value();
   }
   result += "]]";
@@ -539,7 +539,7 @@ QString RZ_Function_Def_Info::return_channel_string(int& token_count)
  while(sequence_node)
  {
   int held_depth_change = depth_change;
-  if(caon_ptr<RZ_Lisp_Token> tok = channel_sequence(sequence_node, depth_change))
+  if(caon_ptr<RZ_ASG_Token> tok = channel_sequence(sequence_node, depth_change))
   {
    if(held_depth_change > 0)
    {
@@ -549,7 +549,7 @@ QString RZ_Function_Def_Info::return_channel_string(int& token_count)
    {
     result += QString(-held_depth_change, ')');
    }
-   RZ_Lisp_Token& token = *tok;
+   RZ_ASG_Token& token = *tok;
    ++token_count;
    result += type_name_callback_(token.string_value());
    if(held_depth_change == 0)
@@ -580,41 +580,41 @@ void RZ_Function_Def_Info::init_channels(tNode& fdef_node)
  data_entry_node = rq_.Run_Call_Entry(&fdef_node);
  while(data_entry_node)
  {
-  CAON_PTR_DEBUG(RE_Node ,data_entry_node)
+  CAON_PTR_DEBUG(ChasmRZ_Node ,data_entry_node)
   if(tuple_info_node = rq_.Run_Data_Entry(data_entry_node))
   {
-   CAON_PTR_DEBUG(RE_Node ,tuple_info_node)
+   CAON_PTR_DEBUG(ChasmRZ_Node ,tuple_info_node)
 
    tuple_info_node->debug_connections();
 
-   if(caon_ptr<RE_Tuple_Info> pRti = tuple_info_node->re_tuple_info())
+   if(caon_ptr<ChasmRZ_Tuple_Info> pRti = tuple_info_node->chasm_rz_tuple_info())
    {
-    RE_Tuple_Info& rti = *pRti;
-    RE_Tuple_Info::Function_Def_Channels ch = rti.match_function_def_channel();
+    ChasmRZ_Tuple_Info& rti = *pRti;
+    ChasmRZ_Tuple_Info::Function_Def_Channels ch = rti.match_function_def_channel();
     switch(ch)
     {
-    case RE_Tuple_Info::Function_Def_Channels::Lambda_Channel:
+    case ChasmRZ_Tuple_Info::Function_Def_Channels::Lambda_Channel:
      if(flags.monad)
        entry_nodes_map_[Channel_Types::Monad] = rq_.Run_Data_Entry(tuple_info_node);
      else
        entry_nodes_map_[Channel_Types::Lambda] = rq_.Run_Data_Entry(tuple_info_node);
      break;
-    case RE_Tuple_Info::Function_Def_Channels::Context_Channel:
+    case ChasmRZ_Tuple_Info::Function_Def_Channels::Context_Channel:
      entry_nodes_map_[Channel_Types::Context] = rq_.Run_Data_Entry(tuple_info_node);
      break;
-    case RE_Tuple_Info::Function_Def_Channels::Sigma_Channel:
+    case ChasmRZ_Tuple_Info::Function_Def_Channels::Sigma_Channel:
       entry_nodes_map_[Channel_Types::Sigma] = rq_.Run_Data_Entry(tuple_info_node);
      break;
-    case RE_Tuple_Info::Function_Def_Channels::Return_Channel:
+    case ChasmRZ_Tuple_Info::Function_Def_Channels::Return_Channel:
       entry_nodes_map_[Channel_Types::Return] = rq_.Run_Data_Entry(tuple_info_node);
      break;
-    case RE_Tuple_Info::Function_Def_Channels::Error_Channel:
+    case ChasmRZ_Tuple_Info::Function_Def_Channels::Error_Channel:
       entry_nodes_map_[Channel_Types::Error] = rq_.Run_Data_Entry(tuple_info_node);
      break;
-    case RE_Tuple_Info::Function_Def_Channels::CTOR_Ret_Channel:
+    case ChasmRZ_Tuple_Info::Function_Def_Channels::CTOR_Ret_Channel:
       entry_nodes_map_[Channel_Types::CTOR_Ret] = rq_.Run_Data_Entry(tuple_info_node);
      break;
-    case RE_Tuple_Info::Function_Def_Channels::CTOR_Mem_Channel:
+    case ChasmRZ_Tuple_Info::Function_Def_Channels::CTOR_Mem_Channel:
       entry_nodes_map_[Channel_Types::CTOR_Mem] = rq_.Run_Data_Entry(tuple_info_node);
      break;
     }
@@ -643,7 +643,7 @@ void RZ_Function_Def_Info::write_phr_signature_code(PGB_IR_Build& pgb,
 void RZ_Function_Def_Info::write_phr_signature_code_by_channel_type(PGB_IR_Build& pgb,
   QList<PGB_IR_Build::Text_With_Purpose>& step_forms, Channel_Types ct)
 {
- caon_ptr<RE_Node> sequence_node = nullptr;
+ caon_ptr<ChasmRZ_Node> sequence_node = nullptr;
 
  QString channel_name_code;
 
@@ -680,9 +680,9 @@ void RZ_Function_Def_Info::write_phr_signature_code_by_channel_type(PGB_IR_Build
  while(sequence_node)
  {
   // this advances sequence_node
-  if(caon_ptr<RZ_Lisp_Token> rzlt = channel_sequence(sequence_node, depth_change))
+  if(caon_ptr<RZ_ASG_Token> rzlt = channel_sequence(sequence_node, depth_change))
   {
-   CAON_PTR_DEBUG(RZ_Lisp_Token ,rzlt)
+   CAON_PTR_DEBUG(RZ_ASG_Token ,rzlt)
    if(rzlt->flags.is_empty_tuple_indicator)
    {
     write_phr_signature_code_for_empty_channel(pgb, step_forms, channel_name_code);

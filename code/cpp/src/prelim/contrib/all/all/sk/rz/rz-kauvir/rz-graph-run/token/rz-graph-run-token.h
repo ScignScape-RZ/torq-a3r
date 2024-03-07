@@ -22,7 +22,7 @@
 
 RZNS_(GBuild)
 
-class RZ_Lisp_Token;
+class RZ_ASG_Token;
 
 _RZNS(GBuild)
 USING_RZNS(GBuild)
@@ -130,7 +130,7 @@ public:
  }
 
 
- void init_from(RZ_Lisp_Token& rzlt);
+ void init_from(RZ_ASG_Token& rzlt);
 
 };
 

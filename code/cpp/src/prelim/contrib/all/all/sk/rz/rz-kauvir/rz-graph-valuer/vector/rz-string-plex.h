@@ -26,21 +26,21 @@
 #include "rzns.h"
 
 
-RZNS_(RECore)
+RZNS_(RZ_Core)
 
-class RE_Node;
-class RE_Tuple_Info;
+class ChasmRZ_Node;
+class ChasmRZ_Tuple_Info;
 class RZ_String_Plex_Builder;
 
-_RZNS(RECore)
+_RZNS(RZ_Core)
 
-USING_RZNS(RECore)
+USING_RZNS(RZ_Core)
 
 
 RZNS_(GBuild)
 
 class RZ_Type_Object;
-class RZ_Lisp_Token;
+class RZ_ASG_Token;
 
 _RZNS(GBuild)
 
@@ -51,29 +51,29 @@ RZNS_(GVal)
 
 class RZ_String;
 
-class RZ_Lisp_Graph_Valuer;
+class RZ_ASG_Valuer;
 
 
 class RZ_String_Plex
 {
- typedef RE_Node tNode;
+ typedef ChasmRZ_Node tNode;
 
 private:
 
- caon_ptr<RE_Tuple_Info> tuple_info_;
- caon_ptr<RZ_Lisp_Token> token_representation_;
+ caon_ptr<ChasmRZ_Tuple_Info> tuple_info_;
+ caon_ptr<RZ_ASG_Token> token_representation_;
 
  caon_ptr<RZ_String_Plex_Builder> builder_;
 
 
 public:
 
- RZ_String_Plex(caon_ptr<RE_Tuple_Info> tuple_info,
+ RZ_String_Plex(caon_ptr<ChasmRZ_Tuple_Info> tuple_info,
   RZ_Type_Object& rto, caon_ptr<RZ_String_Plex_Builder> builder);
 
 
- ACCESSORS(caon_ptr<RE_Tuple_Info> ,tuple_info)
- ACCESSORS(caon_ptr<RZ_Lisp_Token> ,token_representation)
+ ACCESSORS(caon_ptr<ChasmRZ_Tuple_Info> ,tuple_info)
+ ACCESSORS(caon_ptr<RZ_ASG_Token> ,token_representation)
 
  caon_ptr<tNode> get_call_entry_node();
  QString get_value(QString key);

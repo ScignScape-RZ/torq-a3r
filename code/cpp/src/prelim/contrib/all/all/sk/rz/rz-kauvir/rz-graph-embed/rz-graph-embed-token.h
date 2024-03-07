@@ -19,20 +19,20 @@
 
 #include "relae-graph/relae-caon-ptr.h"
 
-RZNS_(RECore)
+RZNS_(RZ_Core)
 
-class RE_Node;
-class RE_Function_Def_Entry;
+class ChasmRZ_Node;
+class ChasmRZ_Function_Def_Entry;
 
-_RZNS(RECore)
+_RZNS(RZ_Core)
 
-USING_RZNS(RECore)
+USING_RZNS(RZ_Core)
 
 
 
 RZNS_(GBuild)
 
-class RZ_Lisp_Token;
+class RZ_ASG_Token;
 
 _RZNS(GBuild)
 
@@ -70,9 +70,9 @@ class RZ_Graph_Embed_Token
 
  caon_ptr<QStringList> args_;
 
- caon_ptr<RE_Node> entry_node_;
+ caon_ptr<ChasmRZ_Node> entry_node_;
 
- void init_from_lisp_token(const RZ_Lisp_Token& rlt);
+ void init_from_asg_token(const RZ_ASG_Token& rlt);
 
  caon_ptr<RZ_Function_Def_Info> function_def_info_;
 
@@ -80,7 +80,7 @@ public:
 
  ACCESSORS(QString ,raw_text)
  ACCESSORS__CGET(caon_ptr<QStringList> ,args)
- ACCESSORS(caon_ptr<RE_Node> ,entry_node)
+ ACCESSORS(caon_ptr<ChasmRZ_Node> ,entry_node)
  ACCESSORS(caon_ptr<RZ_Function_Def_Info> ,function_def_info)
 
  ACCESSORS(Basic_Token_Kinds ,kind)
@@ -95,7 +95,7 @@ public:
  RZ_Graph_Embed_Token(QString raw_text, QString arg,
   caon_ptr<RZ_Graph_Embed_Package> embed_package = nullptr);
 
- RZ_Graph_Embed_Token(RZ_Lisp_Token& rz_lisp_token,
+ RZ_Graph_Embed_Token(RZ_ASG_Token& RZ_ASG_Token,
   caon_ptr<RZ_Graph_Embed_Package> embed_package = nullptr);
 
 

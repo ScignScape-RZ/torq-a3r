@@ -10,7 +10,7 @@
 
 #include "rzns.h"
 
-USING_RZNS(RECore)
+USING_RZNS(RZ_Core)
 USING_RZNS(GVal)
 
 RPI_Expression::RPI_Expression(RPI_Stage_Form& form)

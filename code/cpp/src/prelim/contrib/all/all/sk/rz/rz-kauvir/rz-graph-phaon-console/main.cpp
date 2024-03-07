@@ -42,7 +42,7 @@
 #include <functional>
 #include <QDebug>
 
-USING_RZNS(RECore)
+USING_RZNS(RZ_Core)
 
 void compile_rz(QString file_name)
 {

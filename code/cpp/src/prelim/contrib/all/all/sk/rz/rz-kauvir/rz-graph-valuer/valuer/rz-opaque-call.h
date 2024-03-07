@@ -18,18 +18,18 @@
 
 #include "rzns.h"
 
-RZNS_(RECore)
+RZNS_(RZ_Core)
 
-class RE_Node;
+class ChasmRZ_Node;
 
-_RZNS(RECore)
+_RZNS(RZ_Core)
 
-USING_RZNS(RECore)
+USING_RZNS(RZ_Core)
 
 
 RZNS_(GBuild)
 
-class RZ_Lisp_Token;
+class RZ_ASG_Token;
 
 _RZNS(GBuild)
 
@@ -42,7 +42,7 @@ class RZ_Opaque_Call
 {
 private:
 
- typedef RE_Node tNode;
+ typedef ChasmRZ_Node tNode;
 
  caon_ptr<tNode> entry_node_;
  caon_ptr<tNode> pre_entry_node_;
@@ -55,7 +55,7 @@ public:
  RZ_Opaque_Call(caon_ptr<tNode> pre_entry_node,
   caon_ptr<tNode> entry_node);
 
- caon_ptr<RZ_Lisp_Token> get_entry_token();
+ caon_ptr<RZ_ASG_Token> get_entry_token();
 
  template<typename T>
  void operator<<(T& t)

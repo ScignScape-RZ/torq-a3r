@@ -6,7 +6,7 @@
 
 #include "rz-match-literal.h"
 
-#include "token/rz-lisp-token.h"
+#include "token/rz-asg-token.h"
 
 
 USING_RZNS(GVal)

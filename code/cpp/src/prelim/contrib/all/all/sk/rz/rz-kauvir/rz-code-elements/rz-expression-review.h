@@ -17,13 +17,13 @@
 
 #include "rzns.h"
 
-RZNS_(RECore)
+RZNS_(RZ_Core)
 
-class RE_Node;
+class ChasmRZ_Node;
 
-_RZNS(RECore)
+_RZNS(RZ_Core)
 
-USING_RZNS(RECore)
+USING_RZNS(RZ_Core)
 
 
 RZNS_(GVal)
@@ -35,11 +35,11 @@ class RZ_Expression_Review
 private:
 
  QString text_;
- caon_ptr<RE_Node> node_;
+ caon_ptr<ChasmRZ_Node> node_;
 
 public:
 
- ACCESSORS(caon_ptr<RE_Node> ,node)
+ ACCESSORS(caon_ptr<ChasmRZ_Node> ,node)
  ACCESSORS(QString ,text)
 
  RZ_Expression_Review();

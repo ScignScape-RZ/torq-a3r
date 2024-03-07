@@ -31,28 +31,28 @@ struct RZ_Lisp_Graph_Core_Runner
 {
  template<RZ_Lisp_Graph_Function_Family>
  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Graph_Function_Code function_code,
-  RZ_Lisp_Graph_Value_Holder& v1, RZ_Lisp_Graph_Value_Holder& v2);
+  RZ_ASG_Value_Holder& v1, RZ_ASG_Value_Holder& v2);
 
  template<RZ_Lisp_Graph_Function_Family>
  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Graph_Function_Code function_code,
-  RZ_Lisp_Graph_Value_Holder& vh, RZ_Lisp_Token& token);
+  RZ_ASG_Value_Holder& vh, RZ_ASG_Token& token);
 
  template<RZ_Lisp_Graph_Function_Family>
  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Graph_Function_Code function_code,
-  RZ_Lisp_Token& token, RZ_Lisp_Graph_Value_Holder& vh);
+  RZ_ASG_Token& token, RZ_ASG_Value_Holder& vh);
 
 
  template<RZ_Lisp_Graph_Function_Family>
  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Graph_Function_Code function_code,
-  RZ_Lisp_Token& start_token, caon_ptr<tNode> pass_node);
+  RZ_ASG_Token& start_token, caon_ptr<tNode> pass_node);
 
  template<RZ_Lisp_Graph_Function_Family>
  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Graph_Function_Code function_code,
-  RZ_Lisp_Token& start_token);
+  RZ_ASG_Token& start_token);
 
  template<RZ_Lisp_Graph_Function_Family>
  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Graph_Function_Code function_code,
-  RZ_Lisp_Token& lhs_token, RZ_Lisp_Token& rhs_token);
+  RZ_ASG_Token& lhs_token, RZ_ASG_Token& rhs_token);
 
 };
 

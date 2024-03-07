@@ -25,13 +25,13 @@ QString RZ_Type_Object::name_to_cpp_string() const
 }
 
 
-QString RZ_Type_Object::value_to_string(RE_Galaxy::Root_Vertex_type v) const
+QString RZ_Type_Object::value_to_string(ChasmRZ_Galaxy::Root_Vertex_type v) const
 {
  if(callback_)
  {
   QString result;
   Considerations c = (*callback_)(To_String, v,
-   caon_root_cast<RE_Galaxy>(&result));
+   caon_root_cast<ChasmRZ_Galaxy>(&result));
 
   if(c == Ok)
   {
@@ -50,13 +50,13 @@ QString RZ_Type_Object::value_to_string(RE_Galaxy::Root_Vertex_type v) const
 }
 
 
-QString RZ_Type_Object::value_to_lisp_string(RE_Galaxy::Root_Vertex_type v) const
+QString RZ_Type_Object::value_to_asg_string(ChasmRZ_Galaxy::Root_Vertex_type v) const
 {
  if(callback_)
  {
   QString result;
-  Considerations c = (*callback_)(To_Lisp_String, v,
-   caon_root_cast<RE_Galaxy>(&result));
+  Considerations c = (*callback_)(To_ASG_String, v,
+   caon_root_cast<ChasmRZ_Galaxy>(&result));
   if(c == Ok)
    return result;
  }
@@ -69,13 +69,13 @@ QString RZ_Type_Object::value_to_lisp_string(RE_Galaxy::Root_Vertex_type v) cons
 }
 
 
-QString RZ_Type_Object::value_to_cpp_string(RE_Galaxy::Root_Vertex_type v) const
+QString RZ_Type_Object::value_to_cpp_string(ChasmRZ_Galaxy::Root_Vertex_type v) const
 {
  if(callback_)
  {
   QString result;
   Considerations c = (*callback_)(To_Cpp_String, v,
-   caon_root_cast<RE_Galaxy>(&result));
+   caon_root_cast<ChasmRZ_Galaxy>(&result));
   if(c == Ok)
    return result;
  }

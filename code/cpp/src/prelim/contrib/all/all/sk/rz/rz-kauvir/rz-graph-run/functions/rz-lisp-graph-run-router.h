@@ -221,7 +221,7 @@ struct Cast_Schedule
  {
   static const RZ_Lisp_Graph_Function_Family Family_Code = CORE_FUNCTION_Family;
   static const RZ_Type_Families::Enum Type_Family = Fam;
-  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& token, RZ_Lisp_Graph_Value_Holder& vh)
+  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& token, RZ_ASG_Value_Holder& vh)
   {
    switch(CORE_FUNCTION_Code)
    {
@@ -233,7 +233,7 @@ struct Cast_Schedule
 #define RZ_TEMP_CASE(n) case n: \
  RZ_Lisp_Graph_Function_Run<Family_Code, n, Type_Family>::run(rh, v1, v2); break;
 
-  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Graph_Value_Holder& v1, RZ_Lisp_Graph_Value_Holder& v2)
+  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Value_Holder& v1, RZ_ASG_Value_Holder& v2)
   {
    switch(CORE_FUNCTION_Code)
    {
@@ -256,7 +256,7 @@ struct Cast_Schedule
       ::run(rh, start_token, pass_node); break;
 
   static void run(RZ_Lisp_Graph_Result_Holder& rh,
-   RZ_Lisp_Token& start_token, caon_ptr<tNode> pass_node)
+   RZ_ASG_Token& start_token, caon_ptr<tNode> pass_node)
   {
    switch(CORE_FUNCTION_Code)
    {
@@ -269,7 +269,7 @@ struct Cast_Schedule
      RZ_Lisp_Graph_Function_Run<Family_Code, n, Type_Family> \
       ::run(rh, start_token); break;
 
-  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& start_token)
+  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& start_token)
   {
    switch(CORE_FUNCTION_Code)
    {

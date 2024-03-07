@@ -13,7 +13,7 @@
 
 #include "textio.h"
 
-USING_RZNS(RECore)
+USING_RZNS(RZ_Core)
 USING_RZNS(GBuild)
 
 USING_KANS(TextIO)

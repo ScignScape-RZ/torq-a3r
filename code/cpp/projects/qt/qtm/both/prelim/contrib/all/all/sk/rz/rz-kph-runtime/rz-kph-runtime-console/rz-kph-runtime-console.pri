@@ -4,9 +4,28 @@
 #     (See accompanying file LICENSE_1_0.txt or copy at
 #           http://www.boost.org/LICENSE_1_0.txt)
 
+
+
+INCLUDEPATH += /home/nlevisrael/docker/gits/ffi/install/include
+INCLUDEPATH += /home/nlevisrael/docker/gits/ffi/libcppclosure-master
+INCLUDEPATH += /home/nlevisrael/docker/gits/ffi/libcppclosure-master/src
+
+LIBS += -L/home/nlevisrael/docker/gits/ffi/install/lib -lffi
+
+
+LIBS += -L$$TARGETSDIR -lkph-test-lib
+
+LIBS += -ldl
+
+
+DEFINES += T_DIR=\\\"$$TARGETSDIR\\\"
+
+
+
 PROJECT_NAME = rz-kph-runtime-console
 
 include(../build-group.pri)
+
 
 TEMPLATE = app
 
@@ -47,55 +66,62 @@ DEFINES += USE_KANS
 DEFINES += DEFAULT_PTR_BYTE_CODE=QT_POINTER_SIZE
 
 
-
-message($$SRC_ROOT_DIR)
-
-
-HEADERS += \
-  $$SRC_DIR/basic-functions.h \
-  $$SRC_AREA_ROOT_DIR/default-basic-functions.h \
-  $$SRC_AREA_ROOT_DIR/default-test-functions.h \
-
-
 SOURCES += \
   $$SRC_DIR/main.cpp \
-  $$SRC_DIR/local-program.cpp \
-  $$SRC_DIR/basic-functions.cpp \
-  $$SRC_AREA_ROOT_DIR/default-basic-functions.cpp \
-  $$SRC_AREA_ROOT_DIR/default-test-functions.cpp \
 
 
-LIBS += -L$$TARGETSDIR  \
-   -lrz-graph-core \
-   -lrz-graph-token \
-   -lrz-graph-code \
-   -lrz-graph-visit \
-   -lrz-code-generators \
-   -lrz-graph-build \
-   -lrz-graph-valuer \
-   -lrz-graph-embed \
-   -lrz-graph-embed-run \
-   -lrz-graph-run \
-   -lrz-graph-sre \
-   -lrz-function-def \
-   -lrz-code-elements \
+#message($$SRC_ROOT_DIR)
 
 
-LIBS += -L$$TARGETSDIR  -lphr-graph-core
+#HEADERS += \
+#  $$SRC_GROUP_DIR/wrap-as-ccallable.h \
 
 
-LIBS += -L$$TARGETSDIR -lphaon-ir -lphr-direct-eval \
-  -lphr-fn-doc  -lphr-env  -lphr-command-runtime
+#HEADERS += \
+#  $$SRC_DIR/basic-functions.h \
+#  $$SRC_AREA_ROOT_DIR/default-basic-functions.h \
+#  $$SRC_AREA_ROOT_DIR/default-test-functions.h \
 
 
-CHOICE_FEATURES += kph-gen
+#SOURCES += \
+#  $$SRC_DIR/main.cpp \
+#  $$SRC_DIR/local-program.cpp \
+#  $$SRC_DIR/basic-functions.cpp \
+#  $$SRC_AREA_ROOT_DIR/default-basic-functions.cpp \
+#  $$SRC_AREA_ROOT_DIR/default-test-functions.cpp \
 
-contains(CHOICE_FEATURES, "kph-gen") \#/
-{
- message(DEFINE\'ing USING_KPH_GEN)
- DEFINES += USING_KPH_GEN
- LIBS += -L$$TARGETSDIR -lkph-generator
-}
 
-message(choice: $$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)
-mkpath($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)
+#LIBS += -L$$TARGETSDIR  \
+#   -lrz-graph-core \
+#   -lrz-graph-token \
+#   -lrz-graph-code \
+#   -lrz-graph-visit \
+#   -lrz-code-generators \
+#   -lrz-graph-build \
+#   -lrz-graph-valuer \
+#   -lrz-graph-embed \
+#   -lrz-graph-embed-run \
+#   -lrz-graph-run \
+#   -lrz-graph-sre \
+#   -lrz-function-def \
+#   -lrz-code-elements \
+
+
+#LIBS += -L$$TARGETSDIR  -lphr-graph-core
+
+
+#LIBS += -L$$TARGETSDIR -lphaon-ir -lphr-direct-eval \
+#  -lphr-fn-doc  -lphr-env  -lphr-command-runtime
+
+
+#CHOICE_FEATURES += kph-gen
+
+#contains(CHOICE_FEATURES, "kph-gen") \#/
+#{
+# message(DEFINE\'ing USING_KPH_GEN)
+# DEFINES += USING_KPH_GEN
+# LIBS += -L$$TARGETSDIR -lkph-generator
+#}
+
+#message(choice: $$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)
+#mkpath($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)

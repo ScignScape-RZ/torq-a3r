@@ -19,9 +19,9 @@
 
 #include "relae-graph/relae-caon-ptr.h"
 
-#include "rz-graph-core/kernel/rz-re-dominion.h"
+#include "rz-graph-core/kernel/chasm-rz-dominion.h"
 
-USING_RZNS(RECore)
+USING_RZNS(RZ_Core)
 
 RZNS_(GBuild)
 
@@ -36,11 +36,11 @@ public:
 
 
  enum Considerations {
-  Ok, Fallthrough, To_String, To_Lisp_String, To_Cpp_String
+  Ok, Fallthrough, To_String, To_ASG_String, To_Cpp_String
  };
 
  typedef std::function<Considerations(Considerations,
-  RE_Galaxy::Root_Vertex_type, RE_Galaxy::Root_Vertex_type)> Callback_type;
+  ChasmRZ_Galaxy::Root_Vertex_type, ChasmRZ_Galaxy::Root_Vertex_type)> Callback_type;
 
 private:
  int id_;
@@ -56,9 +56,9 @@ public:
  ACCESSORS(Callback_type* ,callback)
 
  RZ_Type_Object(QString name, QString cpp_name, int id);
- QString value_to_string(RE_Galaxy::Root_Vertex_type v) const;
- QString value_to_lisp_string(RE_Galaxy::Root_Vertex_type v) const;
- QString value_to_cpp_string(RE_Galaxy::Root_Vertex_type v) const;
+ QString value_to_string(ChasmRZ_Galaxy::Root_Vertex_type v) const;
+ QString value_to_asg_string(ChasmRZ_Galaxy::Root_Vertex_type v) const;
+ QString value_to_cpp_string(ChasmRZ_Galaxy::Root_Vertex_type v) const;
  QString name_to_cpp_string() const;
 };
 

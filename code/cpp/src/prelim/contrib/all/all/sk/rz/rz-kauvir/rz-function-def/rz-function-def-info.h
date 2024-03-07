@@ -16,7 +16,7 @@
 
 #include <QString>
 
-#include "rz-graph-core/code/rz-re-function-def-entry.h"
+#include "rz-graph-core/code/chasm-rz-function-def-entry.h"
 
 #include "relae-graph/relae-caon-ptr.h"
 
@@ -35,19 +35,19 @@ _RZNS(PhrGraphCore)
 
 USING_RZNS(PhrGraphCore)
 
-RZNS_(RECore)
+RZNS_(RZ_Core)
 
-class RE_Node;
-class RE_Function_Def_Entry;
-class RE_Query;
+class ChasmRZ_Node;
+class ChasmRZ_Function_Def_Entry;
+class ChasmRZ_Query;
 
-_RZNS(RECore)
+_RZNS(RZ_Core)
 
-USING_RZNS(RECore)
+USING_RZNS(RZ_Core)
 
 RZNS_(GBuild)
 
-class RZ_Lisp_Token;
+class RZ_ASG_Token;
 
 _RZNS(GBuild)
 
@@ -56,9 +56,9 @@ USING_RZNS(GBuild)
 
 RZNS_(GVal)
 
-class RZ_Lisp_Graph_Valuer;
+class RZ_ASG_Valuer;
 class RZ_Function_Def_Syntax;
-class RZ_Lisp_Graph_Lexical_Scope;
+class RZ_ASG_Lexical_Scope;
 
 class RZ_Function_Def_Info
 {
@@ -84,13 +84,13 @@ public:
 
 private:
 
- typedef RE_Node tNode;
+ typedef ChasmRZ_Node tNode;
 
  typedef std::function<QString(QString)> type_name_callback_type;
- typedef std::function<void(RZ_Lisp_Graph_Lexical_Scope&, QString, QString)> ls_callback_type;
+ typedef std::function<void(RZ_ASG_Lexical_Scope&, QString, QString)> ls_callback_type;
 
 
- caon_ptr<RE_Function_Def_Entry> function_def_entry_;
+ caon_ptr<ChasmRZ_Function_Def_Entry> function_def_entry_;
  type_name_callback_type type_name_callback_;
  ls_callback_type ls_callback_;
 
@@ -100,11 +100,11 @@ private:
 
  void init_channels(tNode& fdef_node);
 
- caon_ptr<RZ_Lisp_Token> channel_sequence(caon_ptr<tNode>& sequence_node, signed int& depth_change);
+ caon_ptr<RZ_ASG_Token> channel_sequence(caon_ptr<tNode>& sequence_node, signed int& depth_change);
 
- const RE_Query& rq_;
+ const ChasmRZ_Query& rq_;
 
- QStack<caon_ptr<RE_Node>> entry_nodes_;
+ QStack<caon_ptr<ChasmRZ_Node>> entry_nodes_;
 
  int map_key_sequence_order_;
  caon_ptr<RZ_Function_Def_Info> ref_fdi_;
@@ -112,25 +112,25 @@ private:
 
 public:
 
- RZ_Function_Def_Info(RE_Function_Def_Entry& function_def_entry
+ RZ_Function_Def_Info(ChasmRZ_Function_Def_Entry& function_def_entry
   ,type_name_callback_type type_name_callback
   ,ls_callback_type ls_callback);
 
- ACCESSORS(caon_ptr<RE_Function_Def_Entry> ,function_def_entry)
- ACCESSORS(caon_ptr<RE_Node> ,map_key_sequence_ref_node)
+ ACCESSORS(caon_ptr<ChasmRZ_Function_Def_Entry> ,function_def_entry)
+ ACCESSORS(caon_ptr<ChasmRZ_Node> ,map_key_sequence_ref_node)
  ACCESSORS(int ,map_key_sequence_order)
  ACCESSORS(caon_ptr<RZ_Function_Def_Info> ,ref_fdi)
 
 
- QString channel_string(const RZ_Function_Def_Syntax& syntax, caon_ptr<RE_Node> sequence_node);
+ QString channel_string(const RZ_Function_Def_Syntax& syntax, caon_ptr<ChasmRZ_Node> sequence_node);
  QString lambda_channel_string(const RZ_Function_Def_Syntax& syntax);
  QString sigma_channel_string(const RZ_Function_Def_Syntax& syntax);
  QString return_channel_string(int& token_count);
  QString channel_string(Channel_Types ct, const RZ_Function_Def_Syntax& syntax);
 
- QString kauvir_entry_code_string(RZ_Lisp_Graph_Lexical_Scope& ls);
+ QString kauvir_entry_code_string(RZ_ASG_Lexical_Scope& ls);
 
- QString kauvir_entry_code_string_by_channel_type(Channel_Types ct, RZ_Lisp_Graph_Lexical_Scope& ls);
+ QString kauvir_entry_code_string_by_channel_type(Channel_Types ct, RZ_ASG_Lexical_Scope& ls);
 
  QString context_channel_string();
 

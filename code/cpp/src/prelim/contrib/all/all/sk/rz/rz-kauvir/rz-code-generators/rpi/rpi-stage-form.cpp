@@ -83,7 +83,7 @@ void RPI_Stage_Form::write_fdef_entry()
  write_cond_statement_entry("&sig-fground-node",
    "!last_statement_entry_node", "!last_block_pre_entry_node", "!last_statement_entry_node");
 
- pgb_(step_forms_).make_signature_node("&sig-fground-node", "&sig-node");
+ pgb_(step_forms_).make_signatuChasmRZ_Node("&sig-fground-node", "&sig-node");
 
 }
 

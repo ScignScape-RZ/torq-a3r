@@ -10,7 +10,7 @@
 
 #include "rz-graph-core/token/rz-re-token.h"
 
-USING_RZNS(RECore)
+USING_RZNS(RZ_Core)
 USING_RZNS(GBuild)
 
 
@@ -23,7 +23,7 @@ RE_Prerun_Tokens::RE_Prerun_Tokens(caon_ptr<RE_Document> document)
 
 void RE_Prerun_Tokens::init_token(RE_Token& token)
 {
- RZ_Lisp_Token::init_lisp_token(token);
+ RZ_ASG_Token::init_lisp_token(token);
 }
 
 void RE_Prerun_Tokens::report_token(QTextStream& qts,

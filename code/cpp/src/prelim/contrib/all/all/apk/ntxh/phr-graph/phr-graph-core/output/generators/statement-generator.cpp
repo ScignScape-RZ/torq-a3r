@@ -62,7 +62,7 @@ void Statement_Generator::generate_from_node(QTextStream& qts,
  {
   generate_anchor_without_channel_group(qts, node, *sin);
  }
- else if(caon_ptr<PHR_Graph_Node> sn = qy_.Signature_Node(&node))
+ else if(caon_ptr<PHR_Graph_Node> sn = qy_.SignatuChasmRZ_Node(&node))
  {
   if(caon_ptr<PHR_Graph_Token> tok = node.phr_graph_token())
   {

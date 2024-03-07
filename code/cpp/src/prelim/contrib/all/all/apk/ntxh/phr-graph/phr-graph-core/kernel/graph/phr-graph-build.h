@@ -128,7 +128,7 @@ public:
   return make_token_node(mgt);
  }
 
- caon_ptr<PHR_Graph_Node> make_signature_node(
+ caon_ptr<PHR_Graph_Node> make_signatuChasmRZ_Node(
    caon_ptr<PHR_Graph_Node> token_node);
 
 

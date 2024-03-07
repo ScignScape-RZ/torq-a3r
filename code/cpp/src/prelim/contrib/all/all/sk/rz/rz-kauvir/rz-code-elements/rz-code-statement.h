@@ -17,13 +17,13 @@
 
 #include "rzns.h"
 
-RZNS_(RECore)
+RZNS_(RZ_Core)
 
-class RE_Node;
+class ChasmRZ_Node;
 
-_RZNS(RECore)
+_RZNS(RZ_Core)
 
-USING_RZNS(RECore)
+USING_RZNS(RZ_Core)
 
 
 RZNS_(GVal)
@@ -42,16 +42,16 @@ private:
 
  Statement_Kinds statement_kind_;
 
- caon_ptr<RE_Node> node_;
+ caon_ptr<ChasmRZ_Node> node_;
 
  QString annotation_;
 
 public:
 
- ACCESSORS(caon_ptr<RE_Node> ,node)
+ ACCESSORS(caon_ptr<ChasmRZ_Node> ,node)
  ACCESSORS(QString ,annotation)
 
- RZ_Code_Statement(Statement_Kinds statement_kind, caon_ptr<RE_Node> node);
+ RZ_Code_Statement(Statement_Kinds statement_kind, caon_ptr<ChasmRZ_Node> node);
 
  QString kind_to_string();
 

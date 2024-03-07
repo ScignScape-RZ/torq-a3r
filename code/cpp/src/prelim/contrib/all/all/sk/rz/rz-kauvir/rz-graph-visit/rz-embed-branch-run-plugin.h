@@ -11,8 +11,8 @@
 
 #include "flags.h"
 
-#include "rz-lisp-graph-visitor.h"
-#include "rz-lisp-graph-visitor-run-plugin.h"
+#include "rz-asg-visitor.h"
+#include "rz-asg-visitor-run-plugin.h"
 
 #include "rzns.h"
 

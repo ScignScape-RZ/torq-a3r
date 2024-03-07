@@ -130,13 +130,13 @@ Purpose_Codes& _PGB_IR_Build::add_indexed_type_declaration(QString arg, MG_Token
 
 
 
-Purpose_Codes& _PGB_IR_Build::make_signature_node(QString arg, MG_Token_Subgroups asg,
+Purpose_Codes& _PGB_IR_Build::make_signatuChasmRZ_Node(QString arg, MG_Token_Subgroups asg,
   QString target, MG_Token_Subgroups tsg)
 {
  MG_Token amgt = mgtoken(arg, MG_Token_Kind_Groups::Arg_Target, asg);
  MG_Token tmgt = mgtoken(target, MG_Token_Kind_Groups::Target, tsg);
 
- qts_ << " (pgb::make_signature_node "; end_line({amgt, tmgt});
+ qts_ << " (pgb::make_signatuChasmRZ_Node "; end_line({amgt, tmgt});
  return purpose_;
 }
 

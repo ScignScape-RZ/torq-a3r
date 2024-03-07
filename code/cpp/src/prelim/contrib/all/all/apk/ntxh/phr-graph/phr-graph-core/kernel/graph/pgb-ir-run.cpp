@@ -86,7 +86,7 @@ PGB_IR_Run::PGB_Methods PGB_IR_Run::parse_pgb_method(QString key)
   TEMP_MACRO(add_channel_fground_coentry_node)
   TEMP_MACRO(make_block_info_node)
   TEMP_MACRO(add_channel_continue_block_node)
-  TEMP_MACRO(make_signature_node)
+  TEMP_MACRO(make_signatuChasmRZ_Node)
   TEMP_MACRO(signature)
   TEMP_MACRO(enter_anon_signature)
   TEMP_MACRO(leave_anon_signature)
@@ -242,9 +242,9 @@ void PGB_IR_Run::run_line(QString fn, QMultiMap<MG_Token_Kinds, QPair<MG_Token, 
    caon_ptr<PHR_Graph_Node>* tr = get_target(mgtm);
    caon_ptr<PHR_Graph_Node> n = get_arg(mgtm);
    if(tr)
-     *tr = graph_build_.make_signature_node(n);
+     *tr = graph_build_.make_signatuChasmRZ_Node(n);
    else
-     graph_build_.make_signature_node(n);
+     graph_build_.make_signatuChasmRZ_Node(n);
    current_signature_block_node_ = n;
   }
   break;
@@ -271,15 +271,15 @@ void PGB_IR_Run::run_line(QString fn, QMultiMap<MG_Token_Kinds, QPair<MG_Token, 
   }
   break;
 
- case PGB_Methods::make_signature_node:
+ case PGB_Methods::make_signatuChasmRZ_Node:
   {
    caon_ptr<PHR_Graph_Node>* tr = get_target(mgtm);
    caon_ptr<PHR_Graph_Node> n = get_arg(mgtm);
 
    if(tr)
-     *tr = graph_build_.make_signature_node(n);
+     *tr = graph_build_.make_signatuChasmRZ_Node(n);
    else
-     graph_build_.make_signature_node(n);
+     graph_build_.make_signatuChasmRZ_Node(n);
   }
   break;
 

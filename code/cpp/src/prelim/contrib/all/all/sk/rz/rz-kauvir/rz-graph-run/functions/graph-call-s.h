@@ -16,7 +16,7 @@
 RZNS_(GRun)
 
 
-typedef RZ::RECore::RE_Node tNode;
+typedef RZ::RZ_Core::ChasmRZ_Node tNode;
 
 #define RZ_LISP_GRAPH_FUNCTION_DECLARE(str, name, arity, status) name,
 
@@ -40,7 +40,7 @@ _RZ_LISP_GRAPH_FUNCTION_CODES
 //#define RZ_GCALL_TEMP_DEFAULT_IMPLEMENTATION(count) \
 // RZ_GCALL_IMPLEMENT <RZ_GCALL_S(Leave_Logical_Scope_##count, Internal)> \
 // { \
-//  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& start_token, caon_ptr<tNode> pass_node) \
+//  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& start_token, caon_ptr<tNode> pass_node) \
 //  { \
 //   start_token.redirect_paste("#_rz-class"); \
 //  } \
@@ -49,7 +49,7 @@ _RZ_LISP_GRAPH_FUNCTION_CODES
 #define RZ_GCALL_TEMP_DEFAULT_IMPLEMENTATION(count) \
  RZ_GCALL_IMPLEMENT <RZ_GCALL_S(Leave_Logical_Scope_##count, Internal)> \
  { \
-  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& start_token, caon_ptr<tNode> pass_node) \
+  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& start_token, caon_ptr<tNode> pass_node) \
   { \
    rh.valuer().leave_logical_scope(count, rh); \
   } \
@@ -64,7 +64,7 @@ RZ_GCALL_TEMP_DEFAULT_IMPLEMENTATION(5)
 
 //RZ_GCALL_IMPLEMENT <RZ_GCALL_S(Leave_Logical_Scope_4, Internal)>
 //{
-// static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& start_token, caon_ptr<tNode> pass_node)
+// static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& start_token, caon_ptr<tNode> pass_node)
 // {
 //  //QString scope_kind =
 //  rh.valuer().leave_logical_scope(4, rh);
@@ -80,7 +80,7 @@ RZ_GCALL_TEMP_DEFAULT_IMPLEMENTATION(5)
 #define RZ_GCALL_TEMP_DEFAULT_IMPLEMENTATION(fun_name, v_method) \
  RZ_GCALL_IMPLEMENT <RZ_GCALL_S(fun_name, Internal)> \
  { \
-  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& start_token, caon_ptr<tNode> pass_node) \
+  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& start_token, caon_ptr<tNode> pass_node) \
   { \
    rh.valuer->v_method(rh, start_token, pass_node); \
   } \
@@ -92,7 +92,7 @@ RZ_GCALL_TEMP_DEFAULT_IMPLEMENTATION(5)
 #define RZ_GCALL_TEMP_DEFAULT_IMPLEMENTATION(fun_name, v_method) \
  RZ_GCALL_IMPLEMENT <RZ_GCALL_S(fun_name, Internal)> \
  { \
-  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& start_token, caon_ptr<tNode> pass_node) \
+  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& start_token, caon_ptr<tNode> pass_node) \
   { \
    rh.valuer->v_method(start_token, pass_node); \
   } \

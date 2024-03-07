@@ -65,7 +65,7 @@ DOMINION_CONNECTOR(Run_Proxy_Value, "run-proxy-value")
 DOMINION_CONNECTOR(Run_Fundef_Map_Key_Sequence, "run-fundef-map-key-sequence")
 DOMINION_CONNECTOR(String_Plex_Value, "string-plex-value")
 DOMINION_CONNECTOR(Run_Map_Key_Label, "run-map-key-label")
-DOMINION_CONNECTOR(Raw_Lisp_Paste, "raw-lisp-paste")
+DOMINION_CONNECTOR(Raw_ASG_Paste, "raw-asg-paste")
 
 DOMINION_CONNECTOR(Run_Call_Series, "run-call-series")
 

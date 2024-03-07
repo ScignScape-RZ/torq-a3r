@@ -29,7 +29,7 @@ DOMINION_CONNECTOR(Channel_Continue_Block, "channel-continue-block")
 
 DOMINION_CONNECTOR(Statement_Sequence, "statement-sequence")
 
-DOMINION_CONNECTOR(Signature_Node, "signature-node")
+DOMINION_CONNECTOR(SignatuChasmRZ_Node, "signature-node")
 
 DOMINION_CONNECTOR(Channel_Entry_Block, "channel-entry-block")
 

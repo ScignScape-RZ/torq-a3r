@@ -32,29 +32,29 @@ USING_RZNS(GRun)
 
 
 
-RZNS_(RECore)
+RZNS_(RZ_Core)
 
 class RE_Document;
-class RE_Node;
+class ChasmRZ_Node;
 class RE_Graph;
 
 class RZ_SRE_Token
 {
  caon_ptr<RZ_Graph_Run_Token> run_token_;
- caon_ptr<RE_Node> node_;
+ caon_ptr<ChasmRZ_Node> node_;
 
 public:
 
- RZ_SRE_Token(caon_ptr<RZ_Graph_Run_Token> run_token, caon_ptr<RE_Node> node);
+ RZ_SRE_Token(caon_ptr<RZ_Graph_Run_Token> run_token, caon_ptr<ChasmRZ_Node> node);
 
  ACCESSORS(caon_ptr<RZ_Graph_Run_Token> ,run_token)
- ACCESSORS(caon_ptr<RE_Node> ,node)
+ ACCESSORS(caon_ptr<ChasmRZ_Node> ,node)
 
  QString text_value();
  QString node_label();
 
 };
 
-_RZNS(RECore)
+_RZNS(RZ_Core)
 
 #endif //RZ_SRE_TOKEN__H

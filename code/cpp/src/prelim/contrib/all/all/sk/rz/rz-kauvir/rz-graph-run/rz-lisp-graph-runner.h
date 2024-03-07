@@ -26,14 +26,14 @@
 
 #include "rzns.h"
 
-RZNS_(RECore)
+RZNS_(RZ_Core)
 
-class RE_Node;
+class ChasmRZ_Node;
 class RE_Graph;
 
-_RZNS(RECore)
+_RZNS(RZ_Core)
 
-USING_RZNS(RECore)
+USING_RZNS(RZ_Core)
 
 
 RZNS_(GRun)
@@ -69,10 +69,10 @@ class RZ_Lisp_Graph_Runner
 
  caon_ptr<RZ_Lisp_Graph_Valuer> valuer_;
 
- const RE_Query& rq_;
+ const ChasmRZ_Query& rq_;
 
 
- typedef RE_Node tNode;
+ typedef ChasmRZ_Node tNode;
 
 public:
 

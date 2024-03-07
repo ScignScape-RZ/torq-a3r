@@ -16,7 +16,7 @@
 
 RZNS_(GBuild)
 
-class RZ_Lisp_Token;
+class RZ_Asg_Token;
 
 _RZNS(GBuild)
 

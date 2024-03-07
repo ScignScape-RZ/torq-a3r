@@ -10,13 +10,13 @@
 #include "accessors.h"
 #include "flags.h"
 
-//#include "rz-lisp-value-holder.h"
+//#include "rz-asg-value-holder.h"
 
 #include <QString>
 #include <QMap>
 
 
-#include "rz-lisp-graph-scope-token.h"
+#include "rz-asg-scope-token.h"
 
 #include "accessors.h"
 
@@ -28,21 +28,21 @@ KANS_CLASS_DECLARE(Phaon ,PHR_Type_Object)
 
 USING_KANS(Phaon)
 
-RZNS_CLASS_DECLARE(RECore, RE_Node)
+RZNS_CLASS_DECLARE(RZ_Core, ChasmRZ_Node)
 
 #include "rzns.h"
 RZNS_(GVal)
 
-class RZ_Lisp_Graph_Logical_Scope;
+class RZ_ASG_Logical_Scope;
 
 class RZ_Phaon_User_Type
 {
  QString name_;
- caon_ptr<RZ_Lisp_Graph_Logical_Scope> scope_;
+ caon_ptr<RZ_ASG_Logical_Scope> scope_;
  RZ_Phaon_Precycle precycle_;
  RZ_Phaon_Precycle cocycle_;
 
- caon_ptr<RE_Node> node_;
+ caon_ptr<ChasmRZ_Node> node_;
 
 public:
 
@@ -62,11 +62,11 @@ public:
  RZ_Phaon_User_Type(QString name);
 
  ACCESSORS(QString ,name)
- ACCESSORS(caon_ptr<RZ_Lisp_Graph_Logical_Scope> ,scope)
+ ACCESSORS(caon_ptr<RZ_ASG_Logical_Scope> ,scope)
 
  ACCESSORS(Declaration_Modes ,declaration_mode)
 
- ACCESSORS(caon_ptr<RE_Node> ,node)
+ ACCESSORS(caon_ptr<ChasmRZ_Node> ,node)
 
  ACCESSORS__RGET(RZ_Phaon_Precycle ,precycle)
  ACCESSORS__RGET(RZ_Phaon_Precycle ,cocycle)

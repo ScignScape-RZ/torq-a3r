@@ -16,7 +16,7 @@
 
 #include "rzns.h"
 
-typedef RZ::RECore::RE_Node tNode;
+typedef RZ::RZ_Core::ChasmRZ_Node tNode;
 
 RZNS_(GRun)
 

@@ -21,11 +21,11 @@
 #include <functional>
 
 #include "rzns.h"
-RZNS_(RECore)
+RZNS_(RZ_Core)
 
 
 class RE_Document;
-class RE_Node;
+class ChasmRZ_Node;
 
 class RE_Prerun_Tokens : public RE_Lisp_Output
 {
@@ -53,6 +53,6 @@ public:
 
 };
 
-_RZNS(RECore)
+_RZNS(RZ_Core)
 
 #endif //RZ_RE_PRERUN_TOKENS__H

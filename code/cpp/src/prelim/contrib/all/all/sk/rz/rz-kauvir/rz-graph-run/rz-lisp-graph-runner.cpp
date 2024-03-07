@@ -28,7 +28,7 @@
 USING_RZNS(GRun)
 
 RZ_Lisp_Graph_Runner::RZ_Lisp_Graph_Runner(caon_ptr<RZ_Lisp_Graph_Valuer>  valuer)
- : valuer_(valuer), rq_(RE_Query::instance())
+ : valuer_(valuer), rq_(ChasmRZ_Query::instance())
 {
 }
 
@@ -145,8 +145,8 @@ void RZ_Lisp_Graph_Runner::init_run_sequence_pair(RZ_Lisp_Graph_Result_Holder& r
  if(lhs_node)
  {
   CAON_PTR_DEBUG(tNode ,lhs_node)
-  caon_ptr<RZ_Lisp_Token> lhst = lhs_node->lisp_token();
-  CAON_PTR_DEBUG(RZ_Lisp_Token ,lhst)
+  caon_ptr<RZ_ASG_Token> lhst = lhs_node->lisp_token();
+  CAON_PTR_DEBUG(RZ_ASG_Token ,lhst)
 
   rhs_node = check_run_sequence(rh, rhs_premise, start_node);
 
@@ -193,13 +193,13 @@ caon_ptr<RZ_Lisp_Graph_Runner::tNode>
  }
  else if(result = rq_.Run_Call_Entry(&lhs_node))
  {
-  if(caon_ptr<RE_Call_Entry> rce = result->re_call_entry())
+  if(caon_ptr<RE_Call_Entry> rce = result->chasm_rz_call_entry())
   {
    premise = &rq_.Run_Call_Entry;
    caon_ptr<tNode> entry_node;
    if(entry_node = rq_.Run_Call_Entry(result))
    {
-    if(caon_ptr<RZ_Lisp_Token> tok = entry_node->lisp_token())
+    if(caon_ptr<RZ_ASG_Token> tok = entry_node->lisp_token())
     {
      tok->flags.is_nested_opaque_call = !tok->flags.is_core_function_symbol;
      if(tok->flags.is_nested_opaque_call)

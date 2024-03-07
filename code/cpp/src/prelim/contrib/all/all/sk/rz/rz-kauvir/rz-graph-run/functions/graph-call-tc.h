@@ -40,14 +40,14 @@ _RZ_LISP_GRAPH_FUNCTION_CODES
 RZ_GCALL_IMPLEMENT <RZ_GCALL_Tc(My, Core_Class)>
 {
  template<typename T1, typename T2>
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& token, T2& t2)
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& token, T2& t2)
  {
 
  }
  template<typename T1, typename T2>
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& token, RZ_Opaque_Call& opc)
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& token, RZ_Opaque_Call& opc)
  {
-  caon_ptr<RZ_Lisp_Token> ft = rh.function_token();
+  caon_ptr<RZ_ASG_Token> ft = rh.function_token();
 
   if(ft)
   {
@@ -58,9 +58,9 @@ RZ_GCALL_IMPLEMENT <RZ_GCALL_Tc(My, Core_Class)>
  }
 
  template<typename T1, typename T2>
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& token, RZ_Opaque_Type_Symbol& ots)
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& token, RZ_Opaque_Type_Symbol& ots)
  {
-  caon_ptr<RZ_Lisp_Token> ft = rh.function_token();
+  caon_ptr<RZ_ASG_Token> ft = rh.function_token();
 
   if(ft)
   {
@@ -70,10 +70,10 @@ RZ_GCALL_IMPLEMENT <RZ_GCALL_Tc(My, Core_Class)>
  }
 
  template<typename T1, typename T2>
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& token,
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& token,
   RZ_Lisp_Symbol& sym)
  {
-  caon_ptr<RZ_Lisp_Token> ft = rh.function_token();
+  caon_ptr<RZ_ASG_Token> ft = rh.function_token();
   if(ft)
   {
    caon_ptr<tNode> n = rh.valuer().register_lexical_symbol(rh, *ft, token, sym);
@@ -82,10 +82,10 @@ RZ_GCALL_IMPLEMENT <RZ_GCALL_Tc(My, Core_Class)>
  }
 
  template<typename T1, typename T2>
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& token,
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& token,
   RZ_Lisp_Vector& symvec)
  {
-  caon_ptr<RZ_Lisp_Token> ft = rh.function_token();
+  caon_ptr<RZ_ASG_Token> ft = rh.function_token();
   if(ft)
   {
    caon_ptr<tNode> n = rh.valuer().register_lexical_symbols(rh, *ft, token, symvec);
@@ -98,14 +98,14 @@ RZ_GCALL_IMPLEMENT <RZ_GCALL_Tc(My, Core_Class)>
 RZ_GCALL_IMPLEMENT <RZ_GCALL_Tc(Our, Core_Class)>
 {
  template<typename T1, typename T2>
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& token, T2& t2)
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& token, T2& t2)
  {
 
  }
  template<typename T1, typename T2>
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& token, RZ_Opaque_Call& opc)
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& token, RZ_Opaque_Call& opc)
  {
-  caon_ptr<RZ_Lisp_Token> ft = rh.function_token();
+  caon_ptr<RZ_ASG_Token> ft = rh.function_token();
 
   if(ft)
   {
@@ -117,9 +117,9 @@ RZ_GCALL_IMPLEMENT <RZ_GCALL_Tc(Our, Core_Class)>
  }
 
  template<typename T1, typename T2>
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& token, RZ_Opaque_Type_Symbol& ots)
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& token, RZ_Opaque_Type_Symbol& ots)
  {
-  caon_ptr<RZ_Lisp_Token> ft = rh.function_token();
+  caon_ptr<RZ_ASG_Token> ft = rh.function_token();
 
   if(ft)
   {
@@ -130,10 +130,10 @@ RZ_GCALL_IMPLEMENT <RZ_GCALL_Tc(Our, Core_Class)>
  }
 
  template<typename T1, typename T2>
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& token,
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& token,
   RZ_Lisp_Symbol& sym)
  {
-  caon_ptr<RZ_Lisp_Token> ft = rh.function_token();
+  caon_ptr<RZ_ASG_Token> ft = rh.function_token();
   if(ft)
   {
    caon_ptr<tNode> n = rh.valuer().register_lexical_symbol(rh, *ft, token, sym,
@@ -143,10 +143,10 @@ RZ_GCALL_IMPLEMENT <RZ_GCALL_Tc(Our, Core_Class)>
  }
 
  template<typename T1, typename T2>
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& token,
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& token,
   RZ_Lisp_Vector& symvec)
  {
-  caon_ptr<RZ_Lisp_Token> ft = rh.function_token();
+  caon_ptr<RZ_ASG_Token> ft = rh.function_token();
   if(ft)
   {
    caon_ptr<tNode> n = rh.valuer().register_lexical_symbols(rh, *ft, token, symvec,

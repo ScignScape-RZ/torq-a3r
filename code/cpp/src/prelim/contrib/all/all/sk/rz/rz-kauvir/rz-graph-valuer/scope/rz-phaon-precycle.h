@@ -15,7 +15,7 @@
 #include <QMap>
 
 
-#include "rz-lisp-graph-scope-token.h"
+#include "rz-asg-scope-token.h"
 
 #include "accessors.h"
 

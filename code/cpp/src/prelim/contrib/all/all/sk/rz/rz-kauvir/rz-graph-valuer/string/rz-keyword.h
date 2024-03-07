@@ -25,7 +25,7 @@
 
 RZNS_(GBuild)
 
-class RZ_Lisp_Token;
+class RZ_ASG_Token;
 
 _RZNS(GBuild)
 
@@ -52,11 +52,11 @@ public:
 
  ACCESSORS__RGET(RZ_String ,rz_string)
 
- RZ_Keyword(RZ_Lisp_Token* t = nullptr):Flags(0), rz_string_(t){}
+ RZ_Keyword(RZ_ASG_Token* t = nullptr):Flags(0), rz_string_(t){}
 
  RZ_Keyword(tString s):Flags(0),rz_string_(s){}
 
- void set_token(RZ_Lisp_Token* t)
+ void set_token(RZ_ASG_Token* t)
  {
   rz_string_.set_token(t);
  }

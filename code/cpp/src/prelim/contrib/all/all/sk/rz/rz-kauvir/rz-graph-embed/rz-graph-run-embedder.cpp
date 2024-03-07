@@ -10,9 +10,9 @@
 #include "rz-graph-embed-token.h"
 #include "rz-graph-embed-package.h"
 
-#include "rz-graph-build/rz-lisp-graph-result-holder.h"
+#include "rz-graph-build/rz-asg-result-holder.h"
 
-#include "rz-graph-core/kernel/graph/rz-re-node.h"
+#include "rz-graph-core/kernel/graph/chasm-rz-node.h"
 
 #include "relae-graph/relae-node-ptr.h"
 
@@ -21,8 +21,8 @@
 
 USING_RZNS(GEmbed)
 
-RZ_Graph_Run_Embedder::RZ_Graph_Run_Embedder(caon_ptr<RZ_Lisp_Graph_Valuer> valuer)
- : valuer_(valuer), fr_(RE_Frame::instance()), rq_(RE_Query::instance()), cpp_project_(nullptr)
+RZ_Graph_Run_Embedder::RZ_Graph_Run_Embedder(caon_ptr<RZ_ASG_Valuer> valuer)
+ : valuer_(valuer), fr_(ChasmRZ_Frame::instance()), rq_(ChasmRZ_Query::instance()), cpp_project_(nullptr)
 {
  init_noop_node();
 }
@@ -38,7 +38,7 @@ void RZ_Graph_Run_Embedder::init_noop_node()
 }
 
 
-void RZ_Graph_Run_Embedder::check_redirect(RZ_Lisp_Graph_Result_Holder& rh,
+void RZ_Graph_Run_Embedder::check_redirect(RZ_ASG_Result_Holder& rh,
  tNode& current_start_node)
 {
  // //  Leave it for the proceed call to decide
@@ -56,7 +56,7 @@ void RZ_Graph_Run_Embedder::check_redirect(RZ_Lisp_Graph_Result_Holder& rh,
 
 
 
-void RZ_Graph_Run_Embedder::redirect_to_noop(RZ_Lisp_Graph_Result_Holder& rh,
+void RZ_Graph_Run_Embedder::redirect_to_noop(RZ_ASG_Result_Holder& rh,
  tNode& current_start_node)
 {
  caon_ptr<tNode> arg = &current_start_node;
@@ -73,7 +73,7 @@ void RZ_Graph_Run_Embedder::redirect_to_noop(tNode& n)
  pn <<fr_/rq_.Run_Embed_Redirect>> noop_node_;
 }
 
-void RZ_Graph_Run_Embedder::redirect(RZ_Lisp_Graph_Result_Holder& rh,
+void RZ_Graph_Run_Embedder::redirect(RZ_ASG_Result_Holder& rh,
  QString function_name, tNode& function_node)
 {
  rh.skip_redirect();
@@ -84,7 +84,7 @@ void RZ_Graph_Run_Embedder::redirect(RZ_Lisp_Graph_Result_Holder& rh,
  }
 }
 
-void RZ_Graph_Run_Embedder::embed_rename(RZ_Lisp_Graph_Result_Holder& rh,
+void RZ_Graph_Run_Embedder::embed_rename(RZ_ASG_Result_Holder& rh,
  QString function_name, tNode& function_node)
 {
  rh.skip_redirect();
@@ -95,7 +95,7 @@ void RZ_Graph_Run_Embedder::embed_rename(RZ_Lisp_Graph_Result_Holder& rh,
  }
 }
 
-void RZ_Graph_Run_Embedder::embed_deferred_callback(RZ_Lisp_Graph_Result_Holder& rh,
+void RZ_Graph_Run_Embedder::embed_deferred_callback(RZ_ASG_Result_Holder& rh,
  QString function_name, tNode& function_node)
 {
  rh.skip_redirect();
@@ -104,7 +104,7 @@ void RZ_Graph_Run_Embedder::embed_deferred_callback(RZ_Lisp_Graph_Result_Holder&
 }
 
 
-void RZ_Graph_Run_Embedder::redirect(RZ_Lisp_Graph_Result_Holder& rh, std::initializer_list<QString> args,
+void RZ_Graph_Run_Embedder::redirect(RZ_ASG_Result_Holder& rh, std::initializer_list<QString> args,
  caon_ptr<tNode> function_node)
 {
  rh.skip_redirect();
@@ -118,7 +118,7 @@ void RZ_Graph_Run_Embedder::redirect(RZ_Lisp_Graph_Result_Holder& rh, std::initi
 }
 
 
-void RZ_Graph_Run_Embedder::redirect_no_package(RZ_Lisp_Graph_Result_Holder& rh, std::initializer_list<QString> args,
+void RZ_Graph_Run_Embedder::redirect_no_package(RZ_ASG_Result_Holder& rh, std::initializer_list<QString> args,
  caon_ptr<tNode> function_node)
 {
  rh.skip_redirect();
@@ -133,7 +133,7 @@ void RZ_Graph_Run_Embedder::redirect_no_package(RZ_Lisp_Graph_Result_Holder& rh,
 
 
 
-void RZ_Graph_Run_Embedder::redirect_with_call_no_package(RZ_Lisp_Graph_Result_Holder& rh,
+void RZ_Graph_Run_Embedder::redirect_with_call_no_package(RZ_ASG_Result_Holder& rh,
  tNode& redirect_entry_node, std::initializer_list<QString> args, caon_ptr<tNode> function_node)
 {
  rh.skip_redirect();
@@ -148,7 +148,7 @@ void RZ_Graph_Run_Embedder::redirect_with_call_no_package(RZ_Lisp_Graph_Result_H
 }
 
 
-void RZ_Graph_Run_Embedder::redirect(RZ_Lisp_Graph_Result_Holder& rh, QStringList& qsl,
+void RZ_Graph_Run_Embedder::redirect(RZ_ASG_Result_Holder& rh, QStringList& qsl,
  tNode& function_node)
 {
  rh.skip_redirect();

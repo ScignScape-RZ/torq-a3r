@@ -5,7 +5,7 @@
 //           http://www.boost.org/LICENSE_1_0.txt)
 
 
-#define DOMINION_NODE_TYPE RE_Node
+#define DOMINION_NODE_TYPE ChasmRZ_Node
 
 #ifndef DOMINION_HIDE_NO_NAMESPACE
 // // No namespace
@@ -21,15 +21,15 @@ DOMINION_TYPE(qstring, QString, QStr)
 #define DOMINION_OUTER_NAMESPACE RZ
 
 
-#define DOMINION_INNER_NAMESPACE RECore
+#define DOMINION_INNER_NAMESPACE RZ_Core
 #include "relae-graph/dominion-macros.h"
-DOMINION_TYPE(re_root, RE_Root, RE_Root)
-DOMINION_TYPE(re_token, RE_Token, RE_Token)
-DOMINION_TYPE(proxy, RE_Node_Proxy, Proxy)
-DOMINION_TYPE(re_tuple_info, RE_Tuple_Info, RE_Tuple_Info)
-DOMINION_TYPE(re_call_entry, RE_Call_Entry, RE_Call_Entry)
-DOMINION_TYPE(re_block_entry, RE_Block_Entry, RE_Block_Entry)
-DOMINION_TYPE(re_function_def_entry, RE_Function_Def_Entry, RE_Function_Def_Entry)
+DOMINION_TYPE(chasm_rz_root, ChasmRZ_Root, ChasmRZ_Root)
+DOMINION_TYPE(chasm_rz_token, ChasmRZ_Token, ChasmRZ_Token)
+DOMINION_TYPE(proxy, ChasmRZ_Node_Proxy, Proxy)
+DOMINION_TYPE(chasm_rz_tuple_info, ChasmRZ_Tuple_Info, ChasmRZ_Tuple_Info)
+DOMINION_TYPE(chasm_rz_call_entry, ChasmRZ_Call_Entry, ChasmRZ_Call_Entry)
+DOMINION_TYPE(chasm_rz_block_entry, ChasmRZ_Block_Entry, ChasmRZ_Block_Entry)
+DOMINION_TYPE(chasm_rz_function_def_entry, ChasmRZ_Function_Def_Entry, ChasmRZ_Function_Def_Entry)
 DOMINION_TYPE(string_plex_builder, RZ_String_Plex_Builder, StrPlexBuilder)
 #undef DOMINION_INNER_NAMESPACE
 
@@ -53,11 +53,11 @@ DOMINION_TYPE(ecl_token, RZ_Graph_ECL_Token, RZ_Graph_ECL_Token)
 #define DOMINION_INNER_NAMESPACE GBuild
 #include "relae-graph/dominion-macros.h"
 //?
-DOMINION_TYPE(core_function, RZ_Lisp_Graph_Core_Function, Graph_CoreFun)
-DOMINION_TYPE(cfn, RZ_Lisp_Core_Function, Token_CoreFun)
+DOMINION_TYPE(core_function, RZ_ASG_Core_Function, Core_Function)
+//?DOMINION_TYPE(cfn, RZ_ASG_Core_Function, Token_CoreFun)
 DOMINION_TYPE(fair_annotation, RZ_FAIR_Annotation, Fair_Annotation)
 DOMINION_TYPE(null_value, RZ_Null_Value, Null_Value)
-DOMINION_TYPE(empty_tuple, RZ_Lisp_Empty_Tuple, EmptyTuple)
+DOMINION_TYPE(empty_tuple, RZ_ASG_Empty_Tuple, EmptyTuple)
 #undef DOMINION_INNER_NAMESPACE
 
 
@@ -67,22 +67,22 @@ DOMINION_TYPE(fair_codepoint, RZ_FAIR_Codepoint, FAIR_Codepoint)
 DOMINION_TYPE(fair_archpoint, RZ_FAIR_Archpoint, FAIR_Archpoint)
 DOMINION_TYPE(fair_textpoint, RZ_FAIR_Textpoint, FAIR_Textpoint)
 DOMINION_TYPE(fair_filepoint, RZ_FAIR_Filepoint, FAIR_Filepoint)
-DOMINION_TYPE(vec, RZ_Lisp_Vector, Lisp_Vector)
-DOMINION_TYPE(map, RZ_Lisp_Map, Lisp_Map)
+DOMINION_TYPE(vec, RZ_ASG_Vector, ASG_Vector)
+DOMINION_TYPE(map, RZ_ASG_Map, ASG_Map)
 DOMINION_TYPE(str, RZ_String, Str)
 DOMINION_TYPE(str_plex, RZ_String_Plex, StrPlex)
 DOMINION_TYPE(mlt, RZ_Match_Literal, Mlt)
 DOMINION_TYPE(opc, RZ_Opaque_Call, Opc)
-DOMINION_TYPE(sym, RZ_Lisp_Symbol, Sym)
+DOMINION_TYPE(sym, RZ_ASG_Symbol, Sym)
 DOMINION_TYPE(ots, RZ_Opaque_Type_Symbol, Ots)
-DOMINION_TYPE(lexs, RZ_Lisp_Graph_Lexical_Scope, Lexs)
-DOMINION_TYPE(block_info, RZ_Lisp_Graph_Block_Info, Block_Info)
+DOMINION_TYPE(lexs, RZ_ASG_Lexical_Scope, Lexs)
+DOMINION_TYPE(block_info, RZ_ASG_Block_Info, Block_Info)
 DOMINION_TYPE(rz_function_def_info, RZ_Function_Def_Info, RZ_Function_Def_Info)
 DOMINION_TYPE(rz_code_statement, RZ_Code_Statement, RZ_Code_Statement)
 DOMINION_TYPE(rz_expression_review, RZ_Expression_Review, RZ_Expression_Review)
-DOMINION_TYPE(core_pair, RZ_Lisp_Graph_Valuer_Core_Pair, RZ_Lisp_Graph_Valuer__Core_Pair)
+DOMINION_TYPE(core_pair, RZ_ASG_Valuer_Core_Pair, RZ_ASG_Valuer_Core_Pair)
 DOMINION_TYPE(user_type, RZ_Phaon_User_Type, Uty)
-DOMINION_TYPE(logs, RZ_Lisp_Graph_Logical_Scope, Logs)
+DOMINION_TYPE(logs, RZ_ASG_Logical_Scope, Logs)
 #undef DOMINION_INNER_NAMESPACE
 
 #undef DOMINION_OUTER_NAMESPACE

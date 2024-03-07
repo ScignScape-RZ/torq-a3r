@@ -12,7 +12,7 @@ USING_RZNS(GVal)
 RZ_Function_Def_Syntax::RZ_Function_Def_Syntax()
  : Flags(0)
 {
- // //  For now default lisp renames
+ // //  For now default asg renames
  symbol_renames_["?"] = "&optional";
 }
 

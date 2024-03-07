@@ -6,7 +6,7 @@
 
 #include "rz-opaque-call.h"
 
-#include "rz-graph-core/kernel/graph/rz-re-node.h"
+#include "rz-graph-core/kernel/graph/chasm-rz-node.h"
 
 
 USING_RZNS(GVal)
@@ -18,10 +18,10 @@ RZ_Opaque_Call::RZ_Opaque_Call(caon_ptr<tNode> pre_entry_node,
 
 }
 
-caon_ptr<RZ_Lisp_Token> RZ_Opaque_Call::get_entry_token()
+caon_ptr<RZ_ASG_Token> RZ_Opaque_Call::get_entry_token()
 {
- caon_ptr<RZ_Lisp_Token> result = nullptr;
- CAON_PTR_DEBUG(RE_Node ,entry_node_)
- result = entry_node_->lisp_token();
+ caon_ptr<RZ_ASG_Token> result = nullptr;
+ CAON_PTR_DEBUG(ChasmRZ_Node ,entry_node_)
+ result = entry_node_->asg_token();
  return result;
 }

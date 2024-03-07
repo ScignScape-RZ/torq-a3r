@@ -24,7 +24,7 @@ USING_RZNS(GVal)
 
 RZNS_(GBuild)
 
-class RZ_Lisp_Graph_Result_Holder;
+class RZ_ASG_Result_Holder;
 
 typedef int tyId;
 
@@ -77,7 +77,7 @@ struct RZ_Type_Not_Set
   return RZ_The_Monotail();
  }
 
- friend RZ_Lisp_Graph_Result_Holder& operator<< (RZ_Lisp_Graph_Result_Holder& rh, const RZ_Type_Not_Set&)
+ friend RZ_ASG_Result_Holder& operator<< (RZ_ASG_Result_Holder& rh, const RZ_Type_Not_Set&)
  {
   return rh;
  }

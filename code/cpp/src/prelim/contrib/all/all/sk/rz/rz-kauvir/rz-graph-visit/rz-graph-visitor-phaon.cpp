@@ -50,7 +50,7 @@ RZ_Graph_Visitor_Phaon::RZ_Graph_Visitor_Phaon(RZ_Lisp_Graph_Visitor& visitor)
 }
 
 //? needed any more?
-caon_ptr<RZ_Lisp_Graph_Block_Info> RZ_Graph_Visitor_Phaon::block_info_from_block_entry_node(caon_ptr<RE_Node> ben)
+caon_ptr<RZ_Lisp_Graph_Block_Info> RZ_Graph_Visitor_Phaon::block_info_from_block_entry_node(caon_ptr<ChasmRZ_Node> ben)
 {
  caon_ptr<RZ_Lisp_Graph_Block_Info> result = nullptr;
  if(caon_ptr<RE_Block_Entry> rbe = ben->re_block_entry())
@@ -62,7 +62,7 @@ caon_ptr<RZ_Lisp_Graph_Block_Info> RZ_Graph_Visitor_Phaon::block_info_from_block
 }
 
 
-caon_ptr<RZ_Lisp_Graph_Block_Info> RZ_Graph_Visitor_Phaon::check_pending_block_info(caon_ptr<RE_Node> node)
+caon_ptr<RZ_Lisp_Graph_Block_Info> RZ_Graph_Visitor_Phaon::check_pending_block_info(caon_ptr<ChasmRZ_Node> node)
 {
  return visitor_.get_block_info_from_function_node(node);
 }
@@ -186,20 +186,20 @@ caon_ptr<RZ_Lisp_Graph_Block_Info> RZ_Graph_Visitor_Phaon::clear_pending_block_i
  return result;
 }
 
-void RZ_Graph_Visitor_Phaon::check_assignment_annotation(caon_ptr<RE_Node> statement_entry_node,
+void RZ_Graph_Visitor_Phaon::check_assignment_annotation(caon_ptr<ChasmRZ_Node> statement_entry_node,
   caon_ptr<RZ_Code_Statement> st)
 {
- if(caon_ptr<RE_Node> aa_node = visitor_.get_assignment_annotation_node_from_statement_entry_node(statement_entry_node))
+ if(caon_ptr<ChasmRZ_Node> aa_node = visitor_.get_assignment_annotation_node_from_statement_entry_node(statement_entry_node))
  {
-  if(caon_ptr<RE_Token> tok = aa_node->re_token())
+  if(caon_ptr<RE_Token> tok = aa_node->chasm_rz_token())
     st->set_annotation(tok->raw_text());
  }
 }
 
 caon_ptr<RZ_Code_Statement> RZ_Graph_Visitor_Phaon::get_code_statement_from_statement_entry_node(
-  caon_ptr<RE_Node> statement_entry_node)
+  caon_ptr<ChasmRZ_Node> statement_entry_node)
 {
- caon_ptr<RE_Node> st_node = visitor_.get_code_statement_node_from_statement_entry_node(statement_entry_node);
+ caon_ptr<ChasmRZ_Node> st_node = visitor_.get_code_statement_node_from_statement_entry_node(statement_entry_node);
  if(st_node)
  {
   return st_node->rz_code_statement();
@@ -209,9 +209,9 @@ caon_ptr<RZ_Code_Statement> RZ_Graph_Visitor_Phaon::get_code_statement_from_stat
 
 
 caon_ptr<RZ_Expression_Review> RZ_Graph_Visitor_Phaon::get_expression_review_from_entry_node(
-  caon_ptr<RE_Node> entry_node)
+  caon_ptr<ChasmRZ_Node> entry_node)
 {
- caon_ptr<RE_Node> er_node = visitor_.get_expression_review_node_from_entry_node(entry_node);
+ caon_ptr<ChasmRZ_Node> er_node = visitor_.get_expression_review_node_from_entry_node(entry_node);
  if(er_node)
  {
   return er_node->rz_expression_review();
@@ -221,13 +221,13 @@ caon_ptr<RZ_Expression_Review> RZ_Graph_Visitor_Phaon::get_expression_review_fro
 
 
 
-caon_ptr<RE_Node> RZ_Graph_Visitor_Phaon::get_next_node(caon_ptr<RE_Node> start_node,
+caon_ptr<ChasmRZ_Node> RZ_Graph_Visitor_Phaon::get_next_node(caon_ptr<ChasmRZ_Node> start_node,
   RZ_Lisp_Graph_Visitor::Next_Node_Premise& next_node_premise)
 {
- CAON_PTR_DEBUG(RE_Node, start_node)
+ CAON_PTR_DEBUG(ChasmRZ_Node, start_node)
 
  // next_node_premise is read-write
- caon_ptr<RE_Node> result = nullptr;
+ caon_ptr<ChasmRZ_Node> result = nullptr;
 
  if(pending_block_info_)
  {
@@ -249,31 +249,31 @@ caon_ptr<RE_Node> RZ_Graph_Visitor_Phaon::get_next_node(caon_ptr<RE_Node> start_
  return result;
 }
 
-caon_ptr<RE_Node> RZ_Graph_Visitor_Phaon::get_next_statement_node(caon_ptr<RE_Node> sen)
+caon_ptr<ChasmRZ_Node> RZ_Graph_Visitor_Phaon::get_next_statement_node(caon_ptr<ChasmRZ_Node> sen)
 {
- CAON_PTR_DEBUG(RE_Node ,sen)
- caon_ptr<RE_Node> result = visitor_.get_cross_sequence_node(sen);
- CAON_PTR_DEBUG(RE_Node ,result)
+ CAON_PTR_DEBUG(ChasmRZ_Node ,sen)
+ caon_ptr<ChasmRZ_Node> result = visitor_.get_cross_sequence_node(sen);
+ CAON_PTR_DEBUG(ChasmRZ_Node ,result)
  return result;
 }
 
-QString RZ_Graph_Visitor_Phaon::get_field_index_key(caon_ptr<RE_Node> n, QString sym)
+QString RZ_Graph_Visitor_Phaon::get_field_index_key(caon_ptr<ChasmRZ_Node> n, QString sym)
 {
  return visitor_.get_field_index_key(n, sym);
 }
 
 
-caon_ptr<RE_Node> RZ_Graph_Visitor_Phaon::leave_nested_block(caon_ptr<RZ_Lisp_Graph_Block_Info> rbi, caon_ptr<RZ_Lisp_Graph_Block_Info>& nn_bi)
+caon_ptr<ChasmRZ_Node> RZ_Graph_Visitor_Phaon::leave_nested_block(caon_ptr<RZ_Lisp_Graph_Block_Info> rbi, caon_ptr<RZ_Lisp_Graph_Block_Info>& nn_bi)
 {
  if(rbi)
  {
   CAON_PTR_DEBUG(RZ_Lisp_Graph_Block_Info ,rbi)
-  caon_ptr<RE_Node> result = rbi->continue_node();
-  CAON_PTR_DEBUG(RE_Node ,result)
+  caon_ptr<ChasmRZ_Node> result = rbi->continue_node();
+  CAON_PTR_DEBUG(ChasmRZ_Node ,result)
 
   // for debug ...
   {
-   if(caon_ptr<RE_Node> ben = rbi->block_entry_node())
+   if(caon_ptr<ChasmRZ_Node> ben = rbi->block_entry_node())
    {
     if(caon_ptr<RE_Block_Entry> rbe = ben->re_block_entry())
     {
@@ -297,10 +297,10 @@ caon_ptr<RE_Node> RZ_Graph_Visitor_Phaon::leave_nested_block(caon_ptr<RZ_Lisp_Gr
  return nullptr;
 }
 
-caon_ptr<RE_Node> RZ_Graph_Visitor_Phaon::block_entry_node_from_function_def_entry_node(caon_ptr<RE_Node> start_node)
+caon_ptr<ChasmRZ_Node> RZ_Graph_Visitor_Phaon::block_entry_node_from_function_def_entry_node(caon_ptr<ChasmRZ_Node> start_node)
 {
- CAON_PTR_DEBUG(RE_Node ,start_node)
- if(caon_ptr<RZ_Lisp_Token> rzlt = start_node->lisp_token())
+ CAON_PTR_DEBUG(ChasmRZ_Node ,start_node)
+ if(caon_ptr<RZ_ASG_Token> rzlt = start_node->lisp_token())
  {
   if(rzlt->raw_text() == "\\=>>")
   {
@@ -310,18 +310,18 @@ caon_ptr<RE_Node> RZ_Graph_Visitor_Phaon::block_entry_node_from_function_def_ent
  return visitor_.nested_block_entry_from_prior_node(start_node);
 }
 
-caon_ptr<RE_Node> RZ_Graph_Visitor_Phaon::call_entry_node_from_block_entry_node(caon_ptr<RE_Node> start_node)
+caon_ptr<ChasmRZ_Node> RZ_Graph_Visitor_Phaon::call_entry_node_from_block_entry_node(caon_ptr<ChasmRZ_Node> start_node)
 {
- CAON_PTR_DEBUG(RE_Node ,start_node)
+ CAON_PTR_DEBUG(ChasmRZ_Node ,start_node)
  return visitor_.call_entry_from_node(start_node);
 }
 
-caon_ptr<RZ_Function_Def_Info> RZ_Graph_Visitor_Phaon::get_function_def_info_from_entry(caon_ptr<RE_Function_Def_Entry> fde)
+caon_ptr<RZ_Function_Def_Info> RZ_Graph_Visitor_Phaon::get_function_def_info_from_entry(caon_ptr<ChasmRZ_Function_Def_Entry> fde)
 {
- caon_ptr<RE_Node> prior_node = fde->prior_node();
- CAON_PTR_DEBUG(RE_Node ,prior_node)
+ caon_ptr<ChasmRZ_Node> prior_node = fde->prior_node();
+ CAON_PTR_DEBUG(ChasmRZ_Node ,prior_node)
 
- if(caon_ptr<RZ_Lisp_Token> ptok = prior_node->lisp_token())
+ if(caon_ptr<RZ_ASG_Token> ptok = prior_node->lisp_token())
  {
   if(ptok->raw_text() == "\\=>>")
   {
@@ -333,10 +333,10 @@ caon_ptr<RZ_Function_Def_Info> RZ_Graph_Visitor_Phaon::get_function_def_info_fro
   }
  }
 
- if(caon_ptr<RE_Node> fdi_node = visitor_.get_call_sequence_node(prior_node))
+ if(caon_ptr<ChasmRZ_Node> fdi_node = visitor_.get_call_sequence_node(prior_node))
  {
-  CAON_PTR_DEBUG(RE_Node ,fdi_node)
-  if(caon_ptr<RZ_Lisp_Token> tok = fdi_node->lisp_token())
+  CAON_PTR_DEBUG(ChasmRZ_Node ,fdi_node)
+  if(caon_ptr<RZ_ASG_Token> tok = fdi_node->lisp_token())
   {
    return tok->pRestore<RZ_Function_Def_Info>();
    //return fdi_node->rz_function_def_info();
@@ -346,16 +346,16 @@ caon_ptr<RZ_Function_Def_Info> RZ_Graph_Visitor_Phaon::get_function_def_info_fro
 }
 
 
-caon_ptr<RE_Node> RZ_Graph_Visitor_Phaon::start_node_from_call_entry_node(caon_ptr<RE_Node> entry_node)
+caon_ptr<ChasmRZ_Node> RZ_Graph_Visitor_Phaon::start_node_from_call_entry_node(caon_ptr<ChasmRZ_Node> entry_node)
 {
  return visitor_.entry_from_call_entry(entry_node);
 }
 
-caon_ptr<RE_Node> RZ_Graph_Visitor_Phaon::find_statement_cross_sequence_node(caon_ptr<RE_Node> start_node)
+caon_ptr<ChasmRZ_Node> RZ_Graph_Visitor_Phaon::find_statement_cross_sequence_node(caon_ptr<ChasmRZ_Node> start_node)
 {
- CAON_PTR_DEBUG(RE_Node ,start_node)
- caon_ptr<RE_Node> result = visitor_.get_cross_sequence_node(start_node);
- CAON_PTR_DEBUG(RE_Node ,result)
+ CAON_PTR_DEBUG(ChasmRZ_Node ,start_node)
+ caon_ptr<ChasmRZ_Node> result = visitor_.get_cross_sequence_node(start_node);
+ CAON_PTR_DEBUG(ChasmRZ_Node ,result)
  return result;
 }
 

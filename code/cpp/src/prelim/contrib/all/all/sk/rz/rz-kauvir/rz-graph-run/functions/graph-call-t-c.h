@@ -16,7 +16,7 @@
 
 #include "rzns.h"
 
-typedef RZ::RECore::RE_Node tNode;
+typedef RZ::RZ_Core::ChasmRZ_Node tNode;
 
 RZNS_(GRun)
 
@@ -35,7 +35,7 @@ _RZ_LISP_GRAPH_FUNCTION_CODES
 RZ_GCALL_IMPLEMENT <RZ_GCALL_TC(Precycle, Core_Class)>
 {
  template<typename T1, typename T2>
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Token& t1, T2& t2)
+ static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& t1, T2& t2)
  {
   tString str = t1.string_value();
   caon_ptr<tNode> utyn = rh.valuer().register_user_precycle(str);

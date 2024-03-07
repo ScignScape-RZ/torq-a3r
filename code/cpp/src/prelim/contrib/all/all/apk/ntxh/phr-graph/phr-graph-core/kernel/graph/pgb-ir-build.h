@@ -92,11 +92,11 @@ public:
     target.mid(1), get_subgroup(target[0]));
  }
 
- Purpose_Codes& make_signature_node(QString arg, MG_Token_Subgroups asg,
+ Purpose_Codes& make_signatuChasmRZ_Node(QString arg, MG_Token_Subgroups asg,
    QString target, MG_Token_Subgroups tsg);
- Purpose_Codes& make_signature_node(QString arg, QString target)
+ Purpose_Codes& make_signatuChasmRZ_Node(QString arg, QString target)
  {
-  return make_signature_node(arg.mid(1), get_subgroup(arg[0]),
+  return make_signatuChasmRZ_Node(arg.mid(1), get_subgroup(arg[0]),
     target.mid(1), get_subgroup(target[0]));
  }
 

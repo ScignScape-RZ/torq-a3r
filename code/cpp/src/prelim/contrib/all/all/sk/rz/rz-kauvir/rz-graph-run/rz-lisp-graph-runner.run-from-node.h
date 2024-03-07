@@ -83,7 +83,7 @@ void RZ_Lisp_Graph_Runner::proceed_run_from_node<1>(RZ_Lisp_Graph_Result_Holder&
  caon_ptr<tNode> right_new_node = cp.right_new_node;
  caon_ptr<tNode> arity_value_node = cp.arity_value_node;
 
- caon_ptr<RZ_Lisp_Token> lhs_token;
+ caon_ptr<RZ_ASG_Token> lhs_token;
 
  if(left_new_node)
  {
@@ -99,7 +99,7 @@ void RZ_Lisp_Graph_Runner::proceed_run_from_node<1>(RZ_Lisp_Graph_Result_Holder&
 
  rh.hold(&start_node);
 
- static RZ_Lisp_Graph_Value_Holder null_vh;
+ static RZ_ASG_Value_Holder null_vh;
 
  switch(cf.info().Core_Function_Family)
  {
@@ -113,10 +113,10 @@ void RZ_Lisp_Graph_Runner::proceed_run_from_node<1>(RZ_Lisp_Graph_Result_Holder&
   }
   else if(arity_value_node)
   {
-   RZ_Lisp_Graph_Value_Holder vh;
+   RZ_ASG_Value_Holder vh;
    caon_ptr<RZ_Type_Object> tobj =
     valuer_->get_node_type_object(*arity_value_node);
-   // //   Should this be (as it once was) a function in RE_Node?
+   // //   Should this be (as it once was) a function in ChasmRZ_Node?
    vh.set_type_object(tobj);
    vh.set_value(arity_value_node->vertex());
    RZ_Lisp_Graph_Core_Runner::run<RZ_Graph_Call_C>
@@ -242,7 +242,7 @@ void RZ_Lisp_Graph_Runner::proceed_run_from_node<2>(RZ_Lisp_Graph_Result_Holder&
 
  int generation = cp.generation;
 
- caon_ptr<RZ_Lisp_Token> lhs_token;
+ caon_ptr<RZ_ASG_Token> lhs_token;
 
  if(left_new_node)
  {
@@ -265,19 +265,19 @@ void RZ_Lisp_Graph_Runner::proceed_run_from_node<2>(RZ_Lisp_Graph_Result_Holder&
   lhs_token = valuer_->get_token_from(*lhs_node);
  }
 
- CAON_PTR_DEBUG(RZ_Lisp_Token ,lhs_token)
+ CAON_PTR_DEBUG(RZ_ASG_Token ,lhs_token)
 
  CAON_EVALUATE_DEBUG(RZ_Type_Object, t, lhs_token->vh().type_object())
 
 
- RZ_Lisp_Graph_Value_Holder rhs_vh;
+ RZ_ASG_Value_Holder rhs_vh;
 
  CAON_PTR_DEBUG(tNode ,rhs_node)
 
- caon_ptr<RZ_Lisp_Token> rhs_token = rhs_node->lisp_token();
- CAON_PTR_DEBUG(RZ_Lisp_Token ,rhs_token)
+ caon_ptr<RZ_ASG_Token> rhs_token = rhs_node->lisp_token();
+ CAON_PTR_DEBUG(RZ_ASG_Token ,rhs_token)
 
- RZ_Lisp_Graph_Value_Holder lhs_vh;
+ RZ_ASG_Value_Holder lhs_vh;
 
  CAON_PTR_DEBUG(tNode ,lhs_node)
 
@@ -302,7 +302,7 @@ void RZ_Lisp_Graph_Runner::proceed_run_from_node<2>(RZ_Lisp_Graph_Result_Holder&
   caon_ptr<RZ_Type_Object> tobj =
    valuer_->get_node_type_object(*right_new_node);
 
-  // //   Should this be (as it once was) a function in RE_Node?
+  // //   Should this be (as it once was) a function in ChasmRZ_Node?
   rhs_vh.set_type_object(tobj);
 
   rhs_vh.set_value(right_new_node->vertex());
@@ -337,13 +337,13 @@ void RZ_Lisp_Graph_Runner::proceed_run_from_node<2>(RZ_Lisp_Graph_Result_Holder&
  {
  case RZ_Graph_Call_VV:
   {
-   RZ_Lisp_Graph_Value_Holder lhs_vh;
+   RZ_ASG_Value_Holder lhs_vh;
    if(left_new_node)
    {
     caon_ptr<RZ_Type_Object> tobj =
      valuer_->get_node_type_object(*left_new_node);
 
-    // //   Should this be (as it once was) a function in RE_Node?
+    // //   Should this be (as it once was) a function in ChasmRZ_Node?
     lhs_vh.set_type_object(tobj);
 
     lhs_vh.set_value(right_new_node->vertex());
@@ -403,18 +403,18 @@ void RZ_Lisp_Graph_Runner::prepare_run_from_node<2>(int generation,
 {
  if(lhs_node)
  {
-  caon_ptr<RZ_Lisp_Token> lhst = lhs_node->lisp_token();
-  CAON_PTR_DEBUG(RZ_Lisp_Token ,lhst)
+  caon_ptr<RZ_ASG_Token> lhst = lhs_node->lisp_token();
+  CAON_PTR_DEBUG(RZ_ASG_Token ,lhst)
   CAON_DEBUG_NOOP
  }
 
 // CAON_PTR_DEBUG(tNode ,rhs_node)
 
-// caon_ptr<RZ_Lisp_Token> rhs_token = rhs_node->lisp_token();
-// CAON_PTR_DEBUG(RZ_Lisp_Token ,rhs_token)
+// caon_ptr<RZ_ASG_Token> rhs_token = rhs_node->lisp_token();
+// CAON_PTR_DEBUG(RZ_ASG_Token ,rhs_token)
 
-// RZ_Lisp_Graph_Value_Holder rhs_vh;
-// RZ_Lisp_Graph_Value_Holder lhs_vh;
+// RZ_ASG_Value_Holder rhs_vh;
+// RZ_ASG_Value_Holder lhs_vh;
 
 // CAON_PTR_DEBUG(tNode ,lhs_node)
 
@@ -440,7 +440,7 @@ void RZ_Lisp_Graph_Runner::prepare_run_from_node<2>(int generation,
 //  caon_ptr<RZ_Type_Object> tobj =
 //   valuer_->get_node_type_object(*right_new_node);
 
-//  // //   Should this be (as it once was) a function in RE_Node?
+//  // //   Should this be (as it once was) a function in ChasmRZ_Node?
 //  rhs_vh.set_type_object(tobj);
 
 //  rhs_vh.set_value(right_new_node->vertex());
@@ -462,7 +462,7 @@ void RZ_Lisp_Graph_Runner::prepare_run_from_node<2>(int generation,
 
 // rh.hold(&start_node);
 
- caon_ptr<RZ_Lisp_Token> lhs_token;
+ caon_ptr<RZ_ASG_Token> lhs_token;
 
  valuer_->mark_core_function_call_entry(generation, cf, &start_node,
    lhs_node, left_new_node, rhs_node, right_new_node, rh.arity_value_node());
@@ -470,7 +470,7 @@ void RZ_Lisp_Graph_Runner::prepare_run_from_node<2>(int generation,
  //!
 // proceed_run_from_node<2>(generation, rh, cf, start_node,
 //   lhs_node, left_new_node, rhs_node, right_new_node);
-// caon_ptr<RZ_Lisp_Token> lhs_token;
+// caon_ptr<RZ_ASG_Token> lhs_token;
 
 #ifdef HIDE
 
@@ -495,19 +495,19 @@ void RZ_Lisp_Graph_Runner::prepare_run_from_node<2>(int generation,
   lhs_token = valuer_->get_token_from(*lhs_node);
  }
 
- CAON_PTR_DEBUG(RZ_Lisp_Token ,lhs_token)
+ CAON_PTR_DEBUG(RZ_ASG_Token ,lhs_token)
 
  CAON_EVALUATE_DEBUG(RZ_Type_Object, t, lhs_token->vh().type_object())
 
 
- RZ_Lisp_Graph_Value_Holder rhs_vh;
+ RZ_ASG_Value_Holder rhs_vh;
 
  CAON_PTR_DEBUG(tNode ,rhs_node)
 
- caon_ptr<RZ_Lisp_Token> rhs_token = rhs_node->lisp_token();
- CAON_PTR_DEBUG(RZ_Lisp_Token ,rhs_token)
+ caon_ptr<RZ_ASG_Token> rhs_token = rhs_node->lisp_token();
+ CAON_PTR_DEBUG(RZ_ASG_Token ,rhs_token)
 
- RZ_Lisp_Graph_Value_Holder lhs_vh;
+ RZ_ASG_Value_Holder lhs_vh;
 
  CAON_PTR_DEBUG(tNode ,lhs_node)
 
@@ -532,7 +532,7 @@ void RZ_Lisp_Graph_Runner::prepare_run_from_node<2>(int generation,
   caon_ptr<RZ_Type_Object> tobj =
    valuer_->get_node_type_object(*right_new_node);
 
-  // //   Should this be (as it once was) a function in RE_Node?
+  // //   Should this be (as it once was) a function in ChasmRZ_Node?
   rhs_vh.set_type_object(tobj);
 
   rhs_vh.set_value(right_new_node->vertex());
@@ -566,13 +566,13 @@ void RZ_Lisp_Graph_Runner::prepare_run_from_node<2>(int generation,
  {
  case RZ_Graph_Call_VV:
   {
-   RZ_Lisp_Graph_Value_Holder lhs_vh;
+   RZ_ASG_Value_Holder lhs_vh;
    if(left_new_node)
    {
     caon_ptr<RZ_Type_Object> tobj =
      valuer_->get_node_type_object(*left_new_node);
 
-    // //   Should this be (as it once was) a function in RE_Node?
+    // //   Should this be (as it once was) a function in ChasmRZ_Node?
     lhs_vh.set_type_object(tobj);
 
     lhs_vh.set_value(right_new_node->vertex());

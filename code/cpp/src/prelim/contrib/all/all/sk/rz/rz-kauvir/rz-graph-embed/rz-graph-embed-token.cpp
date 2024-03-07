@@ -7,7 +7,7 @@
 #include "rz-graph-embed-token.h"
 #include "rz-graph-embed-package.h"
 
-#include "rz-graph-token/token/rz-lisp-token.h"
+#include "rz-graph-token/token/rz-asg-token.h"
 
 #include "rz-graph-run/token/rz-graph-run-token.h"
 
@@ -46,16 +46,16 @@ RZ_Graph_Embed_Token::RZ_Graph_Embed_Token(QString raw_text, QString arg,
 }
 
 
-RZ_Graph_Embed_Token::RZ_Graph_Embed_Token(RZ_Lisp_Token& rz_lisp_token,
+RZ_Graph_Embed_Token::RZ_Graph_Embed_Token(RZ_ASG_Token& RZ_ASG_Token,
  caon_ptr<RZ_Graph_Embed_Package> embed_package)
  : embed_package_(embed_package), args_(nullptr), entry_node_(nullptr)
 {
- init_from_lisp_token(rz_lisp_token);
+ init_from_asg_token(RZ_ASG_Token);
 }
 
-void RZ_Graph_Embed_Token::init_from_lisp_token(const RZ_Lisp_Token &rlt)
+void RZ_Graph_Embed_Token::init_from_asg_token(const RZ_ASG_Token &rgt)
 {
- kind_ = rlt.kind_and_string_value(raw_text_);
+ kind_ = rgt.kind_and_string_value(raw_text_);
 }
 
 Basic_Token_Kinds RZ_Graph_Embed_Token::kind_and_string_value(QString& sv) const

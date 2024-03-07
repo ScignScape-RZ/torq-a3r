@@ -37,18 +37,18 @@
 #include "rzns.h"
 
 
-RZNS_(RECore)
+RZNS_(RZ_Core)
 
 class RE_Graph;
-class RE_Node;
+class ChasmRZ_Node;
 class RE_Call_Entry;
 class RZ_Cpp_Project;
 class RZ_Clasp_Project;
 class RZ_SRE_Token;
 
-_RZNS(RECore)
+_RZNS(RZ_Core)
 
-USING_RZNS(RECore)
+USING_RZNS(RZ_Core)
 
 
 RZNS_(GRun)
@@ -61,7 +61,7 @@ _RZNS(GRun)
 RZNS_(GBuild)
 
 class RZ_Lisp_Graph_Core_Function;
-class RZ_Lisp_Token;
+class RZ_ASG_Token;
 
 _RZNS(GBuild)
 
@@ -128,15 +128,15 @@ public:
 
  static Special_Form_Flags parse_special_form_flag(QString text);
 
- caon_ptr<RZ_Lisp_Graph_Block_Info> check_pending_block_info(caon_ptr<RE_Node> node);
+ caon_ptr<RZ_Lisp_Graph_Block_Info> check_pending_block_info(caon_ptr<ChasmRZ_Node> node);
 
- caon_ptr<RZ_Lisp_Graph_Block_Info> block_info_from_block_entry_node(caon_ptr<RE_Node> ben);
+ caon_ptr<RZ_Lisp_Graph_Block_Info> block_info_from_block_entry_node(caon_ptr<ChasmRZ_Node> ben);
 
  caon_ptr<RZ_Lisp_Graph_Block_Info> clear_pending_block_info();
 
- caon_ptr<RE_Node> leave_nested_block(caon_ptr<RZ_Lisp_Graph_Block_Info> rbi, caon_ptr<RZ_Lisp_Graph_Block_Info>& nn_bi);
+ caon_ptr<ChasmRZ_Node> leave_nested_block(caon_ptr<RZ_Lisp_Graph_Block_Info> rbi, caon_ptr<RZ_Lisp_Graph_Block_Info>& nn_bi);
 
- void check_assignment_annotation(caon_ptr<RE_Node> statement_entry_node,
+ void check_assignment_annotation(caon_ptr<ChasmRZ_Node> statement_entry_node,
    caon_ptr<RZ_Code_Statement> st);
 
  RZ_Lisp_Graph_Valuer& valuer()
@@ -144,33 +144,33 @@ public:
   return *visitor_.valuer();
  }
 
- caon_ptr<RZ_Code_Statement> get_code_statement_from_statement_entry_node(caon_ptr<RE_Node> statement_entry_node);
+ caon_ptr<RZ_Code_Statement> get_code_statement_from_statement_entry_node(caon_ptr<ChasmRZ_Node> statement_entry_node);
 
- caon_ptr<RZ_Expression_Review> get_expression_review_from_entry_node(caon_ptr<RE_Node> entry_node);
+ caon_ptr<RZ_Expression_Review> get_expression_review_from_entry_node(caon_ptr<ChasmRZ_Node> entry_node);
 
- caon_ptr<RE_Node> start_node_from_call_entry_node(caon_ptr<RE_Node> entry_node);
+ caon_ptr<ChasmRZ_Node> start_node_from_call_entry_node(caon_ptr<ChasmRZ_Node> entry_node);
 
- caon_ptr<RE_Node> get_next_statement_node(caon_ptr<RE_Node> statement_entry_node);
+ caon_ptr<ChasmRZ_Node> get_next_statement_node(caon_ptr<ChasmRZ_Node> statement_entry_node);
 
  void find_top_scope();
 
  QString function_name_from_token_text(QString text);
 
- caon_ptr<RE_Node> get_next_node(caon_ptr<RE_Node> start_node,
+ caon_ptr<ChasmRZ_Node> get_next_node(caon_ptr<ChasmRZ_Node> start_node,
    RZ_Lisp_Graph_Visitor::Next_Node_Premise& next_node_premise);
 
  MS_Token lisp_token_from_token_text(QString text, QString& bridge_code);
 
  QString wrap_token_with_bridge_code(QString token, QString bridge_code, QString es_argument);
 
- caon_ptr<RE_Node> find_statement_cross_sequence_node(caon_ptr<RE_Node> start_node);
+ caon_ptr<ChasmRZ_Node> find_statement_cross_sequence_node(caon_ptr<ChasmRZ_Node> start_node);
 
- caon_ptr<RE_Node> block_entry_node_from_function_def_entry_node(caon_ptr<RE_Node> start_node);
- caon_ptr<RE_Node> call_entry_node_from_block_entry_node(caon_ptr<RE_Node> start_node);
+ caon_ptr<ChasmRZ_Node> block_entry_node_from_function_def_entry_node(caon_ptr<ChasmRZ_Node> start_node);
+ caon_ptr<ChasmRZ_Node> call_entry_node_from_block_entry_node(caon_ptr<ChasmRZ_Node> start_node);
 
- caon_ptr<RZ_Function_Def_Info> get_function_def_info_from_entry(caon_ptr<RE_Function_Def_Entry> fde);
+ caon_ptr<RZ_Function_Def_Info> get_function_def_info_from_entry(caon_ptr<ChasmRZ_Function_Def_Entry> fde);
 
- QString get_field_index_key(caon_ptr<RE_Node> n, QString sym);
+ QString get_field_index_key(caon_ptr<ChasmRZ_Node> n, QString sym);
 };
 
 _RZNS(GBuild)

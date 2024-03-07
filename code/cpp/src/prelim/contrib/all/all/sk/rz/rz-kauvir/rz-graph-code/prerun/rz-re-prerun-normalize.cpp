@@ -10,7 +10,7 @@
 
 #include "rz-graph-core/kernel/graph/rz-re-graph.h"
 
-USING_RZNS(RECore)
+USING_RZNS(RZ_Core)
 USING_RZNS(GBuild)
 
 
