@@ -5,7 +5,7 @@
 //           http://www.boost.org/LICENSE_1_0.txt)
 
 
-#include "rz-lisp-graph-core-runner.h"
+#include "rz-asg-core-runner.h"
 
-#include "rz-lisp-graph-core-runner.templates.h"
+#include "rz-asg-core-runner.templates.h"
 

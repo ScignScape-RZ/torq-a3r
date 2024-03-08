@@ -5,9 +5,9 @@
 //           http://www.boost.org/LICENSE_1_0.txt)
 
 #include "rz-block-entry-run-plugin.h"
-#include "rz-lisp-graph-visitor.h"
+#include "rz-asg-visitor.h"
 
-#include "rz-graph-run/token/rz-graph-run-token.h"
+#include "rz-graph-run/token/rz-asg-run-token.h"
 
 
 #include "rzns.h"
@@ -15,8 +15,8 @@
 USING_RZNS(GBuild)
 
 
-RZ_Block_Entry_Run_Plugin::RZ_Block_Entry_Run_Plugin(RZ_Lisp_Graph_Visitor& main_visitor, RZ_Lisp_Graph_Lexical_Scope::iterator_type l)
- : RZ_Lisp_Graph_Visitor_Run_Plugin(main_visitor),
+RZ_Block_Entry_Run_Plugin::RZ_Block_Entry_Run_Plugin(RZ_ASG_Visitor& main_visitor, RZ_ASG_Lexical_Scope::iterator_type l)
+ : RZ_ASG_Visitor_Run_Plugin(main_visitor),
    lexical_scope_iterator_(l), state_(RZ_Block_Entry_Branch_State::N_A)
 {
 
@@ -119,7 +119,7 @@ void RZ_Block_Entry_Run_Plugin::deactivate()
  state_ = RZ_Block_Entry_Branch_State::N_A;
 }
 
-void RZ_Block_Entry_Run_Plugin::get_current_token(RZ_Graph_Run_Token& rzt)
+void RZ_Block_Entry_Run_Plugin::get_current_token(RZ_ASG_Run_Token& rzt)
 {
  switch(state_)
  {

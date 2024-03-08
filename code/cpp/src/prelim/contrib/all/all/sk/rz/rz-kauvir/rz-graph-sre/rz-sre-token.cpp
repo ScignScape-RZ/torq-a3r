@@ -6,14 +6,14 @@
 
 #include "rz-sre-token.h"
 
-#include "rz-graph-run/token/rz-graph-run-token.h"
+#include "rz-graph-run/token/rz-asg-run-token.h"
 
-#include "rz-graph-core/kernel/graph/rz-re-node.h"
+#include "rz-graph-core/kernel/graph/chasm-rz-node.h"
 
 
 USING_RZNS(RZ_Core)
 
-RZ_SRE_Token::RZ_SRE_Token(caon_ptr<RZ_Graph_Run_Token> run_token,
+RZ_SRE_Token::RZ_SRE_Token(caon_ptr<RZ_ASG_Run_Token> run_token,
   caon_ptr<ChasmRZ_Node> node)
  : run_token_(run_token), node_(node)
 {

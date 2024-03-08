@@ -7,32 +7,32 @@
 #ifndef GRAPH_CALL_V_V__H
 #define GRAPH_CALL_V_V__H
 
-#include "token/rz-lisp-token.h"
+#include "token/rz-asg-token.h"
 
 
-#include "rz-graph-valuer/valuer/rz-lisp-graph-valuer.h"
+#include "rz-graph-valuer/valuer/rz-asg-valuer.h"
 
 #include "relae-graph/relae-caon-ptr.h"
 
-#include "functions/rz-lisp-graph-function-families.h"
+#include "functions/rz-asg-function-families.h"
 
 #include "rzns.h"
 
 RZNS_(GRun)
 
-#define RZ_LISP_GRAPH_FUNCTION_DECLARE(str, name, arity, status) name,
+#define RZ_ASG_FUNCTION_DECLARE(str, name, arity, status) name,
 
-RZ_LISP_GRAPH_FUNCTION_CODES_(RZ_Graph_Call_VV)
+RZ_ASG_FUNCTION_CODES_(RZ_Graph_Call_VV)
  null = 0,
  #include "core-functions-v-v.h"
-_RZ_LISP_GRAPH_FUNCTION_CODES
+_RZ_ASG_FUNCTION_CODES
 
-#undef RZ_LISP_GRAPH_FUNCTION_DECLARE
+#undef RZ_ASG_FUNCTION_DECLARE
 
 RZ_GCALL_IMPLEMENT
 <RZ_GCALL_VV(Set_Equal, Internal)>
 {
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Value_Holder& v1,
+ static void run(RZ_ASG_Result_Holder& rh, RZ_ASG_Value_Holder& v1,
                  RZ_ASG_Value_Holder& v2)
  {
   caon_ptr<RZ_ASG_Token> ft = rh.get_lead_function_token();
@@ -47,7 +47,7 @@ RZ_GCALL_IMPLEMENT
 RZ_GCALL_IMPLEMENT
 <RZ_GCALL_VV(Set_Equal_Via_Type, Internal)>
 {
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Value_Holder& v1,
+ static void run(RZ_ASG_Result_Holder& rh, RZ_ASG_Value_Holder& v1,
                  RZ_ASG_Value_Holder& v2)
  {
   caon_ptr<RZ_ASG_Token> ft = rh.get_lead_function_token();
@@ -62,7 +62,7 @@ RZ_GCALL_IMPLEMENT
 RZ_GCALL_IMPLEMENT
 <RZ_GCALL_VV(Assign_To_Type, Internal)>
 {
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Value_Holder& v1,
+ static void run(RZ_ASG_Result_Holder& rh, RZ_ASG_Value_Holder& v1,
                  RZ_ASG_Value_Holder& v2)
  {
   caon_ptr<RZ_ASG_Token> ft = rh.get_lead_function_token();
@@ -78,7 +78,7 @@ RZ_GCALL_IMPLEMENT
 RZ_GCALL_IMPLEMENT
 <RZ_GCALL_VV(Assign_Overloadable, Internal)>
 {
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Value_Holder& v1,
+ static void run(RZ_ASG_Result_Holder& rh, RZ_ASG_Value_Holder& v1,
                  RZ_ASG_Value_Holder& v2)
  {
   caon_ptr<RZ_ASG_Token> ft = rh.get_lead_function_token();
@@ -93,7 +93,7 @@ RZ_GCALL_IMPLEMENT
 RZ_GCALL_IMPLEMENT
 <RZ_GCALL_VV(Preinit_Assign_Overloadable, Internal)>
 {
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Value_Holder& v1,
+ static void run(RZ_ASG_Result_Holder& rh, RZ_ASG_Value_Holder& v1,
                  RZ_ASG_Value_Holder& v2)
  {
   caon_ptr<RZ_ASG_Token> ft = rh.get_lead_function_token();
@@ -109,7 +109,7 @@ RZ_GCALL_IMPLEMENT
 RZ_GCALL_IMPLEMENT
 <RZ_GCALL_VV(Set_Preinit_Equal, Internal)>
 {
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Value_Holder& v1,
+ static void run(RZ_ASG_Result_Holder& rh, RZ_ASG_Value_Holder& v1,
                  RZ_ASG_Value_Holder& v2)
  {
   caon_ptr<RZ_ASG_Token> ft = rh.get_lead_function_token();
@@ -124,7 +124,7 @@ RZ_GCALL_IMPLEMENT
 RZ_GCALL_IMPLEMENT
 <RZ_GCALL_VV(Set_Preinit_Equal_To_Type, Internal)>
 {
- static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Value_Holder& v1,
+ static void run(RZ_ASG_Result_Holder& rh, RZ_ASG_Value_Holder& v1,
                  RZ_ASG_Value_Holder& v2)
  {
   caon_ptr<RZ_ASG_Token> ft = rh.get_lead_function_token();

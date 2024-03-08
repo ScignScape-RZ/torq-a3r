@@ -36,7 +36,7 @@ class RZ_ASG_Core_Function
 {
 public:
  enum Status_Codes {
-  Preempt, Defer, Valuer_CB, Valuer_DC, Valuer_RN, Valuer_N,
+  Preempt, Defer, Valuer_CB, Valuer_DH, Valuer_RN, Valuer_N,
   Valuer_N_S, Valuer_N_S_S, Valuer_N_T, Paste, Both,
   CO_Preempt, CO_Defer, CO_Both
  };

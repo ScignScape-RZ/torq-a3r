@@ -4,17 +4,17 @@
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef RZ_RE_PRERUN_NORMALIZE__H
-#define RZ_RE_PRERUN_NORMALIZE__H
+#ifndef RZ_PRERUN_NORMALIZE__H
+#define RZ_PRERUN_NORMALIZE__H
 
 #include "accessors.h"
 #include "flags.h"
 
 #include "relae-graph/relae-node-ptr.h"
 
-#include "rz-graph-core/output/rz-re-lisp-output.h"
+#include "rz-graph-core/output/chasm-rz-asg-output.h"
 
-#include "rz-graph-core/kernel/graph/rz-re-graph.h"
+#include "rz-graph-core/kernel/graph/chasm-rz-graph.h"
 
 #include <QString>
 #include <QTextStream>
@@ -26,7 +26,7 @@
 
 RZNS_(GBuild)
 
-class RZ_Lisp_Graph_Visitor;
+class RZ_ASG_Visitor;
 
 _RZNS(GBuild)
 
@@ -35,24 +35,24 @@ USING_RZNS(GBuild)
 RZNS_(RZ_Core)
 
 
-class RE_Document;
+class ChasmRZ_Document;
 class ChasmRZ_Node;
-class RE_Graph;
+class ChasmRZ_Graph;
 
 
-class RE_Prerun_Normalize
+class RZ_Prerun_Normalize
 {
- RE_Graph& graph_;
+ ChasmRZ_Graph& graph_;
 
 public:
 
- RE_Prerun_Normalize(RE_Graph& graph);
+ RZ_Prerun_Normalize(ChasmRZ_Graph& graph);
 
- caon_ptr<RZ_Lisp_Graph_Visitor> scan();
- void scan(RZ_Lisp_Graph_Visitor& visitor);
+ caon_ptr<RZ_ASG_Visitor> scan();
+ void scan(RZ_ASG_Visitor& visitor);
 
 };
 
 _RZNS(RZ_Core)
 
-#endif //RZ_RE_PRERUN_NORMALIZE__H
+#endif //RZ_PRERUN_NORMALIZE__H

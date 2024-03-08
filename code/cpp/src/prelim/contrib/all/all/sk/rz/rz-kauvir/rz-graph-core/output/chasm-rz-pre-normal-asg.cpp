@@ -22,9 +22,9 @@ USING_RZNS(RZ_Core)
 
 
 #ifdef NO_CAON
- ChasmRZ_Pchasm_rz_Normal_ASG::ChasmRZ_Pchasm_rz_Normal_ASG(ChasmRZ_Document* document)
+ ChasmRZ_Pre_Normal_ASG::ChasmRZ_Pre_Normal_ASG(ChasmRZ_Document* document)
 #else
- ChasmRZ_Pchasm_rz_Normal_ASG::ChasmRZ_Pchasm_rz_Normal_ASG(caon_ptr<ChasmRZ_Document> document)
+ ChasmRZ_Pre_Normal_ASG::ChasmRZ_Pre_Normal_ASG(caon_ptr<ChasmRZ_Document> document)
 #endif
  : ChasmRZ_ASG_Output(document)
 {
@@ -32,7 +32,7 @@ USING_RZNS(RZ_Core)
 }
 
 
-void ChasmRZ_Pchasm_rz_Normal_ASG::report_token(QTextStream& qts,
+void ChasmRZ_Pre_Normal_ASG::report_token(QTextStream& qts,
  const ChasmRZ_Token& token)
 {
  if(token.flags.is_symbol_declaration)
@@ -43,7 +43,7 @@ void ChasmRZ_Pchasm_rz_Normal_ASG::report_token(QTextStream& qts,
   qts << token.get_asg_out();
 }
 
-void ChasmRZ_Pchasm_rz_Normal_ASG::report_tuple_info_entry(QTextStream& qts,
+void ChasmRZ_Pre_Normal_ASG::report_tuple_info_entry(QTextStream& qts,
  const ChasmRZ_Tuple_Info& rti, caon_ptr<ChasmRZ_Call_Entry> rce_ptr)
 {
  qts << '(';
@@ -52,19 +52,19 @@ void ChasmRZ_Pchasm_rz_Normal_ASG::report_tuple_info_entry(QTextStream& qts,
  qts << rti.asg_out_with_id() << ' ';
 }
 
-void ChasmRZ_Pchasm_rz_Normal_ASG::report_call_entry(QTextStream& qts,
+void ChasmRZ_Pre_Normal_ASG::report_call_entry(QTextStream& qts,
  const ChasmRZ_Call_Entry& rce)
 {
  qts << QString("<%1>").arg(rce.call_id());
 }
 
-void ChasmRZ_Pchasm_rz_Normal_ASG::report_call_leave(QTextStream& qts,
+void ChasmRZ_Pre_Normal_ASG::report_call_leave(QTextStream& qts,
  const ChasmRZ_Call_Entry& rce)
 {
  qts << QString("</%1>").arg(rce.call_id());
 }
 
-void ChasmRZ_Pchasm_rz_Normal_ASG::report_tuple_info_leave(QTextStream& qts,
+void ChasmRZ_Pre_Normal_ASG::report_tuple_info_leave(QTextStream& qts,
  const ChasmRZ_Tuple_Info& rti, caon_ptr<ChasmRZ_Call_Entry> rce_ptr)
 {
  qts << ')';

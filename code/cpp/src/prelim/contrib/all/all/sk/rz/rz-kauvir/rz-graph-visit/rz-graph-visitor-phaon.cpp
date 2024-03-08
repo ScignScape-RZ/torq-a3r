@@ -4,35 +4,35 @@
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
 
-#include "rz-lisp-graph-visitor.h"
+#include "rz-asg-visitor.h"
 
 #include "rz-graph-visitor-phaon.h"
 
-#include "rz-graph-run/token/rz-graph-run-token.h"
-#include "rz-graph-token/token/rz-lisp-token.h"
-#include "rz-graph-core/kernel/graph/rz-re-node.h"
+#include "rz-graph-run/token/rz-asg-run-token.h"
+#include "rz-graph-token/token/rz-asg-token.h"
+#include "rz-graph-core/kernel/graph/chasm-rz-node.h"
 #include "rz-function-def/rz-function-def-info.h"
-#include "rz-graph-token/rz-lisp-graph-core-function.h"
-#include "rz-graph-core/token/rz-re-token.h"
+#include "rz-graph-token/rz-asg-core-function.h"
+#include "rz-graph-core/token/chasm-rz-token.h"
 #include "rz-graph-embed/rz-graph-embed-token.h"
 
 #include "rz-block-entry-run-plugin.h"
-#include "rz-graph-core/code/rz-re-function-def-entry.h"
-#include "rz-graph-valuer/scope/rz-lisp-graph-lexical-scope.h"
-#include "rz-graph-valuer/valuer/rz-lisp-graph-valuer.h"
-#include "rz-graph-run/rz-lisp-graph-runner.h"
-#include "rz-graph-build/rz-lisp-graph-result-holder.h"
+#include "rz-graph-core/code/chasm-rz-function-def-entry.h"
+#include "rz-graph-valuer/scope/rz-asg-lexical-scope.h"
+#include "rz-graph-valuer/valuer/rz-asg-valuer.h"
+#include "rz-graph-run/rz-asg-runner.h"
+#include "rz-graph-build/rz-asg-result-holder.h"
 #include "rz-graph-build/types/run-type-codes.h"
 #include "rz-graph-embed/rz-graph-run-embedder.h"
 #include "rz-graph-embed-run/rz-graph-embed-run-valuer.h"
 #include "rz-graph-embed/rz-graph-embed-check.h"
-#include "rz-graph-core/code/rz-re-call-entry.h"
-#include "rz-graph-core/code/rz-re-block-entry.h"
+#include "rz-graph-core/code/chasm-rz-call-entry.h"
+#include "rz-graph-core/code/chasm-rz-block-entry.h"
 #include "rz-embed-branch-run-plugin.h"
-#include "rz-graph-core/tuple/rz-re-tuple-info.h"
+#include "rz-graph-core/tuple/chasm-rz-tuple-info.h"
 #include "rz-graph-sre/rz-sre-token.h"
 
-#include "rz-graph-valuer/scope/rz-lisp-graph-block-info.h"
+#include "rz-graph-valuer/scope/rz-asg-block-info.h"
 
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
@@ -43,26 +43,26 @@ USING_RZNS(GBuild)
 
 USING_RZNS(GEmbed)
 
-RZ_Graph_Visitor_Phaon::RZ_Graph_Visitor_Phaon(RZ_Lisp_Graph_Visitor& visitor)
+RZ_Graph_Visitor_Phaon::RZ_Graph_Visitor_Phaon(RZ_ASG_Visitor& visitor)
  : visitor_(visitor), pending_block_info_(nullptr)
 {
 
 }
 
 //? needed any more?
-caon_ptr<RZ_Lisp_Graph_Block_Info> RZ_Graph_Visitor_Phaon::block_info_from_block_entry_node(caon_ptr<ChasmRZ_Node> ben)
+caon_ptr<RZ_ASG_Block_Info> RZ_Graph_Visitor_Phaon::block_info_from_block_entry_node(caon_ptr<ChasmRZ_Node> ben)
 {
- caon_ptr<RZ_Lisp_Graph_Block_Info> result = nullptr;
- if(caon_ptr<RE_Block_Entry> rbe = ben->re_block_entry())
+ caon_ptr<RZ_ASG_Block_Info> result = nullptr;
+ if(caon_ptr<ChasmRZ_Block_Entry> rbe = ben->chasm_rz_block_entry())
  {
-  CAON_PTR_DEBUG(RE_Block_Entry ,rbe)
+  CAON_PTR_DEBUG(ChasmRZ_Block_Entry ,rbe)
   CAON_DEBUG_NOOP
  }
  return nullptr;
 }
 
 
-caon_ptr<RZ_Lisp_Graph_Block_Info> RZ_Graph_Visitor_Phaon::check_pending_block_info(caon_ptr<ChasmRZ_Node> node)
+caon_ptr<RZ_ASG_Block_Info> RZ_Graph_Visitor_Phaon::check_pending_block_info(caon_ptr<ChasmRZ_Node> node)
 {
  return visitor_.get_block_info_from_function_node(node);
 }
@@ -179,9 +179,9 @@ QString RZ_Graph_Visitor_Phaon::wrap_token_with_bridge_code(QString token, QStri
 }
 
 //?
-caon_ptr<RZ_Lisp_Graph_Block_Info> RZ_Graph_Visitor_Phaon::clear_pending_block_info()
+caon_ptr<RZ_ASG_Block_Info> RZ_Graph_Visitor_Phaon::clear_pending_block_info()
 {
- caon_ptr<RZ_Lisp_Graph_Block_Info> result = pending_block_info_;
+ caon_ptr<RZ_ASG_Block_Info> result = pending_block_info_;
  pending_block_info_ = nullptr;
  return result;
 }
@@ -191,7 +191,7 @@ void RZ_Graph_Visitor_Phaon::check_assignment_annotation(caon_ptr<ChasmRZ_Node> 
 {
  if(caon_ptr<ChasmRZ_Node> aa_node = visitor_.get_assignment_annotation_node_from_statement_entry_node(statement_entry_node))
  {
-  if(caon_ptr<RE_Token> tok = aa_node->chasm_rz_token())
+  if(caon_ptr<ChasmRZ_Token> tok = aa_node->chasm_rz_token())
     st->set_annotation(tok->raw_text());
  }
 }
@@ -222,7 +222,7 @@ caon_ptr<RZ_Expression_Review> RZ_Graph_Visitor_Phaon::get_expression_review_fro
 
 
 caon_ptr<ChasmRZ_Node> RZ_Graph_Visitor_Phaon::get_next_node(caon_ptr<ChasmRZ_Node> start_node,
-  RZ_Lisp_Graph_Visitor::Next_Node_Premise& next_node_premise)
+  RZ_ASG_Visitor::Next_Node_Premise& next_node_premise)
 {
  CAON_PTR_DEBUG(ChasmRZ_Node, start_node)
 
@@ -231,15 +231,15 @@ caon_ptr<ChasmRZ_Node> RZ_Graph_Visitor_Phaon::get_next_node(caon_ptr<ChasmRZ_No
 
  if(pending_block_info_)
  {
-  next_node_premise = RZ_Lisp_Graph_Visitor::Next_Node_Premise::Block_Entry;
-  CAON_PTR_DEBUG(RZ_Lisp_Graph_Block_Info ,pending_block_info_)
+  next_node_premise = RZ_ASG_Visitor::Next_Node_Premise::Block_Entry;
+  CAON_PTR_DEBUG(RZ_ASG_Block_Info ,pending_block_info_)
   result = pending_block_info_->block_entry_node();
   return result;
  }
 
  switch(next_node_premise)
  {
- case RZ_Lisp_Graph_Visitor::Next_Node_Premise::Expression:
+ case RZ_ASG_Visitor::Next_Node_Premise::Expression:
   next_node_premise = visitor_.get_cross_node(start_node, result);
   break;
  default:
@@ -263,11 +263,11 @@ QString RZ_Graph_Visitor_Phaon::get_field_index_key(caon_ptr<ChasmRZ_Node> n, QS
 }
 
 
-caon_ptr<ChasmRZ_Node> RZ_Graph_Visitor_Phaon::leave_nested_block(caon_ptr<RZ_Lisp_Graph_Block_Info> rbi, caon_ptr<RZ_Lisp_Graph_Block_Info>& nn_bi)
+caon_ptr<ChasmRZ_Node> RZ_Graph_Visitor_Phaon::leave_nested_block(caon_ptr<RZ_ASG_Block_Info> rbi, caon_ptr<RZ_ASG_Block_Info>& nn_bi)
 {
  if(rbi)
  {
-  CAON_PTR_DEBUG(RZ_Lisp_Graph_Block_Info ,rbi)
+  CAON_PTR_DEBUG(RZ_ASG_Block_Info ,rbi)
   caon_ptr<ChasmRZ_Node> result = rbi->continue_node();
   CAON_PTR_DEBUG(ChasmRZ_Node ,result)
 
@@ -275,9 +275,9 @@ caon_ptr<ChasmRZ_Node> RZ_Graph_Visitor_Phaon::leave_nested_block(caon_ptr<RZ_Li
   {
    if(caon_ptr<ChasmRZ_Node> ben = rbi->block_entry_node())
    {
-    if(caon_ptr<RE_Block_Entry> rbe = ben->re_block_entry())
+    if(caon_ptr<ChasmRZ_Block_Entry> rbe = ben->chasm_rz_block_entry())
     {
-     CAON_PTR_DEBUG(RE_Block_Entry ,rbe)
+     CAON_PTR_DEBUG(ChasmRZ_Block_Entry ,rbe)
      CAON_DEBUG_NOOP
     }
    }
@@ -300,7 +300,7 @@ caon_ptr<ChasmRZ_Node> RZ_Graph_Visitor_Phaon::leave_nested_block(caon_ptr<RZ_Li
 caon_ptr<ChasmRZ_Node> RZ_Graph_Visitor_Phaon::block_entry_node_from_function_def_entry_node(caon_ptr<ChasmRZ_Node> start_node)
 {
  CAON_PTR_DEBUG(ChasmRZ_Node ,start_node)
- if(caon_ptr<RZ_ASG_Token> rzlt = start_node->lisp_token())
+ if(caon_ptr<RZ_ASG_Token> rzlt = start_node->asg_token())
  {
   if(rzlt->raw_text() == "\\=>>")
   {
@@ -321,7 +321,7 @@ caon_ptr<RZ_Function_Def_Info> RZ_Graph_Visitor_Phaon::get_function_def_info_fro
  caon_ptr<ChasmRZ_Node> prior_node = fde->prior_node();
  CAON_PTR_DEBUG(ChasmRZ_Node ,prior_node)
 
- if(caon_ptr<RZ_ASG_Token> ptok = prior_node->lisp_token())
+ if(caon_ptr<RZ_ASG_Token> ptok = prior_node->asg_token())
  {
   if(ptok->raw_text() == "\\=>>")
   {
@@ -336,7 +336,7 @@ caon_ptr<RZ_Function_Def_Info> RZ_Graph_Visitor_Phaon::get_function_def_info_fro
  if(caon_ptr<ChasmRZ_Node> fdi_node = visitor_.get_call_sequence_node(prior_node))
  {
   CAON_PTR_DEBUG(ChasmRZ_Node ,fdi_node)
-  if(caon_ptr<RZ_ASG_Token> tok = fdi_node->lisp_token())
+  if(caon_ptr<RZ_ASG_Token> tok = fdi_node->asg_token())
   {
    return tok->pRestore<RZ_Function_Def_Info>();
    //return fdi_node->rz_function_def_info();

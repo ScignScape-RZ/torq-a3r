@@ -25,7 +25,7 @@
 
 RZNS_(GRun)
 
- class RZ_Graph_Run_Token;
+ class RZ_ASG_Run_Token;
 
 _RZNS(GRun)
 USING_RZNS(GRun)
@@ -34,20 +34,20 @@ USING_RZNS(GRun)
 
 RZNS_(RZ_Core)
 
-class RE_Document;
+class ChasmRZ_Document;
 class ChasmRZ_Node;
-class RE_Graph;
+class ChasmRZ_Graph;
 
 class RZ_SRE_Token
 {
- caon_ptr<RZ_Graph_Run_Token> run_token_;
+ caon_ptr<RZ_ASG_Run_Token> run_token_;
  caon_ptr<ChasmRZ_Node> node_;
 
 public:
 
- RZ_SRE_Token(caon_ptr<RZ_Graph_Run_Token> run_token, caon_ptr<ChasmRZ_Node> node);
+ RZ_SRE_Token(caon_ptr<RZ_ASG_Run_Token> run_token, caon_ptr<ChasmRZ_Node> node);
 
- ACCESSORS(caon_ptr<RZ_Graph_Run_Token> ,run_token)
+ ACCESSORS(caon_ptr<RZ_ASG_Run_Token> ,run_token)
  ACCESSORS(caon_ptr<ChasmRZ_Node> ,node)
 
  QString text_value();

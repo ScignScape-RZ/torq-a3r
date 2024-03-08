@@ -5,17 +5,17 @@
 //           http://www.boost.org/LICENSE_1_0.txt)
 
 
-#ifndef RZ_RE_PRERUN_ANTICIPATE__H
-#define RZ_RE_PRERUN_ANTICIPATE__H
+#ifndef RZ_PRERUN_ANTICIPATE__H
+#define RZ_PRERUN_ANTICIPATE__H
 
 #include "accessors.h"
 #include "flags.h"
 
 #include "relae-graph/relae-node-ptr.h"
 
-#include "rz-graph-core/output/rz-re-lisp-output.h"
+#include "rz-graph-core/output/chasm-rz-asg-output.h"
 
-#include "rz-graph-core/kernel/graph/rz-re-graph.h"
+#include "rz-graph-core/kernel/graph/chasm-rz-graph.h"
 
 #include <QString>
 #include <QTextStream>
@@ -26,7 +26,7 @@
 #include "rzns.h"
 
 RZNS_(GBuild)
-class RZ_Lisp_Graph_Visitor;
+class RZ_ASG_Visitor;
 _RZNS(GBuild)
 USING_RZNS(GBuild)
 
@@ -41,20 +41,20 @@ USING_RZNS(GVal)
 RZNS_(RZ_Core)
 
 
-class RE_Document;
+class ChasmRZ_Document;
 class ChasmRZ_Node;
-class RE_Graph;
+class ChasmRZ_Graph;
 
 
-class RE_Prerun_Anticipate
+class RZ_Prerun_Anticipate
 {
- RZ_Lisp_Graph_Visitor& visitor_;
+ RZ_ASG_Visitor& visitor_;
 
  QString core_pairs_path_;
 
 public:
 
- RE_Prerun_Anticipate(RZ_Lisp_Graph_Visitor& visitor, QString core_pairs_path);
+ RZ_Prerun_Anticipate(RZ_ASG_Visitor& visitor, QString core_pairs_path);
 
  void scan(std::function<void(RZ_Dynamo_Output&)> fn);
 
@@ -66,4 +66,4 @@ public:
 
 _RZNS(RZ_Core)
 
-#endif //RZ_RE_PRERUN_ANTICIPATE__H
+#endif //RZ_PRERUN_ANTICIPATE__H

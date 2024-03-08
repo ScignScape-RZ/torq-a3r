@@ -39,7 +39,7 @@ _RZNS(GBuild)
 
 RZNS_(GRun)
 
-class RZ_Graph_Run_Token;
+class RZ_ASG_Run_Token;
 
 _RZNS(GRun)
 
@@ -109,7 +109,7 @@ public:
 
  void advance_arg(int& position);
 
- void convey(int position, RZ_Graph_Run_Token& rzt);
+ void convey(int position, RZ_ASG_Run_Token& rzt);
 
  Basic_Token_Kinds kind_and_string_value(QString& sv) const;
 };

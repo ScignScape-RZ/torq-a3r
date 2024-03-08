@@ -4,12 +4,12 @@
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef RZ_LISP_GRAPH_CORE_FUNCTION_DECLARATIONS__H
-#define RZ_LISP_GRAPH_CORE_FUNCTION_DECLARATIONS__H
+#ifndef RZ_ASG_CORE_FUNCTION_DECLARATIONS__H
+#define RZ_ASG_CORE_FUNCTION_DECLARATIONS__H
 
 #include "rzns.h"
 
-#define RZ_GCALL_IMPLEMENT template<> struct RZ_Lisp_Graph_Function_Run
+#define RZ_GCALL_IMPLEMENT template<> struct RZ_ASG_Function_Run
 
 #include "functions/graph-call-s.h"
 #include "functions/graph-call-c-c.h"
@@ -24,4 +24,4 @@
 #include "functions/graph-call-v-v.h"
 
 
-#endif //RZ_LISP_GRAPH_CORE_FUNCTION_DECLARATIONS__H
+#endif //RZ_ASG_CORE_FUNCTION_DECLARATIONS__H

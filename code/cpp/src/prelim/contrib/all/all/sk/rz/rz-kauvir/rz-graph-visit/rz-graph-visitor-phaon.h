@@ -11,9 +11,9 @@
 
 #include "flags.h"
 
-#include "rz-graph-core/kernel/rz-re-dominion.h"
-#include "rz-graph-core/kernel/query/rz-re-query.h"
-#include "rz-graph-core/kernel/frame/rz-re-frame.h"
+#include "rz-graph-core/kernel/chasm-rz-dominion.h"
+#include "rz-graph-core/kernel/query/chasm-rz-query.h"
+#include "rz-graph-core/kernel/frame/chasm-rz-frame.h"
 
 #include "relae-graph/relae-caon-ptr.h"
 
@@ -21,11 +21,11 @@
 
 #include "rz-graph-token/token/token-kinds.h"
 
-#include "rz-graph-valuer/scope/rz-lisp-graph-lexical-scope.h"
+#include "rz-graph-valuer/scope/rz-asg-lexical-scope.h"
 
-#include "rz-lisp-graph-visitor-run-state.h"
+#include "rz-asg-visitor-run-state.h"
 
-#include "rz-lisp-graph-visitor.h"
+#include "rz-asg-visitor.h"
 
 #include "multistep-token.h"
 
@@ -60,7 +60,7 @@ _RZNS(GRun)
 
 RZNS_(GBuild)
 
-class RZ_Lisp_Graph_Core_Function;
+class RZ_ASG_Core_Function;
 class RZ_ASG_Token;
 
 _RZNS(GBuild)
@@ -70,10 +70,10 @@ USING_RZNS(GBuild)
 
 RZNS_(GEmbed)
 
-class RZ_Graph_Run_Embedder;
-class RZ_Graph_Embed_Token;
-class RZ_Graph_Cpp_Token;
-class RZ_Graph_Embed_Run_Valuer;
+class RZ_ASG_Run_Embedder;
+class RZ_ASG_Embed_Token;
+class RZ_ASG_Cpp_Token;
+class RZ_ASG_Embed_Run_Valuer;
 
 _RZNS(GEmbed)
 
@@ -82,7 +82,7 @@ USING_RZNS(GEmbed)
 
 RZNS_(GVal)
 
-class RZ_Lisp_Graph_Valuer;
+class RZ_ASG_Valuer;
 class RZ_Code_Statement;
 class RZ_Expression_Review;
 
@@ -94,7 +94,7 @@ USING_RZNS(GVal)
 
 RZNS_(GRun)
 
-class RZ_Lisp_Graph_Runner;
+class RZ_ASG_Runner;
 
 _RZNS(GRun)
 
@@ -104,15 +104,15 @@ USING_RZNS(GRun)
 RZNS_(GBuild)
 
 
-class RZ_Lisp_Graph_Visitor_Run_Plugin;
-class RZ_Lisp_Graph_Visitor;
+class RZ_ASG_Visitor_Run_Plugin;
+class RZ_ASG_Visitor;
 
 
 class RZ_Graph_Visitor_Phaon
 {
- RZ_Lisp_Graph_Visitor& visitor_;
+ RZ_ASG_Visitor& visitor_;
 
- caon_ptr<RZ_Lisp_Graph_Block_Info> pending_block_info_;
+ caon_ptr<RZ_ASG_Block_Info> pending_block_info_;
 
 public:
 
@@ -121,25 +121,25 @@ public:
   N_A, Type_Declare, Assignment, Formula
  };
 
- RZ_Graph_Visitor_Phaon(RZ_Lisp_Graph_Visitor& visitor);
+ RZ_Graph_Visitor_Phaon(RZ_ASG_Visitor& visitor);
 
- ACCESSORS__GET(RZ_Lisp_Graph_Visitor& ,visitor)
- ACCESSORS(caon_ptr<RZ_Lisp_Graph_Block_Info> ,pending_block_info)
+ ACCESSORS__GET(RZ_ASG_Visitor& ,visitor)
+ ACCESSORS(caon_ptr<RZ_ASG_Block_Info> ,pending_block_info)
 
  static Special_Form_Flags parse_special_form_flag(QString text);
 
- caon_ptr<RZ_Lisp_Graph_Block_Info> check_pending_block_info(caon_ptr<ChasmRZ_Node> node);
+ caon_ptr<RZ_ASG_Block_Info> check_pending_block_info(caon_ptr<ChasmRZ_Node> node);
 
- caon_ptr<RZ_Lisp_Graph_Block_Info> block_info_from_block_entry_node(caon_ptr<ChasmRZ_Node> ben);
+ caon_ptr<RZ_ASG_Block_Info> block_info_from_block_entry_node(caon_ptr<ChasmRZ_Node> ben);
 
- caon_ptr<RZ_Lisp_Graph_Block_Info> clear_pending_block_info();
+ caon_ptr<RZ_ASG_Block_Info> clear_pending_block_info();
 
- caon_ptr<ChasmRZ_Node> leave_nested_block(caon_ptr<RZ_Lisp_Graph_Block_Info> rbi, caon_ptr<RZ_Lisp_Graph_Block_Info>& nn_bi);
+ caon_ptr<ChasmRZ_Node> leave_nested_block(caon_ptr<RZ_ASG_Block_Info> rbi, caon_ptr<RZ_ASG_Block_Info>& nn_bi);
 
  void check_assignment_annotation(caon_ptr<ChasmRZ_Node> statement_entry_node,
    caon_ptr<RZ_Code_Statement> st);
 
- RZ_Lisp_Graph_Valuer& valuer()
+ RZ_ASG_Valuer& valuer()
  {
   return *visitor_.valuer();
  }
@@ -157,7 +157,7 @@ public:
  QString function_name_from_token_text(QString text);
 
  caon_ptr<ChasmRZ_Node> get_next_node(caon_ptr<ChasmRZ_Node> start_node,
-   RZ_Lisp_Graph_Visitor::Next_Node_Premise& next_node_premise);
+   RZ_ASG_Visitor::Next_Node_Premise& next_node_premise);
 
  MS_Token lisp_token_from_token_text(QString text, QString& bridge_code);
 

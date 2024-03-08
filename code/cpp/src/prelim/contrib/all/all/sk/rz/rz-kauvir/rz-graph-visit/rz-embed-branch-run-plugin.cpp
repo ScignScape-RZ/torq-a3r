@@ -5,9 +5,9 @@
 //           http://www.boost.org/LICENSE_1_0.txt)
 
 #include "rz-embed-branch-run-plugin.h"
-#include "rz-lisp-graph-visitor.h"
+#include "rz-asg-visitor.h"
 
-#include "rz-graph-run/token/rz-graph-run-token.h"
+#include "rz-graph-run/token/rz-asg-run-token.h"
 
 #include "rz-graph-embed/rz-graph-embed-token.h"
 
@@ -16,8 +16,8 @@
 USING_RZNS(GBuild)
 
 
-RZ_Embed_Branch_Run_Plugin::RZ_Embed_Branch_Run_Plugin(RZ_Lisp_Graph_Visitor& main_visitor)
- : RZ_Lisp_Graph_Visitor_Run_Plugin(main_visitor), current_embed_arg_position_(0)
+RZ_Embed_Branch_Run_Plugin::RZ_Embed_Branch_Run_Plugin(RZ_ASG_Visitor& main_visitor)
+ : RZ_ASG_Visitor_Run_Plugin(main_visitor), current_embed_arg_position_(0)
 {
 
 }

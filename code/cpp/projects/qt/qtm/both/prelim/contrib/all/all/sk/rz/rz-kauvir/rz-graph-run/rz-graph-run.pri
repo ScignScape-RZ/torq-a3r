@@ -30,9 +30,9 @@ LIBS += -L$$TARGETSDIR -lrz-graph-valuer -lrz-graph-token -lrz-graph-build \
 
 
 HEADERS += \
-   $$SRC_DIR/rz-lisp-graph-core-function-declarations.h \
+   $$SRC_DIR/rz-asg-core-function-declarations.h \
    $$SRC_DIR/rz-temp-cases.h \
-   $$SRC_DIR/functions/rz-lisp-graph-function-family-enum.h \
+   $$SRC_DIR/functions/rz-asg-function-family-enum.h \
    $$SRC_DIR/functions/core-functions-v-v.h \
    $$SRC_DIR/functions/core-functions-valuer-n-t.h \
    $$SRC_DIR/functions/core-functions-valuer-n-s-s.h \
@@ -50,9 +50,9 @@ HEADERS += \
    $$SRC_DIR/functions/core-functions-c-c.h \
    $$SRC_DIR/functions/core-functions-c.h \
    $$SRC_DIR/functions/core-functions-out.h \
-   $$SRC_DIR/functions/rz-lisp-graph-run-router.h \
-   $$SRC_DIR/functions/rz-lisp-graph-function-map.h \
-   $$SRC_DIR/functions/rz-lisp-graph-function-families.h \
+   $$SRC_DIR/functions/rz-asg-run-router.h \
+   $$SRC_DIR/functions/rz-asg-function-map.h \
+   $$SRC_DIR/functions/rz-asg-function-families.h \
    $$SRC_DIR/functions/graph-call-v-v.h \
    $$SRC_DIR/functions/graph-call-v-t.h \
    $$SRC_DIR/functions/graph-call-t-v.h \
@@ -74,9 +74,9 @@ HEADERS += \
 
 
 SOURCES += \
-   $$SRC_DIR/rz-lisp-graph-core-runner.cpp \
-   $$SRC_DIR/token/rz-graph-run-token.cpp \
-   $$SRC_DIR/rz-lisp-graph-runner.cpp \
+   $$SRC_DIR/rz-asg-core-runner.cpp \
+   $$SRC_DIR/token/rz-asg-run-token.cpp \
+   $$SRC_DIR/rz-asg-runner.cpp \
 
 
 message(choice: $$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)

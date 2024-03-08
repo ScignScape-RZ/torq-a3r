@@ -4,8 +4,8 @@
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef RZ_LISP_GRAPH_VISITOR_RUN_PLUGIN__H
-#define RZ_LISP_GRAPH_VISITOR_RUN_PLUGIN__H
+#ifndef RZ_ASG_VISITOR_RUN_PLUGIN__H
+#define RZ_ASG_VISITOR_RUN_PLUGIN__H
 
 #include "accessors.h"
 
@@ -19,7 +19,7 @@
 
 RZNS_(GRun)
 
-class RZ_Graph_Run_Token;
+class RZ_ASG_Run_Token;
 
 _RZNS(GRun)
 
@@ -30,21 +30,21 @@ USING_RZNS(RZ_Core)
 RZNS_(GBuild)
 
 
-class RZ_Lisp_Graph_Visitor;
-class RZ_Lisp_Graph_Visitor_Run_State;
+class RZ_ASG_Visitor;
+class RZ_ASG_Visitor_Run_State;
 
-class RZ_Lisp_Graph_Visitor_Run_Plugin
+class RZ_ASG_Visitor_Run_Plugin
 {
 
 protected:
 
- RZ_Lisp_Graph_Visitor& main_visitor_;
- RZ_Lisp_Graph_Visitor_Run_State& run_state_;
+ RZ_ASG_Visitor& main_visitor_;
+ RZ_ASG_Visitor_Run_State& run_state_;
 
 
 public:
 
- RZ_Lisp_Graph_Visitor_Run_Plugin(RZ_Lisp_Graph_Visitor& main_visitor);
+ RZ_ASG_Visitor_Run_Plugin(RZ_ASG_Visitor& main_visitor);
 
  virtual bool advance() = 0;
  virtual void get_current_token(RZ_Graph_Run_Token& rzt) = 0;
@@ -60,4 +60,4 @@ _RZNS(GBuild)
 
 
 
-#endif //RZ_LISP_GRAPH_VISITOR_RUN_PLUGIN__H
+#endif //RZ_ASG_VISITOR_RUN_PLUGIN__H

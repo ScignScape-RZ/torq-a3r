@@ -7,9 +7,9 @@
 #include "rpi-stage-form.h"
 #include "rpi-block.h"
 
-#include "rz-graph-core/code/rz-re-block-entry.h"
+#include "rz-graph-core/code/chasm-rz-block-entry.h"
 
-#include "rz-graph-valuer/scope/rz-lisp-graph-block-info.h"
+#include "rz-graph-valuer/scope/rz-asg-block-info.h"
 
 #include "rpi-type-declaration.h"
 #include "rpi-expression.h"

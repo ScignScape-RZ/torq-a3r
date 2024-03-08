@@ -19,17 +19,17 @@
 RZNS_(GBuild)
 
 
-class RZ_Lisp_Graph_Visitor;
-class RZ_Lisp_Graph_Visitor_Run_State;
+class RZ_ASG_Visitor;
+class RZ_ASG_Visitor_Run_State;
 
-class RZ_Embed_Branch_Run_Plugin : public RZ_Lisp_Graph_Visitor_Run_Plugin
+class RZ_Embed_Branch_Run_Plugin : public RZ_ASG_Visitor_Run_Plugin
 {
 
  int current_embed_arg_position_;
 
 public:
 
- RZ_Embed_Branch_Run_Plugin(RZ_Lisp_Graph_Visitor& main_visitor);
+ RZ_Embed_Branch_Run_Plugin(RZ_ASG_Visitor& main_visitor);
 
  bool advance();
  void get_current_token(RZ_Graph_Run_Token& rzt);

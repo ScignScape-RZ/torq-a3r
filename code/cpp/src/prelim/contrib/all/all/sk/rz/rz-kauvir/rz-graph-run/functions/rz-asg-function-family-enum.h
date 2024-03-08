@@ -4,8 +4,8 @@
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef RZ_LISP_GRAPH_FUNCTION_FAMILY_ENUM__H
-#define RZ_LISP_GRAPH_FUNCTION_FAMILY_ENUM__H
+#ifndef RZ_ASG_FUNCTION_FAMILY_ENUM__H
+#define RZ_ASG_FUNCTION_FAMILY_ENUM__H
 
 #include "rzns.h"
 
@@ -19,4 +19,4 @@ enum RZ_Lisp_Graph_Function_Family
 
 _RZNS(GRun)
 
-#endif //RZ_LISP_GRAPH_FUNCTION_FAMILY_ENUM__H
+#endif //RZ_ASG_FUNCTION_FAMILY_ENUM__H

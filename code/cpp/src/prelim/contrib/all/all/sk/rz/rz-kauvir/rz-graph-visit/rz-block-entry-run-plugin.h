@@ -44,7 +44,7 @@ public:
  RZ_Block_Entry_Branch_State state_;
 
  bool advance();
- void get_current_token(RZ_Graph_Run_Token& rzt);
+ void get_current_token(RZ_ASG_Run_Token& rzt);
  void activate();
  void deactivate();
  bool find_next_token(RZ_Read_Table_State state_not_found,

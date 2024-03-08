@@ -4,20 +4,20 @@
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef RZ_LISP_GRAPH_RUN_ROUTER__H
-#define RZ_LISP_GRAPH_RUN_ROUTER__H
+#ifndef RZ_ASG_RUN_ROUTER__H
+#define RZ_ASG_RUN_ROUTER__H
 
-#include "functions/rz-lisp-graph-function-families.h"
+#include "functions/rz-asg-function-families.h"
 
 
 #include "rz-graph-build/types/core-types.h"
 
 #include "rz-temp-cases.h"
 
-#include "rz-graph-build/rz-lisp-graph-result-holder.h"
+#include "rz-graph-build/rz-asg-result-holder.h"
 
 
-#include "rz-graph-token/rz-lisp-graph-value-holder.h"
+#include "rz-graph-token/rz-asg-value-holder.h"
 
 
 RZNS_(GRun)
@@ -100,21 +100,21 @@ struct Get_Return_Type
 
 
 template<
- RZ_Lisp_Graph_Function_Family CORE_FUNCTION_Family,
- RZ_Lisp_Graph_Function_Code CORE_FUNCTION_Code,
+ RZ_ASG_Function_Family CORE_FUNCTION_Family,
+ RZ_ASG_Function_Code CORE_FUNCTION_Code,
  RZ_Type_Families::Enum TYPE_FAMILY_Enum,
  typename LHS_Type = Cast_Needed, typename RHS_Type = Cast_Needed,
  typename RETURN_Type = Cast_Null_Marker>
 struct Cast_Schedule
 {
- static const RZ_Lisp_Graph_Function_Family Core_Function_Family = CORE_FUNCTION_Family;
- static const RZ_Lisp_Graph_Function_Code Core_Function_Code = CORE_FUNCTION_Code;
+ static const RZ_ASG_Function_Family Core_Function_Family = CORE_FUNCTION_Family;
+ static const RZ_ASG_Function_Code Core_Function_Code = CORE_FUNCTION_Code;
  static const RZ_Type_Families::Enum Type_Family = TYPE_FAMILY_Enum;
 
  typedef Cast_Schedule<Core_Function_Family,
   Core_Function_Code, Type_Family, LHS_Type, RHS_Type, RETURN_Type> This_Cast_Schedule_type;
 
- typedef RZ_Lisp_Graph_Function_Family_<Core_Function_Family> Core_Function_Family_Type;
+ typedef RZ_ASG_Function_Family_<Core_Function_Family> Core_Function_Family_Type;
 
  typedef LHS_Type LHS_type;
  typedef RHS_Type RHS_type;
@@ -193,16 +193,16 @@ struct Cast_Schedule
  };
 
 #define RZ_TEMP_CASE(n) case n: \
- RZ_Lisp_Graph_Function_Run<Family_Code, n, Type_Family>::template run<T1, T2>(rh, *t1, *t2); break;
+ RZ_ASG_Function_Run<Family_Code, n, Type_Family>::template run<T1, T2>(rh, *t1, *t2); break;
 
  template<typename CAST_SCHED_Type, typename ARITY_FAMILY_Type, RZ_Type_Families::Enum Fam>
  struct Runner<CAST_SCHED_Type, ARITY_FAMILY_Type, Fam, true>
  {
-  static const RZ_Lisp_Graph_Function_Family Family_Code =
+  static const RZ_ASG_Function_Family Family_Code =
    RZ_Get_Family_Code<ARITY_FAMILY_Type>::Value ;
   static const RZ_Type_Families::Enum Type_Family = Fam;
   template<typename T1, typename T2>
-  static void run(RZ_Lisp_Graph_Result_Holder& rh, caon_ptr<T1> t1, caon_ptr<T2> t2)
+  static void run(RZ_ASG_Result_Holder& rh, caon_ptr<T1> t1, caon_ptr<T2> t2)
   {
    switch(CAST_SCHED_Type::Core_Function_Code)
    {
@@ -214,14 +214,14 @@ struct Cast_Schedule
 
 
 #define RZ_TEMP_CASE(n) case n: \
- RZ_Lisp_Graph_Function_Run<Family_Code, n, Type_Family>::run(rh, token, vh); break;
+ RZ_ASG_Function_Run<Family_Code, n, Type_Family>::run(rh, token, vh); break;
 
  template<typename CAST_SCHED_Type, RZ_Type_Families::Enum Fam>
  struct Runner<CAST_SCHED_Type, RHS_Value_Marker, Fam>
  {
-  static const RZ_Lisp_Graph_Function_Family Family_Code = CORE_FUNCTION_Family;
+  static const RZ_ASG_Function_Family Family_Code = CORE_FUNCTION_Family;
   static const RZ_Type_Families::Enum Type_Family = Fam;
-  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& token, RZ_ASG_Value_Holder& vh)
+  static void run(RZ_ASG_Result_Holder& rh, RZ_ASG_Token& token, RZ_ASG_Value_Holder& vh)
   {
    switch(CORE_FUNCTION_Code)
    {
@@ -231,9 +231,9 @@ struct Cast_Schedule
 #undef RZ_TEMP_CASE
 
 #define RZ_TEMP_CASE(n) case n: \
- RZ_Lisp_Graph_Function_Run<Family_Code, n, Type_Family>::run(rh, v1, v2); break;
+ RZ_ASG_Function_Run<Family_Code, n, Type_Family>::run(rh, v1, v2); break;
 
-  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Value_Holder& v1, RZ_ASG_Value_Holder& v2)
+  static void run(RZ_ASG_Result_Holder& rh, RZ_ASG_Value_Holder& v1, RZ_ASG_Value_Holder& v2)
   {
    switch(CORE_FUNCTION_Code)
    {
@@ -248,14 +248,14 @@ struct Cast_Schedule
  template<typename CAST_SCHED_Type, RZ_Type_Families::Enum Fam>
  struct Runner<CAST_SCHED_Type, Raw_Token_Marker, Fam>
  {
-  static const RZ_Lisp_Graph_Function_Family Family_Code = CORE_FUNCTION_Family;
+  static const RZ_ASG_Function_Family Family_Code = CORE_FUNCTION_Family;
   static const RZ_Type_Families::Enum Type_Family = Fam;
 
 #define RZ_TEMP_CASE(n) case n: \
-     RZ_Lisp_Graph_Function_Run<Family_Code, n, Type_Family> \
+     RZ_ASG_Function_Run<Family_Code, n, Type_Family> \
       ::run(rh, start_token, pass_node); break;
 
-  static void run(RZ_Lisp_Graph_Result_Holder& rh,
+  static void run(RZ_ASG_Result_Holder& rh,
    RZ_ASG_Token& start_token, caon_ptr<tNode> pass_node)
   {
    switch(CORE_FUNCTION_Code)
@@ -266,10 +266,10 @@ struct Cast_Schedule
 #undef RZ_TEMP_CASE
 
 #define RZ_TEMP_CASE(n) case n: \
-     RZ_Lisp_Graph_Function_Run<Family_Code, n, Type_Family> \
+     RZ_ASG_Function_Run<Family_Code, n, Type_Family> \
       ::run(rh, start_token); break;
 
-  static void run(RZ_Lisp_Graph_Result_Holder& rh, RZ_ASG_Token& start_token)
+  static void run(RZ_ASG_Result_Holder& rh, RZ_ASG_Token& start_token)
   {
    switch(CORE_FUNCTION_Code)
    {
@@ -302,7 +302,7 @@ struct Cast_Schedule
   };
 
   template<typename T1, typename T2>
-  static void run(RZ_Lisp_Graph_Result_Holder& rh, caon_ptr<T1> v1, caon_ptr<T2> v2)
+  static void run(RZ_ASG_Result_Holder& rh, caon_ptr<T1> v1, caon_ptr<T2> v2)
   {
    switch(v1->typecode())
    {
@@ -332,7 +332,7 @@ struct Cast_Schedule
   };
 
   template<typename T1, typename T2>
-  static void run(RZ_Lisp_Graph_Result_Holder& rh, caon_ptr<T1> v1, caon_ptr<T2> v2)
+  static void run(RZ_ASG_Result_Holder& rh, caon_ptr<T1> v1, caon_ptr<T2> v2)
   {
    switch(v2->typecode())
    {
@@ -347,4 +347,4 @@ struct Cast_Schedule
 _RZNS(GRun)
 
 
-#endif //RZ_LISP_GRAPH_RUN_ROUTER__H
+#endif //RZ_ASG_RUN_ROUTER__H

@@ -33,20 +33,20 @@ LIBS += -L$$TARGETSDIR -lrz-graph-build -lrz-graph-valuer -lrz-graph-core  \
 
 
 HEADERS += \
-    $$SRC_DIR/rz-lisp-graph-visitor.core-function-list.h \
-    $$SRC_DIR/rz-lisp-graph-visitor.h \
-    $$SRC_DIR/rz-lisp-graph-visitor-dynamo.h \
-    $$SRC_DIR/rz-lisp-graph-visitor-run-state.h \
-    $$SRC_DIR/rz-lisp-graph-visitor-run-plugin.h \
+    $$SRC_DIR/rz-asg-visitor.core-function-list.h \
+    $$SRC_DIR/rz-asg-visitor.h \
+    $$SRC_DIR/rz-asg-visitor-dynamo.h \
+    $$SRC_DIR/rz-asg-visitor-run-state.h \
+    $$SRC_DIR/rz-asg-visitor-run-plugin.h \
     $$SRC_DIR/rz-block-entry-run-plugin.h \
     $$SRC_DIR/rz-embed-branch-run-plugin.h \
     $$SRC_DIR/rz-graph-visitor-phaon.h \
 
 SOURCES += \
-    $$SRC_DIR/rz-lisp-graph-visitor.cpp \
-    $$SRC_DIR/rz-lisp-graph-visitor-dynamo.cpp \
-    $$SRC_DIR/rz-lisp-graph-visitor-run-state.cpp \
-    $$SRC_DIR/rz-lisp-graph-visitor-run-plugin.cpp \
+    $$SRC_DIR/rz-asg-visitor.cpp \
+    $$SRC_DIR/rz-asg-visitor-dynamo.cpp \
+    $$SRC_DIR/rz-asg-visitor-run-state.cpp \
+    $$SRC_DIR/rz-asg-visitor-run-plugin.cpp \
     $$SRC_DIR/rz-block-entry-run-plugin.cpp \
     $$SRC_DIR/rz-embed-branch-run-plugin.cpp \
     $$SRC_DIR/rz-graph-visitor-phaon.cpp \

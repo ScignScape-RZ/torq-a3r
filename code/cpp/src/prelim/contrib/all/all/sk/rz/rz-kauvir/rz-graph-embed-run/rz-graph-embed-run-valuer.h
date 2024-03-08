@@ -26,9 +26,9 @@ _RZNS(GBuild)
 
 RZNS_(GVal)
 
-class RZ_Lisp_Graph_Valuer;
-class RZ_Lisp_Graph_User_Package;
-class RZ_Lisp_Graph_User_Class;
+class RZ_ASG_Valuer;
+class RZ_ASG_User_Package;
+class RZ_ASG_User_Class;
 class RZ_Lisp_Vector;
 
 _RZNS(GVal)
@@ -46,19 +46,19 @@ RZNS_(GEmbed)
 
 class RZ_Graph_Embed_Run_Valuer
 {
- RZ_Lisp_Graph_Valuer& valuer_;
+ RZ_ASG_Valuer& valuer_;
 
- caon_ptr<RZ_Lisp_Graph_User_Package> current_user_package_;
- caon_ptr<RZ_Lisp_Graph_User_Package> default_user_package_;
+ caon_ptr<RZ_ASG_User_Package> current_user_package_;
+ caon_ptr<RZ_ASG_User_Package> default_user_package_;
 
- caon_ptr<RZ_Lisp_Graph_User_Class> current_user_class_;
- caon_ptr<RZ_Lisp_Graph_User_Class> default_user_class_;
+ caon_ptr<RZ_ASG_User_Class> current_user_class_;
+ caon_ptr<RZ_ASG_User_Class> default_user_class_;
 
 public:
 
- ACCESSORS__GET(RZ_Lisp_Graph_Valuer& ,valuer)
+ ACCESSORS__GET(RZ_ASG_Valuer& ,valuer)
 
- RZ_Graph_Embed_Run_Valuer(RZ_Lisp_Graph_Valuer& valuer);
+ RZ_Graph_Embed_Run_Valuer(RZ_ASG_Valuer& valuer);
 
 
  void valuer_deferred_callback(QString qs);

@@ -15,10 +15,10 @@ struct RZ_Core_Symbol;
 
 RZNS_(GRun)
 
-RZ_LISP_GRAPH_FUNCTION_CODES_(RZ_Graph_Call_CC)
+RZ_ASG_FUNCTION_CODES_(RZ_Graph_Call_CC)
  null = 0,
  #include "core-functions-c-c.h"
-_RZ_LISP_GRAPH_FUNCTION_CODES
+_RZ_ASG_FUNCTION_CODES
 
 _RZNS(GRun)
 

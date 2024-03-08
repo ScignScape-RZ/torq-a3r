@@ -4,30 +4,30 @@
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
 
-#include "rz-re-prerun-normalize.h"
+#include "rz-prerun-normalize.h"
 
-#include "rz-graph-visit/rz-lisp-graph-visitor.h"
+#include "rz-graph-visit/rz-asg-visitor.h"
 
-#include "rz-graph-core/kernel/graph/rz-re-graph.h"
+#include "rz-graph-core/kernel/graph/chasm-rz-graph.h"
 
 USING_RZNS(RZ_Core)
 USING_RZNS(GBuild)
 
 
-RE_Prerun_Normalize::RE_Prerun_Normalize(RE_Graph& graph)
+RZ_Prerun_Normalize::RZ_Prerun_Normalize(ChasmRZ_Graph& graph)
  : graph_(graph)
 {
 
 }
 
-caon_ptr<RZ_Lisp_Graph_Visitor> RE_Prerun_Normalize::scan()
+caon_ptr<RZ_ASG_Visitor> RZ_Prerun_Normalize::scan()
 {
- caon_ptr<RZ_Lisp_Graph_Visitor> result = new RZ_Lisp_Graph_Visitor(&graph_);
+ caon_ptr<RZ_ASG_Visitor> result = new RZ_ASG_Visitor(&graph_);
  scan(*result);
  return result;
 }
 
-void RE_Prerun_Normalize::scan(RZ_Lisp_Graph_Visitor& v)
+void RZ_Prerun_Normalize::scan(RZ_ASG_Visitor& v)
 {
  v.set_graph(&graph_);
  v.normalize();

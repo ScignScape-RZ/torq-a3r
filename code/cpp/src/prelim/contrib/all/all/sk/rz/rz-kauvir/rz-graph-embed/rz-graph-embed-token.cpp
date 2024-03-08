@@ -9,7 +9,7 @@
 
 #include "rz-graph-token/token/rz-asg-token.h"
 
-#include "rz-graph-run/token/rz-graph-run-token.h"
+#include "rz-graph-run/token/rz-asg-run-token.h"
 
 #include <QStringList>
 
@@ -65,7 +65,7 @@ Basic_Token_Kinds RZ_Graph_Embed_Token::kind_and_string_value(QString& sv) const
 }
 
 
-void RZ_Graph_Embed_Token::convey(int position, RZ_Graph_Run_Token& rzt)
+void RZ_Graph_Embed_Token::convey(int position, RZ_ASG_Run_Token& rzt)
 {
  //?   This is currently the only point of needing rz-graph-run
  //    (and provides functionality mostly for rz-graph-run so

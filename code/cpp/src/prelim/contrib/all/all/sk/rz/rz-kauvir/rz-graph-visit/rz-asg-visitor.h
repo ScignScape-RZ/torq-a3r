@@ -206,7 +206,7 @@ public:
 
  int run_core_pairs(int generation);
 
- caon_ptr<tNode> check_raw_lisp(caon_ptr<tNode> node);
+ caon_ptr<tNode> check_raw_asg(caon_ptr<tNode> node);
 
  void add_initial_output_text(QString text);
 
@@ -345,7 +345,7 @@ public:
  caon_ptr<tNode> anticipate_run_call(tNode& start_node);
  void anticipate_nested_run_calls(tNode& start_node, RZ_ASG_Result_Holder& rh);
 
- void check_lisp_graph_runner();
+ void check_asg_runner();
 
  void find_next_node_from_entry(tNode& node);
 

@@ -30,7 +30,7 @@ RZ_ASG_Core_Function::RZ_ASG_Core_Function
   flags.preempt = true;
   flags.defer = true;
   break;
- case Valuer_DC:
+ case Valuer_DH:
  case Valuer_CB:
  case Valuer_RN:
  case Valuer_N:

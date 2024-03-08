@@ -7,23 +7,23 @@
 #ifndef GRAPH_CALL_T_V__H
 #define GRAPH_CALL_T_V__H
 
-#include "rz-graph-valuer/valuer/rz-lisp-graph-valuer.h"
+#include "rz-graph-valuer/valuer/rz-asg-valuer.h"
 
 #include "rzns.h"
 
 RZNS_(GRun)
 
-#define RZ_LISP_GRAPH_FUNCTION_DECLARE(str, name, arity, status) name,
+#define RZ_ASG_FUNCTION_DECLARE(str, name, arity, status) name,
 
 
-RZ_LISP_GRAPH_FUNCTION_CODES_(RZ_Graph_Call_TV)
+RZ_ASG_FUNCTION_CODES_(RZ_Graph_Call_TV)
  null = 0,
  #include "core-functions-t-v.h"
-_RZ_LISP_GRAPH_FUNCTION_CODES
+_RZ_ASG_FUNCTION_CODES
 
 
 
-#undef RZ_LISP_GRAPH_FUNCTION_DECLARE
+#undef RZ_ASG_FUNCTION_DECLARE
 
 _RZNS(GRun)
 

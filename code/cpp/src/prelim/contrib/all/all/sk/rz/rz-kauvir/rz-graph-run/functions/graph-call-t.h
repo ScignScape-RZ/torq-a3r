@@ -7,23 +7,23 @@
 #ifndef GRAPH_CALL_T__H
 #define GRAPH_CALL_T__H
 
-#include "token/rz-lisp-token.h"
-#include "rz-graph-valuer/valuer/rz-lisp-graph-valuer.h"
+#include "token/rz-asg-token.h"
+#include "rz-graph-valuer/valuer/rz-asg-valuer.h"
 
-#include "functions/rz-lisp-graph-function-families.h"
+#include "functions/rz-asg-function-families.h"
 
 #include "rzns.h"
 
 RZNS_(GRun)
 
-#define RZ_LISP_GRAPH_FUNCTION_DECLARE(str, name, arity, status) name,
+#define RZ_ASG_FUNCTION_DECLARE(str, name, arity, status) name,
 
-RZ_LISP_GRAPH_FUNCTION_CODES_(RZ_Graph_Call_T)
+RZ_ASG_FUNCTION_CODES_(RZ_Graph_Call_T)
  null = 0,
  #include "core-functions-t.h"
-_RZ_LISP_GRAPH_FUNCTION_CODES
+_RZ_ASG_FUNCTION_CODES
 
-#undef RZ_LISP_GRAPH_FUNCTION_DECLARE
+#undef RZ_ASG_FUNCTION_DECLARE
 
 
 _RZNS(GRun)

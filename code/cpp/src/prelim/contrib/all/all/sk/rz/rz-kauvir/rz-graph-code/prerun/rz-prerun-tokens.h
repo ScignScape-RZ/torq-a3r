@@ -4,15 +4,15 @@
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef RZ_RE_PRERUN_TOKENS__H
-#define RZ_RE_PRERUN_TOKENS__H
+#ifndef RZ_PRERUN_TOKENS__H
+#define RZ_PRERUN_TOKENS__H
 
 #include "accessors.h"
 #include "flags.h"
 
 #include "relae-graph/relae-node-ptr.h"
 
-#include "rz-graph-core/output/rz-re-lisp-output.h"
+#include "rz-graph-core/output/chasm-rz-asg-output.h"
 
 #include <QString>
 #include <QTextStream>
@@ -24,35 +24,36 @@
 RZNS_(RZ_Core)
 
 
-class RE_Document;
+class ChasmRZ_Document;
 class ChasmRZ_Node;
 
-class RE_Prerun_Tokens : public RE_Lisp_Output
+
+class RZ_Prerun_Tokens : public ChasmRZ_ASG_Output
 {
 
 public:
 
- RE_Prerun_Tokens(caon_ptr<RE_Document> document);
- void init_token(RE_Token& token);
+ RZ_Prerun_Tokens(caon_ptr<ChasmRZ_Document> document);
+ void init_token(ChasmRZ_Token& token);
 
  virtual void report_token(QTextStream& qts,
-  const RE_Token& token);
+  const ChasmRZ_Token& token);
 
  virtual void report_tuple_info_entry(QTextStream& qts,
-  const RE_Tuple_Info& rti, caon_ptr<RE_Call_Entry> rce_ptr = nullptr);
+  const ChasmRZ_Tuple_Info& rti, caon_ptr<ChasmRZ_Call_Entry> rce_ptr = nullptr);
 
  virtual void report_tuple_info_leave(QTextStream& qts,
-  const RE_Tuple_Info& rti, caon_ptr<RE_Call_Entry> rce_ptr = nullptr);
+  const ChasmRZ_Tuple_Info& rti, caon_ptr<ChasmRZ_Call_Entry> rce_ptr = nullptr);
 
  virtual void report_call_entry(QTextStream& qts,
-  const RE_Call_Entry& rce) override;
+  const ChasmRZ_Call_Entry& rce) override;
 
  virtual void report_call_leave(QTextStream& qts,
-  const RE_Call_Entry& rce) override;
+  const ChasmRZ_Call_Entry& rce) override;
 
 
 };
 
 _RZNS(RZ_Core)
 
-#endif //RZ_RE_PRERUN_TOKENS__H
+#endif //RZ_PRERUN_TOKENS__H

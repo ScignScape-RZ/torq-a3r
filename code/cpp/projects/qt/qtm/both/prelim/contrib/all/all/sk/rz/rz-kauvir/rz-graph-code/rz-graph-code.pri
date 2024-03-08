@@ -33,15 +33,15 @@ DEFINES += CAON_DEBUG
 
 
 HEADERS += \
-  $$SRC_DIR/prerun/rz-re-prerun-anticipate.h \
-  $$SRC_DIR/prerun/rz-re-prerun-normalize.h \
-  $$SRC_DIR/prerun/rz-re-prerun-tokens.h \
+  $$SRC_DIR/prerun/rz-prerun-anticipate.h \
+  $$SRC_DIR/prerun/rz-prerun-normalize.h \
+  $$SRC_DIR/prerun/rz-prerun-tokens.h \
 
 
 SOURCES += \
-  $$SRC_DIR/prerun/rz-re-prerun-anticipate.cpp \
-  $$SRC_DIR/prerun/rz-re-prerun-normalize.cpp \
-  $$SRC_DIR/prerun/rz-re-prerun-tokens.cpp \
+  $$SRC_DIR/prerun/rz-prerun-anticipate.cpp \
+  $$SRC_DIR/prerun/rz-prerun-normalize.cpp \
+  $$SRC_DIR/prerun/rz-prerun-tokens.cpp \
 
 message(choice: $$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)
 mkpath($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)

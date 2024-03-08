@@ -27,13 +27,13 @@
 
 RZNS_(RZ_Core)
  class ChasmRZ_Node;
- class RE_Block_Entry;
+ class ChasmRZ_Block_Entry;
 _RZNS(RZ_Core)
 
 USING_RZNS(RZ_Core)
 
 RZNS_(GBuild)
- class RZ_Lisp_Graph_Visitor;
+ class RZ_ASG_Visitor;
  class RZ_Graph_Visitor_Phaon;
  class RZ_ASG_Token;
 _RZNS(GBuild)
@@ -49,10 +49,10 @@ USING_RZNS(PhrGraphCore)
 RZNS_(GVal)
 
 class RPI_Stage_Form;
-class RZ_Lisp_Graph_Lexical_Scope;
+class RZ_ASG_Lexical_Scope;
 
 class RZ_Function_Def_Syntax;
-class RZ_Lisp_Graph_Block_Info;
+class RZ_ASG_Block_Info;
 class RZ_Code_Statement;
 class RZ_Function_Def_Info;
 
@@ -71,7 +71,7 @@ private:
 
  //?QStringList header_step_forms_;
 
- caon_ptr<RZ_Lisp_Graph_Lexical_Scope> lexical_scope_;
+ caon_ptr<RZ_ASG_Lexical_Scope> lexical_scope_;
 
 
  caon_ptr<RPI_Block> parent_block_;
@@ -82,8 +82,8 @@ private:
  caon_ptr<RPI_Stage_Form> current_form_;
  caon_ptr<RPI_Stage_Form> last_form_;
 
- caon_ptr<RZ_Lisp_Graph_Block_Info> pending_block_info_;
- caon_ptr<RZ_Lisp_Graph_Block_Info> block_info_;
+ caon_ptr<RZ_ASG_Block_Info> pending_block_info_;
+ caon_ptr<RZ_ASG_Block_Info> block_info_;
  caon_ptr<RPI_Stage_Form> preceding_expression_form_;
 
  MS_Token held_token_;
@@ -95,7 +95,7 @@ private:
 
  void add_form_from_call_entry_node(RZ_Graph_Visitor_Phaon& visitor_phaon,
    ChasmRZ_Node& entry_node,
-   caon_ptr<RE_Block_Entry> rbe = nullptr,
+   caon_ptr<ChasmRZ_Block_Entry> rbe = nullptr,
    caon_ptr<RPI_Stage_Form> prior_form = nullptr);
 
  QString es_argument_;
@@ -120,22 +120,22 @@ public:
  ACCESSORS(int ,parent_lambda_position)
  ACCESSORS(QString ,entry_lisp_code)
 
- ACCESSORS(caon_ptr<RZ_Lisp_Graph_Block_Info> ,pending_block_info)
- ACCESSORS(caon_ptr<RZ_Lisp_Graph_Block_Info> ,block_info)
+ ACCESSORS(caon_ptr<RZ_ASG_Block_Info> ,pending_block_info)
+ ACCESSORS(caon_ptr<RZ_ASG_Block_Info> ,block_info)
  ACCESSORS(caon_ptr<RPI_Stage_Form> ,preceding_expression_form)
 
  ACCESSORS(Block_Sequence_Modes ,block_sequence_mode)
 
- ACCESSORS(caon_ptr<RZ_Lisp_Graph_Lexical_Scope> ,lexical_scope)
+ ACCESSORS(caon_ptr<RZ_ASG_Lexical_Scope> ,lexical_scope)
  ACCESSORS(caon_ptr<RZ_Function_Def_Info> ,function_def_info)
 
 
 
  ACCESSORS(QString ,es_argument)
 
- caon_ptr<RE_Block_Entry> get_block_entry();
+ caon_ptr<ChasmRZ_Block_Entry> get_block_entry();
 
- RZ_Lisp_Graph_Visitor& visitor();
+ RZ_ASG_Visitor& visitor();
 
  void write(QList<PGB_IR_Build::Text_With_Purpose>& tps, QTextStream* qts);
  void write_top_level(QList<PGB_IR_Build::Text_With_Purpose>& tps, QTextStream* qts);

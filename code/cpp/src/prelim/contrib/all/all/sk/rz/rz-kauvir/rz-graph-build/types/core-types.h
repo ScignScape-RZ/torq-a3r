@@ -11,7 +11,7 @@
 
 #include "rz-graph-valuer/string/rz-string.h"
 
-#include "rz-graph-valuer/valuer/rz-lisp-symbol.h"
+#include "rz-graph-valuer/valuer/rz-asg-symbol.h"
 
 #include "types/run-types.h"
 

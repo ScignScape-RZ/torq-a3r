@@ -4,11 +4,11 @@
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
 
-#include "rz-graph-run-token.h"
+#include "rz-asg-run-token.h"
 
-#include "rz-graph-token/token/rz-lisp-token.h"
+#include "rz-graph-token/token/rz-asg-token.h"
 
-#include "rz-graph-valuer/scope/rz-lisp-graph-scope-token.h"
+#include "rz-graph-valuer/scope/rz-asg-scope-token.h"
 
 #include "rz-graph-embed/rz-graph-embed-token.h"
 
@@ -17,18 +17,18 @@
 USING_RZNS(GRun)
 
 
-RZ_Graph_Run_Token::RZ_Graph_Run_Token(QString string_value, Basic_Token_Kinds kind)
+RZ_ASG_Run_Token::RZ_ASG_Run_Token(QString string_value, Basic_Token_Kinds kind)
  : Flags(0), string_value_(string_value), kind_(kind)
 {
  flags.has_string_value = true;
 }
 
 
-RZ_Graph_Run_Token::RZ_Graph_Run_Token()
+RZ_ASG_Run_Token::RZ_ASG_Run_Token()
  : Flags(0), kind_(Basic_Token_Kinds::Symbol_Token)
 {}
 
-QString RZ_Graph_Run_Token::text_value() const
+QString RZ_ASG_Run_Token::text_value() const
 {
  QString result =  string_value_;
  if(flags.is_quoted)
@@ -36,7 +36,7 @@ QString RZ_Graph_Run_Token::text_value() const
  return result;
 }
 
-void RZ_Graph_Run_Token::init_from(RZ_ASG_Token& rzlt)
+void RZ_ASG_Run_Token::init_from(RZ_ASG_Token& rzlt)
 {
  Flags = 0;
  if(rzlt.flags.is_empty_tuple_indicator)
@@ -77,7 +77,7 @@ void RZ_Graph_Run_Token::init_from(RZ_ASG_Token& rzlt)
 }
 
 
-void RZ_Graph_Run_Token::init_from_embed_token(const RZ_Graph_Embed_Token& embed_token)
+void RZ_ASG_Run_Token::init_from_embed_token(const RZ_Graph_Embed_Token& embed_token)
 {
  flags.has_string_value = true;
  kind_ = embed_token.kind_and_string_value(string_value_);
@@ -85,13 +85,13 @@ void RZ_Graph_Run_Token::init_from_embed_token(const RZ_Graph_Embed_Token& embed
 }
 
 
-void RZ_Graph_Run_Token::init_from_scope_token(const RZ_Lisp_Graph_Scope_Token& scope_token)
+void RZ_ASG_Run_Token::init_from_scope_token(const RZ_ASG_Scope_Token& scope_token)
 {
  flags.has_string_value = true;
  kind_ = scope_token.initial_kind_and_string_value(string_value_);
 }
 
-//QString RZ_Graph_Run_Token::lisp_string_value() const
+//QString RZ_ASG_Run_Token::lisp_string_value() const
 //{
 // if(flags.is_via_type_assignment)
 // {
@@ -103,14 +103,14 @@ void RZ_Graph_Run_Token::init_from_scope_token(const RZ_Lisp_Graph_Scope_Token& 
 // }
 //}
 
-QString RZ_Graph_Run_Token::cpp_string_value() const
+QString RZ_ASG_Run_Token::cpp_string_value() const
 {
  QString result = string_value_;
  result.replace('-', '_');
  return result;
 }
 
-QString RZ_Graph_Run_Token::lisp_string_value() const
+QString RZ_ASG_Run_Token::lisp_string_value() const
 {
  QString result =  string_value_;
  if(flags.is_quoted)
@@ -128,7 +128,7 @@ QString RZ_Graph_Run_Token::lisp_string_value() const
 }
 
 
-QString RZ_Graph_Run_Token::lisp_value() const
+QString RZ_ASG_Run_Token::lisp_value() const
 {
  QString result =  string_value_;
  if(flags.is_quoted)

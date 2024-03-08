@@ -6,9 +6,9 @@
 
 #include "rz-graph-embed-run-valuer.h"
 
-#include "rz-graph-valuer/valuer/rz-lisp-graph-valuer.h"
+#include "rz-graph-valuer/valuer/rz-asg-valuer.h"
 
-#include "rz-graph-valuer/vector/rz-lisp-vector.h"
+#include "rz-graph-valuer/vector/rz-asg-vector.h"
 
 
 #include <QDebug>
@@ -21,7 +21,7 @@ USING_RZNS(GEmbed)
 
 
 
-RZ_Graph_Embed_Run_Valuer::RZ_Graph_Embed_Run_Valuer(RZ_Lisp_Graph_Valuer& valuer)
+RZ_Graph_Embed_Run_Valuer::RZ_Graph_Embed_Run_Valuer(RZ_ASG_Valuer& valuer)
  : valuer_(valuer), current_user_package_(nullptr), default_user_package_(nullptr),
    current_user_class_(nullptr), default_user_class_(nullptr)
 {

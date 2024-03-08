@@ -4,8 +4,8 @@
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef RZ_GRAPH_RUN_TOKEN__H
-#define RZ_GRAPH_RUN_TOKEN__H
+#ifndef RZ_ASG_RUN_TOKEN__H
+#define RZ_ASG_RUN_TOKEN__H
 
 
 #include "flags.h"
@@ -30,7 +30,7 @@ USING_RZNS(GBuild)
 
 RZNS_(GVal)
 
-class RZ_Lisp_Graph_Scope_Token;
+class RZ_ASG_Scope_Token;
 
 _RZNS(GVal)
 USING_RZNS(GVal)
@@ -49,7 +49,7 @@ USING_RZNS(GEmbed)
 RZNS_(GRun)
 
 
-class RZ_Graph_Run_Token
+class RZ_ASG_Run_Token
 {
 public:
 
@@ -102,11 +102,11 @@ public:
 
  ACCESSORS(Basic_Token_Kinds ,kind)
 
- RZ_Graph_Run_Token();
- RZ_Graph_Run_Token(QString string_value, Basic_Token_Kinds kind);
+ RZ_ASG_Run_Token();
+ RZ_ASG_Run_Token(QString string_value, Basic_Token_Kinds kind);
 
 
- void init_from_scope_token(const RZ_Lisp_Graph_Scope_Token& scope_token);
+ void init_from_scope_token(const RZ_ASG_Scope_Token& scope_token);
  void init_from_embed_token(const RZ_Graph_Embed_Token& embed_token);
 
 
@@ -137,4 +137,4 @@ public:
 _RZNS(GRun)
 
 
-#endif //RZ_GRAPH_RUN_TOKEN__H
+#endif //RZ_ASG_RUN_TOKEN__H

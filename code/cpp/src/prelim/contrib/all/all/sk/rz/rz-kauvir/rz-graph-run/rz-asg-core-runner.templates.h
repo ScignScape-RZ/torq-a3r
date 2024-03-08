@@ -7,11 +7,11 @@
 #ifndef RZ_LISP_GRAPH_CORE_RUNNER__TEMPLATES__H
 #define RZ_LISP_GRAPH_CORE_RUNNER__TEMPLATES__H
 
-#include "rz-lisp-graph-core-runner.h"
+#include "rz-asg-core-runner.h"
 
-#include "functions/rz-lisp-graph-run-router.h"
+#include "functions/rz-asg-run-router.h"
 
-#include "rz-graph-core/kernel/rz-re-dominion.h"
+#include "rz-graph-core/kernel/chasm-rz-dominion.h"
 
 USING_RZNS(GBuild)
 
@@ -28,8 +28,8 @@ RZNS_(GRun)
      RZ_Type_Families::Internal>::run(rh, token, pass_node); break;
 
 template<>
-void RZ_Lisp_Graph_Core_Runner::run<RZ_Graph_Call_S>(RZ_Lisp_Graph_Result_Holder& rh,
-  RZ_Lisp_Graph_Function_Code function_code,
+void RZ_ASG_Core_Runner::run<RZ_Graph_Call_S>(RZ_ASG_Result_Holder& rh,
+  RZ_ASG_Function_Code function_code,
  RZ_ASG_Token& token, caon_ptr<tNode> pass_node)
 {
  switch(function_code)
@@ -50,7 +50,7 @@ void RZ_Lisp_Graph_Core_Runner::run<RZ_Graph_Call_S>(RZ_Lisp_Graph_Result_Holder
     Runner<Cast_Null_Marker, Raw_Token_Marker, RZ_Type_Families::Internal>::run(rh, token); break;
 
 template<>
-void RZ_Lisp_Graph_Core_Runner::run<RZ_Graph_Call_T>(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Graph_Function_Code function_code,
+void RZ_ASG_Core_Runner::run<RZ_Graph_Call_T>(RZ_ASG_Result_Holder& rh, RZ_ASG_Function_Code function_code,
  RZ_ASG_Token& token)
 {
  switch(function_code)
@@ -73,8 +73,8 @@ void RZ_Lisp_Graph_Core_Runner::run<RZ_Graph_Call_T>(RZ_Lisp_Graph_Result_Holder
      caon_ptr<RZ_ASG_Token>(&token), caon_ptr<RZ_ASG_Value_Holder>(&vh)); break; \
 
 template<>
-void RZ_Lisp_Graph_Core_Runner::run<RZ_Graph_Call_Tc>(RZ_Lisp_Graph_Result_Holder& rh,
- RZ_Lisp_Graph_Function_Code function_code,
+void RZ_ASG_Core_Runner::run<RZ_Graph_Call_Tc>(RZ_ASG_Result_Holder& rh,
+ RZ_ASG_Function_Code function_code,
  RZ_ASG_Token& token, RZ_ASG_Value_Holder& vh)
 {
  caon_ptr<RZ_ASG_Value_Holder> pvh = &vh;
@@ -100,8 +100,8 @@ void RZ_Lisp_Graph_Core_Runner::run<RZ_Graph_Call_Tc>(RZ_Lisp_Graph_Result_Holde
 
 
 template<>
-void RZ_Lisp_Graph_Core_Runner::run<RZ_Graph_Call_Tv>(RZ_Lisp_Graph_Result_Holder& rh,
- RZ_Lisp_Graph_Function_Code function_code,
+void RZ_ASG_Core_Runner::run<RZ_Graph_Call_Tv>(RZ_ASG_Result_Holder& rh,
+ RZ_ASG_Function_Code function_code,
  RZ_ASG_Token& token, RZ_ASG_Value_Holder& vh)
 {
  switch(function_code)
@@ -124,8 +124,8 @@ void RZ_Lisp_Graph_Core_Runner::run<RZ_Graph_Call_Tv>(RZ_Lisp_Graph_Result_Holde
     Runner<Cast_Null_Marker, RHS_Value_Marker, RZ_Type_Families::Internal>::run(rh, token, vh); break;
 
 template<>
-void RZ_Lisp_Graph_Core_Runner::run<RZ_Graph_Call_TV>(RZ_Lisp_Graph_Result_Holder& rh,
- RZ_Lisp_Graph_Function_Code function_code,
+void RZ_ASG_Core_Runner::run<RZ_Graph_Call_TV>(RZ_ASG_Result_Holder& rh,
+ RZ_ASG_Function_Code function_code,
  RZ_ASG_Token& token, RZ_ASG_Value_Holder& vh)
 {
  switch(function_code)
@@ -149,8 +149,8 @@ void RZ_Lisp_Graph_Core_Runner::run<RZ_Graph_Call_TV>(RZ_Lisp_Graph_Result_Holde
     Runner<LHS_Value_Marker, RHS_Value_Marker, RZ_Type_Families::Internal>::run(rh, v1, v2); break;
 
 template<>
-void RZ_Lisp_Graph_Core_Runner::run<RZ_Graph_Call_VV>(RZ_Lisp_Graph_Result_Holder& rh,
- RZ_Lisp_Graph_Function_Code function_code,
+void RZ_ASG_Core_Runner::run<RZ_Graph_Call_VV>(RZ_ASG_Result_Holder& rh,
+ RZ_ASG_Function_Code function_code,
  RZ_ASG_Value_Holder& v1, RZ_ASG_Value_Holder& v2)
 {
  switch(function_code)
@@ -178,8 +178,8 @@ void RZ_Lisp_Graph_Core_Runner::run<RZ_Graph_Call_VV>(RZ_Lisp_Graph_Result_Holde
      caon_ptr<RZ_ASG_Value_Holder>(&rhs_value)); break;
 
 template<>
-void RZ_Lisp_Graph_Core_Runner::run<RZ_Graph_Call_TC>(RZ_Lisp_Graph_Result_Holder& rh,
- RZ_Lisp_Graph_Function_Code function_code,
+void RZ_ASG_Core_Runner::run<RZ_Graph_Call_TC>(RZ_ASG_Result_Holder& rh,
+ RZ_ASG_Function_Code function_code,
  RZ_ASG_Token& lhs_token, RZ_ASG_Value_Holder& rhs_value)
 {
  switch(function_code)
@@ -205,7 +205,7 @@ case num: \
      caon_ptr<RZ_ASG_Value_Holder>(&v2)); break;
 
 template<>
-void RZ_Lisp_Graph_Core_Runner::run<RZ_Graph_Call_C>(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Graph_Function_Code function_code,
+void RZ_ASG_Core_Runner::run<RZ_Graph_Call_C>(RZ_ASG_Result_Holder& rh, RZ_ASG_Function_Code function_code,
  RZ_ASG_Value_Holder& v1, RZ_ASG_Value_Holder& v2)
 {
  switch(function_code)
@@ -230,7 +230,7 @@ case num: \
      caon_ptr<RZ_ASG_Token>(&rhs_token)); break;
 
 template<>
-void RZ_Lisp_Graph_Core_Runner::run<RZ_Graph_Call_CT>(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Graph_Function_Code function_code,
+void RZ_ASG_Core_Runner::run<RZ_Graph_Call_CT>(RZ_ASG_Result_Holder& rh, RZ_ASG_Function_Code function_code,
  RZ_ASG_Value_Holder& lhs_value, RZ_ASG_Token& rhs_token)
 {
  switch(function_code)
@@ -256,7 +256,7 @@ case num: \
      caon_ptr<RZ_ASG_Value_Holder>(&v2)); break;
 
 template<>
-void RZ_Lisp_Graph_Core_Runner::run<RZ_Graph_Call_CC>(RZ_Lisp_Graph_Result_Holder& rh, RZ_Lisp_Graph_Function_Code function_code,
+void RZ_ASG_Core_Runner::run<RZ_Graph_Call_CC>(RZ_ASG_Result_Holder& rh, RZ_ASG_Function_Code function_code,
  RZ_ASG_Value_Holder& v1, RZ_ASG_Value_Holder& v2)
 {
  switch(function_code)
