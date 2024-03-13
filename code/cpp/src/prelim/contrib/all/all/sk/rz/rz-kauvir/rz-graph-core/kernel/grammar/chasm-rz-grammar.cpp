@@ -96,44 +96,6 @@ void ChasmRZ_Grammar::init(ChasmRZ_Parser& p, ChasmRZ_Graph& g, ChasmRZ_Graph_Bu
  });
 
 
- add_rule(flags_all_(parse_context ,inside_run_comment), run_context,
-  "multi-line-run-comment-end",
-  " (?<left> - -+ ) (?<right> ;+ ) "
-           ,[&]
- {
-  QString left = p.matched("left");
-  QString right = p.matched("right");
-  graph_build.check_run_comment_end(left.size(), right.size());
- });
-
- add_rule( run_context, "multi-line-run-comment-begin",
-  " (?<left> ;+ ) (?<right> - -+ ) .end-of-line. "
-  ,[&]
- {
-  QString left = p.matched("left");
-  QString right = p.matched("right");
-  graph_build.check_run_comment_begin(left.size(), right.size());
- });
-
- add_rule(flags_all_(parse_context ,inside_run_comment), run_context,
-  "multi-line-run-comment-body",
-  " (?: [^-;]+ ) | [;-] "
-   ,[&]
- {
-  // //  chance to preview the comment ...
-  // QString s = p.match_text();
- });
-
-
-
- add_rule(flags_none_(parse_context ,inside_run_comment), run_context,
-  "run-comment",
-  " (?<left> ;+ - ) [^\\n]* "
-           ,[&]
- {
- });
-
-
  add_rule( run_context, "raw-asg-start",
   " asg_ ",
    [&]
@@ -165,6 +127,8 @@ void ChasmRZ_Grammar::init(ChasmRZ_Parser& p, ChasmRZ_Graph& g, ChasmRZ_Graph_Bu
   graph_build.string_literal_start();
  });
 
+
+
  add_rule(flags_all_(parse_context ,inside_string_plex), run_context, "string-plex-switch",
           " : (?<key> \\S* ) : "
           ,[&]
@@ -192,77 +156,25 @@ void ChasmRZ_Grammar::init(ChasmRZ_Parser& p, ChasmRZ_Graph& g, ChasmRZ_Graph_Bu
   graph_build.string_plex_acc(p.match_text());
  });
 
- add_rule( run_context, "initializer-annotation",
-  " \\{ \\S* [^;] \\} ",
+
+ add_rule( run_context, "lexical-symbol-declaration",
+  " , (?<token>.script-word.) ",
    [&]
  {
-  graph_build.add_assignment_annotation(p.match_text());
+  QString token = p.matched("token");
+  graph_build.declare_lexical_symbol(token);
  });
 
- add_rule( run_context, "run-tuple-indicator-opens",
-  " (?<name> \\w* ) "
-  " (?<prefix> [;,:_+`'#$%*~\\\\^!@\\-\\.]* )"
-  " (?<entry> (?: \\{{2,3} ) | "
-  "   (?: \\[{2,3} ) | [ [({ ] )"
-  " (?<suffix> [*~]* (?=\\s) )?"
-   ,[&]
- {
-  QString name = p.matched("name");
-  QString prefix = p.matched("prefix");
-  QString entry = p.matched("entry");
-  QString suffix = p.matched("suffix");
-  graph_build.enter_tuple(name, prefix, entry, suffix);
- });
 
- add_rule( run_context, "run-tuple-indicator-closes",
-  " (?<prefix> [;:\\.]* )"
-  " (?<entry> (?: \\}{2,3}) | "
-  "   (?: \\]{2,3}) | [\\])] )"
-  " (?<suffix> [*~]* (?=\\s) )?"
-   ,[&]
- {
-  QString prefix = p.matched("prefix");
-  QString entry = p.matched("entry");
-  QString suffix = p.matched("suffix");
-  graph_build.enter_tuple(QString(), prefix, entry, suffix);
- });
 
- add_rule( run_context, "run-token-with-ns",
-  " (?<prefix> [:,;`']* )"
-  " (?<ns> (?: .ns-word. : :? )+ )"
-  " (?<word> .script-word.) "
-  " (?<eol> .space-to-end-of-line. \\n)?",
-   [&]
- {
-  QString prefix = p.matched("prefix");
-  QString ns = p.matched("ns");
-  QString m = p.matched("word");
-  QString s = p.matched("eol");
-  if(ns.endsWith("::"))
-  {
-   graph_build.add_run_token(prefix, ns + m, "", ChasmRZ_Graph_Build::Token_Formations::Cpp_Scoped, s);
-  }
-  else
-  {
-   graph_build.add_run_token(prefix, ns + m, "", ChasmRZ_Graph_Build::Token_Formations::Normal, s);
-  }
- });
-
- add_rule( run_context, "type-indicator",
-  " <- ",
-   [&]
- {
-  QString match_text = p.match_text();
-  graph_build.add_type_indicator(match_text);
- });
-
- add_rule( run_context, "equalizer-to-type",
+ add_rule( run_context, "initialization-via-constructor",
   " == ",
    [&]
  {
   QString match_text = p.match_text();
   graph_build.add_equalizer_to_type(match_text);
  });
+
 
  add_rule( run_context, "run-token-type-related-function",
   " (?<word> ::: ) "

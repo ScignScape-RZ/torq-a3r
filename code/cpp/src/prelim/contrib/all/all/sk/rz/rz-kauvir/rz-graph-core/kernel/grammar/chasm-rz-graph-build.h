@@ -147,6 +147,8 @@ public:
 
  void init();
 
+ void declare_lexical_symbol(QString token);
+
  void string_plex_switch(QString key);
  void string_plex_acc(QString text);
 

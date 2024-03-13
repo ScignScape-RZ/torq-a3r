@@ -78,6 +78,13 @@ void ChasmRZ_Graph_Build::init()
 }
 
 
+void ChasmRZ_Graph_Build::declare_lexical_symbol(QString token)
+{
+
+}
+
+
+
 void ChasmRZ_Graph_Build::check_run_comment_begin(int left, int right)
 {
  if(current_run_comment_left_)
