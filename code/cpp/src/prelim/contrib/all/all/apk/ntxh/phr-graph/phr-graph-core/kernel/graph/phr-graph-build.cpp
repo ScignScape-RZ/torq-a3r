@@ -54,7 +54,7 @@ PHR_Graph_Build::PHR_Graph_Build(PHR_Graph& graph)
    prior_block_entry_node_(nullptr),
    prior_expression_entry_node_(nullptr),
    current_cocyclic_type_(nullptr),
-   fr_(PHR_Graph_Frame::instance()),
+   Cf(PHR_Graph_Frame::instance()),
    qy_(PHR_Graph_Query::instance())
 {
 
@@ -178,7 +178,7 @@ caon_ptr<PHR_Graph_Node> PHR_Graph_Build::make_signatuChasmRZ_Node(
  caon_ptr<PHR_Graph_Signature> sig = new PHR_Graph_Signature(token_node);
  caon_ptr<PHR_Graph_Node> result = new PHR_Graph_Node(sig);
 
- token_node << fr_/qy_.SignatuChasmRZ_Node >> result;
+ token_node << Cf/qy_.SignatuChasmRZ_Node >> result;
 
  return result;
 }
@@ -220,7 +220,7 @@ caon_ptr<PHR_Graph_Node> PHR_Graph_Build::add_channel_token(caon_ptr<PHR_Graph_N
 
  caon_ptr<PHR_Graph_Node> result = make_token_node(mgt);
 
- source << fr_/qy_.Channel_Sequence >> result;
+ source << Cf/qy_.Channel_Sequence >> result;
 
  return result;
 }
@@ -233,7 +233,7 @@ caon_ptr<PHR_Graph_Node> PHR_Graph_Build::add_channel_continue_token(caon_ptr<PH
 
  caon_ptr<PHR_Graph_Node> result = make_token_node(mgt);
 
- source << fr_/qy_.Channel_Continue >> result;
+ source << Cf/qy_.Channel_Continue >> result;
 
  return result;
 }
@@ -247,7 +247,7 @@ caon_ptr<PHR_Graph_Node> PHR_Graph_Build::add_channel_entry_token(caon_ptr<PHR_G
  caon_ptr<PHR_Graph_Node> result = make_token_node(mgt);
 
  caon_ptr<PHR_Graph_Connection> cion = new PHR_Graph_Connection(channel);
- source << fr_/qy_.Channel_Entry(cion) >> result;
+ source << Cf/qy_.Channel_Entry(cion) >> result;
 
  return result;
 }
@@ -260,7 +260,7 @@ caon_ptr<PHR_Graph_Node> PHR_Graph_Build::add_channel_xentry_token(caon_ptr<PHR_
  caon_ptr<PHR_Graph_Node> result = make_token_node(mgt);
 
  caon_ptr<PHR_Graph_Connection> cion = new PHR_Graph_Connection(channel);
- source << fr_/qy_.Channel_XEntry(cion) >> result;
+ source << Cf/qy_.Channel_XEntry(cion) >> result;
 
  return result;
 }
@@ -296,11 +296,11 @@ caon_ptr<PHR_Graph_Node> PHR_Graph_Build::add_statement_sequence_token(caon_ptr<
 
  CAON_PTR_DEBUG(PHR_Graph_Connection ,cion)
 
- source << fr_/qy_.Statement_Sequence(cion) >> result;
+ source << Cf/qy_.Statement_Sequence(cion) >> result;
 
  if(held_type_declaration_node_)
  {
-  result << fr_/qy_.Type_Declaration >> held_type_declaration_node_;
+  result << Cf/qy_.Type_Declaration >> held_type_declaration_node_;
   held_type_declaration_node_ = nullptr;
  }
 
@@ -322,11 +322,11 @@ caon_ptr<PHR_Graph_Node> PHR_Graph_Build::add_block_entry_token(caon_ptr<PHR_Gra
 
  CAON_PTR_DEBUG(PHR_Graph_Connection ,cion)
 
- source << fr_/qy_.Block_Entry(cion) >> result;
+ source << Cf/qy_.Block_Entry(cion) >> result;
 
  if(held_type_declaration_node_)
  {
-  result << fr_/qy_.Type_Declaration >> held_type_declaration_node_;
+  result << Cf/qy_.Type_Declaration >> held_type_declaration_node_;
   held_type_declaration_node_ = nullptr;
  }
 
@@ -352,10 +352,10 @@ caon_ptr<PHR_Graph_Node> PHR_Graph_Build::add_fsym_ground_node(
  if(cfen)
  {
   caon_ptr<PHR_Graph_Connection> cion = new PHR_Graph_Connection(chn, cfen);
-  source << fr_/qy_.Channel_FGround_Entry(cion) >> target;
+  source << Cf/qy_.Channel_FGround_Entry(cion) >> target;
  }
  else
-   source << fr_/qy_.Channel_FGround_Entry >> target;
+   source << Cf/qy_.Channel_FGround_Entry >> target;
 }
 
 caon_ptr<PHR_Graph_Node> PHR_Graph_Build::add_channel_fground_cross_node(
@@ -370,10 +370,10 @@ caon_ptr<PHR_Graph_Node> PHR_Graph_Build::add_channel_fground_cross_node(
  {
   CAON_PTR_DEBUG(PHR_Graph_Node ,cfen)
   caon_ptr<PHR_Graph_Connection> cion = new PHR_Graph_Connection(chn, cfen);
-  source << fr_/qy_.Channel_FGround_Cross(cion) >> target;
+  source << Cf/qy_.Channel_FGround_Cross(cion) >> target;
  }
  else
-   source << fr_/qy_.Channel_FGround_Cross >> target;
+   source << Cf/qy_.Channel_FGround_Cross >> target;
 }
 
 caon_ptr<PHR_Graph_Node> PHR_Graph_Build::add_channel_fground_coentry_node(
@@ -387,10 +387,10 @@ caon_ptr<PHR_Graph_Node> PHR_Graph_Build::add_channel_fground_coentry_node(
  if(cfen)
  {
   caon_ptr<PHR_Graph_Connection> cion = new PHR_Graph_Connection(chn, cfen);
-  source << fr_/qy_.Channel_FGround_Coentry(cion) >> target;
+  source << Cf/qy_.Channel_FGround_Coentry(cion) >> target;
  }
  else
-   source << fr_/qy_.Channel_FGround_Coentry >> target;
+   source << Cf/qy_.Channel_FGround_Coentry >> target;
 }
 
 void PHR_Graph_Build::add_channel_entry_block_node(
@@ -412,7 +412,7 @@ void PHR_Graph_Build::add_channel_entry_block_node(
 
  caon_ptr<PHR_Graph_Connection> cion = new PHR_Graph_Connection(chn, bin);
 
- source << fr_/qy_.Channel_Entry_Block(cion) >> target;
+ source << Cf/qy_.Channel_Entry_Block(cion) >> target;
 }
 
 void PHR_Graph_Build::push_expression_entry()
@@ -471,7 +471,7 @@ void PHR_Graph_Build::add_channel_sequence_block_node(
 
  caon_ptr<PHR_Graph_Connection> cion = new PHR_Graph_Connection(bin);
 
- source << fr_/qy_.Channel_Sequence_Block(cion) >> target;
+ source << Cf/qy_.Channel_Sequence_Block(cion) >> target;
 }
 
 
@@ -484,7 +484,7 @@ void PHR_Graph_Build::add_channel_cross_block_node(
 
  caon_ptr<PHR_Graph_Connection> cion = new PHR_Graph_Connection(bin);
 
- source << fr_/qy_.Channel_Cross_Block(cion) >> target;
+ source << Cf/qy_.Channel_Cross_Block(cion) >> target;
 }
 
 void PHR_Graph_Build::add_channel_continue_block_node(
@@ -496,7 +496,7 @@ void PHR_Graph_Build::add_channel_continue_block_node(
 
  caon_ptr<PHR_Graph_Connection> cion = new PHR_Graph_Connection(bin);
 
- source << fr_/qy_.Channel_Continue_Block(cion) >> target;
+ source << Cf/qy_.Channel_Continue_Block(cion) >> target;
 }
 
 caon_ptr<PHR_Graph_Node> PHR_Graph_Build::add_block_entry_node(
@@ -514,11 +514,11 @@ caon_ptr<PHR_Graph_Node> PHR_Graph_Build::add_block_entry_node(
  if(sin)
    cion->add_node(sin);
 
- source << fr_/qy_.Block_Entry(cion) >> target;
+ source << Cf/qy_.Block_Entry(cion) >> target;
 
  if(held_type_declaration_node_)
  {
-  target << fr_/qy_.Type_Declaration >> held_type_declaration_node_;
+  target << Cf/qy_.Type_Declaration >> held_type_declaration_node_;
   held_type_declaration_node_ = nullptr;
  }
 
@@ -536,14 +536,14 @@ void PHR_Graph_Build::add_statement_sequence_node(
  if(sin)
  {
   caon_ptr<PHR_Graph_Connection> cion = new PHR_Graph_Connection(sin);
-    source << fr_/qy_.Statement_Sequence(cion) >> target;
+    source << Cf/qy_.Statement_Sequence(cion) >> target;
  }
  else
-   source << fr_/qy_.Statement_Sequence >> target;
+   source << Cf/qy_.Statement_Sequence >> target;
 
  if(held_type_declaration_node_)
  {
-  target << fr_/qy_.Type_Declaration >> held_type_declaration_node_;
+  target << Cf/qy_.Type_Declaration >> held_type_declaration_node_;
   held_type_declaration_node_ = nullptr;
  }
 }

@@ -15,7 +15,7 @@
 #include "rz-graph-valuer/string/rz-keyword.h"
 
 
-#include "rz-graph-token/rz-asg-core-function.h"
+#include "rz-graph-token/rz-asg-core-casement-function.h"
 
 
 #include "functions/rz-asg-function-families.h"
@@ -81,7 +81,7 @@ RZ_GCALL_IMPLEMENT <RZ_GCALL_C(If, Core_Class)>
  }
 
  template<typename T1, typename T2>
- static void run(RZ_ASG_Result_Holder& rh, RZ_ASG_Core_Function& t1, RZ_ASG_Value_Holder& t2)
+ static void run(RZ_ASG_Result_Holder& rh, RZ_ASG_Core_Casement_Function& t1, RZ_ASG_Value_Holder& t2)
  {
   rh.valuer().init_if_block(rh, t1);
  }
@@ -109,7 +109,7 @@ RZ_GCALL_IMPLEMENT <RZ_GCALL_C(Elsif, Core_Class)>
  }
 
  template<typename T1, typename T2>
- static void run(RZ_ASG_Result_Holder& rh, RZ_ASG_Core_Function& t1, RZ_ASG_Value_Holder& t2)
+ static void run(RZ_ASG_Result_Holder& rh, RZ_ASG_Core_Casement_Function& t1, RZ_ASG_Value_Holder& t2)
  {
   rh.valuer().init_elsif_block(rh, t1);
  }

@@ -102,7 +102,7 @@ private:
 
  caon_ptr<RZ_ASG_Token> channel_sequence(caon_ptr<tNode>& sequence_node, signed int& depth_change);
 
- const ChasmRZ_Query& rq_;
+ const ChasmRZ_Query& Qy;
 
  QStack<caon_ptr<ChasmRZ_Node>> entry_nodes_;
 

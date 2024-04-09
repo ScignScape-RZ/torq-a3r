@@ -60,7 +60,7 @@ _RZNS(GRun)
 
 RZNS_(GBuild)
 
-class RZ_ASG_Core_Function;
+class RZ_ASG_Core_Casement_Function;
 class RZ_ASG_Token;
 
 _RZNS(GBuild)

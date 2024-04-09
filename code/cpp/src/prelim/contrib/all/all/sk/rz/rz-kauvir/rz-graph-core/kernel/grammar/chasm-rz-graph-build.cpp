@@ -18,7 +18,10 @@ USING_RZNS(RZ_Core)
 #include "chasm-rz-grammar.h"
 
 #include "code/chasm-rz-call-entry.h"
+#include "code/chasm-rz-casement-call-entry.h"
+
 #include "code/chasm-rz-block-entry.h"
+#include "code/chasm-rz-casement-block-entry.h"
 
 #include "kernel/graph/chasm-rz-graph.h"
 
@@ -47,8 +50,9 @@ ChasmRZ_Graph_Build::ChasmRZ_Graph_Build(ChasmRZ_Document* d,
   ,graph_(g)
   ,parser_(p)
   ,current_line_(1)
-  ,fr_(ChasmRZ_Frame::instance())
-  ,markup_position_(this)
+  ,Cf(ChasmRZ_Frame::instance("casement"))
+  ,Sf(ChasmRZ_Frame::instance("semantic"))
+  ,asg_position_(this)
   ,active_run_node_(nullptr)
   ,active_chief_token_(nullptr)
   ,current_run_comment_left_(0)
@@ -67,7 +71,7 @@ void ChasmRZ_Graph_Build::init()
 
  RELAE_SET_NODE_LABEL(root_node_, "<root>");
  graph_.set_root_node(root_node_);
- markup_position_.set_current_node(root_node_);
+ asg_position_.set_current_node(root_node_);
 
  QString sct = "_asg";
  QStringList sctl = sct.split(' ');
@@ -78,8 +82,22 @@ void ChasmRZ_Graph_Build::init()
 }
 
 
-void ChasmRZ_Graph_Build::declare_lexical_symbol(QString token)
+void ChasmRZ_Graph_Build::declare_lexical_symbol(QString raw_text)
 {
+ caon_ptr<ChasmRZ_Token> token = new ChasmRZ_Token(raw_text);
+ CAON_PTR_DEBUG(ChasmRZ_Token ,token)
+ caon_ptr<ChasmRZ_Node> token_node = make_new_node(token);
+
+ caon_ptr<ChasmRZ_Token> observer = new ChasmRZ_Token("lex-let");
+ CAON_PTR_DEBUG(ChasmRZ_Token ,observer)
+ caon_ptr<ChasmRZ_Node> observer_node = make_new_node(observer);
+
+ asg_position_.add_casement_entry(observer_node);
+ asg_position_.add_casement_sequence(token_node);
+
+
+
+ // <<
 
 }
 
@@ -138,6 +156,13 @@ caon_ptr<ChasmRZ_Node> ChasmRZ_Graph_Build::make_new_node(caon_ptr<RZ_String_Ple
 }
 
 
+caon_ptr<ChasmRZ_Node> ChasmRZ_Graph_Build::make_new_node(caon_ptr<ChasmRZ_Casement_Call_Entry> rce)
+{
+ caon_ptr<ChasmRZ_Node> result = new ChasmRZ_Node(rce);
+ RELAE_SET_NODE_LABEL(result, QString("<casement-call %1>").arg(rce->call_id()));
+ return result;
+}
+
 caon_ptr<ChasmRZ_Node> ChasmRZ_Graph_Build::make_new_node(caon_ptr<ChasmRZ_Call_Entry> rce)
 {
  caon_ptr<ChasmRZ_Node> result = new ChasmRZ_Node(rce);
@@ -155,7 +180,14 @@ caon_ptr<ChasmRZ_Node> ChasmRZ_Graph_Build::make_new_node(caon_ptr<ChasmRZ_Funct
 caon_ptr<ChasmRZ_Node> ChasmRZ_Graph_Build::make_new_node(caon_ptr<ChasmRZ_Block_Entry> rbe)
 {
  caon_ptr<ChasmRZ_Node> result = new ChasmRZ_Node(rbe);
- RELAE_SET_NODE_LABEL(result, QString("<block %1>").arg(rbe->call_id()));
+ RELAE_SET_NODE_LABEL(result, QString("<block %1>").arg(rbe->block_id()));
+ return result;
+}
+
+caon_ptr<ChasmRZ_Node> ChasmRZ_Graph_Build::make_new_node(caon_ptr<ChasmRZ_Casement_Block_Entry> cbe)
+{
+ caon_ptr<ChasmRZ_Node> result = new ChasmRZ_Node(cbe);
+ RELAE_SET_NODE_LABEL(result, QString("<block %1>").arg(cbe->block_id()));
  return result;
 }
 
@@ -163,7 +195,7 @@ void ChasmRZ_Graph_Build::add_assignment_annotation(QString text)
 {
  caon_ptr<ChasmRZ_Token> aa_token = new ChasmRZ_Token(text);
  caon_ptr<ChasmRZ_Node> aa_node = make_new_node(aa_token);
- markup_position_.hold_assignment_annotation_node(aa_node);
+ asg_position_.hold_assignment_annotation_node(aa_node);
 }
 
 void ChasmRZ_Graph_Build::check_line_increment(QString text)
@@ -193,7 +225,7 @@ void ChasmRZ_Graph_Build::complete_function_declaration()
  caon_ptr<ChasmRZ_Token> token = new ChasmRZ_Token("<undef-function-body>", "", "");
  caon_ptr<ChasmRZ_Node> node = make_new_node(token);
 
- markup_position_.complete_function_declaration(arrow_node, node);
+ asg_position_.complete_function_declaration(arrow_node, node);
 
 
 }
@@ -211,19 +243,19 @@ void ChasmRZ_Graph_Build::add_semis(QString raw_text, QString suffix,
  if(flags.added_lr_mode)
  {
   flags.added_lr_mode = false;
-  markup_position_.leave_expression();
+  asg_position_.leave_expression();
  }
 
  switch(length)
  {
  case 1:
   if(suffix.isEmpty())
-    markup_position_.close_statement();
+    asg_position_.close_statement();
   else
-    markup_position_.leave_lexical_scope(2, suffix);
+    asg_position_.leave_lexical_scope(2, suffix);
   return;
  case 2:
-  markup_position_.leave_lexical_scope(2, suffix);
+  asg_position_.leave_lexical_scope(2, suffix);
   return;
  case 5:
   terminate_parse();
@@ -270,7 +302,7 @@ void ChasmRZ_Graph_Build::string_plex_acc(QString text)
 }
 
 caon_ptr<ChasmRZ_Node> ChasmRZ_Graph_Build::create_tuple(ChasmRZ_Tuple_Info::Tuple_Formations tf,
- ChasmRZ_Tuple_Info::Tuple_Indicators ti, ChasmRZ_Tuple_Info::Tuple_Formations sf, bool increment_id)
+ ChasmRZ_Tuple_Info::Tuple_Indicators ti, ChasmRZ_Tuple_Info::Tuple_Formations Sf, bool increment_id)
 {
  int tuple_id;
  if(increment_id)
@@ -331,7 +363,7 @@ void ChasmRZ_Graph_Build::enter_tuple(QString name, QString prefix, QString entr
  // //  want to hold suffix character if ti is an entry ...
  check_hold_tuple_suffix(ti, suffix);
 
- ChasmRZ_Tuple_Info::Tuple_Formations sf = ChasmRZ_Tuple_Info::get_tuple_formation(suffix);
+ ChasmRZ_Tuple_Info::Tuple_Formations Sf = ChasmRZ_Tuple_Info::get_tuple_formation(suffix);
 
  int tuple_id;
 
@@ -339,11 +371,11 @@ void ChasmRZ_Graph_Build::enter_tuple(QString name, QString prefix, QString entr
 
  if(tf == ChasmRZ_Tuple_Info::Tuple_Formations::Indicates_Declarations)
  {
-  if(markup_position_.current_entry_is_backquoted())
+  if(asg_position_.current_entry_is_backquoted())
   {
    if(ti == ChasmRZ_Tuple_Info::Tuple_Indicators::Enter_Array)
    {
-    markup_position_.add_call_entry(false, prefix);
+    asg_position_.add_call_entry(false, prefix);
     return;
    }
    else
@@ -357,31 +389,31 @@ void ChasmRZ_Graph_Build::enter_tuple(QString name, QString prefix, QString entr
  {
   if(ti == ChasmRZ_Tuple_Info::Tuple_Indicators::Enter_Array)
   {
-   markup_position_.add_call_entry(false, prefix);
+   asg_position_.add_call_entry(false, prefix);
    return;
   }
   else if(ti == ChasmRZ_Tuple_Info::Tuple_Indicators::Leave_Array)
   {
-   ChasmRZ_Tuple_Info::Tuple_Indicators ti1 = markup_position_.data_chief_indicator();
+   ChasmRZ_Tuple_Info::Tuple_Indicators ti1 = asg_position_.data_chief_indicator();
    if(ti1 == ChasmRZ_Tuple_Info::Tuple_Indicators::N_A)
    {
-    markup_position_.leave_expression();
+    asg_position_.leave_expression();
     return;
    }
   }
   else if(ti == ChasmRZ_Tuple_Info::Tuple_Indicators::Enter_Map)
   {
-   markup_position_.add_block_map_entry();
+   asg_position_.add_block_map_entry();
    return;
   }
   else if(ti == ChasmRZ_Tuple_Info::Tuple_Indicators::Leave_Map)
   {
-   if(caon_ptr<ChasmRZ_Tuple_Info> rti = markup_position_.current_tuple_info())
+   if(caon_ptr<ChasmRZ_Tuple_Info> rti = asg_position_.current_tuple_info())
    {
     if(rti->indicator() == ChasmRZ_Tuple_Info::Tuple_Indicators::Enter_Map)
      goto good_to_go;
    }
-   markup_position_.add_block_map_leave();
+   asg_position_.add_block_map_leave();
    return;
   }
   else
@@ -419,15 +451,15 @@ good_to_go:
  case ChasmRZ_Tuple_Info::Tuple_Indicators::Enter_Map:
  case ChasmRZ_Tuple_Info::Tuple_Indicators::Enter_Set:
  case ChasmRZ_Tuple_Info::Tuple_Indicators::Enter_Annotation:
-  markup_position_.add_data_entry(tinfo_node);
+  asg_position_.add_data_entry(tinfo_node);
   break;
 
  case ChasmRZ_Tuple_Info::Tuple_Indicators::Leave_Vector:
-  if(sf == ChasmRZ_Tuple_Info::Tuple_Formations::Indicates_Plex)
+  if(Sf == ChasmRZ_Tuple_Info::Tuple_Formations::Indicates_Plex)
   {
    caon_ptr<ChasmRZ_Node> string_plex_node = close_string_plex();
    CAON_PTR_DEBUG(ChasmRZ_Node ,tinfo_node)
-   markup_position_.add_string_plex_node(tinfo_node, string_plex_node);
+   asg_position_.add_string_plex_node(tinfo_node, string_plex_node);
    parse_context_.flags.inside_string_plex = false;
   }
   //  fallthrough
@@ -438,7 +470,7 @@ good_to_go:
  case ChasmRZ_Tuple_Info::Tuple_Indicators::Leave_Map:
  case ChasmRZ_Tuple_Info::Tuple_Indicators::Leave_Set:
  case ChasmRZ_Tuple_Info::Tuple_Indicators::Leave_Annotation:
-  markup_position_.add_data_leave(tinfo_node);
+  asg_position_.add_data_leave(tinfo_node);
   break;
  }
 }
@@ -489,6 +521,41 @@ caon_ptr<ChasmRZ_Node> ChasmRZ_Graph_Build::new_run_call_entry_node(bool is_stat
  return result;
 }
 
+
+caon_ptr<ChasmRZ_Node> ChasmRZ_Graph_Build::new_run_casement_entry_node(bool is_statement_entry,
+  QString prefix, caon_ptr<ChasmRZ_Casement_Call_Entry> parent_entry)
+{
+ caon_ptr<ChasmRZ_Casement_Call_Entry> new_entry = new ChasmRZ_Casement_Call_Entry(call_entry_count_, prefix);
+
+ CAON_PTR_DEBUG(ChasmRZ_Casement_Call_Entry ,new_entry)
+
+ if(is_statement_entry)
+  new_entry->flags.is_statement_entry = true;
+
+ if(parent_entry)
+ {
+  CAON_PTR_DEBUG(ChasmRZ_Casement_Call_Entry ,parent_entry)
+  if(!new_entry->flags.no_normalize)
+   new_entry->flags.no_normalize = parent_entry->flags.no_normalize;
+  if(!new_entry->flags.no_anticipate)
+   new_entry->flags.no_anticipate = parent_entry->flags.no_anticipate;
+ }
+
+ ++call_entry_count_;
+ caon_ptr<ChasmRZ_Node> result = make_new_node(new_entry);
+ return result;
+}
+
+
+caon_ptr<ChasmRZ_Node> ChasmRZ_Graph_Build::new_casement_block_entry_node()
+{
+ caon_ptr<ChasmRZ_Casement_Block_Entry> new_entry = new ChasmRZ_Casement_Block_Entry(block_entry_count_);
+ ++block_entry_count_;
+ caon_ptr<ChasmRZ_Node> result = make_new_node(new_entry);
+ return result;
+}
+
+
 caon_ptr<ChasmRZ_Node> ChasmRZ_Graph_Build::new_run_block_entry_node()
 {
  caon_ptr<ChasmRZ_Block_Entry> new_entry = new ChasmRZ_Block_Entry(block_entry_count_);
@@ -535,13 +602,13 @@ void ChasmRZ_Graph_Build::raw_asg_start()
 void ChasmRZ_Graph_Build::add_run_token(ChasmRZ_Token& token)
 {
  caon_ptr<ChasmRZ_Node> node = make_new_node(&token);
- markup_position_.add_token_node(node);
+ asg_position_.add_token_node(node);
 }
 
 void ChasmRZ_Graph_Build::add_raw_asg_token(ChasmRZ_Token& token)
 {
  caon_ptr<ChasmRZ_Node> node = make_new_node(&token);
- markup_position_.add_raw_asg_token(node);
+ asg_position_.add_raw_asg_token(node);
 }
 
 void ChasmRZ_Graph_Build::add_token_plus_block(QString token, QString block_entry)
@@ -561,14 +628,14 @@ void ChasmRZ_Graph_Build::add_token_plus_block(QString token, QString block_entr
     if(flags.ghost_in_closes_expression)
     {
      flags.ghost_in_closes_expression = false;
-     markup_position_.leave_expression();
+     asg_position_.leave_expression();
     }
    }
    token.prepend(';').append(';');
   }
   add_run_token("", token, "", Token_Formations::Do_Plus_Block);
  }
- markup_position_.add_block_map_entry();
+ asg_position_.add_block_map_entry();
 }
 
 
@@ -579,7 +646,7 @@ void ChasmRZ_Graph_Build::add_run_token(QString raw_text)
 
 void ChasmRZ_Graph_Build::add_equalizer_to_type(QString raw_text)
 {
- if(markup_position_.current_node_is_symbol_declaration())
+ if(asg_position_.current_node_is_symbol_declaration())
  {
   add_run_token(raw_text);
  }
@@ -600,7 +667,7 @@ void ChasmRZ_Graph_Build::add_type_indicator(QString raw_text)
  caon_ptr<ChasmRZ_Token> token = new ChasmRZ_Token(raw_text);
  CAON_PTR_DEBUG(ChasmRZ_Token ,token)
  caon_ptr<ChasmRZ_Node> node = make_new_node(token);
- markup_position_.add_type_indicator(node);
+ asg_position_.add_type_indicator(node);
 }
 
 
@@ -642,7 +709,7 @@ void ChasmRZ_Graph_Build::add_run_token(QString prefix, QString raw_text,
 
  if(token->flags.is_symbol_declaration)
  {
-  markup_position_.check_add_implied_my();
+  asg_position_.check_add_implied_my();
  }
 
  caon_ptr<ChasmRZ_Node> node = make_new_node(token);
@@ -667,42 +734,42 @@ void ChasmRZ_Graph_Build::add_run_token(QString prefix, QString raw_text,
 
  if(token->flags.is_equalizer)
  {
-  markup_position_.add_equalizer_token_node(node);
+  asg_position_.add_equalizer_token_node(node);
  }
  else if(token->flags.is_arrow)
  {
-  markup_position_.add_arrow_token_node(node);
+  asg_position_.add_arrow_token_node(node);
  }
  else if(token->flags.is_mapkey)
  {
   if(token->flags.is_do_mapkey)
   {
-   markup_position_.hold_do_mapkey_node(node);
+   asg_position_.hold_do_mapkey_node(node);
   }
   else
   {
-   markup_position_.hold_mapkey_node(node);
+   asg_position_.hold_mapkey_node(node);
   }
  }
  else if(token->special_token() == ChasmRZ_Code_Representation::Special_Tokens::Auto_Expand_To_Null_Test)
  {
-  markup_position_.add_call_entry(false);
-  markup_position_.add_token_node(node);
+  asg_position_.add_call_entry(false);
+  asg_position_.add_token_node(node);
   flags.next_token_closes_expression = true;
  }
  else if(token->special_token() == ChasmRZ_Code_Representation::Special_Tokens::Auto_Expand_To_Not_Null_Test)
  {
-  markup_position_.add_call_entry(false);
-  markup_position_.add_token_node(node);
+  asg_position_.add_call_entry(false);
+  asg_position_.add_token_node(node);
   flags.next_token_closes_expression = true;
  }
  else if(token->special_token() == ChasmRZ_Code_Representation::Special_Tokens::Return_Value_Blank_Or_Identity)
  {
-  markup_position_.hold_retval_node(node);
+  asg_position_.hold_retval_node(node);
  }
  else if(raw_text.startsWith('@') && raw_text != "@" && raw_text != "@@")
  {
-  if(markup_position_.awaiting_statement_call_entry())
+  if(asg_position_.awaiting_statement_call_entry())
   {
    raw_text = raw_text.mid(1);
    token->set_raw_text(raw_text);
@@ -711,42 +778,42 @@ void ChasmRZ_Graph_Build::add_run_token(QString prefix, QString raw_text,
    CAON_PTR_DEBUG(ChasmRZ_Token ,ntoken)
 
    caon_ptr<ChasmRZ_Node> nnode = make_new_node(ntoken);
-   markup_position_.add_token_node(nnode);
+   asg_position_.add_token_node(nnode);
 
-   markup_position_.add_call_entry(false, "\\");
-   markup_position_.add_token_node(node);
+   asg_position_.add_call_entry(false, "\\");
+   asg_position_.add_token_node(node);
 
    flags.added_lr_mode = true;
 
   }
   else
   {
-   markup_position_.add_token_node(node);
+   asg_position_.add_token_node(node);
   }
  }
  else
  {
-  markup_position_.add_token_node(node);
+  asg_position_.add_token_node(node);
  }
 
  if(this_token_closes_expression)
  {
-  markup_position_.leave_expression();
+  asg_position_.leave_expression();
  }
 
  switch(token->special_token_kind())
  {
  case ChasmRZ_Code_Representation::Special_Token_Kind::Auto_Statement_End:
-  markup_position_.close_statement();
+  asg_position_.close_statement();
   break;
  case ChasmRZ_Code_Representation::Special_Token_Kind::Auto_Statement_End_If_EOL:
   if(!space_to_end_of_line.isEmpty())
   {
-   markup_position_.close_statement();
+   asg_position_.close_statement();
   }
   break;
  case ChasmRZ_Code_Representation::Special_Token_Kind::Text_Map_Leave:
-  markup_position_.close_statement();
+  asg_position_.close_statement();
   //fallthrough...
  case ChasmRZ_Code_Representation::Special_Token_Kind::Text_Map_Leave_In_Statement:
   parse_context_.flags.inside_text_map_acc = false;

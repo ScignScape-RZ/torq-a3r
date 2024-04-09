@@ -34,8 +34,9 @@ protected:
 
  caon_ptr<ChasmRZ_Document> document_;
 
- const ChasmRZ_Frame& fr_;
- const ChasmRZ_Query& rq_;
+ const ChasmRZ_Frame& Cf;
+ const ChasmRZ_Frame& Sf;
+ const ChasmRZ_Query& Qy;
 
  virtual void output_from_node(QTextStream& qts,
   const ChasmRZ_Node& node, int indent = 0,

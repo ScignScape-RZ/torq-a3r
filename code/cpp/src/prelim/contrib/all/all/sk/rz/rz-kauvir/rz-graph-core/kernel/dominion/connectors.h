@@ -6,6 +6,18 @@
 
 
 DOMINION_CONNECTOR(N_A, "No Connection")
+
+
+DOMINION_CONNECTOR(Run_Casement_Entry, "run-casement-entry")
+DOMINION_CONNECTOR(Run_Casement_Sequence, "run-casement-sequence")
+DOMINION_CONNECTOR(Run_Casement_Cross, "run-casement-cross")
+
+DOMINION_CONNECTOR(Casement_Block_Entry, "casement-block-entry")
+DOMINION_CONNECTOR(Casement_Block_Sequence, "casement-block-sequence")
+DOMINION_CONNECTOR(Casement_Block_Cross, "casement-block-cross")
+
+
+
 DOMINION_CONNECTOR(Text_Map_Key_Sequence, "text-map-key-sequence")
 DOMINION_CONNECTOR(Residual_Node, "residual-node")
 DOMINION_CONNECTOR(Run_Function_Def_Entry, "run-function-def-entry")

@@ -49,7 +49,7 @@ class PHR_Graph_Build
  caon_ptr<PHR_Graph_Cocyclic_Type> current_cocyclic_type_;
 
 
- PHR_Graph_Frame& fr_;
+ PHR_Graph_Frame& Cf;
  const PHR_Graph_Query& qy_;
 
 public:

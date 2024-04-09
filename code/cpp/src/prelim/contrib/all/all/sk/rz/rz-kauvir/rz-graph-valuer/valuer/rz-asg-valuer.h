@@ -107,7 +107,7 @@ enum class RZ_ASG_Basic_Type_Groups {
 struct RZ_ASG_Valuer_Core_Pair
 {
  int generation;
- RZ_ASG_Core_Function* cf;
+ RZ_ASG_Core_Casement_Function* ccf;
  caon_ptr<ChasmRZ_Node> fnode;
  caon_ptr<ChasmRZ_Node> lhs_node;
  caon_ptr<ChasmRZ_Node> left_new_node;
@@ -124,8 +124,9 @@ class RZ_ASG_Valuer
 
  RZ_Type_Variety type_variety_;
 
- ChasmRZ_Frame& fr_;
- const ChasmRZ_Query& rq_;
+ ChasmRZ_Frame& Cf;
+ ChasmRZ_Frame& Sf;
+ const ChasmRZ_Query& Qy;
 
  QMap<ChasmRZ_Dominion::Type_Codes, caon_ptr<RZ_Type_Object>> type_objects_by_code_;
 
@@ -156,7 +157,7 @@ public:
  void add_type_object(ChasmRZ_Dominion::Type_Codes code, caon_ptr<RZ_Type_Object> rto);
 
 
- typedef std::function<caon_ptr<RZ_ASG_Core_Function>(QString)>
+ typedef std::function<caon_ptr<RZ_ASG_Core_Casement_Function>(QString)>
   rz_asg_core_function_finder_type;
 
 
@@ -257,7 +258,7 @@ public:
   caon_ptr<tNode> pre_entry_node, caon_ptr<tNode> start_node, caon_ptr<tNode> block_entry_node);
 
  void mark_core_function_call_entry(int generation,
-   RZ_ASG_Core_Function& cf,
+   RZ_ASG_Core_Casement_Function& ccf,
    caon_ptr<tNode> start_node, caon_ptr<tNode> lhs_node,
    caon_ptr<tNode> left_new_node,
    caon_ptr<tNode> rhs_node, caon_ptr<tNode> right_new_node,
@@ -266,12 +267,12 @@ public:
 
  void init_if_block(RZ_ASG_Result_Holder& rh, RZ_Opaque_Type_Symbol& ots);
 
- void init_if_block(RZ_ASG_Result_Holder& rh, RZ_ASG_Core_Function& corefun);
+ void init_if_block(RZ_ASG_Result_Holder& rh, RZ_ASG_Core_Casement_Function& ccf);
  void init_if_block(RZ_ASG_Result_Holder& rh, RZ_Opaque_Call& opc);
  void init_if_block(RZ_ASG_Result_Holder& rh,
   caon_ptr<tNode> pre_entry_node, caon_ptr<tNode> start_node, caon_ptr<tNode> block_entry_node);
 
- void init_elsif_block(RZ_ASG_Result_Holder& rh, RZ_ASG_Core_Function& corefun);
+ void init_elsif_block(RZ_ASG_Result_Holder& rh, RZ_ASG_Core_Casement_Function& ccf);
  void init_elsif_block(RZ_ASG_Result_Holder& rh, RZ_Opaque_Call& opc);
  void init_elsif_block(RZ_ASG_Result_Holder& rh,
   caon_ptr<tNode> pre_entry_node, caon_ptr<tNode> start_node, caon_ptr<tNode> block_entry_node);

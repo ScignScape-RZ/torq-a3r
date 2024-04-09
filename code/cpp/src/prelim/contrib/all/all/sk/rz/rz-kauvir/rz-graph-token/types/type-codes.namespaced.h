@@ -16,7 +16,7 @@ RZ_RUN_TYPE_NS(GVal, Ots, ots, RZ_Opaque_Type_Symbol, RZ_Opaque_Type_Symbol, Cor
 RZ_RUN_TYPE_NS(GVal, Block_Info, block_info, RZ_ASG_Block_Info, RZ_ASG_Block_Info, Core_Class)
 RZ_RUN_TYPE_NS(GBuild, Null_Value, Null_Value, RZ_Null_Value, RZ_Null_Value, Core_Class)
 
-RZ_RUN_TYPE_NS(GBuild, GraphCoreFun, cfn, RZ_ASG_Core_Function, RZ_Graph_Core_Function, Core_Class)
+RZ_RUN_TYPE_NS(GBuild, GraphCoreFun, cfn, RZ_ASG_Core_Casement_Function, RZ_Graph_Core_Function, Core_Class)
 RZ_RUN_TYPE_NS(GBuild, EmptyTuple, empty-tuple, RZ_ASG_Empty_Tuple, RZ_Empty_Tuple, Core_Class)
 RZ_RUN_TYPE_NS(GBuild, FAIRAnnotation, fairan, RZ_FAIR_Annotation, RZ_FAIR_Annotation, Core_Class)
 RZ_RUN_TYPE_NS(GVal, Vec, vec, RZ_ASG_Vector, RZ_Vector, Core_Class)

@@ -24,7 +24,7 @@ USING_RZNS(PhrGraphCore)
 
 
 PHR_Graph_Output::PHR_Graph_Output(caon_ptr<PHR_Graph_Document> document)
- : document_(document), fr_(PHR_Graph_Frame::instance()),
+ : document_(document), Cf(PHR_Graph_Frame::instance()),
     qy_(PHR_Graph_Query::instance())
 {
 

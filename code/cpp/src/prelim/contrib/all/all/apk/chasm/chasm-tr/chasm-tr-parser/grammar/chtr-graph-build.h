@@ -74,7 +74,7 @@ private:
  ChTR_Parser& parser_;
  ChTR_Graph& graph_;
 
- ChTR_Relae_Frame& fr_;
+ ChTR_Relae_Frame& Cf;
  const ChTR_Relae_Query& qry_;
 
 

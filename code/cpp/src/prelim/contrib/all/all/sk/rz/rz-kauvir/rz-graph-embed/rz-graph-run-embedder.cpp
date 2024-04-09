@@ -22,7 +22,8 @@
 USING_RZNS(GEmbed)
 
 RZ_Graph_Run_Embedder::RZ_Graph_Run_Embedder(caon_ptr<RZ_ASG_Valuer> valuer)
- : valuer_(valuer), fr_(ChasmRZ_Frame::instance()), rq_(ChasmRZ_Query::instance()), cpp_project_(nullptr)
+ : valuer_(valuer), Cf(ChasmRZ_Frame::instance("casement")),
+   Sf(ChasmRZ_Frame::instance("semantic")), Qy(ChasmRZ_Query::instance()), cpp_project_(nullptr)
 {
  init_noop_node();
 }
@@ -70,7 +71,7 @@ void RZ_Graph_Run_Embedder::redirect_to_noop(RZ_ASG_Result_Holder& rh,
 void RZ_Graph_Run_Embedder::redirect_to_noop(tNode& n)
 {
  caon_ptr<tNode> pn(&n);
- pn <<fr_/rq_.Run_Embed_Redirect>> noop_node_;
+ pn <<Cf/Qy.Run_Embed_Redirect>> noop_node_;
 }
 
 void RZ_Graph_Run_Embedder::redirect(RZ_ASG_Result_Holder& rh,
@@ -188,7 +189,7 @@ caon_ptr<RZ_Graph_Embed_Token> RZ_Graph_Run_Embedder::redirect(tNode& n, QString
   rget->set_args(qsl);
  }
 
- &n <<fr_/rq_.Run_Embed_Redirect>> new_node;
+ &n <<Cf/Qy.Run_Embed_Redirect>> new_node;
 
  return rget;
 }
@@ -201,7 +202,7 @@ void RZ_Graph_Run_Embedder::redirect(tNode& n, QString function_name)
 
  new_node->set_label(QString("<embed:%1>").arg(function_name));
 
- &n <<fr_/rq_.Run_Embed_Redirect>> new_node;
+ &n <<Cf/Qy.Run_Embed_Redirect>> new_node;
 }
 
 void RZ_Graph_Run_Embedder::embed_deferred_callback(tNode& n, QString function_name)
@@ -226,7 +227,7 @@ void RZ_Graph_Run_Embedder::embed_deferred_callback(tNode& n, QString function_n
 
  new_node->set_label(QString("<vdc:%1>").arg(function_name));
 
- &n <<fr_/rq_.Run_Embed_Redirect>> new_node;
+ &n <<Cf/Qy.Run_Embed_Redirect>> new_node;
 }
 
 
@@ -237,6 +238,6 @@ void RZ_Graph_Run_Embedder::embed_rename(tNode& n, QString function_name)
 
  new_node->set_label(QString("<rename:%1>").arg(function_name));
 
- &n <<fr_/rq_.Run_Embed_Rename>> new_node;
+ &n <<Cf/Qy.Run_Embed_Rename>> new_node;
 }
 

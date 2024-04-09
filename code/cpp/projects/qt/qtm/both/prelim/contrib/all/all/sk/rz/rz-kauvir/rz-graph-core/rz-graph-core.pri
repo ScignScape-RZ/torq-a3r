@@ -34,7 +34,7 @@ HEADERS += \
   $$SRC_DIR/kernel/graph/chasm-rz-node.h \
   $$SRC_DIR/kernel/graph/chasm-rz-node-proxy.h \
   $$SRC_DIR/kernel/graph/chasm-rz-graph.h \
-  $$SRC_DIR/kernel/graph/chasm-rz-markup-position.h \
+  $$SRC_DIR/kernel/graph/chasm-rz-asg-position.h \
   $$SRC_DIR/kernel/graph/chasm-rz-connection.h \
   $$SRC_DIR/kernel/query/chasm-rz-query.h \
   $$SRC_DIR/kernel/frame/chasm-rz-frame.h \
@@ -45,7 +45,9 @@ HEADERS += \
   $$SRC_DIR/kernel/grammar/chasm-rz-parse-context.h \
   $$SRC_DIR/kernel/grammar/chasm-rz-string-plex-builder.h \
   $$SRC_DIR/code/chasm-rz-call-entry.h \
+  $$SRC_DIR/code/chasm-rz-casement-call-entry.h \
   $$SRC_DIR/code/chasm-rz-block-entry.h \
+  $$SRC_DIR/code/chasm-rz-casement-block-entry.h \
   $$SRC_DIR/code/chasm-rz-function-def-entry.h \
   $$SRC_DIR/code/chasm-rz-function-def-kinds.h \
   $$SRC_DIR/code/chasm-rz-code-representation.h \
@@ -68,7 +70,7 @@ SOURCES += \
   $$SRC_DIR/kernel/graph/chasm-rz-node.cpp \
   $$SRC_DIR/kernel/graph/chasm-rz-node-proxy.cpp \
   $$SRC_DIR/kernel/graph/chasm-rz-graph.cpp \
-  $$SRC_DIR/kernel/graph/chasm-rz-markup-position.cpp \
+  $$SRC_DIR/kernel/graph/chasm-rz-asg-position.cpp \
   $$SRC_DIR/kernel/graph/chasm-rz-connection.cpp \
   $$SRC_DIR/kernel/query/chasm-rz-query.cpp \
   $$SRC_DIR/kernel/frame/chasm-rz-frame.cpp \
@@ -80,8 +82,10 @@ SOURCES += \
   $$SRC_DIR/kernel/grammar/chasm-rz-string-plex-builder.cpp \
   $$SRC_DIR/code/chasm-rz-code-representation.cpp \
   $$SRC_DIR/code/chasm-rz-call-entry.cpp \
-  $$SRC_DIR/code/chasm-rz-function-def-entry.cpp \
+  $$SRC_DIR/code/chasm-rz-casement-call-entry.cpp \
   $$SRC_DIR/code/chasm-rz-block-entry.cpp \
+  $$SRC_DIR/code/chasm-rz-casement-block-entry.cpp \
+  $$SRC_DIR/code/chasm-rz-function-def-entry.cpp \
   $$SRC_DIR/tuple/chasm-rz-tuple-info.cpp \
   $$SRC_DIR/output/chasm-rz-asg-output.cpp \
   $$SRC_DIR/output/chasm-rz-pre-init-asg.cpp \

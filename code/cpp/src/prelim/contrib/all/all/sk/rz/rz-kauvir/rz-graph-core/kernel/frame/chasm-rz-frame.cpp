@@ -12,20 +12,27 @@
 
 #include <QDebug>
 
+#include <QMap>
+
+
 
 USING_RZNS(RZ_Core)
 
-ChasmRZ_Frame::ChasmRZ_Frame()
- : node_frame<ChasmRZ_Dominion>()
+ChasmRZ_Frame::ChasmRZ_Frame(QString label)
+ : node_frame<ChasmRZ_Dominion>(), label_(label)
 {
 
 
 }
 
-ChasmRZ_Frame& ChasmRZ_Frame::instance()
+ChasmRZ_Frame& ChasmRZ_Frame::instance(QString label)
 {
- static ChasmRZ_Frame* the_instance = nullptr;
- if(!the_instance)
-  the_instance = new ChasmRZ_Frame;
- return *the_instance;
+ static QMap<QString, ChasmRZ_Frame*> instances;
+
+ auto it = instances.find(label);
+
+ if(it == instances.end())
+   it = instances.insert(label, new ChasmRZ_Frame(label));
+
+ return **it;
 }

@@ -20,11 +20,13 @@ RZNS_(RZ_Core)
 
 class ChasmRZ_Frame : public node_frame<ChasmRZ_Dominion>
 {
- ChasmRZ_Frame();
+ ChasmRZ_Frame(QString label = {});
+
+ QString label_;
 
  public:
 
- static ChasmRZ_Frame& instance();
+ static ChasmRZ_Frame& instance(QString label);
 
 };
 

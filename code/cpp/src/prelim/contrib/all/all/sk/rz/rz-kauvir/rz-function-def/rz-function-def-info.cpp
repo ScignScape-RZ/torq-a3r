@@ -34,7 +34,7 @@ USING_RZNS(GVal)
 RZ_Function_Def_Info::RZ_Function_Def_Info(ChasmRZ_Function_Def_Entry& function_def_entry
   , type_name_callback_type type_name_callback, ls_callback_type ls_callback)
  : Flags(0), function_def_entry_(&function_def_entry), type_name_callback_(type_name_callback),
-   ls_callback_(ls_callback), rq_(ChasmRZ_Query::instance()),
+   ls_callback_(ls_callback), Qy(ChasmRZ_Query::instance()),
    map_key_sequence_ref_node_(nullptr),
    map_key_sequence_order_(0), ref_fdi_(nullptr)
 {
@@ -480,13 +480,13 @@ caon_ptr<RZ_ASG_Token> RZ_Function_Def_Info::channel_sequence(caon_ptr<tNode>& s
   result = RZ_ASG_Token::check_init_asg_token(*retok);
   depth_change = 0;
  }
- if(caon_ptr<ChasmRZ_Node> next_node = rq_.Run_Call_Sequence(sequence_node))
+ if(caon_ptr<ChasmRZ_Node> next_node = Qy.Run_Call_Sequence(sequence_node))
   sequence_node = next_node;
- else if(next_node = rq_.Run_Call_Entry(sequence_node))
+ else if(next_node = Qy.Run_Call_Entry(sequence_node))
  {
   depth_change = 1;
   entry_nodes_.push(next_node);
-  sequence_node = rq_.Run_Call_Entry(next_node);
+  sequence_node = Qy.Run_Call_Entry(next_node);
  }
  else if(entry_nodes_.empty())
  {
@@ -497,14 +497,14 @@ caon_ptr<RZ_ASG_Token> RZ_Function_Def_Info::channel_sequence(caon_ptr<tNode>& s
   depth_change = -1;
   caon_ptr<ChasmRZ_Node> en = entry_nodes_.pop();
   CAON_PTR_DEBUG(ChasmRZ_Node ,en)
-  sequence_node = rq_.Run_Cross_Sequence(en);
+  sequence_node = Qy.Run_Cross_Sequence(en);
   CAON_PTR_DEBUG(ChasmRZ_Node ,sequence_node)
   if(sequence_node)
   {
-   if(caon_ptr<ChasmRZ_Node> next_node = rq_.Run_Call_Entry(sequence_node))
+   if(caon_ptr<ChasmRZ_Node> next_node = Qy.Run_Call_Entry(sequence_node))
    {
     entry_nodes_.push(sequence_node);
-    sequence_node = rq_.Run_Call_Entry(next_node);
+    sequence_node = Qy.Run_Call_Entry(next_node);
    }
   }
  }
@@ -577,11 +577,11 @@ void RZ_Function_Def_Info::init_channels(tNode& fdef_node)
 {
  caon_ptr<tNode> data_entry_node;
  caon_ptr<tNode> tuple_info_node;
- data_entry_node = rq_.Run_Call_Entry(&fdef_node);
+ data_entry_node = Qy.Run_Call_Entry(&fdef_node);
  while(data_entry_node)
  {
   CAON_PTR_DEBUG(ChasmRZ_Node ,data_entry_node)
-  if(tuple_info_node = rq_.Run_Data_Entry(data_entry_node))
+  if(tuple_info_node = Qy.Run_Data_Entry(data_entry_node))
   {
    CAON_PTR_DEBUG(ChasmRZ_Node ,tuple_info_node)
 
@@ -595,32 +595,32 @@ void RZ_Function_Def_Info::init_channels(tNode& fdef_node)
     {
     case ChasmRZ_Tuple_Info::Function_Def_Channels::Lambda_Channel:
      if(flags.monad)
-       entry_nodes_map_[Channel_Types::Monad] = rq_.Run_Data_Entry(tuple_info_node);
+       entry_nodes_map_[Channel_Types::Monad] = Qy.Run_Data_Entry(tuple_info_node);
      else
-       entry_nodes_map_[Channel_Types::Lambda] = rq_.Run_Data_Entry(tuple_info_node);
+       entry_nodes_map_[Channel_Types::Lambda] = Qy.Run_Data_Entry(tuple_info_node);
      break;
     case ChasmRZ_Tuple_Info::Function_Def_Channels::Context_Channel:
-     entry_nodes_map_[Channel_Types::Context] = rq_.Run_Data_Entry(tuple_info_node);
+     entry_nodes_map_[Channel_Types::Context] = Qy.Run_Data_Entry(tuple_info_node);
      break;
     case ChasmRZ_Tuple_Info::Function_Def_Channels::Sigma_Channel:
-      entry_nodes_map_[Channel_Types::Sigma] = rq_.Run_Data_Entry(tuple_info_node);
+      entry_nodes_map_[Channel_Types::Sigma] = Qy.Run_Data_Entry(tuple_info_node);
      break;
     case ChasmRZ_Tuple_Info::Function_Def_Channels::Return_Channel:
-      entry_nodes_map_[Channel_Types::Return] = rq_.Run_Data_Entry(tuple_info_node);
+      entry_nodes_map_[Channel_Types::Return] = Qy.Run_Data_Entry(tuple_info_node);
      break;
     case ChasmRZ_Tuple_Info::Function_Def_Channels::Error_Channel:
-      entry_nodes_map_[Channel_Types::Error] = rq_.Run_Data_Entry(tuple_info_node);
+      entry_nodes_map_[Channel_Types::Error] = Qy.Run_Data_Entry(tuple_info_node);
      break;
     case ChasmRZ_Tuple_Info::Function_Def_Channels::CTOR_Ret_Channel:
-      entry_nodes_map_[Channel_Types::CTOR_Ret] = rq_.Run_Data_Entry(tuple_info_node);
+      entry_nodes_map_[Channel_Types::CTOR_Ret] = Qy.Run_Data_Entry(tuple_info_node);
      break;
     case ChasmRZ_Tuple_Info::Function_Def_Channels::CTOR_Mem_Channel:
-      entry_nodes_map_[Channel_Types::CTOR_Mem] = rq_.Run_Data_Entry(tuple_info_node);
+      entry_nodes_map_[Channel_Types::CTOR_Mem] = Qy.Run_Data_Entry(tuple_info_node);
      break;
     }
    }
   }
-  data_entry_node = rq_.Run_Cross_Data(data_entry_node);
+  data_entry_node = Qy.Run_Cross_Data(data_entry_node);
  }
 }
 

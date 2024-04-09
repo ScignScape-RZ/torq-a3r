@@ -12,7 +12,7 @@
 #include "rz-graph-token/token/rz-asg-token.h"
 #include "rz-graph-core/kernel/graph/chasm-rz-node.h"
 #include "rz-function-def/rz-function-def-info.h"
-#include "rz-graph-token/rz-asg-core-function.h"
+#include "rz-graph-token/rz-asg-core-casement-function.h"
 #include "rz-graph-core/token/chasm-rz-token.h"
 #include "rz-graph-embed/rz-graph-embed-token.h"
 

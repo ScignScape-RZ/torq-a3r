@@ -61,8 +61,9 @@ class RZ_Graph_Run_Embedder
 {
  caon_ptr<RZ_ASG_Valuer> valuer_;
 
- ChasmRZ_Frame& fr_;
- const ChasmRZ_Query& rq_;
+ ChasmRZ_Frame& Cf;
+ ChasmRZ_Frame& Sf;
+ const ChasmRZ_Query& Qy;
 
 
  typedef ChasmRZ_Node tNode;

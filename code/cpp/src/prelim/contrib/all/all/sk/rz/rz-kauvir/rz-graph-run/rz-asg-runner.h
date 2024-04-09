@@ -69,7 +69,7 @@ class RZ_ASG_Runner
 
  caon_ptr<RZ_ASG_Valuer> valuer_;
 
- const ChasmRZ_Query& rq_;
+ const ChasmRZ_Query& Qy;
 
 
  typedef ChasmRZ_Node tNode;
@@ -79,20 +79,20 @@ public:
  RZ_ASG_Runner(caon_ptr<RZ_ASG_Valuer> valuer);
 
  void check_run_info(int generation, RZ_ASG_Result_Holder& rh,
-  RZ_ASG_Core_Function& cf, tNode& start_node);
+  RZ_ASG_Core_Casement_Function& ccf, tNode& start_node);
 
- void check_core_function_info(RZ_ASG_Core_Function& cf);
+ void check_core_function_info(RZ_ASG_Core_Casement_Function& ccf);
 
  void valuer_redirect(RZ_ASG_Result_Holder& rh,
-  RZ_ASG_Core_Function& cf, tNode& start_node);
+  RZ_ASG_Core_Casement_Function& ccf, tNode& start_node);
 
  template<int Arity>
  void check_run_from_node(int generation, RZ_ASG_Result_Holder& rh,
-   RZ_ASG_Core_Function& cf, tNode& start_node);
+   RZ_ASG_Core_Casement_Function& ccf, tNode& start_node);
 
  template<int Arity>
  void prepare_run_from_node(int generation, RZ_ASG_Result_Holder& rh,
-   RZ_ASG_Core_Function& cf,
+   RZ_ASG_Core_Casement_Function& ccf,
    tNode& start_node,
                             caon_ptr<tNode> lhs_node,
    caon_ptr<tNode> left_new_node,
@@ -101,7 +101,7 @@ public:
 
 // template<int Arity>
 // void proceed_run_from_node(int generation, RZ_ASG_Result_Holder& rh,
-//   RZ_ASG_Core_Function& cf,
+//   RZ_ASG_Core_Casement_Function& ccf,
 //   tNode& start_node, caon_ptr<tNode> lhs_node,
 //   caon_ptr<tNode> left_new_node,
 //   caon_ptr<tNode> rhs_node, caon_ptr<tNode> right_new_node
@@ -115,7 +115,7 @@ void proceed_run_from_node(RZ_ASG_Result_Holder& rh,
 
 // template<int Arity>
 // void proceed_run_from_node(RZ_ASG_Result_Holder& rh,
-//   RZ_ASG_Core_Function& cf,
+//   RZ_ASG_Core_Casement_Function& ccf,
 //   caon_ptr<tNode> lhs, caon_ptr<tNode> rhs);
 
 

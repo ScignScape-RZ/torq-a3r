@@ -6,7 +6,7 @@
 
 #include "rz-asg-runner.h"
 
-#include "rz-graph-token/rz-asg-core-function.h"
+#include "rz-graph-token/rz-asg-core-casement-function.h"
 
 #include "rz-graph-valuer/valuer/rz-asg-valuer.h"
 
@@ -28,30 +28,30 @@
 USING_RZNS(GRun)
 
 RZ_ASG_Runner::RZ_ASG_Runner(caon_ptr<RZ_ASG_Valuer>  valuer)
- : valuer_(valuer), rq_(ChasmRZ_Query::instance())
+ : valuer_(valuer), Qy(ChasmRZ_Query::instance())
 {
 }
 
 
 void RZ_ASG_Runner::check_run_info(int generation,
   RZ_ASG_Result_Holder& rh,
-  RZ_ASG_Core_Function& cf, tNode& start_node)
+  RZ_ASG_Core_Casement_Function& ccf, tNode& start_node)
 {
- check_core_function_info(cf);
- if(cf.flags.valuer)
+ check_core_function_info(ccf);
+ if(ccf.flags.valuer)
  {
-  valuer_redirect(rh, cf, start_node);
+  valuer_redirect(rh, ccf, start_node);
   return;
  }
 
- switch(cf.arity())
+ switch(ccf.arity())
  {
 
- case 0: check_run_from_node<0>(generation, rh, cf, start_node); break;
+ case 0: check_run_from_node<0>(generation, rh, ccf, start_node); break;
 
- case 1: check_run_from_node<1>(generation, rh, cf, start_node); break;
+ case 1: check_run_from_node<1>(generation, rh, ccf, start_node); break;
 
- case 2: check_run_from_node<2>(generation, rh, cf, start_node); break;
+ case 2: check_run_from_node<2>(generation, rh, ccf, start_node); break;
  default: break;
  }
 }
@@ -59,24 +59,24 @@ void RZ_ASG_Runner::check_run_info(int generation,
 
 
 void RZ_ASG_Runner::valuer_redirect(RZ_ASG_Result_Holder& rh,
- RZ_ASG_Core_Function& cf, tNode& start_node)
+ RZ_ASG_Core_Casement_Function& Cf, tNode& start_node)
 {
  rh.hold(&start_node);
- valuer_->redirect_core_function(rh, cf.name(), start_node);
+ valuer_->redirect_core_function(rh, Cf.name(), start_node);
  check_continue(rh);
  rh.unhold();
 }
 
 
 
-void RZ_ASG_Runner::check_core_function_info(RZ_ASG_Core_Function& cf)
+void RZ_ASG_Runner::check_core_function_info(RZ_ASG_Core_Casement_Function& Cf)
 {
- QString name = cf.name();
- QString rz_name = cf.rz_name();
+ QString name = Cf.name();
+ QString rz_name = Cf.rz_name();
 
- if(cf.flags.preempt)
+ if(Cf.flags.preempt)
  {
-  RZ_ASG_Function_Info& info = cf.info();
+  RZ_ASG_Function_Info& info = Cf.info();
 //?
   auto a = RZ_ASG_Function_Code_Map;
   if(info.Core_Function_Family == RZ_Function_Family_Not_Set)
@@ -93,7 +93,7 @@ void RZ_ASG_Runner::check_core_function_info(RZ_ASG_Core_Function& cf)
 template<int Arity>
 void RZ_ASG_Runner::check_run_from_node(int generation,
   RZ_ASG_Result_Holder& rh,
-  RZ_ASG_Core_Function& cf, tNode& start_node)
+  RZ_ASG_Core_Casement_Function& Cf, tNode& start_node)
 {
 
 }
@@ -101,7 +101,7 @@ void RZ_ASG_Runner::check_run_from_node(int generation,
 template<int Arity>
 void RZ_ASG_Runner::prepare_run_from_node(int generation,
   RZ_ASG_Result_Holder& rh,
-  RZ_ASG_Core_Function& cf,
+  RZ_ASG_Core_Casement_Function& Cf,
   tNode& start_node, caon_ptr<tNode> lhs_node,
   caon_ptr<tNode> left_new_node,
   caon_ptr<tNode> rhs_node, caon_ptr<tNode> right_new_node)
@@ -188,16 +188,16 @@ caon_ptr<RZ_ASG_Runner::tNode>
 
  caon_ptr<tNode> result = nullptr;
 
- if(result = rq_.Run_Call_Sequence(&lhs_node))
+ if(result = Qy.Run_Call_Sequence(&lhs_node))
  {
  }
- else if(result = rq_.Run_Call_Entry(&lhs_node))
+ else if(result = Qy.Run_Call_Entry(&lhs_node))
  {
   if(caon_ptr<ChasmRZ_Call_Entry> rce = result->chasm_rz_call_entry())
   {
-   premise = &rq_.Run_Call_Entry;
+   premise = &Qy.Run_Call_Entry;
    caon_ptr<tNode> entry_node;
-   if(entry_node = rq_.Run_Call_Entry(result))
+   if(entry_node = Qy.Run_Call_Entry(result))
    {
     if(caon_ptr<RZ_ASG_Token> tok = entry_node->asg_token())
     {
@@ -209,9 +209,9 @@ caon_ptr<RZ_ASG_Runner::tNode>
     }
     result = entry_node;
    }
-   else if(entry_node = rq_.Run_Data_Entry(result))
+   else if(entry_node = Qy.Run_Data_Entry(result))
    {
-    premise = &rq_.Run_Data_Entry;
+    premise = &Qy.Run_Data_Entry;
     if(caon_ptr<ChasmRZ_Tuple_Info> rti = entry_node->chasm_rz_tuple_info())
     {
      CAON_PTR_DEBUG(ChasmRZ_Tuple_Info ,rti)
@@ -227,7 +227,7 @@ caon_ptr<RZ_ASG_Runner::tNode>
  }
  if(!premise)
  {
-  premise = &rq_.N_A;
+  premise = &Qy.N_A;
  }
  return result;
 
@@ -239,14 +239,14 @@ caon_ptr<tNode> RZ_ASG_Runner::run_token_as_first_argument(
  CAON_PTR_DEBUG(tNode ,arity_node)
  arity_node->debug_connections();
 
- caon_ptr<tNode> new_start_node = rq_.Run_Call_Sequence(arity_node);
+ caon_ptr<tNode> new_start_node = Qy.Run_Call_Sequence(arity_node);
  if(new_start_node)
   return new_start_node;
- else if(new_start_node = rq_.Run_Cross_Sequence(arity_node))
+ else if(new_start_node = Qy.Run_Cross_Sequence(arity_node))
  {
   return new_start_node;
  }
- else if(new_start_node = rq_.Run_Call_Entry(arity_node))
+ else if(new_start_node = Qy.Run_Call_Entry(arity_node))
  {
   return new_start_node;
  }

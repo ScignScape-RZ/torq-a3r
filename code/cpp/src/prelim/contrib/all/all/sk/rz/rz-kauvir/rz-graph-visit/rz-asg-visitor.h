@@ -40,6 +40,7 @@ RZNS_(RZ_Core)
 class ChasmRZ_Graph;
 class ChasmRZ_Node;
 class ChasmRZ_Call_Entry;
+class ChasmRZ_Casement_Call_Entry;
 class RZ_Cpp_Project;
 class RZ_SChasmRZ_Token;
 
@@ -58,7 +59,7 @@ _RZNS(GRun)
 RZNS_(GBuild)
 
 
-class RZ_ASG_Core_Function;
+class RZ_ASG_Core_Casement_Function;
 class RZ_ASG_Token;
 
 
@@ -127,9 +128,10 @@ private:
 
  caon_ptr<ChasmRZ_Graph> graph_;
 
- const ChasmRZ_Query& rq_;
+ const ChasmRZ_Query& Qy;
 
- ChasmRZ_Frame& fr_;
+ ChasmRZ_Frame& Cf;
+ ChasmRZ_Frame& Sf;
 
  caon_ptr<ChasmRZ_Node> current_block_node_;
  caon_ptr<ChasmRZ_Node> data_continue_node_;
@@ -148,7 +150,7 @@ private:
 
 
 
- std::map<QString, caon_ptr<RZ_ASG_Core_Function>> core_function_map_;
+ std::map<QString, caon_ptr<RZ_ASG_Core_Casement_Function>> core_function_map_;
  void reset_call_entry_object(RZ_Read_Table_State state_on_unwind,
                               RZ_Read_Table_Post_Advance_State post_state_on_unwind,
                               RZ_Read_Table_State state_on_no_unwind,
@@ -173,7 +175,7 @@ private:
  QString document_directory_;
 
  void insert_core_function(QString name,
-  caon_ptr<RZ_ASG_Core_Function>);
+  caon_ptr<RZ_ASG_Core_Casement_Function>);
 
 
 public:
@@ -267,7 +269,7 @@ public:
  caon_ptr<tNode> find_expression_continue(caon_ptr<tNode> start_node, RZ_Read_Table_State& result_state,
    RZ_Read_Table_Advance_Token_State& token_state, bool expression_flag);
  void valuer_redirect(RZ_ASG_Result_Holder& rh,
-  caon_ptr<RZ_ASG_Core_Function> cf, caon_ptr<tNode> start_node);
+  caon_ptr<RZ_ASG_Core_Casement_Function> ccf, caon_ptr<tNode> start_node);
 
  QString type_expression_from_node(caon_ptr<tNode> node);
 
@@ -283,6 +285,15 @@ public:
   const ChasmRZ_Connectors& qtok, caon_ptr<ChasmRZ_Call_Entry> current_call_entry = nullptr,
   caon_ptr<ChasmRZ_Call_Entry> carried_call_entry = nullptr,
   caon_ptr<tNode>* node_to_change = nullptr);
+
+ caon_ptr<tNode> normalize_run_casement(int depth, int pos, tNode& pre_entry_node, tNode& start_node,
+  const ChasmRZ_Connectors& qtok, caon_ptr<ChasmRZ_Call_Entry> current_call_entry = nullptr,
+  caon_ptr<ChasmRZ_Call_Entry> carried_call_entry = nullptr,
+  caon_ptr<tNode>* node_to_change = nullptr);
+
+
+
+
 
  caon_ptr<tNode> hyper_normalize_run_call(caon_ptr<ChasmRZ_Call_Entry> rce, tNode& start_node,
   const ChasmRZ_Connectors& qtok);
@@ -300,7 +311,7 @@ public:
    tNode& start_node,
    tNode& current_node, const ChasmRZ_Connectors& qtok);
 
- QString identify_function(QString name, caon_ptr<RZ_ASG_Core_Function>& cf);
+ QString identify_function(QString name, caon_ptr<RZ_ASG_Core_Casement_Function>& ccf);
 
  void normalize_block(tNode& pre_entry_node, tNode& start_node,
   const ChasmRZ_Connectors& qtok,
@@ -317,7 +328,7 @@ public:
 
  void normalize_nested_run_call(caon_ptr<ChasmRZ_Call_Entry> carried_rce, int depth, tNode& function_node);
 
- caon_ptr<RZ_ASG_Core_Function> find_core_function(QString name);
+ caon_ptr<RZ_ASG_Core_Casement_Function> find_core_function(QString name);
 
  void swap_function_nodes(tNode&  pre_entry_node, tNode&  head_node,
    tNode& previous_node, tNode&  function_node, const ChasmRZ_Connectors& qtok);
@@ -349,7 +360,7 @@ public:
 
  void find_next_node_from_entry(tNode& node);
 
- caon_ptr<RZ_ASG_Core_Function> normalize_continue_run_call(caon_ptr<tNode> pass_node,
+ caon_ptr<RZ_ASG_Core_Casement_Function> normalize_continue_run_call(caon_ptr<tNode> pass_node,
   caon_ptr<RZ_ASG_Token> tok, caon_ptr<tNode> function_node);
  void pre_interpret(caon_ptr<tNode> start_node);
  void init_core_functions();

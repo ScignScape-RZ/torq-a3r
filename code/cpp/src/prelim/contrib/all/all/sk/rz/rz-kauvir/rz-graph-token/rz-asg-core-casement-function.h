@@ -4,8 +4,8 @@
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef RZ_ASG_CORE_FUNCTION__H
-#define RZ_ASG_CORE_FUNCTION__H
+#ifndef RZ_ASG_CORE_CASEMENT_FUNCTION__H
+#define RZ_ASG_CORE_CASEMENT_FUNCTION__H
 
 
 #include <QMap>
@@ -32,7 +32,7 @@ class RZ_ASG_Token;
 
 typedef ChasmRZ_Node tNode;
 
-class RZ_ASG_Core_Function
+class RZ_ASG_Core_Casement_Function
 {
 public:
  enum Status_Codes {
@@ -68,7 +68,7 @@ public:
  ACCESSORS__RGET(RZ_ASG_Function_Info ,info)
  ACCESSORS(QString ,out_name)
 
- RZ_ASG_Core_Function(QString rz_name, QString name, int arity, Status_Codes sc);
+ RZ_ASG_Core_Casement_Function(QString rz_name, QString name, int arity, Status_Codes sc);
  QString get_out_name();
  QString get_out_name_or_string();
 
@@ -77,4 +77,4 @@ public:
 _RZNS(GBuild)
 
 
-#endif //RZ_ASG_CORE_FUNCTION__H
+#endif //RZ_ASG_CORE_CASEMENT_FUNCTION__H

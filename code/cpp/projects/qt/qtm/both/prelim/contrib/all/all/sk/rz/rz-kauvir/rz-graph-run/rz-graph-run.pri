@@ -30,6 +30,8 @@ LIBS += -L$$TARGETSDIR -lrz-graph-valuer -lrz-graph-token -lrz-graph-build \
 
 
 HEADERS += \
+   $$SRC_DIR/rz-asg-runner.h \
+   $$SRC_DIR/rz-asg-core-runner.h \
    $$SRC_DIR/rz-asg-core-function-declarations.h \
    $$SRC_DIR/rz-temp-cases.h \
    $$SRC_DIR/functions/rz-asg-function-family-enum.h \

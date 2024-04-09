@@ -12,7 +12,7 @@
 
 
 //?#include "valuer/rz-asg-core-function.h"
-#include "rz-asg-core-function.h"
+#include "rz-asg-core-casement-function.h"
 
 
 #include "rzns.h"
@@ -188,18 +188,18 @@ caon_ptr<RZ_ASG_Token_Out_Info> RZ_ASG_Token::get_asg_out
   result += "(rz-empty-tuple)";
   return nullptr;
  }
- if(caon_ptr<RZ_ASG_Core_Function> cf = pRestore<RZ_ASG_Core_Function>(tv))
+ if(caon_ptr<RZ_ASG_Core_Casement_Function> ccf = pRestore<RZ_ASG_Core_Casement_Function>(tv))
  {
-  if(cf->flags.paste)
+  if(ccf->flags.paste)
   {
 
   }
-  result = cf->get_out_name();
+  result = ccf->get_out_name();
  }
  else if(flags.is_core_function_symbol)
  {
-  caon_ptr<RZ_ASG_Core_Function> cf = pRestore<RZ_ASG_Core_Function>();
-  result = cf->get_out_name_or_string();
+  caon_ptr<RZ_ASG_Core_Casement_Function> ccf = pRestore<RZ_ASG_Core_Casement_Function>();
+  result = ccf->get_out_name_or_string();
  }
  else
   result = asg_string_value();

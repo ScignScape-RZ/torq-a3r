@@ -38,7 +38,7 @@ HEADERS += \
     $$SRC_DIR/valuer/rz-monotail.h \
     $$SRC_DIR/rz-asg-typedefs.h \
     $$SRC_DIR/rz-asg-value-holder.h \
-    $$SRC_DIR/rz-asg-core-function.h \
+    $$SRC_DIR/rz-asg-core-casement-function.h \
 
 
 SOURCES += \
@@ -48,7 +48,7 @@ SOURCES += \
     $$SRC_DIR/valuer/rz-asg-function-info.cpp \
     $$SRC_DIR/valuer/rz-null-value.cpp \
     $$SRC_DIR/rz-asg-value-holder.cpp \
-    $$SRC_DIR/rz-asg-core-function.cpp \
+    $$SRC_DIR/rz-asg-core-casement-function.cpp \
 
 #$$SRC_DIR/valuer/rz-asg-core-function.cpp \
 #$$SRC_DIR/valuer/rz-asg-core-function.h \

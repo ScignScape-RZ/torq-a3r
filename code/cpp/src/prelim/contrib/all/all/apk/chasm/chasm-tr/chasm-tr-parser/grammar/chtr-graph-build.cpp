@@ -40,7 +40,7 @@ ChTR_Graph_Build::ChTR_Graph_Build(ChTR_Document* d, ChTR_Parser& p, ChTR_Graph&
    ,document_(d)
    ,graph_(g)
    ,parser_(p)
-   ,fr_(ChTR_Relae_Frame::instance())
+   ,Cf(ChTR_Relae_Frame::instance())
    ,qry_(ChTR_Relae_Query::instance())
    ,held_line_number_(0)
    ,current_context_code_(0)
@@ -110,7 +110,7 @@ void ChTR_Graph_Build::enter_statement_body()
  if(current_statement_level_node_ == graph_.root_node())
  {
   ChTR_Node* n = new ChTR_Node(ccs);
-  current_statement_level_node_ << fr_/qry_.Root_Sequence >> n;
+  current_statement_level_node_ << Cf/qry_.Root_Sequence >> n;
  }
 }
 

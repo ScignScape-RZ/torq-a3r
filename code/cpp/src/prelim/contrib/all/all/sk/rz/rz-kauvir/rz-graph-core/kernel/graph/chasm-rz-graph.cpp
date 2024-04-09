@@ -65,7 +65,7 @@ void ChasmRZ_Graph::report_from_node(QTextStream& qts,
  }
  else if(caon_ptr<ChasmRZ_Block_Entry> rbe = node.chasm_rz_block_entry())
  {
-  qts << QString("<block %1:%2>").arg(rbe->call_id()).arg(rbe->nested_depth());
+  qts << QString("<block %1:%2>").arg(rbe->block_id()).arg(rbe->nested_depth());
  }
  else if(caon_ptr<ChasmRZ_Tuple_Info> rti = node.chasm_rz_tuple_info())
  {

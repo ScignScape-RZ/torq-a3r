@@ -5,6 +5,11 @@
 //           http://www.boost.org/LICENSE_1_0.txt)
 
 
+int main()
+{
+ return 0;
+}
+
 #ifdef HIDE
 
 // //   The purpose of this code is to show several
@@ -1673,8 +1678,8 @@ int main22()
 
  for(int i = 1; i <= 20; ++i)
  {
-  QString sf = "%1/p%2"_qt.arg(folder).arg(i);
-  qDebug() << "sf = " << sf;
+  QString Sf = "%1/p%2"_qt.arg(folder).arg(i);
+  qDebug() << "Sf = " << Sf;
 
   //  QString cmd = "cd %1; run-page.sh";
   QString cmd = "/bin/sh";
@@ -1683,7 +1688,7 @@ int main22()
 
   QProcess process;
 
-  process.setWorkingDirectory(sf);
+  process.setWorkingDirectory(Sf);
   process.setProgram(cmd);
   process.setArguments({scr});
 

@@ -34,7 +34,7 @@ protected:
 
  caon_ptr<PHR_Graph_Document> document_;
 
- const PHR_Graph_Frame& fr_;
+ const PHR_Graph_Frame& Cf;
  const PHR_Graph_Query& qy_;
 
  virtual void output_from_node(QTextStream& qts,

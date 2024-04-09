@@ -4,8 +4,8 @@
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef CHASM_RZ_MARKUP_POSITION__H
-#define CHASM_RZ_MARKUP_POSITION__H
+#ifndef CHASM_RZ_ASG_POSITION__H
+#define CHASM_RZ_ASG_POSITION__H
 
 #include "accessors.h"
 #include "flags.h"
@@ -36,7 +36,7 @@ class ChasmRZ_Tile_Sentence_Handshake;
 class ChasmRZ_Paralexeme;
 class ChasmRZ_Connectors;
 
-class ChasmRZ_Markup_Position
+class ChasmRZ_ASG_Position
 {
 public:
  flags_(1)
@@ -54,10 +54,14 @@ public:
 private:
 
  enum class Position_States {
-  Root, Active_Run_Token, Active_Run_Chief,
+  Root, Active_Run_Casement_Node, Active_Run_Casement_Chief,
+
+  Active_Run_Token, Active_Run_Chief,
   End_Of_Logical_Scope, Data_Entry,
   Run_Cross_Sequence, Run_Pchasm_rz_Entry, Cross_Run_Chief,
   Block_Entry, Cross_Block_Entry, Active_Closed_Do_Entry,
+
+
 
  };
 
@@ -97,14 +101,21 @@ private:
  void reset_if_block_pending_follow();
 
 
- ChasmRZ_Frame& fr_;
- const ChasmRZ_Query& rq_;
+ ChasmRZ_Frame& Cf;
+ ChasmRZ_Frame& Sf;
+
+ const ChasmRZ_Query& Qy;
 
  caon_ptr<ChasmRZ_Node> current_node_;
 
  caon_ptr<ChasmRZ_Node> check_insert_function_def_entry_node(const ChasmRZ_Tuple_Info& tuple_info);
+
  caon_ptr<ChasmRZ_Node> insert_entry_node(const ChasmRZ_Connectors& connector, bool is_statement_entry,
   QString prefix = QString());
+
+ caon_ptr<ChasmRZ_Node> insert_casement_entry_node(const ChasmRZ_Connectors& connector, bool is_statement_entry,
+  QString prefix = QString());
+
  caon_ptr<ChasmRZ_Node> insert_block_entry_node(const ChasmRZ_Connectors& connector);
  caon_ptr<ChasmRZ_Node> held_equalizer_node_;
  caon_ptr<ChasmRZ_Node> held_mapkey_node_;
@@ -137,7 +148,7 @@ private:
 
 public:
 
- ChasmRZ_Markup_Position(ChasmRZ_Graph_Build* graph_build);
+ ChasmRZ_ASG_Position(ChasmRZ_Graph_Build* graph_build);
 
  ACCESSORS(caon_ptr<ChasmRZ_Node> ,current_node)
 
@@ -194,6 +205,10 @@ public:
 
  void add_new_node_as_implied_call_entry();
 
+ void add_casement_entry(caon_ptr<ChasmRZ_Node> entry_node, QString prefix = {});
+ void add_casement_sequence(caon_ptr<ChasmRZ_Node> node);
+ void add_casement_cross(caon_ptr<ChasmRZ_Node> entry_node);
+
  void add_call_entry(bool is_statement_entry, QString prefix = QString());
  void leave_expression();
 
@@ -215,5 +230,5 @@ public:
 
 _RZNS(RZ_Core)
 
-#endif //CHASM_RZ_MARKUP_POSITION__H
+#endif //CHASM_RZ_ASG_POSITION__H
 

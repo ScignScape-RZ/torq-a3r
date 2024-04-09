@@ -47,7 +47,7 @@ public:
  RZ_ASG_Visitor_Run_Plugin(RZ_ASG_Visitor& main_visitor);
 
  virtual bool advance() = 0;
- virtual void get_current_token(RZ_Graph_Run_Token& rzt) = 0;
+ virtual void get_current_token(RZ_ASG_Run_Token& rzt) = 0;
  virtual void activate() = 0;
  virtual void deactivate() = 0;
  virtual bool find_next_token(RZ_Read_Table_State state_not_found,

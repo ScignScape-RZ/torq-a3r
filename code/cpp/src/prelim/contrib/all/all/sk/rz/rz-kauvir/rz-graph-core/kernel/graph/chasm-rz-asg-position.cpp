@@ -4,7 +4,7 @@
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
 
-#include "chasm-rz-markup-position.h"
+#include "chasm-rz-asg-position.h"
 
 #include "kernel/grammar/chasm-rz-graph-build.h"
 #include "kernel/graph/chasm-rz-node.h"
@@ -14,6 +14,9 @@
 #include "code/chasm-rz-function-def-entry.h"
 
 #include "code/chasm-rz-call-entry.h"
+#include "code/chasm-rz-casement-call-entry.h"
+
+
 #include "code/chasm-rz-block-entry.h"
 
 #include "kernel/grammar/chasm-rz-string-plex-builder.h"
@@ -25,11 +28,12 @@
 USING_RZNS(RZ_Core)
 
 
-ChasmRZ_Markup_Position::ChasmRZ_Markup_Position
+ChasmRZ_ASG_Position::ChasmRZ_ASG_Position
  (ChasmRZ_Graph_Build* graph_build)
  : Flags(0), graph_build_(graph_build),
-   fr_(ChasmRZ_Frame::instance()),
-   rq_(ChasmRZ_Query::instance()),
+   Cf(ChasmRZ_Frame::instance("casement")),
+   Sf(ChasmRZ_Frame::instance("semantic")),
+   Qy(ChasmRZ_Query::instance()),
    position_state_(Position_States::Root),
    current_node_(nullptr), last_pchasm_rz_entry_node_(nullptr),
    held_equalizer_node_(nullptr), held_retval_node_(nullptr),
@@ -50,8 +54,8 @@ ChasmRZ_Markup_Position::ChasmRZ_Markup_Position
 }
 
 
-QPair<ChasmRZ_Markup_Position::Equalizer_Contexts, QString>
-ChasmRZ_Markup_Position::parse_equalizer_context(QString key)
+QPair<ChasmRZ_ASG_Position::Equalizer_Contexts, QString>
+ChasmRZ_ASG_Position::parse_equalizer_context(QString key)
 {
  static QMap< QString, QPair<Equalizer_Contexts, QString> > static_map
  {{
@@ -67,33 +71,33 @@ ChasmRZ_Markup_Position::parse_equalizer_context(QString key)
 }
 
 
-void ChasmRZ_Markup_Position::add_string_plex_node(caon_ptr<ChasmRZ_Node> tinfo_node,
+void ChasmRZ_ASG_Position::add_string_plex_node(caon_ptr<ChasmRZ_Node> tinfo_node,
  caon_ptr<ChasmRZ_Node> string_plex_node)
 {
  if(caon_ptr<RZ_String_Plex_Builder> rzspb = string_plex_node->string_plex_builder())
  {
   if(caon_ptr<ChasmRZ_Node> tinfo_node = rzspb->tuple_info_node())
   {
-   tinfo_node <<fr_/rq_.String_Plex_Value>> string_plex_node;
+   tinfo_node <<Cf/Qy.String_Plex_Value>> string_plex_node;
   }
  }
 }
 
 
-ChasmRZ_Node& ChasmRZ_Markup_Position::get_current_chief()
+ChasmRZ_Node& ChasmRZ_ASG_Position::get_current_chief()
 {
  return *chiefs_.top();
 }
 
-void ChasmRZ_Markup_Position::add_residual_node(caon_ptr<ChasmRZ_Node> node)
+void ChasmRZ_ASG_Position::add_residual_node(caon_ptr<ChasmRZ_Node> node)
 {
  CAON_PTR_DEBUG(ChasmRZ_Node ,node)
  CAON_PTR_DEBUG(ChasmRZ_Node ,current_node_)
 
- &get_current_chief() <<fr_/rq_.Residual_Node>> node;
+ &get_current_chief() <<Cf/Qy.Residual_Node>> node;
 }
 
-void ChasmRZ_Markup_Position::check_add_implied_my()
+void ChasmRZ_ASG_Position::check_add_implied_my()
 {
  switch(position_state_)
  {
@@ -109,7 +113,57 @@ void ChasmRZ_Markup_Position::check_add_implied_my()
 
 }
 
-caon_ptr<ChasmRZ_Node> ChasmRZ_Markup_Position::insert_entry_node(
+caon_ptr<ChasmRZ_Node> ChasmRZ_ASG_Position::insert_casement_entry_node(const ChasmRZ_Connectors& connector, bool is_statement_entry,
+ QString prefix)
+{
+ caon_ptr<ChasmRZ_Casement_Call_Entry> parent_rce = nullptr;
+// if(!chiefs_.isEmpty())
+// {
+//  caon_ptr<ChasmRZ_Node> top = chiefs_.top();
+//  parent_rce = top->chasm_rz_call_entry();
+// }
+
+
+ caon_ptr<ChasmRZ_Node> result = graph_build_->new_run_casement_entry_node(is_statement_entry,
+   prefix, parent_rce);
+
+ if(is_statement_entry)
+ {
+  if(current_do_map_block_entry_node_)
+  {
+   last_do_map_block_statement_entry_node_ = result;
+   if(!last_do_map_inner_block_first_entry_node_)
+   {
+    last_do_map_inner_block_first_entry_node_ = result;
+   }
+  }
+  else
+  {
+   last_statement_entry_node_ = result;
+  }
+ }
+ check_append_chief(result);
+ CAON_PTR_DEBUG(ChasmRZ_Node ,current_node_)
+ CAON_PTR_DEBUG(ChasmRZ_Node ,result)
+
+ current_node_ <<Cf/connector>> result;
+
+ if(caon_ptr<ChasmRZ_Token> token = current_node_->chasm_rz_token())
+ {
+  if(token->raw_text() == "if")
+    result->chasm_rz_call_entry()->flags.may_precede_if_block = true;
+
+  //?
+  if(token->raw_text() == "elsif")
+    result->chasm_rz_call_entry()->flags.may_precede_elsif_block = true;
+
+ }
+
+ return result;
+}
+
+
+caon_ptr<ChasmRZ_Node> ChasmRZ_ASG_Position::insert_entry_node(
   const ChasmRZ_Connectors& connector, bool is_statement_entry, QString prefix)
 {
  caon_ptr<ChasmRZ_Call_Entry> parent_rce = nullptr;
@@ -141,7 +195,7 @@ caon_ptr<ChasmRZ_Node> ChasmRZ_Markup_Position::insert_entry_node(
  CAON_PTR_DEBUG(ChasmRZ_Node ,current_node_)
  CAON_PTR_DEBUG(ChasmRZ_Node ,result)
 
- current_node_ <<fr_/connector>> result;
+ current_node_ <<Cf/connector>> result;
 
  if(caon_ptr<ChasmRZ_Token> token = current_node_->chasm_rz_token())
  {
@@ -157,12 +211,12 @@ caon_ptr<ChasmRZ_Node> ChasmRZ_Markup_Position::insert_entry_node(
  return result;
 }
 
-caon_ptr<ChasmRZ_Node> ChasmRZ_Markup_Position::pop_chief()
+caon_ptr<ChasmRZ_Node> ChasmRZ_ASG_Position::pop_chief()
 {
  return chiefs_.pop();
 }
 
-void ChasmRZ_Markup_Position::check_hold_closed_do_entry()
+void ChasmRZ_ASG_Position::check_hold_closed_do_entry()
 {
  if(chiefs_.isEmpty())
   return;
@@ -175,7 +229,7 @@ void ChasmRZ_Markup_Position::check_hold_closed_do_entry()
  }
 }
 
-caon_ptr<ChasmRZ_Call_Entry> ChasmRZ_Markup_Position::current_closed_do_entry()
+caon_ptr<ChasmRZ_Call_Entry> ChasmRZ_ASG_Position::current_closed_do_entry()
 {
  if(current_closed_do_entry_node_)
  {
@@ -183,7 +237,7 @@ caon_ptr<ChasmRZ_Call_Entry> ChasmRZ_Markup_Position::current_closed_do_entry()
  }
 }
 
-void ChasmRZ_Markup_Position::check_pop_chief()
+void ChasmRZ_ASG_Position::check_pop_chief()
 {
  CAON_PTR_DEBUG(ChasmRZ_Node ,current_node_)
  caon_ptr<ChasmRZ_Call_Entry> rce = current_node_->chasm_rz_call_entry();
@@ -216,19 +270,19 @@ void ChasmRZ_Markup_Position::check_pop_chief()
  }
 }
 
-void ChasmRZ_Markup_Position::check_append_chief(caon_ptr<ChasmRZ_Node> new_chief)
+void ChasmRZ_ASG_Position::check_append_chief(caon_ptr<ChasmRZ_Node> new_chief)
 {
 
  CAON_PTR_DEBUG(ChasmRZ_Node ,new_chief)
 
- caon_ptr<ChasmRZ_Call_Entry> new_rce = new_chief->chasm_rz_call_entry();
+ caon_ptr<ChasmRZ_Casement_Call_Entry> new_rce = new_chief->chasm_rz_casement_call_entry();
  new_rce->set_call_depth(chiefs_.size());
  if(current_node_)
  {
   CAON_PTR_DEBUG(ChasmRZ_Node ,current_node_)
-  if(caon_ptr<ChasmRZ_Call_Entry> rce = current_node_->chasm_rz_call_entry())
+  if(caon_ptr<ChasmRZ_Casement_Call_Entry> rce = current_node_->chasm_rz_casement_call_entry())
   {
-   CAON_PTR_DEBUG(ChasmRZ_Call_Entry ,rce)
+   CAON_PTR_DEBUG(ChasmRZ_Casement_Call_Entry ,rce)
    CAON_PTR_DEBUG(ChasmRZ_Node ,new_chief)
    if(caon_ptr<ChasmRZ_Node> ref_node = rce->ref_node())
    {
@@ -236,11 +290,11 @@ void ChasmRZ_Markup_Position::check_append_chief(caon_ptr<ChasmRZ_Node> new_chie
     CAON_DEBUG_NOOP
    }
 
-   // rce->debug_check_entry(rq_.Run_Call_Entry);
+   // rce->debug_check_entry(Qy.Run_Call_Entry);
    // // //  This overwrites the ref_node to indicate that the
    // //     new_chief is "sibling" to the prior expression
    rce->set_ref_node(new_chief);
-   // rce->debug_check_entry(rq_.Run_Call_Entry);
+   // rce->debug_check_entry(Qy.Run_Call_Entry);
 
   }
   if(!chiefs_.isEmpty())
@@ -248,7 +302,7 @@ void ChasmRZ_Markup_Position::check_append_chief(caon_ptr<ChasmRZ_Node> new_chie
    caon_ptr<ChasmRZ_Node> chiefs_top = chiefs_.top();
    CAON_PTR_DEBUG(ChasmRZ_Node ,chiefs_top)
    new_rce->set_parent_entry_node(chiefs_.top());
-   // new_rce->debug_check_entry(rq_.Run_Call_Entry);
+   // new_rce->debug_check_entry(Qy.Run_Call_Entry);
   }
   if(!block_chiefs_.isEmpty())
   {
@@ -258,14 +312,20 @@ void ChasmRZ_Markup_Position::check_append_chief(caon_ptr<ChasmRZ_Node> new_chie
  chiefs_.append(new_chief);
 }
 
-caon_ptr<ChasmRZ_Node> ChasmRZ_Markup_Position::insert_block_entry_node(
+caon_ptr<ChasmRZ_Node> ChasmRZ_ASG_Position::insert_block_entry_node(
   const ChasmRZ_Connectors& connector)
 {
  CAON_PTR_DEBUG(ChasmRZ_Node ,current_node_)
 
  check_add_implied_call_entry();
 
- caon_ptr<ChasmRZ_Node> result = graph_build_->new_run_block_entry_node();
+ caon_ptr<ChasmRZ_Node> result;
+
+ // //  temp
+ if(connector == Qy.Casement_Block_Entry)
+   result = graph_build_->new_casement_block_entry_node();
+ else
+   result = graph_build_->new_run_block_entry_node();
 
  if(current_node_)
  {
@@ -309,29 +369,32 @@ caon_ptr<ChasmRZ_Node> ChasmRZ_Markup_Position::insert_block_entry_node(
  CAON_PTR_DEBUG(ChasmRZ_Node ,result)
 
  block_chiefs_.append(result);
- current_node_ <<fr_/connector>> result;
+ current_node_ <<Cf/connector>> result;
  return result;
 }
 
-void ChasmRZ_Markup_Position::check_cancel_implied_call_entry()
+
+
+
+void ChasmRZ_ASG_Position::check_cancel_implied_call_entry()
 {
  if(flags.possible_pending_equalizer_nested_entry)
  {
   flags.possible_pending_equalizer_nested_entry = false;
-  current_node_ << fr_/rq_.Run_Call_Sequence >> held_equalizer_node_;
+  current_node_ << Cf/Qy.Run_Call_Sequence >> held_equalizer_node_;
   current_node_ = held_equalizer_node_;
   position_state_ = Position_States::Active_Run_Token;
  }
 }
 
 
-void ChasmRZ_Markup_Position::add_new_node_as_implied_call_entry()
+void ChasmRZ_ASG_Position::add_new_node_as_implied_call_entry()
 {
  // //  In this case bypassing held entry node
 
  flags.currently_implied_call_entry = true;
  caon_ptr<ChasmRZ_Node> prior_current_node = current_node_;
- current_node_ = insert_entry_node(rq_.Run_Call_Entry, false);
+ current_node_ = insert_entry_node(Qy.Run_Call_Entry, false);
 
  read_chiefs();
 
@@ -348,9 +411,9 @@ void ChasmRZ_Markup_Position::add_new_node_as_implied_call_entry()
 
  caon_ptr<ChasmRZ_Connection> cion = new ChasmRZ_Connection(current_node_);
 
- prior_current_node << fr_/rq_.Run_Call_Entry_Direct(cion) >> ival_node;
+ prior_current_node << Cf/Qy.Run_Call_Entry_Direct(cion) >> ival_node;
 
- current_node_ << fr_/rq_.Run_Call_Entry >> ival_node;
+ current_node_ << Cf/Qy.Run_Call_Entry >> ival_node;
 
  current_node_ = ival_node;
 
@@ -358,7 +421,7 @@ void ChasmRZ_Markup_Position::add_new_node_as_implied_call_entry()
 }
 
 
-void ChasmRZ_Markup_Position::check_add_implied_call_entry()
+void ChasmRZ_ASG_Position::check_add_implied_call_entry()
 {
  CAON_PTR_DEBUG(ChasmRZ_Node ,current_node_)
    //?  Is this appropriate here...
@@ -371,7 +434,7 @@ void ChasmRZ_Markup_Position::check_add_implied_call_entry()
   flags.possible_pending_equalizer_nested_entry = false;
   flags.currently_implied_call_entry = true;
   caon_ptr<ChasmRZ_Node> prior_current_node = current_node_;
-  current_node_ = insert_entry_node(rq_.Run_Call_Entry, false);
+  current_node_ = insert_entry_node(Qy.Run_Call_Entry, false);
 
   read_chiefs();
 
@@ -406,9 +469,9 @@ void ChasmRZ_Markup_Position::check_add_implied_call_entry()
 
   caon_ptr<ChasmRZ_Connection> cion = new ChasmRZ_Connection(current_node_);
 
-  prior_current_node << fr_/rq_.Run_Call_Entry_Direct(cion) >> held_equalizer_node_;
+  prior_current_node << Cf/Qy.Run_Call_Entry_Direct(cion) >> held_equalizer_node_;
 
-  current_node_ << fr_/rq_.Run_Call_Entry >> held_equalizer_node_;
+  current_node_ << Cf/Qy.Run_Call_Entry >> held_equalizer_node_;
 
   CAON_PTR_DEBUG(ChasmRZ_Node ,held_equalizer_node_)
 
@@ -417,7 +480,53 @@ void ChasmRZ_Markup_Position::check_add_implied_call_entry()
  }
 }
 
-void ChasmRZ_Markup_Position::add_call_entry(bool is_statement_entry, QString prefix)
+void ChasmRZ_ASG_Position::add_casement_sequence(caon_ptr<ChasmRZ_Node> node)
+{
+ switch(position_state_)
+ {
+ case Position_States::Active_Run_Casement_Chief:
+   current_node_ << Cf/Qy.Run_Casement_Sequence >> node;
+   position_state_ = Position_States::Active_Run_Casement_Node;
+ }
+
+}
+
+void ChasmRZ_ASG_Position::add_casement_cross(caon_ptr<ChasmRZ_Node> entry_node)
+{
+
+}
+
+
+void ChasmRZ_ASG_Position::add_casement_entry(caon_ptr<ChasmRZ_Node> entry_node, QString prefix)
+{
+ CAON_PTR_DEBUG(ChasmRZ_Node ,current_node_)
+
+ bool is_statement_entry = false;
+
+ caon_ptr<ChasmRZ_Node> last_current_node_ = current_node_;
+
+
+ //? check_add_implied_call_entry();
+
+ switch(position_state_)
+ {
+ case Position_States::Root:
+   current_node_ = insert_block_entry_node(Qy.Casement_Block_Entry);
+   CAON_EVALUATE_DEBUG(ChasmRZ_Node ,c1 ,current_node_)
+   last_current_node_ = current_node_;
+
+   current_node_ = insert_casement_entry_node(Qy.Run_Casement_Entry, is_statement_entry, prefix);
+   CAON_EVALUATE_DEBUG(ChasmRZ_Node ,c2 ,current_node_)
+
+   last_current_node_ << Cf/Qy.Run_Casement_Entry >> current_node_;
+
+   current_node_ << Cf/Qy.Run_Casement_Entry >> entry_node;
+
+   position_state_ = Position_States::Active_Run_Casement_Chief;
+ }
+}
+
+void ChasmRZ_ASG_Position::add_call_entry(bool is_statement_entry, QString prefix)
 {
  caon_ptr<ChasmRZ_Node> old_current_node = nullptr;
  caon_ptr<ChasmRZ_Node> old_closed_do_entry_node = nullptr;
@@ -443,10 +552,10 @@ void ChasmRZ_Markup_Position::add_call_entry(bool is_statement_entry, QString pr
  switch(position_state_)
  {
  case Position_States::Active_Run_Chief:
-  current_node_ = insert_entry_node(rq_.Run_Cross_Sequence, is_statement_entry, prefix);
+  current_node_ = insert_entry_node(Qy.Run_Cross_Sequence, is_statement_entry, prefix);
 
   if(retval_n)
-   retval_n << fr_/rq_.Retval_Follow >> current_node_;
+   retval_n << Cf/Qy.Retval_Follow >> current_node_;
 
   position_state_ = Position_States::Run_Pchasm_rz_Entry;
   break;
@@ -457,9 +566,9 @@ void ChasmRZ_Markup_Position::add_call_entry(bool is_statement_entry, QString pr
    qDebug() << "Warning at: " << __LINE__;
   }
   last_pchasm_rz_entry_node_ = current_node_;
-  current_node_ = insert_entry_node(rq_.Run_Cross_Sequence, false, prefix);
+  current_node_ = insert_entry_node(Qy.Run_Cross_Sequence, false, prefix);
   if(retval_n)
-   retval_n << fr_/rq_.Retval_Follow >> current_node_;
+   retval_n << Cf/Qy.Retval_Follow >> current_node_;
 
   position_state_ = Position_States::Run_Pchasm_rz_Entry;
   if(old_closed_do_entry_node)
@@ -471,14 +580,14 @@ void ChasmRZ_Markup_Position::add_call_entry(bool is_statement_entry, QString pr
 
     // //  We need to connect the arrows ...
      //
-    if(caon_ptr<ChasmRZ_Node> old_do_node = rq_.Run_Call_Entry(old_closed_do_entry_node))
+    if(caon_ptr<ChasmRZ_Node> old_do_node = Qy.Run_Call_Entry(old_closed_do_entry_node))
     {
      CAON_PTR_DEBUG(ChasmRZ_Node ,old_do_node)
      old_do_node->debug_connections();
-     if(caon_ptr<ChasmRZ_Node> old_arrow_node = rq_.Run_Call_Sequence(old_do_node))
+     if(caon_ptr<ChasmRZ_Node> old_arrow_node = Qy.Run_Call_Sequence(old_do_node))
      {
       CAON_PTR_DEBUG(ChasmRZ_Node ,old_arrow_node)
-      old_arrow_node << fr_/rq_.Run_Fundef_Arrow_Sequence >> current_node_;
+      old_arrow_node << Cf/Qy.Run_Fundef_Arrow_Sequence >> current_node_;
      }
     }
    }
@@ -486,9 +595,9 @@ void ChasmRZ_Markup_Position::add_call_entry(bool is_statement_entry, QString pr
   break;
  case Position_States::Active_Run_Token:
   last_pchasm_rz_entry_node_ = current_node_;
-  current_node_ = insert_entry_node(rq_.Run_Call_Entry, is_statement_entry, prefix);
+  current_node_ = insert_entry_node(Qy.Run_Call_Entry, is_statement_entry, prefix);
   if(retval_n)
-   retval_n << fr_/rq_.Retval_Follow >> current_node_;
+   retval_n << Cf/Qy.Retval_Follow >> current_node_;
 
   position_state_ = Position_States::Run_Pchasm_rz_Entry;
   break;
@@ -496,13 +605,13 @@ void ChasmRZ_Markup_Position::add_call_entry(bool is_statement_entry, QString pr
  }
 }
 
-void ChasmRZ_Markup_Position::add_equalizer_token_node(caon_ptr<ChasmRZ_Node> token_node)
+void ChasmRZ_ASG_Position::add_equalizer_token_node(caon_ptr<ChasmRZ_Node> token_node)
 {
  bool maybe_set_pending_equalizer_entry = position_state_ == Position_States::Active_Run_Token;
 
  if(held_assignment_annotation_node_)
  {
-  token_node << fr_/rq_.Assignment_Annotation>> held_assignment_annotation_node_;
+  token_node << Cf/Qy.Assignment_Annotation>> held_assignment_annotation_node_;
   held_assignment_annotation_node_ = nullptr;
  }
 
@@ -514,7 +623,7 @@ void ChasmRZ_Markup_Position::add_equalizer_token_node(caon_ptr<ChasmRZ_Node> to
 }
 
 
-void ChasmRZ_Markup_Position::add_arrow_token_node(caon_ptr<ChasmRZ_Node> token_node)
+void ChasmRZ_ASG_Position::add_arrow_token_node(caon_ptr<ChasmRZ_Node> token_node)
 {
  ChasmRZ_Token& token = *token_node->chasm_rz_token();
  switch(token.special_token())
@@ -547,7 +656,7 @@ void ChasmRZ_Markup_Position::add_arrow_token_node(caon_ptr<ChasmRZ_Node> token_
 }
 
 
-caon_ptr<ChasmRZ_Node> ChasmRZ_Markup_Position::check_implied_lambda_tuple(ChasmRZ_Function_Def_Kinds kind)
+caon_ptr<ChasmRZ_Node> ChasmRZ_ASG_Position::check_implied_lambda_tuple(ChasmRZ_Function_Def_Kinds kind)
 {
  caon_ptr<ChasmRZ_Node> result = nullptr;
  CAON_PTR_DEBUG(ChasmRZ_Node ,current_node_)
@@ -581,7 +690,7 @@ caon_ptr<ChasmRZ_Node> ChasmRZ_Markup_Position::check_implied_lambda_tuple(Chasm
     CAON_PTR_DEBUG(ChasmRZ_Node ,last_pchasm_rz_entry_node_)
     caon_ptr<ChasmRZ_Node> fdef_node = graph_build_->new_function_def_entry_node(*last_pchasm_rz_entry_node_, kind);
 
-    last_pchasm_rz_entry_node_->delete_relation(rq_.Run_Call_Entry, current_node_);
+    last_pchasm_rz_entry_node_->delete_relation(Qy.Run_Call_Entry, current_node_);
     current_function_def_entry_node_ = fdef_node;
 
     caon_ptr<ChasmRZ_Node> tuple_info_node = graph_build_->create_tuple(ChasmRZ_Tuple_Info::Tuple_Formations::Indicates_Input,
@@ -591,22 +700,22 @@ caon_ptr<ChasmRZ_Node> ChasmRZ_Markup_Position::check_implied_lambda_tuple(Chasm
 
     current_node_->debug_connections();
 
-    caon_ptr<ChasmRZ_Node> entry_node = rq_.Run_Call_Entry(current_node_);
+    caon_ptr<ChasmRZ_Node> entry_node = Qy.Run_Call_Entry(current_node_);
 
     result = current_node_;
 
-    fdef_node << fr_/rq_.Run_Call_Entry >> current_node_;
+    fdef_node << Cf/Qy.Run_Call_Entry >> current_node_;
 
     CAON_PTR_DEBUG(ChasmRZ_Node ,result)
 
-    current_node_ << fr_/rq_.Run_Data_Entry >> tuple_info_node;
-    tuple_info_node << fr_/rq_.Run_Data_Entry >> entry_node;
-    current_node_->delete_relation(rq_.Run_Call_Entry, entry_node);
+    current_node_ << Cf/Qy.Run_Data_Entry >> tuple_info_node;
+    tuple_info_node << Cf/Qy.Run_Data_Entry >> entry_node;
+    current_node_->delete_relation(Qy.Run_Call_Entry, entry_node);
 
     caon_ptr<ChasmRZ_Node> tuple_leave_node = graph_build_->create_tuple(ChasmRZ_Tuple_Info::Tuple_Formations::N_A,
      ChasmRZ_Tuple_Info::Tuple_Indicators::Leave_Array, ChasmRZ_Tuple_Info::Tuple_Formations::N_A, false);
 
-    tuple_info_node << fr_/rq_.Run_Data_Leave >> tuple_leave_node;
+    tuple_info_node << Cf/Qy.Run_Data_Leave >> tuple_leave_node;
 
    }
   }
@@ -615,13 +724,13 @@ caon_ptr<ChasmRZ_Node> ChasmRZ_Markup_Position::check_implied_lambda_tuple(Chasm
 }
 
 
-void ChasmRZ_Markup_Position::add_type_indicator(caon_ptr<ChasmRZ_Node> node)
+void ChasmRZ_ASG_Position::add_type_indicator(caon_ptr<ChasmRZ_Node> node)
 {
  type_indicator_node_ = node;
  flags.active_type_indicator_node = true;
 }
 
-void ChasmRZ_Markup_Position::add_arrow_node(caon_ptr<ChasmRZ_Node> token_node, ChasmRZ_Function_Def_Kinds kind)
+void ChasmRZ_ASG_Position::add_arrow_node(caon_ptr<ChasmRZ_Node> token_node, ChasmRZ_Function_Def_Kinds kind)
 {
  CAON_PTR_DEBUG(ChasmRZ_Node ,token_node)
  CAON_PTR_DEBUG(ChasmRZ_Node ,current_node_)
@@ -646,7 +755,7 @@ void ChasmRZ_Markup_Position::add_arrow_node(caon_ptr<ChasmRZ_Node> token_node, 
    // //  We need this only in a block-map
    if(current_do_map_block_entry_node_)
    {
-    last_function_definition_arrow_node_ << fr_/rq_.Run_Fundef_Map_Key_Sequence >> token_node;
+    last_function_definition_arrow_node_ << Cf/Qy.Run_Fundef_Map_Key_Sequence >> token_node;
    }
   }
   last_function_definition_arrow_node_ = token_node;
@@ -667,21 +776,21 @@ void ChasmRZ_Markup_Position::add_arrow_node(caon_ptr<ChasmRZ_Node> token_node, 
     CAON_PTR_DEBUG(ChasmRZ_Token ,token)
     if(token->flags.is_do)
     {
-     &prior_node << fr_/rq_.Run_Call_Sequence >> token_node;
+     &prior_node << Cf/Qy.Run_Call_Sequence >> token_node;
     }
     else
     {
      // //  For use by valuer, but obsolete now ...
-      // current_function_def_entry_node_ << fr_/rq_.Run_Fundef_Map_Key_Sequence_Ref >> token_node;
+      // current_function_def_entry_node_ << Cf/Qy.Run_Fundef_Map_Key_Sequence_Ref >> token_node;
     }
-    token_node << fr_/rq_.Run_Function_Def_Entry >> current_function_def_entry_node_;
+    token_node << Cf/Qy.Run_Function_Def_Entry >> current_function_def_entry_node_;
    }
   }
   else
   {
    // //    Assumes arrow node is always Run_Call_Sequence from something
-   &prior_node << fr_/rq_.Run_Call_Sequence >> token_node;
-   token_node << fr_/rq_.Run_Function_Def_Entry >> current_function_def_entry_node_;
+   &prior_node << Cf/Qy.Run_Call_Sequence >> token_node;
+   token_node << Cf/Qy.Run_Function_Def_Entry >> current_function_def_entry_node_;
   }
 
   if(kind == ChasmRZ_Function_Def_Kinds::Call_Arrow_Note)
@@ -706,7 +815,7 @@ void ChasmRZ_Markup_Position::add_arrow_node(caon_ptr<ChasmRZ_Node> token_node, 
 
 
    // //   generic block entry pattern?
-  caon_ptr<ChasmRZ_Node> block_entry_node = insert_block_entry_node(rq_.Run_Block_Entry);
+  caon_ptr<ChasmRZ_Node> block_entry_node = insert_block_entry_node(Qy.Run_Block_Entry);
 
   caon_ptr<ChasmRZ_Block_Entry> rbe = block_entry_node->chasm_rz_block_entry();
 
@@ -758,38 +867,38 @@ void ChasmRZ_Markup_Position::add_arrow_node(caon_ptr<ChasmRZ_Node> token_node, 
  }
 }
 
-void ChasmRZ_Markup_Position::add_block_entry_node(caon_ptr<ChasmRZ_Node> block_entry_node)
+void ChasmRZ_ASG_Position::add_block_entry_node(caon_ptr<ChasmRZ_Node> block_entry_node)
 {
  if(current_do_map_block_entry_node_)
  {
-  block_entry_node << fr_/rq_.Parent_Do_Map_Block >> current_do_map_block_entry_node_;
+  block_entry_node << Cf/Qy.Parent_Do_Map_Block >> current_do_map_block_entry_node_;
 
   //?
   if(last_do_map_block_statement_entry_node_)
   {
-   last_do_map_block_statement_entry_node_ << fr_/rq_.Run_Nested_Do_Map_Block_Entry_Rewind >> block_entry_node;
+   last_do_map_block_statement_entry_node_ << Cf/Qy.Run_Nested_Do_Map_Block_Entry_Rewind >> block_entry_node;
   }
 
   if(last_do_map_inner_block_first_entry_node_)
   {
-   last_do_map_inner_block_first_entry_node_ << fr_/rq_.Run_Nested_Do_Map_Block_Entry >> block_entry_node;
+   last_do_map_inner_block_first_entry_node_ << Cf/Qy.Run_Nested_Do_Map_Block_Entry >> block_entry_node;
    last_do_map_inner_block_first_entry_node_ = block_entry_node;
   }
  }
  else if(last_statement_entry_node_)
  {
-  last_statement_entry_node_ << fr_/rq_.Run_Nested_Block_Entry >> block_entry_node;
+  last_statement_entry_node_ << Cf/Qy.Run_Nested_Block_Entry >> block_entry_node;
  }
  if(!current_do_map_block_entry_node_)
  {
   if(current_block_map_entry_node_)
   {
-   block_entry_node << fr_/rq_.Parent_Block_Map >> current_block_map_entry_node_;
+   block_entry_node << Cf/Qy.Parent_Block_Map >> current_block_map_entry_node_;
   }
   current_block_map_entry_node_ = block_entry_node;
  }
  current_node_ = block_entry_node;
- caon_ptr<ChasmRZ_Node> entry_node = insert_entry_node(rq_.Run_Call_Entry, true);
+ caon_ptr<ChasmRZ_Node> entry_node = insert_entry_node(Qy.Run_Call_Entry, true);
  if(caon_ptr<ChasmRZ_Call_Entry> rce = entry_node->chasm_rz_call_entry())
  {
   rce->set_block_entry_node(block_entry_node);
@@ -798,11 +907,11 @@ void ChasmRZ_Markup_Position::add_block_entry_node(caon_ptr<ChasmRZ_Node> block_
  position_state_ = Position_States::Block_Entry;
 }
 
-void ChasmRZ_Markup_Position::add_block_map_entry()
+void ChasmRZ_ASG_Position::add_block_map_entry()
 {
  CAON_PTR_DEBUG(ChasmRZ_Node ,current_node_)
 
- caon_ptr<ChasmRZ_Node> block_entry_node = insert_block_entry_node(rq_.Run_Block_Entry);
+ caon_ptr<ChasmRZ_Node> block_entry_node = insert_block_entry_node(Qy.Run_Block_Entry);
  CAON_PTR_DEBUG(ChasmRZ_Node ,block_entry_node)
 
  caon_ptr<ChasmRZ_Block_Entry> rbe = block_entry_node->chasm_rz_block_entry();
@@ -855,10 +964,10 @@ void ChasmRZ_Markup_Position::add_block_map_entry()
  // //   Currently just stick do_maps as addenda to do tokens ...
  if(rbe->flags.do_map)
  {
-  current_node_ << fr_/rq_.Do_Map_Block >> block_entry_node;
+  current_node_ << Cf/Qy.Do_Map_Block >> block_entry_node;
   if(current_do_map_block_entry_node_)
   {
-   block_entry_node << fr_/rq_.Parent_Do_Map_Block >> current_do_map_block_entry_node_;
+   block_entry_node << Cf/Qy.Parent_Do_Map_Block >> current_do_map_block_entry_node_;
   }
   // //?  don't want arrows outside the map to be confused with those inside ...
   last_function_definition_arrow_node_ = nullptr;
@@ -872,7 +981,7 @@ void ChasmRZ_Markup_Position::add_block_map_entry()
 }
 
 
-caon_ptr<ChasmRZ_Tuple_Info> ChasmRZ_Markup_Position::current_tuple_info()
+caon_ptr<ChasmRZ_Tuple_Info> ChasmRZ_ASG_Position::current_tuple_info()
 {
  caon_ptr<ChasmRZ_Tuple_Info> result = nullptr;
  if(!chiefs_.isEmpty())
@@ -893,7 +1002,7 @@ caon_ptr<ChasmRZ_Tuple_Info> ChasmRZ_Markup_Position::current_tuple_info()
 }
 
 
-void ChasmRZ_Markup_Position::finalize_overall_if_block()
+void ChasmRZ_ASG_Position::finalize_overall_if_block()
 {
  if(block_chiefs_ifs_.size() > 0)
  {
@@ -911,7 +1020,7 @@ void ChasmRZ_Markup_Position::finalize_overall_if_block()
  }
 }
 
-void ChasmRZ_Markup_Position::add_block_map_leave()
+void ChasmRZ_ASG_Position::add_block_map_leave()
 {
  // //  handled by reset_if_block_pending_follow,
   //    called by close_statement() ...
@@ -925,7 +1034,7 @@ void ChasmRZ_Markup_Position::add_block_map_leave()
 
  if(current_do_map_block_entry_node_)
  {
-  if(caon_ptr<ChasmRZ_Node> n = rq_.Parent_Do_Map_Block(current_do_map_block_entry_node_))
+  if(caon_ptr<ChasmRZ_Node> n = Qy.Parent_Do_Map_Block(current_do_map_block_entry_node_))
   {
    current_do_map_block_entry_node_ = n;
    //? and...?
@@ -954,7 +1063,7 @@ void ChasmRZ_Markup_Position::add_block_map_leave()
 
  if(current_block_map_entry_node_)
  {
-  if(caon_ptr<ChasmRZ_Node> n = rq_.Parent_Block_Map(current_block_map_entry_node_))
+  if(caon_ptr<ChasmRZ_Node> n = Qy.Parent_Block_Map(current_block_map_entry_node_))
   {
    current_block_map_entry_node_ = n;
   }
@@ -1043,7 +1152,7 @@ void ChasmRZ_Markup_Position::add_block_map_leave()
     CAON_DEBUG_NOOP
    }
   }
-  else if(caon_ptr<ChasmRZ_Node> en_node = rq_.Run_Call_Entry(bc_node))
+  else if(caon_ptr<ChasmRZ_Node> en_node = Qy.Run_Call_Entry(bc_node))
   {
    CAON_PTR_DEBUG(ChasmRZ_Node ,en_node)
    current_node_ = bc_node;
@@ -1058,13 +1167,13 @@ void ChasmRZ_Markup_Position::add_block_map_leave()
 
 
 
-void ChasmRZ_Markup_Position::hold_do_mapkey_node(caon_ptr<ChasmRZ_Node> node)
+void ChasmRZ_ASG_Position::hold_do_mapkey_node(caon_ptr<ChasmRZ_Node> node)
 {
  CAON_PTR_DEBUG(ChasmRZ_Node ,current_node_)
  held_do_mapkey_node_ = node;
 }
 
-void ChasmRZ_Markup_Position::hold_mapkey_node(caon_ptr<ChasmRZ_Node> node)
+void ChasmRZ_ASG_Position::hold_mapkey_node(caon_ptr<ChasmRZ_Node> node)
 {
  CAON_PTR_DEBUG(ChasmRZ_Node ,current_node_)
  if(position_state_ == Position_States::Block_Entry
@@ -1074,19 +1183,19 @@ void ChasmRZ_Markup_Position::hold_mapkey_node(caon_ptr<ChasmRZ_Node> node)
   {
    CAON_PTR_DEBUG(ChasmRZ_Call_Entry ,rce)
    rce->flags.has_label = true;
-   current_node_ << fr_/rq_.Run_Map_Key_Label >> node;
+   current_node_ << Cf/Qy.Run_Map_Key_Label >> node;
    return;
   }
  }
  held_mapkey_node_ = node;
 }
 
-void ChasmRZ_Markup_Position::check_held_mapkey_node(caon_ptr<ChasmRZ_Node> new_node)
+void ChasmRZ_ASG_Position::check_held_mapkey_node(caon_ptr<ChasmRZ_Node> new_node)
 {
  if(held_mapkey_node_)
  {
   CAON_PTR_DEBUG(ChasmRZ_Node ,new_node)
-  new_node << fr_/rq_.Run_Map_Key_Value >> held_mapkey_node_;
+  new_node << Cf/Qy.Run_Map_Key_Value >> held_mapkey_node_;
   held_mapkey_node_ = nullptr;
   if(caon_ptr<ChasmRZ_Token> token = new_node->chasm_rz_token())
   {
@@ -1097,7 +1206,7 @@ void ChasmRZ_Markup_Position::check_held_mapkey_node(caon_ptr<ChasmRZ_Node> new_
 
 
 
-void ChasmRZ_Markup_Position::check_if_block_non_continue(caon_ptr<ChasmRZ_Token> token)
+void ChasmRZ_ASG_Position::check_if_block_non_continue(caon_ptr<ChasmRZ_Token> token)
 {
  if(flags.if_block_pending_follow)
  {
@@ -1126,22 +1235,22 @@ void ChasmRZ_Markup_Position::check_if_block_non_continue(caon_ptr<ChasmRZ_Token
  }
 }
 
-void ChasmRZ_Markup_Position::reset_if_block_pending_follow()
+void ChasmRZ_ASG_Position::reset_if_block_pending_follow()
 {
  flags.if_block_pending_follow = false;
  flags.elsif_block_pending_follow = false;
 }
 
 
-void ChasmRZ_Markup_Position::add_raw_asg_token(caon_ptr<ChasmRZ_Node> token_node)
+void ChasmRZ_ASG_Position::add_raw_asg_token(caon_ptr<ChasmRZ_Node> token_node)
 {
  CAON_PTR_DEBUG(ChasmRZ_Node ,token_node)
  CAON_PTR_DEBUG(ChasmRZ_Node ,current_node_)
 
- current_node_ << fr_/rq_.Raw_ASG_Paste >> token_node;
+ current_node_ << Cf/Qy.Raw_ASG_Paste >> token_node;
 }
 
-bool ChasmRZ_Markup_Position::current_node_is_symbol_declaration()
+bool ChasmRZ_ASG_Position::current_node_is_symbol_declaration()
 {
  if(current_node_)
  {
@@ -1154,7 +1263,7 @@ bool ChasmRZ_Markup_Position::current_node_is_symbol_declaration()
  return false;
 }
 
-caon_ptr<ChasmRZ_Node> ChasmRZ_Markup_Position::current_entry_is_backquoted()
+caon_ptr<ChasmRZ_Node> ChasmRZ_ASG_Position::current_entry_is_backquoted()
 {
  caon_ptr<ChasmRZ_Node> result = nullptr;
  if(chiefs_.size() > 0)
@@ -1172,13 +1281,13 @@ caon_ptr<ChasmRZ_Node> ChasmRZ_Markup_Position::current_entry_is_backquoted()
  return result;
 }
 
-void ChasmRZ_Markup_Position::hold_retval_node(caon_ptr<ChasmRZ_Node> token_node)
+void ChasmRZ_ASG_Position::hold_retval_node(caon_ptr<ChasmRZ_Node> token_node)
 {
  flags.holding_retval_node = true;
  held_retval_node_ = token_node;
 }
 
-bool ChasmRZ_Markup_Position::awaiting_statement_call_entry()
+bool ChasmRZ_ASG_Position::awaiting_statement_call_entry()
 {
  switch(position_state_)
  {
@@ -1201,7 +1310,7 @@ bool ChasmRZ_Markup_Position::awaiting_statement_call_entry()
  }
 }
 
-void ChasmRZ_Markup_Position::add_token_node(caon_ptr<ChasmRZ_Node> token_node)
+void ChasmRZ_ASG_Position::add_token_node(caon_ptr<ChasmRZ_Node> token_node)
 {
  if(flags.awaiting_function_def_note)
  {
@@ -1227,7 +1336,7 @@ void ChasmRZ_Markup_Position::add_token_node(caon_ptr<ChasmRZ_Node> token_node)
    flags.holding_retval_node = false;
    // //   held_retval_node_ is not used at all ...
    held_retval_node_ = nullptr;
-   held_retval_follow_node_ << fr_/rq_.Retval_Follow >> token_node;
+   held_retval_follow_node_ << Cf/Qy.Retval_Follow >> token_node;
    add_token_node(held_retval_follow_node_);
    held_retval_follow_node_ = nullptr;
   }
@@ -1248,7 +1357,7 @@ void ChasmRZ_Markup_Position::add_token_node(caon_ptr<ChasmRZ_Node> token_node)
  if(flags.active_type_indicator_node)
  {
   flags.active_type_indicator_node = false;
-  current_node_ << fr_/rq_.Type_Indicator >> token_node;
+  current_node_ << Cf/Qy.Type_Indicator >> token_node;
   if(token)
   {
    token->flags.has_type_indicator = true;
@@ -1289,7 +1398,7 @@ void ChasmRZ_Markup_Position::add_token_node(caon_ptr<ChasmRZ_Node> token_node)
   {
    CAON_PTR_DEBUG(ChasmRZ_Node ,current_node_)
    CAON_PTR_DEBUG(ChasmRZ_Call_Entry ,rce)
-   current_node_ << fr_/rq_.Run_Cross_Do >> token_node;
+   current_node_ << Cf/Qy.Run_Cross_Do >> token_node;
   }
 
   add_call_entry(false);
@@ -1313,13 +1422,13 @@ void ChasmRZ_Markup_Position::add_token_node(caon_ptr<ChasmRZ_Node> token_node)
  case Position_States::Root:
  case Position_States::Cross_Run_Chief:
  case Position_States::Run_Pchasm_rz_Entry:
-  pConnector = &rq_.Run_Call_Entry;
+  pConnector = &Qy.Run_Call_Entry;
 
   if(current_node_)
   {
    if(token)
    {
-    aConnector = &rq_.Run_Call_Entry_Direct;
+    aConnector = &Qy.Run_Call_Entry_Direct;
     aConnector_src_node = current_node_;
 
      //  // debug
@@ -1339,7 +1448,7 @@ void ChasmRZ_Markup_Position::add_token_node(caon_ptr<ChasmRZ_Node> token_node)
    CAON_PTR_DEBUG(ChasmRZ_Call_Entry ,rce)
    CAON_DEBUG_NOOP
   }
-  pConnector = &rq_.Run_Call_Entry; break;
+  pConnector = &Qy.Run_Call_Entry; break;
  }
 
  case Position_States::Active_Run_Chief:
@@ -1348,7 +1457,7 @@ void ChasmRZ_Markup_Position::add_token_node(caon_ptr<ChasmRZ_Node> token_node)
    {
     rce->set_ref_node(current_node_);
    }
-   pConnector = &rq_.Run_Cross_Sequence; break;
+   pConnector = &Qy.Run_Cross_Sequence; break;
   }
  case Position_States::Active_Run_Token:
   if(was_pending_equalizer_value)
@@ -1385,7 +1494,7 @@ void ChasmRZ_Markup_Position::add_token_node(caon_ptr<ChasmRZ_Node> token_node)
     }
    }
   }
-  pConnector = &rq_.Run_Call_Sequence; break;
+  pConnector = &Qy.Run_Call_Sequence; break;
 
  case Position_States::Active_Closed_Do_Entry:
   {
@@ -1395,18 +1504,18 @@ void ChasmRZ_Markup_Position::add_token_node(caon_ptr<ChasmRZ_Node> token_node)
     CAON_PTR_DEBUG(ChasmRZ_Node ,current_closed_do_entry_node_)
     CAON_PTR_DEBUG(ChasmRZ_Node ,token_node)
 
-    pConnector = &rq_.Run_Cross_Sequence;
+    pConnector = &Qy.Run_Cross_Sequence;
     current_node_ = current_closed_do_entry_node_;
 
-    if(caon_ptr<ChasmRZ_Node> old_do_node = rq_.Run_Call_Entry(current_closed_do_entry_node_))
+    if(caon_ptr<ChasmRZ_Node> old_do_node = Qy.Run_Call_Entry(current_closed_do_entry_node_))
     {
      CAON_PTR_DEBUG(ChasmRZ_Node ,old_do_node)
      old_do_node->debug_connections();
-     if(caon_ptr<ChasmRZ_Node> old_arrow_node = rq_.Run_Call_Sequence(old_do_node))
+     if(caon_ptr<ChasmRZ_Node> old_arrow_node = Qy.Run_Call_Sequence(old_do_node))
      {
       CAON_PTR_DEBUG(ChasmRZ_Node ,old_arrow_node)
 
-      old_arrow_node << fr_/rq_.Run_Token_Arrow_Sequence >> token_node;
+      old_arrow_node << Cf/Qy.Run_Token_Arrow_Sequence >> token_node;
 
 //        CAON_PTR_DEBUG(ChasmRZ_Node ,token_node)
 //        CAON_PTR_DEBUG(ChasmRZ_Node ,current_node_)
@@ -1419,7 +1528,7 @@ void ChasmRZ_Markup_Position::add_token_node(caon_ptr<ChasmRZ_Node> token_node)
   }
   break;
  case Position_States::Data_Entry:
-  pConnector = &rq_.Run_Data_Entry;
+  pConnector = &Qy.Run_Data_Entry;
   break;
  default:
   return;
@@ -1431,11 +1540,11 @@ void ChasmRZ_Markup_Position::add_token_node(caon_ptr<ChasmRZ_Node> token_node)
  {
  case Position_States::Root:
   {
-  caon_ptr<ChasmRZ_Node> block_entry_node = insert_block_entry_node(rq_.Run_Block_Entry);
+  caon_ptr<ChasmRZ_Node> block_entry_node = insert_block_entry_node(Qy.Run_Block_Entry);
   caon_ptr<ChasmRZ_Block_Entry> rbe = block_entry_node->chasm_rz_block_entry();
   rbe->flags.file_default = true;
   current_node_ = block_entry_node;
-  entry_node = insert_entry_node(rq_.Run_Call_Entry, true);
+  entry_node = insert_entry_node(Qy.Run_Call_Entry, true);
   prior_current_node = current_node_;
   current_node_ = entry_node;
   maybe_if_entry_node = entry_node;
@@ -1456,7 +1565,7 @@ void ChasmRZ_Markup_Position::add_token_node(caon_ptr<ChasmRZ_Node> token_node)
      is_statement_entry = rce->flags.is_statement_entry;
    }
 
-   entry_node = insert_entry_node(rq_.Run_Cross_Sequence, is_statement_entry);
+   entry_node = insert_entry_node(Qy.Run_Cross_Sequence, is_statement_entry);
 
    maybe_if_entry_node = entry_node;
 
@@ -1480,7 +1589,7 @@ void ChasmRZ_Markup_Position::add_token_node(caon_ptr<ChasmRZ_Node> token_node)
      if(held_mapkey_node_)
      {
       rce->flags.has_label = true;
-      entry_node << fr_/rq_.Run_Map_Key_Label >> held_mapkey_node_;
+      entry_node << Cf/Qy.Run_Map_Key_Label >> held_mapkey_node_;
       held_mapkey_node_ = nullptr;
      }
     }
@@ -1494,24 +1603,24 @@ void ChasmRZ_Markup_Position::add_token_node(caon_ptr<ChasmRZ_Node> token_node)
   {
    CAON_PTR_DEBUG(ChasmRZ_Node ,current_node_)
 
-   node_frame<RZ::RZ_Core::ChasmRZ_Dominion, RZ::RZ_Core::ChasmRZ_Galaxy>::Frame_With_Connector fwc = fr_/connector;
+   node_frame<RZ::RZ_Core::ChasmRZ_Dominion, RZ::RZ_Core::ChasmRZ_Galaxy>::Frame_With_Connector fwc = Cf/connector;
    node_ptr<RZ::RZ_Core::ChasmRZ_Dominion>::Node_With_Connector nwc = current_node_ << fwc;
 
    node_frame<RZ::RZ_Core::ChasmRZ_Dominion, RZ::RZ_Core::ChasmRZ_Galaxy>::Frame_With_Connector fwc1 = nwc.frame_with_connector;
-   current_node_ << fr_/connector>> token_node;
+   current_node_ << Cf/connector>> token_node;
 
    // why does == act wierd?
-   if( (connector == rq_.Run_Call_Entry) )
+   if( (connector == Qy.Run_Call_Entry) )
    {
     if(prior_current_node)
     {
      caon_ptr<ChasmRZ_Connection> cion = new ChasmRZ_Connection(entry_node);
-     prior_current_node << fr_/rq_.Run_Call_Entry_Direct(cion) >> token_node;
+     prior_current_node << Cf/Qy.Run_Call_Entry_Direct(cion) >> token_node;
     }
     else if(aConnector_src_node)
     {
      caon_ptr<ChasmRZ_Connection> cion = new ChasmRZ_Connection(entry_node);
-     aConnector_src_node << fr_/rq_.Run_Call_Entry_Direct(cion) >> token_node;
+     aConnector_src_node << Cf/Qy.Run_Call_Entry_Direct(cion) >> token_node;
     }
    }
 
@@ -1548,7 +1657,7 @@ void ChasmRZ_Markup_Position::add_token_node(caon_ptr<ChasmRZ_Node> token_node)
 
 }
 
-void ChasmRZ_Markup_Position::close_statement()
+void ChasmRZ_ASG_Position::close_statement()
 {
  CAON_PTR_DEBUG(ChasmRZ_Node ,current_node_)
 
@@ -1561,7 +1670,7 @@ void ChasmRZ_Markup_Position::close_statement()
   {
    add_token_node(held_retval_node_);
    add_token_node(held_retval_follow_node_);
-   held_retval_node_ << fr_/rq_.Retval_Follow >> held_retval_follow_node_;
+   held_retval_node_ << Cf/Qy.Retval_Follow >> held_retval_follow_node_;
   }
   held_retval_node_ = nullptr;
   held_retval_follow_node_ = nullptr;
@@ -1613,7 +1722,7 @@ void ChasmRZ_Markup_Position::close_statement()
 
 
 caon_ptr<ChasmRZ_Node>
- ChasmRZ_Markup_Position::check_insert_function_def_entry_node(const ChasmRZ_Tuple_Info& tuple_info)
+ ChasmRZ_ASG_Position::check_insert_function_def_entry_node(const ChasmRZ_Tuple_Info& tuple_info)
 {
  // //    If the entry is a function definition, create a new Fun_Def node.
 
@@ -1632,7 +1741,7 @@ caon_ptr<ChasmRZ_Node>
  return nullptr;
 }
 
-caon_ptr<ChasmRZ_Node> ChasmRZ_Markup_Position::check_add_function_def_entry_node_with_label()
+caon_ptr<ChasmRZ_Node> ChasmRZ_ASG_Position::check_add_function_def_entry_node_with_label()
 {
  caon_ptr<ChasmRZ_Node> result;
 
@@ -1664,7 +1773,7 @@ caon_ptr<ChasmRZ_Node> ChasmRZ_Markup_Position::check_add_function_def_entry_nod
  return result;
 }
 
-void ChasmRZ_Markup_Position::check_add_retval_nodes(caon_ptr<ChasmRZ_Node> node)
+void ChasmRZ_ASG_Position::check_add_retval_nodes(caon_ptr<ChasmRZ_Node> node)
 {
  if(flags.holding_retval_node)
  {
@@ -1672,19 +1781,19 @@ void ChasmRZ_Markup_Position::check_add_retval_nodes(caon_ptr<ChasmRZ_Node> node
   if(held_retval_follow_node_)
   {
    add_token_node(held_retval_follow_node_);
-   held_retval_follow_node_ << fr_/rq_.Retval_Follow >> node;
+   held_retval_follow_node_ << Cf/Qy.Retval_Follow >> node;
   }
   else
   {
    add_token_node(held_retval_node_);
-   held_retval_node_ << fr_/rq_.Retval_Follow >> node;
+   held_retval_node_ << Cf/Qy.Retval_Follow >> node;
   }
   held_retval_node_ = nullptr;
   held_retval_follow_node_ = nullptr;
  }
 }
 
-caon_ptr<ChasmRZ_Node> ChasmRZ_Markup_Position::check_add_retval_nodes()
+caon_ptr<ChasmRZ_Node> ChasmRZ_ASG_Position::check_add_retval_nodes()
 {
  caon_ptr<ChasmRZ_Node> result = nullptr;
  if(flags.holding_retval_node)
@@ -1706,7 +1815,7 @@ caon_ptr<ChasmRZ_Node> ChasmRZ_Markup_Position::check_add_retval_nodes()
  return result;
 }
 
-void ChasmRZ_Markup_Position::add_data_entry(caon_ptr<ChasmRZ_Node> tuple_info_node)
+void ChasmRZ_ASG_Position::add_data_entry(caon_ptr<ChasmRZ_Node> tuple_info_node)
 {
  check_add_retval_nodes(tuple_info_node);
 
@@ -1741,13 +1850,13 @@ void ChasmRZ_Markup_Position::add_data_entry(caon_ptr<ChasmRZ_Node> tuple_info_n
    {
 // //  Actually, the sequence should be defined between the arrow token nodes ...
 //  if(last_function_definition_arrow_node_)
-//    last_function_definition_arrow_node_ << fr_/rq_.Run_Fundef_Map_Key_Sequence >> new_node;
+//    last_function_definition_arrow_node_ << Cf/Qy.Run_Fundef_Map_Key_Sequence >> new_node;
 
 // // This can be used to verify syntax ...
-//    if(caon_ptr<ChasmRZ_Node> n = rq_.Run_Call_Entry(current_node_))
+//    if(caon_ptr<ChasmRZ_Node> n = Qy.Run_Call_Entry(current_node_))
 //    {
 //     CAON_PTR_DEBUG(ChasmRZ_Node ,n)
-//     if(caon_ptr<ChasmRZ_Node> n1 = rq_.Run_Call_Sequence(n))
+//     if(caon_ptr<ChasmRZ_Node> n1 = Qy.Run_Call_Sequence(n))
 //     {
 //      // //  n1 should be arrow token ...
 //      CAON_PTR_DEBUG(ChasmRZ_Node ,n1)
@@ -1771,24 +1880,24 @@ void ChasmRZ_Markup_Position::add_data_entry(caon_ptr<ChasmRZ_Node> tuple_info_n
  switch(position_state_)
  {
  case Position_States::Active_Run_Token:
-  new_node = insert_entry_node(rq_.Run_Call_Entry, false);
-  new_node << fr_/rq_.Run_Data_Entry >> tuple_info_node;
+  new_node = insert_entry_node(Qy.Run_Call_Entry, false);
+  new_node << Cf/Qy.Run_Data_Entry >> tuple_info_node;
   break;
 
  case Position_States::Active_Run_Chief:
-  new_node = insert_entry_node(rq_.Run_Cross_Data, false);
-  new_node << fr_/rq_.Run_Data_Entry >> tuple_info_node;
+  new_node = insert_entry_node(Qy.Run_Cross_Data, false);
+  new_node << Cf/Qy.Run_Data_Entry >> tuple_info_node;
   break;
 
  case Position_States::Block_Entry:
-  new_node = insert_entry_node(rq_.Run_Call_Entry, false);
-  new_node << fr_/rq_.Run_Data_Entry >> tuple_info_node;
+  new_node = insert_entry_node(Qy.Run_Call_Entry, false);
+  new_node << Cf/Qy.Run_Data_Entry >> tuple_info_node;
   break;
 
  case Position_States::Cross_Run_Chief:
   {
-   new_node = insert_entry_node(rq_.Run_Call_Entry, false);
-   new_node << fr_/rq_.Run_Data_Entry >> tuple_info_node;
+   new_node = insert_entry_node(Qy.Run_Call_Entry, false);
+   new_node << Cf/Qy.Run_Data_Entry >> tuple_info_node;
    break;
   }
 
@@ -1807,14 +1916,14 @@ void ChasmRZ_Markup_Position::add_data_entry(caon_ptr<ChasmRZ_Node> tuple_info_n
 }
 
 
-void ChasmRZ_Markup_Position::read_over_chiefs()
+void ChasmRZ_ASG_Position::read_over_chiefs()
 {
  QVectorIterator<caon_ptr<ChasmRZ_Node>> it(over_chiefs_);
  while(it.hasNext())
  {
   caon_ptr<ChasmRZ_Node> n = it.next();
   CAON_PTR_DEBUG(ChasmRZ_Node ,n)
-  if(caon_ptr<ChasmRZ_Node> nn = rq_.Run_Call_Entry(n))
+  if(caon_ptr<ChasmRZ_Node> nn = Qy.Run_Call_Entry(n))
   {
    CAON_PTR_DEBUG(ChasmRZ_Node ,nn)
    if(caon_ptr<ChasmRZ_Token> tok = nn->chasm_rz_token())
@@ -1823,7 +1932,7 @@ void ChasmRZ_Markup_Position::read_over_chiefs()
     qDebug() << tok->string_value();
    }
   }
-  else if(caon_ptr<ChasmRZ_Node> dn = rq_.Run_Data_Entry(n))
+  else if(caon_ptr<ChasmRZ_Node> dn = Qy.Run_Data_Entry(n))
   {
    if(caon_ptr<ChasmRZ_Tuple_Info> rti = dn->chasm_rz_tuple_info())
    {
@@ -1834,14 +1943,14 @@ void ChasmRZ_Markup_Position::read_over_chiefs()
  }
 }
 
-void ChasmRZ_Markup_Position::read_block_chiefs()
+void ChasmRZ_ASG_Position::read_block_chiefs()
 {
  QVectorIterator<caon_ptr<ChasmRZ_Node>> it(block_chiefs_);
  while(it.hasNext())
  {
   caon_ptr<ChasmRZ_Node> n = it.next();
   CAON_PTR_DEBUG(ChasmRZ_Node ,n)
-  if(caon_ptr<ChasmRZ_Node> nn = rq_.Run_Call_Entry(n))
+  if(caon_ptr<ChasmRZ_Node> nn = Qy.Run_Call_Entry(n))
   {
    CAON_PTR_DEBUG(ChasmRZ_Node ,nn)
    if(caon_ptr<ChasmRZ_Token> tok = nn->chasm_rz_token())
@@ -1850,7 +1959,7 @@ void ChasmRZ_Markup_Position::read_block_chiefs()
     qDebug() << tok->string_value();
    }
   }
-  else if(caon_ptr<ChasmRZ_Node> dn = rq_.Run_Data_Entry(n))
+  else if(caon_ptr<ChasmRZ_Node> dn = Qy.Run_Data_Entry(n))
   {
    if(caon_ptr<ChasmRZ_Tuple_Info> rti = dn->chasm_rz_tuple_info())
    {
@@ -1862,14 +1971,14 @@ void ChasmRZ_Markup_Position::read_block_chiefs()
 }
 
 
-void ChasmRZ_Markup_Position::read_chiefs()
+void ChasmRZ_ASG_Position::read_chiefs()
 {
  QVectorIterator<caon_ptr<ChasmRZ_Node>> it(chiefs_);
  while(it.hasNext())
  {
   caon_ptr<ChasmRZ_Node> n = it.next();
   CAON_PTR_DEBUG(ChasmRZ_Node ,n)
-  if(caon_ptr<ChasmRZ_Node> nn = rq_.Run_Call_Entry(n))
+  if(caon_ptr<ChasmRZ_Node> nn = Qy.Run_Call_Entry(n))
   {
    CAON_PTR_DEBUG(ChasmRZ_Node ,nn)
    if(caon_ptr<ChasmRZ_Token> tok = nn->chasm_rz_token())
@@ -1878,7 +1987,7 @@ void ChasmRZ_Markup_Position::read_chiefs()
     CAON_DEBUG_NOOP
    }
   }
-  else if(caon_ptr<ChasmRZ_Node> dn = rq_.Run_Data_Entry(n))
+  else if(caon_ptr<ChasmRZ_Node> dn = Qy.Run_Data_Entry(n))
   {
    if(caon_ptr<ChasmRZ_Tuple_Info> rti = dn->chasm_rz_tuple_info())
    {
@@ -1890,7 +1999,7 @@ void ChasmRZ_Markup_Position::read_chiefs()
 
 }
 
-void ChasmRZ_Markup_Position::add_data_leave(caon_ptr<ChasmRZ_Node> tuple_info_node)
+void ChasmRZ_ASG_Position::add_data_leave(caon_ptr<ChasmRZ_Node> tuple_info_node)
 {
  CAON_PTR_DEBUG(ChasmRZ_Node ,tuple_info_node)
 
@@ -1915,7 +2024,7 @@ void ChasmRZ_Markup_Position::add_data_leave(caon_ptr<ChasmRZ_Node> tuple_info_n
   CAON_DEBUG_NOOP
   ce_rti->set_call_entry_node(pop_node);
 
-  if(caon_ptr<ChasmRZ_Node> den = rq_.Run_Data_Entry(current_node_))
+  if(caon_ptr<ChasmRZ_Node> den = Qy.Run_Data_Entry(current_node_))
   {
    CAON_PTR_DEBUG(ChasmRZ_Node ,den)
    CAON_DEBUG_NOOP
@@ -1925,19 +2034,19 @@ void ChasmRZ_Markup_Position::add_data_leave(caon_ptr<ChasmRZ_Node> tuple_info_n
    ce_rti->mark_as_empty();
    // //?  Is it better to use a dummy or just rely on graph structure?
    caon_ptr<ChasmRZ_Node> new_node = graph_build_->make_new_empty_tuple_node(ce_rti);
-   current_node_ << fr_/rq_.Run_Data_Entry >> new_node;
+   current_node_ << Cf/Qy.Run_Data_Entry >> new_node;
    current_node_ = new_node;
   }
  }
 
- current_node_ << fr_/rq_.Run_Data_Leave >> tuple_info_node;
+ current_node_ << Cf/Qy.Run_Data_Leave >> tuple_info_node;
 
  current_node_ = pop_node;
  position_state_ = Position_States::Active_Run_Chief;
 }
 
 ChasmRZ_Tuple_Info::Tuple_Indicators
-ChasmRZ_Markup_Position::data_chief_indicator()
+ChasmRZ_ASG_Position::data_chief_indicator()
 {
  if(chiefs_.isEmpty())
   return ChasmRZ_Tuple_Info::Tuple_Indicators::N_A;
@@ -1953,7 +2062,7 @@ ChasmRZ_Markup_Position::data_chief_indicator()
 
 }
 
-void ChasmRZ_Markup_Position::leave_expression()
+void ChasmRZ_ASG_Position::leave_expression()
 {
  switch(position_state_)
  {
@@ -1975,13 +2084,13 @@ void ChasmRZ_Markup_Position::leave_expression()
  }
 }
 
-void ChasmRZ_Markup_Position::hold_assignment_annotation_node(caon_ptr<ChasmRZ_Node> aa_node)
+void ChasmRZ_ASG_Position::hold_assignment_annotation_node(caon_ptr<ChasmRZ_Node> aa_node)
 {
  // //  Chance to check position state ...
  held_assignment_annotation_node_ = aa_node;
 }
 
-void ChasmRZ_Markup_Position::complete_function_declaration(caon_ptr<ChasmRZ_Node> arrow_node,
+void ChasmRZ_ASG_Position::complete_function_declaration(caon_ptr<ChasmRZ_Node> arrow_node,
   caon_ptr<ChasmRZ_Node> proxy_body_node)
 {
  add_arrow_token_node(arrow_node);
@@ -1991,7 +2100,7 @@ void ChasmRZ_Markup_Position::complete_function_declaration(caon_ptr<ChasmRZ_Nod
  position_state_ = Position_States::Cross_Run_Chief;
 }
 
-void ChasmRZ_Markup_Position::leave_lexical_scope(int length, QString suffix)
+void ChasmRZ_ASG_Position::leave_lexical_scope(int length, QString suffix)
 {
   // // always necessary? ...
   // reset_if_block_pending_follow();

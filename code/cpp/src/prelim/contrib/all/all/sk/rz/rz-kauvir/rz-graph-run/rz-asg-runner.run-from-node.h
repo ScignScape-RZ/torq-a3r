@@ -6,12 +6,12 @@
 
 #include "rz-asg-runner.h"
 
-#include "rz-graph-token/rz-asg-core-function.h"
+#include "rz-graph-token/rz-asg-core-casement-function.h"
 
 
 
 #include "rz-graph-valuer/valuer/rz-asg-valuer.h"
-#include "rz-graph-token/valuer/rz-asg-core-function.h"
+#include "rz-graph-token/rz-asg-core-casement-function.h"
 
 #include "rz-graph-build/rz-asg-result-holder.h"
 
@@ -32,11 +32,11 @@ template<>
 void RZ_ASG_Runner::proceed_run_from_node<0>(RZ_ASG_Result_Holder& rh,
   RZ_ASG_Valuer_Core_Pair& cp)
 {
- RZ_ASG_Core_Function& cf = *cp.cf;
+ RZ_ASG_Core_Casement_Function& ccf = *cp.ccf;
  tNode& start_node = *cp.fnode;
  rh.hold(&start_node);
- RZ_ASG_Function_Code code = cf.info().Core_Function_Code;
- switch(cf.info().Core_Function_Family)
+ RZ_ASG_Function_Code code = ccf.info().Core_Function_Code;
+ switch(ccf.info().Core_Function_Family)
  {
  case RZ_Graph_Call_S:
   RZ_ASG_Core_Runner::run<RZ_Graph_Call_S>
@@ -52,7 +52,7 @@ void RZ_ASG_Runner::proceed_run_from_node<0>(RZ_ASG_Result_Holder& rh,
 template<>
 void RZ_ASG_Runner::prepare_run_from_node<0>(int generation,
   RZ_ASG_Result_Holder& rh,
-  RZ_ASG_Core_Function& cf,
+  RZ_ASG_Core_Casement_Function& ccf,
   tNode& start_node, caon_ptr<tNode> next_node,
   caon_ptr<tNode> left_new_node,
   caon_ptr<tNode> second_node, caon_ptr<tNode> right_new_node)
@@ -63,10 +63,10 @@ void RZ_ASG_Runner::prepare_run_from_node<0>(int generation,
 template<>
 void RZ_ASG_Runner::check_run_from_node<0>(int generation,
   RZ_ASG_Result_Holder& rh,
-  RZ_ASG_Core_Function& cf, tNode& start_node)
+  RZ_ASG_Core_Casement_Function& ccf, tNode& start_node)
 {
- valuer_->mark_core_function_call_entry(generation, cf, &start_node, nullptr, nullptr, nullptr, nullptr, nullptr);
- prepare_run_from_node<0>(generation, rh, cf, start_node, nullptr, nullptr, nullptr, nullptr);
+ valuer_->mark_core_function_call_entry(generation, ccf, &start_node, nullptr, nullptr, nullptr, nullptr, nullptr);
+ prepare_run_from_node<0>(generation, rh, ccf, start_node, nullptr, nullptr, nullptr, nullptr);
 }
 
 template<>
@@ -74,7 +74,7 @@ void RZ_ASG_Runner::proceed_run_from_node<1>(RZ_ASG_Result_Holder& rh,
   RZ_ASG_Valuer_Core_Pair& cp)
 {
 
- RZ_ASG_Core_Function& cf = *cp.cf;
+ RZ_ASG_Core_Casement_Function& ccf = *cp.ccf;
  tNode& start_node = *cp.fnode;
 
  caon_ptr<tNode> next_node = cp.lhs_node;
@@ -88,7 +88,7 @@ void RZ_ASG_Runner::proceed_run_from_node<1>(RZ_ASG_Result_Holder& rh,
  if(left_new_node)
  {
   // //  indicate that the call entry is a core function ...
-  //?valuer_->mark_core_function_call_entry(&cf, start_node, *left_new_node);
+  //?valuer_->mark_core_function_call_entry(&ccf, start_node, *left_new_node);
   lhs_token = valuer_->get_token_from(*left_new_node);
  }
  else
@@ -101,14 +101,14 @@ void RZ_ASG_Runner::proceed_run_from_node<1>(RZ_ASG_Result_Holder& rh,
 
  static RZ_ASG_Value_Holder null_vh;
 
- switch(cf.info().Core_Function_Family)
+ switch(ccf.info().Core_Function_Family)
  {
  case RZ_Graph_Call_C:
   if(rh.flags.has_held_value)
   {
    rh.flags.has_held_value = false;
    RZ_ASG_Core_Runner::run<RZ_Graph_Call_C>
-    (rh, cf.info().Core_Function_Code,
+    (rh, ccf.info().Core_Function_Code,
      rh.value_holder(), null_vh);
   }
   else if(arity_value_node)
@@ -120,12 +120,12 @@ void RZ_ASG_Runner::proceed_run_from_node<1>(RZ_ASG_Result_Holder& rh,
    vh.set_type_object(tobj);
    vh.set_value(arity_value_node->vertex());
    RZ_ASG_Core_Runner::run<RZ_Graph_Call_C>
-    (rh, cf.info().Core_Function_Code,
+    (rh, ccf.info().Core_Function_Code,
      vh, lhs_token->vh() );
   }
   else
    RZ_ASG_Core_Runner::run<RZ_Graph_Call_C>
-    (rh, cf.info().Core_Function_Code,
+    (rh, ccf.info().Core_Function_Code,
      lhs_token->vh(), null_vh );
   break;
 
@@ -134,12 +134,12 @@ void RZ_ASG_Runner::proceed_run_from_node<1>(RZ_ASG_Result_Holder& rh,
   {
    rh.flags.has_held_value = false;
    RZ_ASG_Core_Runner::run<RZ_Graph_Call_Tc>
-    (rh, cf.info().Core_Function_Code,
+    (rh, ccf.info().Core_Function_Code,
      *lhs_token, rh.value_holder() );
   }
   else
    RZ_ASG_Core_Runner::run<RZ_Graph_Call_Tc>
-    (rh, cf.info().Core_Function_Code,
+    (rh, ccf.info().Core_Function_Code,
      *lhs_token, lhs_token->vh() );
   break;
 
@@ -148,12 +148,12 @@ void RZ_ASG_Runner::proceed_run_from_node<1>(RZ_ASG_Result_Holder& rh,
   {
    rh.flags.has_held_value = false;
    RZ_ASG_Core_Runner::run<RZ_Graph_Call_Tv>
-    (rh, cf.info().Core_Function_Code,
+    (rh, ccf.info().Core_Function_Code,
      *lhs_token, rh.value_holder() );
   }
   else
    RZ_ASG_Core_Runner::run<RZ_Graph_Call_Tv>
-    (rh, cf.info().Core_Function_Code,
+    (rh, ccf.info().Core_Function_Code,
      *lhs_token, lhs_token->vh() );
   break;
 
@@ -162,18 +162,18 @@ void RZ_ASG_Runner::proceed_run_from_node<1>(RZ_ASG_Result_Holder& rh,
   {
    rh.flags.has_held_value = false;
    RZ_ASG_Core_Runner::run<RZ_Graph_Call_TC>
-    (rh, cf.info().Core_Function_Code,
+    (rh, ccf.info().Core_Function_Code,
      *lhs_token, second_node->asg_token()->vh());
   }
   else
    RZ_ASG_Core_Runner::run<RZ_Graph_Call_TC>
-    (rh, cf.info().Core_Function_Code,
+    (rh, ccf.info().Core_Function_Code,
      *lhs_token, second_node->asg_token()->vh());
   break;
 
  case RZ_Graph_Call_T:
   RZ_ASG_Core_Runner::run<RZ_Graph_Call_T>
-    (rh, cf.info().Core_Function_Code,
+    (rh, ccf.info().Core_Function_Code,
      *lhs_token );
   break;
  }
@@ -184,7 +184,7 @@ void RZ_ASG_Runner::proceed_run_from_node<1>(RZ_ASG_Result_Holder& rh,
 template<>
 void RZ_ASG_Runner::prepare_run_from_node<1>(int generation,
   RZ_ASG_Result_Holder& rh,
-  RZ_ASG_Core_Function& cf,
+  RZ_ASG_Core_Casement_Function& ccf,
   tNode& start_node, caon_ptr<tNode> next_node,
   caon_ptr<tNode> left_new_node,
   caon_ptr<tNode> second_node, caon_ptr<tNode> right_new_node)
@@ -195,7 +195,7 @@ void RZ_ASG_Runner::prepare_run_from_node<1>(int generation,
  CAON_PTR_DEBUG(tNode ,left_new_node)
  CAON_PTR_DEBUG(tNode ,right_new_node)
 
- valuer_->mark_core_function_call_entry(generation, cf, &start_node,
+ valuer_->mark_core_function_call_entry(generation, ccf, &start_node,
    next_node, left_new_node, second_node, right_new_node, rh.arity_value_node());
 
 }
@@ -204,7 +204,7 @@ void RZ_ASG_Runner::prepare_run_from_node<1>(int generation,
 template<>
 void RZ_ASG_Runner::check_run_from_node<1>(int generation,
   RZ_ASG_Result_Holder& rh,
-  RZ_ASG_Core_Function& cf, tNode& start_node)
+  RZ_ASG_Core_Casement_Function& ccf, tNode& start_node)
 {
  caon_ptr<tNode> next_node;
  caon_ptr<tNode> second_node;
@@ -214,14 +214,14 @@ void RZ_ASG_Runner::check_run_from_node<1>(int generation,
 
 
  init_run_sequence_pair(rh, start_node, next_node, second_node, left_new_node, right_new_node);
- prepare_run_from_node<1>(generation, rh, cf, start_node, next_node, left_new_node, second_node, right_new_node);
+ prepare_run_from_node<1>(generation, rh, ccf, start_node, next_node, left_new_node, second_node, right_new_node);
 }
 
 
 //template<>
 //void RZ_ASG_Runner::proceed_run_from_node<2>(int generation,
 //  RZ_ASG_Result_Holder& rh,
-//  RZ_ASG_Core_Function& cf,
+//  RZ_ASG_Core_Function& ccf,
 //  tNode& start_node, caon_ptr<tNode> lhs_node,
 //  caon_ptr<tNode> left_new_node,
 //  caon_ptr<tNode> rhs_node, caon_ptr<tNode> right_new_node)
@@ -231,7 +231,7 @@ void RZ_ASG_Runner::proceed_run_from_node<2>(RZ_ASG_Result_Holder& rh,
   RZ_ASG_Valuer_Core_Pair& cp)
 {
 
- RZ_ASG_Core_Function& cf = *cp.cf;
+ RZ_ASG_Core_Casement_Function& ccf = *cp.ccf;
  tNode& start_node = *cp.fnode;
 
  caon_ptr<tNode> lhs_node = cp.lhs_node;
@@ -307,12 +307,12 @@ void RZ_ASG_Runner::proceed_run_from_node<2>(RZ_ASG_Result_Holder& rh,
 
   rhs_vh.set_value(right_new_node->vertex());
  }
- else if(caon_ptr<RZ_ASG_Core_Function> rhs_cf =
-   rhs_token->pRestore<RZ_ASG_Core_Function>(valuer_->type_variety()))
+ else if(caon_ptr<RZ_ASG_Core_Casement_Function> rhs_ccf =
+   rhs_token->pRestore<RZ_ASG_Core_Casement_Function>(valuer_->type_variety()))
  {
   RZ_ASG_Result_Holder rh1(*valuer_);
   //?
-  check_run_info(generation + 1, rh1, *rhs_cf, *rhs_node);
+  check_run_info(generation + 1, rh1, *rhs_ccf, *rhs_node);
   rhs_vh = rh1.value_holder();
  }
  else if(caon_ptr<GBuild::RZ_Lisp_Core_Function> rhs_lcf =
@@ -331,9 +331,9 @@ void RZ_ASG_Runner::proceed_run_from_node<2>(RZ_ASG_Result_Holder& rh,
 
 //template<>
 //void RZ_ASG_Runner::proceed_run_from_node<2>(RZ_ASG_Result_Holder& rh,
-// RZ_ASG_Core_Function& cf, tNode& start_node)
+// RZ_ASG_Core_Function& ccf, tNode& start_node)
 //{
- switch(cf.info().Core_Function_Family)
+ switch(ccf.info().Core_Function_Family)
  {
  case RZ_Graph_Call_VV:
   {
@@ -352,7 +352,7 @@ void RZ_ASG_Runner::proceed_run_from_node<2>(RZ_ASG_Result_Holder& rh,
     lhs_vh = lhs_token->vh();
 
    RZ_ASG_Core_Runner::run<RZ_Graph_Call_VV>
-     (rh, cf.info().Core_Function_Code,
+     (rh, ccf.info().Core_Function_Code,
       lhs_vh,
       rhs_vh);
   }
@@ -360,14 +360,14 @@ void RZ_ASG_Runner::proceed_run_from_node<2>(RZ_ASG_Result_Holder& rh,
 
  case RZ_Graph_Call_TV:
   RZ_ASG_Core_Runner::run<RZ_Graph_Call_TV>
-    (rh, cf.info().Core_Function_Code,
+    (rh, ccf.info().Core_Function_Code,
      *lhs_node->asg_token(),
      rhs_vh);
   break;
 
  case RZ_Graph_Call_TC:
   RZ_ASG_Core_Runner::run<RZ_Graph_Call_TC>
-    (rh, cf.info().Core_Function_Code,
+    (rh, ccf.info().Core_Function_Code,
      *lhs_node->asg_token(),
      rhs_vh);
   break;
@@ -377,13 +377,13 @@ void RZ_ASG_Runner::proceed_run_from_node<2>(RZ_ASG_Result_Holder& rh,
   {
    rh.flags.has_held_value = false;
    RZ_ASG_Core_Runner::run<RZ_Graph_Call_CT>
-    (rh, cf.info().Core_Function_Code,
+    (rh, ccf.info().Core_Function_Code,
      rh.value_holder(), *lhs_node->asg_token());
   }
   else
   {
    RZ_ASG_Core_Runner::run<RZ_Graph_Call_CT>
-     (rh, cf.info().Core_Function_Code,
+     (rh, ccf.info().Core_Function_Code,
       lhs_vh,
       *rhs_node->asg_token());
   }
@@ -396,7 +396,7 @@ void RZ_ASG_Runner::proceed_run_from_node<2>(RZ_ASG_Result_Holder& rh,
 template<>
 void RZ_ASG_Runner::prepare_run_from_node<2>(int generation,
   RZ_ASG_Result_Holder& rh,
-  RZ_ASG_Core_Function& cf,
+  RZ_ASG_Core_Casement_Function& ccf,
   tNode& start_node, caon_ptr<tNode> lhs_node,
   caon_ptr<tNode> left_new_node,
   caon_ptr<tNode> rhs_node, caon_ptr<tNode> right_new_node)
@@ -445,11 +445,11 @@ void RZ_ASG_Runner::prepare_run_from_node<2>(int generation,
 
 //  rhs_vh.set_value(right_new_node->vertex());
 // }
-// else if(caon_ptr<RZ_ASG_Core_Function> rhs_cf =
+// else if(caon_ptr<RZ_ASG_Core_Function> rhs_ccf =
 //   rhs_token->pRestore<RZ_ASG_Core_Function>(valuer_->type_variety()))
 // {
 //  RZ_ASG_Result_Holder rh1(*valuer_);
-//  check_run_info(rh1, *rhs_cf, *rhs_node);
+//  check_run_info(rh1, *rhs_ccf, *rhs_node);
 //  rhs_vh = rh1.value_holder();
 // }
 // else if(caon_ptr<GBuild::RZ_Lisp_Core_Function> rhs_lcf =
@@ -464,11 +464,11 @@ void RZ_ASG_Runner::prepare_run_from_node<2>(int generation,
 
  caon_ptr<RZ_ASG_Token> lhs_token;
 
- valuer_->mark_core_function_call_entry(generation, cf, &start_node,
+ valuer_->mark_core_function_call_entry(generation, ccf, &start_node,
    lhs_node, left_new_node, rhs_node, right_new_node, rh.arity_value_node());
 
  //!
-// proceed_run_from_node<2>(generation, rh, cf, start_node,
+// proceed_run_from_node<2>(generation, rh, ccf, start_node,
 //   lhs_node, left_new_node, rhs_node, right_new_node);
 // caon_ptr<RZ_ASG_Token> lhs_token;
 
@@ -537,11 +537,11 @@ void RZ_ASG_Runner::prepare_run_from_node<2>(int generation,
 
   rhs_vh.set_value(right_new_node->vertex());
  }
- else if(caon_ptr<RZ_ASG_Core_Function> rhs_cf =
+ else if(caon_ptr<RZ_ASG_Core_Function> rhs_ccf =
    rhs_token->pRestore<RZ_ASG_Core_Function>(valuer_->type_variety()))
  {
   RZ_ASG_Result_Holder rh1(*valuer_);
-  check_run_info(rh1, *rhs_cf, *rhs_node);
+  check_run_info(rh1, *rhs_ccf, *rhs_node);
   rhs_vh = rh1.value_holder();
  }
  else if(caon_ptr<GBuild::RZ_Lisp_Core_Function> rhs_lcf =
@@ -560,9 +560,9 @@ void RZ_ASG_Runner::prepare_run_from_node<2>(int generation,
 
 //template<>
 //void RZ_ASG_Runner::proceed_run_from_node<2>(RZ_ASG_Result_Holder& rh,
-// RZ_ASG_Core_Function& cf, tNode& start_node)
+// RZ_ASG_Core_Function& ccf, tNode& start_node)
 //{
- switch(cf.info().Core_Function_Family)
+ switch(ccf.info().Core_Function_Family)
  {
  case RZ_Graph_Call_VV:
   {
@@ -581,7 +581,7 @@ void RZ_ASG_Runner::prepare_run_from_node<2>(int generation,
     lhs_vh = lhs_token->vh();
 
    RZ_ASG_Core_Runner::run<RZ_Graph_Call_VV>
-     (rh, cf.info().Core_Function_Code,
+     (rh, ccf.info().Core_Function_Code,
       lhs_vh,
       rhs_vh);
   }
@@ -589,14 +589,14 @@ void RZ_ASG_Runner::prepare_run_from_node<2>(int generation,
 
  case RZ_Graph_Call_TV:
   RZ_ASG_Core_Runner::run<RZ_Graph_Call_TV>
-    (rh, cf.info().Core_Function_Code,
+    (rh, ccf.info().Core_Function_Code,
      *lhs_node->asg_token(),
      rhs_vh);
   break;
 
  case RZ_Graph_Call_TC:
   RZ_ASG_Core_Runner::run<RZ_Graph_Call_TC>
-    (rh, cf.info().Core_Function_Code,
+    (rh, ccf.info().Core_Function_Code,
      *lhs_node->asg_token(),
      rhs_vh);
   break;
@@ -606,13 +606,13 @@ void RZ_ASG_Runner::prepare_run_from_node<2>(int generation,
   {
    rh.flags.has_held_value = false;
    RZ_ASG_Core_Runner::run<RZ_Graph_Call_CT>
-    (rh, cf.info().Core_Function_Code,
+    (rh, ccf.info().Core_Function_Code,
      rh.value_holder(), *lhs_node->asg_token());
   }
   else
   {
    RZ_ASG_Core_Runner::run<RZ_Graph_Call_CT>
-     (rh, cf.info().Core_Function_Code,
+     (rh, ccf.info().Core_Function_Code,
       lhs_vh,
       *rhs_node->asg_token());
   }
@@ -626,7 +626,7 @@ void RZ_ASG_Runner::prepare_run_from_node<2>(int generation,
 template<>
 void RZ_ASG_Runner::check_run_from_node<2>(int generation,
   RZ_ASG_Result_Holder& rh,
-  RZ_ASG_Core_Function& cf, tNode& start_node)
+  RZ_ASG_Core_Casement_Function& ccf, tNode& start_node)
 {
  caon_ptr<tNode> rhs_node;
  caon_ptr<tNode> lhs_node;
@@ -637,7 +637,7 @@ void RZ_ASG_Runner::check_run_from_node<2>(int generation,
 
  init_run_sequence_pair(rh, start_node, lhs_node, rhs_node, left_new_node, right_new_node);
 
- prepare_run_from_node<2>(generation, rh, cf, start_node, lhs_node, left_new_node, rhs_node, right_new_node);
+ prepare_run_from_node<2>(generation, rh, ccf, start_node, lhs_node, left_new_node, rhs_node, right_new_node);
 
 }
 

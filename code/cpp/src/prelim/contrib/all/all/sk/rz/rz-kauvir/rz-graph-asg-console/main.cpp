@@ -5,6 +5,23 @@
 //           http://www.boost.org/LICENSE_1_0.txt)
 
 
+#ifdef HIDE
+#include <iostream>
+
+#include <QDebug>
+
+int main()
+{
+ std::cout << "ok";
+
+ qDebug() << "qok";
+
+ return 0;
+}
+#endif
+
+
+
 #include "rz-graph-visit/rz-graph-visitor-phaon.h"
 
 
@@ -102,3 +119,5 @@ int main(int argc, char *argv[])
 
  return 0;
 }
+
+//#endif // HIDE

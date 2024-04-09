@@ -17,6 +17,7 @@
 
 #include "rzns.h"
 
+#ifdef HIDE
 #include "rz-graph-core/kernel/document/rz-re-document.h"
 #include "rz-graph-core/output/rz-re-pre-normal-lisp.h"
 
@@ -95,10 +96,12 @@ void compile_rz(QString file_name)
  pgo.document()->set_graph(&phg);
  pgo.generate();
 }
+#endif
+
 
 int main(int argc, char *argv[])
 {
- compile_rz(RZ_DIR "/demo/phaon/t1.rz");
+ //compile_rz(RZ_DIR "/demo/phaon/t1.rz");
 
  return 0;
 }

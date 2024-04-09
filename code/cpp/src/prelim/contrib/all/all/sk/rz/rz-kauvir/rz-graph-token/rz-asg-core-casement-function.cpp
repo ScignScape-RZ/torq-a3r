@@ -4,13 +4,13 @@
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
 
-#include "rz-asg-core-function.h"
+#include "rz-asg-core-casement-function.h"
 
 
 USING_RZNS(GBuild)
 
 
-RZ_ASG_Core_Function::RZ_ASG_Core_Function
+RZ_ASG_Core_Casement_Function::RZ_ASG_Core_Casement_Function
  (QString rz_name, QString name, int arity, Status_Codes sc)
  : Flags(0), rz_name_(rz_name), name_(name), arity_(arity)
 {
@@ -56,11 +56,11 @@ RZ_ASG_Core_Function::RZ_ASG_Core_Function
  }
 }
 
-QMap<QString, QString> RZ_ASG_Core_Function::out_pastes_
+QMap<QString, QString> RZ_ASG_Core_Casement_Function::out_pastes_
  {{{ "Generate_Clos", "(self -> generate-clos)" }}};
 
 
-QString RZ_ASG_Core_Function::get_out_name()
+QString RZ_ASG_Core_Casement_Function::get_out_name()
 {
  if(flags.use_out_name)
   return out_name_;
@@ -70,7 +70,7 @@ QString RZ_ASG_Core_Function::get_out_name()
  return rz_name_;
 }
 
-QString RZ_ASG_Core_Function::get_out_name_or_string()
+QString RZ_ASG_Core_Casement_Function::get_out_name_or_string()
 {
  if(flags.paste)
  {

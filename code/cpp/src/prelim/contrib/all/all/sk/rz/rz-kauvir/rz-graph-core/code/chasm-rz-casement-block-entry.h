@@ -4,8 +4,8 @@
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef CHASM_RZ_BLOCK_ENTRY__H
-#define CHASM_RZ_BLOCK_ENTRY__H
+#ifndef CHASM_RZ_CASEMENT_BLOCK_ENTRY__H
+#define CHASM_RZ_CASEMENT_BLOCK_ENTRY__H
 
 #include "accessors.h"
 #include "flags.h"
@@ -33,7 +33,7 @@ RZNS_(RZ_Core)
 
 class ChasmRZ_Node;
 
-class ChasmRZ_Block_Entry
+class ChasmRZ_Casement_Block_Entry
 {
 public:
  flags_(3)
@@ -84,10 +84,10 @@ public:
  ACCESSORS(QString ,notes)
 
 
- ChasmRZ_Block_Entry(int block_id);
+ ChasmRZ_Casement_Block_Entry(int block_id);
 
 };
 
 _RZNS(RZ_Core)
 
-#endif //CHASM_RZ_BLOCK_ENTRY__H
+#endif //CHASM_RZ_CASEMENT_BLOCK_ENTRY__H
