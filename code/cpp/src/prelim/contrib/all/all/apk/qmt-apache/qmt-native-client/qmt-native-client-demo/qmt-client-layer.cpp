@@ -11,6 +11,8 @@
 
 #include "global-types.h"
 
+#include <cmath>
+
 #include <QMessageBox>
 
 #include <QGeoServiceProvider>

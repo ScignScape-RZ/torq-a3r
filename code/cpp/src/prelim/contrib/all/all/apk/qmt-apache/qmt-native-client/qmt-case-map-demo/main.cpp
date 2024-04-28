@@ -354,9 +354,139 @@ int main4(int argc, char *argv[])
 //    return a.exec();
 }
 
+#include "qtcsv/stringdata.h"
+#include "qtcsv/reader.h"
+#include "qtcsv/writer.h"
 
 
 int main(int argc, char *argv[])
+{
+ QString path = "/home/nlevisrael/docker/tox/KCSNJ/active-clean.csv";
+
+ QList<QStringList> readData = QtCSV::Reader::readToList(path);
+ for ( int i = 0; i < readData.size(); ++i )
+ {
+     qDebug() << readData.at(i).join(" = ");
+ }
+
+ return 0;
+
+}
+
+int main21(int argc, char *argv[])
+{
+ QString path = "/home/nlevisrael/docker/tox/KCSNJ/active.csv";
+ QString new_path = "/home/nlevisrael/docker/tox/KCSNJ/active-clean.csv";
+
+ QString current_county;
+ QString current_muni;
+
+ QString held;
+
+ enum Read_State {
+  Start, County_Start, Muni_Start, Muni_Data, Muni_End,
+  Muni_End_Held
+ };
+
+ Read_State read_state = Start;
+
+ QMap<QString, int> site_counts;
+
+
+ // read data from file
+ QList<QStringList> lines = QtCSV::Reader::readToList(path);
+
+ QtCSV::StringData new_lines;
+
+// strData.addRow(strList);
+// strData.addEmptyRow();
+// strData << strList << "this is the last row";
+
+
+
+ for (QStringList line : lines)
+ {
+  QString l1 = line.value(1);
+  if(l1.isEmpty())
+    continue;
+
+  if(read_state == Muni_End)
+  {
+   held = l1;
+   read_state = Muni_End_Held;
+   continue;
+  }
+
+
+  if(read_state == Start)
+  {
+   current_county = l1;
+   read_state = County_Start;
+   continue;
+  }
+
+  if(read_state == County_Start)
+  {
+   current_muni = l1;
+   read_state = Muni_Start;
+   continue;
+  }
+
+  if(l1 == "Site ID")
+  {
+   // //  check to see if this is our first header ...
+   if(new_lines.isEmpty())
+   {
+    line.takeFirst();
+    line.append("Muni");
+    line.append("County");
+    new_lines.addRow(line);
+    new_lines.addEmptyRow();
+   }
+
+
+   if(read_state == Muni_End_Held)
+     // //  new muni in same county
+     current_muni = held;
+   read_state = Muni_Data;
+   continue;
+  }
+
+  // //  do this after Site Id check
+  if(read_state == Muni_End_Held)
+  {
+   current_county = held;
+   current_muni = l1;
+   read_state = Muni_Data;
+   new_lines.addEmptyRow();
+   continue;
+  }
+
+  QString l2 = line.value(2);
+  if(l2 == "Site Count")
+  {
+   site_counts[current_muni] = l1.toInt();
+   read_state = Muni_End;
+   new_lines.addEmptyRow();
+   continue;
+  }
+
+
+  line.append(current_muni);
+  line.append(current_county);
+
+  new_lines.addRow(line);
+ }
+
+ QtCSV::Writer::write(new_path, new_lines);
+
+
+
+ return 0;
+
+}
+
+int main11(int argc, char *argv[])
 {
  QApplication a(argc, argv);
 

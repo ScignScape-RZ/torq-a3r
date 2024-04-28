@@ -6,8 +6,8 @@
 LineObject::LineObject(const Position &endA,
                        const Position &endB,
                        qreal thickness,
-                       MapGraphicsObject *parent) :
-    MapGraphicsObject(false, parent),
+                       MapGraphicsObject* parent) :
+    MapGraphicsObject(parent? parent->containing_view() : nullptr, false, parent),
     _a(endA), _b(endB)
 {
     _thickness = qBound<qreal>(0.0, thickness, 5.0);

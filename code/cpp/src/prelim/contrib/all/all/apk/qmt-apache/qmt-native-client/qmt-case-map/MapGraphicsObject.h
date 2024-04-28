@@ -60,6 +60,7 @@ class MAPGRAPHICSSHARED_EXPORT MapGraphicsObject : public QObject
  u4 move_increment_value_;
 
 protected:
+
  MapGraphicsView* containing_view_;
  void* style_params_;
  QVariant client_data_;
@@ -87,6 +88,7 @@ public:
  ACCESSORS(QVariant ,client_data)
  ACCESSORS(u4 ,index_code)
 
+ ACCESSORS(MapGraphicsView* ,containing_view)
 
 
 

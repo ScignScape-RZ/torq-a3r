@@ -13,7 +13,7 @@ class MAPGRAPHICSSHARED_EXPORT PolygonObject : public MapGraphicsObject
     Q_OBJECT
 public:
 
-  Supplement sup;
+  //?Supplement sup;
 
     explicit PolygonObject(MapGraphicsView* containing_view, QPolygonF geoPoly, QColor fillColor = QColor(200,200,200,200), QObject *parent = 0);
     virtual ~PolygonObject();

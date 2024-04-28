@@ -37,6 +37,11 @@ INCLUDEPATH += $$PHAON_GRAPH_SRC_GROUP_DIR
 
 
 
+
+INCLUDEPATH += /home/nlevisrael/docker/gits/qtcsv/install/include
+
+LIBS += -L/home/nlevisrael/docker/gits/qtcsv/install/lib -lqtcsv
+
 INCLUDEPATH += \
   $$SRC_GROUP_DIR/qmt-case-map
 

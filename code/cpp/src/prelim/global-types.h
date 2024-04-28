@@ -16,6 +16,8 @@
 //?#include <QValidator>
 //#endif
 
+#include <limits>
+
 #include <QPair>
 
 #include <functional>

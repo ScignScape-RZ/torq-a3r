@@ -9,6 +9,8 @@
 
 //#include "MapGraphicsView.h"
 
+#include <cmath>
+
 #include "global-types.h"
 
 #include <QMessageBox>

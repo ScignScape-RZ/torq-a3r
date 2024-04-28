@@ -55,6 +55,8 @@ public:
  ACCESSORS(QVariant ,client_data)
  ACCESSORS(u4 ,index_code)
 
+ ACCESSORS(MapGraphicsView* ,containing_view)
+
  bool sizeIsZoomInvariant() const;
 
  /*!
