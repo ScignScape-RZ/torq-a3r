@@ -83,9 +83,11 @@ int main5(int argc, char **argv)
   qBox.addWidget(&qTxtLog);
   qWin.setLayout(&qBox);
   qWin.show();
+
   // initialize Geo Service Providers
   std::vector<QGeoServiceProvider*> pQGeoProviders;
-  { std::ostringstream out;
+  {
+   std::ostringstream out;
     QStringList qGeoSrvList
       = QGeoServiceProvider::availableServiceProviders();
     for (QString entry : qGeoSrvList) {
@@ -354,6 +356,174 @@ int main4(int argc, char *argv[])
 //    return a.exec();
 }
 
+// // initialize Geo Service Providers
+//std::vector<QGeoServiceProvider*> pQGeoProviders;
+
+//{
+// std::ostringstream out;
+
+// QStringList qGeoSrvList
+//   = QGeoServiceProvider::availableServiceProviders();
+
+// for (QString entry : qGeoSrvList)
+// {
+//  out << "Try service: " << entry.toStdString() << '\n';
+//  // choose provider
+//  QGeoServiceProvider *pQGeoProvider = new QGeoServiceProvider(entry);
+//  if (!pQGeoProvider)
+//  {
+//   out
+//     << "ERROR: GeoServiceProvider '" << entry.toStdString()
+//     << "' not available!\n";
+//   continue;
+//  }
+//  QGeoCodingManager *pQGeoCoder = pQGeoProvider->geocodingManager();
+//  if (!pQGeoCoder)
+//  {
+//   out
+//     << "ERROR: GeoCodingManager '" << entry.toStdString()
+//     << "' not available!\n";
+//   delete pQGeoProvider;
+//   continue;
+//  }
+//  QLocale qLocaleC(QLocale::C, QLocale::AnyCountry);
+//  pQGeoCoder->setLocale(qLocaleC);
+////?   qLstProviders.addItem(entry);
+//  pQGeoProviders.push_back(pQGeoProvider);
+//  out << "Service " << entry.toStdString() << " available.\n";
+// }
+//}
+
+
+void address_to_lat_lon(QGeoCodingManager* gcm,
+  QString street, QString muni, int& size, r8& lat, r8& lon, QString& str)
+{
+
+// // install signal handlers
+// auto cb = [&]()
+// {
+  // get current geo service provider
+  //?QGeoServiceProvider* pQGeoProvider;
+    //= pQGeoProviders[qLstProviders.currentIndex()];
+
+  // fill in request
+ QGeoAddress* pQGeoAddr = new QGeoAddress;
+
+ pQGeoAddr->setCountry("USA");
+ //? pQGeoAddr->setPostalCode(qTxtZipCode.text());
+
+ pQGeoAddr->setStreet(street);
+ pQGeoAddr->setCity(muni);
+ pQGeoAddr->setState("NJ");
+
+
+ QGeoCodeReply *pQGeoCode
+   = gcm->geocode(*pQGeoAddr);
+
+ if (!pQGeoCode)
+ {
+  delete pQGeoAddr;
+  qDebug() << "GeoCoding totally failed!";
+  return;
+ }
+ {
+  std::ostringstream out;
+  out << "Sending request for:\n"
+      << pQGeoAddr->country().toUtf8().data() << "; "
+      << pQGeoAddr->postalCode().toUtf8().data() << "; "
+      << pQGeoAddr->city().toUtf8().data() << "; "
+      << pQGeoAddr->street().toUtf8().data() << "...\n";
+  qDebug() << QString::fromStdString( out.str() );
+ }
+
+ QEventLoop qel;
+
+ // QNetworkReply* reply = qnam.get(qnr);
+
+ // QObject::connect(reply, &QNetworkReply::finished, [reply, &qel]()
+ // {
+ //  QByteArray qba = reply->readAll();
+ //  qDebug() << "qba = " << qba;
+
+ //  qel.exit();
+ // });
+
+ QList<QGeoLocation> reply_locations;
+
+  // install signal handler to process result later
+ QObject::connect(pQGeoCode, &QGeoCodeReply::finished,
+                  [pQGeoAddr, pQGeoCode, &reply_locations, &qel]()
+ {
+
+  // process reply
+  std::ostringstream out;
+  out << "Reply: " << pQGeoCode->errorString().toStdString() << '\n';
+  switch (pQGeoCode->error())
+  {
+  case QGeoCodeReply::NoError:
+   {
+   // eval result
+    reply_locations = pQGeoCode->locations();
+//     out << qGeoLocs.size() << " location(s) returned.\n";
+//     for (QGeoLocation &qGeoLoc : qGeoLocs)
+//     {
+//      qGeoLoc.setAddress(*pQGeoAddr);
+//      QGeoCoordinate qGeoCoord = qGeoLoc.coordinate();
+//      out
+//        << "Lat.:  " << qGeoCoord.latitude() << '\n'
+//        << "Long.: " << qGeoCoord.longitude() << '\n'
+//        << "Alt.:  " << qGeoCoord.altitude() << '\n';
+//     }
+   }
+   break;
+#define CASE(ERROR) \
+   case QGeoCodeReply::ERROR: out << #ERROR << '\n'; break
+    CASE(EngineNotSetError);
+    CASE(CommunicationError);
+    CASE(ParseError);
+    CASE(UnsupportedOptionError);
+    CASE(CombinationError);
+    CASE(UnknownError);
+#undef CASE
+    default: out << "Undocumented error!\n";
+  }
+   // log result
+
+  qDebug() << QString::fromStdString( out.str() );
+  // clean-up
+  delete pQGeoAddr;
+   /* delete sender in signal handler could be lethal
+         * Hence, delete it later...
+         */
+  pQGeoCode->deleteLater();
+  qel.exit();
+
+ });
+
+ qel.exec();
+
+ if(reply_locations.isEmpty())
+   return;
+
+
+ size = reply_locations.size();
+
+ QGeoLocation loc1 = reply_locations.first();
+ lat = loc1.coordinate().latitude();
+ lon = loc1.coordinate().longitude();
+
+ for(QGeoLocation loc : reply_locations)
+ {
+  str += "%1/%2;"_qt.arg(loc.coordinate().latitude()).arg(loc.coordinate().longitude());
+ }
+
+// qDebug() << "lat 1 = " << lat1 << " and lon 1 = " << lon1;
+// };
+
+}
+
+
+
 #include "qtcsv/stringdata.h"
 #include "qtcsv/reader.h"
 #include "qtcsv/writer.h"
@@ -361,13 +531,70 @@ int main4(int argc, char *argv[])
 
 int main(int argc, char *argv[])
 {
+ QApplication qapp(argc, argv);
+
+ QGeoServiceProvider gsp("osm");
+ QGeoCodingManager* gcm = gsp.geocodingManager();
+
+
+
+
  QString path = "/home/nlevisrael/docker/tox/KCSNJ/active-clean.csv";
 
- QList<QStringList> readData = QtCSV::Reader::readToList(path);
- for ( int i = 0; i < readData.size(); ++i )
+ QString new_path = "/home/nlevisrael/docker/tox/KCSNJ/active-ll.csv";
+
+ QList<QStringList> lines = QtCSV::Reader::readToList(path);
+
+ QtCSV::StringData new_lines;
+
+ QStringList header = lines.takeFirst();
+
+ header.push_back("Latitude");
+ header.push_back("Longitude");
+ header.push_back("loc Size");
+ header.push_back("loc String");
+
+ new_lines.addRow(header);
+
+ int i = 0;
+
+ for(QStringList line : lines)
  {
-     qDebug() << readData.at(i).join(" = ");
+  ++i;
+  if(i > 17)
+    break;
+
+  if(line.isEmpty())
+  {
+   new_lines.addEmptyRow();
+   continue;
+  }
+
+  QString street = line.value(3);
+  QString muni = line.value(5);
+
+  muni.replace("Twp", "Township");
+
+  qDebug() << street << " " << muni;
+
+  int loc_size = 0;
+  r8 lat, lon;
+
+  QString str;
+
+
+  address_to_lat_lon(gcm, street, muni, loc_size, lat, lon, str);
+
+  line.push_back(QString::number(lat));
+  line.push_back(QString::number(lon));
+  line.push_back(QString::number(loc_size));
+  line.push_back(str);
+
+  new_lines.addRow(line);
  }
+
+ QtCSV::Writer::write(new_path, new_lines);
+
 
  return 0;
 
@@ -470,6 +697,11 @@ int main21(int argc, char *argv[])
    new_lines.addEmptyRow();
    continue;
   }
+
+  QString first = line.takeFirst();
+
+  if(!first.isEmpty())
+    qDebug() << "Unexpeceted nonempty field: " << first;
 
 
   line.append(current_muni);
