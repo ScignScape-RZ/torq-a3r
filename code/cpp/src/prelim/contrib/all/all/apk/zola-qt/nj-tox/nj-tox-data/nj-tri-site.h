@@ -85,7 +85,10 @@ public:
 
  SET_and_STR_ADAPTER_DBL(latitude)
  SET_and_STR_ADAPTER_DBL(longitude)
-// SET_and_STR_ADAPTER_INT(coords_count)
+
+ SET_and_STR_ADAPTER_INT(frs_id)
+
+
 // SET_and_STR_ADAPTER_INT(site_id)
 // SET_and_STR_ADAPTER_INT(pi_number)
 

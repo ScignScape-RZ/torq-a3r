@@ -23,6 +23,44 @@
 
 
 template<typename SITE_Type>
+struct csv_field_setters_by_column
+{
+ QMap<u2, void (SITE_Type::*)(QString)> methods;
+ QMap<u2, void (*)(QString)> non_methods;
+
+ csv_field_setters_by_column(QVector<void (SITE_Type::*)(QString)> vec)
+ {
+  u2 column = 0;
+  for(auto md : vec)
+  {
+   methods[column] = md;
+   ++column;
+  }
+ }
+
+ csv_field_setters_by_column(decltype(methods) mds)
+   : methods(mds)
+ { }
+
+ csv_field_setters_by_column() {}
+
+
+};
+
+template<typename SITE_Type>
+struct csv_field_getters_by_column
+{
+ QMap<u2, QString (SITE_Type::*)() const> methods;
+ QMap<u2, QString (*)()> non_methods;
+ QMap<u2, QString> defaults;
+
+ csv_field_getters_by_column() {}
+
+
+};
+
+
+template<typename SITE_Type>
 class Site_List_Base
 {
 
@@ -31,11 +69,14 @@ protected:
  QVector<SITE_Type> sites_;
 
 
- QVector<void (SITE_Type::*)(QString)>  csv_field_setters_;
- QVector<QString (SITE_Type::*)() const>  csv_field_getters_;
+ csv_field_setters_by_column<SITE_Type>  csv_field_setters_;
+ csv_field_getters_by_column<SITE_Type>  csv_field_getters_;
 
 
- Site_List_Base();
+ Site_List_Base()
+ {
+
+ }
 
 // ACCESSORS(QString ,file_path)
 // ACCESSORS__RGET(QVector<NJ_TRI_Site> ,sites)
@@ -51,8 +92,8 @@ protected:
 
 public:
 
- ACCESSORS(QVector<void (NJ_TRI_Site::*)(QString)> ,csv_field_setters)
- ACCESSORS(QVector<QString (NJ_TRI_Site::*)() const> ,csv_field_getters)
+ ACCESSORS(csv_field_setters_by_column<SITE_Type> ,csv_field_setters)
+ ACCESSORS(csv_field_getters_by_column<SITE_Type> ,csv_field_getters)
 
 
 // void read_csv_file(QString csv_file_path, u4 max = 0);

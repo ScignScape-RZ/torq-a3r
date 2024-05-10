@@ -20,14 +20,15 @@ NJ_TRI_Site_List::NJ_TRI_Site_List(QString file_path)
 {
 }
 
-void NJ_TRI_Site_List::read_csv_file(QString csv_file_path, u4 max)
+void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
+  QString csv_file_path, u4 max)
 {
  QList<QStringList> lines = QtCSV::Reader::readToList(csv_file_path);
 
-// if(max)
-//   sites_.reserve(max);
-// else
-//   sites_.reserve(lines.length());
+ if(max)
+   sites_.reserve(max);
+ else
+   sites_.reserve(lines.length());
 
  original_header_ = lines.takeFirst();
 
@@ -37,11 +38,29 @@ void NJ_TRI_Site_List::read_csv_file(QString csv_file_path, u4 max)
   if(line.isEmpty())
     continue;
 
-
   ++count;
 
   if(max && count == max)
     break;
+
+  sites_.push_back({});
+
+  NJ_TRI_Site& site = sites_.last();
+
+  for(u1 column = 0; column < line.size(); ++column)
+  {
+   auto it = mds.methods.find(column);
+   if(it == mds.methods.end())
+   {
+    auto it1 = mds.non_methods.find(column);
+    if(it1 != mds.non_methods.end())
+      (**it1)(line[column]);
+   }
+   else
+   {
+    (site.**it)(line[column]);
+   }
+  }
 
  }
 

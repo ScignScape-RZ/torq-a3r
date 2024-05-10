@@ -6,6 +6,8 @@
 
 #include "nj-tox-data/nj-tox-site-list.h"
 
+#include "nj-tox-data/nj-tri-site-list.h"
+
 #include <QDebug>
 
 #include <QApplication>
@@ -25,26 +27,26 @@ int main(int argc, char *argv[])
 {
  QStringList counties = {
    "Atlantic",
-   "Bergen",
-   "Burlington",
-   "Camden",
-   "Cape_May",
-   "Cumberland",
-   "Essex",
-   "Gloucester",
-   "Hudson",
-   "Hunterdon",
-   "Mercer",
-   "Middlesex",
-   "Monmouth",
-   "Morris",
-   "Ocean",
-   "Passaic",
-   "Salem",
-   "Somerset",
-   "Sussex",
-   "Union",
-   "Warren"
+//   "Bergen",
+//   "Burlington",
+//   "Camden",
+//   "Cape_May",
+//   "Cumberland",
+//   "Essex",
+//   "Gloucester",
+//   "Hudson",
+//   "Hunterdon",
+//   "Mercer",
+//   "Middlesex",
+//   "Monmouth",
+//   "Morris",
+//   "Ocean",
+//   "Passaic",
+//   "Salem",
+//   "Somerset",
+//   "Sussex",
+//   "Union",
+//   "Warren"
  };
 
 //?
@@ -52,16 +54,32 @@ int main(int argc, char *argv[])
 // QString counties_folder = "/home/nlevisrael/docker/tox/objects/tir/counties";
 
 
+ NJ_TRI_Site_List ntsl;
+
+// csv_field_setters_by_column<NJ_TRI_Site> s{{
+//  &NJ_TRI_Site::set_frs_id,
+//  &NJ_TRI_Site::set_street_address,
+//  &NJ_TRI_Site::set_municipality,
+//  &NJ_TRI_Site::set_county,
+//  }};
+
+ ntsl.set_csv_field_setters(csv_field_setters_by_column<NJ_TRI_Site>
+    {{
+      &NJ_TRI_Site::set_frs_id,
+      &NJ_TRI_Site::set_street_address,
+      &NJ_TRI_Site::set_municipality,
+      &NJ_TRI_Site::set_county,
+    }}
+    );
+
  for(QString county : counties)
  {
-
-
  }
 
  return 0;
 }
 
-int main(int argc, char *argv[])
+int main8(int argc, char *argv[])
 {
  QStringList counties = {
 //   "Atlantic",

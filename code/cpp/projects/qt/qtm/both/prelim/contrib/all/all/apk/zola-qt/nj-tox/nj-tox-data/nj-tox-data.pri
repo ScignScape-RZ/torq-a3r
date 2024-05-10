@@ -61,8 +61,7 @@ SOURCES += \
   $$SRC_DIR/nj-tox-site-list.cpp \
   $$SRC_DIR/nj-tri-site.cpp \
   $$SRC_DIR/nj-tri-site-list.cpp \
-
-#$$SRC_DIR/site-list-base.cpp \
+  $$SRC_DIR/site-list-base.cpp \
 
 
 

@@ -33,7 +33,7 @@
 #include "nj-tri-site.h"
 
 
-class NJ_TRI_Site_List : Site_List_Base<NJ_TRI_Site>
+class NJ_TRI_Site_List : public Site_List_Base<NJ_TRI_Site>
 {
  QString file_path_;
 
@@ -49,7 +49,7 @@ class NJ_TRI_Site_List : Site_List_Base<NJ_TRI_Site>
 
 public:
 
- NJ_TRI_Site_List(QString file_path);
+ NJ_TRI_Site_List(QString file_path = {});
 
  ACCESSORS(QString ,file_path)
  ACCESSORS__RGET(QVector<NJ_TRI_Site> ,sites)
@@ -67,7 +67,12 @@ public:
 // ACCESSORS(QVector<QString (NJ_TRI_Site::*)() const> ,csv_field_getters)
 
 
- void read_csv_file(QString csv_file_path, u4 max = 0);
+ void read_csv_file(decltype(csv_field_setters_)& mds, QString csv_file_path, u4 max = 0);
+
+ void read_csv_file(QString csv_file_path, u4 max = 0)
+ {
+  read_csv_file(csv_field_setters_, csv_file_path, max);
+ }
 
  void read_csv_file(u4 max = 0)
  {
