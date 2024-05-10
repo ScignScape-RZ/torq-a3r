@@ -19,11 +19,15 @@
 #include <limits>
 
 #include <QPair>
+#include <QString>
 
 #include <functional>
 
 #include "global-macros.h"
 #include "enum-macros.h"
+
+
+typedef QPair<QString, QString> QStringPair;
 
 
 #define _auto_new(obj) \

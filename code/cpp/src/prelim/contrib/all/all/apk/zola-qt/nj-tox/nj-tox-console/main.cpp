@@ -1,0 +1,685 @@
+
+//           Copyright Nathaniel Christen 2020.
+//  Distributed under the Boost Software License, Version 1.0.
+//     (See accompanying file LICENSE_1_0.txt or copy at
+//           http://www.boost.org/LICENSE_1_0.txt)
+
+#include "nj-tox-data/nj-tox-site-list.h"
+
+#include <QDebug>
+
+#include <QApplication>
+
+#include "textio.h"
+
+//"Site ID","PI Number","PI Name","Address","Home Owner","Muni","County","Latitude","Longitude","loc Size","loc String","Source"
+
+#include "global-types.h"
+
+#include <vector>
+#include <algorithm>
+
+
+
+int main(int argc, char *argv[])
+{
+ QStringList counties = {
+   "Atlantic",
+   "Bergen",
+   "Burlington",
+   "Camden",
+   "Cape_May",
+   "Cumberland",
+   "Essex",
+   "Gloucester",
+   "Hudson",
+   "Hunterdon",
+   "Mercer",
+   "Middlesex",
+   "Monmouth",
+   "Morris",
+   "Ocean",
+   "Passaic",
+   "Salem",
+   "Somerset",
+   "Sussex",
+   "Union",
+   "Warren"
+ };
+
+//?
+ QString counties_folder = "/home/nlevisrael/docker/tox/objects/active/counties";
+// QString counties_folder = "/home/nlevisrael/docker/tox/objects/tir/counties";
+
+
+ for(QString county : counties)
+ {
+
+
+ }
+
+ return 0;
+}
+
+int main(int argc, char *argv[])
+{
+ QStringList counties = {
+//   "Atlantic",
+//   "Bergen",
+   "Burlington",
+   "Camden",
+   "Cape_May",
+   "Cumberland",
+   "Essex",
+   "Gloucester",
+   "Hudson",
+   "Hunterdon",
+   "Mercer",
+   "Middlesex",
+   "Monmouth",
+   "Morris",
+   "Ocean",
+   "Passaic",
+   "Salem",
+   "Somerset",
+   "Sussex",
+   "Union",
+   "Warren"
+ };
+
+//?
+ QString counties_folder = "/home/nlevisrael/docker/tox/objects/active/counties";
+// QString counties_folder = "/home/nlevisrael/docker/tox/objects/tir/counties";
+
+
+ for(QString county : counties)
+ {
+  NJ_Tox_Site_List ntsl(counties_folder + "/%1/pre-lookup.csv"_qt.arg(county));
+
+  ntsl.set_csv_field_setters({
+   &NJ_Tox_Site::set_site_id,
+   &NJ_Tox_Site::set_pi_number,
+   &NJ_Tox_Site::set_pi_name,
+   &NJ_Tox_Site::set_street_address,
+   &NJ_Tox_Site::set_home_owner_status,
+   &NJ_Tox_Site::set_municipality,
+   &NJ_Tox_Site::set_county,
+//   &NJ_Tox_Site::set_latitude,
+//   &NJ_Tox_Site::set_longitude,
+//   &NJ_Tox_Site::set_coords_count,
+//   &NJ_Tox_Site::set_coords_options,
+//   &NJ_Tox_Site::set_data_source
+  });
+
+  ntsl.read_csv_file();
+
+  ntsl.import_json_file(counties_folder + "/%1/%1-found.json"_qt.arg(county));
+
+  QStringList header = ntsl.original_header();
+
+  header.append({"latitude", "Longitude", "Coords_Count", "Data_Source"});
+
+  QString out_file = counties_folder + "/%1/%1-KCSNJ-active.csv"_qt.arg(county);
+
+  ntsl.set_data_source_string("KCSNJ-active");
+
+  ntsl.save_to_csv_file({
+    &NJ_Tox_Site::str_site_id,
+    &NJ_Tox_Site::str_pi_number,
+    &NJ_Tox_Site::pi_name,
+    &NJ_Tox_Site::street_address,
+    &NJ_Tox_Site::home_owner_status,
+    &NJ_Tox_Site::municipality,
+    &NJ_Tox_Site::county,
+    &NJ_Tox_Site::str_latitude,
+    &NJ_Tox_Site::str_longitude,
+    &NJ_Tox_Site::str_coords_count,
+    nullptr // "KCSNJ-active"
+   }, out_file, &header);
+ }
+
+ return 0;
+}
+
+
+
+int main7(int argc, char *argv[])
+{
+ QCoreApplication qapp(argc, argv);
+
+ QGeoServiceProvider gsp("osm");
+ QGeoCodingManager* gcm = gsp.geocodingManager();
+
+ QStringList counties = {
+   "Atlantic",
+   "Bergen",
+   "Burlington",
+   "Camden",
+   "Cape_May",
+   "Cumberland",
+   "Essex",
+   "Gloucester",
+   "Hudson",
+   "Hunterdon",
+   "Mercer",
+   "Middlesex",
+   "Monmouth",
+   "Morris",
+   "Ocean",
+   "Passaic",
+   "Salem",
+   "Somerset",
+   "Sussex",
+   "Union",
+   "Warren"
+ };
+
+ QString counties_folder = "/home/nlevisrael/docker/tox/objects/active/counties";
+
+ QStringList counties_s = {
+  "Union",
+  "Warren"
+ };
+
+// "Hudson",
+// "Hunterdon",
+// "Mercer",
+
+ NJ_Tox_Site_List ntsl1("/home/nlevisrael/docker/tox/KCSNJ/active-found_merged.csv");
+
+ ntsl1.set_csv_field_setters({
+  &NJ_Tox_Site::set_site_id,
+  &NJ_Tox_Site::set_pi_number,
+  &NJ_Tox_Site::set_pi_name,
+  &NJ_Tox_Site::set_street_address,
+  &NJ_Tox_Site::set_home_owner_status,
+  &NJ_Tox_Site::set_municipality,
+  &NJ_Tox_Site::set_county,
+  &NJ_Tox_Site::set_latitude,
+  &NJ_Tox_Site::set_longitude,
+  &NJ_Tox_Site::set_coords_count,
+  &NJ_Tox_Site::set_coords_options,
+  &NJ_Tox_Site::set_data_source
+ });
+
+
+
+ ntsl1.read_csv_file();
+
+ QMap<u4, NJ_Tox_Site*> sites_by_id;
+ ntsl1.to_qmap(sites_by_id);
+
+ for(QString county : counties_s)
+ {
+  QMap<u4, QVector<QPair<r8, r8>>> merges;
+  QMap<u4, QPair<u4, QStringPair>> merge_addresses;
+
+  NJ_Tox_Site_List ntsl(counties_folder);
+  ntsl.read_json_county_file(county, county + "-found.json");
+
+  NJ_Tox_Site_List ntsl2(counties_folder);
+  ntsl2.set_csv_field_setters({
+   &NJ_Tox_Site::set_site_id,
+   &NJ_Tox_Site::set_pi_number,
+   &NJ_Tox_Site::set_pi_name,
+   &NJ_Tox_Site::set_street_address,
+   &NJ_Tox_Site::set_home_owner_status,
+   &NJ_Tox_Site::set_municipality,
+   &NJ_Tox_Site::set_county
+  });
+  ntsl2.read_csv_county_file(county, "pre-lookup.csv");
+
+  QMap<u4, NJ_Tox_Site*> pre_sites_by_id;
+  ntsl2.to_qmap(pre_sites_by_id);
+
+
+  for(NJ_Tox_Site& site : ntsl.sites())
+  {
+   u4 id = site.site_id();
+
+   u1 count = site.coords_count();
+   NJ_Tox_Site* ps = sites_by_id.value(id);
+
+   NJ_Tox_Site* pps = pre_sites_by_id.value(id);
+
+
+   if(ps)
+   {
+    bool mismatch = false;
+    if(count != ps->coords_count())
+      mismatch = true;
+    else if(site.municipality() != ps->municipality())
+      mismatch = true;
+    else if(site.street_address() != ps->street_address())
+      mismatch = true;
+
+    else if(count != pps->coords_count())
+      mismatch = true;
+    else if(site.municipality() != pps->municipality())
+      mismatch = true;
+    else if(site.street_address() != pps->street_address())
+      mismatch = true;
+
+    if(mismatch)
+    {
+     if(QVector<QPair<r8, r8>>* ref = site.ref_coords())
+     {
+      QVector<QPair<r8, r8>>* addresses;
+      QStringPair qsp;
+
+      QVector<QPair<r8, r8>> addresses1;
+      NJ_Tox_Site_List::check_address(gcm, ps->street_address(), ps->municipality(), addresses1);
+
+      QVector<QPair<r8, r8>> addresses2;
+      NJ_Tox_Site_List::check_address(gcm, pps->street_address(), pps->municipality(), addresses2);
+
+      if(addresses1.size() < addresses2.size())
+      {
+       addresses = &addresses2;
+       qsp = {pps->street_address(), pps->municipality()};
+      }
+      else
+      {
+       addresses = &addresses1;
+       qsp = {ps->street_address(), ps->municipality()};
+      }
+
+      if(addresses->isEmpty())
+        continue;
+
+      QVector<QPair<r8, r8>> r = *ref, a = *addresses;
+
+      s1 comp = NJ_Tox_Site_List::compare(r, a);
+
+      if(comp != 0)
+      {
+       u4 s_before = addresses->size();
+
+       auto it = std::remove_if(addresses->begin(), addresses->end(), [ref](const QPair<r8, r8>& pr)
+       {
+        for(const QPair<r8, r8>& rpr : *ref)
+        {
+         if(pr == rpr)
+           return true;
+        }
+        return false;
+       });
+       addresses->erase(it, addresses->end());
+
+       u4 s_after = addresses->size();
+
+       if(s_after)
+       {
+        qDebug() << "\nMismatch: " << id << " ___________";
+        qDebug() << " " << r << "\n-------\n " << a << "\n.........\n";
+
+        merges[id] = *addresses;
+        merge_addresses[id] = {s_before - s_after, qsp};
+       }
+      }
+     }
+    }
+   }
+   else
+   {
+    qDebug() << "Site missing: site id " << id;
+   }
+  }
+
+  QString bak = ntsl.file_path();
+  KA::TextIO::copy_binary_file(bak, bak + ".bak.txt");
+
+  ntsl.merge_json(merges, merge_addresses, "osm-alt");
+
+ }
+
+}
+
+
+
+int main5(int argc, char *argv[])
+{
+ QCoreApplication qapp(argc, argv);
+
+ QGeoServiceProvider gsp("osm");
+ QGeoCodingManager* gcm = gsp.geocodingManager();
+
+
+ QString s1 = "2 ABSECON BLVD";
+ QString s2 = "2 ABSECON BLVD";
+
+ QString m1 = "Absecon";
+ QString m2 = "Absecon City";
+
+ QVector<QPair<r8, r8>> r1;
+ QVector<QPair<r8, r8>> r2;
+
+ NJ_Tox_Site_List::check_address(gcm, s1, m1, r1);
+ NJ_Tox_Site_List::check_address(gcm, s2, m2, r2);
+
+ qDebug() << r1 << "\n";
+ qDebug() << r2 << "\n";
+
+
+}
+
+
+int main3(int argc, char *argv[])
+{
+ QCoreApplication qapp(argc, argv);
+
+ QStringList counties = {
+   "Atlantic",
+   "Bergen",
+   "Burlington",
+   "Camden",
+   "Cape_May",
+   "Cumberland",
+   "Essex",
+   "Gloucester",
+   "Hudson",
+   "Hunterdon",
+   "Mercer",
+   "Middlesex",
+   "Monmouth",
+   "Morris",
+   "Ocean",
+   "Passaic",
+   "Salem",
+   "Somerset",
+   "Sussex",
+   "Union",
+   "Warren"
+ };
+
+ QString counties_folder = "/home/nlevisrael/docker/tox/objects/active/counties";
+
+ QStringList counties_s = {
+  "Somerset",
+  "Sussex",
+  "Union",
+  "Warren"
+ };
+
+ for(QString county : counties_s)
+ {
+  NJ_Tox_Site_List ntsl(counties_folder);
+
+  ntsl.set_csv_field_setters({
+   &NJ_Tox_Site::set_site_id,
+   &NJ_Tox_Site::set_pi_number,
+   &NJ_Tox_Site::set_pi_name,
+   &NJ_Tox_Site::set_street_address,
+   &NJ_Tox_Site::set_home_owner_status,
+   &NJ_Tox_Site::set_municipality,
+   &NJ_Tox_Site::set_county,
+ //  &NJ_Tox_Site::set_latitude,
+ //  &NJ_Tox_Site::set_longitude,
+ //  &NJ_Tox_Site::set_coords_count,
+ //  &NJ_Tox_Site::set_coords_options,
+ //  &NJ_Tox_Site::set_data_source
+  });
+
+  ntsl.set_csv_field_getters(
+  {
+   &NJ_Tox_Site::str_site_id,
+   &NJ_Tox_Site::str_pi_number,
+   &NJ_Tox_Site::pi_name,
+   &NJ_Tox_Site::street_address,
+   &NJ_Tox_Site::home_owner_status,
+   &NJ_Tox_Site::municipality,
+   &NJ_Tox_Site::county,
+ //  &NJ_Tox_Site::str_latitude,
+ //  &NJ_Tox_Site::str_longitude,
+ //  &NJ_Tox_Site::str_coords_count,
+ //  &NJ_Tox_Site::coords_options,
+ //  &NJ_Tox_Site::data_source
+  });
+
+
+  ntsl.read_csv_county_file(county, "pre-lookup.csv");
+
+  QStringList qGeoSrvList = { "osm" };
+
+  ntsl.set_municipality_edit_callback([](QString& muni)
+  {
+   if(muni.endsWith(" Twp"))
+   {
+    muni.chop(4);
+    //? muni += "Township";
+   }
+   else if(muni.endsWith(" Boro"))
+   {
+    muni.chop(5);
+   }
+   else if(muni.endsWith(" Village"))
+   {
+    muni.chop(8);
+   }
+   else if(muni.endsWith(" City"))
+   {
+    if(muni == "Union City")
+      goto after_cities;
+    if(muni == "Jersey City")
+      goto after_cities;
+    if(muni == "Perth Amboy City")
+      goto after_cities;
+    if(muni == "Atlantic City")
+      goto after_cities;
+    if(muni == "Gloucester City")
+      goto after_cities;
+
+    muni.chop(5);
+   }
+   else if(muni.endsWith(" Town"))
+   {
+    muni.chop(5);
+   }
+  after_cities:;
+  });
+
+
+  QString found_file = "%1/%2/%2-found.json"_qt.arg(counties_folder).arg(county);
+  QString missing_file = "%1/%2/%2-missing.json"_qt.arg(counties_folder).arg(county);
+
+  ntsl.check_addresses_json(qGeoSrvList, found_file, missing_file);
+
+ }
+
+ return 0;
+}
+
+int main12(int argc, char *argv[])
+{
+
+
+ NJ_Tox_Site_List ntsl("/home/nlevisrael/docker/tox/KCSNJ/active-clean.csv");
+
+ ntsl.set_csv_field_setters({
+  &NJ_Tox_Site::set_site_id,
+  &NJ_Tox_Site::set_pi_number,
+  &NJ_Tox_Site::set_pi_name,
+  &NJ_Tox_Site::set_street_address,
+  &NJ_Tox_Site::set_home_owner_status,
+  &NJ_Tox_Site::set_municipality,
+  &NJ_Tox_Site::set_county,
+//  &NJ_Tox_Site::set_latitude,
+//  &NJ_Tox_Site::set_longitude,
+//  &NJ_Tox_Site::set_coords_count,
+//  &NJ_Tox_Site::set_coords_options,
+//  &NJ_Tox_Site::set_data_source
+ });
+
+ ntsl.set_csv_field_getters(
+ {
+  &NJ_Tox_Site::str_site_id,
+  &NJ_Tox_Site::str_pi_number,
+  &NJ_Tox_Site::pi_name,
+  &NJ_Tox_Site::street_address,
+  &NJ_Tox_Site::home_owner_status,
+  &NJ_Tox_Site::municipality,
+  &NJ_Tox_Site::county,
+//  &NJ_Tox_Site::str_latitude,
+//  &NJ_Tox_Site::str_longitude,
+//  &NJ_Tox_Site::str_coords_count,
+//  &NJ_Tox_Site::coords_options,
+//  &NJ_Tox_Site::data_source
+ });
+
+ ntsl.distribute_by_county("/home/nlevisrael/docker/tox/objects/active/counties");
+
+ return 0;
+}
+
+
+int main6(int argc, char *argv[])
+{
+// QStringList qGeoSrvList
+//     = QGeoServiceProvider::availableServiceProviders();
+
+// qDebug() << qGeoSrvList;
+
+// QApplication qapp(argc, argv);
+
+
+// QGeoServiceProvider gsp("osm");
+// QGeoCodingManager* gcm = gsp.geocodingManager();
+
+// QPair<r8, r8> pr = NJ_Tox_Site_List::check_address(gcm,
+//   "1501 MARINA BLVD",
+//   "Atlantic City");
+
+// qDebug() << pr;
+
+
+ return 0;
+}
+
+
+
+
+int main4(int argc, char *argv[])
+{
+// QStringList qGeoSrvList
+//     = QGeoServiceProvider::availableServiceProviders();
+
+// qDebug() << qGeoSrvList;
+
+// QApplication qapp(argc, argv);
+
+
+// QGeoServiceProvider gsp("osm");
+// QGeoCodingManager* gcm = gsp.geocodingManager();
+
+// QPair<r8, r8> pr = NJ_Tox_Site_List::check_address(gcm,
+//   "1501 MARINA BLVD",
+//   "Atlantic City");
+
+// qDebug() << pr;
+
+
+ return 0;
+}
+
+int main2(int argc, char *argv[])
+{
+ QApplication qapp(argc, argv);
+
+ QGeoServiceProvider gsp("osm");
+ QGeoCodingManager* gcm = gsp.geocodingManager();
+
+ //NJ_Tox_Site_List ntsl("/home/nlevisrael/docker/tox/KCSNJ/active-m-m.csv");
+
+ NJ_Tox_Site_List ntsl("/home/nlevisrael/docker/tox/KCSNJ/m-temp.csv");
+
+ auto setters = {
+  &NJ_Tox_Site::set_site_id,
+  &NJ_Tox_Site::set_pi_number,
+  &NJ_Tox_Site::set_pi_name,
+  &NJ_Tox_Site::set_street_address,
+  &NJ_Tox_Site::set_home_owner_status,
+  &NJ_Tox_Site::set_municipality,
+  &NJ_Tox_Site::set_county,
+  &NJ_Tox_Site::set_latitude,
+  &NJ_Tox_Site::set_longitude,
+  &NJ_Tox_Site::set_coords_count,
+  &NJ_Tox_Site::set_coords_options,
+  &NJ_Tox_Site::set_data_source
+ };
+
+ ntsl.read_csv_file(setters);
+
+ ntsl.check_addresses(gcm,
+ {
+  {"BLVD", "Boulevard"}
+ });
+
+ ntsl.save_to_csv_file(
+ {
+  &NJ_Tox_Site::str_site_id,
+  &NJ_Tox_Site::str_pi_number,
+  &NJ_Tox_Site::pi_name,
+  &NJ_Tox_Site::street_address,
+  &NJ_Tox_Site::home_owner_status,
+  &NJ_Tox_Site::municipality,
+  &NJ_Tox_Site::county,
+  &NJ_Tox_Site::str_latitude,
+  &NJ_Tox_Site::str_longitude,
+  &NJ_Tox_Site::str_coords_count,
+  &NJ_Tox_Site::coords_options,
+  &NJ_Tox_Site::data_source
+ }
+ );
+
+ return 0;
+}
+
+int main1(int argc, char *argv[])
+{
+ NJ_Tox_Site_List ntsl1("/home/nlevisrael/docker/tox/KCSNJ/active-found.csv");
+ NJ_Tox_Site_List ntsl2("/home/nlevisrael/docker/tox/KCSNJ/active-m-f.csv");
+
+ auto setters = {
+  &NJ_Tox_Site::set_site_id,
+  &NJ_Tox_Site::set_pi_number,
+  &NJ_Tox_Site::set_pi_name,
+  &NJ_Tox_Site::set_street_address,
+  &NJ_Tox_Site::set_home_owner_status,
+  &NJ_Tox_Site::set_municipality,
+  &NJ_Tox_Site::set_county,
+  &NJ_Tox_Site::set_latitude,
+  &NJ_Tox_Site::set_longitude,
+  &NJ_Tox_Site::set_coords_count,
+  &NJ_Tox_Site::set_coords_options,
+  &NJ_Tox_Site::set_data_source
+ };
+
+ ntsl1.read_csv_file(setters);
+ ntsl2.read_csv_file(setters);
+
+ ntsl1.merge_with(ntsl2);
+ ntsl1.sort_by_site_id();
+
+ ntsl1.save_to_csv_file(
+ {
+  &NJ_Tox_Site::str_site_id,
+  &NJ_Tox_Site::str_pi_number,
+  &NJ_Tox_Site::pi_name,
+  &NJ_Tox_Site::street_address,
+  &NJ_Tox_Site::home_owner_status,
+  &NJ_Tox_Site::municipality,
+  &NJ_Tox_Site::county,
+  &NJ_Tox_Site::str_latitude,
+  &NJ_Tox_Site::str_longitude,
+  &NJ_Tox_Site::str_coords_count,
+  &NJ_Tox_Site::coords_options,
+  &NJ_Tox_Site::data_source
+ },
+ "/home/nlevisrael/docker/tox/KCSNJ/active-found_merged.csv"
+ );
+
+
+ return 0;
+}
+
+

@@ -503,7 +503,12 @@ void address_to_lat_lon(QGeoCodingManager* gcm,
  qel.exec();
 
  if(reply_locations.isEmpty())
-   return;
+ {
+  lat = 0;
+  lon = 0;
+  str = QString {};
+  return;
+ }
 
 
  size = reply_locations.size();
@@ -528,8 +533,177 @@ void address_to_lat_lon(QGeoCodingManager* gcm,
 #include "qtcsv/reader.h"
 #include "qtcsv/writer.h"
 
-
 int main(int argc, char *argv[])
+{
+ QApplication qapp(argc, argv);
+
+ QGeoServiceProvider gsp("osm");
+ QGeoCodingManager* gcm = gsp.geocodingManager();
+
+ QString path = "/home/nlevisrael/docker/tox/KCSNJ/active-m-m.csv";
+ QString new_path_f = "/home/nlevisrael/docker/tox/KCSNJ/active-m-m-f.csv";
+ QString new_path_m = "/home/nlevisrael/docker/tox/KCSNJ/active-m-m-m.csv";
+
+// QString path = "/home/nlevisrael/docker/tox/KCSNJ/active-missing.csv";
+// QString new_path_f = "/home/nlevisrael/docker/tox/KCSNJ/active-m-f.csv";
+// QString new_path_m = "/home/nlevisrael/docker/tox/KCSNJ/active-m-m.csv";
+
+ QList<QStringList> lines = QtCSV::Reader::readToList(path);
+
+ QtCSV::StringData new_lines_f;
+ QtCSV::StringData new_lines_m;
+
+ QStringList header = lines.takeFirst();
+
+ new_lines_f.addRow(header);
+ new_lines_f.addEmptyRow();
+
+ new_lines_m.addRow(header);
+ new_lines_m.addEmptyRow();
+
+ int i = 0;
+
+ for(QStringList line : lines)
+ {
+  ++i;
+
+  if(i % 25 == 0)
+  {
+   QtCSV::Writer::write(new_path_f, new_lines_f);
+   QtCSV::Writer::write(new_path_m, new_lines_m);
+  }
+
+  if(line.isEmpty())
+  {
+   new_lines_f.addEmptyRow();
+   new_lines_m.addEmptyRow();
+   continue;
+  }
+
+
+  QString street = line.value(3);
+  QString muni = line.value(5);
+
+  muni.replace("Twp", "Township");
+
+  if(muni == "Kearny Town")
+  {
+   muni.chop(5);
+  }
+
+  else if(muni.endsWith(" Boro"))
+  {
+   muni.chop(5);
+  }
+  else if(muni.endsWith(" Village"))
+  {
+   muni.chop(8);
+  }
+  else if(muni.endsWith(" City"))
+  {
+   if(muni == "Union City")
+     goto after_cities;
+   if(muni == "Jersey City")
+     goto after_cities;
+   if(muni == "Perth Amboy City")
+     goto after_cities;
+   if(muni == "Atlantic City")
+     goto after_cities;
+   if(muni == "Gloucester City")
+     goto after_cities;
+
+   muni.chop(5);
+  }
+
+ after_cities:
+
+
+
+  int loc_size = 0;
+  r8 lat, lon;
+
+  QString str;
+
+
+  address_to_lat_lon(gcm, street, muni, loc_size, lat, lon, str);
+
+  if(loc_size)
+  {
+   line[7] = QString::number(lat);
+   line[8] = QString::number(lon);
+   line[9] = QString::number(loc_size);
+   line[10] = str;
+   line[11] = "Active (found)";
+   new_lines_f.addRow(line);
+  }
+  else
+  {
+   new_lines_m.addRow(line);
+  }
+ }
+
+ QtCSV::Writer::write(new_path_f, new_lines_f);
+ QtCSV::Writer::write(new_path_m, new_lines_m);
+
+}
+
+
+
+
+int main30(int argc, char *argv[])
+{
+ QString path = "/home/nlevisrael/docker/tox/KCSNJ/active-ll.csv";
+ QString new_path_f = "/home/nlevisrael/docker/tox/KCSNJ/active-found.csv";
+ QString new_path_m = "/home/nlevisrael/docker/tox/KCSNJ/active-missing.csv";
+
+ QList<QStringList> lines = QtCSV::Reader::readToList(path);
+
+ QtCSV::StringData new_lines_f;
+ QtCSV::StringData new_lines_m;
+
+ QStringList header = lines.takeFirst();
+
+ header.push_back("Source");
+
+ new_lines_f.addRow(header);
+ new_lines_f.addEmptyRow();
+
+ new_lines_m.addRow(header);
+ new_lines_m.addEmptyRow();
+
+ int i = 0;
+
+ for(QStringList line : lines)
+ {
+  ++i;
+
+  if(line.isEmpty())
+  {
+   new_lines_f.addEmptyRow();
+   new_lines_m.addEmptyRow();
+   continue;
+  }
+
+  int sz = line.value(9).toInt();
+
+  if(sz)
+  {
+   line.push_back("Active (found)");
+   new_lines_f.addRow(line);
+  }
+  else
+  {
+   line.push_back("Active (missing)");
+   new_lines_m.addRow(line);
+  }
+ }
+
+ QtCSV::Writer::write(new_path_f, new_lines_f);
+ QtCSV::Writer::write(new_path_m, new_lines_m);
+
+}
+
+int main25(int argc, char *argv[])
 {
  QApplication qapp(argc, argv);
 
@@ -539,9 +713,12 @@ int main(int argc, char *argv[])
 
 
 
- QString path = "/home/nlevisrael/docker/tox/KCSNJ/active-clean.csv";
+ QString path = "/home/nlevisrael/docker/tox/KCSNJ/pending-clean.csv";
+ QString new_path = "/home/nlevisrael/docker/tox/KCSNJ/pending-ll.csv";
 
- QString new_path = "/home/nlevisrael/docker/tox/KCSNJ/active-ll.csv";
+
+// QString path = "/home/nlevisrael/docker/tox/KCSNJ/active-clean.csv";
+// QString new_path = "/home/nlevisrael/docker/tox/KCSNJ/active-ll.csv";
 
  QList<QStringList> lines = QtCSV::Reader::readToList(path);
 
@@ -561,8 +738,8 @@ int main(int argc, char *argv[])
  for(QStringList line : lines)
  {
   ++i;
-  if(i > 17)
-    break;
+//  if(i > 7)
+//    break;
 
   if(line.isEmpty())
   {
@@ -571,9 +748,46 @@ int main(int argc, char *argv[])
   }
 
   QString street = line.value(3);
-  QString muni = line.value(5);
+
+  // //  5 is for "active"; 6 for "pending"
+   //?  QString muni = line.value(5);
+  QString muni = line.value(6);
 
   muni.replace("Twp", "Township");
+
+  if(muni == "Kearny Town")
+  {
+   muni.chop(5);
+  }
+
+  else if(muni.endsWith(" Boro"))
+  {
+   muni.chop(5);
+  }
+  else if(muni.endsWith(" Village"))
+  {
+   muni.chop(8);
+  }
+  else if(muni.endsWith(" City"))
+  {
+   if(muni == "Union City")
+     goto after_cities;
+   if(muni == "Jersey City")
+     goto after_cities;
+   if(muni == "Perth Amboy City")
+     goto after_cities;
+   if(muni == "Atlantic City")
+     goto after_cities;
+   if(muni == "Gloucester City")
+     goto after_cities;
+
+   muni.chop(5);
+  }
+
+ after_cities:
+
+
+
 
   qDebug() << street << " " << muni;
 
@@ -600,10 +814,92 @@ int main(int argc, char *argv[])
 
 }
 
-int main21(int argc, char *argv[])
+
+int main24(int argc, char *argv[])
 {
- QString path = "/home/nlevisrael/docker/tox/KCSNJ/active.csv";
- QString new_path = "/home/nlevisrael/docker/tox/KCSNJ/active-clean.csv";
+// QString path = "/home/nlevisrael/docker/tox/KCSNJ/active.csv";
+// QString new_path = "/home/nlevisrael/docker/tox/KCSNJ/active-clean.csv";
+
+ QString path = "/home/nlevisrael/docker/tox/KCSNJ/pending.csv";
+ QString new_path = "/home/nlevisrael/docker/tox/KCSNJ/pending-clean.csv";
+
+ QString current_county;
+ QString current_muni;
+
+ QMap<QString, int> site_counts;
+
+
+ // read data from file
+ QList<QStringList> lines = QtCSV::Reader::readToList(path);
+
+ QtCSV::StringData new_lines;
+
+ for (QStringList line : lines)
+ {
+  QString l1 = line.value(1);
+  if(l1.isEmpty())
+    continue;
+
+  int index = l1.indexOf(" -- ");
+  if(index != -1)
+  {
+   current_county = l1.left(index);
+   current_muni = l1.mid(index + 4);
+   continue;
+  }
+
+  if(l1 == "Site ID")
+  {
+   // //  check to see if this is our first header ...
+   if(new_lines.isEmpty())
+   {
+    line.takeFirst();
+
+    line.append("Muni");
+    line.append("County");
+    new_lines.addRow(line);
+    new_lines.addEmptyRow();
+   }
+   continue;
+  }
+
+  QString l3 = line.value(3);
+  if(l3.isEmpty())
+  {
+   site_counts[current_muni] = l1.toInt();
+   new_lines.addEmptyRow();
+   continue;
+  }
+
+  QString first = line.takeFirst();
+
+  if(!first.isEmpty())
+    qDebug() << "Unexpeceted nonempty field: " << first;
+
+
+  line.append(current_muni);
+  line.append(current_county);
+
+  new_lines.addRow(line);
+ }
+
+ QtCSV::Writer::write(new_path, new_lines);
+
+
+
+ return 0;
+}
+
+
+
+
+int main23(int argc, char *argv[])
+{
+// QString path = "/home/nlevisrael/docker/tox/KCSNJ/active.csv";
+// QString new_path = "/home/nlevisrael/docker/tox/KCSNJ/active-clean.csv";
+
+ QString path = "/home/nlevisrael/docker/tox/KCSNJ/pending.csv";
+ QString new_path = "/home/nlevisrael/docker/tox/KCSNJ/pending-clean.csv";
 
  QString current_county;
  QString current_muni;
@@ -715,8 +1011,10 @@ int main21(int argc, char *argv[])
 
 
  return 0;
-
 }
+
+
+
 
 int main11(int argc, char *argv[])
 {

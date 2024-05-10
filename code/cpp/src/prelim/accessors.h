@@ -133,6 +133,28 @@ ACCESSORS__GET(type, name)
  ACCESSORS__GET_FNP(ret, type, name)
 #endif
 
+
+
+#ifndef ACCESSORS__SET_FNP__VOID
+#define ACCESSORS__SET_FNP__VOID(type, name) \
+ ACCESSORS__SET_FNP(void, type, name)
+#endif
+
+#ifndef ACCESSORS__GET_FNP__VOID
+#define ACCESSORS__GET_FNP__VOID(type, name) \
+ ACCESSORS__GET_FNP(void, type, name)
+#endif
+
+
+#ifndef ACCESSORS__FNP__VOID
+#define ACCESSORS__FNP__VOID(type, name) \
+ ACCESSORS__SET_FNP__VOID(type, name) \
+ ACCESSORS__GET_FNP__VOID(type, name)
+#endif
+
+
+
+
 #ifndef ACCESSORS__SET_FNP__STATIC
 #define ACCESSORS__SET_FNP__STATIC(ret, type, name) \
  static void set_##name(ret (*_arg_) (type)) { name##_ = _arg_; }
@@ -315,6 +337,17 @@ struct fn_setter
 #define ACCESSORS_3(arg1, arg2, arg3) \
 ACCESSORS_2(MACRO_PASTE(arg1, arg2) ,arg3)
 #endif
+
+#ifndef ACCESSORS__GET_3
+#define ACCESSORS__GET_3(arg1, arg2, arg3) \
+ACCESSORS__GET_2(MACRO_PASTE(arg1, arg2) ,arg3)
+#endif
+
+#ifndef ACCESSORS__SET_3
+#define ACCESSORS__SET_3(arg1, arg2, arg3) \
+ACCESSORS__SET_2(MACRO_PASTE(arg1, arg2) ,arg3)
+#endif
+
 
 
 #include "preproc-concat.h"
