@@ -9,7 +9,8 @@
 
 
 NJ_TRI_Site::NJ_TRI_Site()
-  :  latitude_(0), longitude_(0)
+  :  latitude_(0), longitude_(0),
+     zip_code_(0), industry_sector_code_(0)
 {
 
 }

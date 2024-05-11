@@ -86,7 +86,8 @@ public:
    (const NJ_Tox_Site& lhs, const NJ_Tox_Site& rhs));
 
  void sort_by_site_id();
- void distribute_by_county(QString file_path);
+
+ void distribute_by_county(QString folder_path);
 
  void add_site(const NJ_Tox_Site& site);
 

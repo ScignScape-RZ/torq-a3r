@@ -27,6 +27,35 @@
 #include "enum-macros.h"
 
 
+template<typename PTR_Type>
+struct manual_ptr_handle
+{
+ PTR_Type* obj;
+ void delete_now()
+ {
+  delete obj;
+  obj = 0;
+ }
+};
+
+template<typename PTR_Type>
+struct manual_ptr_handles
+{
+ QVector<PTR_Type*> objs;
+ void delete_now()
+ {
+  for(PTR_Type* obj : objs)
+  {
+   delete obj;
+   obj = 0;
+  }
+ }
+};
+
+
+
+
+
 typedef QPair<QString, QString> QStringPair;
 
 

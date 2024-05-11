@@ -35,9 +35,8 @@
 
 class NJ_TRI_Site_List : public Site_List_Base<NJ_TRI_Site>
 {
- QString file_path_;
-
- QVector<NJ_TRI_Site> sites_;
+// QString file_path_;
+// QVector<NJ_TRI_Site> sites_;
 
  QStringList original_header_;
 
@@ -65,6 +64,9 @@ public:
 
 // ACCESSORS(QVector<void (NJ_TRI_Site::*)(QString)> ,csv_field_setters)
 // ACCESSORS(QVector<QString (NJ_TRI_Site::*)() const> ,csv_field_getters)
+
+ manual_ptr_handles<NJ_TRI_Site_List> split_by_county(QMap<QString, NJ_TRI_Site_List*>& results,
+   QString* file_pattern);
 
 
  void read_csv_file(decltype(csv_field_setters_)& mds, QString csv_file_path, u4 max = 0);

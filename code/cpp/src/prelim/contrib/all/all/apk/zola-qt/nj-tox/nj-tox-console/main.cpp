@@ -21,40 +21,45 @@
 #include <vector>
 #include <algorithm>
 
-
-
-int main(int argc, char *argv[])
+void main_by_year(u2 year)
 {
  QStringList counties = {
    "Atlantic",
-//   "Bergen",
-//   "Burlington",
-//   "Camden",
-//   "Cape_May",
-//   "Cumberland",
-//   "Essex",
-//   "Gloucester",
-//   "Hudson",
-//   "Hunterdon",
-//   "Mercer",
-//   "Middlesex",
-//   "Monmouth",
-//   "Morris",
-//   "Ocean",
-//   "Passaic",
-//   "Salem",
-//   "Somerset",
-//   "Sussex",
-//   "Union",
-//   "Warren"
+   "Bergen",
+   "Burlington",
+   "Camden",
+   "Cape_May",
+   "Cumberland",
+   "Essex",
+   "Gloucester",
+   "Hudson",
+   "Hunterdon",
+   "Mercer",
+   "Middlesex",
+   "Monmouth",
+   "Morris",
+   "Ocean",
+   "Passaic",
+   "Salem",
+   "Somerset",
+   "Sussex",
+   "Union",
+   "Warren"
  };
 
-//?
- QString counties_folder = "/home/nlevisrael/docker/tox/objects/active/counties";
-// QString counties_folder = "/home/nlevisrael/docker/tox/objects/tir/counties";
+// std::map<QString, QString> case_lower;
+// std::transform(counties.begin(), counties.end(), std::inserter(case_lower, case_lower.end()),
+//   [](const QString& c)
+// {
+//  return std::make_pair(c.toLower(), c);
+// });
+
+//? QString counties_folder = "/home/nlevisrael/docker/tox/objects/active/counties";
+//
+ QString counties_folder = "/home/nlevisrael/docker/tox/objects/tir/counties";
 
 
- NJ_TRI_Site_List ntsl;
+ NJ_TRI_Site_List ntsl("/home/nlevisrael/docker/tox/objects/tir/years/%1_nj.csv"_qt.arg(year));
 
 // csv_field_setters_by_column<NJ_TRI_Site> s{{
 //  &NJ_TRI_Site::set_frs_id,
@@ -65,17 +70,131 @@ int main(int argc, char *argv[])
 
  ntsl.set_csv_field_setters(csv_field_setters_by_column<NJ_TRI_Site>
     {{
-      &NJ_TRI_Site::set_frs_id,
-      &NJ_TRI_Site::set_street_address,
-      &NJ_TRI_Site::set_municipality,
-      &NJ_TRI_Site::set_county,
+      {2, &NJ_TRI_Site::set_frs_id},
+      {3, &NJ_TRI_Site::set_facility_name},
+      {4, &NJ_TRI_Site::set_street_address},
+      {5, &NJ_TRI_Site::set_municipality},
+      {6, &NJ_TRI_Site::set_county},
+      {8, &NJ_TRI_Site::set_zip_code},
+      {11, &NJ_TRI_Site::set_latitude},
+      {12, &NJ_TRI_Site::set_longitude},
+      {19, &NJ_TRI_Site::set_industry_sector},
+      {18, &NJ_TRI_Site::set_industry_sector_code},
+      {33, &NJ_TRI_Site::set_chemical},
+      {39, &NJ_TRI_Site::set_classification},
+      {41, &NJ_TRI_Site::set_metal_category},
     }}
     );
 
- for(QString county : counties)
+
+// QVector<QString (NJ_TRI_Site::*)() const>  qv;
+// qv.push_back(&NJ_TRI_Site::str_frs_id);
+// ntsl.set_csv_field_getters(csv_field_getters_by_column<NJ_TRI_Site>(qv));
+
+ ntsl.set_csv_field_getters(csv_field_getters_by_column<NJ_TRI_Site>
+    ((typename decltype(ntsl.csv_field_getters())::methods_vector_type) // QVector<QString (NJ_TRI_Site::*)() const>
+     {
+      &NJ_TRI_Site::str_frs_id,
+      &NJ_TRI_Site::facility_name,
+      &NJ_TRI_Site::street_address,
+      &NJ_TRI_Site::municipality,
+      &NJ_TRI_Site::county,
+      &NJ_TRI_Site::str_zip_code,
+      &NJ_TRI_Site::str_latitude,
+      &NJ_TRI_Site::str_longitude,
+      &NJ_TRI_Site::industry_sector,
+      &NJ_TRI_Site::str_industry_sector_code,
+      &NJ_TRI_Site::chemical,
+      &NJ_TRI_Site::classification,
+      &NJ_TRI_Site::metal_category,
+    }, 2  // 2 is the offset, allowing for 2 default columns
+    )
+    );
+
+ ntsl.add_default_field_getter(0, "tri");
+ ntsl.add_default_field_getter(1, QString::number(year));
+
+
+ QString file_pattern = counties_folder + "/%1/%1" +
+   "-tri-%1.csv"_qt.arg(year);
+
+ QMap<QString, NJ_TRI_Site_List*> split;
+
+ auto mph = ntsl.split_by_county(split, &file_pattern);
+
+ QMapIterator<QString, NJ_TRI_Site_List*> it(split);
+ while (it.hasNext())
  {
+  it.next();
+
+  QString lower = it.key().toLower();
+
+  for(QString c : counties)
+  {
+   if(c.toLower() == lower)
+   {
+    QString file_path = it.value()->file_path();
+    file_path.replace(it.key(), c);
+    it.value()->set_file_path(file_path);
+   }
+  }
+
+//  qDebug() << "county: " << it.value()->file_path();
  }
 
+// &NJ_TRI_Site::str_frs_id,
+// &NJ_TRI_Site::facility_name,
+// &NJ_TRI_Site::street_address,
+// &NJ_TRI_Site::municipality,
+// &NJ_TRI_Site::county,
+// &NJ_TRI_Site::str_zip_code,
+// &NJ_TRI_Site::str_latitude,
+// &NJ_TRI_Site::str_longitude,
+// &NJ_TRI_Site::industry_sector,
+// &NJ_TRI_Site::str_industry_sector_code,
+// &NJ_TRI_Site::chemical,
+// &NJ_TRI_Site::classification,
+// &NJ_TRI_Site::metal_category,
+
+ QStringList header {{
+   "Data_Source",
+   "Year",
+   "FRS_ID",
+   "Facility_Name",
+   "Street_Address",
+   "Municipality",
+   "County",
+   "Zip_Code",
+   "Latitude",
+   "Longitude",
+   "Industry_Sector",
+   "Industry_Sector_Code",
+   "Chemical",
+   "Classification",
+   "Metal_Category",
+                     }};
+
+ for(NJ_TRI_Site_List* ntslc : split.values())
+ {
+  ntslc->set_csv_field_getters(ntsl.csv_field_getters());
+
+  ntslc->save_to_csv_file("!", &header);
+ // ntslc->
+ }
+
+
+ mph.delete_now();
+
+// for(QString county : counties)
+// {
+
+// }
+
+}
+
+int main(int argc, char *argv[])
+{
+ main_by_year(2022);
  return 0;
 }
 
