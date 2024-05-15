@@ -115,7 +115,8 @@ void main_by_year(u2 year)
  ntsl.add_default_field_getter(1, QString::number(year));
 
 
- QString file_pattern = counties_folder + "/%1/%1" +
+
+ QString file_pattern = counties_folder + "/%1/years/%1" +
    "-tri-%1.csv"_qt.arg(year);
 
  QMap<QString, NJ_TRI_Site_List*> split;
@@ -127,7 +128,9 @@ void main_by_year(u2 year)
  {
   it.next();
 
-  QString lower = it.key().toLower();
+  QString lower = it.key().toLower().simplified();
+
+  lower.replace(' ', '_');
 
   for(QString c : counties)
   {
@@ -194,7 +197,10 @@ void main_by_year(u2 year)
 
 int main(int argc, char *argv[])
 {
- main_by_year(2022);
+ for(u2 y = 2022; y >= 1987; --y)
+ {
+  main_by_year(y);
+ }
  return 0;
 }
 

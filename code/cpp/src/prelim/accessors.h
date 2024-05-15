@@ -73,10 +73,11 @@ ACCESSORS__GET(type, name)
 #endif
 
 
-#ifndef ACCESSORS__RGET
-#define ACCESSORS__RGET(type, name) \
+#ifndef ACCESSORS__RGET_2
+#define ACCESSORS__RGET_2(type, name) \
  type& name() { return name##_; }
 #endif
+
 
 #ifndef ACCESSORS__RGET_CONST
 #define ACCESSORS__RGET_CONST(type, name) \
@@ -349,6 +350,18 @@ ACCESSORS__SET_2(MACRO_PASTE(arg1, arg2) ,arg3)
 #endif
 
 
+#ifndef ACCESSORS__RGET_3
+#define ACCESSORS__RGET_3(arg1, arg2, arg3) \
+ACCESSORS__RGET_2(MACRO_PASTE(arg1, arg2) ,arg3)
+#endif
+
+
+#ifndef ACCESSORS__RGET_4
+#define ACCESSORS__RGET_4(arg1, arg2, arg3, arg4) \
+ACCESSORS__RGET_2(MACRO_PASTE(arg1, arg2, arg3) ,arg4)
+#endif
+
+
 
 #include "preproc-concat.h"
 
@@ -364,7 +377,46 @@ ACCESSORS__SET_2(MACRO_PASTE(arg1, arg2) ,arg3)
 #define ACCESSORS__SET(...) _preproc_CONCAT(ACCESSORS__SET_, _preproc_NUM_ARGS(__VA_ARGS__))(__VA_ARGS__)
 #endif
 
+#ifndef ACCESSORS__RGET
+#define ACCESSORS__RGET(...) _preproc_CONCAT(ACCESSORS__RGET_, _preproc_NUM_ARGS(__VA_ARGS__))(__VA_ARGS__)
+#endif
 
+
+
+#ifndef SET_ADAPTER_
+#define SET_ADAPTER_(fn, to_) void set_##fn(QString arg) { set_##fn(arg.to##to_()); }
+#endif
+
+#ifndef SET_ADAPTER_DBL
+#define SET_ADAPTER_DBL(fn) SET_ADAPTER_(fn, Double)
+#endif
+
+#ifndef SET_ADAPTER_INT
+#define SET_ADAPTER_INT(fn) SET_ADAPTER_(fn, Int)
+#endif
+
+
+#ifndef SET_ADAPTER_N8
+#define SET_ADAPTER_N8(fn) SET_ADAPTER_(fn, LongLong)
+#endif
+
+
+#ifndef STR_ADAPTER
+#define STR_ADAPTER(fn) QString str_##fn() const { return  QString::number(fn()); }
+#endif
+
+
+#ifndef SET_and_STR_ADAPTER_DBL
+#define SET_and_STR_ADAPTER_DBL(fn) SET_ADAPTER_(fn, Double) STR_ADAPTER(fn)
+#endif
+
+#ifndef SET_and_STR_ADAPTER_INT
+#define SET_and_STR_ADAPTER_INT(fn) SET_ADAPTER_(fn, Int) STR_ADAPTER(fn)
+#endif
+
+#ifndef SET_and_STR_ADAPTER_N8
+#define SET_and_STR_ADAPTER_N8(fn) SET_ADAPTER_(fn, LongLong) STR_ADAPTER(fn)
+#endif
 
 
 

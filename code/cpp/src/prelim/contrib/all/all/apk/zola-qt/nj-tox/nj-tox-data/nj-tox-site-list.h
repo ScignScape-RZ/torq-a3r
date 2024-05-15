@@ -49,6 +49,7 @@ public:
  NJ_Tox_Site_List(QString file_path);
 
  ACCESSORS(QString ,file_path)
+
  ACCESSORS__RGET(QVector<NJ_Tox_Site> ,sites)
  ACCESSORS__CONST_RGET(QVector<NJ_Tox_Site> ,sites)
 
