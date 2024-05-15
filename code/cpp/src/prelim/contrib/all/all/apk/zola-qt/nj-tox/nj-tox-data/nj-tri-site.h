@@ -36,9 +36,13 @@ public:
   bool form_a:1;                        // csv col 46
   bool units_pounds:1;                  // csv col 47
   bool units_grams:1;                   // csv col 47
-
-
+  bool production_ratio_value:1;        // csv col 118
+  bool activity_index_value:1;          // csv col 118
  _flags
+
+ // //  Note: there appears to be a typo in the TIR guide;
+  //    csv col 118 is listed as "189", but only 118
+  //    makes sense in context
 
 
  enum class Horizontal_Datum_Options {
@@ -225,7 +229,7 @@ private:
  QString municipality_;  // csv col 6
  QString county_;   // csv col 7
 
- // //  exlude state field for this code, because it's consistently NJ
+ // //  exclude state field for this code, because it's consistently NJ
 
  u4 zip_code_;  // csv col 9
 
@@ -274,13 +278,14 @@ private:
  r8  onsite_and_offsite_releases_total_;    // csv cols 104
  r8  source_reduction_releases_total_;    // csv cols 105
 
+ QMap<Onsite_and_Offsite_Keys, r8> onsite_and_offsite_amounts_;   // csv cols 106 - 115
 
+ r8  production_waste_;    // csv cols 116
+ r8  one_time_release_;    // csv cols 117
 
- QString metal_category_;
+ r8  production_ratio_;    // csv cols 119
 
-
-
-
+// QString metal_category_;
 
 
 public:
@@ -288,10 +293,11 @@ public:
  NJ_TRI_Site();
 
 
+ ACCESSORS(u2 ,year)
+ ACCESSORS(QString ,trifd)
  ACCESSORS(n8 ,frs_id)
 
  ACCESSORS(QString ,facility_name)
- ACCESSORS(QString ,trifd)
 
  ACCESSORS(QString ,street_address)
  ACCESSORS(QString ,municipality)
@@ -299,14 +305,60 @@ public:
 
  ACCESSORS(u4 ,zip_code)
 
+ ACCESSORS(QStringList* ,supplemental)
+
  ACCESSORS(r8 ,latitude)
  ACCESSORS(r8 ,longitude)
 
- ACCESSORS(QString ,industry_sector)
+ ACCESSORS(Horizontal_Datum_Options ,horizon_datum)
+ ACCESSORS__DECLARE(QString ,horizon_datum_string)
+
+ ACCESSORS__RGET(Parent_Company ,parent_company)
+
+
  ACCESSORS(u4 ,industry_sector_code)
+ ACCESSORS(QString ,industry_sector)
+
+ ACCESSORS__RGET(QVector<u2> ,SIC_codes)
+ ACCESSORS__RGET(QVector<u4> ,NAICS_codes)
+
+ ACCESSORS(n8 ,document_control_number)
+
+ ACCESSORS(QString ,chemical_name)
+
+ ACCESSORS(u4 ,CAS_registry_number)
+ ACCESSORS(u4 ,TRI_chemical_id)
+ ACCESSORS(u4 ,SRS_id)
 
  ACCESSORS(QString ,classification)
- ACCESSORS(QString ,metal_category)
+
+
+ ACCESSORS__RGET(QMap<Discharge_Descriptions, r8> ,discharge_amounts)
+
+ ACCESSORS(r8 ,onsite_release_total)
+
+ ACCESSORS(r8 ,potw_release_or_disposal)
+ ACCESSORS(r8 ,potw_further_treatment)
+ ACCESSORS(r8 ,potw_total)
+
+ ACCESSORS__RGET(QMap<Offsite_Keys, r8> ,offsite_transfer_amounts)
+
+ ACCESSORS__RGET(QMap<Transfer_or_Release_Descriptions, r8> ,offsite_transfer_totals)
+
+ ACCESSORS(r8 ,overall_offsite_transfer_total)
+ ACCESSORS(r8 ,onsite_and_offsite_releases_total)
+ ACCESSORS(r8 ,source_reduction_releases_total)
+
+ ACCESSORS__RGET(QMap<Onsite_and_Offsite_Keys, r8> ,onsite_and_offsite_amounts)
+
+ ACCESSORS(r8 ,production_waste)
+ ACCESSORS(r8 ,one_time_release)
+
+ ACCESSORS(r8 ,production_ratio)
+// ACCESSORS(QString ,metal_category)
+
+
+
 
 // ACCESSORS(QString ,chemical)
 
