@@ -421,4 +421,42 @@ ACCESSORS__RGET_2(MACRO_PASTE(arg1, arg2, arg3) ,arg4)
 
 
 
+#ifndef SET_ADAPTER_neg1_
+#define SET_ADAPTER_neg1_(fn, to_) \
+  void set_##fn(QString arg, u1 col = -1) { set_##fn(arg.to##to_()); }
+#endif
+
+#ifndef SET_ADAPTER_DBL_neg1
+#define SET_ADAPTER_DBL_neg1(fn) SET_ADAPTER_neg1_(fn, Double)
+#endif
+
+#ifndef SET_ADAPTER_INT_neg1
+#define SET_ADAPTER_INT_neg1(fn) SET_ADAPTER_neg1_(fn, Int)
+#endif
+
+
+#ifndef SET_ADAPTER_N8_neg1
+#define SET_ADAPTER_N8_neg1(fn) SET_ADAPTER_neg1_(fn, LongLong)
+#endif
+
+
+#ifndef STR_ADAPTER_neg1
+#define STR_ADAPTER_neg1(fn) QString str_##fn(u1 col = -1) const { return QString::number(fn(col)); }
+#endif
+
+
+#ifndef SET_and_STR_ADAPTER_DBL_neg1
+#define SET_and_STR_ADAPTER_DBL_neg1(fn) SET_ADAPTER_neg1(fn, Double) STR_ADAPTER(fn)
+#endif
+
+#ifndef SET_and_STR_ADAPTER_INT_neg1
+#define SET_and_STR_ADAPTER_INT_neg1(fn) SET_ADAPTER_neg1(fn, Int) STR_ADAPTER(fn)
+#endif
+
+#ifndef SET_and_STR_ADAPTER_N8_neg1
+#define SET_and_STR_ADAPTER_N8_neg1(fn) SET_ADAPTER_neg1(fn, LongLong) STR_ADAPTER(fn)
+#endif
+
+
+
 #endif //ACCESSORS__H

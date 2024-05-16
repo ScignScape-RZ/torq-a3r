@@ -212,7 +212,7 @@ public:
  struct Parent_Company {
   QString name;  // csv col 15
   u4 db_number;  // csv col 16
-  QString standardized_name_;  // csv col 17
+  QString standardized_name;  // csv col 17
 
   Parent_Company() : db_number(0) {}
  };
@@ -239,7 +239,7 @@ private:
  r8 latitude_;  // csv col 12
  r8 longitude_;  // csv col 13
 
- Horizontal_Datum_Options horizon_datum_; // csv col 14
+ Horizontal_Datum_Options horizontal_datum_; // csv col 14
 // QString alt_horizon_datum_;            // csv col 14
 
  Parent_Company parent_company_;  // csv cols 15 - 17;
@@ -287,11 +287,36 @@ private:
 
 // QString metal_category_;
 
+ void check_supplemental()
+ {
+  if(supplemental_)
+  {
+   if(flags.on_tribal_land && (supplemental_->size() == 1) )
+   {
+    supplemental_->push_front({});
+    supplemental_->push_front({});
+   }
+  }
+  else
+  {
+   supplemental_ = new QStringList;
+   if(flags.on_tribal_land)
+   {
+    supplemental_->push_back({});
+    supplemental_->push_back({});
+   }
+  }
+ }
+
 
 public:
 
  NJ_TRI_Site();
 
+ void set_test(QString val, u2 col)
+ {
+
+ }
 
  ACCESSORS(u2 ,year)
  ACCESSORS(QString ,trifd)
@@ -307,20 +332,57 @@ public:
 
  ACCESSORS(QStringList* ,supplemental)
 
+ ACCESSORS__DECLARE(QString ,BIA_code)
+ ACCESSORS__DECLARE(QString ,tribe_name)
+
  ACCESSORS(r8 ,latitude)
  ACCESSORS(r8 ,longitude)
 
- ACCESSORS(Horizontal_Datum_Options ,horizon_datum)
- ACCESSORS__DECLARE(QString ,horizon_datum_string)
+ ACCESSORS(Horizontal_Datum_Options ,horizontal_datum)
+ ACCESSORS__DECLARE(QString ,horizontal_datum_string)
+
+ void read_horizontal_datum(QString s)
+ {
+
+ }
 
  ACCESSORS__RGET(Parent_Company ,parent_company)
 
+ void set_parent_company_name(QString n)  // csv col 15
+ {
+  parent_company_.name = n;
+ }
+ void set_parent_company_db_number(QString n)  // csv col 16
+ {
+  parent_company_.db_number = n.toInt();
+ }
+ void set_parent_company_standardized_name(QString n) // csv col 17
+ {
+  parent_company_.standardized_name = n;
+ }
 
  ACCESSORS(u4 ,industry_sector_code)
  ACCESSORS(QString ,industry_sector)
 
  ACCESSORS__RGET(QVector<u2> ,SIC_codes)
+
+ void add_SIC_code(QString s, u2 index)
+ {
+  if(SIC_codes_.size() <= index)
+    SIC_codes_.resize(index + 1);
+
+  SIC_codes_[index] = s.toInt();
+ }
+
  ACCESSORS__RGET(QVector<u4> ,NAICS_codes)
+
+ void add_NAICS_code(QString s, u2 index)
+ {
+  if(NAICS_codes_.size() <= index)
+    NAICS_codes_.resize(index + 1);
+
+  NAICS_codes_[index] = s.toInt();
+ }
 
  ACCESSORS(n8 ,document_control_number)
 
@@ -334,6 +396,16 @@ public:
 
 
  ACCESSORS__RGET(QMap<Discharge_Descriptions, r8> ,discharge_amounts)
+ void note_discharge_amount(QString description, r8 amount)
+ {
+  discharge_amounts_[parse_discharge_description(description)] = amount;
+ }
+
+ void read_discharge_amount(QString description, QString amount)
+ {
+  note_discharge_amount(description, amount.toDouble());
+ }
+
 
  ACCESSORS(r8 ,onsite_release_total)
 
@@ -368,13 +440,31 @@ public:
 
 // ACCESSORS__GET(QVector<QPair<r8, r8>>* ,ref_coords)
 
+ SET_and_STR_ADAPTER_INT(year)
+
+ SET_and_STR_ADAPTER_N8(frs_id)
+ SET_and_STR_ADAPTER_INT(zip_code)
+
  SET_and_STR_ADAPTER_DBL(latitude)
  SET_and_STR_ADAPTER_DBL(longitude)
 
- SET_and_STR_ADAPTER_N8(frs_id)
  SET_and_STR_ADAPTER_INT(industry_sector_code)
+ SET_and_STR_ADAPTER_N8(document_control_number)
+ SET_and_STR_ADAPTER_INT(CAS_registry_number)
+ SET_and_STR_ADAPTER_INT(TRI_chemical_id)
+ SET_and_STR_ADAPTER_INT(SRS_id)
 
- SET_and_STR_ADAPTER_INT(zip_code)
+ SET_and_STR_ADAPTER_DBL(onsite_release_total)
+ SET_and_STR_ADAPTER_DBL(potw_release_or_disposal)
+ SET_and_STR_ADAPTER_DBL(potw_further_treatment)
+ SET_and_STR_ADAPTER_DBL(potw_total)
+
+ SET_and_STR_ADAPTER_DBL(overall_offsite_transfer_total)
+ SET_and_STR_ADAPTER_DBL(onsite_and_offsite_releases_total)
+ SET_and_STR_ADAPTER_DBL(source_reduction_releases_total)
+ SET_and_STR_ADAPTER_DBL(production_waste)
+ SET_and_STR_ADAPTER_DBL(one_time_release)
+ SET_and_STR_ADAPTER_DBL(production_ratio)
 
 
 // SET_and_STR_ADAPTER_INT(site_id)

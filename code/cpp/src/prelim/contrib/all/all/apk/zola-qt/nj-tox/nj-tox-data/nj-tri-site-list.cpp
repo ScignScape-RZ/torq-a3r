@@ -18,7 +18,13 @@
 NJ_TRI_Site_List::NJ_TRI_Site_List(QString file_path)
   :  Site_List_Base(file_path)
 {
+ define_setters_data_.column_resolver = [this](QVariant qvar)
+ {
+  QString key = qvar.toString();
+  return (u2) NJ_TRI_Site::parse_offsite_key(key);
+ };
 }
+
 
 manual_ptr_handles<NJ_TRI_Site_List> NJ_TRI_Site_List::split_by_county(
   QMap<QString, NJ_TRI_Site_List*>& results, QString* file_pattern)
@@ -102,20 +108,112 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
 
   for(u1 column = 0; column < line.size(); ++column)
   {
-   auto it = mds.methods.find(column);
-   if(it == mds.methods.end())
+   auto it = mds.proc_options.find(column);
+   if(it != mds.proc_options.end())
    {
-    auto it1 = mds.non_methods.find(column);
-    if(it1 != mds.non_methods.end())
-      (**it1)(line[column]);
-   }
-   else
-   {
-    (site.**it)(line[column]);
+    switch(*it)
+    {
+    case decltype(csv_field_setters_)::Proc_Options::m_QString:
+     {
+      auto it1 = mds.m_QString.find(column);
+      if(it1 != mds.m_QString.end())
+        (site.**it1)(line[column]);
+     }
+     break;
+
+    case decltype(csv_field_setters_)::Proc_Options::m_QString_n0:
+     {
+      auto it1 = mds.m_QString_n0.find(column);
+      if(it1 != mds.m_QString_n0.end() && !line[column].isEmpty())
+        (site.**it1)(line[column]);
+     }
+     break;
+
+
+    case decltype(csv_field_setters_)::Proc_Options::m_QString_u2:
+     {
+      auto it1 = mds.m_QString_u2.find(column);
+      if(it1 != mds.m_QString_u2.end())
+        (site.**it1)(line[column], mds.preset_args_u2.value(column, column));
+     }
+     break;
+
+
+    case decltype(csv_field_setters_)::Proc_Options::m_QString_u2_n0:
+     {
+      auto it1 = mds.m_QString_u2_n0.find(column);
+      if(it1 != mds.m_QString_u2_n0.end() && !line[column].isEmpty())
+        (site.**it1)(line[column], mds.preset_args_u2.value(column, column));
+     }
+     break;
+
+    case decltype(csv_field_setters_)::Proc_Options::m_QString_QString:
+     {
+      auto it1 = mds.m_QString_QString.find(column);
+      if(it1 != mds.m_QString_QString.end())
+        (site.**it1)(line[column], mds.preset_args_QString.value(column));
+     }
+     break;
+
+    case decltype(csv_field_setters_)::Proc_Options::m_QString_QString_n0:
+     {
+      auto it1 = mds.m_QString_QString_n0.find(column);
+      if(it1 != mds.m_QString_QString_n0.end() && !line[column].isEmpty())
+        (site.**it1)(line[column], mds.preset_args_QString.value(column));
+     }
+     break;
+
+    case decltype(csv_field_setters_)::Proc_Options::n_QString:
+     {
+      auto it1 = mds.n_QString.find(column);
+      if(it1 != mds.n_QString.end())
+        (**it1)(line[column]);
+     }
+     break;
+
+    case decltype(csv_field_setters_)::Proc_Options::n_QString_u2:
+     {
+      auto it1 = mds.n_QString_u2.find(column);
+      if(it1 != mds.n_QString_u2.end())
+        (**it1)(line[column], mds.preset_args_u2.value(column, column));
+     }
+     break;
+
+    case decltype(csv_field_setters_)::Proc_Options::n_QString_QString:
+     {
+      auto it1 = mds.n_QString_QString.find(column);
+      if(it1 != mds.n_QString_QString.end())
+        (**it1)(line[column], mds.preset_args_QString.value(column));
+     }
+     break;
+
+
+    }
    }
   }
 
- }
+//    auto it_1 = mds.methods_1.find(column);
+//    if(it_1 != mds.methods_1.end())
+//      (site.**it_1)(line[column],  mds.methods_1_args.value(column, column));
+//    else
+//    {
+//     auto it_n0 = mds.non_methods_0.find(column);
+//     if(it_n0 != mds.non_methods_0.end())
+//       (**it_n0)(line[column]);
+//     else
+//     {
+//      auto it_n1 = mds.non_methods_1.find(column);
+//      if(it_n1 != mds.non_methods_1.end())
+//        (**it_n1)(line[column],  mds.methods_1_args.value(column, column));
+//     }
+//    }
+//   }
+//   else
+//   {
+//    (site.**it_0)(line[column]);
+//   }
+//  }
 
+ }
 
 }

@@ -21,6 +21,107 @@
 #include <vector>
 #include <algorithm>
 
+
+int main(int argc, char *argv[])
+{
+ NJ_TRI_Site_List ntsl;
+
+#define col
+
+ ntsl.define_setters()
+
+    [1]  (& NJ_TRI_Site::set_year)
+    [2]  (& NJ_TRI_Site::set_trifd)
+    [3]  (& NJ_TRI_Site::set_frs_id)
+    [4]  (& NJ_TRI_Site::set_facility_name)
+    [5]  (& NJ_TRI_Site::set_street_address)
+    [6]  (& NJ_TRI_Site::set_municipality)
+    [7]  (& NJ_TRI_Site::set_county)
+    [9]  (& NJ_TRI_Site::set_zip_code)
+
+    [10]  [& NJ_TRI_Site::set_BIA_code]
+    [11]  [& NJ_TRI_Site::set_tribe_name]
+
+    [12]  (& NJ_TRI_Site::set_latitude)
+    [13]  (& NJ_TRI_Site::set_longitude)
+    [14]  (& NJ_TRI_Site::read_horizontal_datum)
+    [15]  (& NJ_TRI_Site::set_parent_company_name)
+    [16]  (& NJ_TRI_Site::set_parent_company_db_number)
+    [17]  (& NJ_TRI_Site::set_parent_company_standardized_name)
+
+    [19]  (& NJ_TRI_Site::set_industry_sector_code)
+    [20]  (& NJ_TRI_Site::set_industry_sector)
+
+(0) [21]  //(& NJ_TRI_Site::add_SIC_code)
+(1) [22]  //(& NJ_TRI_Site::add_SIC_code)
+(2) [23]  //(& NJ_TRI_Site::add_SIC_code)
+(3) [24]  //(& NJ_TRI_Site::add_SIC_code)
+(4) [25]  //(& NJ_TRI_Site::add_SIC_code)
+(5) [26]  [& NJ_TRI_Site::add_SIC_code]
+
+(27, 32)  (& NJ_TRI_Site::add_NAICS_code)
+
+   [33]  (& NJ_TRI_Site::set_document_control_number)
+   [34]  (& NJ_TRI_Site::set_chemical_name)
+   [35]  (& NJ_TRI_Site::set_CAS_registry_number)
+   [36]  (& NJ_TRI_Site::set_chemical_name)
+   [37]  (& NJ_TRI_Site::set_TRI_chemical_id)
+   [38]  (& NJ_TRI_Site::set_SRS_id)
+   [40]  (& NJ_TRI_Site::set_classification)
+
+   ( "M10"
+   , "M41"
+   , "M62"
+   , "M40_metal"
+   , "M61_metal"
+   , "M71"
+   , "M81"
+   , "M82"
+   , "M72"
+   , "M63"
+   , "M66"
+   , "M67"
+   , "M64"
+   , "M65"
+   , "M73"
+   , "M90"
+   , "M94"
+   , "M99"
+   , "M20"
+   , "M24"
+   , "M26"
+   , "M28"
+   , "M93"
+   , "M56"
+   , "M92"
+   , "M40_non_metal"
+   , "M50"
+   , "M54"
+   , "M61_non_metal"
+   , "M69"
+   , "M95"
+   ) [& NJ_TRI_Site::read_discharge_amount]
+
+   ;
+
+
+// [1]  (& NJ_TRI_Site::set_facility_name)
+
+
+// ntsl.define_setters()
+//    + &NJ_TRI_Site::set_facility_name
+//    + 2 - &NJ_TRI_Site::set_test
+//    ;
+
+
+
+ return 0;
+}
+
+
+
+#ifdef HIDE
+
 void main_by_year(u2 year)
 {
  QStringList counties = {
@@ -80,9 +181,9 @@ void main_by_year(u2 year)
       {12, &NJ_TRI_Site::set_longitude},
       {19, &NJ_TRI_Site::set_industry_sector},
       {18, &NJ_TRI_Site::set_industry_sector_code},
-      {33, &NJ_TRI_Site::set_chemical},
+//      {33, &NJ_TRI_Site::set_chemical},
       {39, &NJ_TRI_Site::set_classification},
-      {41, &NJ_TRI_Site::set_metal_category},
+//      {41, &NJ_TRI_Site::set_metal_category},
     }}
     );
 
@@ -104,9 +205,9 @@ void main_by_year(u2 year)
       &NJ_TRI_Site::str_longitude,
       &NJ_TRI_Site::industry_sector,
       &NJ_TRI_Site::str_industry_sector_code,
-      &NJ_TRI_Site::chemical,
+//?      &NJ_TRI_Site::chemical,
       &NJ_TRI_Site::classification,
-      &NJ_TRI_Site::metal_category,
+//?      &NJ_TRI_Site::metal_category,
     }, 2  // 2 is the offset, allowing for 2 default columns
     )
     );
@@ -826,3 +927,4 @@ int main1(int argc, char *argv[])
 }
 
 
+#endif // HIDE
