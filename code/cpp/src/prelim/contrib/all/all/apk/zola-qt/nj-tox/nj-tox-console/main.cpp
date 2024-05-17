@@ -53,11 +53,11 @@ int main(int argc, char *argv[])
     [20]  (& NJ_TRI_Site::set_industry_sector)
 
 (0) [21]  //(& NJ_TRI_Site::add_SIC_code)
-(1) [22]  //(& NJ_TRI_Site::add_SIC_code)
-(2) [23]  //(& NJ_TRI_Site::add_SIC_code)
-(3) [24]  //(& NJ_TRI_Site::add_SIC_code)
-(4) [25]  //(& NJ_TRI_Site::add_SIC_code)
-(5) [26]  [& NJ_TRI_Site::add_SIC_code]
+    [22]  //(& NJ_TRI_Site::add_SIC_code)
+    [23]  //(& NJ_TRI_Site::add_SIC_code)
+    [24]  //(& NJ_TRI_Site::add_SIC_code)
+    [25]  //(& NJ_TRI_Site::add_SIC_code)
+    [26]  [& NJ_TRI_Site::add_SIC_code]
 
 (27, 32)  (& NJ_TRI_Site::add_NAICS_code)
 

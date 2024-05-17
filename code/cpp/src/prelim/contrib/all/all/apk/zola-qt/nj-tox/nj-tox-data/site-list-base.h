@@ -32,6 +32,59 @@
 
 struct _define_setters_data
 {
+ enum class Arg_State {
+   Init = 0,
+   A = 1, P = 2, R = 3, S = 4,
+   AP = 12, AR = 13, AS = 14,
+   PA = 21, PR = 23, PS = 24,
+   RA = 31, RP = 32, RS = 34,
+   SA = 41, SP = 42, SR = 43,
+   APR = 123, APS = 124,
+   ARP = 132, ARS = 134,
+   ASP = 142, ASR = 143,
+   PAR = 213, PAS = 214,
+   PRA = 231, PRS = 234,
+   PSA = 241, PSR = 243,
+   RAP = 312, RAS = 314,
+   RPA = 321, RPS = 324,
+   RSA = 341, RSP = 342,
+   SAP = 412, SAR = 413,
+   SPA = 421, SPR = 423,
+   SRA = 431, SRP = 432,
+   APRS = 1234, APSR = 1243,
+   ARPS = 1324, ARSP = 1342,
+   ASPR = 1423, ASRP = 1432,
+   PARS = 2134, PASR = 2143,
+   PRAS = 2314, PRSA = 2341,
+   PSAR = 2413, PSRA = 2431,
+   RAPS = 3124, RASP = 3142,
+   RPAS = 3214, RPSA = 3241,
+   RSAP = 3412, RSPA = 3421,
+   SAPR = 4123, SARP = 4132,
+   SPAR = 4213, SPRA = 4231,
+   SRAP = 4312, SRPA = 4321,
+ };
+
+ enum { Arg = (u1) Arg_State::A,
+  Pre_Arg = (u1) Arg_State::P,
+  Range = (u1) Arg_State::R,
+  String = (u1) Arg_State::S
+ };
+
+ static Arg_State add_state(Arg_State prior, Arg_State new_state);
+
+ Arg_State current_arg_state;
+
+ void add_state(Arg_State new_state)
+ {
+  current_arg_state = add_state(current_arg_state, new_state);
+ }
+
+ void add_state(u1 new_state)
+ {
+  add_state((Arg_State) new_state);
+ }
+
  QVector<u2> held_arg;
  QVector<QPair<u2, u2>> held_range;
  QVector<s4> held_pre;
@@ -47,6 +100,8 @@ struct _define_setters_data
 
  void get_current_arg(QVector<u2>& result);
  s4 get_current_arg(QVector<u2>& result, const QVector<QString>& keys);
+
+ void held_range_to_vector(QVector<u2>& result);
 
  void reset(const QVector<u2>& lc);
  void reset(u2 lc);
@@ -93,7 +148,7 @@ struct csv_field_setters_by_column
 
  template<typename FN_Type>
  void add(Proc_Options props,
-   QVector<u2> cols, FN_Type fn, const void* pre = nullptr)
+   QVector<u2> cols, FN_Type fn, const void* pre = nullptr, u2 insert_count = 0)
  {
   switch(props)
   {
@@ -119,7 +174,7 @@ struct csv_field_setters_by_column
   CASE_MACRO(n_QString_n0)
   }
 
-  if(pre)
+  if(pre || insert_count)
   {
    u2 count = 0;
    switch (props)
@@ -128,9 +183,19 @@ struct csv_field_setters_by_column
    case Proc_Options::n_QString_u2:
    case Proc_Options::m_QString_u2_n0:
    case Proc_Options::n_QString_u2_n0:
-    for(int p : * (const QVector<int>*) pre)
+    if(pre)
     {
-     preset_args_QString[cols.value(count)] = (u2) p;
+     for(s4 p : * (const QVector<s4>*) pre)
+     {
+      preset_args_u2[cols.value(count)] = (u2) p;
+     }
+    }
+    else
+    {
+     for(u2 count = 0; i < insert_count; ++count)
+     {
+      preset_args_u2[cols.value(count)] = cols.value(count);
+     }
     }
     break;
    case Proc_Options::m_QString_QString:
@@ -294,145 +359,171 @@ private:
 
   typedef typename csv_field_setters_by_column<SITE_Type>::Proc_Options Props;
 
-  _define_setters operator [] (m_QString_type arg)
+
+  template<typename FN_Type>
+  void ops_QString(Props props, FN_Type fn)
+  {
+   auto& dsd = _this->define_setters_data_;
+
+   QVector<u2> cols;
+
+   switch (dsd.current_arg_state)
+   {
+   case _define_setters_data::Arg_State::A:
+    dsd.get_current_arg(cols);
+    _this->add_setter(props, cols, fn);
+    break;
+
+   case _define_setters_data::Arg_State::R:
+    dsd.held_range_to_vector(cols);
+    _this->add_setter(props, cols, fn);
+    break;
+   }
+   dsd.reset();
+  }
+
+
+  template<typename FN_Type>
+  void ops_QString_u2(Props props, FN_Type arg)
   {
    QVector<u2> cols;
-   _this->define_setters_data_.get_current_arg(cols);
-   _this->add_setter(Props::m_QString_n0, cols, arg);
-   _this->define_setters_data_.reset();
+   auto& dsd = _this->define_setters_data_;
+
+   switch (dsd.current_arg_state)
+   {
+   case _define_setters_data::Arg_State::A:
+    dsd.get_current_arg(cols);
+    _this->add_setter(props, cols, arg, nullptr, cols.size());
+    break;
+
+   case _define_setters_data::Arg_State::R:
+    dsd.held_range_to_vector(cols);
+    _this->add_setter(props, cols, arg, nullptr, cols.size());
+    break;
+
+   default:
+    dsd.get_current_arg(cols);
+    const QVector<s4>& pre = dsd.held_pre;
+    _this->add_setter(props, cols, arg, &pre);
+
+    break;
+   }
+   dsd.reset();
+  }
+
+  template<typename FN_Type>
+  void ops_QString_QString(Props props, FN_Type arg)
+  {
+   auto& dsd = _this->define_setters_data_;
+
+   QVector<u2> cols;
+   const QVector<QString>& pre = dsd.held_string;
+   s4 pre_used = dsd.get_current_arg(cols, pre);
+   if(pre_used)
+     _this->add_setter(props, cols, arg);
+   else
+     _this->add_setter(props, cols, arg, &pre);
+   dsd.reset();
+  }
+
+  _define_setters operator [] (m_QString_type arg)
+  {
+   ops_QString(Props::m_QString_n0, arg);
    return *this;
   }
 
   _define_setters operator [] (m_QString_u2_type arg)
   {
-   QVector<u2> cols;
-   _this->define_setters_data_.get_current_arg(cols);
-   const QVector<s4>& pre = _this->define_setters_data_.held_pre;
-   _this->add_setter(Props::m_QString_u2_n0, cols, arg, &pre);
-   _this->define_setters_data_.reset();
+   ops_QString_u2(Props::m_QString_u2_n0, arg);
    return *this;
   }
 
   _define_setters operator [] (m_QString_QString_type arg)
   {
-   QVector<u2> cols;
-   const QVector<QString>& pre = _this->define_setters_data_.held_string;
-   s4 pre_used = _this->define_setters_data_.get_current_arg(cols, pre);
-   if(pre_used)
-     _this->add_setter(Props::m_QString_QString_n0, cols, arg, &pre);
-   else
-     _this->add_setter(Props::m_QString_QString_n0, cols, arg);
-   _this->define_setters_data_.reset();
+   ops_QString_QString(Props::m_QString_QString_n0, arg);
    return *this;
   }
 
   _define_setters operator [] (n_QString_type arg)
   {
-   QVector<u2> cols;
-   _this->define_setters_data_.get_current_arg(cols);
-   _this->add_setter(Props::n_QString_n0, cols, arg);
-   _this->define_setters_data_.reset();
+   ops_QString(Props::n_QString_n0, arg);
    return *this;
   }
 
   _define_setters operator [] (n_QString_u2_type arg)
   {
-   QVector<u2> cols;
-   _this->define_setters_data_.get_current_arg(cols);   
-   const QVector<s4>& pre = _this->define_setters_data_.held_pre_or_range();
-   _this->add_setter(Props::n_QString_u2_n0, cols, arg, &pre);
-   _this->define_setters_data_.reset();
+   ops_QString_u2(Props::n_QString_u2_n0, arg);
    return *this;
   }
 
   _define_setters operator [] (n_QString_QString_type arg)
   {
-   QVector<u2> cols;
-   const QVector<QString>& pre = _this->define_setters_data_.held_string;
-   s4 pre_used = _this->define_setters_data_.get_current_arg(cols, pre);
-   if(pre_used)
-     _this->add_setter(Props::n_QString_QString_n0, cols, arg, &pre);
-   else
-     _this->add_setter(Props::n_QString_QString_n0, cols, arg);
-   _this->define_setters_data_.reset();
+   ops_QString_QString(Props::n_QString_QString_n0, arg);
    return *this;
   }
 
 
-  _define_setters operator [] (u2 arg)
+  _define_setters operator [] (int arg)
   {
-   _this->define_setters_data_.held_arg.push_back(arg);
+   auto& dsd = _this->define_setters_data_;
+
+   dsd.held_arg.push_back(arg);
+   dsd.add_state(_define_setters_data::Arg);
+
+   switch(dsd.current_arg_state)
+   {
+   // //  any others?
+   case _define_setters_data::Arg_State::PA:
+    while(dsd.held_pre.size() < dsd.held_arg.size())
+    {
+     dsd.held_pre.push_back(dsd.held_pre.last() + 1);
+    }
+   default: break;
+   }
    return *this;
   }
 
 
   _define_setters operator () (m_QString_type arg)
   {
-   QVector<u2> cols;
-   _this->define_setters_data_.get_current_arg(cols);
-   _this->add_setter(Props::m_QString, cols, arg);
-   _this->define_setters_data_.reset();
+   ops_QString(Props::m_QString, arg);
    return *this;
   }
 
   _define_setters operator () (m_QString_u2_type arg)
   {
-   QVector<u2> cols;
-   _this->define_setters_data_.get_current_arg(cols);
-   const QVector<s4>& pre = _this->define_setters_data_.held_pre_or_range();
-   _this->add_setter(Props::m_QString_u2, cols, arg, &pre);
-   _this->define_setters_data_.reset();
+   ops_QString_u2(Props::m_QString_u2, arg);
    return *this;
   }
 
   _define_setters operator () (m_QString_QString_type arg)
   {
-   QVector<u2> cols;
-   const QVector<QString>& pre = _this->define_setters_data_.held_string;
-   s4 pre_used = _this->define_setters_data_.get_current_arg(cols, pre);
-   if(pre_used)
-     _this->add_setter(Props::m_QString_QString, cols, arg, &pre);
-   else
-     _this->add_setter(Props::m_QString_QString, cols, arg);
-   _this->define_setters_data_.reset();
+   ops_QString_QString(Props::m_QString_QString, arg);
    return *this;
   }
 
   _define_setters operator () (n_QString_type arg)
   {
-   QVector<u2> cols;
-   _this->define_setters_data_.get_current_arg(cols);
-   _this->add_setter(Props::n_QString, cols, arg);
-   _this->define_setters_data_.reset();
+   ops_QString(Props::n_QString, arg);
    return *this;
   }
 
   _define_setters operator () (n_QString_u2_type arg)
   {
-   QVector<u2> cols;
-   _this->define_setters_data_.get_current_arg(cols);
-   const QVector<s4>& pre = _this->define_setters_data_.held_pre;
-   _this->add_setter(Props::n_QString_u2, cols, arg, &pre);
-   _this->define_setters_data_.reset();
+   ops_QString_u2(Props::n_QString_u2, arg);
    return *this;
   }
 
   _define_setters operator () (n_QString_QString_type arg)
   {
-   QVector<u2> cols;
-   const QVector<QString>& pre = _this->define_setters_data_.held_string;
-   s4 pre_used = _this->define_setters_data_.get_current_arg(cols, pre);
-   if(pre_used)
-     _this->add_setter(Props::n_QString_QString, cols, arg, &pre);
-   else
-     _this->add_setter(Props::n_QString_QString, cols, arg);
-   _this->define_setters_data_.reset();
+   ops_QString_QString(Props::n_QString_QString, arg);
    return *this;
   }
 
   _define_setters operator () (int arg)
   {
    _this->define_setters_data_.held_pre.push_back(arg);
+   _this->define_setters_data_.add_state(_define_setters_data::Pre_Arg);
    return *this;
   }
 
@@ -440,12 +531,14 @@ private:
   _define_setters operator () (QString arg)
   {
    _this->define_setters_data_.held_string.push_back(arg);
+   _this->define_setters_data_.add_state(_define_setters_data::String);
    return *this;
   }
 
   _define_setters operator () (int arg, int arg1)
   {
    _this->define_setters_data_.held_range.push_back({arg, arg1});
+   _this->define_setters_data_.add_state(_define_setters_data::Range);
    return *this;
   }
 
@@ -454,6 +547,7 @@ private:
   {
    QVector<QString> qvs({a1, a2, ts...});
    _this->define_setters_data_.held_string.append(qvs);
+   _this->define_setters_data_.add_state(_define_setters_data::String);
    return *this;
   }
 

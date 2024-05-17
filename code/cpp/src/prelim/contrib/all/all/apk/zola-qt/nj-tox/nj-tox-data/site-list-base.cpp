@@ -8,11 +8,89 @@
 #include "site-list-base.h"
 
 _define_setters_data::_define_setters_data()
-   : last_column(0), column_resolver(nullptr)
+   : last_column(0), column_resolver(nullptr),
+     current_arg_state(Arg_State::Init)
 {
 
 }
 
+
+u2 _calc_3(u2 prior, u1 new_digit)
+{
+ u1 d100 = (u1)( prior / 100 );
+ if(new_digit == d100)
+   return prior;
+
+ u1 d10 = (u1)((prior / 10) % 10);
+ if(new_digit == d10)
+   return prior;
+
+ u1 d1 = prior % 10;
+ if(new_digit == d1)
+   return prior;
+
+ return prior * 10 + new_digit;
+}
+
+u2 _calc_2(u1 prior, u1 new_digit)
+{
+ u1 d10 = prior / 10;
+ if(new_digit == d10)
+   return prior;
+
+ u1 d1 = prior % 10;
+ if(new_digit == d1)
+   return prior;
+
+ return ((u2) prior) * 10 + new_digit;
+}
+
+
+u1 _calc_1(u1 prior, u1 new_digit)
+{
+ if(prior == new_digit)
+   return prior;
+ return prior * 10 + new_digit;
+}
+
+
+_define_setters_data::Arg_State _define_setters_data::add_state(Arg_State prior, Arg_State new_state)
+{
+ u2 nn = (u2) new_state;
+
+ if(nn > 4 || new_state == Arg_State::Init)
+ {
+  qDebug() << "Unexpected Arg_State at " << __FILE__;
+  return prior;
+ }
+
+ if(prior == Arg_State::Init)
+   return new_state;
+
+ static QMap<QPair<Arg_State, Arg_State>, Arg_State> results;
+
+ auto it = results.find({prior, new_state});
+
+ u2 prior_num = (u2) prior;
+
+ if(it == results.end())
+ {
+  u2 result;
+  if(prior_num > 1000)
+    result = prior_num;
+  else if(prior_num > 100)
+    result = _calc_3(prior_num, nn);
+  else if(prior_num > 10)
+    result = _calc_2(prior_num, nn);
+  else
+    result = _calc_1(prior_num, nn);
+
+  results[{prior, new_state}] = (Arg_State) result;
+  return (Arg_State) result;
+ }
+
+ return *it;
+}
 
 s4 _define_setters_data::get_current_arg(QVector<u2>& result, const QVector<QString>& keys)
 {
@@ -28,6 +106,7 @@ s4 _define_setters_data::get_current_arg(QVector<u2>& result, const QVector<QStr
  for(QString key : keys)
  {
   result[count] = column_resolver(QVariant(key));
+  ++count;
  }
 
  return result.size();
@@ -66,12 +145,31 @@ void _define_setters_data::reset(u2 lc)
 
 void _define_setters_data::reset()
 {
+ current_arg_state = Arg_State::Init;
  held_arg.clear();
  held_range.clear();
  held_pre.clear();
  held_string.clear();
  _range.clear();
 }
+
+
+void _define_setters_data::held_range_to_vector(QVector<u2>& result)
+{
+ for(auto pr : held_range)
+ {
+  s4 min = qMin(pr.first, pr.second);
+  s4 max = qMax(pr.first, pr.second);
+  s4 index = result.size();
+  result.resize(index + max - min + 1);
+  for(s4 i = min; i <= max; ++i, ++index)
+  {
+   result[index] = i - pr.first;
+  }
+ }
+
+}
+
 
 const QVector<s4>& _define_setters_data::held_pre_or_range()
 {
