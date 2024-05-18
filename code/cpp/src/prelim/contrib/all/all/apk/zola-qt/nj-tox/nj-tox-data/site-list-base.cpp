@@ -92,6 +92,14 @@ _define_setters_data::Arg_State _define_setters_data::add_state(Arg_State prior,
  return *it;
 }
 
+void _define_setters_data::get_current_arg(QVector<u2>& result)
+{
+ if(held_arg.isEmpty())
+   result = {last_column + 1};
+ else
+   result = held_arg;
+}
+
 s4 _define_setters_data::get_current_arg(QVector<u2>& result, const QVector<QString>& keys)
 {
  if(!column_resolver)
@@ -103,38 +111,53 @@ s4 _define_setters_data::get_current_arg(QVector<u2>& result, const QVector<QStr
  result.resize(keys.size());
 
  u1 count = 0;
+
+ // //  Returns the number of _distinct_ column_resolver
+  //    results, which might potentially be different
+  //    than result.size();
+ QSet<u2> distinct;
+
  for(QString key : keys)
  {
   result[count] = column_resolver(QVariant(key));
+  distinct.insert(result[count]);
   ++count;
  }
 
- return result.size();
-
-// if(held_arg.isEmpty())
-// {
-//  {
-
-//  }
-//  else
-// }
-// else
-//   result = held_arg;
-
+ return distinct.size();
 }
 
-
-void _define_setters_data::get_current_arg(QVector<u2>& result)
+_define_setters_data::Arg_State _define_setters_data::expand_state(Arg_State prior, Arg_State new_state)
 {
- if(held_arg.isEmpty())
-   result = {last_column + 1};
- else
-   result = held_arg;
+ u2 nn = (u2) new_state;
+ if( (nn < 5) || (nn > 9) )
+ {
+  qDebug() << "Unexpected arg state: " << nn << " at " << __FILE__;
+  return prior;
+ }
+ return (Arg_State) (((u2) prior) * 10 + nn);
 }
+
+
+_define_setters_data::Arg_State _define_setters_data::recollapse_state(Arg_State& prior)
+{
+ u2 pn = (u2) prior;
+
+ u1 d1 = (pn % 10);
+ if(d1 > 4)
+ {
+  pn /= 10;
+  prior = (Arg_State) pn;
+  return (Arg_State) d1;
+ }
+
+ return (Arg_State) 0;
+}
+
 
 void _define_setters_data::reset(const QVector<u2>& lc)
 {
- reset(lc.first());
+ reset(lc.isEmpty()? 0 : lc.last());
 }
 
 void _define_setters_data::reset(u2 lc)
@@ -154,7 +177,7 @@ void _define_setters_data::reset()
 }
 
 
-void _define_setters_data::held_range_to_vector(QVector<u2>& result)
+const QVector<s4>& _define_setters_data::held_range_to_vector(QVector<u2>& result)
 {
  for(auto pr : held_range)
  {
@@ -162,12 +185,15 @@ void _define_setters_data::held_range_to_vector(QVector<u2>& result)
   s4 max = qMax(pr.first, pr.second);
   s4 index = result.size();
   result.resize(index + max - min + 1);
-  for(s4 i = min; i <= max; ++i, ++index)
+  _range.resize(max - min + 1);
+  for(s4 i = min, r = 0; i <= max; ++i, ++index, ++r)
   {
-   result[index] = i - pr.first;
+   _range[r] = i - pr.first;
+   result[index] = i;
   }
  }
 
+ return _range;
 }
 
 

@@ -23,7 +23,7 @@ NJ_TRI_Site::NJ_TRI_Site()
      onsite_release_total_(0),
      potw_release_or_disposal_(0),
      potw_further_treatment_(0),
-     potw_total_(0),
+     potw_total_(0), //?offsite_release_total_(0),
      overall_offsite_transfer_total_(0),
      onsite_and_offsite_releases_total_(0),
      source_reduction_releases_total_(0),

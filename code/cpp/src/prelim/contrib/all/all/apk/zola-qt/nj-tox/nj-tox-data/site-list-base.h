@@ -33,7 +33,7 @@
 struct _define_setters_data
 {
  enum class Arg_State {
-   Init = 0,
+   Init = 0,  Hanging_To = 9, Hanging_Plus = 8,
    A = 1, P = 2, R = 3, S = 4,
    AP = 12, AR = 13, AS = 14,
    PA = 21, PR = 23, PS = 24,
@@ -68,10 +68,14 @@ struct _define_setters_data
  enum { Arg = (u1) Arg_State::A,
   Pre_Arg = (u1) Arg_State::P,
   Range = (u1) Arg_State::R,
-  String = (u1) Arg_State::S
+  String = (u1) Arg_State::S,
+
+  Hanging_To = (u1) Arg_State::Hanging_To
  };
 
  static Arg_State add_state(Arg_State prior, Arg_State new_state);
+ static Arg_State expand_state(Arg_State prior, Arg_State new_state);
+ static Arg_State recollapse_state(Arg_State& prior);
 
  Arg_State current_arg_state;
 
@@ -84,6 +88,22 @@ struct _define_setters_data
  {
   add_state((Arg_State) new_state);
  }
+
+ void expand_state(Arg_State new_state)
+ {
+  current_arg_state = expand_state(current_arg_state, new_state);
+ }
+
+ void expand_state(u1 new_state)
+ {
+  expand_state((Arg_State) new_state);
+ }
+
+ Arg_State recollapse_state()
+ {
+  return recollapse_state(current_arg_state);
+ }
+
 
  QVector<u2> held_arg;
  QVector<QPair<u2, u2>> held_range;
@@ -101,7 +121,7 @@ struct _define_setters_data
  void get_current_arg(QVector<u2>& result);
  s4 get_current_arg(QVector<u2>& result, const QVector<QString>& keys);
 
- void held_range_to_vector(QVector<u2>& result);
+ const QVector<s4>& held_range_to_vector(QVector<u2>& result);
 
  void reset(const QVector<u2>& lc);
  void reset(u2 lc);
@@ -145,6 +165,14 @@ struct csv_field_setters_by_column
  QMap<u2, u2> preset_args_u2;
  QMap<u2, QString> preset_args_QString;
 
+ QString column_string_pattern(QString* reset = nullptr)
+ {
+  if(reset)
+    _column_string_pattern = *reset;
+  else if(_column_string_pattern.isNull())
+    _column_string_pattern = "C%1";
+  return _column_string_pattern;
+ }
 
  template<typename FN_Type>
  void add(Proc_Options props,
@@ -188,11 +216,12 @@ struct csv_field_setters_by_column
      for(s4 p : * (const QVector<s4>*) pre)
      {
       preset_args_u2[cols.value(count)] = (u2) p;
+      ++count;
      }
     }
     else
     {
-     for(u2 count = 0; i < insert_count; ++count)
+     for(count = 0; count < insert_count; ++count)
      {
       preset_args_u2[cols.value(count)] = cols.value(count);
      }
@@ -202,9 +231,23 @@ struct csv_field_setters_by_column
    case Proc_Options::n_QString_QString:
    case Proc_Options::m_QString_QString_n0:
    case Proc_Options::n_QString_QString_n0:
-    for(QString p : * (const QVector<QString>*) pre)
+    if(pre)
     {
-     preset_args_QString[cols.value(count)] = p;
+     for(QString p : * (const QVector<QString>*) pre)
+     {
+      preset_args_QString[cols.value(count)] = p;
+      ++count;
+     }
+    }
+    else
+    {
+     // //  In this case we assume the column is identified by
+      //    a key which incorporates the coulmn number somehow ...
+     for(count = 0; count < insert_count; ++count)
+     {
+      preset_args_QString[cols.value(count)] =
+        column_string_pattern().arg(cols.value(count));
+     }
     }
     break;
    }
@@ -241,6 +284,11 @@ struct csv_field_setters_by_column
  { }
 
  csv_field_setters_by_column() {}
+
+private:
+
+ QString _column_string_pattern;
+
 
 };
 
@@ -379,7 +427,7 @@ private:
     _this->add_setter(props, cols, fn);
     break;
    }
-   dsd.reset();
+   dsd.reset(cols);
   }
 
 
@@ -397,18 +445,16 @@ private:
     break;
 
    case _define_setters_data::Arg_State::R:
-    dsd.held_range_to_vector(cols);
-    _this->add_setter(props, cols, arg, nullptr, cols.size());
+    {
+     const QVector<s4>& r = dsd.held_range_to_vector(cols);
+     _this->add_setter(props, cols, arg, &r);
+    }
     break;
 
    default:
-    dsd.get_current_arg(cols);
-    const QVector<s4>& pre = dsd.held_pre;
-    _this->add_setter(props, cols, arg, &pre);
-
     break;
    }
-   dsd.reset();
+   dsd.reset(cols);
   }
 
   template<typename FN_Type>
@@ -417,13 +463,34 @@ private:
    auto& dsd = _this->define_setters_data_;
 
    QVector<u2> cols;
-   const QVector<QString>& pre = dsd.held_string;
-   s4 pre_used = dsd.get_current_arg(cols, pre);
-   if(pre_used)
-     _this->add_setter(props, cols, arg);
-   else
-     _this->add_setter(props, cols, arg, &pre);
-   dsd.reset();
+
+   switch (dsd.current_arg_state)
+   {
+   case _define_setters_data::Arg_State::S:
+    {
+     const QVector<QString>& hs = dsd.held_string;
+
+     // //   get_current_arg() with strings will
+      //     return a nonzero value if the strings
+      //     are matched by column_resolver lookups
+     if(dsd.get_current_arg(cols, hs))
+       _this->add_setter(props, cols, arg, &hs);
+     else
+       _this->add_setter(props, cols, arg, nullptr, cols.count());
+    }
+    break;
+
+   // //  what's the right way to handle mixed in these cases?
+   case _define_setters_data::Arg_State::SA:
+    dsd.get_current_arg(cols);
+    _this->add_setter(props, cols, arg, &dsd.held_string);
+    break;
+   // //  case AS and so on ...
+
+   default:
+    break;
+   }
+   dsd.reset(cols);
   }
 
   _define_setters operator [] (m_QString_type arg)
@@ -467,7 +534,23 @@ private:
   {
    auto& dsd = _this->define_setters_data_;
 
-   dsd.held_arg.push_back(arg);
+   _define_setters_data::Arg_State h = dsd.recollapse_state();
+
+   if(h == _define_setters_data::Arg_State::Hanging_To)
+   {
+    u4 index = dsd.held_arg.size();
+    u2 l = index ? dsd.held_arg.last() : 0;
+    u2 min = qMin(l, (u2) arg);
+    u2 max = qMax(l, (u2) arg);
+    u2 diff = max - min;
+
+    dsd.held_arg.resize(index + diff);
+    for(u2 i = min + 1; i <= max; ++i, ++index)
+      dsd.held_arg[index] = i;
+   }
+   else
+     dsd.held_arg.push_back(arg);
+
    dsd.add_state(_define_setters_data::Arg);
 
    switch(dsd.current_arg_state)
@@ -527,6 +610,14 @@ private:
    return *this;
   }
 
+  _define_setters operator () ()
+  {
+   _this->define_setters_data_.add_state(_define_setters_data::Pre_Arg);
+   return *this;
+  }
+
+
+
 
   _define_setters operator () (QString arg)
   {
@@ -551,6 +642,12 @@ private:
    return *this;
   }
 
+  _define_setters operator -- (int)
+  {
+   _this->define_setters_data_.expand_state(_define_setters_data::Arg_State::Hanging_To);
+   return *this;
+  }
+
 
  };
 
@@ -571,7 +668,7 @@ public:
 
  template<typename FN_Type>
  void add_setter(typename decltype(csv_field_setters_)::Proc_Options props,
-    const QVector<u2>& cols, FN_Type fn, const void* pre = nullptr)
+    const QVector<u2>& cols, FN_Type fn, const void* pre = nullptr, u2 insert_count = 0)
  {
   csv_field_setters_.add(props, cols, fn, pre);
  }

@@ -52,11 +52,8 @@ int main(int argc, char *argv[])
     [19]  (& NJ_TRI_Site::set_industry_sector_code)
     [20]  (& NJ_TRI_Site::set_industry_sector)
 
-(0) [21]  //(& NJ_TRI_Site::add_SIC_code)
-    [22]  //(& NJ_TRI_Site::add_SIC_code)
-    [23]  //(& NJ_TRI_Site::add_SIC_code)
-    [24]  //(& NJ_TRI_Site::add_SIC_code)
-    [25]  //(& NJ_TRI_Site::add_SIC_code)
+(0) [21]
+     --
     [26]  [& NJ_TRI_Site::add_SIC_code]
 
 (27, 32)  (& NJ_TRI_Site::add_NAICS_code)
@@ -84,6 +81,7 @@ int main(int argc, char *argv[])
    , "M64"
    , "M65"
    , "M73"
+   , "M79"
    , "M90"
    , "M94"
    , "M99"
@@ -101,6 +99,15 @@ int main(int argc, char *argv[])
    , "M69"
    , "M95"
    ) [& NJ_TRI_Site::read_discharge_amount]
+
+() [85]
+   [91]
+   [94]
+   [101]
+   [102]
+   [106]
+   [107] (& NJ_TRI_Site::read_offsite_transfer_or_release_total)
+
 
    ;
 

@@ -272,7 +272,10 @@ private:
 
  QMap<Offsite_Keys, r8> offsite_transfer_amounts_;    // csv cols 66 - 100
 
- QMap<Transfer_or_Release_Descriptions, r8> offsite_transfer_totals_;
+// r8 offsite_release_total_;   // csv col 85
+// r8 offsite_recycled_total_;   // csv col 91
+
+ QMap<Transfer_or_Release_Descriptions, r8> offsite_transfer_or_release_totals_;
 
  r8  overall_offsite_transfer_total_;    // csv cols 103
  r8  onsite_and_offsite_releases_total_;    // csv cols 104
@@ -396,14 +399,15 @@ public:
 
 
  ACCESSORS__RGET(QMap<Discharge_Descriptions, r8> ,discharge_amounts)
- void note_discharge_amount(QString description, r8 amount)
+
+ void note_discharge_amount(r8 amount, QString description)
  {
   discharge_amounts_[parse_discharge_description(description)] = amount;
  }
 
- void read_discharge_amount(QString description, QString amount)
+ void read_discharge_amount(QString amount, QString description)
  {
-  note_discharge_amount(description, amount.toDouble());
+  note_discharge_amount(amount.toDouble(), description);
  }
 
 
@@ -413,9 +417,26 @@ public:
  ACCESSORS(r8 ,potw_further_treatment)
  ACCESSORS(r8 ,potw_total)
 
+   // ACCESSORS(r8 ,offsite_release_total)
+
  ACCESSORS__RGET(QMap<Offsite_Keys, r8> ,offsite_transfer_amounts)
 
- ACCESSORS__RGET(QMap<Transfer_or_Release_Descriptions, r8> ,offsite_transfer_totals)
+ ACCESSORS__RGET(QMap<Transfer_or_Release_Descriptions, r8> ,offsite_transfer_or_release_totals)
+
+ void note_offsite_transfer_or_release_total(r8 amount, Transfer_or_Release_Descriptions description)
+ {
+  offsite_transfer_or_release_totals_[description] = amount;
+ }
+
+ void read_offsite_transfer_or_release_total(QString amount, u2 description)
+ {
+  note_offsite_transfer_or_release_total(amount.toDouble(),
+    (Transfer_or_Release_Descriptions) description);
+ }
+
+
+// offsite_transfer_or_release_totals_
+
 
  ACCESSORS(r8 ,overall_offsite_transfer_total)
  ACCESSORS(r8 ,onsite_and_offsite_releases_total)
@@ -458,6 +479,9 @@ public:
  SET_and_STR_ADAPTER_DBL(potw_release_or_disposal)
  SET_and_STR_ADAPTER_DBL(potw_further_treatment)
  SET_and_STR_ADAPTER_DBL(potw_total)
+
+// SET_and_STR_ADAPTER_DBL(offsite_release_total)
+// SET_and_STR_ADAPTER_DBL(offsite_recycled_total)
 
  SET_and_STR_ADAPTER_DBL(overall_offsite_transfer_total)
  SET_and_STR_ADAPTER_DBL(onsite_and_offsite_releases_total)
