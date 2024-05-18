@@ -110,6 +110,8 @@ struct _define_setters_data
  QVector<s4> held_pre;
  QVector<QString> held_string;
 
+ u2 hanging_plus_count;
+
  u2 last_column;
 
  std::function<u2 (QVariant)> column_resolver;
@@ -444,6 +446,14 @@ private:
     _this->add_setter(props, cols, arg, nullptr, cols.size());
     break;
 
+   case _define_setters_data::Arg_State::PA:
+    dsd.get_current_arg(cols);
+    if(dsd.held_pre.isEmpty())
+      _this->add_setter(props, cols, arg, nullptr, dsd.hanging_plus_count);
+    else
+      _this->add_setter(props, cols, arg, &dsd.held_pre);
+    break;
+
    case _define_setters_data::Arg_State::R:
     {
      const QVector<s4>& r = dsd.held_range_to_vector(cols);
@@ -557,10 +567,24 @@ private:
    {
    // //  any others?
    case _define_setters_data::Arg_State::PA:
-    while(dsd.held_pre.size() < dsd.held_arg.size())
+    if(dsd.held_pre.isEmpty())
     {
-     dsd.held_pre.push_back(dsd.held_pre.last() + 1);
+     // // anything here?  This would happen
+      //   if a ++ is used to mark that
+      //   pre_arg's duplicate arg's
+
+
+     // //  the hanging_plus signals right after ++;
+      //    we assume this continues to next setter
+     if( dsd.hanging_plus_count || (h == _define_setters_data::Arg_State::Hanging_Plus) )
+       ++dsd.hanging_plus_count;
     }
+    else
+    {
+     while(dsd.held_pre.size() < dsd.held_arg.size())
+       dsd.held_pre.push_back(dsd.held_pre.last() + 1);
+    }
+    break;
    default: break;
    }
    return *this;
@@ -610,9 +634,10 @@ private:
    return *this;
   }
 
-  _define_setters operator () ()
+  _define_setters operator ++ (int)
   {
    _this->define_setters_data_.add_state(_define_setters_data::Pre_Arg);
+   _this->define_setters_data_.expand_state(_define_setters_data::Arg_State::Hanging_Plus);
    return *this;
   }
 
@@ -670,7 +695,7 @@ public:
  void add_setter(typename decltype(csv_field_setters_)::Proc_Options props,
     const QVector<u2>& cols, FN_Type fn, const void* pre = nullptr, u2 insert_count = 0)
  {
-  csv_field_setters_.add(props, cols, fn, pre);
+  csv_field_setters_.add(props, cols, fn, pre, insert_count);
  }
 
 

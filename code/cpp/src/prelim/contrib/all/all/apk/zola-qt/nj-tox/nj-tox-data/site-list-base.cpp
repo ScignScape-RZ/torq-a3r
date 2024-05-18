@@ -9,7 +9,8 @@
 
 _define_setters_data::_define_setters_data()
    : last_column(0), column_resolver(nullptr),
-     current_arg_state(Arg_State::Init)
+     current_arg_state(Arg_State::Init),
+     hanging_plus_count(0)
 {
 
 }
@@ -174,6 +175,7 @@ void _define_setters_data::reset()
  held_pre.clear();
  held_string.clear();
  _range.clear();
+ hanging_plus_count = 0;
 }
 
 
