@@ -34,6 +34,7 @@ struct _define_setters_data
 {
  enum class Arg_State {
    Init = 0,  Hanging_To = 9, Hanging_Plus = 8,
+   Hanging_Freeze = 7,
    A = 1, P = 2, R = 3, S = 4,
    AP = 12, AR = 13, AS = 14,
    PA = 21, PR = 23, PS = 24,
@@ -79,6 +80,7 @@ struct _define_setters_data
 
  Arg_State current_arg_state;
 
+
  void add_state(Arg_State new_state)
  {
   current_arg_state = add_state(current_arg_state, new_state);
@@ -111,8 +113,11 @@ struct _define_setters_data
  QVector<QString> held_string;
 
  u2 hanging_plus_count;
+ u2 suspended_plus_count;
 
  u2 last_column;
+
+ u2 string_options_count;
 
  std::function<u2 (QVariant)> column_resolver;
 
@@ -129,9 +134,21 @@ struct _define_setters_data
  void reset(u2 lc);
  void reset();
 
+ void freeze_pre_arg()
+ {
+  if(held_pre.size())
+    froze_pre_arg = held_pre.last();
+  froze_pre_arg_ptr = &froze_pre_arg;
+ }
+
+ u2* froze_pre_arg_ptr;
+
 private:
 
  QVector<s4> _range;
+
+ u2 froze_pre_arg;
+
 
 };
 
@@ -147,10 +164,15 @@ struct csv_field_setters_by_column
 
    m_QString, n_QString,
 
+   m_void, n_void,
+
    m_QString_u2_n0, m_QString_QString_n0,
    n_QString_u2_n0, n_QString_QString_n0,
 
    m_QString_n0, n_QString_n0,
+
+   m_void_optional, n_void_optional,
+
 
  };
 
@@ -161,6 +183,9 @@ struct csv_field_setters_by_column
 
  QMap<u2, void (SITE_Type::*)(QString)> m_QString, m_QString_n0;
  QMap<u2, void (*)(QString)> n_QString, n_QString_n0;
+
+ QMap<u2, void (SITE_Type::*)()> m_void;
+ QMap<u2, void (*)()> n_void;
 
  QMap<u2, Proc_Options> proc_options;
 
@@ -178,7 +203,8 @@ struct csv_field_setters_by_column
 
  template<typename FN_Type>
  void add(Proc_Options props,
-   QVector<u2> cols, FN_Type fn, const void* pre = nullptr, u2 insert_count = 0)
+   QVector<u2> cols, FN_Type fn, const void* pre = nullptr,
+   const void* adjunct = nullptr, u2 insert_count = 0)
  {
   switch(props)
   {
@@ -219,6 +245,15 @@ struct csv_field_setters_by_column
      {
       preset_args_u2[cols.value(count)] = (u2) p;
       ++count;
+     }
+     if(adjunct)
+     {
+      u2 froze = *(u2*) adjunct;
+      while(count < cols.size())
+      {
+       preset_args_u2[cols.value(count)] = froze;
+       ++count;
+      }
      }
     }
     else
@@ -399,16 +434,23 @@ private:
  {
   Site_List_Base* _this;
 
+  typedef typename decltype(csv_field_setters_by_column<SITE_Type>::m_void)::mapped_type m_void_type;
   typedef typename decltype(csv_field_setters_by_column<SITE_Type>::m_QString)::mapped_type m_QString_type;
   typedef typename decltype(csv_field_setters_by_column<SITE_Type>::m_QString_u2)::mapped_type m_QString_u2_type;
   typedef typename decltype(csv_field_setters_by_column<SITE_Type>::m_QString_QString)::mapped_type m_QString_QString_type;
 
+  typedef typename decltype(csv_field_setters_by_column<SITE_Type>::n_void)::mapped_type n_void_type;
   typedef typename decltype(csv_field_setters_by_column<SITE_Type>::n_QString)::mapped_type n_QString_type;
   typedef typename decltype(csv_field_setters_by_column<SITE_Type>::n_QString_u2)::mapped_type n_QString_u2_type;
   typedef typename decltype(csv_field_setters_by_column<SITE_Type>::n_QString_QString)::mapped_type n_QString_QString_type;
 
   typedef typename csv_field_setters_by_column<SITE_Type>::Proc_Options Props;
 
+  template<typename FN_Type>
+  void ops_void(Props props, FN_Type fn)
+  {
+   _this->add_setter(props, _this->define_setters_data_.held_arg, fn);
+  }
 
   template<typename FN_Type>
   void ops_QString(Props props, FN_Type fn)
@@ -443,15 +485,15 @@ private:
    {
    case _define_setters_data::Arg_State::A:
     dsd.get_current_arg(cols);
-    _this->add_setter(props, cols, arg, nullptr, cols.size());
+    _this->add_setter(props, cols, arg, nullptr, nullptr, cols.size());
     break;
 
    case _define_setters_data::Arg_State::PA:
     dsd.get_current_arg(cols);
     if(dsd.held_pre.isEmpty())
-      _this->add_setter(props, cols, arg, nullptr, dsd.hanging_plus_count);
+      _this->add_setter(props, cols, arg, nullptr, nullptr, dsd.hanging_plus_count);
     else
-      _this->add_setter(props, cols, arg, &dsd.held_pre);
+      _this->add_setter(props, cols, arg, &dsd.held_pre, dsd.froze_pre_arg_ptr);
     break;
 
    case _define_setters_data::Arg_State::R:
@@ -486,7 +528,7 @@ private:
      if(dsd.get_current_arg(cols, hs))
        _this->add_setter(props, cols, arg, &hs);
      else
-       _this->add_setter(props, cols, arg, nullptr, cols.count());
+       _this->add_setter(props, cols, arg, nullptr, nullptr, cols.count());
     }
     break;
 
@@ -501,6 +543,12 @@ private:
     break;
    }
    dsd.reset(cols);
+  }
+
+  _define_setters operator [] (m_void_type arg)
+  {
+   ops_void(Props::m_void, arg);
+   return *this;
   }
 
   _define_setters operator [] (m_QString_type arg)
@@ -521,6 +569,13 @@ private:
    return *this;
   }
 
+  _define_setters operator [] (n_void_type arg)
+  {
+   ops_void(Props::n_void, arg);
+   return *this;
+  }
+
+
   _define_setters operator [] (n_QString_type arg)
   {
    ops_QString(Props::n_QString_n0, arg);
@@ -539,6 +594,15 @@ private:
    return *this;
   }
 
+
+  _define_setters operator [] (QString arg)
+  {
+   auto& dsd = _this->define_setters_data_;
+   ++dsd.string_options_count;
+   dsd.held_string.push_back(arg);
+   dsd.add_state(_define_setters_data::String);
+   return *this;
+  }
 
   _define_setters operator [] (int arg)
   {
@@ -567,18 +631,28 @@ private:
    {
    // //  any others?
    case _define_setters_data::Arg_State::PA:
-    if(dsd.held_pre.isEmpty())
+    // //  the hanging_plus signals right after ++;
+     //    we assume this continues to next setter
+    if(h == _define_setters_data::Arg_State::Hanging_Plus)
     {
-     // // anything here?  This would happen
-      //   if a ++ is used to mark that
-      //   pre_arg's duplicate arg's
-
-
-     // //  the hanging_plus signals right after ++;
-      //    we assume this continues to next setter
-     if( dsd.hanging_plus_count || (h == _define_setters_data::Arg_State::Hanging_Plus) )
-       ++dsd.hanging_plus_count;
+     if(dsd.suspended_plus_count) // // so we're resuming
+     {
+      dsd.held_pre.push_back(arg);
+      dsd.hanging_plus_count = dsd.suspended_plus_count + 1;
+     }
+     else
+       dsd.hanging_plus_count = 1;
     }
+    else if(dsd.hanging_plus_count)
+    {
+     if(dsd.suspended_plus_count) // // we've suspended before
+     {
+      dsd.held_pre.push_back(arg);
+     }
+     ++dsd.hanging_plus_count;
+    }
+    else if(dsd.froze_pre_arg_ptr)
+      ; // // anything to do?
     else
     {
      while(dsd.held_pre.size() < dsd.held_arg.size())
@@ -590,6 +664,11 @@ private:
    return *this;
   }
 
+  _define_setters operator () (m_void_type arg)
+  {
+   ops_void(Props::m_void_optional, arg);
+   return *this;
+  }
 
   _define_setters operator () (m_QString_type arg)
   {
@@ -606,6 +685,12 @@ private:
   _define_setters operator () (m_QString_QString_type arg)
   {
    ops_QString_QString(Props::m_QString_QString, arg);
+   return *this;
+  }
+
+  _define_setters operator () (n_void_type arg)
+  {
+   ops_void(Props::n_void_optional, arg);
    return *this;
   }
 
@@ -629,8 +714,27 @@ private:
 
   _define_setters operator () (int arg)
   {
-   _this->define_setters_data_.held_pre.push_back(arg);
-   _this->define_setters_data_.add_state(_define_setters_data::Pre_Arg);
+   auto& dsd = _this->define_setters_data_;
+
+   if(dsd.hanging_plus_count)
+   {
+    // //  if hanging_plus gets suspended then thereafter
+     //    the arg should be copied into pre_arg for the
+     //    hanging-plus sections ...
+
+    if(dsd.suspended_plus_count == 0)
+    {
+     // //  i.e., suspended for the first time
+     for(u2 i = 0; i < dsd.hanging_plus_count; ++i)
+       dsd.held_pre.push_back(dsd.held_arg.value(i));
+    }
+    dsd.suspended_plus_count = dsd.hanging_plus_count;
+    dsd.hanging_plus_count = 0;
+   }
+
+   dsd.held_pre.push_back(arg);
+   dsd.add_state(_define_setters_data::Pre_Arg);
+
    return *this;
   }
 
@@ -640,9 +744,6 @@ private:
    _this->define_setters_data_.expand_state(_define_setters_data::Arg_State::Hanging_Plus);
    return *this;
   }
-
-
-
 
   _define_setters operator () (QString arg)
   {
@@ -669,7 +770,12 @@ private:
 
   _define_setters operator -- (int)
   {
-   _this->define_setters_data_.expand_state(_define_setters_data::Arg_State::Hanging_To);
+   auto& dsd = _this->define_setters_data_;
+
+   if(dsd.current_arg_state == _define_setters_data::Arg_State::P)
+     dsd.freeze_pre_arg();
+   else
+     dsd.expand_state(_define_setters_data::Arg_State::Hanging_To);
    return *this;
   }
 
@@ -693,9 +799,10 @@ public:
 
  template<typename FN_Type>
  void add_setter(typename decltype(csv_field_setters_)::Proc_Options props,
-    const QVector<u2>& cols, FN_Type fn, const void* pre = nullptr, u2 insert_count = 0)
+    const QVector<u2>& cols, FN_Type fn, const void* pre = nullptr,
+    const void* adjunct = nullptr, u2 insert_count = 0)
  {
-  csv_field_setters_.add(props, cols, fn, pre, insert_count);
+  csv_field_setters_.add(props, cols, fn, pre, adjunct, insert_count);
  }
 
 

@@ -109,6 +109,45 @@ int main(int argc, char *argv[])
    [107] (& NJ_TRI_Site::read_offsite_transfer_or_release_total)
 
 
+  ( "Onsite_Contained"
+  , "Onsite_Other"
+  , "Offsite_Contained"
+  , "Offsite_Other"
+  , "Onsite_Energy_Recovery"
+  , "Offsite_Energy_Recovery"
+  , "Onsite_Recycling"
+  , "Offsite_Recycling"
+  , "Onsite_Treatment"
+  , "Offsite_Treatment"
+  ) (& NJ_TRI_Site::read_onsite_and_offsite_amounts)
+
+
+
+  [116] (& NJ_TRI_Site::set_production_waste)
+  [117] (& NJ_TRI_Site::set_one_time_release)
+  [119] (& NJ_TRI_Site::set_production_ratio)
+
+  [10] [& NJ_TRI_Site::set_flag <NJ_TRI_Site::on_tribal_land>]                // csv col 10
+  [18] [& NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>]              // csv col 18
+  [35] [& NJ_TRI_Site::set_flag <NJ_TRI_Site::elemental_metal_included>]      // csv col 35
+  [39] [& NJ_TRI_Site::set_flag <NJ_TRI_Site::clean_air_act_chemical>]        // csv col 39
+  [41] [& NJ_TRI_Site::set_flag <NJ_TRI_Site::classified_as_metal>]           // csv col 41
+  [43] [& NJ_TRI_Site::set_flag <NJ_TRI_Site::carcinogen>]                    // csv col 43
+  [44] [& NJ_TRI_Site::set_flag <NJ_TRI_Site::pbt>]                           // csv col 44
+  [45] [& NJ_TRI_Site::set_flag <NJ_TRI_Site::pfas>]                          // csv col 45
+
+  [46]
+   ("r") (& NJ_TRI_Site::set_flag <NJ_TRI_Site::form_r>)                        // csv col 46
+   ["a"] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::form_a>)                        // csv col 46
+
+  [47]
+   ("pounds") (& NJ_TRI_Site::set_flag <NJ_TRI_Site::units_pounds>)                  // csv col 47
+   ["grams"]       (& NJ_TRI_Site::set_flag <NJ_TRI_Site::units_grams>)                   // csv col 47
+
+  [118]
+   ("Production Ratio") (& NJ_TRI_Site::set_flag <NJ_TRI_Site::production_ratio_value>)        // csv col 118
+   ["Activity Index"] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::activity_index_value>)          // csv col 118
+
    ;
 
 
@@ -932,6 +971,131 @@ int main1(int argc, char *argv[])
 
  return 0;
 }
+
+
+
+
+flags_(2)
+ bool on_tribal_land:1;                // csv col 10
+ bool federal_facility:1;              // csv col 18
+ bool elemental_metal_included:1;      // csv col 35
+ bool clean_air_act_chemical:1;        // csv col 39
+ bool classified_as_metal:1;           // csv col 41
+ bool carcinogen:1;                    // csv col 43
+ bool pbt:1;                           // csv col 44
+ bool pfas:1;                          // csv col 45
+ bool form_r:1;                        // csv col 46
+ bool form_a:1;                        // csv col 46
+ bool units_pounds:1;                  // csv col 47
+ bool units_grams:1;                   // csv col 47
+ bool production_ratio_value:1;        // csv col 118
+ bool activity_index_value:1;          // csv col 118
+_flags
+
+// //  Note: there appears to be a typo in the TIR guide;
+ //    csv col 118 is listed as "189", but only 118
+ //    makes sense in context
+
+enum Flag_Values {
+  N_A, on_tribal_land, federal_facility
+};
+
+template<Flag_Values fv>
+void set_flag_()
+{
+ _set_flag_(fv);
+}
+
+void _set_flag_(Flag_Values fv)
+{
+ switch(fv)
+ {
+ case Flag_Values::on_tribal_land:
+  flags.on_tribal_land = true; break;
+ case Flag_Values::federal_facility:
+  flags.federal_facility = true; break;
+
+
+ }
+}
+
+
+void set_flag__on_tribal_land()  // csv col 10
+{
+ flags.on_tribal_land = true;
+}
+
+void set_flag__federal_facility()  // csv col 18
+{
+ flags.federal_facility = true;
+}
+
+void set_flag__elemental_metal_included()    // csv col 35
+{
+ flags.elemental_metal_included = true;
+}
+
+void set_flag__clean_air_act_chemical()   // csv col 39
+{
+ flags.on_tribal_land = true;
+}
+
+void set_flag__classified_as_metal()   // csv col 41
+{
+ flags.on_tribal_land = true;
+}
+
+void set_flag__carcinogen()     // csv col 43
+{
+ flags.on_tribal_land = true;
+}
+
+void set_flag__pbt()   // csv col 44
+{
+ flags.on_tribal_land = true;
+}
+
+void set_flag__pfas()     // csv col 45
+{
+ flags.on_tribal_land = true;
+}
+
+// //  note when flags are paired,
+ //    this code chooses not to
+ //    explicitly clear the one
+ //    flag when the other is set
+
+void set_flag__form_r()     // csv col 46
+{
+ flags.form_r = true;
+}
+
+void set_flag__form_a()     // csv col 46
+{
+ flags.form_a = true;
+}
+
+void set_flag__units_pounds()     // csv col 47
+{
+ flags.form_r = true;
+}
+
+void set_flag__units_grams()     // csv col 47
+{
+ flags.form_a = true;
+}
+
+void set_flag__production_ratio_value()     // csv col 118
+{
+ flags.form_r = true;
+}
+
+void set_flag__activity_index_value()     // csv col 118
+{
+ flags.form_a = true;
+}
+
+
 
 
 #endif // HIDE

@@ -23,26 +23,63 @@ class NJ_TRI_Site
 {
 public:
 
+
+#define Flags_List(m) \
+ m(on_tribal_land)            /* csv col 10 */  \
+ m(federal_facility)          /* csv col 18 */  \
+ m(elemental_metal_included)  /* csv col 35 */  \
+ m(clean_air_act_chemical)    /* csv col 39 */  \
+ m(classified_as_metal)       /* csv col 41 */  \
+ m(carcinogen)                /* csv col 43 */  \
+ m(pbt)                       /* csv col 44 */  \
+ m(pfas)                      /* csv col 45 */  \
+ m(form_r)                    /* csv col 46 */  \
+ m(form_a)                    /* csv col 46 */  \
+ m(units_pounds)              /* csv col 47 */  \
+ m(units_grams)               /* csv col 47 */  \
+ m(production_ratio_value)    /* csv col 118 */ \
+ m(activity_index_value)      /* csv col 118 */ \
+
+
  flags_(2)
-  bool on_tribal_land:1;                // csv col 10
-  bool federal_facility:1;              // csv col 18
-  bool elemental_metal_included:1;      // csv col 35
-  bool clean_air_act_chemical:1;        // csv col 39
-  bool classified_as_metal:1;           // csv col 41
-  bool carcinogen:1;                    // csv col 43
-  bool pbt:1;                           // csv col 44
-  bool pfas:1;                          // csv col 45
-  bool form_r:1;                        // csv col 46
-  bool form_a:1;                        // csv col 46
-  bool units_pounds:1;                  // csv col 47
-  bool units_grams:1;                   // csv col 47
-  bool production_ratio_value:1;        // csv col 118
-  bool activity_index_value:1;          // csv col 118
+#define K_MACRO(k) bool k:1;
+Flags_List(K_MACRO)
+#undef K_MACRO
  _flags
+
 
  // //  Note: there appears to be a typo in the TIR guide;
   //    csv col 118 is listed as "189", but only 118
   //    makes sense in context
+
+ enum Flag_Values {
+#define K_MACRO(k) k,
+Flags_List(K_MACRO)
+#undef K_MACRO
+ };
+
+
+ // //  note when flags are paired,
+  //    this code chooses not to
+  //    explicitly clear the one
+  //    flag when the other is set
+
+ template<Flag_Values fv>
+ void set_flag()
+ {
+  _set_flag_(fv);
+ }
+
+ void _set_flag_(Flag_Values fv)
+ {
+  switch(fv)
+  {
+#define K_MACRO(k) case Flag_Values::k: flags.k = true; break;
+Flags_List(K_MACRO)
+#undef K_MACRO
+  default: break;
+  }
+ }
 
 
  enum class Horizontal_Datum_Options {
@@ -444,6 +481,19 @@ public:
 
  ACCESSORS__RGET(QMap<Onsite_and_Offsite_Keys, r8> ,onsite_and_offsite_amounts)
 
+ void note_onsite_and_offsite_amounts(r8 amount, QString key)
+ {
+  onsite_and_offsite_amounts_[parse_onsite_and_offsite_key(key)] = amount;
+ }
+
+ void read_onsite_and_offsite_amounts(QString amount, QString key)
+ {
+  note_onsite_and_offsite_amounts(amount.toDouble(), key);
+ }
+
+
+
+
  ACCESSORS(r8 ,production_waste)
  ACCESSORS(r8 ,one_time_release)
 
@@ -495,6 +545,7 @@ public:
 // SET_and_STR_ADAPTER_INT(pi_number)
 
 };
+
 
 
 #endif // NJ_TRI_SITE__H
