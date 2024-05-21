@@ -24,9 +24,7 @@
 
 int main(int argc, char *argv[])
 {
- NJ_TRI_Site_List ntsl;
-
-#define col
+ NJ_TRI_Site_List ntsl ("/home/nlevisrael/docker/tox/2022_nj.csv");
 
  ntsl.define_setters()
 
@@ -127,18 +125,19 @@ int main(int argc, char *argv[])
   [117] (& NJ_TRI_Site::set_one_time_release)
   [119] (& NJ_TRI_Site::set_production_ratio)
 
-  [10] [& NJ_TRI_Site::set_flag <NJ_TRI_Site::on_tribal_land>]                // csv col 10
-  [18] [& NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>]              // csv col 18
-  [35] [& NJ_TRI_Site::set_flag <NJ_TRI_Site::elemental_metal_included>]      // csv col 35
-  [39] [& NJ_TRI_Site::set_flag <NJ_TRI_Site::clean_air_act_chemical>]        // csv col 39
-  [41] [& NJ_TRI_Site::set_flag <NJ_TRI_Site::classified_as_metal>]           // csv col 41
-  [43] [& NJ_TRI_Site::set_flag <NJ_TRI_Site::carcinogen>]                    // csv col 43
-  [44] [& NJ_TRI_Site::set_flag <NJ_TRI_Site::pbt>]                           // csv col 44
-  [45] [& NJ_TRI_Site::set_flag <NJ_TRI_Site::pfas>]                          // csv col 45
+  [10] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::on_tribal_land>)                // csv col 10
+  [18] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>)              // csv col 18
+  [35] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::elemental_metal_included>)      // csv col 35
+  [39] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::clean_air_act_chemical>)        // csv col 39
+  [41] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::classified_as_metal>)           // csv col 41
+  [43] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::carcinogen>)                    // csv col 43
+  [44] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::pbt>)                           // csv col 44
+  [45] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::pfas>)                          // csv col 45
 
   [46]
    ("r") (& NJ_TRI_Site::set_flag <NJ_TRI_Site::form_r>)                        // csv col 46
    ["a"] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::form_a>)                        // csv col 46
+
 
   [47]
    ("pounds") (& NJ_TRI_Site::set_flag <NJ_TRI_Site::units_pounds>)                  // csv col 47
@@ -151,15 +150,7 @@ int main(int argc, char *argv[])
    ;
 
 
-// [1]  (& NJ_TRI_Site::set_facility_name)
-
-
-// ntsl.define_setters()
-//    + &NJ_TRI_Site::set_facility_name
-//    + 2 - &NJ_TRI_Site::set_test
-//    ;
-
-
+ ntsl.read_csv_file(10);
 
  return 0;
 }

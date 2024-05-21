@@ -106,16 +106,77 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
 
   NJ_TRI_Site& site = sites_.last();
 
-  for(u1 column = 0; column < line.size(); ++column)
+  for(u2 column = 0; column < line.size(); ++column)
   {
-   auto it = mds.proc_options.find(column);
+   u2 column_key = column + 1;
+
+   auto it = mds.proc_options.find(column_key);
    if(it != mds.proc_options.end())
    {
     switch(*it)
     {
+    case decltype(csv_field_setters_)::Proc_Options::m_void:
+     {
+      auto it1 = mds.m_void.find(column_key);
+      if(it1 != mds.m_void.end())
+        (site.**it1)();
+     }
+     break;
+
+    case decltype(csv_field_setters_)::Proc_Options::m_void_n0:
+     {
+      auto it1 = mds.m_void_n0.find(column_key);
+      if(it1 != mds.m_void_n0.end())
+      {
+       if(!line[column].isEmpty())
+         (site.**it1)();
+      }
+     }
+     break;
+
+    case decltype(csv_field_setters_)::Proc_Options::m_void_indexed:
+     {
+      auto it1 = mds.m_void_indexed.find({column_key, line[column]});
+      if(it1 != mds.m_void_indexed.end())
+        (site.**it1)();
+     }
+     break;
+
+
+
+
+    case decltype(csv_field_setters_)::Proc_Options::n_void:
+     {
+      auto it1 = mds.n_void.find(column_key);
+      if(it1 != mds.n_void.end())
+        (**it1)();
+     }
+     break;
+
+    case decltype(csv_field_setters_)::Proc_Options::n_void_n0:
+     {
+      auto it1 = mds.n_void_n0.find(column_key);
+      if(it1 != mds.n_void_n0.end())
+      {
+       if(!line[column].isEmpty())
+         (**it1)();
+      }
+     }
+     break;
+
+    case decltype(csv_field_setters_)::Proc_Options::n_void_indexed:
+     {
+      auto it1 = mds.n_void_indexed.find({column_key, line[column]});
+      if(it1 != mds.n_void_indexed.end())
+        (**it1)();
+     }
+     break;
+
+
+
     case decltype(csv_field_setters_)::Proc_Options::m_QString:
      {
-      auto it1 = mds.m_QString.find(column);
+      auto it1 = mds.m_QString.find(column_key);
       if(it1 != mds.m_QString.end())
         (site.**it1)(line[column]);
      }
@@ -123,7 +184,7 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
 
     case decltype(csv_field_setters_)::Proc_Options::m_QString_n0:
      {
-      auto it1 = mds.m_QString_n0.find(column);
+      auto it1 = mds.m_QString_n0.find(column_key);
       if(it1 != mds.m_QString_n0.end() && !line[column].isEmpty())
         (site.**it1)(line[column]);
      }
@@ -132,7 +193,7 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
 
     case decltype(csv_field_setters_)::Proc_Options::m_QString_u2:
      {
-      auto it1 = mds.m_QString_u2.find(column);
+      auto it1 = mds.m_QString_u2.find(column_key);
       if(it1 != mds.m_QString_u2.end())
         (site.**it1)(line[column], mds.preset_args_u2.value(column, column));
      }
@@ -141,7 +202,7 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
 
     case decltype(csv_field_setters_)::Proc_Options::m_QString_u2_n0:
      {
-      auto it1 = mds.m_QString_u2_n0.find(column);
+      auto it1 = mds.m_QString_u2_n0.find(column_key);
       if(it1 != mds.m_QString_u2_n0.end() && !line[column].isEmpty())
         (site.**it1)(line[column], mds.preset_args_u2.value(column, column));
      }
@@ -149,7 +210,7 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
 
     case decltype(csv_field_setters_)::Proc_Options::m_QString_QString:
      {
-      auto it1 = mds.m_QString_QString.find(column);
+      auto it1 = mds.m_QString_QString.find(column_key);
       if(it1 != mds.m_QString_QString.end())
         (site.**it1)(line[column], mds.preset_args_QString.value(column));
      }
@@ -157,7 +218,7 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
 
     case decltype(csv_field_setters_)::Proc_Options::m_QString_QString_n0:
      {
-      auto it1 = mds.m_QString_QString_n0.find(column);
+      auto it1 = mds.m_QString_QString_n0.find(column_key);
       if(it1 != mds.m_QString_QString_n0.end() && !line[column].isEmpty())
         (site.**it1)(line[column], mds.preset_args_QString.value(column));
      }
@@ -165,7 +226,7 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
 
     case decltype(csv_field_setters_)::Proc_Options::n_QString:
      {
-      auto it1 = mds.n_QString.find(column);
+      auto it1 = mds.n_QString.find(column_key);
       if(it1 != mds.n_QString.end())
         (**it1)(line[column]);
      }
@@ -173,7 +234,7 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
 
     case decltype(csv_field_setters_)::Proc_Options::n_QString_u2:
      {
-      auto it1 = mds.n_QString_u2.find(column);
+      auto it1 = mds.n_QString_u2.find(column_key);
       if(it1 != mds.n_QString_u2.end())
         (**it1)(line[column], mds.preset_args_u2.value(column, column));
      }
@@ -181,10 +242,14 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
 
     case decltype(csv_field_setters_)::Proc_Options::n_QString_QString:
      {
-      auto it1 = mds.n_QString_QString.find(column);
+      auto it1 = mds.n_QString_QString.find(column_key);
       if(it1 != mds.n_QString_QString.end())
         (**it1)(line[column], mds.preset_args_QString.value(column));
      }
+     break;
+
+     // //  anything else?
+    default:
      break;
 
 

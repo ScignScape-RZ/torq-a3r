@@ -171,7 +171,8 @@ struct csv_field_setters_by_column
 
    m_QString_n0, n_QString_n0,
 
-   m_void_optional, n_void_optional,
+   m_void_indexed, n_void_indexed,
+   m_void_n0, n_void_n0,
 
 
  };
@@ -184,8 +185,11 @@ struct csv_field_setters_by_column
  QMap<u2, void (SITE_Type::*)(QString)> m_QString, m_QString_n0;
  QMap<u2, void (*)(QString)> n_QString, n_QString_n0;
 
- QMap<u2, void (SITE_Type::*)()> m_void;
- QMap<u2, void (*)()> n_void;
+ QMap<u2, void (SITE_Type::*)()> m_void, m_void_n0;
+ QMap<u2, void (*)()> n_void, n_void_n0;
+
+ QMap<QPair<u2, QString>, void (SITE_Type::*)()> m_void_indexed;
+ QMap<QPair<u2, QString>, void (*)()> n_void_indexed;
 
  QMap<u2, Proc_Options> proc_options;
 
@@ -208,9 +212,49 @@ struct csv_field_setters_by_column
  {
   switch(props)
   {
+
+//  case Proc_Options::m_void:
+//   for(u2 col : cols) { m_void[col] = (decltype(m_void[col])) fn; } break;
+
+//  case Proc_Options::m_void_indexed:
+//   {
+//    QVector<QString>* qsv = (QVector<QString>*) pre;
+//    u2 i = 0;
+//    for(u2 col : cols)
+//    {
+//     m_void_indexed[{col, qsv->value(i)}] = (decltype(m_void[col])) fn;
+//     ++i;
+//    } break;
+//   }
+
+  // //  different case-code for the _indexed cases
+#define CASE_MACRO(m) \
+   case Proc_Options::m##_indexed: \
+    {QVector<QString>* qsv = (QVector<QString>*) pre; \
+     u2 i = 0; \
+     for(u2 col : cols) \
+     { \
+      m##_indexed[{col, qsv->value(i)}] = (decltype(m[col])) fn; \
+      ++i; \
+      proc_options[col] = Proc_Options::m; \
+     }} break; \
+
+    CASE_MACRO(m_void)
+    CASE_MACRO(n_void)
+#undef CASE_MACRO
+
+
 #define CASE_MACRO(m) \
    case Proc_Options::m: \
-    for(u2 col : cols) { m[col] = (decltype(m[col])) fn; } break;
+    for(u2 col : cols) { m[col] = (decltype(m[col])) fn; \
+      proc_options[col] = Proc_Options::m;}  break; \
+
+  CASE_MACRO(m_void)
+  CASE_MACRO(n_void)
+
+  CASE_MACRO(m_void_n0)
+  CASE_MACRO(n_void_n0)
+
 
 
   CASE_MACRO(m_QString_u2)
@@ -449,7 +493,27 @@ private:
   template<typename FN_Type>
   void ops_void(Props props, FN_Type fn)
   {
-   _this->add_setter(props, _this->define_setters_data_.held_arg, fn);
+   auto& dsd = _this->define_setters_data_;
+
+   switch (dsd.current_arg_state)
+   {
+   case _define_setters_data::Arg_State::AS:
+    _this->add_setter(props, dsd.held_arg, fn, &dsd.held_string);
+    dsd.reset(dsd.held_arg);
+    break;
+
+   case _define_setters_data::Arg_State::S:
+    _this->add_setter(props, {dsd.last_column}, fn, &dsd.held_string);
+    dsd.reset(dsd.last_column);
+    break;
+
+    // // anything else?
+
+   default: //  mostly Arg_State::A, right?
+    _this->add_setter(props, dsd.held_arg, fn);
+    dsd.reset(dsd.held_arg);
+   }
+
   }
 
   template<typename FN_Type>
@@ -461,6 +525,9 @@ private:
 
    switch (dsd.current_arg_state)
    {
+   case _define_setters_data::Arg_State::Init:
+    dsd.held_arg.push_back(dsd.last_column + 1);
+    // //  fallthrough
    case _define_setters_data::Arg_State::A:
     dsd.get_current_arg(cols);
     _this->add_setter(props, cols, fn);
@@ -549,6 +616,24 @@ private:
   {
    ops_void(Props::m_void, arg);
    return *this;
+
+
+//   auto& dsd = _this->define_setters_data_;
+//   switch(dsd.current_arg_state)
+//   {
+//   case _define_setters_data::Arg_State::A:
+//    ops_void(Props::m_void, arg);
+//    break;
+//   case _define_setters_data::Arg_State::AS:
+//   case _define_setters_data::Arg_State::S:
+//    // //  any others?
+//    ops_void(Props::m_void_indexed, arg);
+//    break;
+//   default:
+//    break;
+//   }
+//   return *this;
+
   }
 
   _define_setters operator [] (m_QString_type arg)
@@ -573,6 +658,23 @@ private:
   {
    ops_void(Props::n_void, arg);
    return *this;
+
+//   auto& dsd = _this->define_setters_data_;
+//   switch(dsd.current_arg_state)
+//   {
+//   case _define_setters_data::Arg_State::A:
+//    ops_void(Props::n_void_n0, arg);
+//    break;
+//   case _define_setters_data::Arg_State::AS:
+//   case _define_setters_data::Arg_State::S:
+//    // //  any others?
+//    ops_void(Props::n_void_indexed, arg);
+//    break;
+//   default:
+//    break;
+//   }
+//   return *this;
+
   }
 
 
@@ -666,7 +768,20 @@ private:
 
   _define_setters operator () (m_void_type arg)
   {
-   ops_void(Props::m_void_optional, arg);
+   auto& dsd = _this->define_setters_data_;
+   switch(dsd.current_arg_state)
+   {
+   case _define_setters_data::Arg_State::A:
+    ops_void(Props::m_void_n0, arg);
+    break;
+   case _define_setters_data::Arg_State::AS:
+   case _define_setters_data::Arg_State::S:
+    // //  any others?
+    ops_void(Props::m_void_indexed, arg);
+    break;
+   default:
+    break;
+   }
    return *this;
   }
 
@@ -690,7 +805,20 @@ private:
 
   _define_setters operator () (n_void_type arg)
   {
-   ops_void(Props::n_void_optional, arg);
+   auto& dsd = _this->define_setters_data_;
+   switch(dsd.current_arg_state)
+   {
+   case _define_setters_data::Arg_State::A:
+    ops_void(Props::n_void_n0, arg);
+    break;
+   case _define_setters_data::Arg_State::AS:
+   case _define_setters_data::Arg_State::S:
+    // //  any others?
+    ops_void(Props::n_void_indexed, arg);
+    break;
+   default:
+    break;
+   }
    return *this;
   }
 
