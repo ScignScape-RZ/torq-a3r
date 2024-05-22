@@ -8,7 +8,7 @@
 #include "site-list-base.h"
 
 _define_setters_data::_define_setters_data()
-   : last_column(0), column_resolver(nullptr),
+   : last_column({0, 1}), column_resolver(nullptr),
      current_arg_state(Arg_State::Init),
      hanging_plus_count(0), suspended_plus_count(0),
      froze_pre_arg(0), froze_pre_arg_ptr(nullptr),
@@ -95,15 +95,17 @@ _define_setters_data::Arg_State _define_setters_data::add_state(Arg_State prior,
  return *it;
 }
 
-void _define_setters_data::get_current_arg(QVector<u2>& result)
+void _define_setters_data::get_current_arg(QVector<u2pr>& result)
 {
  if(held_arg.isEmpty())
-   result = {last_column + 1};
+   result = {{last_column.first + 1, 1}};
  else
    result = held_arg;
 }
 
-s4 _define_setters_data::get_current_arg(QVector<u2>& result, const QVector<QString>& keys)
+s4 _define_setters_data::get_current_arg(QVector<u2pr>& result,
+  const QVector<QString>& keys,
+  std::function<u2(u2)> counts_callback)
 {
  if(!column_resolver)
  {
@@ -122,8 +124,10 @@ s4 _define_setters_data::get_current_arg(QVector<u2>& result, const QVector<QStr
 
  for(QString key : keys)
  {
-  result[count] = column_resolver(QVariant(key));
-  distinct.insert(result[count]);
+  u2 c = column_resolver(QVariant(key));
+
+  result[count] = {c, counts_callback(c)};
+  distinct.insert(result[count].first);
   ++count;
  }
 
@@ -158,12 +162,12 @@ _define_setters_data::Arg_State _define_setters_data::recollapse_state(Arg_State
 }
 
 
-void _define_setters_data::reset(const QVector<u2>& lc)
+void _define_setters_data::reset(const QVector<u2pr>& lc)
 {
- reset(lc.isEmpty()? 0 : lc.last());
+ reset(lc.isEmpty()? u2pr{0, 1} : lc.last());
 }
 
-void _define_setters_data::reset(u2 lc)
+void _define_setters_data::reset(u2pr lc)
 {
  last_column = lc;
  reset();
@@ -186,7 +190,7 @@ void _define_setters_data::reset()
 }
 
 
-const QVector<s4>& _define_setters_data::held_range_to_vector(QVector<u2>& result)
+const QVector<s4>& _define_setters_data::held_range_to_vector(QVector<u2pr>& result)
 {
  for(auto pr : held_range)
  {
@@ -198,7 +202,7 @@ const QVector<s4>& _define_setters_data::held_range_to_vector(QVector<u2>& resul
   for(s4 i = min, r = 0; i <= max; ++i, ++index, ++r)
   {
    _range[r] = i - pr.first;
-   result[index] = i;
+   result[index] = {i, 1};
   }
  }
 

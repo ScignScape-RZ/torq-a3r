@@ -82,6 +82,8 @@ manual_ptr_handles<NJ_TRI_Site_List> NJ_TRI_Site_List::split_by_county(
 void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
   QString csv_file_path, u4 max)
 {
+ auto& counts = mds.proc_options_counts;
+
  QList<QStringList> lines = QtCSV::Reader::readToList(csv_file_path);
 
  if(max)
@@ -109,150 +111,148 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
   for(u2 column = 0; column < line.size(); ++column)
   {
    u2 column_key = column + 1;
-
-   auto it = mds.proc_options.find(column_key);
-   if(it != mds.proc_options.end())
+   u2 c = counts.value(column_key, 1);
+   for(u2 index = 1; index <= c; ++index)
    {
-    switch(*it)
+    auto it = mds.proc_options.find({column_key, index});
+    if(it != mds.proc_options.end())
     {
-    case decltype(csv_field_setters_)::Proc_Options::m_void:
+     switch(*it)
      {
-      auto it1 = mds.m_void.find(column_key);
-      if(it1 != mds.m_void.end())
-        (site.**it1)();
-     }
-     break;
-
-    case decltype(csv_field_setters_)::Proc_Options::m_void_n0:
-     {
-      auto it1 = mds.m_void_n0.find(column_key);
-      if(it1 != mds.m_void_n0.end())
+     case decltype(csv_field_setters_)::Proc_Options::m_void:
       {
-       if(!line[column].isEmpty())
+       auto it1 = mds.m_void.find({column_key, index});
+       if(it1 != mds.m_void.end())
          (site.**it1)();
       }
-     }
-     break;
+      break;
 
-    case decltype(csv_field_setters_)::Proc_Options::m_void_indexed:
-     {
-      auto it1 = mds.m_void_indexed.find({column_key, line[column]});
-      if(it1 != mds.m_void_indexed.end())
-        (site.**it1)();
-     }
-     break;
+     case decltype(csv_field_setters_)::Proc_Options::m_void_n0:
+      { QString lc = line[column];
+       auto it1 = mds.m_void_n0.find({column_key, index});
+       if(it1 != mds.m_void_n0.end())
+       {
+        if(!line[column].isEmpty())
+          (site.**it1)();
+       }
+      }
+      break;
 
+     case decltype(csv_field_setters_)::Proc_Options::m_void_indexed:
+      { QString lc = line[column];
+       auto it1 = mds.m_void_indexed.find({{column_key, index}, line[column]});
+       if(it1 != mds.m_void_indexed.end())
+         (site.**it1)();
+      }
+      break;
 
-
-
-    case decltype(csv_field_setters_)::Proc_Options::n_void:
-     {
-      auto it1 = mds.n_void.find(column_key);
-      if(it1 != mds.n_void.end())
-        (**it1)();
-     }
-     break;
-
-    case decltype(csv_field_setters_)::Proc_Options::n_void_n0:
-     {
-      auto it1 = mds.n_void_n0.find(column_key);
-      if(it1 != mds.n_void_n0.end())
+     case decltype(csv_field_setters_)::Proc_Options::n_void:
       {
-       if(!line[column].isEmpty())
+       auto it1 = mds.n_void.find({column_key, index});
+       if(it1 != mds.n_void.end())
          (**it1)();
       }
+      break;
+
+     case decltype(csv_field_setters_)::Proc_Options::n_void_n0:
+      {
+       auto it1 = mds.n_void_n0.find({column_key, index});
+       if(it1 != mds.n_void_n0.end())
+       {
+        if(!line[column].isEmpty())
+          (**it1)();
+       }
+      }
+      break;
+
+     case decltype(csv_field_setters_)::Proc_Options::n_void_indexed:
+      {
+       auto it1 = mds.n_void_indexed.find({{column_key, index}, line[column]});
+       if(it1 != mds.n_void_indexed.end())
+         (**it1)();
+      }
+      break;
+
+
+
+     case decltype(csv_field_setters_)::Proc_Options::m_QString:
+      {
+       auto it1 = mds.m_QString.find({column_key, index});
+       if(it1 != mds.m_QString.end())
+         (site.**it1)(line[column]);
+      }
+      break;
+
+     case decltype(csv_field_setters_)::Proc_Options::m_QString_n0:
+      {
+       auto it1 = mds.m_QString_n0.find({column_key, index});
+       if(it1 != mds.m_QString_n0.end() && !line[column].isEmpty())
+         (site.**it1)(line[column]);
+      }
+      break;
+
+
+     case decltype(csv_field_setters_)::Proc_Options::m_QString_u2:
+      {
+       auto it1 = mds.m_QString_u2.find({column_key, index});
+       if(it1 != mds.m_QString_u2.end())
+         (site.**it1)(line[column], mds.preset_args_u2.value({column_key, index})); //? column_key));
+      }
+      break;
+
+
+     case decltype(csv_field_setters_)::Proc_Options::m_QString_u2_n0:
+      {
+       auto it1 = mds.m_QString_u2_n0.find({column_key, index});
+       if(it1 != mds.m_QString_u2_n0.end() && !line[column].isEmpty())
+         (site.**it1)(line[column], mds.preset_args_u2.value({column_key, index})); //? column_key));
+      }
+      break;
+
+     case decltype(csv_field_setters_)::Proc_Options::m_QString_QString:
+      {
+       auto it1 = mds.m_QString_QString.find({column_key, index});
+       if(it1 != mds.m_QString_QString.end())
+         (site.**it1)(line[column], mds.preset_args_QString.value({column_key, index}));
+      }
+      break;
+
+     case decltype(csv_field_setters_)::Proc_Options::m_QString_QString_n0:
+      {
+       auto it1 = mds.m_QString_QString_n0.find({column_key, index});
+       if(it1 != mds.m_QString_QString_n0.end() && !line[column].isEmpty())
+         (site.**it1)(line[column], mds.preset_args_QString.value({column_key, index}));
+      }
+      break;
+
+     case decltype(csv_field_setters_)::Proc_Options::n_QString:
+      {
+       auto it1 = mds.n_QString.find({column_key, index});
+       if(it1 != mds.n_QString.end())
+         (**it1)(line[column]);
+      }
+      break;
+
+     case decltype(csv_field_setters_)::Proc_Options::n_QString_u2:
+      {
+       auto it1 = mds.n_QString_u2.find({column_key, index});
+       if(it1 != mds.n_QString_u2.end())
+         (**it1)(line[column], mds.preset_args_u2.value({column_key, index})); //? ,column_key
+      }
+      break;
+
+     case decltype(csv_field_setters_)::Proc_Options::n_QString_QString:
+      {
+       auto it1 = mds.n_QString_QString.find({column_key, index});
+       if(it1 != mds.n_QString_QString.end())
+         (**it1)(line[column], mds.preset_args_QString.value({column_key, index}));
+      }
+      break;
+
+       // //  anything else?
+     default:
+      break;
      }
-     break;
-
-    case decltype(csv_field_setters_)::Proc_Options::n_void_indexed:
-     {
-      auto it1 = mds.n_void_indexed.find({column_key, line[column]});
-      if(it1 != mds.n_void_indexed.end())
-        (**it1)();
-     }
-     break;
-
-
-
-    case decltype(csv_field_setters_)::Proc_Options::m_QString:
-     {
-      auto it1 = mds.m_QString.find(column_key);
-      if(it1 != mds.m_QString.end())
-        (site.**it1)(line[column]);
-     }
-     break;
-
-    case decltype(csv_field_setters_)::Proc_Options::m_QString_n0:
-     {
-      auto it1 = mds.m_QString_n0.find(column_key);
-      if(it1 != mds.m_QString_n0.end() && !line[column].isEmpty())
-        (site.**it1)(line[column]);
-     }
-     break;
-
-
-    case decltype(csv_field_setters_)::Proc_Options::m_QString_u2:
-     {
-      auto it1 = mds.m_QString_u2.find(column_key);
-      if(it1 != mds.m_QString_u2.end())
-        (site.**it1)(line[column], mds.preset_args_u2.value(column, column));
-     }
-     break;
-
-
-    case decltype(csv_field_setters_)::Proc_Options::m_QString_u2_n0:
-     {
-      auto it1 = mds.m_QString_u2_n0.find(column_key);
-      if(it1 != mds.m_QString_u2_n0.end() && !line[column].isEmpty())
-        (site.**it1)(line[column], mds.preset_args_u2.value(column, column));
-     }
-     break;
-
-    case decltype(csv_field_setters_)::Proc_Options::m_QString_QString:
-     {
-      auto it1 = mds.m_QString_QString.find(column_key);
-      if(it1 != mds.m_QString_QString.end())
-        (site.**it1)(line[column], mds.preset_args_QString.value(column));
-     }
-     break;
-
-    case decltype(csv_field_setters_)::Proc_Options::m_QString_QString_n0:
-     {
-      auto it1 = mds.m_QString_QString_n0.find(column_key);
-      if(it1 != mds.m_QString_QString_n0.end() && !line[column].isEmpty())
-        (site.**it1)(line[column], mds.preset_args_QString.value(column));
-     }
-     break;
-
-    case decltype(csv_field_setters_)::Proc_Options::n_QString:
-     {
-      auto it1 = mds.n_QString.find(column_key);
-      if(it1 != mds.n_QString.end())
-        (**it1)(line[column]);
-     }
-     break;
-
-    case decltype(csv_field_setters_)::Proc_Options::n_QString_u2:
-     {
-      auto it1 = mds.n_QString_u2.find(column_key);
-      if(it1 != mds.n_QString_u2.end())
-        (**it1)(line[column], mds.preset_args_u2.value(column, column));
-     }
-     break;
-
-    case decltype(csv_field_setters_)::Proc_Options::n_QString_QString:
-     {
-      auto it1 = mds.n_QString_QString.find(column_key);
-      if(it1 != mds.n_QString_QString.end())
-        (**it1)(line[column], mds.preset_args_QString.value(column));
-     }
-     break;
-
-     // //  anything else?
-    default:
-     break;
-
-
     }
    }
   }

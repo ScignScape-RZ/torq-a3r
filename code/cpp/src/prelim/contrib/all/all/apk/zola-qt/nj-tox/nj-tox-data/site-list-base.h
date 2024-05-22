@@ -32,6 +32,8 @@
 
 struct _define_setters_data
 {
+ typedef QPair<u2, u2> u2pr;
+
  enum class Arg_State {
    Init = 0,  Hanging_To = 9, Hanging_Plus = 8,
    Hanging_Freeze = 7,
@@ -107,7 +109,7 @@ struct _define_setters_data
  }
 
 
- QVector<u2> held_arg;
+ QVector<u2pr> held_arg;
  QVector<QPair<u2, u2>> held_range;
  QVector<s4> held_pre;
  QVector<QString> held_string;
@@ -115,7 +117,7 @@ struct _define_setters_data
  u2 hanging_plus_count;
  u2 suspended_plus_count;
 
- u2 last_column;
+ u2pr last_column;
 
  u2 string_options_count;
 
@@ -125,13 +127,14 @@ struct _define_setters_data
 
  const QVector<s4>& held_pre_or_range();
 
- void get_current_arg(QVector<u2>& result);
- s4 get_current_arg(QVector<u2>& result, const QVector<QString>& keys);
+ void get_current_arg(QVector<u2pr>& result);
+ s4 get_current_arg(QVector<u2pr>& result,
+   const QVector<QString>& keys, std::function<u2(u2)> counts_callback);
 
- const QVector<s4>& held_range_to_vector(QVector<u2>& result);
+ const QVector<s4>& held_range_to_vector(QVector<u2pr>& result);
 
- void reset(const QVector<u2>& lc);
- void reset(u2 lc);
+ void reset(const QVector<u2pr>& lc);
+ void reset(u2pr lc);
  void reset();
 
  void freeze_pre_arg()
@@ -174,27 +177,30 @@ struct csv_field_setters_by_column
    m_void_indexed, n_void_indexed,
    m_void_n0, n_void_n0,
 
-
  };
 
- QMap<u2, void (SITE_Type::*)(QString, u2)> m_QString_u2, m_QString_u2_n0;
- QMap<u2, void (SITE_Type::*)(QString, QString)> m_QString_QString, m_QString_QString_n0;
- QMap<u2, void (*)(QString, u2)> n_QString_u2, n_QString_u2_n0;
- QMap<u2, void (*)(QString, QString)> n_QString_QString, n_QString_QString_n0;
+ typedef QPair<u2, u2> u2pr;
 
- QMap<u2, void (SITE_Type::*)(QString)> m_QString, m_QString_n0;
- QMap<u2, void (*)(QString)> n_QString, n_QString_n0;
+ QMap<u2pr, void (SITE_Type::*)(QString, u2)> m_QString_u2, m_QString_u2_n0;
+ QMap<u2pr, void (SITE_Type::*)(QString, QString)> m_QString_QString, m_QString_QString_n0;
+ QMap<u2pr, void (*)(QString, u2)> n_QString_u2, n_QString_u2_n0;
+ QMap<u2pr, void (*)(QString, QString)> n_QString_QString, n_QString_QString_n0;
 
- QMap<u2, void (SITE_Type::*)()> m_void, m_void_n0;
- QMap<u2, void (*)()> n_void, n_void_n0;
+ QMap<u2pr, void (SITE_Type::*)(QString)> m_QString, m_QString_n0;
+ QMap<u2pr, void (*)(QString)> n_QString, n_QString_n0;
 
- QMap<QPair<u2, QString>, void (SITE_Type::*)()> m_void_indexed;
- QMap<QPair<u2, QString>, void (*)()> n_void_indexed;
+ QMap<u2pr, void (SITE_Type::*)()> m_void, m_void_n0;
+ QMap<u2pr, void (*)()> n_void, n_void_n0;
 
- QMap<u2, Proc_Options> proc_options;
+ QMap<QPair<u2pr, QString>, void (SITE_Type::*)()> m_void_indexed;
+ QMap<QPair<u2pr, QString>, void (*)()> n_void_indexed;
 
- QMap<u2, u2> preset_args_u2;
- QMap<u2, QString> preset_args_QString;
+ QMap<u2pr, Proc_Options> proc_options;
+
+ QMap<u2, u2> proc_options_counts;
+
+ QMap<u2pr, u2> preset_args_u2;
+ QMap<u2pr, QString> preset_args_QString;
 
  QString column_string_pattern(QString* reset = nullptr)
  {
@@ -207,7 +213,7 @@ struct csv_field_setters_by_column
 
  template<typename FN_Type>
  void add(Proc_Options props,
-   QVector<u2> cols, FN_Type fn, const void* pre = nullptr,
+   QVector<u2pr> cols, FN_Type fn, const void* pre = nullptr,
    const void* adjunct = nullptr, u2 insert_count = 0)
  {
   switch(props)
@@ -232,7 +238,7 @@ struct csv_field_setters_by_column
    case Proc_Options::m##_indexed: \
     {QVector<QString>* qsv = (QVector<QString>*) pre; \
      u2 i = 0; \
-     for(u2 col : cols) \
+     for(u2pr col : cols) \
      { \
       m##_indexed[{col, qsv->value(i)}] = (decltype(m[col])) fn; \
       ++i; \
@@ -246,7 +252,7 @@ struct csv_field_setters_by_column
 
 #define CASE_MACRO(m) \
    case Proc_Options::m: \
-    for(u2 col : cols) { m[col] = (decltype(m[col])) fn; \
+    for(u2pr col : cols) { m[col] = (decltype(m[col])) fn; \
       proc_options[col] = Proc_Options::m;}  break; \
 
   CASE_MACRO(m_void)
@@ -304,7 +310,7 @@ struct csv_field_setters_by_column
     {
      for(count = 0; count < insert_count; ++count)
      {
-      preset_args_u2[cols.value(count)] = cols.value(count);
+      preset_args_u2[cols.value(count)] = cols.value(count).first; //?
      }
     }
     break;
@@ -327,7 +333,7 @@ struct csv_field_setters_by_column
      for(count = 0; count < insert_count; ++count)
      {
       preset_args_QString[cols.value(count)] =
-        column_string_pattern().arg(cols.value(count));
+        column_string_pattern().arg(cols.value(count).first);
      }
     }
     break;
@@ -474,6 +480,16 @@ protected:
 
 private:
 
+ auto& get_proc_options_counts()
+ {
+  return csv_field_setters_.proc_options_counts;
+ }
+
+ auto& get_proc_options()
+ {
+  return csv_field_setters_.proc_options;
+ }
+
  struct _define_setters
  {
   Site_List_Base* _this;
@@ -521,12 +537,12 @@ private:
   {
    auto& dsd = _this->define_setters_data_;
 
-   QVector<u2> cols;
+   QVector<u2pr> cols;
 
    switch (dsd.current_arg_state)
    {
    case _define_setters_data::Arg_State::Init:
-    dsd.held_arg.push_back(dsd.last_column + 1);
+    dsd.held_arg.push_back({dsd.last_column.first + 1, 1});
     // //  fallthrough
    case _define_setters_data::Arg_State::A:
     dsd.get_current_arg(cols);
@@ -545,7 +561,7 @@ private:
   template<typename FN_Type>
   void ops_QString_u2(Props props, FN_Type arg)
   {
-   QVector<u2> cols;
+   QVector<u2pr> cols;
    auto& dsd = _this->define_setters_data_;
 
    switch (dsd.current_arg_state)
@@ -581,7 +597,13 @@ private:
   {
    auto& dsd = _this->define_setters_data_;
 
-   QVector<u2> cols;
+   // for now ....
+   auto counts_callback = [](u2) -> u2
+   {
+    return 1;
+   };
+
+   QVector<u2pr> cols;
 
    switch (dsd.current_arg_state)
    {
@@ -592,7 +614,7 @@ private:
      // //   get_current_arg() with strings will
       //     return a nonzero value if the strings
       //     are matched by column_resolver lookups
-     if(dsd.get_current_arg(cols, hs))
+     if(dsd.get_current_arg(cols, hs, counts_callback))
        _this->add_setter(props, cols, arg, &hs);
      else
        _this->add_setter(props, cols, arg, nullptr, nullptr, cols.count());
@@ -709,23 +731,36 @@ private:
   _define_setters operator [] (int arg)
   {
    auto& dsd = _this->define_setters_data_;
+   QMap<u2, u2>& counts = _this->get_proc_options_counts();
+   auto& props = _this->get_proc_options();
+
 
    _define_setters_data::Arg_State h = dsd.recollapse_state();
 
    if(h == _define_setters_data::Arg_State::Hanging_To)
    {
     u4 index = dsd.held_arg.size();
-    u2 l = index ? dsd.held_arg.last() : 0;
+    u2 l = index ? dsd.held_arg.last().first : 0;
     u2 min = qMin(l, (u2) arg);
     u2 max = qMax(l, (u2) arg);
     u2 diff = max - min;
 
     dsd.held_arg.resize(index + diff);
     for(u2 i = min + 1; i <= max; ++i, ++index)
-      dsd.held_arg[index] = i;
+      dsd.held_arg[index] = {i, 1}; //? 1?
    }
    else
-     dsd.held_arg.push_back(arg);
+   {
+    u2 c;
+    if(counts.contains(arg))
+      c = ++counts[arg];
+    else if(props.contains({arg, 1}))
+      c = counts[arg] = 2;
+    else
+      c = 1;
+
+    dsd.held_arg.push_back({arg, c});
+   }
 
    dsd.add_state(_define_setters_data::Arg);
 
@@ -854,7 +889,7 @@ private:
     {
      // //  i.e., suspended for the first time
      for(u2 i = 0; i < dsd.hanging_plus_count; ++i)
-       dsd.held_pre.push_back(dsd.held_arg.value(i));
+       dsd.held_pre.push_back(dsd.held_arg.value(i).first);
     }
     dsd.suspended_plus_count = dsd.hanging_plus_count;
     dsd.hanging_plus_count = 0;
@@ -925,9 +960,11 @@ public:
 
  _define_setters define_setters() { return {this}; }
 
+ typedef QPair<u2, u2> u2pr;
+
  template<typename FN_Type>
  void add_setter(typename decltype(csv_field_setters_)::Proc_Options props,
-    const QVector<u2>& cols, FN_Type fn, const void* pre = nullptr,
+    const QVector<u2pr>& cols, FN_Type fn, const void* pre = nullptr,
     const void* adjunct = nullptr, u2 insert_count = 0)
  {
   csv_field_setters_.add(props, cols, fn, pre, adjunct, insert_count);

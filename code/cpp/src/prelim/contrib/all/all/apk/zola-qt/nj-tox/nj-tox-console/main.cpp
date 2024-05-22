@@ -38,6 +38,8 @@ int main(int argc, char *argv[])
     [9]  (& NJ_TRI_Site::set_zip_code)
 
     [10]  [& NJ_TRI_Site::set_BIA_code]
+    [10]  (& NJ_TRI_Site::set_flag <NJ_TRI_Site::on_tribal_land>)
+
     [11]  [& NJ_TRI_Site::set_tribe_name]
 
     [12]  (& NJ_TRI_Site::set_latitude)
@@ -125,7 +127,6 @@ int main(int argc, char *argv[])
   [117] (& NJ_TRI_Site::set_one_time_release)
   [119] (& NJ_TRI_Site::set_production_ratio)
 
-  [10] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::on_tribal_land>)                // csv col 10
   [18] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>)              // csv col 18
   [35] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::elemental_metal_included>)      // csv col 35
   [39] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::clean_air_act_chemical>)        // csv col 39
