@@ -108,6 +108,14 @@ struct _define_setters_data
   return recollapse_state(current_arg_state);
  }
 
+ QSet<QString> affirmative_flag_strings;
+ QSet<QString> affirmative_case_sensitive_flag_strings;
+ QSet<QString> falsifying_flag_strings;
+ QSet<QString> falsifying_case_sensitive_flag_strings;
+
+
+
+
  QSet<u2pr> n0_overrides;
 
  QVector<u2pr> held_arg;
@@ -125,6 +133,9 @@ struct _define_setters_data
  std::function<u2 (QVariant)> column_resolver;
 
  _define_setters_data(); // : last_column(0) {}
+
+
+
 
  const QVector<s4>& held_pre_or_range();
 
@@ -573,6 +584,142 @@ private:
   typedef typename decltype(csv_field_setters_by_column<SITE_Type>::n_QString_QString)::mapped_type n_QString_QString_type;
 
   typedef typename csv_field_setters_by_column<SITE_Type>::Proc_Options Props;
+
+  _define_setters add_affirmative_flag_string(QString s)
+  {
+   _this->define_setters_data_.affirmative_flag_strings.insert(s.toLower());
+   return *this;
+  }
+
+  _define_setters add_affirmative_flag_strings(QStringList ss)
+  {
+   for(QString s : ss)
+     add_affirmative_flag_string(s);
+   return *this;
+  }
+
+  _define_setters add_affirmative_case_sensitive_flag_string(QString s)
+  {
+   _this->define_setters_data_.affirmative_case_sensitive_flag_strings.insert(s);
+   return *this;
+  }
+
+  _define_setters add_affirmative_case_sensitive_flag_strings(QStringList qsl)
+  {
+   for(QString s : qsl)
+     add_affirmative_case_sensitive_flag_string(s);
+   return *this;
+  }
+
+
+  _define_setters add_falsifying_flag_string(QString s)
+  {
+   _this->define_setters_data_.falsifying_flag_strings.insert(s.toLower());
+   return *this;
+  }
+
+  _define_setters add_falsifying_flag_strings(QStringList ss)
+  {
+   for(QString s : ss)
+     add_falsifying_flag_string(s);
+   return *this;
+  }
+
+  _define_setters add_falsifying_case_sensitive_flag_string(QString s)
+  {
+   _this->define_setters_data_.falsifying_case_sensitive_flag_strings.insert(s);
+   return *this;
+  }
+
+  _define_setters add_falsifying_case_sensitive_flag_strings(QStringList qsl)
+  {
+   for(QString s : qsl)
+     add_falsifying_case_sensitive_flag_string(s);
+   return *this;
+  }
+
+
+  _define_setters default_affirmative_flag_strings()
+  {
+   add_affirmative_flag_strings({"yes", "true"});
+   return *this;
+  }
+
+  _define_setters default_nonempty_falsifying_flag_strings()
+  {
+   add_falsifying_flag_strings({"no", "false"});
+   return *this;
+  }
+
+  _define_setters default_falsifying_flag_strings()
+  {
+   default_nonempty_falsifying_flag_strings();
+   add_falsifying_flag_string({""});
+   return *this;
+  }
+
+  _define_setters default_flag_strings()
+  {
+   default_affirmative_flag_strings();
+   default_falsifying_flag_strings();
+   return *this;
+  }
+
+  _define_setters reset_affirmative_flag_strings()
+  {
+   _this->define_setters_data_.affirmative_flag_strings.clear();
+   return *this;
+  }
+
+  _define_setters reset_affirmative_case_sensitive_flag_strings()
+  {
+   _this->define_setters_data_.affirmative_case_sensitive_flag_strings.clear();
+   return *this;
+  }
+
+  _define_setters reset_falsifying_flag_strings()
+  {
+   _this->define_setters_data_.falsifying_flag_strings.clear();
+   return *this;
+  }
+
+  _define_setters reset_falsifying_case_sensitive_flag_strings()
+  {
+   _this->define_setters_data_.falsifying_case_sensitive_flag_strings.clear();
+   return *this;
+  }
+
+
+  _define_setters reset_affirmative_flag_strings(QStringList qsl)
+  {
+   reset_affirmative_flag_strings();
+   add_affirmative_flag_strings(qsl);
+   return *this;
+  }
+
+  _define_setters reset_affirmative_case_sensitive_flag_strings(QStringList qsl)
+  {
+   reset_affirmative_case_sensitive_flag_strings();
+   add_affirmative_case_sensitive_flag_strings(qsl);
+   return *this;
+  }
+
+  _define_setters reset_falsifying_flag_strings(QStringList qsl)
+  {
+   reset_falsifying_flag_strings();
+   add_falsifying_flag_strings(qsl);
+   return *this;
+  }
+
+  _define_setters reset_falsifying_case_sensitive_flag_strings(QStringList qsl)
+  {
+   reset_falsifying_case_sensitive_flag_strings();
+   add_falsifying_case_sensitive_flag_strings(qsl);
+   return *this;
+  }
+
+
+
 
   template<typename FN_Type>
   void ops_void(Props props, FN_Type fn)

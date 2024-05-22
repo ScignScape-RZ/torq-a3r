@@ -37,8 +37,6 @@ int main(int argc, char *argv[])
     [7]  (& NJ_TRI_Site::set_county)
     [9]  (& NJ_TRI_Site::set_zip_code)
 
-    [10]  [& NJ_TRI_Site::set_BIA_code]
-    [10]  (& NJ_TRI_Site::set_flag <NJ_TRI_Site::on_tribal_land>)
 
     [11]  [& NJ_TRI_Site::set_tribe_name]
 
@@ -131,6 +129,13 @@ int main(int argc, char *argv[])
   [116] (& NJ_TRI_Site::set_production_waste)
   [117] (& NJ_TRI_Site::set_one_time_release)
   [119] (& NJ_TRI_Site::set_production_ratio)
+
+
+  .default_flag_strings()
+
+  [10]  [& NJ_TRI_Site::set_BIA_code]
+  [10]  (& NJ_TRI_Site::set_flag <NJ_TRI_Site::on_tribal_land>)
+
 
   [18] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>)              // csv col 18
   [35] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::elemental_metal_included>)      // csv col 35
