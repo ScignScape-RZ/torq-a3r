@@ -52,19 +52,24 @@ int main(int argc, char *argv[])
     [19]  (& NJ_TRI_Site::set_industry_sector_code)
     [20]  (& NJ_TRI_Site::set_industry_sector)
 
-(0) [21]
+(0) [21]  ()
      --
     [26]  [& NJ_TRI_Site::add_SIC_code]
 
-(27, 32)  (& NJ_TRI_Site::add_NAICS_code)
+(27, 32)  [& NJ_TRI_Site::add_NAICS_code]
 
    [33]  (& NJ_TRI_Site::set_document_control_number)
    [34]  (& NJ_TRI_Site::set_chemical_name)
-   [35]  (& NJ_TRI_Site::set_CAS_registry_number)
-   [36]  (& NJ_TRI_Site::set_chemical_name)
+   [36]  (& NJ_TRI_Site::set_CAS_registry_number)
    [37]  (& NJ_TRI_Site::set_TRI_chemical_id)
    [38]  (& NJ_TRI_Site::set_SRS_id)
    [40]  (& NJ_TRI_Site::set_classification)
+
+   [63]  (& NJ_TRI_Site::set_potw_release_or_disposal)
+   [64]  (& NJ_TRI_Site::set_potw_further_treatment)
+   [65]  [& NJ_TRI_Site::set_potw_total]
+
+
 
    ( "M10"
    , "M41"

@@ -17,7 +17,6 @@ NJ_TRI_Site::NJ_TRI_Site()
      horizontal_datum_(Horizontal_Datum_Options::N_A),
      industry_sector_code_(0),
      document_control_number_(0),
-     CAS_registry_number_(0),
      TRI_chemical_id_(0),
      SRS_id_(0),
      onsite_release_total_(0),

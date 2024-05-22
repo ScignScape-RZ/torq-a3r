@@ -185,6 +185,7 @@ void _define_setters_data::reset()
  suspended_plus_count = 0;
  froze_pre_arg = 0;
  froze_pre_arg_ptr = nullptr;
+ n0_overrides.clear();
 
  //?string_options_count = 0;
 }

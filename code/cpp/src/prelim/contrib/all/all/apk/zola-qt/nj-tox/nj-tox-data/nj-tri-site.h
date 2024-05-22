@@ -292,7 +292,8 @@ private:
 
  QString chemical_name_;   // csv col 34
 
- u4 CAS_registry_number_;   // csv col 36
+ QString CAS_registry_number_;   // csv col 36
+
  u4 TRI_chemical_id_;   // csv col 37
  u4 SRS_id_;   // csv col 38
 
@@ -428,7 +429,8 @@ public:
 
  ACCESSORS(QString ,chemical_name)
 
- ACCESSORS(u4 ,CAS_registry_number)
+ ACCESSORS(QString ,CAS_registry_number)
+
  ACCESSORS(u4 ,TRI_chemical_id)
  ACCESSORS(u4 ,SRS_id)
 
@@ -521,7 +523,6 @@ public:
 
  SET_and_STR_ADAPTER_INT(industry_sector_code)
  SET_and_STR_ADAPTER_N8(document_control_number)
- SET_and_STR_ADAPTER_INT(CAS_registry_number)
  SET_and_STR_ADAPTER_INT(TRI_chemical_id)
  SET_and_STR_ADAPTER_INT(SRS_id)
 

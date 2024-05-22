@@ -108,6 +108,7 @@ struct _define_setters_data
   return recollapse_state(current_arg_state);
  }
 
+ QSet<u2pr> n0_overrides;
 
  QVector<u2pr> held_arg;
  QVector<QPair<u2, u2>> held_range;
@@ -126,6 +127,8 @@ struct _define_setters_data
  _define_setters_data(); // : last_column(0) {}
 
  const QVector<s4>& held_pre_or_range();
+
+//? void check_n0_overrides()
 
  void get_current_arg(QVector<u2pr>& result);
  s4 get_current_arg(QVector<u2pr>& result,
@@ -160,6 +163,8 @@ private:
 template<typename SITE_Type>
 struct csv_field_setters_by_column
 {
+ typedef QPair<u2, u2> u2pr;
+
  enum class Proc_Options {
 
    m_QString_u2, m_QString_QString,
@@ -179,7 +184,69 @@ struct csv_field_setters_by_column
 
  };
 
- typedef QPair<u2, u2> u2pr;
+ Proc_Options get_n0_override(Proc_Options procs)
+ {
+  switch (procs)
+  {
+#define CASE_MACRO(m) case Proc_Options::m##_n0: return Proc_Options::m;
+  CASE_MACRO(m_QString_u2)
+  CASE_MACRO(m_QString_QString)
+  CASE_MACRO(n_QString_u2)
+  CASE_MACRO(n_QString_QString)
+  CASE_MACRO(m_QString)
+  CASE_MACRO(n_QString)
+  CASE_MACRO(m_void)
+  CASE_MACRO(n_void)
+#undef CASE_MACRO
+  default:
+   break;
+  }
+  return procs;
+ }
+
+
+ // Proc_Options
+ void check_n0_switch(const QSet<u2pr>& n0_overrides, u2pr col, Proc_Options props)
+ {
+  if(n0_overrides.contains(col))
+  {
+   switch (props)
+   {
+//   case Proc_Options::m_QString_u2_n0:
+//    m_QString_u2[col] = m_QString_u2_n0.take(col);
+//    proc_options[col] = get_n0_override(props);
+//    break;
+
+ #define CASE_MACRO(m) case Proc_Options::m##_n0: \
+     m[col] = m##_n0.take(col); \
+     proc_options[col] = get_n0_override(props); \
+     break;
+    CASE_MACRO(m_QString_u2)
+    CASE_MACRO(m_QString_QString)
+    CASE_MACRO(n_QString_u2)
+    CASE_MACRO(n_QString_QString)
+    CASE_MACRO(m_QString)
+    CASE_MACRO(n_QString)
+    CASE_MACRO(m_void)
+    CASE_MACRO(n_void)
+ #undef CASE_MACRO
+     break;
+    default:
+     // //  we shouldn't get here; maybe some debug message?
+     break;
+   }
+  }
+ }
+
+
+
+ Proc_Options check_n0_override(const QSet<u2pr>& n0_overrides, u2pr col, Proc_Options procs)
+ {
+  if(n0_overrides.contains(col))
+    return get_n0_override(procs);
+  return procs;
+ }
+
 
  QMap<u2pr, void (SITE_Type::*)(QString, u2)> m_QString_u2, m_QString_u2_n0;
  QMap<u2pr, void (SITE_Type::*)(QString, QString)> m_QString_QString, m_QString_QString_n0;
@@ -212,8 +279,9 @@ struct csv_field_setters_by_column
  }
 
  template<typename FN_Type>
- void add(Proc_Options props,
-   QVector<u2pr> cols, FN_Type fn, const void* pre = nullptr,
+ void add(Proc_Options props, const QVector<u2pr>& cols,
+   const QSet<u2pr>& n0_overrides,
+   FN_Type fn, const void* pre = nullptr,
    const void* adjunct = nullptr, u2 insert_count = 0)
  {
   switch(props)
@@ -242,7 +310,7 @@ struct csv_field_setters_by_column
      { \
       m##_indexed[{col, qsv->value(i)}] = (decltype(m[col])) fn; \
       ++i; \
-      proc_options[col] = Proc_Options::m; \
+      proc_options[col] = check_n0_override(n0_overrides, col, Proc_Options::m); \
      }} break; \
 
     CASE_MACRO(m_void)
@@ -253,7 +321,7 @@ struct csv_field_setters_by_column
 #define CASE_MACRO(m) \
    case Proc_Options::m: \
     for(u2pr col : cols) { m[col] = (decltype(m[col])) fn; \
-      proc_options[col] = Proc_Options::m;}  break; \
+      proc_options[col] = Proc_Options::m; check_n0_switch(n0_overrides, col, props);  }  break; \
 
   CASE_MACRO(m_void)
   CASE_MACRO(n_void)
@@ -514,19 +582,19 @@ private:
    switch (dsd.current_arg_state)
    {
    case _define_setters_data::Arg_State::AS:
-    _this->add_setter(props, dsd.held_arg, fn, &dsd.held_string);
+    _this->add_setter(props, dsd.held_arg, dsd.n0_overrides, fn, &dsd.held_string);
     dsd.reset(dsd.held_arg);
     break;
 
    case _define_setters_data::Arg_State::S:
-    _this->add_setter(props, {dsd.last_column}, fn, &dsd.held_string);
+    _this->add_setter(props, {dsd.last_column}, dsd.n0_overrides, fn, &dsd.held_string);
     dsd.reset(dsd.last_column);
     break;
 
     // // anything else?
 
    default: //  mostly Arg_State::A, right?
-    _this->add_setter(props, dsd.held_arg, fn);
+    _this->add_setter(props, dsd.held_arg, dsd.n0_overrides, fn);
     dsd.reset(dsd.held_arg);
    }
 
@@ -546,12 +614,12 @@ private:
     // //  fallthrough
    case _define_setters_data::Arg_State::A:
     dsd.get_current_arg(cols);
-    _this->add_setter(props, cols, fn);
+    _this->add_setter(props, cols, dsd.n0_overrides, fn);
     break;
 
    case _define_setters_data::Arg_State::R:
     dsd.held_range_to_vector(cols);
-    _this->add_setter(props, cols, fn);
+    _this->add_setter(props, cols, dsd.n0_overrides, fn);
     break;
    }
    dsd.reset(cols);
@@ -568,21 +636,21 @@ private:
    {
    case _define_setters_data::Arg_State::A:
     dsd.get_current_arg(cols);
-    _this->add_setter(props, cols, arg, nullptr, nullptr, cols.size());
+    _this->add_setter(props, cols, dsd.n0_overrides, arg, nullptr, nullptr, cols.size());
     break;
 
    case _define_setters_data::Arg_State::PA:
     dsd.get_current_arg(cols);
     if(dsd.held_pre.isEmpty())
-      _this->add_setter(props, cols, arg, nullptr, nullptr, dsd.hanging_plus_count);
+      _this->add_setter(props, cols, dsd.n0_overrides, arg, nullptr, nullptr, dsd.hanging_plus_count);
     else
-      _this->add_setter(props, cols, arg, &dsd.held_pre, dsd.froze_pre_arg_ptr);
+      _this->add_setter(props, cols, dsd.n0_overrides, arg, &dsd.held_pre, dsd.froze_pre_arg_ptr);
     break;
 
    case _define_setters_data::Arg_State::R:
     {
      const QVector<s4>& r = dsd.held_range_to_vector(cols);
-     _this->add_setter(props, cols, arg, &r);
+     _this->add_setter(props, cols, dsd.n0_overrides, arg, &r);
     }
     break;
 
@@ -615,16 +683,16 @@ private:
       //     return a nonzero value if the strings
       //     are matched by column_resolver lookups
      if(dsd.get_current_arg(cols, hs, counts_callback))
-       _this->add_setter(props, cols, arg, &hs);
+       _this->add_setter(props, cols, dsd.n0_overrides, arg, &hs);
      else
-       _this->add_setter(props, cols, arg, nullptr, nullptr, cols.count());
+       _this->add_setter(props, cols, dsd.n0_overrides, arg, nullptr, nullptr, cols.count());
     }
     break;
 
    // //  what's the right way to handle mixed in these cases?
    case _define_setters_data::Arg_State::SA:
     dsd.get_current_arg(cols);
-    _this->add_setter(props, cols, arg, &dsd.held_string);
+    _this->add_setter(props, cols, dsd.n0_overrides, arg, &dsd.held_string);
     break;
    // //  case AS and so on ...
 
@@ -801,9 +869,28 @@ private:
    return *this;
   }
 
+
+  _define_setters operator () ()
+  {
+   auto& dsd = _this->define_setters_data_;
+
+   if(dsd.held_arg.isEmpty())
+   {
+    // // anything here?
+   }
+   else
+   {
+    dsd.n0_overrides.insert(dsd.held_arg.last());
+   }
+
+   return *this;
+  }
+
+
   _define_setters operator () (m_void_type arg)
   {
    auto& dsd = _this->define_setters_data_;
+
    switch(dsd.current_arg_state)
    {
    case _define_setters_data::Arg_State::A:
@@ -828,13 +915,13 @@ private:
 
   _define_setters operator () (m_QString_u2_type arg)
   {
-   ops_QString_u2(Props::m_QString_u2, arg);
+   ops_QString_u2(Props::m_QString_u2_n0, arg);
    return *this;
   }
 
   _define_setters operator () (m_QString_QString_type arg)
   {
-   ops_QString_QString(Props::m_QString_QString, arg);
+   ops_QString_QString(Props::m_QString_QString_n0, arg);
    return *this;
   }
 
@@ -964,10 +1051,12 @@ public:
 
  template<typename FN_Type>
  void add_setter(typename decltype(csv_field_setters_)::Proc_Options props,
-    const QVector<u2pr>& cols, FN_Type fn, const void* pre = nullptr,
+    const QVector<u2pr>& cols,
+    const QSet<u2pr>& n0_overrides,
+    FN_Type fn, const void* pre = nullptr,
     const void* adjunct = nullptr, u2 insert_count = 0)
  {
-  csv_field_setters_.add(props, cols, fn, pre, adjunct, insert_count);
+  csv_field_setters_.add(props, cols, n0_overrides, fn, pre, adjunct, insert_count);
  }
 
 
