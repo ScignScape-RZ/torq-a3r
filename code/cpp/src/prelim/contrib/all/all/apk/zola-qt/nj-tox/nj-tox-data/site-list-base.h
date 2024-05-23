@@ -1172,6 +1172,55 @@ private:
   }
 
 
+  _define_setters pre (m_void_type arg)
+  {
+   typedef typename decltype(_this->csv_field_setters_)::Call_Specs specs;
+
+   QVector<u2x3> cols;
+   op_mvoid(arg, &cols);
+
+   for(auto pr : cols)
+     _this->csv_field_setters_.m_void_supplement[pr].push_back({arg, specs::Void_Pre});
+   return *this;
+  }
+
+  _define_setters True (m_void_type arg)
+  {
+   typedef typename decltype(_this->csv_field_setters_)::Call_Specs specs;
+
+   QVector<u2x3> cols;
+   op_mvoid(arg, &cols);
+
+   for(auto pr : cols)
+     _this->csv_field_setters_.m_void_supplement[pr].push_back({arg, specs::Void_True});
+   return *this;
+  }
+
+  _define_setters False (m_void_type arg)
+  {
+   typedef typename decltype(_this->csv_field_setters_)::Call_Specs specs;
+
+   QVector<u2x3> cols;
+   op_mvoid(arg, &cols);
+
+   for(auto pr : cols)
+     _this->csv_field_setters_.m_void_supplement[pr].push_back({arg, specs::Void_False});
+   return *this;
+  }
+
+  _define_setters fin (m_void_type arg)
+  {
+   typedef typename decltype(_this->csv_field_setters_)::Call_Specs specs;
+
+   QVector<u2x3> cols;
+   op_mvoid(arg, &cols);
+
+   for(auto pr : cols)
+     _this->csv_field_setters_.m_void_supplement[pr].push_back({arg, specs::Void_Post});
+   return *this;
+  }
+
+
   _define_setters operator () (m_void_type arg1, m_void_type arg2)
   {
    typedef typename decltype(_this->csv_field_setters_)::Call_Specs specs;
