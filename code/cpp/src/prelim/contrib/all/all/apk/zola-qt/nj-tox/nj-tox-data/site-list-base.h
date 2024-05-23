@@ -30,9 +30,82 @@
 
 #include <functional>
 
+
+struct u2x3
+{
+ u2 first: 16;
+ u2 second: 16;
+ u2 third: 16;
+
+ u2x3(u2 _1, u2 _2, u2 _3)
+   : first(_1), second(_2), third(_3)
+ {
+ }
+
+ u2x3()
+   : first(0), second(0), third(0)
+ {
+ }
+
+ u2x3(std::initializer_list<u2> u2s)
+ {
+  if(u2s.size() < 3)
+  {
+   third = 0;
+   if(u2s.size() > 0)
+     first = *u2s.begin();
+   else
+     first = 0;
+
+   if(u2s.size() > 1)
+     second = *(u2s.begin() + 1);
+   else
+     second = 0;
+
+   qDebug() << "Incomplete u2x3 initializer list: {" << first << ", " << second << "}";
+  }
+  else
+  {
+   first = *u2s.begin();
+   second = *(u2s.begin() + 1);
+   third = *(u2s.begin() + 2);
+  }
+
+ }
+
+
+};
+
+// //  in "production" this should be checked in different environments ...
+ //    e.g. obviously there should be no padding ...
+union _u2x3_encoded { u2x3 _3_; n8 _1_; };
+
+inline bool operator <(const u2x3& lhs, const u2x3& rhs)
+{
+ _u2x3_encoded _lhs {._3_ = lhs };
+ _u2x3_encoded _rhs {._3_ = rhs };
+
+ return _lhs._1_ < _rhs._1_;
+}
+
+inline bool operator ==(const u2x3& lhs, const u2x3& rhs)
+{
+ _u2x3_encoded _lhs {._3_ = lhs };
+ _u2x3_encoded _rhs {._3_ = rhs };
+
+ return _lhs._1_ == _rhs._1_;
+}
+
+inline u4 qHash(const u2x3& val)
+{
+ // //  what's the best way to hash these?
+ return val.first & 16;
+}
+
+
 struct _define_setters_data
 {
- typedef QPair<u2, u2> u2pr;
+// typedef QPair<u2, u2> u2x3;
 
  enum class Arg_State {
    Init = 0,  Hanging_To = 9, Hanging_Plus = 8,
@@ -116,9 +189,9 @@ struct _define_setters_data
 
 
 
- QSet<u2pr> n0_overrides;
+ QSet<u2x3> n0_overrides;
 
- QVector<u2pr> held_arg;
+ QVector<u2x3> held_arg;
  QVector<QPair<u2, u2>> held_range;
  QVector<s4> held_pre;
  QVector<QString> held_string;
@@ -126,7 +199,7 @@ struct _define_setters_data
  u2 hanging_plus_count;
  u2 suspended_plus_count;
 
- u2pr last_column;
+ u2x3 last_column;
 
  u2 string_options_count;
 
@@ -141,14 +214,14 @@ struct _define_setters_data
 
 //? void check_n0_overrides()
 
- void get_current_arg(QVector<u2pr>& result);
- s4 get_current_arg(QVector<u2pr>& result,
+ void get_current_arg(QVector<u2x3>& result);
+ s4 get_current_arg(QVector<u2x3>& result,
    const QVector<QString>& keys, std::function<u2(u2)> counts_callback);
 
- const QVector<s4>& held_range_to_vector(QVector<u2pr>& result);
+ const QVector<s4>& held_range_to_vector(QVector<u2x3>& result);
 
- void reset(const QVector<u2pr>& lc);
- void reset(u2pr lc);
+ void reset(const QVector<u2x3>& lc);
+ void reset(u2x3 lc);
  void reset();
 
  void freeze_pre_arg()
@@ -174,7 +247,7 @@ private:
 template<typename SITE_Type>
 struct csv_field_setters_by_column
 {
- typedef QPair<u2, u2> u2pr;
+// typedef QPair<u2, u2> u2x3;
 
  enum class Proc_Options {
 
@@ -194,6 +267,25 @@ struct csv_field_setters_by_column
    m_void_n0, n_void_n0,
 
  };
+
+ enum class Call_Specs {
+   Generic = 0,
+   Non_Empty = 1,
+   Only_Empty = 2,
+   Space_Empty = 4,
+   Void_Pre = 8,
+   Void_True = 16,
+   Void_False = 32,
+   Void_Post = 64,
+ };
+
+ friend QPair<Call_Specs, Call_Specs> Call_Specs_split(Call_Specs _s)
+ {
+  static u1 first_mask = 7;
+  static u1 second_mask = 120;
+
+  return {(Call_Specs)((u1) _s & first_mask), (Call_Specs)((u1) _s & second_mask)};
+ }
 
  Proc_Options get_n0_override(Proc_Options procs)
  {
@@ -217,7 +309,7 @@ struct csv_field_setters_by_column
 
 
  // Proc_Options
- void check_n0_switch(const QSet<u2pr>& n0_overrides, u2pr col, Proc_Options props)
+ void check_n0_switch(const QSet<u2x3>& n0_overrides, u2x3 col, Proc_Options props)
  {
   if(n0_overrides.contains(col))
   {
@@ -230,7 +322,7 @@ struct csv_field_setters_by_column
 
  #define CASE_MACRO(m) case Proc_Options::m##_n0: \
      m[col] = m##_n0.take(col); \
-     proc_options[col] = get_n0_override(props); \
+     proc_options[col] = {get_n0_override(props), Call_Specs::Generic}; \
      break;
     CASE_MACRO(m_QString_u2)
     CASE_MACRO(m_QString_QString)
@@ -251,7 +343,7 @@ struct csv_field_setters_by_column
 
 
 
- Proc_Options check_n0_override(const QSet<u2pr>& n0_overrides, u2pr col, Proc_Options procs)
+ Proc_Options check_n0_override(const QSet<u2x3>& n0_overrides, u2x3 col, Proc_Options procs)
  {
   if(n0_overrides.contains(col))
     return get_n0_override(procs);
@@ -259,30 +351,30 @@ struct csv_field_setters_by_column
  }
 
 
- QMap<u2pr, void (SITE_Type::*)(QString, u2)> m_QString_u2, m_QString_u2_n0;
- QMap<u2pr, void (SITE_Type::*)(QString, QString)> m_QString_QString, m_QString_QString_n0;
- QMap<u2pr, void (*)(QString, u2)> n_QString_u2, n_QString_u2_n0;
- QMap<u2pr, void (*)(QString, QString)> n_QString_QString, n_QString_QString_n0;
+ QMap<u2x3, void (SITE_Type::*)(QString, u2)> m_QString_u2, m_QString_u2_n0;
+ QMap<u2x3, void (SITE_Type::*)(QString, QString)> m_QString_QString, m_QString_QString_n0;
+ QMap<u2x3, void (*)(QString, u2)> n_QString_u2, n_QString_u2_n0;
+ QMap<u2x3, void (*)(QString, QString)> n_QString_QString, n_QString_QString_n0;
 
- QMap<u2pr, void (SITE_Type::*)(QString)> m_QString, m_QString_n0;
- QMap<u2pr, void (*)(QString)> n_QString, n_QString_n0;
+ QMap<u2x3, void (SITE_Type::*)(QString)> m_QString, m_QString_n0;
+ QMap<u2x3, void (*)(QString)> n_QString, n_QString_n0;
 
- QMap<u2pr, void (SITE_Type::*)()> m_void, m_void_n0;
- QMap<u2pr, void (*)()> n_void, n_void_n0;
+ QMap<u2x3, void (SITE_Type::*)()> m_void, m_void_n0;
+ QMap<u2x3, void (*)()> n_void, n_void_n0;
 
- QMap<u2pr, QVector<void (SITE_Type::*)()>> m_void_supplement;
- QMap<u2pr, QVector<void (*)()>> n_void_supplement;
+ QMap<u2x3, QVector<QPair<void (SITE_Type::*)(), Call_Specs>>> m_void_supplement;
+ QMap<u2x3, QVector<QPair<void (*)(), Call_Specs>>> n_void_supplement;
 
 
- QMap<QPair<u2pr, QString>, void (SITE_Type::*)()> m_void_indexed;
- QMap<QPair<u2pr, QString>, void (*)()> n_void_indexed;
+ QMap<QPair<u2x3, QString>, void (SITE_Type::*)()> m_void_indexed;
+ QMap<QPair<u2x3, QString>, void (*)()> n_void_indexed;
 
- QMap<u2pr, Proc_Options> proc_options;
+ QMap<u2x3, QPair<Proc_Options, Call_Specs>> proc_options;
 
- QMap<u2, u2> proc_options_counts;
+ QMap<u2, QVector<u2>> proc_options_counts;
 
- QMap<u2pr, u2> preset_args_u2;
- QMap<u2pr, QString> preset_args_QString;
+ QMap<u2x3, u2> preset_args_u2;
+ QMap<u2x3, QString> preset_args_QString;
 
  QString column_string_pattern(QString* reset = nullptr)
  {
@@ -294,8 +386,8 @@ struct csv_field_setters_by_column
  }
 
  template<typename FN_Type>
- void add(Proc_Options props, const QVector<u2pr>& cols,
-   const QSet<u2pr>& n0_overrides,
+ void add(Proc_Options props, const QVector<u2x3>& cols,
+   const QSet<u2x3>& n0_overrides,
    FN_Type fn, const void* pre = nullptr,
    const void* adjunct = nullptr, u2 insert_count = 0)
  {
@@ -321,11 +413,11 @@ struct csv_field_setters_by_column
    case Proc_Options::m##_indexed: \
     {QVector<QString>* qsv = (QVector<QString>*) pre; \
      u2 i = 0; \
-     for(u2pr col : cols) \
+     for(u2x3 col : cols) \
      { \
       m##_indexed[{col, qsv->value(i)}] = (decltype(m[col])) fn; \
       ++i; \
-      proc_options[col] = check_n0_override(n0_overrides, col, Proc_Options::m); \
+      proc_options[col] = {check_n0_override(n0_overrides, col, Proc_Options::m), Call_Specs::Generic}; \
      }} break; \
 
     CASE_MACRO(m_void)
@@ -335,8 +427,8 @@ struct csv_field_setters_by_column
 
 #define CASE_MACRO(m) \
    case Proc_Options::m: \
-    for(u2pr col : cols) { m[col] = (decltype(m[col])) fn; \
-      proc_options[col] = Proc_Options::m; check_n0_switch(n0_overrides, col, props);  }  break; \
+    for(u2x3 col : cols) { m[col] = (decltype(m[col])) fn; \
+      proc_options[col] = {Proc_Options::m, Call_Specs::Generic}; check_n0_switch(n0_overrides, col, props);  }  break; \
 
   CASE_MACRO(m_void)
   CASE_MACRO(n_void)
@@ -723,10 +815,10 @@ private:
   }
 
 
-  typedef QPair<u2, u2> u2pr;
+//  typedef QPair<u2, u2> u2x3;
 
   template<typename FN_Type>
-  void ops_void(Props props, FN_Type fn, QVector<u2pr>* cols = nullptr)
+  void ops_void(Props props, FN_Type fn, QVector<u2x3>* cols = nullptr)
   {
    auto& dsd = _this->define_setters_data_;
 
@@ -736,7 +828,7 @@ private:
     _this->add_setter(props, dsd.held_arg, dsd.n0_overrides, fn, &dsd.held_string);
     if(cols)
     {
-     QVector<u2pr> c = dsd.held_arg;
+     QVector<u2x3> c = dsd.held_arg;
      *cols = c;
     }
     dsd.reset(dsd.held_arg);
@@ -755,7 +847,7 @@ private:
     _this->add_setter(props, dsd.held_arg, dsd.n0_overrides, fn);
     if(cols)
     {
-     QVector<u2pr> c = dsd.held_arg;
+     QVector<u2x3> c = dsd.held_arg;
      *cols = c;
     }
     dsd.reset(dsd.held_arg);
@@ -767,12 +859,12 @@ private:
   {
    auto& dsd = _this->define_setters_data_;
 
-   QVector<u2pr> cols;
+   QVector<u2x3> cols;
 
    switch (dsd.current_arg_state)
    {
    case _define_setters_data::Arg_State::Init:
-    dsd.held_arg.push_back({dsd.last_column.first + 1, 1});
+    dsd.held_arg.push_back({dsd.last_column.first + 1, 1, 1}); // //z
     // //  fallthrough
    case _define_setters_data::Arg_State::A:
     dsd.get_current_arg(cols);
@@ -791,7 +883,7 @@ private:
   template<typename FN_Type>
   void ops_QString_u2(Props props, FN_Type arg)
   {
-   QVector<u2pr> cols;
+   QVector<u2x3> cols;
    auto& dsd = _this->define_setters_data_;
 
    switch (dsd.current_arg_state)
@@ -833,7 +925,7 @@ private:
     return 1;
    };
 
-   QVector<u2pr> cols;
+   QVector<u2x3> cols;
 
    switch (dsd.current_arg_state)
    {
@@ -961,7 +1053,7 @@ private:
   _define_setters operator [] (int arg)
   {
    auto& dsd = _this->define_setters_data_;
-   QMap<u2, u2>& counts = _this->get_proc_options_counts();
+   QMap<u2, QVector<u2>>& counts = _this->get_proc_options_counts();
    auto& props = _this->get_proc_options();
 
 
@@ -983,13 +1075,19 @@ private:
    {
     u2 c;
     if(counts.contains(arg))
-      c = ++counts[arg];
-    else if(props.contains({arg, 1}))
-      c = counts[arg] = 2;
+    {
+     counts[arg].push_back(1);
+     c = counts[arg].size();
+    }
+    else if(props.contains({arg, 1, 1}))
+    {
+     counts[arg] = {1, 1};
+     c = 2;
+    }
     else
       c = 1;
 
-    dsd.held_arg.push_back({arg, c});
+    dsd.held_arg.push_back({arg, c, 1}); // //z
    }
 
    dsd.add_state(_define_setters_data::Arg);
@@ -1048,7 +1146,7 @@ private:
    return *this;
   }
 
-  void op_mvoid(m_void_type arg, QVector<u2pr>* cols = nullptr)
+  void op_mvoid(m_void_type arg, QVector<u2x3>* cols = nullptr)
   {
    auto& dsd = _this->define_setters_data_;
 
@@ -1073,34 +1171,55 @@ private:
    return *this;
   }
 
+
   _define_setters operator () (m_void_type arg1, m_void_type arg2)
   {
-   QVector<u2pr> cols;
+   typedef typename decltype(_this->csv_field_setters_)::Call_Specs specs;
+
+   QVector<u2x3> cols;
    op_mvoid(arg2, &cols);
 
    for(auto pr : cols)
-     _this->csv_field_setters_.m_void_supplement[pr] = {arg1, arg2};
+     _this->csv_field_setters_.m_void_supplement[pr] = {
+       {arg1, specs::Void_True},
+       {arg2, specs::Void_False} };
    return *this;
   }
 
   _define_setters operator () (m_void_type arg1, m_void_type arg2, m_void_type arg3)
   {
-   QVector<u2pr> cols;
+   typedef typename decltype(_this->csv_field_setters_)::Call_Specs specs;
+
+   QVector<u2x3> cols;
    op_mvoid(arg3, &cols);
 
    for(auto pr : cols)
-     _this->csv_field_setters_.m_void_supplement[pr] = {arg1, arg2, arg3};
+     _this->csv_field_setters_.m_void_supplement[pr] = {
+       {arg1, specs::Void_True},
+       {arg2, specs::Void_False},
+       {arg3, specs::Void_Post}
+     };
+
+//     _this->csv_field_setters_.m_void_supplement[pr] = {arg1, arg2, arg3};
    return *this;
   }
 
   _define_setters operator () (m_void_type arg1, m_void_type arg2,
      m_void_type arg3, m_void_type arg4)
   {
-   QVector<u2pr> cols;
+   typedef typename decltype(_this->csv_field_setters_)::Call_Specs specs;
+
+   QVector<u2x3> cols;
    op_mvoid(arg4, &cols);
 
    for(auto pr : cols)
-     _this->csv_field_setters_.m_void_supplement[pr] = {arg1, arg2, arg3, arg4};
+     _this->csv_field_setters_.m_void_supplement[pr] = {
+         {arg1, specs::Void_Pre},
+         {arg2, specs::Void_True},
+         {arg3, specs::Void_False},
+         {arg4, specs::Void_Post}
+       }
+       ;
    return *this;
   }
 
@@ -1244,12 +1363,12 @@ public:
 
  _define_setters define_setters() { return {this}; }
 
- typedef QPair<u2, u2> u2pr;
+ //typedef QPair<u2, u2> u2x3;
 
  template<typename FN_Type>
  void add_setter(typename decltype(csv_field_setters_)::Proc_Options props,
-    const QVector<u2pr>& cols,
-    const QSet<u2pr>& n0_overrides,
+    const QVector<u2x3>& cols,
+    const QSet<u2x3>& n0_overrides,
     FN_Type fn, const void* pre = nullptr,
     const void* adjunct = nullptr, u2 insert_count = 0)
  {
