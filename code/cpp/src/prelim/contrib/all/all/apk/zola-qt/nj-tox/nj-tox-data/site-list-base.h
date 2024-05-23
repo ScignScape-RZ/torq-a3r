@@ -270,6 +270,10 @@ struct csv_field_setters_by_column
  QMap<u2pr, void (SITE_Type::*)()> m_void, m_void_n0;
  QMap<u2pr, void (*)()> n_void, n_void_n0;
 
+ QMap<u2pr, QVector<void (SITE_Type::*)()>> m_void_supplement;
+ QMap<u2pr, QVector<void (*)()>> n_void_supplement;
+
+
  QMap<QPair<u2pr, QString>, void (SITE_Type::*)()> m_void_indexed;
  QMap<QPair<u2pr, QString>, void (*)()> n_void_indexed;
 
@@ -719,10 +723,10 @@ private:
   }
 
 
-
+  typedef QPair<u2, u2> u2pr;
 
   template<typename FN_Type>
-  void ops_void(Props props, FN_Type fn)
+  void ops_void(Props props, FN_Type fn, QVector<u2pr>* cols = nullptr)
   {
    auto& dsd = _this->define_setters_data_;
 
@@ -730,11 +734,18 @@ private:
    {
    case _define_setters_data::Arg_State::AS:
     _this->add_setter(props, dsd.held_arg, dsd.n0_overrides, fn, &dsd.held_string);
+    if(cols)
+    {
+     QVector<u2pr> c = dsd.held_arg;
+     *cols = c;
+    }
     dsd.reset(dsd.held_arg);
     break;
 
    case _define_setters_data::Arg_State::S:
     _this->add_setter(props, {dsd.last_column}, dsd.n0_overrides, fn, &dsd.held_string);
+    if(cols)
+      *cols = {dsd.last_column};
     dsd.reset(dsd.last_column);
     break;
 
@@ -742,9 +753,13 @@ private:
 
    default: //  mostly Arg_State::A, right?
     _this->add_setter(props, dsd.held_arg, dsd.n0_overrides, fn);
+    if(cols)
+    {
+     QVector<u2pr> c = dsd.held_arg;
+     *cols = c;
+    }
     dsd.reset(dsd.held_arg);
    }
-
   }
 
   template<typename FN_Type>
@@ -851,7 +866,7 @@ private:
 
   _define_setters operator [] (m_void_type arg)
   {
-   ops_void(Props::m_void, arg);
+   ops_void(Props::m_void_n0, arg);
    return *this;
 
 
@@ -1033,24 +1048,59 @@ private:
    return *this;
   }
 
-
-  _define_setters operator () (m_void_type arg)
+  void op_mvoid(m_void_type arg, QVector<u2pr>* cols = nullptr)
   {
    auto& dsd = _this->define_setters_data_;
 
    switch(dsd.current_arg_state)
    {
    case _define_setters_data::Arg_State::A:
-    ops_void(Props::m_void_n0, arg);
+    ops_void(Props::m_void, arg, cols);
     break;
    case _define_setters_data::Arg_State::AS:
    case _define_setters_data::Arg_State::S:
     // //  any others?
-    ops_void(Props::m_void_indexed, arg);
+    ops_void(Props::m_void_indexed, arg, cols);
     break;
    default:
     break;
    }
+  }
+
+  _define_setters operator () (m_void_type arg)
+  {
+   op_mvoid(arg);
+   return *this;
+  }
+
+  _define_setters operator () (m_void_type arg1, m_void_type arg2)
+  {
+   QVector<u2pr> cols;
+   op_mvoid(arg2, &cols);
+
+   for(auto pr : cols)
+     _this->csv_field_setters_.m_void_supplement[pr] = {arg1, arg2};
+   return *this;
+  }
+
+  _define_setters operator () (m_void_type arg1, m_void_type arg2, m_void_type arg3)
+  {
+   QVector<u2pr> cols;
+   op_mvoid(arg3, &cols);
+
+   for(auto pr : cols)
+     _this->csv_field_setters_.m_void_supplement[pr] = {arg1, arg2, arg3};
+   return *this;
+  }
+
+  _define_setters operator () (m_void_type arg1, m_void_type arg2,
+     m_void_type arg3, m_void_type arg4)
+  {
+   QVector<u2pr> cols;
+   op_mvoid(arg4, &cols);
+
+   for(auto pr : cols)
+     _this->csv_field_setters_.m_void_supplement[pr] = {arg1, arg2, arg3, arg4};
    return *this;
   }
 
@@ -1062,7 +1112,7 @@ private:
 
   _define_setters operator () (m_QString_u2_type arg)
   {
-   ops_QString_u2(Props::m_QString_u2_n0, arg);
+   ops_QString_u2(Props::m_QString_u2, arg);
    return *this;
   }
 

@@ -137,7 +137,13 @@ int main(int argc, char *argv[])
   [10]  (& NJ_TRI_Site::set_flag <NJ_TRI_Site::on_tribal_land>)
 
 
-  [18] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>)              // csv col 18
+  [18] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>,
+        & NJ_TRI_Site::clear_flag <NJ_TRI_Site::federal_facility>,
+
+        & NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>
+        )
+
+
   [35] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::elemental_metal_included>)      // csv col 35
   [39] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::clean_air_act_chemical>)        // csv col 39
   [41] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::classified_as_metal>)           // csv col 41

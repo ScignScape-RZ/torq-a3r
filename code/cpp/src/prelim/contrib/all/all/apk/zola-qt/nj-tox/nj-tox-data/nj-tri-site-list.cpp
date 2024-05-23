@@ -121,9 +121,42 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
      {
      case decltype(csv_field_setters_)::Proc_Options::m_void:
       {
+       auto afs = define_setters_data_.affirmative_flag_strings;
+       auto acs = define_setters_data_.affirmative_case_sensitive_flag_strings;
+
+       auto ffs = define_setters_data_.falsifying_flag_strings;
+       auto fcs = define_setters_data_.falsifying_case_sensitive_flag_strings;
+
        auto it1 = mds.m_void.find({column_key, index});
        if(it1 != mds.m_void.end())
-         (site.**it1)();
+       {
+        QString lc = line[column];
+
+        auto vec = mds.m_void_supplement.value({column_key, index});
+        if(vec.isEmpty())
+          vec = {*it1};
+
+        u2 sz = vec.size();
+        u1 offset = sz >= 4? 1 : 0;
+
+        QVector<u2> indices;
+
+        if(offset) // //  if there's 4, the 0 index is called before others
+          indices.push_back(0);
+
+        if( (sz > offset) && (afs.contains(lc.toLower()) || acs.contains(lc)) )
+          indices.push_back(offset);
+
+        else if( (sz > (offset + 1) ) && (ffs.contains(lc.toLower()) || fcs.contains(lc)) )
+          indices.push_back(offset + 1);
+
+        // //  a "finally" case called for both affirmative and falsifying
+        if(sz > (offset + 2))
+          indices.push_back(offset + 2);
+
+        for(u2 i : indices)
+          (site.*(vec[i]))();
+       }
       }
       break;
 

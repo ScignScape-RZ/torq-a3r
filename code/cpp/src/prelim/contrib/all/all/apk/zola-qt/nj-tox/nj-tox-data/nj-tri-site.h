@@ -70,14 +70,43 @@ Flags_List(K_MACRO)
   _set_flag_(fv);
  }
 
- void _set_flag_(Flag_Values fv)
+ template<Flag_Values fv>
+ bool get_flag()
+ {
+  return _get_flag_(fv);
+ }
+
+ template<Flag_Values fv>
+ void clear_flag()
+ {
+  _set_flag_(fv, false);
+ }
+
+ template<Flag_Values fv>
+ void toggle_flag()
+ {
+  _set_flag_(fv, !get_flag<fv>());
+ }
+
+ void _set_flag_(Flag_Values fv, bool t_or_f = true)
  {
   switch(fv)
   {
-#define K_MACRO(k) case Flag_Values::k: flags.k = true; break;
+#define K_MACRO(k) case Flag_Values::k: flags.k = t_or_f; break;
 Flags_List(K_MACRO)
 #undef K_MACRO
   default: break;
+  }
+ }
+
+ bool _get_flag_(Flag_Values fv)
+ {
+  switch(fv)
+  {
+#define K_MACRO(k) case Flag_Values::k: return flags.k;
+Flags_List(K_MACRO)
+#undef K_MACRO
+  default: return false;
   }
  }
 
