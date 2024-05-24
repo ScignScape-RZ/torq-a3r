@@ -10,6 +10,7 @@
 _define_setters_data::_define_setters_data()
    : last_column({0, 1, 1}), column_resolver(nullptr), // //z
      current_arg_state(Arg_State::Init),
+     multi_call_count(0),
      hanging_plus_count(0), suspended_plus_count(0),
      froze_pre_arg(0), froze_pre_arg_ptr(nullptr),
      string_options_count(0)
@@ -162,19 +163,41 @@ _define_setters_data::Arg_State _define_setters_data::recollapse_state(Arg_State
 }
 
 
+bool _define_setters_data::check_multi()
+{
+ if(multi_call_count)
+ {
+  ++multi_call_count;
+  for(u2x3& col : held_arg)
+    col.third = multi_call_count;
+  return true;
+ }
+ return false;
+}
+
+
 void _define_setters_data::reset(const QVector<u2x3>& lc)
 {
- reset(lc.isEmpty()? u2x3{0, 1} : lc.last());
+ if(check_multi())
+   return;
+
+ reset(lc.isEmpty()? u2x3{0, 1, 1} : lc.last());
 }
 
 void _define_setters_data::reset(u2x3 lc)
 {
+ if(check_multi())
+   return;
+
  last_column = lc;
  reset();
 }
 
 void _define_setters_data::reset()
 {
+ if(check_multi())
+   return;
+
  current_arg_state = Arg_State::Init;
  held_arg.clear();
  held_range.clear();

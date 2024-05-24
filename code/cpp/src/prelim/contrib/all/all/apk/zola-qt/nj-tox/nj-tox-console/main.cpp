@@ -28,7 +28,12 @@ int main(int argc, char *argv[])
 
  ntsl.define_setters()
 
-    [1]  (& NJ_TRI_Site::set_year)
+    [1]  ++
+         (& NJ_TRI_Site::set_year)
+         (& NJ_TRI_Site::set_year)
+         (& NJ_TRI_Site::set_year)
+    ()
+
     [2]  (& NJ_TRI_Site::set_trifd)
     [3]  (& NJ_TRI_Site::set_frs_id)
     [4]  (& NJ_TRI_Site::set_facility_name)
@@ -137,15 +142,13 @@ int main(int argc, char *argv[])
   [10]  (& NJ_TRI_Site::set_flag <NJ_TRI_Site::on_tribal_land>)
 
 
-//  [18] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>,
-//        & NJ_TRI_Site::clear_flag <NJ_TRI_Site::federal_facility>,
-//        & NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>
-//        )
+  [18]  (& NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>)
 
-  [18] .pre (& NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>)
-       .True (& NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>)
-       .False (& NJ_TRI_Site::clear_flag <NJ_TRI_Site::federal_facility>)
-       .fin (& NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>)
+//  [18] ++
+//       (& NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>)
+//       (& NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>)
+//       (& NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>)
+//   ()
 
 
   [35] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::elemental_metal_included>)      // csv col 35

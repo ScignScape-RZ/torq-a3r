@@ -149,6 +149,8 @@ struct _define_setters_data
   Hanging_To = (u1) Arg_State::Hanging_To
  };
 
+ //enum class
+
  static Arg_State add_state(Arg_State prior, Arg_State new_state);
  static Arg_State expand_state(Arg_State prior, Arg_State new_state);
  static Arg_State recollapse_state(Arg_State& prior);
@@ -186,8 +188,13 @@ struct _define_setters_data
  QSet<QString> falsifying_flag_strings;
  QSet<QString> falsifying_case_sensitive_flag_strings;
 
+ u2 multi_call_count;
 
-
+// u2 multi_call_count_adj()
+// {
+//  // //  0 -> 1, everything else the same
+//  return multi_call_count + !multi_call_count;
+// }
 
  QSet<u2x3> n0_overrides;
 
@@ -195,6 +202,17 @@ struct _define_setters_data
  QVector<QPair<u2, u2>> held_range;
  QVector<s4> held_pre;
  QVector<QString> held_string;
+
+ QVector<u2x3> carried_arg;
+
+ void check_reuse_carry()
+ {
+  if(held_arg.isEmpty())
+  {
+   held_arg = carried_arg;
+   add_state(Arg);
+  }
+ }
 
  u2 hanging_plus_count;
  u2 suspended_plus_count;
@@ -223,6 +241,8 @@ struct _define_setters_data
  void reset(const QVector<u2x3>& lc);
  void reset(u2x3 lc);
  void reset();
+
+ bool check_multi();
 
  void freeze_pre_arg()
  {
@@ -864,7 +884,7 @@ private:
    switch (dsd.current_arg_state)
    {
    case _define_setters_data::Arg_State::Init:
-    dsd.held_arg.push_back({dsd.last_column.first + 1, 1, 1}); // //z
+    dsd.held_arg.push_back({dsd.last_column.first + 1, 1, 1}); //??dsd.multi_call_count_adj()}); // //z
     // //  fallthrough
    case _define_setters_data::Arg_State::A:
     dsd.get_current_arg(cols);
@@ -1069,7 +1089,7 @@ private:
 
     dsd.held_arg.resize(index + diff);
     for(u2 i = min + 1; i <= max; ++i, ++index)
-      dsd.held_arg[index] = {i, 1}; //? 1?
+      dsd.held_arg[index] = {i, 1, 1}; //??dsd.multi_call_count}; //? 1?
    }
    else
    {
@@ -1079,7 +1099,7 @@ private:
      counts[arg].push_back(1);
      c = counts[arg].size();
     }
-    else if(props.contains({arg, 1, 1}))
+    else if(props.contains({arg, 1, 1})) //?? dsd.multi_call_count
     {
      counts[arg] = {1, 1};
      c = 2;
@@ -1134,7 +1154,24 @@ private:
   {
    auto& dsd = _this->define_setters_data_;
 
-   if(dsd.held_arg.isEmpty())
+   if(dsd.multi_call_count)
+   {
+    auto& counts = _this->csv_field_setters_.proc_options_counts;
+    auto& cols = dsd.held_arg;
+
+    for(u2x3 col : cols)
+    {
+     QVector<u2>& vec = counts[col.first];
+     if(vec.size() < col.second)
+       vec.resize(col.second);
+     vec[col.second - 1] = dsd.multi_call_count - 1;
+    }
+
+    dsd.multi_call_count = 0;
+    dsd.reset(dsd.held_arg);
+   }
+
+   else if(dsd.held_arg.isEmpty())
    {
     // // anything here?
    }
@@ -1172,8 +1209,11 @@ private:
   }
 
 
-  _define_setters pre (m_void_type arg)
+  _define_setters Pre (m_void_type arg)
   {
+   auto& dsd = _this->define_setters_data_;
+   dsd.check_reuse_carry();
+
    typedef typename decltype(_this->csv_field_setters_)::Call_Specs specs;
 
    QVector<u2x3> cols;
@@ -1181,11 +1221,16 @@ private:
 
    for(auto pr : cols)
      _this->csv_field_setters_.m_void_supplement[pr].push_back({arg, specs::Void_Pre});
+
+   dsd.carried_arg = cols;
    return *this;
   }
 
   _define_setters True (m_void_type arg)
   {
+   auto& dsd = _this->define_setters_data_;
+   dsd.check_reuse_carry();
+
    typedef typename decltype(_this->csv_field_setters_)::Call_Specs specs;
 
    QVector<u2x3> cols;
@@ -1193,11 +1238,16 @@ private:
 
    for(auto pr : cols)
      _this->csv_field_setters_.m_void_supplement[pr].push_back({arg, specs::Void_True});
+
+   dsd.carried_arg = cols;
    return *this;
   }
 
   _define_setters False (m_void_type arg)
   {
+   auto& dsd = _this->define_setters_data_;
+   dsd.check_reuse_carry();
+
    typedef typename decltype(_this->csv_field_setters_)::Call_Specs specs;
 
    QVector<u2x3> cols;
@@ -1205,11 +1255,16 @@ private:
 
    for(auto pr : cols)
      _this->csv_field_setters_.m_void_supplement[pr].push_back({arg, specs::Void_False});
+
+   dsd.carried_arg = cols;
    return *this;
   }
 
-  _define_setters fin (m_void_type arg)
+  _define_setters Fin (m_void_type arg)
   {
+   auto& dsd = _this->define_setters_data_;
+   dsd.check_reuse_carry();
+
    typedef typename decltype(_this->csv_field_setters_)::Call_Specs specs;
 
    QVector<u2x3> cols;
@@ -1217,6 +1272,8 @@ private:
 
    for(auto pr : cols)
      _this->csv_field_setters_.m_void_supplement[pr].push_back({arg, specs::Void_Post});
+
+   dsd.carried_arg = cols;
    return *this;
   }
 
@@ -1355,8 +1412,15 @@ private:
 
   _define_setters operator ++ (int)
   {
-   _this->define_setters_data_.add_state(_define_setters_data::Pre_Arg);
-   _this->define_setters_data_.expand_state(_define_setters_data::Arg_State::Hanging_Plus);
+   auto& dsd = _this->define_setters_data_;
+   if(dsd.current_arg_state == _define_setters_data::Arg_State::Init)
+   {
+    dsd.add_state(_define_setters_data::Pre_Arg);
+    dsd.expand_state(_define_setters_data::Arg_State::Hanging_Plus);
+   }
+   else
+     ++dsd.multi_call_count;
+
    return *this;
   }
 
