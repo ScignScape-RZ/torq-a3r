@@ -127,7 +127,7 @@ s4 _define_setters_data::get_current_arg(QVector<u2x3>& result,
  {
   u2 c = column_resolver(QVariant(key));
 
-  result[count] = {c, counts_callback(c)};
+  result[count] = {c, counts_callback(c), 1};
   distinct.insert(result[count].first);
   ++count;
  }
@@ -163,40 +163,49 @@ _define_setters_data::Arg_State _define_setters_data::recollapse_state(Arg_State
 }
 
 
-bool _define_setters_data::check_multi()
+//bool _define_setters_data::check_multi(QVector<u2x3>& vec)
+//{
+// if(multi_call_count)
+// {
+//  ++multi_call_count;
+//  for(u2x3& col : vec)
+//    col.third = multi_call_count;
+//  return true;
+// }
+// return false;
+//}
+
+
+void _define_setters_data::reset(u2* check_multi, const QVector<u2x3>& lc)
 {
- if(multi_call_count)
+ if(check_multi && *check_multi)
  {
-  ++multi_call_count;
-  for(u2x3& col : held_arg)
-    col.third = multi_call_count;
-  return true;
+  ++*check_multi;
+  return;
  }
- return false;
+
+ reset(nullptr, lc.isEmpty()? u2x3{0, 1, 1} : lc.last());
 }
 
-
-void _define_setters_data::reset(const QVector<u2x3>& lc)
+void _define_setters_data::reset(u2* check_multi, u2x3 lc)
 {
- if(check_multi())
-   return;
-
- reset(lc.isEmpty()? u2x3{0, 1, 1} : lc.last());
-}
-
-void _define_setters_data::reset(u2x3 lc)
-{
- if(check_multi())
-   return;
+ if(check_multi && *check_multi)
+ {
+  ++*check_multi;
+  return;
+ }
 
  last_column = lc;
- reset();
+ reset(nullptr);
 }
 
-void _define_setters_data::reset()
+void _define_setters_data::reset(u2* check_multi)
 {
- if(check_multi())
-   return;
+ if(check_multi && *check_multi)
+ {
+  ++*check_multi;
+  return;
+ }
 
  current_arg_state = Arg_State::Init;
  held_arg.clear();
@@ -226,7 +235,7 @@ const QVector<s4>& _define_setters_data::held_range_to_vector(QVector<u2x3>& res
   for(s4 i = min, r = 0; i <= max; ++i, ++index, ++r)
   {
    _range[r] = i - pr.first;
-   result[index] = {i, 1};
+   result[index] = {i, 1, 1};
   }
  }
 

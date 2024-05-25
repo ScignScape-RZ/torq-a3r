@@ -107,8 +107,10 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
 
   ++count;
 
-  if(max && count == max)
+  if(max && count > max)
     break;
+
+
 
   sites_.push_back({});
 
@@ -125,6 +127,10 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
    auto ffs = define_setters_data_.falsifying_flag_strings;
    auto fcs = define_setters_data_.falsifying_case_sensitive_flag_strings;
 
+   if(column_key == 27)
+   {
+    qDebug() << 27;
+   }
 
    u2 c = cs.size();
    for(u2 index = 1; index <= c; ++index)
@@ -206,7 +212,7 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
       {
        auto it1 = mds.n_void.find({column_key, index, index1});
        if(it1 != mds.n_void.end())
-         (**it1)();
+         (**it1)(&site);
       }
       break;
 
@@ -216,7 +222,7 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
        if(it1 != mds.n_void_n0.end())
        {
         if(!line[column].isEmpty())
-          (**it1)();
+          (**it1)(&site);
        }
       }
       break;
@@ -225,7 +231,7 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
       {
        auto it1 = mds.n_void_indexed.find({{column_key, index, index1}, line[column]}); // //z
        if(it1 != mds.n_void_indexed.end())
-         (**it1)();
+         (**it1)(&site);
       }
       break;
 
@@ -259,7 +265,7 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
 
      case decltype(csv_field_setters_)::Proc_Options::m_QString_u2_n0:
       {
-       auto it1 = mds.m_QString_u2_n0.find({column_key, index});
+       auto it1 = mds.m_QString_u2_n0.find({column_key, index, index1});
        if(it1 != mds.m_QString_u2_n0.end() && !line[column].isEmpty())
          (site.**it1)(line[column], mds.preset_args_u2.value({column_key, index, index1})); //? column_key));
       }
@@ -267,7 +273,7 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
 
      case decltype(csv_field_setters_)::Proc_Options::m_QString_QString:
       {
-       auto it1 = mds.m_QString_QString.find({column_key, index});
+       auto it1 = mds.m_QString_QString.find({column_key, index, index1});
        if(it1 != mds.m_QString_QString.end())
          (site.**it1)(line[column], mds.preset_args_QString.value({column_key, index, index1}));
       }
@@ -275,7 +281,7 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
 
      case decltype(csv_field_setters_)::Proc_Options::m_QString_QString_n0:
       {
-       auto it1 = mds.m_QString_QString_n0.find({column_key, index});
+       auto it1 = mds.m_QString_QString_n0.find({column_key, index, index1});
        if(it1 != mds.m_QString_QString_n0.end() && !line[column].isEmpty())
          (site.**it1)(line[column], mds.preset_args_QString.value({column_key, index, index1})); // //z
       }
@@ -285,7 +291,7 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
       {
        auto it1 = mds.n_QString.find({column_key, index, index1}); // //z
        if(it1 != mds.n_QString.end())
-         (**it1)(line[column]);
+         (**it1)(&site, line[column]);
       }
       break;
 
@@ -293,7 +299,7 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
       {
        auto it1 = mds.n_QString_u2.find({column_key, index, index1}); // //z
        if(it1 != mds.n_QString_u2.end())
-         (**it1)(line[column], mds.preset_args_u2.value({column_key, index, index1})); //? ,column_key // //z
+         (**it1)(&site, line[column], mds.preset_args_u2.value({column_key, index, index1})); //? ,column_key // //z
       }
       break;
 
@@ -301,7 +307,7 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
       {
        auto it1 = mds.n_QString_QString.find({column_key, index, index1}); // //z
        if(it1 != mds.n_QString_QString.end())
-         (**it1)(line[column], mds.preset_args_QString.value({column_key, index, index1})); // //z
+         (**it1)(&site, line[column], mds.preset_args_QString.value({column_key, index, index1})); // //z
       }
       break;
 
@@ -334,6 +340,7 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
 //    (site.**it_0)(line[column]);
 //   }
 //  }
+
 
  }
 

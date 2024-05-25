@@ -10,6 +10,8 @@
 
 #include <QString>
 
+#include <QDebug>
+
 #include "global-types.h"
 
 #include "accessors.h"
@@ -111,9 +113,20 @@ Flags_List(K_MACRO)
  }
 
 
- enum class Horizontal_Datum_Options {
-  N_A = 0, NAD27 = 1, NAD83 = 2,
-  WGS84 = 4, Other = 8,
+#define Horizontal_Datum_Options_List(m) \
+  m( NAD27 ,1 ) \
+  m( NAD83 ,2 ) \
+  m( WSG84 ,4 ) \
+  m( Other ,8 ) \
+
+
+
+ enum class Horizontal_Datum_Options
+ {
+  N_A = 0,
+#define KV_MACRO(k, v) k = v,
+  Horizontal_Datum_Options_List(KV_MACRO)
+#undef KV_MACRO
  };
 
  enum class Transfer_or_Release_Descriptions {
@@ -130,68 +143,68 @@ Flags_List(K_MACRO)
 
 
 #define Discharge_Descriptions_List(m) \
-  m(Fugitive_Air, 48) \
-  m(Stack_Air, 49) \
-  m(Surface_Water, 50) \
-  m(Underground, 51) \
-  m(Underground_Class_I, 52) \
-  m(Underground_Class_II_to_V, 53) \
-  m(Landfills, 54) \
-  m(Landfills_RCRA_C, 55) \
-  m(Landfills_Other, 56) \
-  m(Land_Treatment, 57) \
-  m(Surface_Impoundment, 58) \
-  m(Surface_Impoundment_RCRA, 59) \
-  m(Surface_Impoundment_Other, 60) \
-  m(Other_Disposal, 61) \
+  m(Fugitive_Air ,48) \
+  m(Stack_Air ,49) \
+  m(Surface_Water ,50) \
+  m(Underground ,51) \
+  m(Underground_Class_I ,52) \
+  m(Underground_Class_II_to_V ,53) \
+  m(Landfills ,54) \
+  m(Landfills_RCRA_C ,55) \
+  m(Landfills_Other ,56) \
+  m(Land_Treatment ,57) \
+  m(Surface_Impoundment ,58) \
+  m(Surface_Impoundment_RCRA ,59) \
+  m(Surface_Impoundment_Other ,60) \
+  m(Other_Disposal ,61) \
 
 
 #define Offsite_Keys_List(m) \
- m(M10, 66, Disposal) \
- m(M41, 67, Disposal) \
- m(M62, 68, Disposal) \
- m(M40_metal, 69, Disposal) \
- m(M61_metal, 70, Disposal) \
- m(M71, 71, Disposal) \
- m(M81, 72, Disposal) \
- m(M82, 73, Disposal) \
- m(M72, 74, Disposal) \
- m(M63, 75, Disposal) \
- m(M66, 76, Disposal) \
- m(M67, 77, Disposal) \
- m(M64, 78, Disposal) \
- m(M65, 79, Disposal) \
- m(M73, 80, Disposal) \
- m(M79, 81, Disposal) \
- m(M90, 82, Disposal) \
- m(M94, 83, Disposal) \
- m(M99, 84, Disposal) \
- m(M20, 86, Recycling) \
- m(M24, 87, Recycling) \
- m(M26, 88, Recycling) \
- m(M28, 89, Recycling) \
- m(M93, 90, Recycling) \
- m(M56, 92, Energy_Recovery) \
- m(M92, 93, Energy_Recovery) \
- m(M40_non_metal, 95, Treatment) \
- m(M50, 96, Treatment) \
- m(M54, 97, Treatment) \
- m(M61_non_metal, 98, Treatment) \
- m(M69, 99, Treatment) \
- m(M95, 100, Treatment) \
+ m(M10 ,66 ,Disposal) \
+ m(M41 ,67 ,Disposal) \
+ m(M62 ,68 ,Disposal) \
+ m(M40_metal ,69 ,Disposal) \
+ m(M61_metal ,70 ,Disposal) \
+ m(M71 ,71 ,Disposal) \
+ m(M81 ,72 ,Disposal) \
+ m(M82 ,73 ,Disposal) \
+ m(M72 ,74 ,Disposal) \
+ m(M63 ,75 ,Disposal) \
+ m(M66 ,76 ,Disposal) \
+ m(M67 ,77 ,Disposal) \
+ m(M64 ,78 ,Disposal) \
+ m(M65 ,79 ,Disposal) \
+ m(M73 ,80 ,Disposal) \
+ m(M79 ,81 ,Disposal) \
+ m(M90 ,82 ,Disposal) \
+ m(M94 ,83 ,Disposal) \
+ m(M99 ,84 ,Disposal) \
+ m(M20 ,86 ,Recycling) \
+ m(M24 ,87 ,Recycling) \
+ m(M26 ,88 ,Recycling) \
+ m(M28 ,89 ,Recycling) \
+ m(M93 ,90 ,Recycling) \
+ m(M56 ,92 ,Energy_Recovery) \
+ m(M92 ,93 ,Energy_Recovery) \
+ m(M40_non_metal ,95 ,Treatment) \
+ m(M50 ,96 ,Treatment) \
+ m(M54 ,97 ,Treatment) \
+ m(M61_non_metal ,98 ,Treatment) \
+ m(M69 ,99 ,Treatment) \
+ m(M95 ,100 ,Treatment) \
 
 
 #define Onsite_and_Offsite_Keys_List(m) \
-  m(Onsite_Contained, 106, Releases_Contained) \
-  m(Onsite_Other, 107, Releases_Other) \
-  m(Offsite_Contained, 108, Releases_Contained) \
-  m(Offsite_Other, 109, Releases_Other) \
-  m(Onsite_Energy_Recovery, 110, Energy_Recovery) \
-  m(Offsite_Energy_Recovery, 111, Energy_Recovery) \
-  m(Onsite_Recycling, 112, Recycling) \
-  m(Offsite_Recycling, 113, Recycling) \
-  m(Onsite_Treatment, 114, Treatment) \
-  m(Offsite_Treatment, 115, Treatment) \
+  m(Onsite_Contained ,106 ,Releases_Contained) \
+  m(Onsite_Other ,107 ,Releases_Other) \
+  m(Offsite_Contained ,108 ,Releases_Contained) \
+  m(Offsite_Other ,109 ,Releases_Other) \
+  m(Onsite_Energy_Recovery ,110 ,Energy_Recovery) \
+  m(Offsite_Energy_Recovery ,111 ,Energy_Recovery) \
+  m(Onsite_Recycling ,112 ,Recycling) \
+  m(Offsite_Recycling ,113 ,Recycling) \
+  m(Onsite_Treatment ,114 ,Treatment) \
+  m(Offsite_Treatment ,115 ,Treatment) \
 
 
  enum class Offsite_Keys {
@@ -383,9 +396,9 @@ public:
 
  NJ_TRI_Site();
 
- void set_test(QString val, u2 col)
+ void set_test(QString val) //, u2 col)
  {
-
+  qDebug() << "val = " << val;
  }
 
  ACCESSORS(u2 ,year)
@@ -411,9 +424,20 @@ public:
  ACCESSORS(Horizontal_Datum_Options ,horizontal_datum)
  ACCESSORS__DECLARE(QString ,horizontal_datum_string)
 
+ Horizontal_Datum_Options parse_horizontal_datum(QString key)
+ {
+  static QMap<QString, Horizontal_Datum_Options> static_map {{
+#define K_MACRO(k, v) {#k, Horizontal_Datum_Options::k},
+  Horizontal_Datum_Options_List(K_MACRO)
+#undef K_MACRO
+  }};
+
+  return static_map.value(key, Horizontal_Datum_Options::N_A);
+ }
+
  void read_horizontal_datum(QString s)
  {
-
+  set_horizontal_datum(parse_horizontal_datum(s));
  }
 
  ACCESSORS__RGET(Parent_Company ,parent_company)

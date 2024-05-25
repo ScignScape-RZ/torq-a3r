@@ -28,11 +28,13 @@ int main(int argc, char *argv[])
 
  ntsl.define_setters()
 
-    [1]  ++
-         (& NJ_TRI_Site::set_year)
-         (& NJ_TRI_Site::set_year)
-         (& NJ_TRI_Site::set_year)
-    ()
+//    [1]  ++
+//         (& NJ_TRI_Site::set_year)
+//         (& NJ_TRI_Site::set_year)
+//         (& NJ_TRI_Site::set_year)
+//    ()
+
+    [1]  (& NJ_TRI_Site::set_year)
 
     [2]  (& NJ_TRI_Site::set_trifd)
     [3]  (& NJ_TRI_Site::set_frs_id)

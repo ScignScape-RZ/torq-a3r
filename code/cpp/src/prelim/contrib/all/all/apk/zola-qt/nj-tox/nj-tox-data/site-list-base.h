@@ -238,11 +238,11 @@ struct _define_setters_data
 
  const QVector<s4>& held_range_to_vector(QVector<u2x3>& result);
 
- void reset(const QVector<u2x3>& lc);
- void reset(u2x3 lc);
- void reset();
+ void reset(u2* check_multi, const QVector<u2x3>& lc);
+ void reset(u2* check_multi, u2x3 lc);
+ void reset(u2* check_multi);
 
- bool check_multi();
+// bool check_multi(QVector<u2x3>& vec);
 
  void freeze_pre_arg()
  {
@@ -373,21 +373,21 @@ struct csv_field_setters_by_column
 
  QMap<u2x3, void (SITE_Type::*)(QString, u2)> m_QString_u2, m_QString_u2_n0;
  QMap<u2x3, void (SITE_Type::*)(QString, QString)> m_QString_QString, m_QString_QString_n0;
- QMap<u2x3, void (*)(QString, u2)> n_QString_u2, n_QString_u2_n0;
- QMap<u2x3, void (*)(QString, QString)> n_QString_QString, n_QString_QString_n0;
+ QMap<u2x3, void (*)(SITE_Type*, QString, u2)> n_QString_u2, n_QString_u2_n0;
+ QMap<u2x3, void (*)(SITE_Type*, QString, QString)> n_QString_QString, n_QString_QString_n0;
 
  QMap<u2x3, void (SITE_Type::*)(QString)> m_QString, m_QString_n0;
- QMap<u2x3, void (*)(QString)> n_QString, n_QString_n0;
+ QMap<u2x3, void (*)(SITE_Type*, QString)> n_QString, n_QString_n0;
 
  QMap<u2x3, void (SITE_Type::*)()> m_void, m_void_n0;
- QMap<u2x3, void (*)()> n_void, n_void_n0;
+ QMap<u2x3, void (*)(SITE_Type*)> n_void, n_void_n0;
 
  QMap<u2x3, QVector<QPair<void (SITE_Type::*)(), Call_Specs>>> m_void_supplement;
- QMap<u2x3, QVector<QPair<void (*)(), Call_Specs>>> n_void_supplement;
+ QMap<u2x3, QVector<QPair<void (*)(SITE_Type*), Call_Specs>>> n_void_supplement;
 
 
  QMap<QPair<u2x3, QString>, void (SITE_Type::*)()> m_void_indexed;
- QMap<QPair<u2x3, QString>, void (*)()> n_void_indexed;
+ QMap<QPair<u2x3, QString>, void (*)(SITE_Type*)> n_void_indexed;
 
  QMap<u2x3, QPair<Proc_Options, Call_Specs>> proc_options;
 
@@ -407,10 +407,28 @@ struct csv_field_setters_by_column
 
  template<typename FN_Type>
  void add(Proc_Options props, const QVector<u2x3>& cols,
+   u2* multi_count,
    const QSet<u2x3>& n0_overrides,
    FN_Type fn, const void* pre = nullptr,
    const void* adjunct = nullptr, u2 insert_count = 0)
  {
+  std::function<void(u2x3&)> reconcile_multi_count = (multi_count && *multi_count)?
+    [multi_count](u2x3& col)
+  {
+   col.third = *multi_count;
+  } : (std::function<void(u2x3&)>) [](u2x3& col) {};
+
+  //(std::function<void(u2x3&)>) nullptr;
+
+//  : nullptr;
+
+//  auto reconcile_multi_count =  [_reconcile_multi_count](u2x3& col)
+//  {
+//   if(_reconcile_multi_count)
+//     _reconcile_multi_count(col);
+//  };
+
+
   switch(props)
   {
 
@@ -435,6 +453,7 @@ struct csv_field_setters_by_column
      u2 i = 0; \
      for(u2x3 col : cols) \
      { \
+      reconcile_multi_count(col); \
       m##_indexed[{col, qsv->value(i)}] = (decltype(m[col])) fn; \
       ++i; \
       proc_options[col] = {check_n0_override(n0_overrides, col, Proc_Options::m), Call_Specs::Generic}; \
@@ -447,7 +466,8 @@ struct csv_field_setters_by_column
 
 #define CASE_MACRO(m) \
    case Proc_Options::m: \
-    for(u2x3 col : cols) { m[col] = (decltype(m[col])) fn; \
+    for(u2x3 col : cols) { reconcile_multi_count(col); \
+      m[col] = (decltype(m[col])) fn; \
       proc_options[col] = {Proc_Options::m, Call_Specs::Generic}; check_n0_switch(n0_overrides, col, props);  }  break; \
 
   CASE_MACRO(m_void)
@@ -845,32 +865,34 @@ private:
    switch (dsd.current_arg_state)
    {
    case _define_setters_data::Arg_State::AS:
-    _this->add_setter(props, dsd.held_arg, dsd.n0_overrides, fn, &dsd.held_string);
+    _this->add_setter(props, dsd.held_arg, &dsd.multi_call_count, dsd.n0_overrides, fn, &dsd.held_string);
     if(cols)
     {
      QVector<u2x3> c = dsd.held_arg;
      *cols = c;
     }
-    dsd.reset(dsd.held_arg);
+    dsd.reset(&dsd.multi_call_count, dsd.held_arg);
     break;
 
+    // //  is this a case where &dsd.multi_call_count shuold be replaced by nullptr?
    case _define_setters_data::Arg_State::S:
-    _this->add_setter(props, {dsd.last_column}, dsd.n0_overrides, fn, &dsd.held_string);
+    _this->add_setter(props, {dsd.last_column}, &dsd.multi_call_count, dsd.n0_overrides, fn, &dsd.held_string);
     if(cols)
       *cols = {dsd.last_column};
-    dsd.reset(dsd.last_column);
+    dsd.reset(&dsd.multi_call_count, dsd.last_column);
     break;
 
     // // anything else?
 
    default: //  mostly Arg_State::A, right?
-    _this->add_setter(props, dsd.held_arg, dsd.n0_overrides, fn);
+    _this->add_setter(props, dsd.held_arg, &dsd.multi_call_count, dsd.n0_overrides, fn);
     if(cols)
     {
+     // //  don't want an assign-ref-to-ref situation ....
      QVector<u2x3> c = dsd.held_arg;
      *cols = c;
     }
-    dsd.reset(dsd.held_arg);
+    dsd.reset(&dsd.multi_call_count, dsd.held_arg);
    }
   }
 
@@ -888,15 +910,15 @@ private:
     // //  fallthrough
    case _define_setters_data::Arg_State::A:
     dsd.get_current_arg(cols);
-    _this->add_setter(props, cols, dsd.n0_overrides, fn);
+    _this->add_setter(props, cols, &dsd.multi_call_count, dsd.n0_overrides, fn);
     break;
 
    case _define_setters_data::Arg_State::R:
     dsd.held_range_to_vector(cols);
-    _this->add_setter(props, cols, dsd.n0_overrides, fn);
+    _this->add_setter(props, cols, &dsd.multi_call_count, dsd.n0_overrides, fn);
     break;
    }
-   dsd.reset(cols);
+   dsd.reset(&dsd.multi_call_count, cols);
   }
 
 
@@ -910,28 +932,28 @@ private:
    {
    case _define_setters_data::Arg_State::A:
     dsd.get_current_arg(cols);
-    _this->add_setter(props, cols, dsd.n0_overrides, arg, nullptr, nullptr, cols.size());
+    _this->add_setter(props, cols, &dsd.multi_call_count, dsd.n0_overrides, arg, nullptr, nullptr, cols.size());
     break;
 
    case _define_setters_data::Arg_State::PA:
     dsd.get_current_arg(cols);
     if(dsd.held_pre.isEmpty())
-      _this->add_setter(props, cols, dsd.n0_overrides, arg, nullptr, nullptr, dsd.hanging_plus_count);
+      _this->add_setter(props, cols, &dsd.multi_call_count, dsd.n0_overrides, arg, nullptr, nullptr, dsd.hanging_plus_count);
     else
-      _this->add_setter(props, cols, dsd.n0_overrides, arg, &dsd.held_pre, dsd.froze_pre_arg_ptr);
+      _this->add_setter(props, cols, &dsd.multi_call_count, dsd.n0_overrides, arg, &dsd.held_pre, dsd.froze_pre_arg_ptr);
     break;
 
    case _define_setters_data::Arg_State::R:
     {
      const QVector<s4>& r = dsd.held_range_to_vector(cols);
-     _this->add_setter(props, cols, dsd.n0_overrides, arg, &r);
+     _this->add_setter(props, cols, &dsd.multi_call_count, dsd.n0_overrides, arg, &r);
     }
     break;
 
    default:
     break;
    }
-   dsd.reset(cols);
+   dsd.reset(&dsd.multi_call_count, cols);
   }
 
   template<typename FN_Type>
@@ -957,23 +979,23 @@ private:
       //     return a nonzero value if the strings
       //     are matched by column_resolver lookups
      if(dsd.get_current_arg(cols, hs, counts_callback))
-       _this->add_setter(props, cols, dsd.n0_overrides, arg, &hs);
+       _this->add_setter(props, cols, &dsd.multi_call_count, dsd.n0_overrides, arg, &hs);
      else
-       _this->add_setter(props, cols, dsd.n0_overrides, arg, nullptr, nullptr, cols.count());
+       _this->add_setter(props, cols, &dsd.multi_call_count, dsd.n0_overrides, arg, nullptr, nullptr, cols.count());
     }
     break;
 
    // //  what's the right way to handle mixed in these cases?
    case _define_setters_data::Arg_State::SA:
     dsd.get_current_arg(cols);
-    _this->add_setter(props, cols, dsd.n0_overrides, arg, &dsd.held_string);
+    _this->add_setter(props, cols, &dsd.multi_call_count, dsd.n0_overrides, arg, &dsd.held_string);
     break;
    // //  case AS and so on ...
 
    default:
     break;
    }
-   dsd.reset(cols);
+   dsd.reset(&dsd.multi_call_count, cols);
   }
 
   _define_setters operator [] (m_void_type arg)
@@ -1168,7 +1190,7 @@ private:
     }
 
     dsd.multi_call_count = 0;
-    dsd.reset(dsd.held_arg);
+    dsd.reset(nullptr, dsd.held_arg);
    }
 
    else if(dsd.held_arg.isEmpty())
@@ -1480,12 +1502,12 @@ public:
 
  template<typename FN_Type>
  void add_setter(typename decltype(csv_field_setters_)::Proc_Options props,
-    const QVector<u2x3>& cols,
+    const QVector<u2x3>& cols, u2* check_multi_count,
     const QSet<u2x3>& n0_overrides,
     FN_Type fn, const void* pre = nullptr,
     const void* adjunct = nullptr, u2 insert_count = 0)
  {
-  csv_field_setters_.add(props, cols, n0_overrides, fn, pre, adjunct, insert_count);
+  csv_field_setters_.add(props, cols, check_multi_count, n0_overrides, fn, pre, adjunct, insert_count);
  }
 
 
