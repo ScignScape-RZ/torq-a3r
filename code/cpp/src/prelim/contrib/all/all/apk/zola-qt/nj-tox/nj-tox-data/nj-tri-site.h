@@ -16,6 +16,8 @@
 
 #include "accessors.h"
 
+#include "global-macros.h"
+
 #include "flags.h"
 
 //"Site ID","PI Number","PI Name","Address","Home Owner","Muni","County","Latitude","Longitude","loc Size","loc String","Source"
@@ -129,6 +131,38 @@ Flags_List(K_MACRO)
 #undef KV_MACRO
  };
 
+
+#define Classification_Keys_List(m) \
+  m(TRI ,1) \
+  m(PBT ,2) \
+  m(Dioxin ,4) \
+
+ enum class Classification_Keys
+ {
+  N_A = 0,
+#define KV_MACRO(k, v) k = v,
+  Classification_Keys_List(KV_MACRO)
+#undef KV_MACRO
+ };
+
+
+#define Metal_Category_List(m) \
+  m(Metal_Category_1 ,1) \
+  m(Metal_Category_2 ,2) \
+  m(Metal_Category_3 ,4) \
+  m(Metal_Category_4 ,8) \
+
+
+ enum class Metal_Category
+ {
+  N_A = 0,
+#define KV_MACRO(k, v) k = v,
+  Metal_Category_List(KV_MACRO)
+#undef KV_MACRO
+ };
+
+
+
  enum class Transfer_or_Release_Descriptions {
   N_A = 0,
   Disposal = 1,    // csv col 85
@@ -205,6 +239,7 @@ Flags_List(K_MACRO)
   m(Offsite_Recycling ,113 ,Recycling) \
   m(Onsite_Treatment ,114 ,Treatment) \
   m(Offsite_Treatment ,115 ,Treatment) \
+
 
 
  enum class Offsite_Keys {
@@ -334,13 +369,14 @@ private:
 
  QString chemical_name_;   // csv col 34
 
- QString CAS_registry_number_;   // csv col 36
+ QString TRI_chemical_id_;   // csv col 36
+ QString CAS_registry_number_;   // csv col 37
 
- u4 TRI_chemical_id_;   // csv col 37
  u4 SRS_id_;   // csv col 38
 
- QString classification_;   // csv col 40
+ Classification_Keys classification_;   // csv col 40
 
+ Metal_Category metal_category_;   // csv col 42
 
  QMap<Discharge_Descriptions, r8> discharge_amounts_;   // csv cols 48 - 61
 
@@ -424,21 +460,6 @@ public:
  ACCESSORS(Horizontal_Datum_Options ,horizontal_datum)
  ACCESSORS__DECLARE(QString ,horizontal_datum_string)
 
- Horizontal_Datum_Options parse_horizontal_datum(QString key)
- {
-  static QMap<QString, Horizontal_Datum_Options> static_map {{
-#define K_MACRO(k, v) {#k, Horizontal_Datum_Options::k},
-  Horizontal_Datum_Options_List(K_MACRO)
-#undef K_MACRO
-  }};
-
-  return static_map.value(key, Horizontal_Datum_Options::N_A);
- }
-
- void read_horizontal_datum(QString s)
- {
-  set_horizontal_datum(parse_horizontal_datum(s));
- }
 
  ACCESSORS__RGET(Parent_Company ,parent_company)
 
@@ -460,34 +481,115 @@ public:
 
  ACCESSORS__RGET(QVector<u2> ,SIC_codes)
 
- void add_SIC_code(QString s, u2 index)
- {
-  if(SIC_codes_.size() <= index)
-    SIC_codes_.resize(index + 1);
+#define ADD_WITH_RESIZE_2(collection, fname) \
+void fname(QString s, u2 index) \
+{ \
+ if(collection.size() <= index) \
+   collection.resize(index + 1); \
+ collection[index] = s.toInt(); \
+} \
 
-  SIC_codes_[index] = s.toInt();
- }
+#define ADD_WITH_RESIZE_1(parameter) \
+ ADD_WITH_RESIZE_2(parameter##s_, add_##parameter)
+
+#define ADD_WITH_RESIZE(...) \
+  _preproc_CONCAT(ADD_WITH_RESIZE_, _preproc_NUM_ARGS (__VA_ARGS__))(__VA_ARGS__)
+
+
+
+ ADD_WITH_RESIZE(SIC_code)
+
+// void add_SIC_code(QString s, u2 index)
+// {
+//  if(SIC_codes_.size() <= index)
+//    SIC_codes_.resize(index + 1);
+
+//  SIC_codes_[index] = s.toInt();
+// }
 
  ACCESSORS__RGET(QVector<u4> ,NAICS_codes)
+ ADD_WITH_RESIZE(NAICS_code)
 
- void add_NAICS_code(QString s, u2 index)
- {
-  if(NAICS_codes_.size() <= index)
-    NAICS_codes_.resize(index + 1);
+// void add_NAICS_code(QString s, u2 index)
+// {
+//  if(NAICS_codes_.size() <= index)
+//    NAICS_codes_.resize(index + 1);
 
-  NAICS_codes_[index] = s.toInt();
- }
+//  NAICS_codes_[index] = s.toInt();
+// }
+
+
+// Horizontal_Datum_Options parse_horizontal_datum(QString key)
+// {
+//  static QMap<QString, Horizontal_Datum_Options> static_map {{
+//#define K_MACRO(k, v) {#k, Horizontal_Datum_Options::k},
+//  Horizontal_Datum_Options_List(K_MACRO)
+//#undef K_MACRO
+//  }};
+
+//  return static_map.value(key, Horizontal_Datum_Options::N_A);
+// }
+
+// void read_horizontal_datum(QString s)
+// {
+//  set_horizontal_datum(parse_horizontal_datum(s));
+// }
+
+// Classification_Keys parse_classification(QString key)
+// {
+//  static QMap<QString, Classification_Keys> static_map {{
+//#define K_MACRO(k, v) {#k, Classification_Keys::k},
+//  Classification_Keys_List(K_MACRO)
+//#undef K_MACRO
+//  }};
+
+//  return static_map.value(key, Classification_Keys::N_A);
+// }
+
+// void read_classification(QString s)
+// {
+//  set_classification(parse_classification(s));
+// }
+
+#define PARSE_AND_READ(enum_class, sh) \
+enum_class parse_##sh(QString key) \
+{ \
+ static QMap<QString, enum_class> static_map {{ \
+  enum_class##_List(K_MACRO) \
+  }}; \
+  return static_map.value(key, enum_class::N_A); \
+ } \
+void read_##sh(QString s) \
+{ \
+ set_##sh(parse_##sh(s)); \
+} \
+
+#define K_MACRO(k, v) {#k, Classification_Keys::k},
+PARSE_AND_READ(Classification_Keys, classification)
+#undef K_MACRO
+
+
+#define K_MACRO(k, v) {#k, Horizontal_Datum_Options::k},
+PARSE_AND_READ(Horizontal_Datum_Options, horizontal_datum)
+#undef K_MACRO
+
+#define K_MACRO(k, v) {#k, Metal_Category::k},
+PARSE_AND_READ(Metal_Category, metal_category)
+#undef K_MACRO
+
+
 
  ACCESSORS(n8 ,document_control_number)
 
  ACCESSORS(QString ,chemical_name)
 
+ ACCESSORS(QString ,TRI_chemical_id)
  ACCESSORS(QString ,CAS_registry_number)
 
- ACCESSORS(u4 ,TRI_chemical_id)
  ACCESSORS(u4 ,SRS_id)
 
- ACCESSORS(QString ,classification)
+ ACCESSORS(Classification_Keys ,classification)
+ ACCESSORS(Metal_Category ,metal_category)
 
 
  ACCESSORS__RGET(QMap<Discharge_Descriptions, r8> ,discharge_amounts)
@@ -576,7 +678,6 @@ public:
 
  SET_and_STR_ADAPTER_INT(industry_sector_code)
  SET_and_STR_ADAPTER_N8(document_control_number)
- SET_and_STR_ADAPTER_INT(TRI_chemical_id)
  SET_and_STR_ADAPTER_INT(SRS_id)
 
  SET_and_STR_ADAPTER_DBL(onsite_release_total)

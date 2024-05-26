@@ -17,7 +17,6 @@ NJ_TRI_Site::NJ_TRI_Site()
      horizontal_datum_(Horizontal_Datum_Options::N_A),
      industry_sector_code_(0),
      document_control_number_(0),
-     TRI_chemical_id_(0),
      SRS_id_(0),
      onsite_release_total_(0),
      potw_release_or_disposal_(0),
@@ -28,7 +27,9 @@ NJ_TRI_Site::NJ_TRI_Site()
      source_reduction_releases_total_(0),
      production_waste_(0),
      one_time_release_(0),
-     production_ratio_(0)
+     production_ratio_(0),
+     classification_(Classification_Keys::N_A),  // csv col 40
+     metal_category_(Metal_Category::N_A)  // csv col 42
 {
 
 }
