@@ -118,18 +118,40 @@ Flags_List(K_MACRO)
 
 #define enum_class_KV_MACRO(k, v) k = v,
 
-#define enum_class_2(ec, ecl) \
+#define enum_class_3(ec, ecl, m) \
  enum class ec \
  { \
   N_A = 0, \
-  ecl(enum_class_KV_MACRO) \
+  ecl(m) \
  }; \
+
+#define enum_class_2(ec, ecl) \
+ enum_class_3(ec, ecl, enum_class_KV_MACRO) \
 
 #define enum_class_1(ec) \
   enum_class_2(ec, ec##_##List)
 
 #define enum_class(...) \
    _preproc_CONCAT(enum_class_, _preproc_NUM_ARGS (__VA_ARGS__))(__VA_ARGS__)
+
+
+#define enum_class_SKV_MACRO(s, k, v) k = v,
+
+#define enum_class_with_supp_keys_3(ec, ecl, m) \
+ enum class ec \
+ { \
+  N_A = 0, \
+  ecl(m) \
+ }; \
+
+#define enum_class_with_supp_keys_2(ec, ecl) \
+ enum_class_with_supp_keys_3(ec, ecl, enum_class_SKV_MACRO) \
+
+#define enum_class_with_supp_keys_1(ec) \
+  enum_class_with_supp_keys_2(ec, ec##_##List)
+
+#define enum_class_with_supp_keys(...) \
+   _preproc_CONCAT(enum_class_with_supp_keys_, _preproc_NUM_ARGS (__VA_ARGS__))(__VA_ARGS__)
 
 
 
@@ -196,20 +218,27 @@ Flags_List(K_MACRO)
 
 
 #define Discharge_Descriptions_List(m) \
-  m(Fugitive_Air ,48) \
-  m(Stack_Air ,49) \
-  m(Surface_Water ,50) \
-  m(Underground ,51) \
-  m(Underground_Class_I ,52) \
-  m(Underground_Class_II_to_V ,53) \
-  m(Landfills ,54) \
-  m(Landfills_RCRA_C ,55) \
-  m(Landfills_Other ,56) \
-  m(Land_Treatment ,57) \
-  m(Surface_Impoundment ,58) \
-  m(Surface_Impoundment_RCRA ,59) \
-  m(Surface_Impoundment_Other ,60) \
-  m(Other_Disposal ,61) \
+  m(5.1, Fugitive_Air ,48) \
+  m(5.2, Stack_Air ,49) \
+  m(5.3, Surface_Water ,50) \
+  m(5.4, Underground ,51) \
+  m(5.4.1, Underground_Class_I ,52) \
+  m(5.4.2, Underground_Class_II_to_V ,53) \
+  m(5.5.1, Landfills ,54) \
+  m(5.5.1A, Landfills_RCRA_C ,55) \
+  m(5.5.1B, Landfills_Other ,56) \
+  m(5.5.2, Land_Treatment ,57) \
+  m(5.5.3, Surface_Impoundment ,58) \
+  m(5.5.3A, Surface_Impoundment_RCRA ,59) \
+  m(5.5.3B, Surface_Impoundment_Other ,60) \
+  m(5.5.4, Other_Disposal ,61) \
+
+
+ enum_class_with_supp_keys(Discharge_Descriptions)
+
+
+
+
 
 
 #define Offsite_Keys_List(m) \
@@ -323,24 +352,13 @@ Flags_List(K_MACRO)
 
 
 
- enum class Discharge_Descriptions {
-  N_A = 0,
-  #define KV_MACRO(k, v) k = v,
-  Discharge_Descriptions_List(KV_MACRO)
-  #undef KV_MACRO
- };
 
-
- static Discharge_Descriptions parse_discharge_description(QString key)
- {
-  static QMap<QString, Discharge_Descriptions> static_map {
-   #define KV_MACRO(k, v) {#k, Discharge_Descriptions::k},
-   Discharge_Descriptions_List(KV_MACRO)
-   #undef KV_MACRO
-  };
-
-  return static_map.value(key, Discharge_Descriptions::N_A);
- }
+// enum class Discharge_Descriptions {
+//  N_A = 0,
+//  #define KV_MACRO(k, v) k = v,
+//  Discharge_Descriptions_List(KV_MACRO)
+//  #undef KV_MACRO
+// };
 
  struct Parent_Company {
   QString name;  // csv col 15
@@ -571,21 +589,29 @@ void fname(QString s, u2 index) \
 // }
 
 
+#define enum_class_read_SUPP_K_MACRO(s, k, v) {#s, for_enum_class::k},
+
 #define enum_class_read_K_MACRO(k, v) {#k, for_enum_class::k},
 
-
-#define PARSE_AND_READ_3(enum_class, sh, m) \
-enum_class parse_##sh(QString key) \
+#define PARSE_ENUM_3(enum_class, sh, m) \
+static enum_class parse_##sh(QString key) \
 { \
  static QMap<QString, enum_class> static_map {{ \
   _preproc_CONCAT(enum_class, _List)(m) \
   }}; \
   return static_map.value(key, enum_class::N_A); \
  } \
+
+#define READ_ENUM(sh) \
 void read_##sh(QString s) \
 { \
  set_##sh(parse_##sh(s)); \
 } \
+
+
+#define PARSE_AND_READ_3(enum_class, sh, m) \
+PARSE_ENUM_3(enum_class, sh, m) \
+READ_ENUM(sh) \
 
 #define PARSE_AND_READ_2(enum_class, sh) \
   PARSE_AND_READ_3(enum_class, sh, enum_class_read_K_MACRO)
@@ -595,6 +621,29 @@ void read_##sh(QString s) \
 
 #define PARSE_AND_READ(...) _preproc_CONCAT(PARSE_AND_READ_, _preproc_NUM_ARGS (__VA_ARGS__))(__VA_ARGS__)
 
+#define PARSE_ENUM_2(enum_class, sh) \
+  PARSE_ENUM_3(enum_class, sh, enum_class_read_K_MACRO)
+
+#define PARSE_ENUM_1(sh) \
+  PARSE_ENUM_2(for_enum_class, sh)
+
+#define PARSE_ENUM(...) _preproc_CONCAT(PARSE_ENUM_, _preproc_NUM_ARGS (__VA_ARGS__))(__VA_ARGS__)
+
+
+#define PARSE_ENUM_SUPP_2(enum_class, sh) \
+  PARSE_ENUM_3(enum_class, sh, enum_class_read_SUPP_K_MACRO)
+
+#define PARSE_ENUM_SUPP_1(sh) \
+  PARSE_ENUM_SUPP_2(for_enum_class, sh)
+
+#define PARSE_ENUM_SUPP(...) _preproc_CONCAT(PARSE_ENUM_SUPP_, _preproc_NUM_ARGS (__VA_ARGS__))(__VA_ARGS__)
+
+
+#define for_enum_class Discharge_Descriptions
+PARSE_ENUM_SUPP(discharge_description)
+          # undef for_enum_class
+
+
 #define for_enum_class Classification_Keys
 PARSE_AND_READ(classification)
               # undef for_enum_class
@@ -602,6 +651,20 @@ PARSE_AND_READ(classification)
 #define for_enum_class Horizontal_Datum_Options
 PARSE_AND_READ(horizontal_datum)
               # undef for_enum_class
+
+
+
+// static Discharge_Descriptions parse_discharge_description(QString key)
+// {
+//  static QMap<QString, Discharge_Descriptions> static_map {
+//   #define KV_MACRO(k, v) {#k, Discharge_Descriptions::k},
+//   Discharge_Descriptions_List(KV_MACRO)
+//   #undef KV_MACRO
+//  };
+
+//  return static_map.value(key, Discharge_Descriptions::N_A);
+// }
+
 
 
 #define for_enum_class Metal_Category
@@ -669,6 +732,18 @@ PARSE_AND_READ(metal_category)
  void read_discharge_amount(QString amount, QString description)
  {
   note_discharge_amount(amount.toDouble(), description);
+ }
+
+
+
+ void note_offsite_transfer_amount(r8 amount, QString key)
+ {
+  offsite_transfer_amounts_[parse_offsite_key(key)] = amount;
+ }
+
+ void read_offsite_transfer_amount(QString amount, QString key)
+ {
+  note_offsite_transfer_amount(amount.toDouble(), key);
  }
 
 

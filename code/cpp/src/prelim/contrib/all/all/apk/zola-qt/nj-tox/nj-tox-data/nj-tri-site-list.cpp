@@ -22,9 +22,14 @@ NJ_TRI_Site_List::NJ_TRI_Site_List(QString file_path)
  {
   QString key = qvar.toString();
   u2 result;
+
   if((result = (u2) NJ_TRI_Site::parse_offsite_key(key)))
     return result;
-  if((result = (u2) NJ_TRI_Site::parse_onsite_and_offsite_key(key)));
+
+  if((result = (u2) NJ_TRI_Site::parse_onsite_and_offsite_key(key)))
+    return result;
+
+  if((result = (u2) NJ_TRI_Site::parse_discharge_description(key)))
     return result;
 
   return (u2) 0;
@@ -141,7 +146,27 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
     if(it != mds.proc_options.end())
     {
      typedef decltype(csv_field_setters_)::Call_Specs specs;
-     //? specs _s = it->second;
+     //?
+
+     auto [_s_info_u2, _s_u2] = Call_Specs_split_u2(it->second);
+
+     if(_s_info_u2 & (u2) specs::Non_Zero)
+     {
+      if(!line[column].isEmpty())
+      {
+       bool ok;
+       // //   this hopefully catches different 0s for different types ...
+       double z = line[column].toDouble(&ok);
+
+       // //  continue on to the call if the string has some non-numeric format ...
+       if(ok)
+       {
+        if(z == 0.)
+          continue;
+       }
+      }
+     }
+
      switch(it->first)
      {
      case decltype(csv_field_setters_)::Proc_Options::m_void:

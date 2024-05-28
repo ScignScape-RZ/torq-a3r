@@ -21,10 +21,41 @@
 #include <vector>
 #include <algorithm>
 
+#include "qtcsv/writer.h"
+
 
 int main(int argc, char *argv[])
 {
- NJ_TRI_Site_List ntsl ("/home/nlevisrael/docker/tox/2022_nj.csv");
+
+// QString csv_file_path = "/home/nlevisrael/docker/tox/2022_nj.csv";
+
+// QList<QStringList> lines = QtCSV::Reader::readToList(csv_file_path);
+
+// QtCSV::StringData newlines;
+
+// int c = 0;
+
+// for(QStringList line : lines)
+// {
+//  if(line[119].size())
+//  {
+//   ++c;
+//   QString l34 = line.takeAt(34);
+//   line[33] += "..." + l34;
+//  }
+//  newlines.addRow(line);
+// }
+
+// qDebug() << "c = " << c;
+
+// QString new_path = "/home/nlevisrael/docker/tox/2022_nj-corrected.csv";
+
+// QtCSV::Writer::write(new_path, newlines);
+
+// return 0;
+
+ NJ_TRI_Site_List ntsl ("/home/nlevisrael/docker/tox/2022_nj-corrected.csv");
+
 
  ntsl.define_setters()
 
@@ -73,6 +104,25 @@ int main(int argc, char *argv[])
    [42]  (& NJ_TRI_Site::read_metal_category_with_corrections)
 
 
+//   48 - 61
+
+  ( "5.1"
+  , "5.2"
+  , "5.3"
+  , "5.4"
+  , "5.4.1"
+  , "5.4.2"
+  , "5.5.1"
+  , "5.5.1A"
+  , "5.5.1B"
+  , "5.5.2"
+  , "5.5.3"
+  , "5.5.3A"
+  , "5.5.3B"
+  , "5.5.4"
+  ) .nonzero [& NJ_TRI_Site::read_discharge_amount]
+
+
    [63]  (& NJ_TRI_Site::set_potw_release_or_disposal)
    [64]  (& NJ_TRI_Site::set_potw_further_treatment)
    [65]  [& NJ_TRI_Site::set_potw_total]
@@ -111,7 +161,7 @@ int main(int argc, char *argv[])
    , "M61_non_metal"
    , "M69"
    , "M95"
-   ) [& NJ_TRI_Site::read_discharge_amount]
+   ) [& NJ_TRI_Site::read_offsite_transfer_amount]
 
 ++ [85]
    [91]
@@ -169,12 +219,12 @@ int main(int argc, char *argv[])
 
 
   [47]
-   ("pounds") (& NJ_TRI_Site::set_flag <NJ_TRI_Site::units_pounds>)                  // csv col 47
-   ["grams"]       (& NJ_TRI_Site::set_flag <NJ_TRI_Site::units_grams>)                   // csv col 47
+   ("Pounds")  (& NJ_TRI_Site::set_flag <NJ_TRI_Site::units_pounds>)                  // csv col 47
+   ["Grams"]   (& NJ_TRI_Site::set_flag <NJ_TRI_Site::units_grams>)                   // csv col 47
 
   [118]
-   ("Production Ratio") (& NJ_TRI_Site::set_flag <NJ_TRI_Site::production_ratio_value>)        // csv col 118
-   ["Activity Index"] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::activity_index_value>)          // csv col 118
+   ("PRODUCTION") (& NJ_TRI_Site::set_flag <NJ_TRI_Site::production_ratio_value>)        // csv col 118
+   ["ACTIVITY"] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::activity_index_value>)          // csv col 118
 
    ;
 

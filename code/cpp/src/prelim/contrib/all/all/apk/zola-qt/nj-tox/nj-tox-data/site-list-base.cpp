@@ -219,6 +219,8 @@ void _define_setters_data::reset(u2* check_multi)
  froze_pre_arg_ptr = nullptr;
  n0_overrides.clear();
 
+ check_pop_call_spec_adenda();
+
  //?string_options_count = 0;
 }
 
