@@ -115,6 +115,24 @@ Flags_List(K_MACRO)
  }
 
 
+
+#define enum_class_KV_MACRO(k, v) k = v,
+
+#define enum_class_2(ec, ecl) \
+ enum class ec \
+ { \
+  N_A = 0, \
+  ecl(enum_class_KV_MACRO) \
+ }; \
+
+#define enum_class_1(ec) \
+  enum_class_2(ec, ec##_##List)
+
+#define enum_class(...) \
+   _preproc_CONCAT(enum_class_, _preproc_NUM_ARGS (__VA_ARGS__))(__VA_ARGS__)
+
+
+
 #define Horizontal_Datum_Options_List(m) \
   m( NAD27 ,1 ) \
   m( NAD83 ,2 ) \
@@ -122,14 +140,13 @@ Flags_List(K_MACRO)
   m( Other ,8 ) \
 
 
+ enum_class(Horizontal_Datum_Options)
 
- enum class Horizontal_Datum_Options
- {
-  N_A = 0,
-#define KV_MACRO(k, v) k = v,
-  Horizontal_Datum_Options_List(KV_MACRO)
-#undef KV_MACRO
- };
+// enum class Horizontal_Datum_Options
+// {
+//  N_A = 0,
+//  Horizontal_Datum_Options_List(enum_class_KV_MACRO)
+// };
 
 
 #define Classification_Keys_List(m) \
@@ -137,29 +154,31 @@ Flags_List(K_MACRO)
   m(PBT ,2) \
   m(Dioxin ,4) \
 
- enum class Classification_Keys
- {
-  N_A = 0,
-#define KV_MACRO(k, v) k = v,
-  Classification_Keys_List(KV_MACRO)
-#undef KV_MACRO
- };
+ enum_class(Classification_Keys)
+
+// enum class Classification_Keys
+// {
+//  N_A = 0,
+//  Classification_Keys_List(enum_class_KV_MACRO)
+// };
 
 
 #define Metal_Category_List(m) \
-  m(Metal_Category_1 ,1) \
-  m(Metal_Category_2 ,2) \
-  m(Metal_Category_3 ,4) \
-  m(Metal_Category_4 ,8) \
+  m(May_Contain ,1) \
+  m(Elemental_Metals ,2) \
+  m(Metal_Compound ,4) \
+  m(Individually_Listed ,8) \
+  m(Non_Metal ,16) \
+
+ enum_class(Metal_Category)
+
+// enum class Metal_Category
+// {
+//  N_A = 0,
+//  Metal_Category_List(enum_class_KV_MACRO)
+// };
 
 
- enum class Metal_Category
- {
-  N_A = 0,
-#define KV_MACRO(k, v) k = v,
-  Metal_Category_List(KV_MACRO)
-#undef KV_MACRO
- };
 
 
 
@@ -551,11 +570,15 @@ void fname(QString s, u2 index) \
 //  set_classification(parse_classification(s));
 // }
 
-#define PARSE_AND_READ(enum_class, sh) \
+
+#define enum_class_read_K_MACRO(k, v) {#k, for_enum_class::k},
+
+
+#define PARSE_AND_READ_3(enum_class, sh, m) \
 enum_class parse_##sh(QString key) \
 { \
  static QMap<QString, enum_class> static_map {{ \
-  enum_class##_List(K_MACRO) \
+  _preproc_CONCAT(enum_class, _List)(m) \
   }}; \
   return static_map.value(key, enum_class::N_A); \
  } \
@@ -564,20 +587,64 @@ void read_##sh(QString s) \
  set_##sh(parse_##sh(s)); \
 } \
 
-#define K_MACRO(k, v) {#k, Classification_Keys::k},
-PARSE_AND_READ(Classification_Keys, classification)
-#undef K_MACRO
+#define PARSE_AND_READ_2(enum_class, sh) \
+  PARSE_AND_READ_3(enum_class, sh, enum_class_read_K_MACRO)
+
+#define PARSE_AND_READ_1(sh) \
+  PARSE_AND_READ_2(for_enum_class, sh)
+
+#define PARSE_AND_READ(...) _preproc_CONCAT(PARSE_AND_READ_, _preproc_NUM_ARGS (__VA_ARGS__))(__VA_ARGS__)
+
+#define for_enum_class Classification_Keys
+PARSE_AND_READ(classification)
+              # undef for_enum_class
+
+#define for_enum_class Horizontal_Datum_Options
+PARSE_AND_READ(horizontal_datum)
+              # undef for_enum_class
 
 
-#define K_MACRO(k, v) {#k, Horizontal_Datum_Options::k},
-PARSE_AND_READ(Horizontal_Datum_Options, horizontal_datum)
-#undef K_MACRO
-
-#define K_MACRO(k, v) {#k, Metal_Category::k},
-PARSE_AND_READ(Metal_Category, metal_category)
-#undef K_MACRO
+#define for_enum_class Metal_Category
+PARSE_AND_READ(metal_category)
+              # undef for_enum_class
 
 
+ void read_metal_category_with_corrections(QString key)
+ {
+  QString correction = key.simplified().toLower();
+  correction.replace(' ', '_');
+  correction.replace("complound", "compound");
+
+  QStringList qsl = correction.split("_", Qt::SkipEmptyParts);
+
+  if(qsl.isEmpty())
+    return;
+
+  correction = qsl[0];
+  correction[0] = correction[0].toUpper();
+
+  if(qsl.size() > 1)
+  {
+   correction += "_";
+   QString c = qsl[1];
+   c[0] = c[0].toUpper();
+   correction += c;
+  }
+
+  read_metal_category(correction);
+
+ }
+
+//  static QMap<QString, Metal_Category> static_map {
+//   {"may_contain_metal", Metal_Category::Metal_Category_1},
+//   {"elemental_metals", Metal_Category::Metal_Category_1},
+//   {"metal_compound_categories", Metal_Category::Metal_Category_4},
+//   {"non_metal", Metal_Category::Metal_Category_4},
+//   {"individually-listed-compounds-that-contain-metal", Metal_Category::Metal_Category_4},
+
+//  };
+
+// }
 
  ACCESSORS(n8 ,document_control_number)
 

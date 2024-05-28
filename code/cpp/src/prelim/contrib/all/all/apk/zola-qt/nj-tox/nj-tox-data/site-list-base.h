@@ -456,7 +456,7 @@ struct csv_field_setters_by_column
       reconcile_multi_count(col); \
       m##_indexed[{col, qsv->value(i)}] = (decltype(m[col])) fn; \
       ++i; \
-      proc_options[col] = {check_n0_override(n0_overrides, col, Proc_Options::m), Call_Specs::Generic}; \
+      proc_options[col] = {check_n0_override(n0_overrides, col, Proc_Options::m##_indexed), Call_Specs::Generic}; \
      }} break; \
 
     CASE_MACRO(m_void)

@@ -70,6 +70,9 @@ int main(int argc, char *argv[])
    [38]  (& NJ_TRI_Site::set_SRS_id)
    [40]  (& NJ_TRI_Site::read_classification)
 
+   [42]  (& NJ_TRI_Site::read_metal_category_with_corrections)
+
+
    [63]  (& NJ_TRI_Site::set_potw_release_or_disposal)
    [64]  (& NJ_TRI_Site::set_potw_further_treatment)
    [65]  [& NJ_TRI_Site::set_potw_total]
@@ -161,8 +164,8 @@ int main(int argc, char *argv[])
   [45] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::pfas>)                          // csv col 45
 
   [46]
-   ("r") (& NJ_TRI_Site::set_flag <NJ_TRI_Site::form_r>)                        // csv col 46
-   ["a"] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::form_a>)                        // csv col 46
+   ("R") (& NJ_TRI_Site::set_flag <NJ_TRI_Site::form_r>)                        // csv col 46
+   ["A"] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::form_a>)                        // csv col 46
 
 
   [47]
