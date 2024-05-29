@@ -253,11 +253,16 @@ int main(int argc, char *argv[])
 
    QString county_file = "%1/%2-2022-simplified.csv"_qt.arg(county_folder).arg(county);
 
+   QString json_file = "%1/%2-2022.json"_qt.arg(county_folder).arg(county);
+
    sites_by_county[county] = NJ_TRI_Site_List(county_file);
+
+   sites_by_county[county].add_file_path("json", json_file);
+
+
   }
 
   sites_by_county[county].sites().push_back(site);
-
  }
 
  auto getters =  csv_field_getters_by_column<NJ_TRI_Site>
@@ -306,13 +311,28 @@ int main(int argc, char *argv[])
 
   NJ_TRI_Site_List& ntsl = it.value();
 
-  auto g = getters.copy();
+//  auto g = getters.copy();
+//  g.insert_default(it.key());
+//  ntsl.set_csv_field_getters(g);
+//  ntsl.save_to_csv_file("!", &header);
 
-  g.insert_default(it.key());
 
-  ntsl.set_csv_field_getters(g);
+#define kmd NJ_TRI_Site_KMD_MACRO
+#define str_kmd NJ_TRI_Site_STR_KMD_MACRO
 
-  ntsl.save_to_csv_file("!", &header);
+
+  ntsl.json_field_getters() = {
+    str_kmd(frs_id)
+    kmd(trifd)
+    kmd(parent_company_name, get_parent_company_name)
+    kmd(parent_company_standardized_name, get_parent_company_standardized_name)
+    kmd(parent_company_db_number, str_get_parent_company_db_number)
+    kmd(industry_sector)
+    str_kmd(industry_sector_code)
+
+  };
+
+  ntsl.save_to_json_file();
 
  }
 

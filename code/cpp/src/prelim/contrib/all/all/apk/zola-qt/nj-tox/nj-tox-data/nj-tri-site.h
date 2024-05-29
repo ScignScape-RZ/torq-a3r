@@ -546,6 +546,25 @@ public:
   parent_company_.standardized_name = n;
  }
 
+ QString get_parent_company_name() const // csv col 15
+ {
+  return parent_company_.name;
+ }
+ u4 get_parent_company_db_number() const  // csv col 16
+ {
+  return parent_company_.db_number;
+ }
+ QString str_get_parent_company_db_number() const  // csv col 16
+ {
+  return QString::number(get_parent_company_db_number());
+ }
+ QString get_parent_company_standardized_name() const // csv col 17
+ {
+  return parent_company_.standardized_name;
+ }
+
+
+
  ACCESSORS(u4 ,industry_sector_code)
  ACCESSORS(QString ,industry_sector)
 

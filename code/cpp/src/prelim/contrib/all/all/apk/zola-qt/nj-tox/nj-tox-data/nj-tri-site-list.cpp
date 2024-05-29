@@ -7,12 +7,18 @@
 
 #include "nj-tri-site-list.h"
 
-
 #include "textio.h"
+
 
 #include "qtcsv/stringdata.h"
 #include "qtcsv/reader.h"
 #include "qtcsv/writer.h"
+
+
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
+
 
 
 NJ_TRI_Site_List::NJ_TRI_Site_List(QString file_path)
@@ -370,3 +376,33 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
  }
 
 }
+
+
+void NJ_TRI_Site_List::save_to_json_file(QString file)
+{
+ QJsonDocument qjd;
+
+ QJsonArray qja;
+
+ for(NJ_TRI_Site site : sites_)
+ {
+  QJsonObject qjo;
+
+  QMapIterator<QString, typename decltype(json_field_getters_)::mapped_type> it(json_field_getters_);
+
+  while(it.hasNext())
+  {
+   it.next();
+   qjo.insert(it.key(), (site.*it.value())());
+  }
+
+  qja.append(qjo);
+ }
+
+ qjd.setArray(qja);
+
+ KA::TextIO::save_file(file, qjd.toJson());
+
+}
+
+

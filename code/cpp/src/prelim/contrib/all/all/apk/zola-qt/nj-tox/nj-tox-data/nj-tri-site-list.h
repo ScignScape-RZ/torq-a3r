@@ -33,6 +33,14 @@
 #include "nj-tri-site.h"
 
 
+#define NJ_TRI_Site_KMD_MACRO_2(k, md) {#k, &NJ_TRI_Site::md},
+#define NJ_TRI_Site_KMD_MACRO_1(k) NJ_TRI_Site_KMD_MACRO_2(k, k)
+
+#define NJ_TRI_Site_KMD_MACRO(...) _preproc_CONCAT(NJ_TRI_Site_KMD_MACRO_, _preproc_NUM_ARGS (__VA_ARGS__))(__VA_ARGS__)
+
+#define NJ_TRI_Site_STR_KMD_MACRO(k) NJ_TRI_Site_KMD_MACRO_2(k, str##_##k)
+
+
 class NJ_TRI_Site_List : public Site_List_Base<NJ_TRI_Site>
 {
 // QString file_path_;
@@ -81,6 +89,19 @@ public:
   read_csv_file(file_path_, max);
  }
 
+
+ void save_to_json_file(QString file);
+
+ void save_to_json_file()
+ {
+  QString f = file_paths_.value("json");
+
+  if(f.isEmpty())
+    f = file_path_ + ".json";
+
+  save_to_json_file(f);
+
+ }
 
 
 };

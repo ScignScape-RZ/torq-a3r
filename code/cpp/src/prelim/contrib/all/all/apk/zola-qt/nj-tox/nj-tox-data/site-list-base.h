@@ -795,6 +795,10 @@ protected:
 
  QString file_path_;
 
+ QMap<QString, QString> file_paths_;
+
+ QMap<QString, QString (SITE_Type::*)() const> json_field_getters_;
+
  QStringList original_header_;
 
  Site_List_Base(QString file_path = {})
@@ -1706,6 +1710,7 @@ public:
  ACCESSORS(csv_field_setters_by_column<SITE_Type> ,csv_field_setters)
  ACCESSORS(csv_field_getters_by_column<SITE_Type> ,csv_field_getters)
 
+ ACCESSORS__RGET(QMap<QString, QString (SITE_Type::*)() const> ,json_field_getters)
 
  _define_setters define_setters() { return {this}; }
 
@@ -1803,6 +1808,16 @@ public:
  void add_default_field_getter(u2 column, QString default_value)
  {
   csv_field_getters_.defaults[column] = default_value;
+ }
+
+ void add_file_path(QString key, QString file_path)
+ {
+  file_paths_[key] = file_path;
+ }
+
+ QString get_file_path(QString key)
+ {
+  return file_paths_.value(key);
  }
 
 
