@@ -161,7 +161,7 @@ int main(int argc, char *argv[])
    , "M61_non_metal"
    , "M69"
    , "M95"
-   ) [& NJ_TRI_Site::read_offsite_transfer_amount]
+   ) .nonzero [& NJ_TRI_Site::read_offsite_transfer_amount]
 
 ++ [85]
    [91]
@@ -169,7 +169,7 @@ int main(int argc, char *argv[])
    [101]
    [102]
    [106]
-   [107] (& NJ_TRI_Site::read_offsite_transfer_or_release_total)
+   [107] .nonzero (& NJ_TRI_Site::read_offsite_transfer_or_release_total)
 
 
   ( "Onsite_Contained"
@@ -182,12 +182,16 @@ int main(int argc, char *argv[])
   , "Offsite_Recycling"
   , "Onsite_Treatment"
   , "Offsite_Treatment"
-  ) (& NJ_TRI_Site::read_onsite_and_offsite_amounts)
+  ) .nonzero (& NJ_TRI_Site::read_onsite_and_offsite_amounts)
 
+
+  [103] (& NJ_TRI_Site::set_overall_offsite_transfer_total)
+  [104] (& NJ_TRI_Site::set_onsite_and_offsite_releases_total)
+  [105] (& NJ_TRI_Site::set_source_reduction_releases_total)
 
 
   [116] (& NJ_TRI_Site::set_production_waste)
-  [117] (& NJ_TRI_Site::set_one_time_release)
+  [117] .nonzero [& NJ_TRI_Site::set_one_time_release]
   [119] (& NJ_TRI_Site::set_production_ratio)
 
 
@@ -230,6 +234,89 @@ int main(int argc, char *argv[])
 
 
  ntsl.read_csv_file(10);
+
+ QMap<QString, NJ_TRI_Site_List> sites_by_county;
+
+ QString base_folder = "/home/nlevisrael/docker/tox/objects/tir/summaries/counties/";
+
+ for(NJ_TRI_Site site : ntsl.sites())
+ {
+  QString county = site.county_ucfirsr();
+
+  if(!sites_by_county.contains(county))
+  {
+   QString county_folder = base_folder + county;
+
+   QDir qd(county_folder);
+   if(!qd.exists())
+     qd.mkpath(".");
+
+   QString county_file = "%1/%2-2022-simplified.csv"_qt.arg(county_folder).arg(county);
+
+   sites_by_county[county] = NJ_TRI_Site_List(county_file);
+  }
+
+  sites_by_county[county].sites().push_back(site);
+
+ }
+
+ auto getters =  csv_field_getters_by_column<NJ_TRI_Site>
+     ( //(typename csv_field_getters_by_column<NJ_TRI_Site>::methods_0_vector_type)
+      {
+       &NJ_TRI_Site::str_frs_id,
+       &NJ_TRI_Site::facility_name,
+       &NJ_TRI_Site::street_address,
+       &NJ_TRI_Site::municipality,
+       nullptr,
+       &NJ_TRI_Site::str_zip_code,
+       &NJ_TRI_Site::str_latitude,
+       &NJ_TRI_Site::str_longitude,
+       &NJ_TRI_Site::industry_sector,
+       &NJ_TRI_Site::str_industry_sector_code,
+ //?      &NJ_TRI_Site::chemical,
+       &NJ_TRI_Site::enum_to_numeric_str<NJ_TRI_Site::Classification_Keys>,
+ //?      &NJ_TRI_Site::metal_category,
+     }, 2  // 2 is the offset, allowing for 2 default columns
+     );
+
+
+
+ QStringList header {
+  "_0", "_1",
+  "frs_id",
+  "facility_name",
+  "street_address",
+  "municipality",
+  "county",
+  "zip_code",
+  "latitude",
+  "longitude",
+  "industry_sector",
+  "industry_sector_code",
+  "classification",
+ };
+
+
+ QMutableMapIterator it(sites_by_county);
+
+ while(it.hasNext())
+ {
+  it.next();
+//  qDebug() << it.key() << ": " << it.value().file_path();
+
+  NJ_TRI_Site_List& ntsl = it.value();
+
+  auto g = getters.copy();
+
+  g.insert_default(it.key());
+
+  ntsl.set_csv_field_getters(g);
+
+  ntsl.save_to_csv_file("!", &header);
+
+ }
+
+
 
  return 0;
 }

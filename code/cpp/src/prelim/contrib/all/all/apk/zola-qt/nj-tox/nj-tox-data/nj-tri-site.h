@@ -202,19 +202,36 @@ Flags_List(K_MACRO)
 
 
 
-
-
  enum class Transfer_or_Release_Descriptions {
   N_A = 0,
   Disposal = 1,    // csv col 85
   Recycling = 2,      // csv col 91
   Energy_Recovery = 4,     // csv col 94
   Treatment = 8,     // csv col 101
-  Releases_Contained = 16,     // csv col 106, 107
-  Releases_Other = 32,     // csv col 106, 107
+  Releases_Contained = 16,     // csv col 106 //?, 107
+  Releases_Other = 32,     // csv col 106 //?, 107
   Unclassified = 64    // csv col 102
  };
 
+
+ Transfer_or_Release_Descriptions transfer_or_release_description_by_column(u2 col)
+ {
+  static QMap<u2, Transfer_or_Release_Descriptions> static_map {
+
+   {85, Transfer_or_Release_Descriptions::Disposal},
+   {91, Transfer_or_Release_Descriptions::Recycling},
+   {94, Transfer_or_Release_Descriptions::Energy_Recovery},
+
+   {101, Transfer_or_Release_Descriptions::Treatment},
+   {106, Transfer_or_Release_Descriptions::Releases_Contained},
+   {107, Transfer_or_Release_Descriptions::Releases_Other},
+
+   {102, Transfer_or_Release_Descriptions::Unclassified},
+
+  };
+
+  return static_map.value(col, Transfer_or_Release_Descriptions::N_A);
+ }
 
 
 #define Discharge_Descriptions_List(m) \
@@ -483,6 +500,22 @@ public:
  ACCESSORS(QString ,street_address)
  ACCESSORS(QString ,municipality)
  ACCESSORS(QString ,county)
+
+ QString county_ucfirsr()
+ {
+  if(county_.isEmpty())
+    return {};
+
+  QString result = county_.toLower().simplified();
+  result.replace(' ', '_');
+
+  result[0] = result[0].toUpper();
+
+  if(result == "Cape_may")
+    result = "Cape_May";
+
+  return result;
+ }
 
  ACCESSORS(u4 ,zip_code)
 
@@ -764,10 +797,18 @@ PARSE_AND_READ(metal_category)
   offsite_transfer_or_release_totals_[description] = amount;
  }
 
- void read_offsite_transfer_or_release_total(QString amount, u2 description)
+ void read_offsite_transfer_or_release_total(QString amount, u2 column)
  {
-  note_offsite_transfer_or_release_total(amount.toDouble(),
-    (Transfer_or_Release_Descriptions) description);
+
+  if(column == 101)
+  {
+   qDebug() << column;
+  }
+
+  Transfer_or_Release_Descriptions description = transfer_or_release_description_by_column(column);
+
+  if(description != Transfer_or_Release_Descriptions::N_A)
+    note_offsite_transfer_or_release_total(amount.toDouble(), description);
  }
 
 
@@ -838,10 +879,37 @@ PARSE_AND_READ(metal_category)
  SET_and_STR_ADAPTER_DBL(production_ratio)
 
 
+ template<typename E_Class>
+ QString _enum_to_numeric_str(E_Class val) const
+ {
+  return QString::number((u4) val);
+ }
+
+ template<typename E_Class>
+ inline QString enum_to_numeric_str() const;
+
+
+
 // SET_and_STR_ADAPTER_INT(site_id)
 // SET_and_STR_ADAPTER_INT(pi_number)
 
 };
+
+//template<>
+//inline QString NJ_TRI_Site::enum_to_numeric_str<NJ_TRI_Site::Classification_Keys>() const
+//{
+// return _enum_to_numeric_str(classification_);
+//}
+
+#define TEMP_MACRO(E, F) \
+ template<> inline QString NJ_TRI_Site::enum_to_numeric_str<NJ_TRI_Site::E>() const \
+ {  return _enum_to_numeric_str(F); }
+
+
+TEMP_MACRO(Classification_Keys ,classification_)
+
+
+#undef TEMP_MACRO
 
 
 

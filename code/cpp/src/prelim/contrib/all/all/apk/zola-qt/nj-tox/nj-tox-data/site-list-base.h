@@ -669,6 +669,61 @@ struct csv_field_getters_by_column
 
  QMap<u2, QString> methods_1_args;
 
+ csv_field_getters_by_column<SITE_Type> copy()
+ {
+  csv_field_getters_by_column<SITE_Type> result;
+
+  result.methods_0 = methods_0;
+  result.methods_1 = methods_1;
+  result.non_methods_0 = non_methods_0;
+  result.non_methods_1 = non_methods_1;
+  result.defaults = defaults;
+  result.methods_1_args = methods_1_args;
+
+  return result;
+ }
+
+ template<typename MAP_Type>
+ u2 take_nullptr(MAP_Type& m)
+ {
+  u2 key = 0;
+  QMapIterator<typename MAP_Type::key_type, typename MAP_Type::mapped_type> it(m);
+  while(it.hasNext())
+  {
+   it.next();
+   if(it.value() == nullptr)
+   {
+    key = it.key();
+    break;
+   }
+  }
+
+  if(key)
+    m.remove(key);
+
+  return key;
+ }
+
+ csv_field_getters_by_column& insert_default(QString str)
+ {
+  u2 found;
+  do{
+   if((found = take_nullptr(methods_0)))
+     break;
+   if((found = take_nullptr(non_methods_0)))
+     break;
+   if((found = take_nullptr(methods_1)))
+     break;
+   if((found = take_nullptr(non_methods_1)))
+     break;
+  } while(false);
+
+  if(found)
+    defaults[found] = str;
+
+  return *this;
+ }
+
  csv_field_getters_by_column() {}
 
  csv_field_getters_by_column(decltype(methods_0) mds)
@@ -676,9 +731,9 @@ struct csv_field_getters_by_column
  { }
 
 
- csv_field_getters_by_column(methods_0_vector_type vec, u2 offset = 0)
+ csv_field_getters_by_column(methods_0_vector_type vec, s4 offset = 0)
  {
-  u2 column = offset;
+  u2 column = offset + 1;
   for(auto md : vec)
   {
    methods_0[column] = md;
@@ -689,9 +744,37 @@ struct csv_field_getters_by_column
 
  u2 total_columns()
  {
-  return methods_0.size() + non_methods_0.size()
-    + methods_1.size() + non_methods_1.size()
-    + defaults.size();
+  QList<u2>
+    m_0 = methods_0.keys(),
+    n_0 = non_methods_0.keys(),
+    m_1 = methods_1.keys(),
+    n_1 = non_methods_1.keys(),
+    d = defaults.keys()
+   ;
+
+  auto max_element = [](const QList<u2>& l) -> u2
+  {
+   if(l.isEmpty())
+     return 0;
+
+   return *std::max_element(l.begin(), l.end());
+  };
+
+  QList<u2> maxes {
+    max_element(m_0),
+    max_element(n_0),
+
+    max_element(m_1),
+    max_element(n_1),
+
+    max_element(d),
+  };
+
+  return max_element(maxes);
+
+//  return methods_0.size() + non_methods_0.size()
+//    + methods_1.size() + non_methods_1.size()
+//    + defaults.size();
  }
 
 
@@ -748,8 +831,26 @@ private:
  struct _define_setters_nonzero {
   Site_List_Base* _this;
 
+  typedef typename decltype(csv_field_setters_by_column<SITE_Type>::m_QString)::mapped_type m_QString_type;
+  typedef typename decltype(csv_field_setters_by_column<SITE_Type>::n_QString)::mapped_type n_QString_type;
+
+  _define_setters operator [](m_QString_type fn)
+  {
+   _define_setters result {_this};
+   result._nonzero();
+   return result.operator [](fn);
+  }
+
+  _define_setters operator [](n_QString_type fn)
+  {
+   _define_setters result {_this};
+   result._nonzero();
+   return result.operator [](fn);
+  }
+
+
   template<typename FN_Type>
-  _define_setters operator[](FN_Type fn)
+  _define_setters operator [](FN_Type fn)
   {
    _define_setters result {_this};
    result._nonzero();
@@ -1659,7 +1760,7 @@ public:
     while(it.hasNext())
     {
      it.next();
-     row[it.key()] = (site.*it.value())();
+     row[it.key() - 1] = (site.*it.value())();
     }
    }
 
@@ -1668,7 +1769,7 @@ public:
     while(it.hasNext())
     {
      it.next();
-     row[it.key()] = (*it.value())();
+     row[it.key() - 1] = (*it.value())();
     }
    }
 
@@ -1677,7 +1778,7 @@ public:
     while(it.hasNext())
     {
      it.next();
-     row[it.key()] = it.value();
+     row[it.key() - 1] = it.value();
     }
    }
 
