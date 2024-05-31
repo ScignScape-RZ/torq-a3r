@@ -66,9 +66,8 @@ SOURCES += \
   $$SRC_DIR/nj-tri-site-multiyear-list.cpp \
   $$SRC_DIR/nj-tri-site.cpp \
   $$SRC_DIR/nj-tri-site-list.cpp \
+  $$SRC_DIR/nj-tri-site-list.defaults.cpp \
   $$SRC_DIR/site-list-base.cpp \
-
-
 
 
 

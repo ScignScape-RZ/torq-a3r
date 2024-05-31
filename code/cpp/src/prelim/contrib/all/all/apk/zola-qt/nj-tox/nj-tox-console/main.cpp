@@ -23,8 +23,111 @@
 
 #include "qtcsv/writer.h"
 
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
+
+#include <QRectF>
+#include <QSizeF>
+
 
 int main(int argc, char *argv[])
+{
+ QString bases_folder = "/home/nlevisrael/sahana/bases";
+ QString pages_folder = "/home/nlevisrael/sahana/pages";
+
+ QSet<int> arrow_pages {
+  3, 5, 7, 9, 11, 13, 15, 17, 20, 25, 27, 29, 34, 37, 40, 42, 44, 46,
+  48, 51, 54, 56, 59, 61, 66, 69, 74, 77, 80, 84, 87, 89, 91, 94, 96,
+  98, 101, 103, 109, 111, 113, 116, 118, 120, 122, 124, 127, 129, 132,
+  134, 136, 139, 141, 147, 150, 152, 154, 160, 162, 164, 172, 175, 178,
+  182, 197, 200, 204, 208, 210, 213, 216, 219, 221, 223, 225, 227, 229,
+  231, 233, 235, 237, 240, 242, 244, 246, 248, 250, 252, 254, 256, 258,
+  260, 264, 266, 268, 271, 274, 277, 280, 282, 284, 287, 289, 292, 294,
+  296, 298, 301, 304, 306, 309, 313, 315, 317, 319, 321, 326, 329, 336,
+  338, 344, 347, 351, 354, 358, 360, 364, 366, 369, 372, 375, 378, 381,
+  385, 393, 395, 401, 412, 414, 416, 418, 421, 424, 426, 429, 432
+ };
+
+
+ QString json_file = "/home/nlevisrael/sahana/S.pdf.json";
+
+ QJsonDocument qjd;
+ {
+  QFile f(json_file);
+  f.open(QIODevice::ReadOnly);
+  QByteArray qba = f.readAll();
+  qjd = QJsonDocument::fromJson(qba);
+ }
+
+ QJsonArray qja_pages = qjd.array();
+
+ QMap<u2, QSizeF> page_sizes;
+ QMap<u2, QString> page_titles;
+
+ QMap<u2, QVector<QPair<QString, QRectF>>> annotations;
+
+ for(auto obj: qja_pages)
+ {
+  QJsonObject qjo = obj.toObject();
+
+  bool is_arrow = qjo.value("arrow").toBool();
+
+  if(is_arrow)
+    continue;
+
+  u2 page = qjo.value("page").toInt();
+  QString title = qjo.value("title").toString();
+  page_titles[page] = title;
+
+  QSizeF page_size;
+  {
+   QJsonArray qja1 = qjo.value("page-size").toArray();
+   page_size.setWidth(qja1[0].toDouble());
+   page_size.setHeight(qja1[1].toDouble());
+  }
+  page_sizes[page] = page_size;
+
+  QJsonArray qja_notes = qjo.value("notes").toArray();
+
+
+  for(auto obj1: qja_notes)
+  {
+   QJsonObject obj_notes = obj1.toObject();
+   QString text = obj_notes.value("text").toString();
+   QRectF boundary;
+   {
+    QJsonArray qja2 = obj_notes.value("boundary").toArray();
+    boundary.setX(qja2[0].toDouble());
+    boundary.setY(qja2[1].toDouble());
+    boundary.setWidth(qja2[2].toDouble());
+    boundary.setHeight(qja2[3].toDouble());
+   }
+   annotations[page].push_back({text, boundary});
+  }
+ }
+
+ QMapIterator<u2, QString> it(page_titles);
+ while(it.hasNext())
+ {
+  it.next();
+
+  u2 page = it.key();
+
+  QString svg_file = "%1/p%2.svg"_qt.arg(pages_folder).arg(page, 3, 10, QLatin1Char('0'));
+
+  qDebug() << svg_file;
+
+
+ }
+
+ return 0;
+
+}
+
+
+
+int main23(int argc, char *argv[])
 {
 
 // QString csv_file_path = "/home/nlevisrael/docker/tox/2022_nj.csv";
@@ -311,26 +414,12 @@ int main(int argc, char *argv[])
 
   NJ_TRI_Site_List& ntsl = it.value();
 
+  ntsl.default_json_field_getters();
+
 //  auto g = getters.copy();
 //  g.insert_default(it.key());
 //  ntsl.set_csv_field_getters(g);
 //  ntsl.save_to_csv_file("!", &header);
-
-
-#define kmd NJ_TRI_Site_KMD_MACRO
-#define str_kmd NJ_TRI_Site_STR_KMD_MACRO
-
-
-  ntsl.json_field_getters() = {
-    str_kmd(frs_id)
-    kmd(trifd)
-    kmd(parent_company_name, get_parent_company_name)
-    kmd(parent_company_standardized_name, get_parent_company_standardized_name)
-    kmd(parent_company_db_number, str_get_parent_company_db_number)
-    kmd(industry_sector)
-    str_kmd(industry_sector_code)
-
-  };
 
   ntsl.save_to_json_file();
 

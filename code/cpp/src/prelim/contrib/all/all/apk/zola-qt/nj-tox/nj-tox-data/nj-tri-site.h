@@ -486,6 +486,16 @@ public:
 
  NJ_TRI_Site();
 
+ QString str_get_flag_union() const
+ {
+  return QString::number(get_flag_union());
+ }
+
+ Flags_type get_flag_union() const
+ {
+  return Flags;
+ }
+
  void set_test(QString val) //, u2 col)
  {
   qDebug() << "val = " << val;
@@ -926,6 +936,7 @@ PARSE_AND_READ(metal_category)
 
 
 TEMP_MACRO(Classification_Keys ,classification_)
+TEMP_MACRO(Horizontal_Datum_Options ,horizontal_datum_)
 
 
 #undef TEMP_MACRO

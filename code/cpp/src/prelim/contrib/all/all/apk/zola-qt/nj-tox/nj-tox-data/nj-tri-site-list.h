@@ -76,6 +76,7 @@ public:
  manual_ptr_handles<NJ_TRI_Site_List> split_by_county(QMap<QString, NJ_TRI_Site_List*>& results,
    QString* file_pattern);
 
+ void default_json_field_getters();
 
  void read_csv_file(decltype(csv_field_setters_)& mds, QString csv_file_path, u4 max = 0);
 
