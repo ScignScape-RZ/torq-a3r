@@ -30,6 +30,8 @@
 #include <QRectF>
 #include <QSizeF>
 
+#include "textio.h"
+
 
 int main(int argc, char *argv[])
 {
@@ -51,6 +53,7 @@ int main(int argc, char *argv[])
 
 
  QString json_file = "/home/nlevisrael/sahana/S.pdf.json";
+ QString template_folder = "/home/nlevisrael/sahana/templates";
 
  QJsonDocument qjd;
  {
@@ -63,7 +66,7 @@ int main(int argc, char *argv[])
  QJsonArray qja_pages = qjd.array();
 
  QMap<u2, QSizeF> page_sizes;
- QMap<u2, QString> page_titles;
+ QMap<u2, QPair<QString, u2>> page_titles;
 
  QMap<u2, QVector<QPair<QString, QRectF>>> annotations;
 
@@ -78,7 +81,8 @@ int main(int argc, char *argv[])
 
   u2 page = qjo.value("page").toInt();
   QString title = qjo.value("title").toString();
-  page_titles[page] = title;
+  u2 local = qjo.value("local").toInt();
+  page_titles[page] = {title, local};
 
   QSizeF page_size;
   {
@@ -107,16 +111,119 @@ int main(int argc, char *argv[])
   }
  }
 
- QMapIterator<u2, QString> it(page_titles);
+ QMapIterator<u2, QPair<QString, u2>> it(page_titles);
  while(it.hasNext())
  {
   it.next();
 
   u2 page = it.key();
 
-  QString svg_file = "%1/p%2.svg"_qt.arg(pages_folder).arg(page, 3, 10, QLatin1Char('0'));
 
-  qDebug() << svg_file;
+  QString svg_file = "%1/p%2.svg"_qt.arg(pages_folder).arg(page, 3, 10, QLatin1Char('0'));
+  QString base_file = "%1/p%2.svg"_qt.arg(bases_folder).arg(page, 3, 10, QLatin1Char('0'));
+  QString html_file = "%1/p%2.htm"_qt.arg(bases_folder).arg(page, 3, 10, QLatin1Char('0'));
+
+  QString html_template = "%1/overlay.htm"_qt.arg(template_folder);
+  QString html_text = KA::TextIO::load_file(html_template);
+  html_text.replace("%title%", it.value().first);
+  html_text.replace("%local%", QString::number(it.value().second));
+  html_text.replace("%page%", "%1"_qt.arg(page, 3, 10, QLatin1Char('0')));
+  html_text.replace("%dpage%", QString::number(page));
+  KA::TextIO::save_file(html_file, html_text);
+
+
+  QString base_template = "%1/overlay.svg"_qt.arg(template_folder);
+  QString base_text = KA::TextIO::load_file(base_template);
+  base_text.replace("%page%", "%1"_qt.arg(page, 3, 10, QLatin1Char('0')));
+
+  static QString static_marks_text = R"_(
+
+  <!-- note %1 -->
+
+  <g onmouseover='show_popup_text_by_id("m-g%1", event)'
+    onmouseout='hide_popup_text_by_id("m-g%1", event)'>
+
+  <rect id='ar-r1'
+    class='area-rect' x='%2pt' y='%3pt' width='%4pt' height='%5pt'
+    />
+
+
+  <g id='m-g%1' class='text-wrapper' transform='translate(29, 623)'>
+
+      <foreignObject width="200" height="200" x='0' y='0'
+       requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+  <p xmlns="http://www.w3.org/1999/xhtml"
+   style='background:pink; font-size:11pt'>
+  %6
+  </p>
+
+      </foreignObject>
+  </g>
+
+
+  </g>
+
+  <!-- end note %1 -->
+
+  )_";
+
+  auto& vec = annotations[page];
+
+  if(vec.isEmpty())
+    continue;
+
+  QString marks_text;
+
+  for(int i = 0; i < 1; ++i)
+  {
+   QRectF rf = vec[i].second;
+
+//   u2 x = 29;
+//   u2 y = 523;
+//   u2 w = 541;
+//   u2 h = 41;
+
+   r8 tlx = rf.topLeft().x();
+   r8 tly = rf.topLeft().y();
+
+   r8 brx = rf.bottomRight().x();
+   r8 bry = rf.bottomRight().y();
+
+
+//   qreal scale_factor =  scale();
+//   qreal scale_factor = 1.275;
+
+   qreal x_scale_factor = 1.7;
+   qreal y_scale_factor = 2.69;
+
+   QSizeF ps = page_sizes[page];
+
+   u4 tlx_pg = tlx * ps.width() * x_scale_factor;
+   u4 tly_pg = tly * ps.height() * y_scale_factor;
+
+   u4 brx_pg = brx * ps.width() * x_scale_factor;
+   u4 bry_pg = bry * ps.height() * y_scale_factor;
+
+   QRect qr(QPoint(tlx_pg, tly_pg), QPoint(brx_pg, bry_pg));
+
+   u2 x = qr.x();
+   u2 y = qr.y();
+   u2 w = qr.width();
+   u2 h = qr.height();
+
+
+   QString text = vec[i].first;
+
+   QString note_text = static_marks_text.arg(i + 1).arg(x).arg(y)
+     .arg(w).arg(h).arg(text);
+
+   marks_text += note_text;
+  }
+
+
+  base_text.replace("%MARKS%", marks_text);
+
+  KA::TextIO::save_file(base_file, base_text);
 
 
  }
