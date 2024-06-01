@@ -33,6 +33,17 @@
 #include "textio.h"
 
 
+int pt_to_px(int i)
+{
+ return i * (4./3);
+}
+
+int px_to_pt(int i)
+{
+ return i * (3./4);
+}
+
+
 int main(int argc, char *argv[])
 {
  QString bases_folder = "/home/nlevisrael/sahana/bases";
@@ -129,7 +140,6 @@ int main(int argc, char *argv[])
   html_text.replace("%local%", QString::number(it.value().second));
   html_text.replace("%page%", "%1"_qt.arg(page, 3, 10, QLatin1Char('0')));
   html_text.replace("%dpage%", QString::number(page));
-  KA::TextIO::save_file(html_file, html_text);
 
 
   QString base_template = "%1/overlay.svg"_qt.arg(template_folder);
@@ -148,16 +158,20 @@ int main(int argc, char *argv[])
     />
 
 
-  <g id='m-g%1' class='text-wrapper' transform='translate(29, 623)'>
+  <g id='m-g%1' class='text-wrapper' transform='translate(%6, %7)'>
 
-      <foreignObject width="200" height="200" x='0' y='0'
+  <rect width='200' height='115' class='foreign-object-bkg' id='fob'/>
+
+      <foreignObject width="200" height="115" x='0' y='0' id='fo'
        requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
   <p xmlns="http://www.w3.org/1999/xhtml"
    style='background:pink; font-size:11pt'>
-  %6
+  %8
   </p>
 
       </foreignObject>
+
+
   </g>
 
 
@@ -173,6 +187,8 @@ int main(int argc, char *argv[])
     continue;
 
   QString marks_text;
+
+  QString html_test;
 
   for(int i = 0; i < 1; ++i)
   {
@@ -211,22 +227,39 @@ int main(int argc, char *argv[])
    u2 w = qr.width();
    u2 h = qr.height();
 
+   int x_px = pt_to_px( tlx_pg );
+   int y_px = pt_to_px( tly_pg );
+
+   u2 tr_x = x_px;
+   u2 tr_y = y_px;
+
+   u2 box_height = px_to_pt( 200 );
+
+   r8 box_height_scale_factor = 1;
+
+   tr_y -= box_height * box_height_scale_factor;
 
    QString text = vec[i].first;
 
+   html_test += text;
+
    QString note_text = static_marks_text.arg(i + 1).arg(x).arg(y)
-     .arg(w).arg(h).arg(text);
+     .arg(w).arg(h).arg(tr_x).arg(tr_y).arg(text);
 
    marks_text += note_text;
   }
 
 
   base_text.replace("%MARKS%", marks_text);
-
   KA::TextIO::save_file(base_file, base_text);
 
 
+  html_text.replace("%P%", html_test);
+  KA::TextIO::save_file(html_file, html_text);
+
  }
+
+
 
  return 0;
 
