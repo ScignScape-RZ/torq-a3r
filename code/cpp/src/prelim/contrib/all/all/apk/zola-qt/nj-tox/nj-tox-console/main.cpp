@@ -32,6 +32,10 @@
 
 #include "textio.h"
 
+#include <QSvgRenderer>
+
+#include <QTransform>
+
 
 int pt_to_px(int i)
 {
@@ -81,6 +85,12 @@ int main(int argc, char *argv[])
 
  QMap<u2, QVector<QPair<QString, QRectF>>> annotations;
 
+ QMap<u2, QVector<u2>> info;
+ // 0 = start of prev email  1 = local  2 = start of next email
+
+ u2 last_page = 0;
+ u2 last_start_page = 0;
+
  for(auto obj: qja_pages)
  {
   QJsonObject qjo = obj.toObject();
@@ -94,6 +104,24 @@ int main(int argc, char *argv[])
   QString title = qjo.value("title").toString();
   u2 local = qjo.value("local").toInt();
   page_titles[page] = {title, local};
+
+  info[page].resize(3);
+
+  if(last_page)
+  {
+   info[page][1] = local;
+   if(local == 1)
+   {
+    info[last_page][2] = page;
+   }
+   if(last_start_page)
+   {
+    info[last_page][1] = last_start_page;
+   }
+
+  }
+
+  last_page = page;
 
   QSizeF page_size;
   {
@@ -123,6 +151,23 @@ int main(int argc, char *argv[])
  }
 
  QMapIterator<u2, QPair<QString, u2>> it(page_titles);
+
+
+
+// while(it.hasNext())
+// {
+//  it.next();
+
+//  u2 page = it.key();
+
+
+
+// }
+
+// it.toFront();
+
+ last_page = 0;
+
  while(it.hasNext())
  {
   it.next();
@@ -131,6 +176,18 @@ int main(int argc, char *argv[])
 
 
   QString svg_file = "%1/p%2.svg"_qt.arg(pages_folder).arg(page, 3, 10, QLatin1Char('0'));
+
+  QSvgRenderer svr;
+  svr.load(svg_file);
+
+  QRectF view_box = svr.viewBoxF();
+
+  QString view_box_string = "viewBox=\"%1 %2 %3 %4\""_qt
+    .arg(view_box.x()).arg(view_box.y()).arg(view_box.width()).arg(view_box.height());
+
+  QString wh_string = "width=\"%1pt\" height=\"%2pt\""_qt
+    .arg(view_box.width()).arg(view_box.height());
+
   QString base_file = "%1/p%2.svg"_qt.arg(bases_folder).arg(page, 3, 10, QLatin1Char('0'));
   QString html_file = "%1/p%2.htm"_qt.arg(bases_folder).arg(page, 3, 10, QLatin1Char('0'));
 
@@ -141,16 +198,36 @@ int main(int argc, char *argv[])
   html_text.replace("%page%", "%1"_qt.arg(page, 3, 10, QLatin1Char('0')));
   html_text.replace("%dpage%", QString::number(page));
 
+  html_text.replace("%iframe-width%", "%1pt"_qt.arg(view_box.width()));
+  html_text.replace("%iframe-height%", "%1pt"_qt.arg(view_box.height()));
+
+  if(it.hasNext())
+    html_text.replace("%ndown%", "location.href='p%1.htm'"_qt.arg(it.peekNext().key(), 3, 10, QLatin1Char('0')));
+  else
+    html_text.replace("%ndown%", "");
+
+  if(last_page)
+    html_text.replace("%nup%", "location.href='p%1.htm'"_qt.arg(last_page, 3, 10, QLatin1Char('0')));
+  else
+    html_text.replace("%nup%", "");
+
+  last_page = page;
+
 
   QString base_template = "%1/overlay.svg"_qt.arg(template_folder);
   QString base_text = KA::TextIO::load_file(base_template);
   base_text.replace("%page%", "%1"_qt.arg(page, 3, 10, QLatin1Char('0')));
 
+  base_text.replace("%wh%", wh_string);
+  base_text.replace("%vb%", view_box_string);
+
+
+
   static QString static_marks_text = R"_(
 
   <!-- note %1 -->
 
-  <g onmouseover='show_popup_text_by_id("m-g%1", event)'
+  <g class='mark-g' id='mark-g-%1' onmouseover='show_popup_text_by_id("mark-g-%1", "m-g%1", event)'
     onmouseout='hide_popup_text_by_id("m-g%1", event)'>
 
   <rect id='ar-r1'
@@ -160,9 +237,9 @@ int main(int argc, char *argv[])
 
   <g id='m-g%1' class='text-wrapper' transform='translate(%6, %7)'>
 
-  <rect width='200' height='115' class='foreign-object-bkg' id='fob'/>
+  <rect width='200' height='115' class='foreign-object-bkg' id='fob-%1'/>
 
-      <foreignObject width="200" height="115" x='0' y='0' id='fo'
+      <foreignObject width="200" height="115" x='0' y='0' id='fo-%1'
        requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
   <p xmlns="http://www.w3.org/1999/xhtml"
    style='background:pink; font-size:11pt'>
@@ -190,69 +267,51 @@ int main(int argc, char *argv[])
 
   QString html_test;
 
-  for(int i = 0; i < 1; ++i)
+  u1 i = 0;
+  for(auto& pr : vec)
   {
-   QRectF rf = vec[i].second;
+   ++i;
 
-//   u2 x = 29;
-//   u2 y = 523;
-//   u2 w = 541;
-//   u2 h = 41;
+   QRectF rf = pr.second;
 
-   r8 tlx = rf.topLeft().x();
-   r8 tly = rf.topLeft().y();
+   QTransform qtr;
+   qtr.scale(view_box.width() * .75, view_box.height() * .75);
 
-   r8 brx = rf.bottomRight().x();
-   r8 bry = rf.bottomRight().y();
+   QRectF qr = qtr.mapRect(rf);
 
+   r8 x = qr.x();
+   r8 y = qr.y();
+   r8 w = qr.width();
+   r8 h = qr.height();
 
-//   qreal scale_factor =  scale();
-//   qreal scale_factor = 1.275;
+   r8 tr_x = x;
+   r8 tr_y = y;
 
-   qreal x_scale_factor = 1.7;
-   qreal y_scale_factor = 2.69;
+   QString text = pr.first;
 
-   QSizeF ps = page_sizes[page];
-
-   u4 tlx_pg = tlx * ps.width() * x_scale_factor;
-   u4 tly_pg = tly * ps.height() * y_scale_factor;
-
-   u4 brx_pg = brx * ps.width() * x_scale_factor;
-   u4 bry_pg = bry * ps.height() * y_scale_factor;
-
-   QRect qr(QPoint(tlx_pg, tly_pg), QPoint(brx_pg, bry_pg));
-
-   u2 x = qr.x();
-   u2 y = qr.y();
-   u2 w = qr.width();
-   u2 h = qr.height();
-
-   int x_px = pt_to_px( tlx_pg );
-   int y_px = pt_to_px( tly_pg );
-
-   u2 tr_x = x_px;
-   u2 tr_y = y_px;
-
-   u2 box_height = px_to_pt( 200 );
-
-   r8 box_height_scale_factor = 1;
-
-   tr_y -= box_height * box_height_scale_factor;
-
-   QString text = vec[i].first;
-
-   html_test += text;
-
-   QString note_text = static_marks_text.arg(i + 1).arg(x).arg(y)
+   QString note_text = static_marks_text.arg(i).arg(x).arg(y)
      .arg(w).arg(h).arg(tr_x).arg(tr_y).arg(text);
 
    marks_text += note_text;
+
+   static QString height_test = R"_(
+   <div style='width:200px' id='test-d-%1'>
+   <p style='background:pink; font-size:11pt' id='test-p-%1'>
+   %2
+   </p>
+   </div>
+
+   )_";
+
+   html_test += height_test.arg(i).arg(text);
   }
 
 
   base_text.replace("%MARKS%", marks_text);
   KA::TextIO::save_file(base_file, base_text);
 
+
+  html_text.replace("%test-count%", QString::number(i));
 
   html_text.replace("%P%", html_test);
   KA::TextIO::save_file(html_file, html_text);
