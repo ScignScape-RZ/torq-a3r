@@ -42,6 +42,11 @@ int pt_to_px(int i)
  return i * (4./3);
 }
 
+QPointF pt_to_px(QPointF p)
+{
+ return {pt_to_px(p.x()), pt_to_px(p.y())};
+}
+
 int px_to_pt(int i)
 {
  return i * (3./4);
@@ -353,10 +358,32 @@ int main(int argc, char *argv[])
 
   )_";
 
+  static QString height_test = R"_(
+  <div style='width:200px' id='test-d-%1'>
+  <p style='background:pink; font-size:11pt' id='test-p-%1'>
+  %2
+  </p>
+  </div>
+
+  )_";
+
+
+  static QString static_trapezoids_text = R"_(
+    <!-- for note %1 -->
+
+    <!--  bl: %2  l: %3  tl: %4  tr: %5  r: %6  br: %7 -->
+    <polygon points="%2 %3 %4 %5 %6 %7" class='trapz'/>
+
+    <!-- end for note %1 -->
+  )_";
+
   auto& vec = doc_page.annotations;
 
   QString marks_text;
   QString html_test;
+  QString trapezoids_text;
+
+  QString area_text;
 
   u1 i = 0;
   for(auto& pr : vec)
@@ -380,24 +407,59 @@ int main(int argc, char *argv[])
 
    QString text = pr.first;
 
+
    QString note_text = static_marks_text.arg(i).arg(x).arg(y)
      .arg(w).arg(h).arg(tr_x).arg(tr_y).arg(text);
 
    marks_text += note_text;
 
-   static QString height_test = R"_(
-   <div style='width:200px' id='test-d-%1'>
-   <p style='background:pink; font-size:11pt' id='test-p-%1'>
-   %2
-   </p>
-   </div>
-
-   )_";
-
    html_test += height_test.arg(i).arg(text);
+
+   QPointF trapezoid_bl, trapezoid_l, trapezoid_tl,
+     trapezoid_tr, trapezoid_r, trapezoid_br;
+
+   QString trapezoid_bls, trapezoid_ls, trapezoid_tls,
+     trapezoid_trs, trapezoid_rs, trapezoid_brs;
+
+   auto point_to_string = [](QPointF p, QString& s)
+   {
+    s = "%1,%2"_qt.arg(p.x()).arg(p.y());
+   };
+
+   auto points_to_strings = [&]()
+   {
+    point_to_string(trapezoid_bl, trapezoid_bls);
+    point_to_string(trapezoid_l, trapezoid_ls);
+    point_to_string(trapezoid_tl, trapezoid_tls);
+    point_to_string(trapezoid_tr, trapezoid_trs);
+    point_to_string(trapezoid_r, trapezoid_rs);
+    point_to_string(trapezoid_br, trapezoid_brs);
+   };
+
+
+
+   trapezoid_bl = pt_to_px( qr.bottomLeft() );
+   trapezoid_l = pt_to_px( qr.topLeft() );
+   trapezoid_tl = pt_to_px( {tr_x + 50, tr_y - 200} );
+   trapezoid_tr = pt_to_px( {tr_x + 250, tr_y - 200} );
+   trapezoid_r = pt_to_px( qr.topRight() );
+   trapezoid_br = pt_to_px( qr.bottomRight() );
+
+   points_to_strings();
+
+   trapezoids_text += static_trapezoids_text.arg(i)
+     .arg(trapezoid_bls).arg(trapezoid_ls).arg(trapezoid_tls)
+     .arg(trapezoid_trs).arg(trapezoid_rs).arg(trapezoid_brs);
+
+   //
   }
 
   base_text.replace("%MARKS%", marks_text);
+
+  base_text.replace("%TEXTS%", area_text);
+
+  base_text.replace("%TRAPEZOIDS%", trapezoids_text);
+
   KA::TextIO::save_file(base_file, base_text);
 
 
