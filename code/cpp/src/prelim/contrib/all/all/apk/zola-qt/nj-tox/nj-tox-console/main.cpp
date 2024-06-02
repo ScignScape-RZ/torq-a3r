@@ -48,6 +48,22 @@ int px_to_pt(int i)
 }
 
 
+struct Doc_Page {
+ u2 index;
+ u2 number;
+ u2 local;
+ u2 email;
+
+ QVector<QPair<QString, QRectF>> annotations;
+};
+
+struct Email {
+ u2 index;
+ u2 start_page;
+ u2 page_count;
+ QString title;
+};
+
 int main(int argc, char *argv[])
 {
  QString bases_folder = "/home/nlevisrael/sahana/bases";
@@ -80,16 +96,17 @@ int main(int argc, char *argv[])
 
  QJsonArray qja_pages = qjd.array();
 
- QMap<u2, QSizeF> page_sizes;
- QMap<u2, QPair<QString, u2>> page_titles;
+// QMap<u2, QSizeF> page_sizes;
+// QMap<u2, QPair<QString, u2>> page_titles;
+// QMap<u2, QVector<QPair<QString, QRectF>>> annotations;
+// QMap<u2, QVector<u2>> info;
+// // 0 = start of prev email  1 = local  2 = start of next email
 
- QMap<u2, QVector<QPair<QString, QRectF>>> annotations;
+// u2 last_page = 0;
+// u2 last_start_page = 0;
 
- QMap<u2, QVector<u2>> info;
- // 0 = start of prev email  1 = local  2 = start of next email
-
- u2 last_page = 0;
- u2 last_start_page = 0;
+ QVector<Doc_Page> doc_pages;
+ QVector<Email> emails;
 
  for(auto obj: qja_pages)
  {
@@ -103,36 +120,59 @@ int main(int argc, char *argv[])
   u2 page = qjo.value("page").toInt();
   QString title = qjo.value("title").toString();
   u2 local = qjo.value("local").toInt();
-  page_titles[page] = {title, local};
+//  page_titles[page] = {title, local};
+//  info[page].resize(3);
 
-  info[page].resize(3);
+  doc_pages.push_back({});
+  Doc_Page& doc_page = doc_pages.last();
+  doc_page.index = doc_pages.size() - 1;
+  doc_page.number = page;
+  doc_page.local = local;
 
-  if(last_page)
+  Email* e;
+  if(local == 1)
   {
-   info[page][1] = local;
-   if(local == 1)
-   {
-    info[last_page][2] = page;
-   }
-   if(last_start_page)
-   {
-    info[last_page][1] = last_start_page;
-   }
-
+   emails.push_back({});
+   e = &emails.last();
+   e->index = emails.size() - 1;
+   e->page_count = 1;
+   e->start_page = page;
+   e->title = title;
   }
-
-  last_page = page;
-
-  QSizeF page_size;
+  else
   {
-   QJsonArray qja1 = qjo.value("page-size").toArray();
-   page_size.setWidth(qja1[0].toDouble());
-   page_size.setHeight(qja1[1].toDouble());
+   e = &emails.last();
+   ++e->page_count;
   }
-  page_sizes[page] = page_size;
+  doc_page.email = e->index;
+
+  auto& annotations = doc_page.annotations;
+
+//  if(last_page)
+//  {
+//   info[page][1] = local;
+//   if(local == 1)
+//   {
+//    info[last_page][2] = page;
+//   }
+//   if(last_start_page)
+//   {
+//    info[last_page][1] = last_start_page;
+//   }
+
+//  }
+
+//  last_page = page;
+
+//  QSizeF page_size;
+//  {
+//   QJsonArray qja1 = qjo.value("page-size").toArray();
+//   page_size.setWidth(qja1[0].toDouble());
+//   page_size.setHeight(qja1[1].toDouble());
+//  }
+//  page_sizes[page] = page_size;
 
   QJsonArray qja_notes = qjo.value("notes").toArray();
-
 
   for(auto obj1: qja_notes)
   {
@@ -146,33 +186,38 @@ int main(int argc, char *argv[])
     boundary.setWidth(qja2[2].toDouble());
     boundary.setHeight(qja2[3].toDouble());
    }
-   annotations[page].push_back({text, boundary});
+   annotations.push_back({text, boundary});
   }
  }
 
- QMapIterator<u2, QPair<QString, u2>> it(page_titles);
+// QMapIterator<u2, QPair<QString, u2>> it(page_titles);
+
+//// while(it.hasNext())
+//// {
+////  it.next();
+
+////  u2 page = it.key();
 
 
 
-// while(it.hasNext())
-// {
-//  it.next();
+//// }
 
-//  u2 page = it.key();
+//// it.toFront();
 
+// last_page = 0;
 
-
-// }
-
-// it.toFront();
-
- last_page = 0;
-
- while(it.hasNext())
+ u2 max_page = std::max_element(doc_pages.begin(), doc_pages.end(),
+   [](const auto& lhs, const auto& rhs)
  {
-  it.next();
+  return lhs.number < rhs.number;
+ }) -> number;
 
-  u2 page = it.key();
+
+ for(Doc_Page& doc_page : doc_pages)
+ {
+  u2 page = doc_page.number;
+
+  Email& email = emails[doc_page.email];
 
 
   QString svg_file = "%1/p%2.svg"_qt.arg(pages_folder).arg(page, 3, 10, QLatin1Char('0'));
@@ -193,25 +238,75 @@ int main(int argc, char *argv[])
 
   QString html_template = "%1/overlay.htm"_qt.arg(template_folder);
   QString html_text = KA::TextIO::load_file(html_template);
-  html_text.replace("%title%", it.value().first);
-  html_text.replace("%local%", QString::number(it.value().second));
+
+
+
+  html_text.replace("%title%", email.title);
+  html_text.replace("%local%", QString::number(doc_page.local));
   html_text.replace("%page%", "%1"_qt.arg(page, 3, 10, QLatin1Char('0')));
   html_text.replace("%dpage%", QString::number(page));
+
+  html_text.replace("%local-max%", QString::number(email.page_count));
+  html_text.replace("%max-page%", QString::number(max_page));
 
   html_text.replace("%iframe-width%", "%1pt"_qt.arg(view_box.width()));
   html_text.replace("%iframe-height%", "%1pt"_qt.arg(view_box.height()));
 
-  if(it.hasNext())
-    html_text.replace("%ndown%", "location.href='p%1.htm'"_qt.arg(it.peekNext().key(), 3, 10, QLatin1Char('0')));
-  else
-    html_text.replace("%ndown%", "");
+  Email* prior_email = doc_page.email? &emails[doc_page.email - 1] : (Email*) nullptr;
+  Email* next_email = doc_page.email < emails.size() - 1? &emails[doc_page.email + 1] : (Email*) nullptr;
 
-  if(last_page)
-    html_text.replace("%nup%", "location.href='p%1.htm'"_qt.arg(last_page, 3, 10, QLatin1Char('0')));
-  else
-    html_text.replace("%nup%", "");
+  Doc_Page* prior_page = doc_page.index? &doc_pages[doc_page.index - 1] : (Doc_Page*) nullptr;
+  Doc_Page* next_page = doc_page.index < doc_pages.size() - 1? &doc_pages[doc_page.index + 1] : (Doc_Page*) nullptr;
 
-  last_page = page;
+  if(next_page && next_page->email == doc_page.email)
+  {
+   html_text.replace("%ldown%", "location.href='p%1.htm'"_qt.arg(next_page->number, 3, 10, QLatin1Char('0')));
+   html_text.replace("%ldown-active%", "active");
+  }
+  else
+  {
+   html_text.replace("%ldown%", "");
+   html_text.replace("%ldown-active%", "inactive");
+  }
+
+  if(prior_page && prior_page->email == doc_page.email)
+  {
+   html_text.replace("%lup%", "location.href='p%1.htm'"_qt.arg(prior_page->number, 3, 10, QLatin1Char('0')));
+   html_text.replace("%lup-active%", "active");
+  }
+  else
+  {
+   html_text.replace("%lup%", "");
+   html_text.replace("%lup-active%", "inactive");
+  }
+
+  if(next_email)
+  {
+   html_text.replace("%edown%", "location.href='p%1.htm'"_qt.arg(next_email->start_page, 3, 10, QLatin1Char('0')));
+   html_text.replace("%edown-active%", "active");
+  }
+  else
+  {
+   html_text.replace("%edown%", "");
+   html_text.replace("%edown-active%", "inactive");
+  }
+
+
+  if(prior_email)
+  {
+   html_text.replace("%eup%", "location.href='p%1.htm'"_qt.arg(prior_email->start_page, 3, 10, QLatin1Char('0')));
+   html_text.replace("%eup-active%", "active");
+  }
+  else
+  {
+   html_text.replace("%eup%", "");
+   html_text.replace("%eup-active%", "inactive");
+  }
+
+//  if(prior_page)
+//    html_text.replace("%nup%", "location.href='p%1.htm'"_qt.arg(prior_page->number, 3, 10, QLatin1Char('0')));
+//  else
+//    html_text.replace("%nup%", "");
 
 
   QString base_template = "%1/overlay.svg"_qt.arg(template_folder);
@@ -258,13 +353,9 @@ int main(int argc, char *argv[])
 
   )_";
 
-  auto& vec = annotations[page];
-
-  if(vec.isEmpty())
-    continue;
+  auto& vec = doc_page.annotations;
 
   QString marks_text;
-
   QString html_test;
 
   u1 i = 0;
@@ -305,7 +396,6 @@ int main(int argc, char *argv[])
 
    html_test += height_test.arg(i).arg(text);
   }
-
 
   base_text.replace("%MARKS%", marks_text);
   KA::TextIO::save_file(base_file, base_text);
