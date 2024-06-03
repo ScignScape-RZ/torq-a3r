@@ -1,0 +1,176 @@
+
+<html>
+
+
+<head>
+
+<style>
+
+
+
+:root {
+ --scale-factor: 1;
+ --bkg: 101, 50, 195;
+}
+
+body {
+ background: linear-gradient(-25deg, rgba(var(--bkg)), rgba(var(--bkg), 0.2) )
+}
+
+#svg-iframe {
+  zoom: var(--scale-factor);
+  -moz-transform: scale(var(--scale-factor));
+  -moz-transform-origin: 0 0;
+  -o-transform: scale(var(--scale-factor));
+  -o-transform-origin: 0 0;
+  -webkit-transform: scale(var(--scale-factor));
+  -webkit-transform-origin: 0 0;
+
+  width: %iframe-width%;
+  height: %iframe-height%;
+
+  border:inset rgba(var(--bkg), 0.1) 1px;
+
+}
+
+#wrap {
+  width: 1071pt;
+  height: 1386pt;
+  padding: 0;
+  overflow: hidden;
+}
+
+
+
+
+
+img.shrink { width:84%; height:auto; }
+
+div.float-left {float: left;}
+div.float-right {float: right;}
+
+span.navl {margin-right:10px; position:relative; top:4px;}
+
+button.nav {width:50px;height:60px;margin-right:10px;}
+
+button.navlocal {width:45px;height:auto;margin-right:10px; margin-top:2px;}
+
+button.active {}
+button.inactive {background: rgb(30,30,30};}
+
+
+
+
+#arrows {width: 320px}
+
+#intro {}
+
+span.i-thread {margin-left:10px; font-weight:900; background:rgb(255,251,230); 
+ border-bottom: outset brown 1px; padding:3px; 
+ border-top: solid rgba(0, 0, 100, 0.4) 3px; }
+
+
+span.i-page {margin-left:10px; font-weight:900; }
+
+div.i-page-s {margin-top:7px; position:relative;}
+
+div.d-page-s {margin-top:7px; position:relative;}
+
+
+</style>
+
+
+<script>
+
+
+function get_test_heights(count)
+{
+ if(count == 0) return;
+
+ let sf = document.getElementById('svg-iframe').contentWindow;
+ for(let i = 1; i <= count; ++i)
+ {
+
+  let eld = document.getElementById('test-d-' + i);
+  let elp = document.getElementById('test-p-' + i);
+
+  let oh =  elp.offsetHeight;
+  oh *= 1.4;
+
+//?  sf.set_p_height(i, oh);
+
+  eld.style.display = 'none'
+ }
+
+ //? 
+}
+
+</script>
+
+</head>
+
+<body onload='get_test_heights(%test-count%)'>
+
+<div style='width:200px' id='test-d'>
+<p style='background:pink; font-size:11pt' id='test-p'>
+%P%
+</p>
+</div>
+
+<div class='float-left' id='intro'>
+
+Email Thread:  <span class='intro i-thread'>%title%</span> <br>
+
+<div class='intro i-page-s'>Thread Page: <span class='i-page'>%local%</span> of <span class='i-page'>%local-max%</span></div>
+
+<div class='intro d-page-s'>Page: <span class='i-page'>%dpage%</span> of <span class='i-page'>%max-page%</span></div>
+
+</div>
+
+<div class='float-right' id='arrows'>
+
+
+<span class='navl'>
+<button class='navlocal %lup-active%' onclick="%lup%">
+<img src='../icons/upl-%lup-active%.png' class='shrink'></button>
+
+<button class='navlocal %ldown-active%' onclick="%ldown%">
+<img src='../icons/downl-%ldown-active%.png' class='shrink'> 
+</button>
+</span>
+
+<button class='nav %eup-active%' ' onclick="%eup%">
+<img src='../icons/up-%eup-active%.png' class='shrink'>
+</button>
+
+<button class='nav %edown-active%' ' onclick="%edown%">
+<img src='../icons/down-%edown-active%.png' class='shrink'> 
+</button>
+
+</div>
+
+
+
+<br><br><br><br>
+
+<div style='width:100%'>
+
+<div class='float-left'>
+
+
+<div id="wrap">
+  <iframe id="svg-iframe" src="p%page%.svg"></iframe>
+</div>
+
+
+
+</div>
+
+
+</div>
+
+</body>
+
+
+</html>
+

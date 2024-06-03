@@ -327,36 +327,38 @@ int main(int argc, char *argv[])
 
   <!-- note %1 -->
 
-  <g class='mark-g' id='mark-g-%1' onmouseover='show_popup_text_by_id("mark-g-%1", "m-g%1", event)'
-    onmouseout='hide_popup_text_by_id("m-g%1", event)'>
+  <g class='mark-g' id='mark-g-%1' onmouseover='show_popup_text_by_id(%1, event)'
+    onmouseout='check_hide_popup_text_by_id(%1, event)'>
 
-  <rect id='ar-r1'
+  <rect id='mark-r-%1'
     class='area-rect' x='%2pt' y='%3pt' width='%4pt' height='%5pt'
     />
-
-
-  <g id='m-g%1' class='text-wrapper' transform='translate(%6, %7)'>
-
-  <rect width='200' height='115' class='foreign-object-bkg' id='fob-%1'/>
-
-      <foreignObject width="200" height="115" x='0' y='0' id='fo-%1'
-       requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-  <p xmlns="http://www.w3.org/1999/xhtml"
-   style='background:pink; font-size:11pt'>
-  %8
-  </p>
-
-      </foreignObject>
-
-
-  </g>
-
 
   </g>
 
   <!-- end note %1 -->
 
   )_";
+
+  static QString static_area_text = R"_(
+
+   <!-- for note %1 -->
+
+  <g id='popup-%1' class='text-wrapper' transform='translate(%2, %3)'>
+    <rect width='200' height='115' class='foreign-object-bkg' id='fo-rect-%1'/>
+    <foreignObject width="200" height="115" x='0' y='0' id='fo-%1'
+       requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+     <p xmlns="http://www.w3.org/1999/xhtml"
+       style='background:pink; font-size:11pt'>
+       %4
+     </p>
+   </foreignObject>
+  </g>
+
+   <!-- end for note %1 -->
+
+  )_";
+
 
   static QString height_test = R"_(
   <div style='width:200px' id='test-d-%1'>
@@ -371,8 +373,9 @@ int main(int argc, char *argv[])
   static QString static_trapezoids_text = R"_(
     <!-- for note %1 -->
 
-    <!--  bl: %2  l: %3  tl: %4  tr: %5  r: %6  br: %7 -->
-    <polygon points="%2 %3 %4 %5 %6 %7" class='trapz'/>
+    <!--  l: %2  bl: %3  br: %4  r: %5  tr: %6  tl: %7  -->
+    <polygon id="trapz-%1" points="%2 %3 %4 %5 %6 %7"
+       class='trapz' onmouseout='leave_trapz(1, event)' />
 
     <!-- end for note %1 -->
   )_";
@@ -408,18 +411,19 @@ int main(int argc, char *argv[])
    QString text = pr.first;
 
 
-   QString note_text = static_marks_text.arg(i).arg(x).arg(y)
-     .arg(w).arg(h).arg(tr_x).arg(tr_y).arg(text);
+   marks_text += static_marks_text.arg(i).arg(x).arg(y)
+     .arg(w).arg(h);
 
-   marks_text += note_text;
+   area_text += static_area_text.arg(i).arg(tr_x).arg(tr_y).arg(text);
+
 
    html_test += height_test.arg(i).arg(text);
 
-   QPointF trapezoid_bl, trapezoid_l, trapezoid_tl,
-     trapezoid_tr, trapezoid_r, trapezoid_br;
+   QPointF trapezoid_l, trapezoid_bl, trapezoid_br,
+     trapezoid_r, trapezoid_tr, trapezoid_tl;
 
-   QString trapezoid_bls, trapezoid_ls, trapezoid_tls,
-     trapezoid_trs, trapezoid_rs, trapezoid_brs;
+   QString trapezoid_ls, trapezoid_bls, trapezoid_brs,
+     trapezoid_rs, trapezoid_trs, trapezoid_tls;
 
    auto point_to_string = [](QPointF p, QString& s)
    {
@@ -428,28 +432,28 @@ int main(int argc, char *argv[])
 
    auto points_to_strings = [&]()
    {
-    point_to_string(trapezoid_bl, trapezoid_bls);
     point_to_string(trapezoid_l, trapezoid_ls);
-    point_to_string(trapezoid_tl, trapezoid_tls);
-    point_to_string(trapezoid_tr, trapezoid_trs);
-    point_to_string(trapezoid_r, trapezoid_rs);
+    point_to_string(trapezoid_bl, trapezoid_bls);
     point_to_string(trapezoid_br, trapezoid_brs);
+    point_to_string(trapezoid_r, trapezoid_rs);
+    point_to_string(trapezoid_tr, trapezoid_trs);
+    point_to_string(trapezoid_tl, trapezoid_tls);
    };
 
 
 
-   trapezoid_bl = pt_to_px( qr.bottomLeft() );
    trapezoid_l = pt_to_px( qr.topLeft() );
-   trapezoid_tl = pt_to_px( {tr_x + 50, tr_y - 200} );
-   trapezoid_tr = pt_to_px( {tr_x + 250, tr_y - 200} );
-   trapezoid_r = pt_to_px( qr.topRight() );
+   trapezoid_bl = pt_to_px( qr.bottomLeft() );
    trapezoid_br = pt_to_px( qr.bottomRight() );
+   trapezoid_r = pt_to_px( qr.topRight() );
+   trapezoid_tr = pt_to_px( {tr_x + 250, tr_y - 200} );
+   trapezoid_tl = pt_to_px( {tr_x + 50, tr_y - 200} );
 
    points_to_strings();
 
    trapezoids_text += static_trapezoids_text.arg(i)
-     .arg(trapezoid_bls).arg(trapezoid_ls).arg(trapezoid_tls)
-     .arg(trapezoid_trs).arg(trapezoid_rs).arg(trapezoid_brs);
+     .arg(trapezoid_ls).arg(trapezoid_bls).arg(trapezoid_brs)
+     .arg(trapezoid_rs).arg(trapezoid_trs).arg(trapezoid_tls);
 
    //
   }

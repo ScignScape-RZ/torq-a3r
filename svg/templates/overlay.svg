@@ -1,0 +1,221 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+ %wh% %vb% version="1.1">
+
+
+<!-- viewBox="0pt 0pt 612pt 792pt" 
+
+viewBox="0pt 0pt 612pt 792pt" 
+-->
+
+<style type="text/css">
+
+:root {
+
+
+ --area-rect-border-color: 46, 51, 105;
+ --area-rect-border-color-darker: 246, 131, 75;
+
+
+}
+
+.foreign-object-bkg {fill:pink; stroke:black; stroke-width:4}
+
+
+
+.text-wrapper  {
+  visibility:hidden;
+}
+
+.text-wrapper.vis {visibility:visible;}
+
+
+.mark-g.vis  {visibility:visible;}
+.mark-g.hid  {visibility:hidden;}
+
+
+.area-rect {
+ fill: rgba(var(--area-rect-border-color), 0.1); 
+ stroke: rgba(var(--area-rect-border-color), 0.2);
+ rx:15;  stroke-dasharray:2,7,10,3;
+
+}
+
+.area-rect:hover {
+ stroke: red;
+ fill: rgba(255, 245, 0);
+ opacity:0.3; 
+}
+
+.trapz { stroke:blue; fill:none; }
+
+#trapz-1 { stroke:blue; fill:none; }
+
+#trapz-1.vis {  fill: rgb(255, 155, 155);
+ opacity:0.3; 
+ }
+
+
+</style>
+
+<script>
+
+function show_vis(el)
+{
+ el.classList.add('vis');
+}
+
+
+function show_popup_text_by_id(index, evt)
+{
+// [...document.getElementsByClassName('mark-g')].forEach(m => {
+//  hide_vis(m);
+//  add_hid(m);
+// });
+
+
+ let tid = `trapz-${index}`;
+ let tel = document.getElementById(tid);
+ show_vis(tel);
+
+ let mid = `mark-g-${index}`
+ let mel = document.getElementById(mid);
+ show_vis(mel)
+ remove_hid(mel);
+
+
+ let pid = `popup-${index}`
+ let pel = document.getElementById(pid);
+ show_vis(pel);
+}
+
+
+function hide_vis(el)
+{
+ el.classList.remove('vis');
+}
+
+
+function add_hid(el)
+{
+ el.classList.add('hid');
+}
+
+function remove_hid(el)
+{
+ el.classList.remove('hid');
+}
+
+
+
+function check_hide_popup_text(index, evt)
+{
+// let el = document.getElementById(el_id);
+// hide_vis(el);
+
+// [...document.getElementsByClassName('mark-g')].forEach(m => {
+//  remove_hid(m);
+//  show_vis(m);
+// });
+
+ let tid = `trapz-${index}`;
+ let tel = document.getElementById(tid);
+
+// let mid = `mark-g-${index}`
+// let mel = document.getElementById(mid);
+
+ let rid = `mark-r-${index}`
+ let rel = document.getElementById(rid);
+
+ let pid = `popup-${index}`
+ let pel = document.getElementById(pid);
+
+ let frid = `fo-rect-${index}`
+ let frel = document.getElementById(frid);
+
+ let foid = `fo-${index}`
+ let foel = document.getElementById(foid);
+
+ console.log(`t: ${evt.target.getAttribute("id")}`);
+ console.log(`s: ${evt.srcElement.getAttribute("id")}`);
+ console.log(`r: ${evt.relatedTarget.getAttribute("id")}`);
+
+ let rt = evt.relatedTarget;
+
+ if(rt == tel || rt == rel || rt == pel || rt == frel || rt == foel)
+ {
+
+ }
+ else
+ {
+  console.log("hiding ...");
+  hide_vis(pel);
+  add_hid(pel)
+  hide_vis(tel);
+  add_hid(tel);
+ }
+
+
+}
+
+
+function check_hide_popup_text_by_id(index, evt)
+{
+ check_hide_popup_text(index, evt);
+}
+
+
+function leave_trapz(index, evt)
+{
+// let tid = `trapz-${index}`;
+// let t = document.getElementById(tid);
+// hide_vis(t);
+
+ check_hide_popup_text(index, evt)
+}
+
+
+function set_p_height(index, h)
+{
+ console.log(`index ${index}, height ${h}`);
+
+ document.getElementById("fo-" + index).setAttribute("height", h);
+ document.getElementById("fob-" + index).setAttribute("height", h);
+}
+
+
+</script>
+
+
+<rect width="100%" height="100%" fill="white" /> 
+
+<image x="0" y="0"  width="100%" height="100%" xlink:href="../pages/p%page%.svg" />
+
+
+<!-- trapezoids -->
+
+%TRAPEZOIDS%
+
+<!-- end trapezoids -->
+
+
+
+<!-- mark rectangles -->
+
+
+%MARKS%
+
+
+<!-- end mark rectangles -->
+
+
+<!-- text popup groups -->
+
+%TEXTS%
+
+<!-- end text popup groups -->
+
+
+</svg>
+
+
+
