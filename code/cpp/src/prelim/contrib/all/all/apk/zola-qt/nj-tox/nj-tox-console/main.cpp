@@ -340,17 +340,17 @@ int main(int argc, char *argv[])
 
   )_";
 
-  static QString static_area_text = R"_(
+  static QString static_popup_text = R"_(
 
    <!-- for note %1 -->
 
-  <g id='popup-%1' class='text-wrapper' transform='translate(%2, %3)'>
-    <rect width='200' height='115' class='foreign-object-bkg' id='fo-rect-%1'/>
-    <foreignObject width="200" height="115" x='0' y='0' id='fo-%1'
+  <g id='popup-%1' class='text-wrapper' transform='translate(%2, %3)'  data-xcoord='%2' >
+    <rect width='%4pt' height='%5pt' data-ycoord='%3' class='foreign-object-bkg' id='fo-rect-%1'/>
+    <foreignObject width="%4pt" height="%5pt" x='0' y='0' id='fo-%1'
        requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
      <p xmlns="http://www.w3.org/1999/xhtml"
        style='background:pink; font-size:11pt'>
-       %4
+       %6
      </p>
    </foreignObject>
   </g>
@@ -373,9 +373,9 @@ int main(int argc, char *argv[])
   static QString static_trapezoids_text = R"_(
     <!-- for note %1 -->
 
-    <!--  l: %2  bl: %3  br: %4  r: %5  tr: %6  tl: %7  -->
-    <polygon id="trapz-%1" points="%2 %3 %4 %5 %6 %7"
-       class='trapz' onmouseout='leave_trapz(1, event)' />
+    <!--  l: %2  bl: %3  br: %4  r: %5  tx: %6  tr: %7  tl: %8  -->
+    <polygon id="trapz-%1" points="%2 %3 %4 %5 %6 %7 %8"
+       class='trapz' onmouseout='leave_trapz(%1, event)' data-repl='%9' />
 
     <!-- end for note %1 -->
   )_";
@@ -386,7 +386,7 @@ int main(int argc, char *argv[])
   QString html_test;
   QString trapezoids_text;
 
-  QString area_text;
+  QString popup_text;
 
   u1 i = 0;
   for(auto& pr : vec)
@@ -396,7 +396,7 @@ int main(int argc, char *argv[])
    QRectF rf = pr.second;
 
    QTransform qtr;
-   qtr.scale(view_box.width() * .75, view_box.height() * .75);
+   qtr.scale(px_to_pt(view_box.width()), px_to_pt(view_box.height()));
 
    QRectF qr = qtr.mapRect(rf);
 
@@ -405,8 +405,18 @@ int main(int argc, char *argv[])
    r8 w = qr.width();
    r8 h = qr.height();
 
-   r8 tr_x = x;
-   r8 tr_y = y;
+   static r8 trapz_x_offset = 50;
+   static r8 trapz_y_offset = 0;
+
+   static r8 trapz_x_width = 200;
+   static r8 trapz_y_height = 115;
+
+   static u2 popup_width = 200;
+   static u2 popup_height = 115;
+
+
+   r8 trapz_x = x + trapz_x_offset;
+   r8 trapz_y = y + trapz_y_offset;
 
    QString text = pr.first;
 
@@ -414,7 +424,9 @@ int main(int argc, char *argv[])
    marks_text += static_marks_text.arg(i).arg(x).arg(y)
      .arg(w).arg(h);
 
-   area_text += static_area_text.arg(i).arg(tr_x).arg(tr_y).arg(text);
+   popup_text += static_popup_text.arg(i)
+     .arg(pt_to_px( trapz_x )).arg(pt_to_px( trapz_y - trapz_y_height ))
+     .arg(popup_width).arg(popup_height).arg(text);
 
 
    html_test += height_test.arg(i).arg(text);
@@ -446,21 +458,45 @@ int main(int argc, char *argv[])
    trapezoid_bl = pt_to_px( qr.bottomLeft() );
    trapezoid_br = pt_to_px( qr.bottomRight() );
    trapezoid_r = pt_to_px( qr.topRight() );
-   trapezoid_tr = pt_to_px( {tr_x + 250, tr_y - 200} );
-   trapezoid_tl = pt_to_px( {tr_x + 50, tr_y - 200} );
+   trapezoid_tr = pt_to_px( {trapz_x + trapz_x_width, trapz_y - trapz_y_height} );
+   trapezoid_tl = pt_to_px( {trapz_x, trapz_y - trapz_y_height} );
 
    points_to_strings();
 
+   QString trapz_extra;
+   QString trapz_points;
+
+   if(w < popup_width)
+   {
+    trapz_points = "%1 %2 %3 %4 %5,Yx %6,Y1 %7,Y2"_qt
+      .arg(trapezoid_ls).arg(trapezoid_bls).arg(trapezoid_brs)
+      .arg(trapezoid_rs).arg(trapezoid_tr.x())
+      .arg(trapezoid_tr.x()).arg(trapezoid_tl.x());
+
+    trapz_extra = "%1,%2"_qt.arg(trapezoid_tr.x())
+      .arg(trapezoid_tr.y() + pt_to_px(popup_height));
+   }
+   else
+    trapz_points = "%1 %2 %3 %4 %5,Y1 %6,Y2"_qt
+      .arg(trapezoid_ls).arg(trapezoid_bls).arg(trapezoid_brs)
+      .arg(trapezoid_rs).arg(trapezoid_tr.x()).arg(trapezoid_tl.x());
+
+
    trapezoids_text += static_trapezoids_text.arg(i)
      .arg(trapezoid_ls).arg(trapezoid_bls).arg(trapezoid_brs)
-     .arg(trapezoid_rs).arg(trapezoid_trs).arg(trapezoid_tls);
+     .arg(trapezoid_rs).arg(trapz_extra).arg(trapezoid_trs)
+     .arg(trapezoid_tls).arg(trapz_points);
+
+
+
+
 
    //
   }
 
   base_text.replace("%MARKS%", marks_text);
 
-  base_text.replace("%TEXTS%", area_text);
+  base_text.replace("%TEXTS%", popup_text);
 
   base_text.replace("%TRAPEZOIDS%", trapezoids_text);
 
