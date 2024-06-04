@@ -345,12 +345,16 @@ int main(int argc, char *argv[])
    <!-- for note %1 -->
 
   <g id='popup-%1' class='text-wrapper' transform='translate(%2, %3)'  data-xcoord='%2' >
-    <rect width='%4pt' height='%5pt' data-ycoord='%3' class='foreign-object-bkg' id='fo-rect-%1'/>
-    <foreignObject width="%4pt" height="%5pt" x='0' y='0' id='fo-%1'
+    <rect width='%4pt' height='%5pt' data-ycoord='%3'  data-index='%1'
+      x='%6pt' y='%7' class='foreign-object-bkg' id='fo-rect-%1'/>
+  )_";
+
+  static QString static_fo_text = R"_(
+    <foreignObject width="%2pt" height="%3pt" x='0' y='0' id='fo-%1'
        requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
      <p xmlns="http://www.w3.org/1999/xhtml"
        style='background:pink; font-size:11pt'>
-       %6
+       %4
      </p>
    </foreignObject>
   </g>
@@ -370,6 +374,9 @@ int main(int argc, char *argv[])
   )_";
 
 
+  QString html_test = height_test.arg(0).arg("X");
+
+
   static QString static_trapezoids_text = R"_(
     <!-- for note %1 -->
 
@@ -383,7 +390,6 @@ int main(int argc, char *argv[])
   auto& vec = doc_page.annotations;
 
   QString marks_text;
-  QString html_test;
   QString trapezoids_text;
 
   QString popup_text;
@@ -424,8 +430,20 @@ int main(int argc, char *argv[])
    marks_text += static_marks_text.arg(i).arg(x).arg(y)
      .arg(w).arg(h);
 
+
+   static r8 rect_fo_pushout = 5;
+
+   r8 rect_fo_x = -rect_fo_pushout;
+   r8 rect_fo_y = -rect_fo_pushout;
+   r8 rect_fo_width = popup_width + rect_fo_pushout + rect_fo_pushout;
+   r8 rect_fo_height = popup_height + rect_fo_pushout + rect_fo_pushout;
+
    popup_text += static_popup_text.arg(i)
      .arg(pt_to_px( trapz_x )).arg(pt_to_px( trapz_y - trapz_y_height ))
+     .arg(rect_fo_width).arg(rect_fo_height)
+     .arg(rect_fo_x).arg(rect_fo_y);
+
+   popup_text += static_fo_text.arg(i)
      .arg(popup_width).arg(popup_height).arg(text);
 
 
@@ -452,14 +470,16 @@ int main(int argc, char *argv[])
     point_to_string(trapezoid_tl, trapezoid_tls);
    };
 
-
+   static r8 trapezoid_pushout = 0;
 
    trapezoid_l = pt_to_px( qr.topLeft() );
    trapezoid_bl = pt_to_px( qr.bottomLeft() );
    trapezoid_br = pt_to_px( qr.bottomRight() );
    trapezoid_r = pt_to_px( qr.topRight() );
-   trapezoid_tr = pt_to_px( {trapz_x + trapz_x_width, trapz_y - trapz_y_height} );
-   trapezoid_tl = pt_to_px( {trapz_x, trapz_y - trapz_y_height} );
+   trapezoid_tr = pt_to_px( {trapz_x + trapz_x_width + trapezoid_pushout,
+     trapz_y - trapz_y_height - trapezoid_pushout } );
+   trapezoid_tl = pt_to_px( {trapz_x - trapezoid_pushout,
+     trapz_y - trapz_y_height - trapezoid_pushout } );
 
    points_to_strings();
 
@@ -473,8 +493,8 @@ int main(int argc, char *argv[])
       .arg(trapezoid_rs).arg(trapezoid_tr.x())
       .arg(trapezoid_tr.x()).arg(trapezoid_tl.x());
 
-    trapz_extra = "%1,%2"_qt.arg(trapezoid_tr.x())
-      .arg(trapezoid_tr.y() + pt_to_px(popup_height));
+    trapz_extra = "%1,%2"_qt.arg(trapezoid_tr.x() + trapezoid_pushout)
+      .arg(trapezoid_tr.y() + pt_to_px(popup_height) + trapezoid_pushout);
    }
    else
     trapz_points = "%1 %2 %3 %4 %5,Y1 %6,Y2"_qt
