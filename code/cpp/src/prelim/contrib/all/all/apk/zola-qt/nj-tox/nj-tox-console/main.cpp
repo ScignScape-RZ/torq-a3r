@@ -232,11 +232,23 @@ int main(int argc, char *argv[])
 
   QRectF view_box = svr.viewBoxF();
 
-  QString view_box_string = "viewBox=\"%1 %2 %3 %4\""_qt
-    .arg(view_box.x()).arg(view_box.y()).arg(view_box.width()).arg(view_box.height());
+  r8 view_box_y_offset = 25;
 
-  QString wh_string = "width=\"%1pt\" height=\"%2pt\""_qt
+  QString svg_view_box_string = "viewBox=\"%1 %2 %3 %4\""_qt
+    .arg(view_box.x()).arg(view_box.y() - view_box_y_offset).arg(view_box.width()).arg(view_box.height() + view_box_y_offset);
+
+  QString svg_wh_string = "width=\"%1pt\" height=\"%2pt\""_qt
+    .arg(view_box.width()).arg(view_box.height() + view_box_y_offset);
+
+  QString main_image_wh = "width=\"%1\" height=\"%2\""_qt
     .arg(view_box.width()).arg(view_box.height());
+
+  QString rbkg_inside_wh = "width=\"%1\" height=\"%2\""_qt
+    .arg(view_box.width()).arg(view_box.height());
+
+  QString rbkg_outside_y = "-%1"_qt.arg(view_box_y_offset);
+
+ // %main-image-wh%
 
   QString base_file = "%1/p%2.svg"_qt.arg(bases_folder).arg(page, 3, 10, QLatin1Char('0'));
   QString html_file = "%1/p%2.htm"_qt.arg(bases_folder).arg(page, 3, 10, QLatin1Char('0'));
@@ -318,10 +330,12 @@ int main(int argc, char *argv[])
   QString base_text = KA::TextIO::load_file(base_template);
   base_text.replace("%page%", "%1"_qt.arg(page, 3, 10, QLatin1Char('0')));
 
-  base_text.replace("%wh%", wh_string);
-  base_text.replace("%vb%", view_box_string);
+  base_text.replace("%svg-wh%", svg_wh_string);
+  base_text.replace("%svg-vb%", svg_view_box_string);
 
-
+  base_text.replace("%rbkg-outside-y%", rbkg_outside_y);
+  base_text.replace("%main-image-wh%", main_image_wh);
+  base_text.replace("%rbkg-inside-wh%", rbkg_inside_wh);
 
   static QString static_marks_text = R"_(
 
@@ -366,7 +380,7 @@ int main(int argc, char *argv[])
 
   static QString height_test = R"_(
   <div style='width:200px' id='test-d-%1'>
-  <p style='background:pink; font-size:11pt' id='test-p-%1'>
+  <p class='for-height-test' font-size:11pt' id='test-p-%1'>
   %2
   </p>
   </div>
@@ -415,10 +429,10 @@ int main(int argc, char *argv[])
    static r8 trapz_y_offset = 0;
 
    static r8 trapz_x_width = 200;
-   static r8 trapz_y_height = 115;
+   static r8 trapz_y_height = 90;
 
    static u2 popup_width = 200;
-   static u2 popup_height = 115;
+   static u2 popup_height = 90;
 
 
    r8 trapz_x = x + trapz_x_offset;
