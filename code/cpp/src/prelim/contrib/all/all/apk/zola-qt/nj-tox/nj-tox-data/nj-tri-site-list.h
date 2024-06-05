@@ -41,6 +41,18 @@
 #define NJ_TRI_Site_STR_KMD_MACRO(k) NJ_TRI_Site_KMD_MACRO_2(k, str##_##k)
 
 
+
+#define NJ_TRI_Site_SET_KMD_MACRO_2(k, md) {#k, &NJ_TRI_Site::md},
+#define NJ_TRI_Site_SET_KMD_MACRO_1(k) NJ_TRI_Site_SET_KMD_MACRO_2(k, set_##k)
+
+#define NJ_TRI_Site_SET_KMD_MACRO(...) _preproc_CONCAT(NJ_TRI_Site_SET_KMD_MACRO_, _preproc_NUM_ARGS (__VA_ARGS__))(__VA_ARGS__)
+
+#define NJ_TRI_Site_READ_KMD_MACRO(k) NJ_TRI_Site_SET_KMD_MACRO_2(k, read_##k)
+
+//?#define NJ_TRI_Site_STR_SET_KMD_MACRO(k) {#k, &NJ_TRI_Site::set_##k##_str}
+
+
+
 class NJ_TRI_Site_List : public Site_List_Base<NJ_TRI_Site>
 {
 // QString file_path_;
@@ -77,6 +89,8 @@ public:
    QString* file_pattern);
 
  void default_json_field_getters();
+ void default_json_field_setters();
+
 
  void read_csv_file(decltype(csv_field_setters_)& mds, QString csv_file_path, u4 max = 0);
 
@@ -103,6 +117,9 @@ public:
   save_to_json_file(f);
 
  }
+
+
+ void read_json_file(QString file_path);
 
 
 };

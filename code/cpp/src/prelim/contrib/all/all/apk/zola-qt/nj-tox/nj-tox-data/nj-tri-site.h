@@ -20,6 +20,7 @@
 
 #include "flags.h"
 
+
 //"Site ID","PI Number","PI Name","Address","Home Owner","Muni","County","Latitude","Longitude","loc Size","loc String","Source"
 
 
@@ -609,6 +610,79 @@ void fname(QString s, u2 index) \
  ACCESSORS__RGET(QVector<u4> ,NAICS_codes)
  ADD_WITH_RESIZE(NAICS_code)
 
+
+#define READ_and_STR(list) \
+ void read_##list(QString str) \
+ { \
+  QStringList qsl = str.split(';'); \
+  NAICS_codes_.resize(qsl.size()); \
+  std::transform(qsl.begin(), qsl.end(), list##_.begin(), [](QString s) \
+  { \
+   return s.toUInt(); \
+  }); \
+ } \
+ QString str_##list() const \
+ { \
+  QVector<QString> qsv; \
+  qsv.resize(list##_.size()); \
+  std::transform(list##_.begin(), list##_.end(), qsv.begin(), [](u4 val) \
+  { \
+   return QString::number(val); \
+  }); \
+  return qsv.toList().join(";"); \
+ } \
+
+ READ_and_STR(NAICS_codes)
+// READ_and_STR(SIC_codes)
+
+  void read_SIC_codes(QString str)
+  {
+   QStringList qsl = str.split(';');
+   SIC_codes_.resize(qsl.size());
+   std::transform(qsl.begin(), qsl.end(), SIC_codes_.begin(), [](QString s)
+   {
+    return s.toUInt();
+   });
+  }
+
+  QString str_SIC_codes() const
+  {
+   QVector<QString> qsv;
+   qsv.resize(SIC_codes_.size());
+   std::transform(SIC_codes_.begin(), SIC_codes_.end(), qsv.begin(), [](u4 val)
+   {
+    return QString::number(val);
+   });
+
+   return qsv.toList().join(";");
+  }
+
+
+
+
+// void read_NAICS_codes(QString str)
+// {
+//  QStringList qsl = str.split(';');
+//  NAICS_codes_.resize(qsl.size());
+//  std::transform(qsl.begin(), qsl.end(), NAICS_codes_.begin(), [](QString s)
+//  {
+//   return s.toUInt();
+//  });
+// }
+
+// QString str_NAICS_codes() const
+// {
+//  QVector<QString> qsv;
+//  qsv.resize(NAICS_codes_.size());
+//  std::transform(NAICS_codes_.begin(), NAICS_codes_.end(), qsv.begin(), [](u4 val)
+//  {
+//   return QString::number(val);
+//  });
+
+//  return qsv.toList().join(";");
+// }
+
+
 // void add_NAICS_code(QString s, u2 index)
 // {
 //  if(NAICS_codes_.size() <= index)
@@ -796,6 +870,57 @@ PARSE_AND_READ(metal_category)
   note_discharge_amount(amount.toDouble(), description);
  }
 
+ QString str_map_discharge_amounts() const
+ {
+  QVector<QString> qsv;
+
+  qsv.resize(discharge_amounts_.size());
+
+  u1 i = 0;
+  for(auto it = discharge_amounts_.begin(); it != discharge_amounts_.end(); ++it)
+  {
+   qsv[i++] = "%1:%2"_qt.arg((u4)it.key()).arg(it.value());
+  }
+
+// //  my compiler doesn't seem to like std::transform on std::map; get link errors ...
+ //    probably an idiosyncracy of my system which is kinda old, but that' what
+ //    I have to work with for now ...
+//  std::map m = discharge_amounts_.toStdMap();
+//  qsv.resize(m.size());
+//  std::transform(m.begin(), m.end(), qsv.begin(), [](const auto& pr)
+//  {
+//   //  Discharge_Descriptions key, r8 val
+//   return "%1:%2"_qt.arg((u4)pr.first).arg(pr.second);
+//  });
+
+  return qsv.toList().join(";");
+ }
+
+ void str_read_discharge_amounts(QString str)
+ {
+  QVector<QString> qsv = str.split(";").toVector();
+
+  QVector<QPair<Discharge_Descriptions, r8>> prs;
+
+  prs.resize(qsv.size());
+
+  std::transform(qsv.begin(), qsv.end(), prs.begin(), [](QString s)
+  {
+   QStringList qsl = s.split(":");
+
+   //  Discharge_Descriptions key, r8 val
+   return QPair<Discharge_Descriptions, r8> {(Discharge_Descriptions) qsl.value(0).toUInt(),
+      qsl.value(1).toDouble()};
+  });
+
+  for(const auto& pr : prs)
+  {
+   discharge_amounts_[pr.first] = pr.second;
+  }
+    //   //  Discharge_Descriptions key, r8 val
+
+ }
+
 
 
  void note_offsite_transfer_amount(r8 amount, QString key)
@@ -909,13 +1034,24 @@ PARSE_AND_READ(metal_category)
 
 
  template<typename E_Class>
- QString _enum_to_numeric_str(E_Class val) const
+ static QString _enum_to_numeric_str(E_Class val)
  {
   return QString::number((u4) val);
  }
 
  template<typename E_Class>
  inline QString enum_to_numeric_str() const;
+
+
+ template<typename E_Class>
+ static E_Class _read_enum_numeric(QString val)
+ {
+  return (E_Class) val.toUInt();
+ }
+
+
+ template<typename E_Class>
+ inline void read_enum_numeric(QString val);
 
 
 
@@ -932,7 +1068,10 @@ PARSE_AND_READ(metal_category)
 
 #define TEMP_MACRO(E, F) \
  template<> inline QString NJ_TRI_Site::enum_to_numeric_str<NJ_TRI_Site::E>() const \
- {  return _enum_to_numeric_str(F); }
+ {  return _enum_to_numeric_str(F); } \
+ template<> inline void NJ_TRI_Site::read_enum_numeric<NJ_TRI_Site::E>(QString val) \
+ {  F = _read_enum_numeric<E>(val); } \
+
 
 
 TEMP_MACRO(Classification_Keys ,classification_)

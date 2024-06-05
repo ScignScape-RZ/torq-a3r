@@ -378,6 +378,46 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
 }
 
 
+
+void NJ_TRI_Site_List::read_json_file(QString file_path)
+{
+ QJsonDocument qjd;
+ {
+  QFile f(file_path);
+  f.open(QIODevice::ReadOnly);
+  QByteArray qba = f.readAll();
+  qjd = QJsonDocument::fromJson(qba);
+ }
+
+ QJsonArray qja = qjd.array();
+
+ u4 i = 0;
+ for(auto obj: qja)
+ {
+  QJsonObject qjo = obj.toObject();
+
+  NJ_TRI_Site& site = add_site();
+
+  QMapIterator<QString, typename decltype(json_field_setters_)::mapped_type> it(json_field_setters_);
+
+  while(it.hasNext())
+  {
+   it.next();
+
+   auto it1 = qjo.find(it.key());
+   if(it1 == qjo.end())
+     continue;
+
+   (site.*it.value())(it1->toString());
+  }
+
+
+ }
+
+}
+
+
+
 void NJ_TRI_Site_List::save_to_json_file(QString file)
 {
  QJsonDocument qjd;

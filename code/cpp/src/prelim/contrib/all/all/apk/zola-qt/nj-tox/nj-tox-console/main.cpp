@@ -37,522 +37,21 @@
 #include <QTransform>
 
 
-int pt_to_px(int i)
-{
- return i * (4./3);
-}
-
-QPointF pt_to_px(QPointF p)
-{
- return {pt_to_px(p.x()), pt_to_px(p.y())};
-}
-
-int px_to_pt(int i)
-{
- return i * (3./4);
-}
-
-
-struct Doc_Page {
- u2 index;
- u2 number;
- u2 local;
- u2 email;
-
- QVector<QPair<QString, QRectF>> annotations;
-};
-
-struct Email {
- u2 index;
- u2 start_page;
- u2 page_count;
- QString title;
-};
-
 int main(int argc, char *argv[])
 {
- QString bases_folder = "/home/nlevisrael/sahana/bases";
- QString pages_folder = "/home/nlevisrael/sahana/pages";
+ QString json_file = "/home/nlevisrael/docker/tox/objects/tir/summaries/counties/Camden/Camden-2022.json";
 
- QSet<int> arrow_pages {
-  3, 5, 7, 9, 11, 13, 15, 17, 20, 25, 27, 29, 34, 37, 40, 42, 44, 46,
-  48, 51, 54, 56, 59, 61, 66, 69, 74, 77, 80, 84, 87, 89, 91, 94, 96,
-  98, 101, 103, 109, 111, 113, 116, 118, 120, 122, 124, 127, 129, 132,
-  134, 136, 139, 141, 147, 150, 152, 154, 160, 162, 164, 172, 175, 178,
-  182, 197, 200, 204, 208, 210, 213, 216, 219, 221, 223, 225, 227, 229,
-  231, 233, 235, 237, 240, 242, 244, 246, 248, 250, 252, 254, 256, 258,
-  260, 264, 266, 268, 271, 274, 277, 280, 282, 284, 287, 289, 292, 294,
-  296, 298, 301, 304, 306, 309, 313, 315, 317, 319, 321, 326, 329, 336,
-  338, 344, 347, 351, 354, 358, 360, 364, 366, 369, 372, 375, 378, 381,
-  385, 393, 395, 401, 412, 414, 416, 418, 421, 424, 426, 429, 432
- };
+ NJ_TRI_Site_List ntsl;
 
+ ntsl.default_json_field_setters();
 
- QString json_file = "/home/nlevisrael/sahana/S.pdf.json";
- QString template_folder = "/home/nlevisrael/sahana/templates";
-
- QJsonDocument qjd;
- {
-  QFile f(json_file);
-  f.open(QIODevice::ReadOnly);
-  QByteArray qba = f.readAll();
-  qjd = QJsonDocument::fromJson(qba);
- }
-
- QJsonArray qja_pages = qjd.array();
-
-// QMap<u2, QSizeF> page_sizes;
-// QMap<u2, QPair<QString, u2>> page_titles;
-// QMap<u2, QVector<QPair<QString, QRectF>>> annotations;
-// QMap<u2, QVector<u2>> info;
-// // 0 = start of prev email  1 = local  2 = start of next email
-
-// u2 last_page = 0;
-// u2 last_start_page = 0;
-
- QVector<Doc_Page> doc_pages;
- QVector<Email> emails;
-
- for(auto obj: qja_pages)
- {
-  QJsonObject qjo = obj.toObject();
-
-  bool is_arrow = qjo.value("arrow").toBool();
-
-  if(is_arrow)
-    continue;
-
-  u2 page = qjo.value("page").toInt();
-  QString title = qjo.value("title").toString();
-  u2 local = qjo.value("local").toInt();
-//  page_titles[page] = {title, local};
-//  info[page].resize(3);
-
-  doc_pages.push_back({});
-  Doc_Page& doc_page = doc_pages.last();
-  doc_page.index = doc_pages.size() - 1;
-  doc_page.number = page;
-  doc_page.local = local;
-
-  Email* e;
-  if(local == 1)
-  {
-   emails.push_back({});
-   e = &emails.last();
-   e->index = emails.size() - 1;
-   e->page_count = 1;
-   e->start_page = page;
-   e->title = title;
-  }
-  else
-  {
-   e = &emails.last();
-   ++e->page_count;
-  }
-  doc_page.email = e->index;
-
-  auto& annotations = doc_page.annotations;
-
-//  if(last_page)
-//  {
-//   info[page][1] = local;
-//   if(local == 1)
-//   {
-//    info[last_page][2] = page;
-//   }
-//   if(last_start_page)
-//   {
-//    info[last_page][1] = last_start_page;
-//   }
-
-//  }
-
-//  last_page = page;
-
-//  QSizeF page_size;
-//  {
-//   QJsonArray qja1 = qjo.value("page-size").toArray();
-//   page_size.setWidth(qja1[0].toDouble());
-//   page_size.setHeight(qja1[1].toDouble());
-//  }
-//  page_sizes[page] = page_size;
-
-  QJsonArray qja_notes = qjo.value("notes").toArray();
-
-  for(auto obj1: qja_notes)
-  {
-   QJsonObject obj_notes = obj1.toObject();
-   QString text = obj_notes.value("text").toString();
-   QRectF boundary;
-   {
-    QJsonArray qja2 = obj_notes.value("boundary").toArray();
-    boundary.setX(qja2[0].toDouble());
-    boundary.setY(qja2[1].toDouble());
-    boundary.setWidth(qja2[2].toDouble());
-    boundary.setHeight(qja2[3].toDouble());
-   }
-   annotations.push_back({text, boundary});
-  }
- }
-
-// QMapIterator<u2, QPair<QString, u2>> it(page_titles);
-
-//// while(it.hasNext())
-//// {
-////  it.next();
-
-////  u2 page = it.key();
-
-
-
-//// }
-
-//// it.toFront();
-
-// last_page = 0;
-
- u2 max_page = std::max_element(doc_pages.begin(), doc_pages.end(),
-   [](const auto& lhs, const auto& rhs)
- {
-  return lhs.number < rhs.number;
- }) -> number;
-
-
- for(Doc_Page& doc_page : doc_pages)
- {
-  u2 page = doc_page.number;
-
-  Email& email = emails[doc_page.email];
-
-
-  QString svg_file = "%1/p%2.svg"_qt.arg(pages_folder).arg(page, 3, 10, QLatin1Char('0'));
-
-  QSvgRenderer svr;
-  svr.load(svg_file);
-
-  QRectF view_box = svr.viewBoxF();
-
-  r8 view_box_y_offset = 25;
-
-  QString svg_view_box_string = "viewBox=\"%1 %2 %3 %4\""_qt
-    .arg(view_box.x()).arg(view_box.y() - view_box_y_offset).arg(view_box.width()).arg(view_box.height() + view_box_y_offset);
-
-  QString svg_wh_string = "width=\"%1pt\" height=\"%2pt\""_qt
-    .arg(view_box.width()).arg(view_box.height() + view_box_y_offset);
-
-  QString main_image_wh = "width=\"%1\" height=\"%2\""_qt
-    .arg(view_box.width()).arg(view_box.height());
-
-  QString rbkg_inside_wh = "width=\"%1\" height=\"%2\""_qt
-    .arg(view_box.width()).arg(view_box.height());
-
-  QString rbkg_outside_y = "-%1"_qt.arg(view_box_y_offset);
-
- // %main-image-wh%
-
-  QString base_file = "%1/p%2.svg"_qt.arg(bases_folder).arg(page, 3, 10, QLatin1Char('0'));
-  QString html_file = "%1/p%2.htm"_qt.arg(bases_folder).arg(page, 3, 10, QLatin1Char('0'));
-
-  QString html_template = "%1/overlay.htm"_qt.arg(template_folder);
-  QString html_text = KA::TextIO::load_file(html_template);
-
-
-
-  html_text.replace("%title%", email.title);
-  html_text.replace("%local%", QString::number(doc_page.local));
-  html_text.replace("%page%", "%1"_qt.arg(page, 3, 10, QLatin1Char('0')));
-  html_text.replace("%dpage%", QString::number(page));
-
-  html_text.replace("%local-max%", QString::number(email.page_count));
-  html_text.replace("%max-page%", QString::number(max_page));
-
-  html_text.replace("%iframe-width%", "%1pt"_qt.arg(view_box.width()));
-  html_text.replace("%iframe-height%", "%1pt"_qt.arg(view_box.height()));
-
-  Email* prior_email = doc_page.email? &emails[doc_page.email - 1] : (Email*) nullptr;
-  Email* next_email = doc_page.email < emails.size() - 1? &emails[doc_page.email + 1] : (Email*) nullptr;
-
-  Doc_Page* prior_page = doc_page.index? &doc_pages[doc_page.index - 1] : (Doc_Page*) nullptr;
-  Doc_Page* next_page = doc_page.index < doc_pages.size() - 1? &doc_pages[doc_page.index + 1] : (Doc_Page*) nullptr;
-
-  if(next_page && next_page->email == doc_page.email)
-  {
-   html_text.replace("%ldown%", "location.href='p%1.htm'"_qt.arg(next_page->number, 3, 10, QLatin1Char('0')));
-   html_text.replace("%ldown-active%", "active");
-  }
-  else
-  {
-   html_text.replace("%ldown%", "");
-   html_text.replace("%ldown-active%", "inactive");
-  }
-
-  if(prior_page && prior_page->email == doc_page.email)
-  {
-   html_text.replace("%lup%", "location.href='p%1.htm'"_qt.arg(prior_page->number, 3, 10, QLatin1Char('0')));
-   html_text.replace("%lup-active%", "active");
-  }
-  else
-  {
-   html_text.replace("%lup%", "");
-   html_text.replace("%lup-active%", "inactive");
-  }
-
-  if(next_email)
-  {
-   html_text.replace("%edown%", "location.href='p%1.htm'"_qt.arg(next_email->start_page, 3, 10, QLatin1Char('0')));
-   html_text.replace("%edown-active%", "active");
-  }
-  else
-  {
-   html_text.replace("%edown%", "");
-   html_text.replace("%edown-active%", "inactive");
-  }
-
-
-  if(prior_email)
-  {
-   html_text.replace("%eup%", "location.href='p%1.htm'"_qt.arg(prior_email->start_page, 3, 10, QLatin1Char('0')));
-   html_text.replace("%eup-active%", "active");
-  }
-  else
-  {
-   html_text.replace("%eup%", "");
-   html_text.replace("%eup-active%", "inactive");
-  }
-
-//  if(prior_page)
-//    html_text.replace("%nup%", "location.href='p%1.htm'"_qt.arg(prior_page->number, 3, 10, QLatin1Char('0')));
-//  else
-//    html_text.replace("%nup%", "");
-
-
-  QString base_template = "%1/overlay.svg"_qt.arg(template_folder);
-  QString base_text = KA::TextIO::load_file(base_template);
-  base_text.replace("%page%", "%1"_qt.arg(page, 3, 10, QLatin1Char('0')));
-
-  base_text.replace("%svg-wh%", svg_wh_string);
-  base_text.replace("%svg-vb%", svg_view_box_string);
-
-  base_text.replace("%rbkg-outside-y%", rbkg_outside_y);
-  base_text.replace("%main-image-wh%", main_image_wh);
-  base_text.replace("%rbkg-inside-wh%", rbkg_inside_wh);
-
-  static QString static_marks_text = R"_(
-
-  <!-- note %1 -->
-
-  <g class='mark-g' id='mark-g-%1' onmouseover='show_popup_text_by_id(%1, event)'
-    onmouseout='check_hide_popup_text_by_id(%1, event)'>
-
-  <rect id='mark-r-%1'
-    class='area-rect' x='%2pt' y='%3pt' width='%4pt' height='%5pt'
-    />
-
-  </g>
-
-  <!-- end note %1 -->
-
-  )_";
-
-  static QString static_popup_text = R"_(
-
-   <!-- for note %1 -->
-
-  <g id='popup-%1' class='text-wrapper' transform='translate(%2, %3)'  data-xcoord='%2' >
-    <rect width='%4pt' height='%5pt' data-ycoord='%3'  data-index='%1'
-      x='%6pt' y='%7' class='foreign-object-bkg' id='fo-rect-%1'/>
-  )_";
-
-  static QString static_fo_text = R"_(
-    <foreignObject width="%2pt" height="%3pt" x='0' y='0' id='fo-%1'
-       requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-     <p xmlns="http://www.w3.org/1999/xhtml"
-       style='background:pink; font-size:11pt'>
-       %4
-     </p>
-   </foreignObject>
-  </g>
-
-   <!-- end for note %1 -->
-
-  )_";
-
-
-  static QString height_test = R"_(
-  <div style='width:200px' id='test-d-%1'>
-  <p class='for-height-test' font-size:11pt' id='test-p-%1'>
-  %2
-  </p>
-  </div>
-
-  )_";
-
-
-  QString html_test = height_test.arg(0).arg("X");
-
-
-  static QString static_trapezoids_text = R"_(
-    <!-- for note %1 -->
-
-    <!--  l: %2  bl: %3  br: %4  r: %5  tx: %6  tr: %7  tl: %8  -->
-    <polygon id="trapz-%1" points="%2 %3 %4 %5 %6 %7 %8"
-       class='trapz' onmouseout='leave_trapz(%1, event)' data-repl='%9' />
-
-    <!-- end for note %1 -->
-  )_";
-
-  auto& vec = doc_page.annotations;
-
-  QString marks_text;
-  QString trapezoids_text;
-
-  QString popup_text;
-
-  u1 i = 0;
-  for(auto& pr : vec)
-  {
-   ++i;
-
-   QRectF rf = pr.second;
-
-   QTransform qtr;
-   qtr.scale(px_to_pt(view_box.width()), px_to_pt(view_box.height()));
-
-   QRectF qr = qtr.mapRect(rf);
-
-   r8 x = qr.x();
-   r8 y = qr.y();
-   r8 w = qr.width();
-   r8 h = qr.height();
-
-   static r8 trapz_x_offset = 50;
-   static r8 trapz_y_offset = 0;
-
-   static r8 trapz_x_width = 200;
-   static r8 trapz_y_height = 90;
-
-   static u2 popup_width = 200;
-   static u2 popup_height = 90;
-
-
-   r8 trapz_x = x + trapz_x_offset;
-   r8 trapz_y = y + trapz_y_offset;
-
-   QString text = pr.first;
-
-
-   marks_text += static_marks_text.arg(i).arg(x).arg(y)
-     .arg(w).arg(h);
-
-
-   static r8 rect_fo_pushout = 5;
-
-   r8 rect_fo_x = -rect_fo_pushout;
-   r8 rect_fo_y = -rect_fo_pushout;
-   r8 rect_fo_width = popup_width + rect_fo_pushout + rect_fo_pushout;
-   r8 rect_fo_height = popup_height + rect_fo_pushout + rect_fo_pushout;
-
-   popup_text += static_popup_text.arg(i)
-     .arg(pt_to_px( trapz_x )).arg(pt_to_px( trapz_y - trapz_y_height ))
-     .arg(rect_fo_width).arg(rect_fo_height)
-     .arg(rect_fo_x).arg(rect_fo_y);
-
-   popup_text += static_fo_text.arg(i)
-     .arg(popup_width).arg(popup_height).arg(text);
-
-
-   html_test += height_test.arg(i).arg(text);
-
-   QPointF trapezoid_l, trapezoid_bl, trapezoid_br,
-     trapezoid_r, trapezoid_tr, trapezoid_tl;
-
-   QString trapezoid_ls, trapezoid_bls, trapezoid_brs,
-     trapezoid_rs, trapezoid_trs, trapezoid_tls;
-
-   auto point_to_string = [](QPointF p, QString& s)
-   {
-    s = "%1,%2"_qt.arg(p.x()).arg(p.y());
-   };
-
-   auto points_to_strings = [&]()
-   {
-    point_to_string(trapezoid_l, trapezoid_ls);
-    point_to_string(trapezoid_bl, trapezoid_bls);
-    point_to_string(trapezoid_br, trapezoid_brs);
-    point_to_string(trapezoid_r, trapezoid_rs);
-    point_to_string(trapezoid_tr, trapezoid_trs);
-    point_to_string(trapezoid_tl, trapezoid_tls);
-   };
-
-   static r8 trapezoid_pushout = 0;
-
-   trapezoid_l = pt_to_px( qr.topLeft() );
-   trapezoid_bl = pt_to_px( qr.bottomLeft() );
-   trapezoid_br = pt_to_px( qr.bottomRight() );
-   trapezoid_r = pt_to_px( qr.topRight() );
-   trapezoid_tr = pt_to_px( {trapz_x + trapz_x_width + trapezoid_pushout,
-     trapz_y - trapz_y_height - trapezoid_pushout } );
-   trapezoid_tl = pt_to_px( {trapz_x - trapezoid_pushout,
-     trapz_y - trapz_y_height - trapezoid_pushout } );
-
-   points_to_strings();
-
-   QString trapz_extra;
-   QString trapz_points;
-
-   if(w < popup_width)
-   {
-    trapz_points = "%1 %2 %3 %4 %5,Yx %6,Y1 %7,Y2"_qt
-      .arg(trapezoid_ls).arg(trapezoid_bls).arg(trapezoid_brs)
-      .arg(trapezoid_rs).arg(trapezoid_tr.x())
-      .arg(trapezoid_tr.x()).arg(trapezoid_tl.x());
-
-    trapz_extra = "%1,%2"_qt.arg(trapezoid_tr.x() + trapezoid_pushout)
-      .arg(trapezoid_tr.y() + pt_to_px(popup_height) + trapezoid_pushout);
-   }
-   else
-    trapz_points = "%1 %2 %3 %4 %5,Y1 %6,Y2"_qt
-      .arg(trapezoid_ls).arg(trapezoid_bls).arg(trapezoid_brs)
-      .arg(trapezoid_rs).arg(trapezoid_tr.x()).arg(trapezoid_tl.x());
-
-
-   trapezoids_text += static_trapezoids_text.arg(i)
-     .arg(trapezoid_ls).arg(trapezoid_bls).arg(trapezoid_brs)
-     .arg(trapezoid_rs).arg(trapz_extra).arg(trapezoid_trs)
-     .arg(trapezoid_tls).arg(trapz_points);
-
-
-
-
-
-   //
-  }
-
-  base_text.replace("%MARKS%", marks_text);
-
-  base_text.replace("%TEXTS%", popup_text);
-
-  base_text.replace("%TRAPEZOIDS%", trapezoids_text);
-
-  KA::TextIO::save_file(base_file, base_text);
-
-
-  html_text.replace("%test-count%", QString::number(i));
-
-  html_text.replace("%P%", html_test);
-  KA::TextIO::save_file(html_file, html_text);
-
- }
-
-
+ ntsl.read_json_file(json_file);
 
  return 0;
-
 }
 
 
-
-int main23(int argc, char *argv[])
+int main7(int argc, char *argv[])
 {
 
 // QString csv_file_path = "/home/nlevisrael/docker/tox/2022_nj.csv";
@@ -850,11 +349,8 @@ int main23(int argc, char *argv[])
 
  }
 
-
-
  return 0;
 }
-
 
 
 #ifdef HIDE
@@ -1790,3 +1286,528 @@ void set_flag__activity_index_value()     // csv col 118
 
 
 #endif // HIDE
+
+
+
+
+
+
+#ifdef HIDE
+int pt_to_px(int i)
+{
+ return i * (4./3);
+}
+
+QPointF pt_to_px(QPointF p)
+{
+ return {pt_to_px(p.x()), pt_to_px(p.y())};
+}
+
+int px_to_pt(int i)
+{
+ return i * (3./4);
+}
+
+
+struct Doc_Page {
+ u2 index;
+ u2 number;
+ u2 local;
+ u2 email;
+
+ QVector<QPair<QString, QRectF>> annotations;
+};
+
+struct Email {
+ u2 index;
+ u2 start_page;
+ u2 page_count;
+ QString title;
+};
+
+int main(int argc, char *argv[])
+{
+ QString bases_folder = "/home/nlevisrael/sahana/bases";
+ QString pages_folder = "/home/nlevisrael/sahana/pages";
+
+ QSet<int> arrow_pages {
+  3, 5, 7, 9, 11, 13, 15, 17, 20, 25, 27, 29, 34, 37, 40, 42, 44, 46,
+  48, 51, 54, 56, 59, 61, 66, 69, 74, 77, 80, 84, 87, 89, 91, 94, 96,
+  98, 101, 103, 109, 111, 113, 116, 118, 120, 122, 124, 127, 129, 132,
+  134, 136, 139, 141, 147, 150, 152, 154, 160, 162, 164, 172, 175, 178,
+  182, 197, 200, 204, 208, 210, 213, 216, 219, 221, 223, 225, 227, 229,
+  231, 233, 235, 237, 240, 242, 244, 246, 248, 250, 252, 254, 256, 258,
+  260, 264, 266, 268, 271, 274, 277, 280, 282, 284, 287, 289, 292, 294,
+  296, 298, 301, 304, 306, 309, 313, 315, 317, 319, 321, 326, 329, 336,
+  338, 344, 347, 351, 354, 358, 360, 364, 366, 369, 372, 375, 378, 381,
+  385, 393, 395, 401, 412, 414, 416, 418, 421, 424, 426, 429, 432
+ };
+
+
+ QString json_file = "/home/nlevisrael/sahana/S.pdf.json";
+ QString template_folder = "/home/nlevisrael/sahana/templates";
+
+ QJsonDocument qjd;
+ {
+  QFile f(json_file);
+  f.open(QIODevice::ReadOnly);
+  QByteArray qba = f.readAll();
+  qjd = QJsonDocument::fromJson(qba);
+ }
+
+ QJsonArray qja_pages = qjd.array();
+
+// QMap<u2, QSizeF> page_sizes;
+// QMap<u2, QPair<QString, u2>> page_titles;
+// QMap<u2, QVector<QPair<QString, QRectF>>> annotations;
+// QMap<u2, QVector<u2>> info;
+// // 0 = start of prev email  1 = local  2 = start of next email
+
+// u2 last_page = 0;
+// u2 last_start_page = 0;
+
+ QVector<Doc_Page> doc_pages;
+ QVector<Email> emails;
+
+ for(auto obj: qja_pages)
+ {
+  QJsonObject qjo = obj.toObject();
+
+  bool is_arrow = qjo.value("arrow").toBool();
+
+  if(is_arrow)
+    continue;
+
+  u2 page = qjo.value("page").toInt();
+  QString title = qjo.value("title").toString();
+  u2 local = qjo.value("local").toInt();
+//  page_titles[page] = {title, local};
+//  info[page].resize(3);
+
+  doc_pages.push_back({});
+  Doc_Page& doc_page = doc_pages.last();
+  doc_page.index = doc_pages.size() - 1;
+  doc_page.number = page;
+  doc_page.local = local;
+
+  Email* e;
+  if(local == 1)
+  {
+   emails.push_back({});
+   e = &emails.last();
+   e->index = emails.size() - 1;
+   e->page_count = 1;
+   e->start_page = page;
+   e->title = title;
+  }
+  else
+  {
+   e = &emails.last();
+   ++e->page_count;
+  }
+  doc_page.email = e->index;
+
+  auto& annotations = doc_page.annotations;
+
+//  if(last_page)
+//  {
+//   info[page][1] = local;
+//   if(local == 1)
+//   {
+//    info[last_page][2] = page;
+//   }
+//   if(last_start_page)
+//   {
+//    info[last_page][1] = last_start_page;
+//   }
+
+//  }
+
+//  last_page = page;
+
+//  QSizeF page_size;
+//  {
+//   QJsonArray qja1 = qjo.value("page-size").toArray();
+//   page_size.setWidth(qja1[0].toDouble());
+//   page_size.setHeight(qja1[1].toDouble());
+//  }
+//  page_sizes[page] = page_size;
+
+  QJsonArray qja_notes = qjo.value("notes").toArray();
+
+  for(auto obj1: qja_notes)
+  {
+   QJsonObject obj_notes = obj1.toObject();
+   QString text = obj_notes.value("text").toString();
+   QRectF boundary;
+   {
+    QJsonArray qja2 = obj_notes.value("boundary").toArray();
+    boundary.setX(qja2[0].toDouble());
+    boundary.setY(qja2[1].toDouble());
+    boundary.setWidth(qja2[2].toDouble());
+    boundary.setHeight(qja2[3].toDouble());
+   }
+   annotations.push_back({text, boundary});
+  }
+ }
+
+// QMapIterator<u2, QPair<QString, u2>> it(page_titles);
+
+//// while(it.hasNext())
+//// {
+////  it.next();
+
+////  u2 page = it.key();
+
+
+
+//// }
+
+//// it.toFront();
+
+// last_page = 0;
+
+ u2 max_page = std::max_element(doc_pages.begin(), doc_pages.end(),
+   [](const auto& lhs, const auto& rhs)
+ {
+  return lhs.number < rhs.number;
+ }) -> number;
+
+
+ for(Doc_Page& doc_page : doc_pages)
+ {
+  u2 page = doc_page.number;
+
+  Email& email = emails[doc_page.email];
+
+
+  QString svg_file = "%1/p%2.svg"_qt.arg(pages_folder).arg(page, 3, 10, QLatin1Char('0'));
+
+  QSvgRenderer svr;
+  svr.load(svg_file);
+
+  QRectF view_box = svr.viewBoxF();
+
+  r8 view_box_y_offset = 25;
+
+  QString svg_view_box_string = "viewBox=\"%1 %2 %3 %4\""_qt
+    .arg(view_box.x()).arg(view_box.y() - view_box_y_offset).arg(view_box.width()).arg(view_box.height() + view_box_y_offset);
+
+  QString svg_wh_string = "width=\"%1pt\" height=\"%2pt\""_qt
+    .arg(view_box.width()).arg(view_box.height() + view_box_y_offset);
+
+  QString main_image_wh = "width=\"%1\" height=\"%2\""_qt
+    .arg(view_box.width()).arg(view_box.height());
+
+  QString rbkg_inside_wh = "width=\"%1\" height=\"%2\""_qt
+    .arg(view_box.width()).arg(view_box.height());
+
+  QString rbkg_outside_y = "-%1"_qt.arg(view_box_y_offset);
+
+ // %main-image-wh%
+
+  QString base_file = "%1/p%2.svg"_qt.arg(bases_folder).arg(page, 3, 10, QLatin1Char('0'));
+  QString html_file = "%1/p%2.htm"_qt.arg(bases_folder).arg(page, 3, 10, QLatin1Char('0'));
+
+  QString html_template = "%1/overlay.htm"_qt.arg(template_folder);
+  QString html_text = KA::TextIO::load_file(html_template);
+
+
+
+  html_text.replace("%title%", email.title);
+  html_text.replace("%local%", QString::number(doc_page.local));
+  html_text.replace("%page%", "%1"_qt.arg(page, 3, 10, QLatin1Char('0')));
+  html_text.replace("%dpage%", QString::number(page));
+
+  html_text.replace("%local-max%", QString::number(email.page_count));
+  html_text.replace("%max-page%", QString::number(max_page));
+
+  html_text.replace("%iframe-width%", "%1pt"_qt.arg(view_box.width()));
+  html_text.replace("%iframe-height%", "%1pt"_qt.arg(view_box.height()));
+
+  Email* prior_email = doc_page.email? &emails[doc_page.email - 1] : (Email*) nullptr;
+  Email* next_email = doc_page.email < emails.size() - 1? &emails[doc_page.email + 1] : (Email*) nullptr;
+
+  Doc_Page* prior_page = doc_page.index? &doc_pages[doc_page.index - 1] : (Doc_Page*) nullptr;
+  Doc_Page* next_page = doc_page.index < doc_pages.size() - 1? &doc_pages[doc_page.index + 1] : (Doc_Page*) nullptr;
+
+  if(next_page && next_page->email == doc_page.email)
+  {
+   html_text.replace("%ldown%", "location.href='p%1.htm'"_qt.arg(next_page->number, 3, 10, QLatin1Char('0')));
+   html_text.replace("%ldown-active%", "active");
+  }
+  else
+  {
+   html_text.replace("%ldown%", "");
+   html_text.replace("%ldown-active%", "inactive");
+  }
+
+  if(prior_page && prior_page->email == doc_page.email)
+  {
+   html_text.replace("%lup%", "location.href='p%1.htm'"_qt.arg(prior_page->number, 3, 10, QLatin1Char('0')));
+   html_text.replace("%lup-active%", "active");
+  }
+  else
+  {
+   html_text.replace("%lup%", "");
+   html_text.replace("%lup-active%", "inactive");
+  }
+
+  if(next_email)
+  {
+   html_text.replace("%edown%", "location.href='p%1.htm'"_qt.arg(next_email->start_page, 3, 10, QLatin1Char('0')));
+   html_text.replace("%edown-active%", "active");
+  }
+  else
+  {
+   html_text.replace("%edown%", "");
+   html_text.replace("%edown-active%", "inactive");
+  }
+
+
+  if(prior_email)
+  {
+   html_text.replace("%eup%", "location.href='p%1.htm'"_qt.arg(prior_email->start_page, 3, 10, QLatin1Char('0')));
+   html_text.replace("%eup-active%", "active");
+  }
+  else
+  {
+   html_text.replace("%eup%", "");
+   html_text.replace("%eup-active%", "inactive");
+  }
+
+//  if(prior_page)
+//    html_text.replace("%nup%", "location.href='p%1.htm'"_qt.arg(prior_page->number, 3, 10, QLatin1Char('0')));
+//  else
+//    html_text.replace("%nup%", "");
+
+
+  QString base_template = "%1/overlay.svg"_qt.arg(template_folder);
+  QString base_text = KA::TextIO::load_file(base_template);
+  base_text.replace("%page%", "%1"_qt.arg(page, 3, 10, QLatin1Char('0')));
+
+  base_text.replace("%svg-wh%", svg_wh_string);
+  base_text.replace("%svg-vb%", svg_view_box_string);
+
+  base_text.replace("%rbkg-outside-y%", rbkg_outside_y);
+  base_text.replace("%main-image-wh%", main_image_wh);
+  base_text.replace("%rbkg-inside-wh%", rbkg_inside_wh);
+
+  static QString static_marks_text = R"_(
+
+  <!-- note %1 -->
+
+  <g class='mark-g' id='mark-g-%1' onmouseover='show_popup_text_by_id(%1, event)'
+    onmouseout='check_hide_popup_text_by_id(%1, event)'>
+
+  <rect id='mark-r-%1'
+    class='area-rect' x='%2pt' y='%3pt' width='%4pt' height='%5pt'
+    />
+
+  </g>
+
+  <!-- end note %1 -->
+
+  )_";
+
+  static QString static_popup_text = R"_(
+
+   <!-- for note %1 -->
+
+  <g id='popup-%1' class='text-wrapper' transform='translate(%2, %3)'  data-xcoord='%2' >
+    <rect width='%4pt' height='%5pt' data-ycoord='%3'  data-index='%1'
+      x='%6pt' y='%7' class='foreign-object-bkg' id='fo-rect-%1'/>
+  )_";
+
+  static QString static_fo_text = R"_(
+    <foreignObject width="%2pt" height="%3pt" x='0' y='0' id='fo-%1'
+       requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+     <p xmlns="http://www.w3.org/1999/xhtml"
+       style='background:pink; font-size:11pt'>
+       %4
+     </p>
+   </foreignObject>
+  </g>
+
+   <!-- end for note %1 -->
+
+  )_";
+
+
+  static QString height_test = R"_(
+  <div style='width:200px' id='test-d-%1'>
+  <p class='for-height-test' font-size:11pt' id='test-p-%1'>
+  %2
+  </p>
+  </div>
+
+  )_";
+
+
+  QString html_test = height_test.arg(0).arg("X");
+
+
+  static QString static_trapezoids_text = R"_(
+    <!-- for note %1 -->
+
+    <!--  l: %2  bl: %3  br: %4  r: %5  tx: %6  tr: %7  tl: %8  -->
+    <polygon id="trapz-%1" points="%2 %3 %4 %5 %6 %7 %8"
+       class='trapz' onmouseout='leave_trapz(%1, event)' data-repl='%9' />
+
+    <!-- end for note %1 -->
+  )_";
+
+  auto& vec = doc_page.annotations;
+
+  QString marks_text;
+  QString trapezoids_text;
+
+  QString popup_text;
+
+  u1 i = 0;
+  for(auto& pr : vec)
+  {
+   ++i;
+
+   QRectF rf = pr.second;
+
+   QTransform qtr;
+   qtr.scale(px_to_pt(view_box.width()), px_to_pt(view_box.height()));
+
+   QRectF qr = qtr.mapRect(rf);
+
+   r8 x = qr.x();
+   r8 y = qr.y();
+   r8 w = qr.width();
+   r8 h = qr.height();
+
+   static r8 trapz_x_offset = 50;
+   static r8 trapz_y_offset = 0;
+
+   static r8 trapz_x_width = 200;
+   static r8 trapz_y_height = 90;
+
+   static u2 popup_width = 200;
+   static u2 popup_height = 90;
+
+
+   r8 trapz_x = x + trapz_x_offset;
+   r8 trapz_y = y + trapz_y_offset;
+
+   QString text = pr.first;
+
+
+   marks_text += static_marks_text.arg(i).arg(x).arg(y)
+     .arg(w).arg(h);
+
+
+   static r8 rect_fo_pushout = 5;
+
+   r8 rect_fo_x = -rect_fo_pushout;
+   r8 rect_fo_y = -rect_fo_pushout;
+   r8 rect_fo_width = popup_width + rect_fo_pushout + rect_fo_pushout;
+   r8 rect_fo_height = popup_height + rect_fo_pushout + rect_fo_pushout;
+
+   popup_text += static_popup_text.arg(i)
+     .arg(pt_to_px( trapz_x )).arg(pt_to_px( trapz_y - trapz_y_height ))
+     .arg(rect_fo_width).arg(rect_fo_height)
+     .arg(rect_fo_x).arg(rect_fo_y);
+
+   popup_text += static_fo_text.arg(i)
+     .arg(popup_width).arg(popup_height).arg(text);
+
+
+   html_test += height_test.arg(i).arg(text);
+
+   QPointF trapezoid_l, trapezoid_bl, trapezoid_br,
+     trapezoid_r, trapezoid_tr, trapezoid_tl;
+
+   QString trapezoid_ls, trapezoid_bls, trapezoid_brs,
+     trapezoid_rs, trapezoid_trs, trapezoid_tls;
+
+   auto point_to_string = [](QPointF p, QString& s)
+   {
+    s = "%1,%2"_qt.arg(p.x()).arg(p.y());
+   };
+
+   auto points_to_strings = [&]()
+   {
+    point_to_string(trapezoid_l, trapezoid_ls);
+    point_to_string(trapezoid_bl, trapezoid_bls);
+    point_to_string(trapezoid_br, trapezoid_brs);
+    point_to_string(trapezoid_r, trapezoid_rs);
+    point_to_string(trapezoid_tr, trapezoid_trs);
+    point_to_string(trapezoid_tl, trapezoid_tls);
+   };
+
+   static r8 trapezoid_pushout = 0;
+
+   trapezoid_l = pt_to_px( qr.topLeft() );
+   trapezoid_bl = pt_to_px( qr.bottomLeft() );
+   trapezoid_br = pt_to_px( qr.bottomRight() );
+   trapezoid_r = pt_to_px( qr.topRight() );
+   trapezoid_tr = pt_to_px( {trapz_x + trapz_x_width + trapezoid_pushout,
+     trapz_y - trapz_y_height - trapezoid_pushout } );
+   trapezoid_tl = pt_to_px( {trapz_x - trapezoid_pushout,
+     trapz_y - trapz_y_height - trapezoid_pushout } );
+
+   points_to_strings();
+
+   QString trapz_extra;
+   QString trapz_points;
+
+   if(w < popup_width)
+   {
+    trapz_points = "%1 %2 %3 %4 %5,Yx %6,Y1 %7,Y2"_qt
+      .arg(trapezoid_ls).arg(trapezoid_bls).arg(trapezoid_brs)
+      .arg(trapezoid_rs).arg(trapezoid_tr.x())
+      .arg(trapezoid_tr.x()).arg(trapezoid_tl.x());
+
+    trapz_extra = "%1,%2"_qt.arg(trapezoid_tr.x() + trapezoid_pushout)
+      .arg(trapezoid_tr.y() + pt_to_px(popup_height) + trapezoid_pushout);
+   }
+   else
+    trapz_points = "%1 %2 %3 %4 %5,Y1 %6,Y2"_qt
+      .arg(trapezoid_ls).arg(trapezoid_bls).arg(trapezoid_brs)
+      .arg(trapezoid_rs).arg(trapezoid_tr.x()).arg(trapezoid_tl.x());
+
+
+   trapezoids_text += static_trapezoids_text.arg(i)
+     .arg(trapezoid_ls).arg(trapezoid_bls).arg(trapezoid_brs)
+     .arg(trapezoid_rs).arg(trapz_extra).arg(trapezoid_trs)
+     .arg(trapezoid_tls).arg(trapz_points);
+
+
+
+
+
+   //
+  }
+
+  base_text.replace("%MARKS%", marks_text);
+
+  base_text.replace("%TEXTS%", popup_text);
+
+  base_text.replace("%TRAPEZOIDS%", trapezoids_text);
+
+  KA::TextIO::save_file(base_file, base_text);
+
+
+  html_text.replace("%test-count%", QString::number(i));
+
+  html_text.replace("%P%", html_test);
+  KA::TextIO::save_file(html_file, html_text);
+
+ }
+
+
+
+ return 0;
+
+}
+
+
+#endif //def HIDE
+
+
+

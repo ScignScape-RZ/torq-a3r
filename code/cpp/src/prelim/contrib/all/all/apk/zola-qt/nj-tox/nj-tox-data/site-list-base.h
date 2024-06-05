@@ -798,6 +798,7 @@ protected:
  QMap<QString, QString> file_paths_;
 
  QMap<QString, QString (SITE_Type::*)() const> json_field_getters_;
+ QMap<QString, void (SITE_Type::*)(QString)> json_field_setters_;
 
  QStringList original_header_;
 
@@ -1711,8 +1712,15 @@ public:
  ACCESSORS(csv_field_getters_by_column<SITE_Type> ,csv_field_getters)
 
  ACCESSORS__RGET(QMap<QString, QString (SITE_Type::*)() const> ,json_field_getters)
+ ACCESSORS__RGET(QMap<QString, void (SITE_Type::*)(QString)> ,json_field_setters)
 
  _define_setters define_setters() { return {this}; }
+
+ SITE_Type& add_site()
+ {
+  sites_.push_back(SITE_Type{});
+  return sites_.last();
+ }
 
  //typedef QPair<u2, u2> u2x3;
 

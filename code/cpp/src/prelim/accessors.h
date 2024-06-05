@@ -383,6 +383,11 @@ ACCESSORS__RGET_2(MACRO_PASTE(arg1, arg2, arg3) ,arg4)
 
 
 
+//#ifndef SET_STR_ADAPTER_
+//#define SET_STR_ADAPTER_(fn, from_) void set_##fn(QString arg) { set_##fn(arg.to##to_()); }
+//#endif
+
+
 #ifndef SET_ADAPTER_
 #define SET_ADAPTER_(fn, to_) void set_##fn(QString arg) { set_##fn(arg.to##to_()); }
 #endif
