@@ -401,6 +401,8 @@ private:
  // //  exclude state field for this code, because it's consistently NJ
 
  u4 zip_code_;  // csv col 9
+ u4 zplus_4_;  // csv col 9
+
 
  QStringList* supplemental_;  // for fields likely to be rarely used,
    // e.g. "Indian Affairs" data (csv cols 10-11)
@@ -499,7 +501,7 @@ public:
  ACCESSORS(QString ,municipality)
  ACCESSORS(QString ,county)
 
- QString county_ucfirsr()
+ QString county_ucfirst()
  {
   if(county_.isEmpty())
     return {};
@@ -515,7 +517,23 @@ public:
   return result;
  }
 
- ACCESSORS(u4 ,zip_code)
+ ACCESSORS(u2 ,zip_code)
+ ACCESSORS(u2 ,zplus_4)
+
+ void read_zip_code(QString str)
+ {
+  u4 val = str.toUInt();
+  if(str.size() > 5)
+  {
+   zplus_4_ = val % 10'000;
+   zip_code_ = val / 10'000;
+  }
+  else
+  {
+   zplus_4_ = 0;
+   zip_code_ = val;
+  }
+ }
 
  ACCESSORS(QStringList* ,supplemental)
 
@@ -988,6 +1006,7 @@ PARSE_AND_READ(metal_category)
 
  SET_and_STR_ADAPTER_N8(frs_id)
  SET_and_STR_ADAPTER_INT(zip_code)
+ SET_and_STR_ADAPTER_INT(zplus_4)
 
  SET_and_STR_ADAPTER_DBL(latitude)
  SET_and_STR_ADAPTER_DBL(longitude)

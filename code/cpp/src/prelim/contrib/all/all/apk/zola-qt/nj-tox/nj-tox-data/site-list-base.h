@@ -704,6 +704,21 @@ struct csv_field_getters_by_column
   return key;
  }
 
+#define INSERT_REPLACEMENT_IMPL(m) \
+ csv_field_getters_by_column& insert_replacement(typename decltype(m)::mapped_type md) \
+ { \
+  u2 found = take_nullptr(m); \
+  if(found) \
+    m[found] = md; \
+  return *this; \
+ } \
+
+ INSERT_REPLACEMENT_IMPL(methods_0)
+ INSERT_REPLACEMENT_IMPL(non_methods_0)
+ INSERT_REPLACEMENT_IMPL(methods_1)
+ INSERT_REPLACEMENT_IMPL(non_methods_1)
+
+
  csv_field_getters_by_column& insert_default(QString str)
  {
   u2 found;

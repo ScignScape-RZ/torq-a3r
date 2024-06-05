@@ -138,11 +138,6 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
    auto ffs = define_setters_data_.falsifying_flag_strings;
    auto fcs = define_setters_data_.falsifying_case_sensitive_flag_strings;
 
-   if(column_key == 46)
-   {
-    qDebug() << 46;
-   }
-
    u2 c = cs.size();
    for(u2 index = 1; index <= c; ++index)
     for(u2 index1 = 1; index1 <= cs[index - 1]; ++index1)

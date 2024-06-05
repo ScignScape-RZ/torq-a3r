@@ -37,7 +37,7 @@
 #include <QTransform>
 
 
-int main(int argc, char *argv[])
+int main5(int argc, char *argv[])
 {
  QString json_file = "/home/nlevisrael/docker/tox/objects/tir/summaries/counties/Camden/Camden-2022.json";
 
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 }
 
 
-int main6(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 
 // QString csv_file_path = "/home/nlevisrael/docker/tox/2022_nj.csv";
@@ -100,7 +100,7 @@ int main6(int argc, char *argv[])
     [5]  (& NJ_TRI_Site::set_street_address)
     [6]  (& NJ_TRI_Site::set_municipality)
     [7]  (& NJ_TRI_Site::set_county)
-    [9]  (& NJ_TRI_Site::set_zip_code)
+    [9]  (& NJ_TRI_Site::read_zip_code)
 
 
     [11]  [& NJ_TRI_Site::set_tribe_name]
@@ -260,15 +260,15 @@ int main6(int argc, char *argv[])
    ;
 
 
- ntsl.read_csv_file(10);
+ ntsl.read_csv_file();
 
  QMap<QString, NJ_TRI_Site_List> sites_by_county;
 
- QString base_folder = "/home/nlevisrael/docker/tox/objects/tir/summaries/counties/";
+ QString base_folder = "/home/nlevisrael/docker/tox/objects/tir/json/counties/2022/";
 
  for(NJ_TRI_Site site : ntsl.sites())
  {
-  QString county = site.county_ucfirsr();
+  QString county = site.county_ucfirst();
 
   if(!sites_by_county.contains(county))
   {
@@ -301,6 +301,7 @@ int main6(int argc, char *argv[])
        &NJ_TRI_Site::municipality,
        nullptr,
        &NJ_TRI_Site::str_zip_code,
+       &NJ_TRI_Site::str_zplus_4,
        &NJ_TRI_Site::str_latitude,
        &NJ_TRI_Site::str_longitude,
        &NJ_TRI_Site::industry_sector,
@@ -321,6 +322,7 @@ int main6(int argc, char *argv[])
   "municipality",
   "county",
   "zip_code",
+  "zplus_4",
   "latitude",
   "longitude",
   "industry_sector",
@@ -336,18 +338,31 @@ int main6(int argc, char *argv[])
   it.next();
 //  qDebug() << it.key() << ": " << it.value().file_path();
 
-  NJ_TRI_Site_List& ntsl = it.value();
+  NJ_TRI_Site_List& county_ntsl = it.value();
 
-  ntsl.default_json_field_getters();
+  county_ntsl.default_json_field_getters();
 
-//  auto g = getters.copy();
-//  g.insert_default(it.key());
-//  ntsl.set_csv_field_getters(g);
-//  ntsl.save_to_csv_file("!", &header);
+  auto g = getters.copy();
+  g.insert_default(it.key());
+  county_ntsl.set_csv_field_getters(g);
+  county_ntsl.save_to_csv_file("!", &header);
 
-  ntsl.save_to_json_file();
+  county_ntsl.save_to_json_file();
 
  }
+
+
+// auto g = getters.copy();
+// g.insert_default(it.key());
+
+ getters.insert_replacement(&NJ_TRI_Site::county);
+
+ ntsl.set_csv_field_getters(getters);
+
+
+ ntsl.save_to_csv_file(base_folder + "/nj.csv", &header);
+
+
 
  return 0;
 }
