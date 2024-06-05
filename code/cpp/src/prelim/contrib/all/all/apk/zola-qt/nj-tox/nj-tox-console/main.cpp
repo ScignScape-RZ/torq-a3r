@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 }
 
 
-int main7(int argc, char *argv[])
+int main6(int argc, char *argv[])
 {
 
 // QString csv_file_path = "/home/nlevisrael/docker/tox/2022_nj.csv";

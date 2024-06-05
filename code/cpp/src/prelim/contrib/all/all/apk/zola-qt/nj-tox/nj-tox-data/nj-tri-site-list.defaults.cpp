@@ -30,6 +30,8 @@ void NJ_TRI_Site_List::default_json_field_setters()
 
  json_field_setters() = {
 
+   kmd(flags, str_read_flag_union)
+
    kmd(year)
    kmd(trifd)
    kmd(frs_id)
@@ -44,6 +46,17 @@ void NJ_TRI_Site_List::default_json_field_setters()
 
    kmd(horizontal_datum, read_enum_numeric<NJ_TRI_Site::Horizontal_Datum_Options>)
    kmd(classification, read_enum_numeric<NJ_TRI_Site::Classification_Keys>)
+   kmd(metal_category, read_enum_numeric<NJ_TRI_Site::Metal_Category>)
+
+   kmd(document_control_number)
+
+   kmd(chemical_name)
+
+   kmd(TRI_chemical_id)
+   kmd(CAS_registry_number)
+
+   kmd(SRS_id)
+
 
 
    kmd(parent_company_name, set_parent_company_name)
@@ -56,6 +69,24 @@ void NJ_TRI_Site_List::default_json_field_setters()
    read_kmd(SIC_codes)
 
    kmd(discharge_amounts, str_read_discharge_amounts)
+
+   kmd(offsite_transfer_amounts, str_read_offsite_transfer_amounts)
+   kmd(offsite_transfer_or_release_totals, str_read_offsite_transfer_or_release_totals)
+   kmd(onsite_and_offsite_amounts, str_read_onsite_and_offsite_amounts)
+
+   kmd(onsite_release_total)
+   kmd(potw_release_or_disposal)
+   kmd(potw_further_treatment)
+   kmd(potw_total)
+
+   kmd(overall_offsite_transfer_total)
+   kmd(onsite_and_offsite_releases_total)
+   kmd(source_reduction_releases_total)
+
+   kmd(production_waste)
+   kmd(one_time_release)
+   kmd(production_ratio)
+
 
  };
 
@@ -90,6 +121,16 @@ void NJ_TRI_Site_List::default_json_field_getters()
 
    kmd(horizontal_datum, enum_to_numeric_str<NJ_TRI_Site::Horizontal_Datum_Options>)
    kmd(classification, enum_to_numeric_str<NJ_TRI_Site::Classification_Keys>)
+   kmd(metal_category, enum_to_numeric_str<NJ_TRI_Site::Metal_Category>)
+
+   str_kmd(document_control_number)
+
+   kmd(chemical_name)
+
+   kmd(TRI_chemical_id)
+   kmd(CAS_registry_number)
+
+   str_kmd(SRS_id)
 
 
     kmd(parent_company_name, get_parent_company_name)
@@ -102,7 +143,25 @@ void NJ_TRI_Site_List::default_json_field_getters()
   str_kmd(NAICS_codes)
   str_kmd(SIC_codes)
 
+
+
    kmd(discharge_amounts, str_map_discharge_amounts)
+   kmd(offsite_transfer_amounts, str_map_offsite_transfer_amounts)
+   kmd(offsite_transfer_or_release_totals, str_map_offsite_transfer_or_release_totals)
+   kmd(onsite_and_offsite_amounts, str_map_onsite_and_offsite_amounts)
+
+   str_kmd(onsite_release_total)
+   str_kmd(potw_release_or_disposal)
+   str_kmd(potw_further_treatment)
+   str_kmd(potw_total)
+
+   str_kmd(overall_offsite_transfer_total)
+   str_kmd(onsite_and_offsite_releases_total)
+   str_kmd(source_reduction_releases_total)
+
+   str_kmd(production_waste)
+   str_kmd(one_time_release)
+   str_kmd(production_ratio)
 
 
  };

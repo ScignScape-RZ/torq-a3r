@@ -487,20 +487,7 @@ public:
 
  NJ_TRI_Site();
 
- QString str_get_flag_union() const
- {
-  return QString::number(get_flag_union());
- }
-
- Flags_type get_flag_union() const
- {
-  return Flags;
- }
-
- void set_test(QString val) //, u2 col)
- {
-  qDebug() << "val = " << val;
- }
+#include "flags-str.h"
 
  ACCESSORS(u2 ,year)
  ACCESSORS(QString ,trifd)
@@ -870,57 +857,53 @@ PARSE_AND_READ(metal_category)
   note_discharge_amount(amount.toDouble(), description);
  }
 
- QString str_map_discharge_amounts() const
- {
-  QVector<QString> qsv;
+ // //  my compiler doesn't seem to like std::transform on std::map; get link errors ...
+  //    probably an idiosyncracy of my system which is kinda old, but that' what
+  //    I have to work with for now ...
+ //  std::map m = discharge_amounts_.toStdMap();
+ //  qsv.resize(m.size());
+ //  std::transform(m.begin(), m.end(), qsv.begin(), [](const auto& pr)
+ //  {
+ //   //  Discharge_Descriptions key, r8 val
+ //   return "%1:%2"_qt.arg((u4)pr.first).arg(pr.second);
+ //  });
 
-  qsv.resize(discharge_amounts_.size());
 
-  u1 i = 0;
-  for(auto it = discharge_amounts_.begin(); it != discharge_amounts_.end(); ++it)
-  {
-   qsv[i++] = "%1:%2"_qt.arg((u4)it.key()).arg(it.value());
-  }
+#define STR_READ_with_MAP(map_field) \
+ QString str_map_##map_field() const \
+ { \
+  QVector<QString> qsv; \
+  qsv.resize(map_field##_.size()); \
+  u1 i = 0; \
+  for(auto it = map_field##_.begin(); it != map_field##_.end(); ++it) \
+  { \
+   qsv[i++] = "%1:%2"_qt.arg((u4)it.key()).arg(it.value()); \
+  } \
+  return qsv.toList().join(";"); \
+ } \
+ void str_read_##map_field(QString str) \
+ { \
+  QVector<QString> qsv = str.split(";").toVector(); \
+  QVector<QPair<decltype(map_field##_)::key_type, decltype(map_field##_)::mapped_type>> prs; \
+  prs.resize(qsv.size()); \
+  std::transform(qsv.begin(), qsv.end(), prs.begin(), [](QString s) \
+  { \
+   QStringList qsl = s.split(":"); \
+   return QPair<decltype(map_field##_)::key_type, decltype(map_field##_)::mapped_type> \
+     {(decltype(map_field##_)::key_type) qsl.value(0).toUInt(), \
+      qsl.value(1).toDouble()}; \
+  }); \
+  for(const auto& pr : prs) \
+  { \
+   map_field##_[pr.first] = pr.second; \
+  } \
+ } \
 
-// //  my compiler doesn't seem to like std::transform on std::map; get link errors ...
- //    probably an idiosyncracy of my system which is kinda old, but that' what
- //    I have to work with for now ...
-//  std::map m = discharge_amounts_.toStdMap();
-//  qsv.resize(m.size());
-//  std::transform(m.begin(), m.end(), qsv.begin(), [](const auto& pr)
-//  {
-//   //  Discharge_Descriptions key, r8 val
-//   return "%1:%2"_qt.arg((u4)pr.first).arg(pr.second);
-//  });
 
-  return qsv.toList().join(";");
- }
-
- void str_read_discharge_amounts(QString str)
- {
-  QVector<QString> qsv = str.split(";").toVector();
-
-  QVector<QPair<Discharge_Descriptions, r8>> prs;
-
-  prs.resize(qsv.size());
-
-  std::transform(qsv.begin(), qsv.end(), prs.begin(), [](QString s)
-  {
-   QStringList qsl = s.split(":");
-
-   //  Discharge_Descriptions key, r8 val
-   return QPair<Discharge_Descriptions, r8> {(Discharge_Descriptions) qsl.value(0).toUInt(),
-      qsl.value(1).toDouble()};
-  });
-
-  for(const auto& pr : prs)
-  {
-   discharge_amounts_[pr.first] = pr.second;
-  }
-    //   //  Discharge_Descriptions key, r8 val
-
- }
-
+ STR_READ_with_MAP(discharge_amounts)
+ STR_READ_with_MAP(offsite_transfer_amounts)
+ STR_READ_with_MAP(offsite_transfer_or_release_totals)
+ STR_READ_with_MAP(onsite_and_offsite_amounts)
 
 
  void note_offsite_transfer_amount(r8 amount, QString key)
@@ -932,6 +915,8 @@ PARSE_AND_READ(metal_category)
  {
   note_offsite_transfer_amount(amount.toDouble(), key);
  }
+
+
 
 
  ACCESSORS(r8 ,onsite_release_total)
@@ -953,12 +938,6 @@ PARSE_AND_READ(metal_category)
 
  void read_offsite_transfer_or_release_total(QString amount, u2 column)
  {
-
-  if(column == 101)
-  {
-   qDebug() << column;
-  }
-
   Transfer_or_Release_Descriptions description = transfer_or_release_description_by_column(column);
 
   if(description != Transfer_or_Release_Descriptions::N_A)
@@ -1076,6 +1055,7 @@ PARSE_AND_READ(metal_category)
 
 TEMP_MACRO(Classification_Keys ,classification_)
 TEMP_MACRO(Horizontal_Datum_Options ,horizontal_datum_)
+TEMP_MACRO(Metal_Category ,metal_category_)
 
 
 #undef TEMP_MACRO

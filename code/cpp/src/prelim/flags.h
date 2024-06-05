@@ -298,4 +298,5 @@ union { RZ_Flags_type<byte_count>::type Flags; struct \
 #endif
 
 
+
 #endif //FLAGS__H
