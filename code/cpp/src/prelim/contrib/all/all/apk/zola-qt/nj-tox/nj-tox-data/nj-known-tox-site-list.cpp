@@ -5,7 +5,7 @@
 //           http://www.boost.org/LICENSE_1_0.txt)
 
 
-#include "nj-tri-site-list.h"
+#include "nj-known-tox-site-list.h"
 
 #include "textio.h"
 
@@ -21,82 +21,14 @@
 
 
 
-NJ_TRI_Site_List::NJ_TRI_Site_List(QString file_path)
+NJ_Known_Tox_Site_List::NJ_Known_Tox_Site_List(QString file_path)
   :  Site_List_Base(file_path)
 {
- define_setters_data_.column_resolver = [this](QVariant qvar)
- {
-  QString key = qvar.toString();
-  u2 result;
 
-  if((result = (u2) NJ_TRI_Site::parse_offsite_key(key)))
-    return result;
-
-  if((result = (u2) NJ_TRI_Site::parse_onsite_and_offsite_key(key)))
-    return result;
-
-  if((result = (u2) NJ_TRI_Site::parse_discharge_description(key)))
-    return result;
-
-  return (u2) 0;
- };
 }
 
 
-manual_ptr_handles<NJ_TRI_Site_List> NJ_TRI_Site_List::split_by_county(
-  QMap<QString, NJ_TRI_Site_List*>& results, QString* file_pattern)
-{
- read_csv_file();
-
- manual_ptr_handles<NJ_TRI_Site_List> result;
-
- for(const NJ_TRI_Site& site : sites_)
- {
-  QString county = site.county();
-
-  auto it = results.find(county);
-
-  NJ_TRI_Site_List* ntsl;
-
-  if(it == results.end())
-  {
-   QString f;
-   if(file_pattern)
-   {
-    f = file_pattern->arg(county);
-   }
-   else
-     f = file_path_;
-
-   ntsl = new NJ_TRI_Site_List(f);
-   results[county] = ntsl;
-   result.objs.push_back(ntsl);
-  }
-  else
-    ntsl = results[county];
-
-  ntsl->sites().push_back(site);
-
- }
-
- for(NJ_TRI_Site_List* ntsl : results)
- {
-  ntsl->sort_sites(
-  [](const NJ_TRI_Site& lhs, const NJ_TRI_Site& rhs)
-  {
-   if(lhs.county() == rhs.county())
-     return lhs.frs_id() < rhs.frs_id();
-
-   return lhs.county() < rhs.county();
-  }
-  );
- }
-
- return result;
-}
-
-
-void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
+void NJ_Known_Tox_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
   QString csv_file_path, u4 max)
 {
  auto& counts = mds.proc_options_counts;
@@ -115,7 +47,6 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
  else
    sites_.reserve(ll);
 
-
  original_header_ = lines.takeFirst();
 
  u4 count = 0;
@@ -133,7 +64,7 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
 
   sites_.push_back({});
 
-  NJ_TRI_Site& site = sites_.last();
+  NJ_Known_Tox_Site& site = sites_.last();
 
   for(u2 column = 0; column < line.size(); ++column)
   {
@@ -381,8 +312,19 @@ void NJ_TRI_Site_List::read_csv_file(decltype(csv_field_setters_)& mds,
 }
 
 
+void NJ_Known_Tox_Site_List::read_aggregate_json_file(QString file_path)
+{
+ read_json_file(file_path, [](NJ_Known_Tox_Site& site, QJsonObject qjo)
+ {
+  QJsonObject sqjo = qjo.value("sai").toObject();
+  site.qjo_to_supplemental_address_info(sqjo);
 
-void NJ_TRI_Site_List::read_json_file(QString file_path)
+ });
+}
+
+
+void NJ_Known_Tox_Site_List::read_json_file(QString file_path,
+  void (*cb) (NJ_Known_Tox_Site&, QJsonObject))
 {
  QJsonDocument qjd;
  {
@@ -399,7 +341,7 @@ void NJ_TRI_Site_List::read_json_file(QString file_path)
  {
   QJsonObject qjo = obj.toObject();
 
-  NJ_TRI_Site& site = add_site();
+  NJ_Known_Tox_Site& site = add_site();
 
   QMapIterator<QString, typename decltype(json_field_setters_)::mapped_type> it(json_field_setters_);
 
@@ -414,6 +356,9 @@ void NJ_TRI_Site_List::read_json_file(QString file_path)
    (site.*it.value())(it1->toString());
   }
 
+  if(cb)
+    cb(site, qjo);
+
 
  }
 
@@ -421,13 +366,13 @@ void NJ_TRI_Site_List::read_json_file(QString file_path)
 
 
 
-void NJ_TRI_Site_List::save_to_json_file(QString file)
+void NJ_Known_Tox_Site_List::save_to_json_file(QString file)
 {
  QJsonDocument qjd;
 
  QJsonArray qja;
 
- for(NJ_TRI_Site site : sites_)
+ for(NJ_Known_Tox_Site site : sites_)
  {
   QJsonObject qjo;
 
@@ -445,6 +390,171 @@ void NJ_TRI_Site_List::save_to_json_file(QString file)
  qjd.setArray(qja);
 
  KA::TextIO::save_file(file, qjd.toJson());
+
+}
+
+
+
+void NJ_Known_Tox_Site_List::save_aggregate_json_file(QString file_path)
+{
+ QJsonDocument qjd;
+
+ QJsonArray qja;
+
+ for(NJ_Known_Tox_Site site : sites_)
+ {
+  QJsonObject qjo;
+
+  QMapIterator<QString, typename decltype(json_field_getters_)::mapped_type> it(json_field_getters_);
+
+  while(it.hasNext())
+  {
+   it.next();
+   qjo.insert(it.key(), (site.*it.value())());
+  }
+
+  QJsonObject sqjo;
+  site.supplemental_address_info_to_qjo(sqjo);
+  qjo.insert("sai", sqjo);
+
+  qja.append(qjo);
+ }
+
+ qjd.setArray(qja);
+
+ KA::TextIO::save_file(file_path, qjd.toJson());
+
+
+
+}
+
+
+void NJ_Known_Tox_Site_List::merge_with_json_found_or_missing_file(QString found_file,
+  QString missing_file)
+{
+ QJsonDocument qjd_found;
+ {
+  QFile f(found_file);
+  f.open(QIODevice::ReadOnly);
+  QByteArray qba = f.readAll();
+  qjd_found = QJsonDocument::fromJson(qba);
+ }
+
+ QJsonDocument qjd_missing;
+ {
+  QFile f(missing_file);
+  f.open(QIODevice::ReadOnly);
+  QByteArray qba = f.readAll();
+  qjd_missing = QJsonDocument::fromJson(qba);
+ }
+
+ QMap<u4, NJ_Known_Tox_Site::Supplemental_Address_Info> sai;
+
+ QJsonArray qja_found = qjd_found.array();
+ QJsonArray qja_missing = qjd_missing.array();
+
+ for(auto obj: qja_missing)
+ {
+  QJsonObject qjo = obj.toObject();
+  u4 site_id = qjo.value("site-id").toInt();
+  sai[site_id].osm_address = qjo.value("query-a").toString();
+  sai[site_id].osm_municipality = qjo.value("query-m").toString();
+ }
+
+ for(auto obj: qja_found)
+ {
+  QJsonObject qjo = obj.toObject();
+  u4 site_id = qjo.value("site-id").toInt();
+  sai[site_id].osm_address = qjo.value("query-a").toString();
+  sai[site_id].osm_municipality = qjo.value("query-m").toString();
+
+  if(qjo.contains("locations"))
+  {
+   QJsonObject qjols = obj.toObject()["locations"].toObject();
+   if(qjols.contains("osm"))
+   {
+    QJsonArray qja1 = qjols["osm"].toObject()["coords"].toArray();
+    for(auto v: qja1)
+    {
+     QJsonArray qja1 = v.toArray();
+     sai[site_id].coords.push_back({qja1.first().toDouble(), qja1.last().toDouble()});
+    }
+   }
+   if(qjols.contains("osm-alt"))
+   {
+    sai[site_id].osm_alt_address = qjols["osm-alt"].toObject()["address-s"].toString();
+    sai[site_id].osm_alt_municipality = qjols["osm-alt"].toObject()["address-m"].toString();
+    sai[site_id].overlap_count = qjols["osm-alt"].toObject().value("overlap").toInt();
+    QJsonArray qja1 = qjols["osm-alt"].toObject()["coords"].toArray();
+    for(auto v: qja1)
+    {
+     QJsonArray qja1 = v.toArray();
+     sai[site_id].alt_coords.push_back({qja1.first().toDouble(), qja1.last().toDouble()});
+    }
+   }
+  }
+ }
+
+ for(NJ_Known_Tox_Site& site : sites_)
+ {
+  auto it = sai.find(site.site_id());
+  if(it == sai.end())
+  {
+   qDebug() << "Unexpected missing address info for site id: " << site.site_id();
+   continue;
+  }
+  site.supplemental_address_info() = *it;
+ }
+
+}
+
+
+void NJ_Known_Tox_Site_List::default_json_field_setters()
+{
+#define kmd NJ_Known_Tox_Site_SET_KMD_MACRO
+
+ json_field_setters() = {
+
+   kmd(latitude)
+   kmd(longitude)
+   kmd(coords_count)
+   kmd(site_id)
+   kmd(pi_number)
+   kmd(pi_name)
+   kmd(home_owner_status)
+   kmd(coords_options)
+   kmd(street_address)
+   kmd(municipality)
+   kmd(county)
+   kmd(data_source)
+
+ };
+}
+
+
+void NJ_Known_Tox_Site_List::default_json_field_getters()
+{
+#define kmd NJ_Known_Tox_Site_KMD_MACRO
+#define str_kmd NJ_Known_Tox_Site_STR_KMD_MACRO
+
+
+ json_field_getters() = {
+
+   str_kmd(latitude)
+   str_kmd(longitude)
+   str_kmd(coords_count)
+   str_kmd(site_id)
+   str_kmd(pi_number)
+
+   kmd(pi_name)
+   kmd(home_owner_status)
+   kmd(coords_options)
+   kmd(street_address)
+   kmd(municipality)
+   kmd(county)
+   kmd(data_source)
+
+ };
 
 }
 

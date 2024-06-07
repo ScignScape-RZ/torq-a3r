@@ -51,6 +51,8 @@ LIBS += -L/home/nlevisrael/docker/gits/qtcsv/install/lib -lqtcsv
 HEADERS += \
   $$SRC_DIR/nj-tox-site.h \
   $$SRC_DIR/nj-tox-site-list.h \
+  $$SRC_DIR/nj-known-tox-site.h \
+  $$SRC_DIR/nj-known-tox-site-list.h \
   $$SRC_DIR/nj-tri-site-multiyear.h \
   $$SRC_DIR/nj-tri-site-multiyear-list.h \
   $$SRC_DIR/nj-tri-site.h \
@@ -62,6 +64,8 @@ HEADERS += \
 SOURCES += \
   $$SRC_DIR/nj-tox-site.cpp \
   $$SRC_DIR/nj-tox-site-list.cpp \
+  $$SRC_DIR/nj-known-tox-site.cpp \
+  $$SRC_DIR/nj-known-tox-site-list.cpp \
   $$SRC_DIR/nj-tri-site-multiyear.cpp \
   $$SRC_DIR/nj-tri-site-multiyear-list.cpp \
   $$SRC_DIR/nj-tri-site.cpp \

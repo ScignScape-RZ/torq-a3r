@@ -36,6 +36,134 @@
 
 #include <QTransform>
 
+#include "nj-tox-data/nj-known-tox-site-list.h"
+
+
+int main(int argc, char *argv[])
+{
+ QStringList counties = {
+   "Atlantic",
+   "Bergen",
+   "Burlington",
+   "Camden",
+   "Cape_May",
+   "Cumberland",
+   "Essex",
+   "Gloucester",
+   "Hudson",
+   "Hunterdon",
+   "Mercer",
+   "Middlesex",
+   "Monmouth",
+   "Morris",
+   "Ocean",
+   "Passaic",
+   "Salem",
+   "Somerset",
+   "Sussex",
+   "Union",
+   "Warren"
+ };
+
+ QString folder = "/home/nlevisrael/docker/tox/objects/active/counties/";
+
+
+ for(QString county : counties)
+ {
+  QString county_folder = folder + county;
+
+  QDir qd(county_folder);
+  qd.mkdir("ch");
+
+  QString aggregate_json_file = "%1/%2-aggregate.json"_qt.arg(county_folder).arg(county);
+  QString ch_aggregate_json_file = "%1/ch/%2-aggregate.json"_qt.arg(county_folder).arg(county);
+
+  NJ_Known_Tox_Site_List ntsl; //(csv_file);
+
+  ntsl.default_json_field_setters();
+
+  ntsl.read_aggregate_json_file(aggregate_json_file);
+
+  ntsl.default_json_field_getters();
+
+  ntsl.save_aggregate_json_file(ch_aggregate_json_file);
+ }
+
+ return 0;
+}
+
+
+
+int main4(int argc, char *argv[])
+{
+ QStringList counties = {
+   "Atlantic",
+   "Bergen",
+   "Burlington",
+   "Camden",
+   "Cape_May",
+   "Cumberland",
+   "Essex",
+   "Gloucester",
+   "Hudson",
+   "Hunterdon",
+   "Mercer",
+   "Middlesex",
+   "Monmouth",
+   "Morris",
+   "Ocean",
+   "Passaic",
+   "Salem",
+   "Somerset",
+   "Sussex",
+   "Union",
+   "Warren"
+ };
+
+ QString folder = "/home/nlevisrael/docker/tox/objects/active/counties/";
+
+
+ for(QString county : counties)
+ {
+  QString county_folder = folder + county;
+  QString csv_file = "%1/%2-KCSNJ-active.csv"_qt.arg(county_folder).arg(county);
+  QString json_found_file = "%1/%2-found.json"_qt.arg(county_folder).arg(county);
+  QString json_missing_file = "%1/%2-missing.json"_qt.arg(county_folder).arg(county);
+
+  QString aggregate_json_file = "%1/%2-aggregate.json"_qt.arg(county_folder).arg(county);
+
+
+
+  NJ_Known_Tox_Site_List ntsl(csv_file);
+
+  ntsl.define_setters()
+
+    [1]  (& NJ_Known_Tox_Site::set_site_id)
+    [2]  (& NJ_Known_Tox_Site::set_pi_number)
+    [3]  (& NJ_Known_Tox_Site::set_pi_name)
+    [4]  (& NJ_Known_Tox_Site::set_street_address)
+    [6]  (& NJ_Known_Tox_Site::set_municipality)
+    [7]  (& NJ_Known_Tox_Site::set_county)
+    [8]  (& NJ_Known_Tox_Site::set_latitude)
+    [9]  (& NJ_Known_Tox_Site::set_longitude)
+   [10]  (& NJ_Known_Tox_Site::set_coords_count)
+   [11]  (& NJ_Known_Tox_Site::set_data_source)
+
+    ;
+
+  ntsl.read_csv_file();
+
+  ntsl.merge_with_json_found_or_missing_file(json_found_file,
+    json_missing_file);
+
+  ntsl.default_json_field_getters();
+
+  ntsl.save_aggregate_json_file(aggregate_json_file);
+ }
+
+ return 0;
+
+}
 
 int main5(int argc, char *argv[])
 {
@@ -51,7 +179,7 @@ int main5(int argc, char *argv[])
 }
 
 
-int main(int argc, char *argv[])
+int main7(int argc, char *argv[])
 {
 
 // QString csv_file_path = "/home/nlevisrael/docker/tox/2022_nj.csv";
