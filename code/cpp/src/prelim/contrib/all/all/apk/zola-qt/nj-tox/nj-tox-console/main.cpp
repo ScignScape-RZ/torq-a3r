@@ -1668,14 +1668,11 @@ int main(int argc, char *argv[])
   last_title = sdoc_page.title;
  }
 
- for(Doc_Page& sdoc_page : sdoc_pages)
- {
-  u2 page = sdoc_page.number;
-
-  qDebug() << page << ": " << sdoc_page.title << " (" << sdoc_page.local << ")";
-
-
- }
+// for(Doc_Page& sdoc_page : sdoc_pages)
+// {
+//  u2 page = sdoc_page.number;
+//  qDebug() << page << ": " << sdoc_page.title << " (" << sdoc_page.local << ")";
+// }
 
 
 
@@ -1686,9 +1683,45 @@ int main(int argc, char *argv[])
  }) -> number;
 
 
-// qDebug() << "M = " << max_page;
 
-// return 0;
+ // //   create the index
+
+ static QString static_index_text = R"_(
+
+  <tr class='one-line'>
+   <td class='page-number'>%1</td>
+   <td class='date'>%2</td>
+   <td class='link'>
+    <a href='%3'>%4</a></td>
+  </tr>
+   )_";
+
+
+ QString index_text;
+
+ for(Doc_Page& sdoc_page : sdoc_pages)
+ {
+  if(sdoc_page.local != 1)
+    continue;
+
+  QString href = "p%1.htm"_qt.arg(sdoc_page.number, 3, 10, QLatin1Char('0'));
+
+  index_text += static_index_text.arg(sdoc_page.number)
+    .arg(sdoc_page.email_date.toString("ddd - MMM d - yyyy")
+         .replace('-', "<span class='nd'>&ndash;</span>"))
+    .arg(href).arg(sdoc_page.title);
+//  u2 page = sdoc_page.number;
+//  qDebug() << page << ": " << sdoc_page.title << " (" << sdoc_page.local << ")";
+ }
+
+ QString index_file = "%1/pages-index.htm"_qt.arg(bases_folder);
+
+ QString index_template = "%1/pages-index.htm"_qt.arg(template_folder);
+ QString index_html_text = KA::TextIO::load_file(index_template);
+
+ index_html_text.replace("%index-text%", index_text);
+
+ KA::TextIO::save_file(index_file, index_html_text);
 
 
 
@@ -1750,8 +1783,33 @@ int main(int argc, char *argv[])
   html_text.replace("%iframe-width%", "%1pt"_qt.arg(view_box.width()));
   html_text.replace("%iframe-height%", "%1pt"_qt.arg(view_box.height()));
 
+
+  if(page == 1)
+  {
+   html_text.replace("%uu-active%", "inactive");
+   html_text.replace("%uu-onclick%", "");
+  }
+  else
+  {
+   html_text.replace("%uu-active%", "active");
+   html_text.replace("%uu-onclick%", "location.href='p001.htm'");
+  }
+
+  if(page == max_page)
+  {
+   html_text.replace("%dd-active%", "inactive");
+   html_text.replace("%dd-onclick%", "");
+  }
+  else
+  {
+   html_text.replace("%dd-active%", "active");
+   html_text.replace("%dd-onclick%", "location.href='p%1.htm'"_qt.arg(max_page, 3, 10, QLatin1Char('0')));
+  }
+
+
   Email* prior_email = sdoc_page.email? &emails[sdoc_page.email - 1] : (Email*) nullptr;
   Email* next_email = sdoc_page.email < emails.size() - 1? &emails[sdoc_page.email + 1] : (Email*) nullptr;
+
 
   Doc_Page* prior_page = sdoc_page.index? &sdoc_pages[sdoc_page.index - 1] : (Doc_Page*) nullptr;
   Doc_Page* next_page = sdoc_page.index < sdoc_pages.size() - 1? &sdoc_pages[sdoc_page.index + 1] : (Doc_Page*) nullptr;
