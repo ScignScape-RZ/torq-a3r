@@ -12,6 +12,8 @@ TEMPLATE = app
 
 QT += gui widgets webenginewidgets location
 
+QT += positioning
+
 
 QT += svg
 

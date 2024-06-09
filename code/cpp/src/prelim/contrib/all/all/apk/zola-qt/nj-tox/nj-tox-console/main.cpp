@@ -39,7 +39,12 @@
 #include "nj-tox-data/nj-known-tox-site-list.h"
 
 
-int main0(int argc, char *argv[])
+#include <QGeoLocation>
+
+#include <QGeoCoordinate>
+
+
+int main(int argc, char *argv[])
 {
  QStringList counties = {
    "Atlantic",
@@ -65,20 +70,56 @@ int main0(int argc, char *argv[])
    "Warren"
  };
 
- QString nj_folder = "/home/nlevisrael/docker/tox/objects/active/counties/";
- QString tir_folder = "/home/nlevisrael/docker/tox/objects/active/counties/";
+
+ QString nj_folder = "/home/nlevisrael/docker/tox/objects/active/counties";
+ QString tri_folder = "/home/nlevisrael/docker/tox/objects/tir/json/counties/2022";
 
 
  for(QString county : counties)
  {
   QString aggregate_json_file = "%1/%2/ch/%2-aggregate.json"_qt.arg(nj_folder).arg(county);
-
   NJ_Known_Tox_Site_List nntsl; //(csv_file);
-
   nntsl.default_json_field_setters();
-
   nntsl.read_aggregate_json_file(aggregate_json_file);
+
+  QString summary_file = "%1/%2/ch/%2-ds.txt"_qt.arg(nj_folder).arg(county);
+
+  QString summary_text;
+
+  QString tri_json_file = "%1/%2/%2-2022.json"_qt.arg(tri_folder).arg(county);
+  NJ_TRI_Site_List ntsl;
+  ntsl.default_json_field_setters();
+  ntsl.read_json_file(tri_json_file);
+
+  for(NJ_Known_Tox_Site& nsite: nntsl.sites())
+  {
+   QGeoCoordinate nqgc(nsite.latitude(), nsite.longitude());
+   summary_text += "\n\n%1: %2"_qt.arg(nsite.site_id()).arg(nqgc.toString());
+
+   for(NJ_TRI_Site& site: ntsl.sites())
+   {
+    QGeoCoordinate qgc(site.latitude(), site.longitude());
+    r8 dist = qgc.distanceTo(nqgc);
+
+    if(dist < 10000)
+    {
+     summary_text += "\n %1 -> %2: %3"_qt.arg(dist).arg(site.frs_id()).arg(nqgc.toString());
+
+    }
+
+
+
+
+   }
+  }
+
+  KA::TextIO::save_file(summary_file, summary_text);
+
  }
+
+
+
+
 
  return 0;
 }
@@ -1462,7 +1503,7 @@ struct Email {
 };
 
 
-int main(int argc, char *argv[])
+int main11(int argc, char *argv[])
 {
  QString json_file = "/home/nlevisrael/sahana/sorted/Ss.pdf.json";
 

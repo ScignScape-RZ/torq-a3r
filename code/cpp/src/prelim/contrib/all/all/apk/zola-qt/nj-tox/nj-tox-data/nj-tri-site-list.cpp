@@ -387,7 +387,11 @@ void NJ_TRI_Site_List::read_json_file(QString file_path)
  QJsonDocument qjd;
  {
   QFile f(file_path);
-  f.open(QIODevice::ReadOnly);
+  if(!f.open(QIODevice::ReadOnly))
+  {
+   qDebug() << "File failed to open: " << file_path;
+   return;
+  }
   QByteArray qba = f.readAll();
   qjd = QJsonDocument::fromJson(qba);
  }
