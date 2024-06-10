@@ -44,6 +44,98 @@
 #include <QGeoCoordinate>
 
 
+//int main(int argc, char *argv[])
+//{
+// QGeoCoordinate c1 (39.586500, -74.860500);
+
+// QGeoCoordinate c2 (39.612500, -74.830500);
+
+// r8 d1 = c1.distanceTo(c2);
+// r8 d2 = c2.distanceTo(c1);
+
+// qDebug() << d1;
+// qDebug() << d2;
+
+// return 0;
+//}
+
+
+//, typename FN_Type1, typename FN_Tyoe2
+
+#ifdef HIDE
+template<typename SType1, typename SType2, typename CB_Type1, typename CB_Tyoe2>
+void make_distance_maps(SType1& s1, SType2& s2,
+  QVector<QPair<r8, SType2::Site_type*>>& m1,
+  QVector<QPair<r8, SType1::Site_type*>>& m2,
+  r8 threshold,
+  CB_Type1 cb1, CB_Type2 cb2)
+{
+ for(SType1::Site_type& site1 : s1.sites())
+ {
+  QGeoCoordinate qgc1(site1.latitude(), site1.longitude());
+
+  for(SType1::Site_type& site2 : s2.sites())
+  {
+   QGeoCoordinate qgc2(site2.latitude(), site2.longitude());
+   r8 dist = qgc2.distanceTo(qgc1);
+
+   if(dist < threshold)
+     m1.push_back({dist, &site2});
+  }
+ }
+
+ for(SType2::Site_type& site2 : s2.sites())
+ {
+  QGeoCoordinate qgc2(site2.latitude(), site2.longitude());
+
+  for(SType1::Site_type& site1 : s1.sites())
+  {
+   QGeoCoordinate qgc1(site1.latitude(), site1.longitude());
+   r8 dist = qgc1.distanceTo(qgc2);
+
+   if(dist < threshold)
+     m2.push_back({dist, &site1});
+  }
+ }
+
+ std::sort(m1.begin(), m1.end(), [](auto lhs, auto rhs)
+ {
+  return lhs.first < rhs.first;
+ });
+
+ std::sort(m2.begin(), m2.end(), [](auto lhs, auto rhs)
+ {
+  return lhs.first < rhs.first;
+ });
+
+}
+#endif
+
+
+template<typename sType1, typename SType2>
+void make_distance_maps(sType1& site1, SType2& s2,
+  QVector<QPair<r8, typename SType2::Site_type*>>& pair_vec,
+  r8 threshold)
+{
+ QGeoCoordinate qgc1(site1.latitude(), site1.longitude());
+
+ for(typename SType2::Site_type& site2 : s2.sites())
+ {
+  QGeoCoordinate qgc2(site2.latitude(), site2.longitude());
+  r8 dist = qgc2.distanceTo(qgc1);
+
+  if(dist < threshold)
+    pair_vec.push_back({dist, &site2});
+ }
+
+ std::sort(pair_vec.begin(), pair_vec.end(), [](auto lhs, auto rhs)
+ {
+  return lhs.first < rhs.first;
+ });
+
+}
+
+
 int main(int argc, char *argv[])
 {
  QStringList counties = {
@@ -72,12 +164,23 @@ int main(int argc, char *argv[])
 
 
  QString nj_folder = "/home/nlevisrael/docker/tox/objects/active/counties";
- QString tri_folder = "/home/nlevisrael/docker/tox/objects/tir/json/counties/2022";
+ QString tri_folder = "/home/nlevisrael/docker/tox/objects/tri/json/counties/2022";
 
+ u2 threshold = 2500;
+
+ QString kdistance_summary_file = "%1/k-tri-d-%2.txt"_qt.arg(tri_folder).arg(threshold);
+ QString tdistance_summary_file = "%1/tri-k-d-%2.txt"_qt.arg(tri_folder).arg(threshold);
+
+ QString kdistance_summary_text;
+ QString tdistance_summary_text;
 
  for(QString county : counties)
  {
+  kdistance_summary_text += "\n\n\n--- %1 ---"_qt.arg(county);
+  tdistance_summary_text += "\n\n\n--- %1 ---"_qt.arg(county);
+
   QString aggregate_json_file = "%1/%2/ch/%2-aggregate.json"_qt.arg(nj_folder).arg(county);
+
   NJ_Known_Tox_Site_List nntsl; //(csv_file);
   nntsl.default_json_field_setters();
   nntsl.read_aggregate_json_file(aggregate_json_file);
@@ -87,33 +190,155 @@ int main(int argc, char *argv[])
   QString summary_text;
 
   QString tri_json_file = "%1/%2/%2-2022.json"_qt.arg(tri_folder).arg(county);
+
   NJ_TRI_Site_List ntsl;
   ntsl.default_json_field_setters();
   ntsl.read_json_file(tri_json_file);
 
+//  QVector<QPair<r8, NJ_TRI_Site*>> ds1;
+//  QVector<QPair<r8, NJ_Known_Tox_Site*>> ds2;
+
+//  make_distance_maps(nntsl, ntsl, ds1, ds2, threshold);
+
+
   for(NJ_Known_Tox_Site& nsite: nntsl.sites())
   {
+   QVector<QPair<r8, NJ_TRI_Site*>> ds;
+   make_distance_maps(nsite, ntsl, ds, threshold);
+
+   if(!ds.isEmpty())
+   {
+    kdistance_summary_text += "\n\n%1: %2 %3 = %4 (%5)"_qt.arg(nsite.site_id())
+      .arg(nsite.latitude()).arg(nsite.longitude())
+      .arg(nsite.street_address()).arg(nsite.municipality());
+
+    for(auto pr: ds)
+    {
+     kdistance_summary_text += "\n %1 -> %2: %3 %4 = %5 (%6)"_qt
+       .arg(pr.first).arg(pr.second->frs_id())
+       .arg(pr.second->latitude()).arg(pr.second->longitude())
+       .arg(pr.second->street_address()).arg(pr.second->municipality());
+    }
+   }
+  }
+
+  for(NJ_TRI_Site& site: ntsl.sites())
+  {
+   QVector<QPair<r8, NJ_Known_Tox_Site*>> ds;
+   make_distance_maps(site, nntsl, ds, threshold);
+
+   if(!ds.isEmpty())
+   {
+    tdistance_summary_text += "\n\n%1: %2 %3 = %4 (%5)"_qt.arg(site.frs_id())
+      .arg(site.latitude()).arg(site.longitude())
+      .arg(site.street_address()).arg(site.municipality());
+
+    for(auto pr: ds)
+    {
+     tdistance_summary_text += "\n %1 -> %2: %3 %4 = %5 (%6)"_qt
+      .arg(pr.first).arg(pr.second->site_id())
+      .arg(pr.second->latitude()).arg(pr.second->longitude())
+      .arg(pr.second->street_address()).arg(pr.second->municipality());
+    }
+   }
+  }
+
+
+
+
+#ifdef HIDE
+  for(NJ_Known_Tox_Site& nsite: nntsl.sites())
+  {
+   QVector<QPair<r8, NJ_TRI_Site*>> ds;
+
    QGeoCoordinate nqgc(nsite.latitude(), nsite.longitude());
-   summary_text += "\n\n%1: %2"_qt.arg(nsite.site_id()).arg(nqgc.toString());
 
    for(NJ_TRI_Site& site: ntsl.sites())
    {
     QGeoCoordinate qgc(site.latitude(), site.longitude());
     r8 dist = qgc.distanceTo(nqgc);
 
-    if(dist < 10000)
+    if(dist < threshold)
+      ds.push_back({dist, &site});
+   }
+
+   std::sort(ds.begin(), ds.end(), [](auto lhs, auto rhs)
+   {
+    return lhs.first < rhs.first;
+   });
+
+   if(!ds.isEmpty())
+   {
+    kdistance_summary_text += "\n\n%1: %2 %3 = %4 (%5)"_qt.arg(nsite.site_id())
+      .arg(nsite.latitude()).arg(nsite.longitude())
+      .arg(nsite.street_address()).arg(nsite.municipality());
+
+    for(auto pr: ds)
     {
-     summary_text += "\n %1 -> %2: %3"_qt.arg(dist).arg(site.frs_id()).arg(nqgc.toString());
-
+     kdistance_summary_text += "\n %1 -> %2: %3 %4 = %5 (%6)"_qt
+       .arg(pr.first).arg(pr.second->frs_id())
+       .arg(pr.second->latitude()).arg(pr.second->longitude())
+       .arg(pr.second->street_address()).arg(pr.second->municipality());
     }
-
-
-
-
    }
   }
 
-  KA::TextIO::save_file(summary_file, summary_text);
+
+  for(NJ_TRI_Site& site: ntsl.sites())
+  {
+   QVector<QPair<r8, NJ_Known_Tox_Site*>> ds;
+
+   QGeoCoordinate qgc(site.latitude(), site.longitude());
+
+   for(NJ_Known_Tox_Site& nsite: nntsl.sites())
+   {
+    QGeoCoordinate nqgc(nsite.latitude(), nsite.longitude());
+    r8 dist = nqgc.distanceTo(qgc);
+
+    if(dist < threshold)
+      ds.push_back({dist, &nsite});
+   }
+
+#endif
+
+
+  //     kdistance_summary_text += "\n\n%1: %2 %3 = %4 (%5)"_qt.arg(nsite.site_id())
+  //       .arg(nsite.latitude()).arg(nsite.longitude())
+  //       .arg(nsite.street_address()).arg(nsite.municipality());
+  //     current_site_id = nsite.site_id();
+
+  //     summary_text += "\n %1 -> %2: %3 %4 = %5 (%6)"_qt
+  //       .arg(dist).arg(site.frs_id())
+  //       .arg(site.latitude()).arg(site.longitude())
+  //       .arg(site.street_address()).arg(site.municipality());
+
+  //     kdistance_summary_text += "\n %1 -> %2: %3 %4 = %5 (%6)"_qt
+  //       .arg(dist).arg(site.frs_id())
+  //       .arg(site.latitude()).arg(site.longitude())
+  //       .arg(site.street_address()).arg(site.municipality());
+
+
+
+
+//  tdistance_summary_text += "\n\n%1: %2 %3 = %4 (%5)"_qt.arg(site.frs_id())
+//    .arg(site.latitude()).arg(site.longitude())
+//    .arg(site.street_address()).arg(site.municipality());
+
+//  tdistance_summary_text += "\n %1 -> %2: %3 %4 = %5 (%6)"_qt
+//    .arg(dist).arg(nsite.site_id())
+//    .arg(nsite.latitude()).arg(nsite.longitude())
+//    .arg(nsite.street_address()).arg(nsite.municipality());
+
+
+
+//  summary_text += "\n\n%1: %2 %3 = %4 (%5)"_qt.arg(nsite.site_id())
+//    .arg(nsite.latitude()).arg(nsite.longitude())
+//    .arg(nsite.street_address()).arg(nsite.municipality());
+
+
+//  KA::TextIO::save_file(summary_file, summary_text);
+  KA::TextIO::save_file(kdistance_summary_file, kdistance_summary_text);
+  KA::TextIO::save_file(tdistance_summary_file, tdistance_summary_text);
 
  }
 

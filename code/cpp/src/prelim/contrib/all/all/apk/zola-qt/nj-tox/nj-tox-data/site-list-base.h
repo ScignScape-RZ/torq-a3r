@@ -1718,6 +1718,8 @@ private:
 
 public:
 
+ typedef SITE_Type Site_type;
+
  ACCESSORS(QString ,file_path)
 
  ACCESSORS(QStringList ,original_header)
