@@ -5,13 +5,11 @@
 #           http://www.boost.org/LICENSE_1_0.txt)
 
 
+PROJECT_NAME = chtr
+
 include(../build-group.pri)
 
 QT -= gui
-
-
-
-TEMPLATE = app
 
 exists($$ROOT_DIR/../preferred/sysr.pri): include($$ROOT_DIR/../preferred/sysr.pri)
 exists($$ROOT_DIR/../preferred/sysr-c.pri): include($$ROOT_DIR/../preferred/sysr-c.pri)
@@ -26,37 +24,45 @@ INCLUDEPATH += $$RELAE_GRAPH_SRC_GROUP_DIR
 INCLUDEPATH += $$PHAON_GRAPH_SRC_GROUP_DIR
 
 
-INCLUDEPATH += $$SRC_PROSET_DIR/chasm-vm
-INCLUDEPATH += $$SRC_PROSET_DIR/chasm-lib
-
-
-INCLUDEPATH += $$SRC_GROUP_DIR/chasm-tr
-INCLUDEPATH += $$SRC_GROUP_DIR/chasm-tr-console
-
 
 CONFIG += no_keywords
 
 DEFINES += USE_KANS
 DEFINES += USE_AQNS
 
-DEFINES += ROOT_FOLDER=\\\"$$ROOT_DIR\\\"
-DEFINES += DEMO_CVM_FOLDER=\\\"$$ROOT_DIR/../chtr\\\"
+
+HEADERS += \
+  $$SRC_DIR/kernel/dominion/types.h \
+  $$SRC_DIR/kernel/dominion/connectors.h \
+  $$SRC_DIR/code/chtr-prep-casement-entry.h \
+
+
 
 SOURCES += \
-  $$SRC_DIR/main.cpp \
-
-
-LIBS += -L$$TARGETSDIR -lchasm-tr  -lchasm-tr-parser
-
-
-LIBS += -L$$TARGETSDIR   -lchasm-lib  -lchasm-chgr  \
-  -lchasm-vm -lchasm-runtime-bridge -lchasm-procedure-table \
-  -lchasm-lib-X1 -lchasm-lib-X2 \
-  -lchasm-lib-33 -lchasm-lib-43
+  $$SRC_DIR/code/chtr-prep-casement-entry.cpp \
 
 
 
-message(T: $$TARGETSDIR)
+
+
+HEADERS += \
+  $$SRC_DIR/kernel/chtr-dominion.h \
+  $$SRC_DIR/kernel/frame/chtr-frame.h \
+  $$SRC_DIR/kernel/query/chtr-query.h \
+  $$SRC_DIR/kernel/graph/chtr-node.h \
+  $$SRC_DIR/kernel/graph/chtr-graph.h \
+  $$SRC_DIR/kernel/graph/chtr-asg-position.h \
+
+
+SOURCES += \
+  $$SRC_DIR/kernel/chtr-dominion.cpp \
+  $$SRC_DIR/kernel/frame/chtr-frame.cpp \
+  $$SRC_DIR/kernel/query/chtr-query.cpp \
+  $$SRC_DIR/kernel/graph/chtr-node.cpp \
+  $$SRC_DIR/kernel/graph/chtr-graph.cpp \
+  $$SRC_DIR/kernel/graph/chtr-asg-position.cpp \
+
+
 
 
 message(choice: $$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)

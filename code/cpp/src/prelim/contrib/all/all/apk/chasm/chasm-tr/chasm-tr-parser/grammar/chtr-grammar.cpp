@@ -45,13 +45,21 @@ void ChTR_Grammar::init(ChTR_Parser& p, ChTR_Graph& g, ChTR_Graph_Build& graph_b
  Context source_context = add_context("source-context");
  track_context({&source_context});
 
+
+ Context line_start_context = add_context("line-start-context");
+ track_context({&line_start_context});
+
+ Context intra_line_context = add_context("intra-line-context");
+ track_context({&intra_line_context});
+
 // Context group_context = add_context("group-context");
 // track_context({&group_context});
 
-// Context read_context = add_context("read-context",
-//   {sample_context, group_context});
+ Context line_context = add_context("line-context",
+   {line_start_context, intra_line_context});
+ track_context({&line_context});
 
- activate(source_context);
+ activate(line_start_context);
 
  ChTR_Parse_Context& parse_context = graph_build.parse_context();
 
@@ -65,6 +73,40 @@ void ChTR_Grammar::init(ChTR_Parser& p, ChTR_Graph& g, ChTR_Graph_Build& graph_b
 // {
 //  graph_build.enter_qj_context(p.matched("line-number").toUShort(), p.matched("context-name"));
 // });
+
+
+
+ add_rule(line_context,
+   "carrier-declaration",
+   ", (?<symbol> \\S+)"
+   ,[&]
+ {
+  QString sym = p.matched("symbol");
+  graph_build.prepare_carrier_declaration(sym);
+  activate_context("intra-line-context");
+ });
+
+
+ add_rule(line_context,
+   "symbol-binding-for-initialization",
+   "\\\\ (?<symbol> \\S+)"
+   ,[&]
+ {
+  QString sym = p.matched("symbol");
+  graph_build.prepare_symbol_binding_for_initialization(sym);
+  activate_context("intra-line-context");
+ });
+
+
+ add_rule(intra_line_context,
+   "non-prefixed-symbol",
+   "(?<symbol> \\S+)"
+   ,[&]
+ {
+  QString sym = p.matched("symbol");
+  graph_build.non_prefixed_symbol(sym);
+ });
+
 
  add_rule(flags_all_(parse_context ,open_channel_body), source_context,
    "read-carrier-string",

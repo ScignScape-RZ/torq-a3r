@@ -25,7 +25,8 @@ INCLUDEPATH += $$PHAON_GRAPH_SRC_GROUP_DIR
 
 
 INCLUDEPATH += $$SRC_GROUP_DIR/chasm-tr
-message($$SRC_GROUP_DIR/chasm-tr)
+
+INCLUDEPATH += $$SRC_GROUP_DIR/chasm-tr-graph-core
 
 
 CONFIG += no_keywords
@@ -52,6 +53,7 @@ SOURCES += \
   $$SRC_DIR/grammar/chtr-parser.cpp \
   $$SRC_DIR/chtr-source-file.cpp \
   $$SRC_DIR/chtr-document.cpp \
+
 
 
 

@@ -136,7 +136,26 @@ void make_distance_maps(sType1& site1, SType2& s2,
 }
 
 
-int main(int argc, char *argv[])
+#include "Similarity.h"
+
+bool compare_strings(QString s1, QString s2, QVector<r8>& results)
+{
+ Similarity sim;
+
+ std::string ss1 = s1.toStdString();
+ std::string ss2 = s2.toStdString();
+
+ r8 j = sim.JaccardSimilarity(ss1, ss2);
+ r8 p = sim.PSpectrumKernel(ss1, ss2);
+ r8 l = sim.LengthWeightedKernel(ss1, ss2);
+
+ results = {j, p, l};
+
+ return j > 0.4 && p > 0 && l > 0.5;
+}
+
+
+int main22(int argc, char *argv[])
 {
  QStringList counties = {
    "Atlantic",
@@ -166,7 +185,7 @@ int main(int argc, char *argv[])
  QString nj_folder = "/home/nlevisrael/docker/tox/objects/active/counties";
  QString tri_folder = "/home/nlevisrael/docker/tox/objects/tri/json/counties/2022";
 
- u2 threshold = 2500;
+ u2 threshold = 500;
 
  QString kdistance_summary_file = "%1/k-tri-d-%2.txt"_qt.arg(tri_folder).arg(threshold);
  QString tdistance_summary_file = "%1/tri-k-d-%2.txt"_qt.arg(tri_folder).arg(threshold);
@@ -197,8 +216,14 @@ int main(int argc, char *argv[])
 
 //  QVector<QPair<r8, NJ_TRI_Site*>> ds1;
 //  QVector<QPair<r8, NJ_Known_Tox_Site*>> ds2;
-
 //  make_distance_maps(nntsl, ntsl, ds1, ds2, threshold);
+
+
+//  1. s.CosineSimilarity(string1, string2)
+//  2. s.LengthWeightedKernel(string1, string2)
+//  3. s.JaccardSimilarity(string1, string2)
+//  4. s.PSpectrumKernel(string1, string2)
+//  5. s.LevenshteinSimilarity(string1, string2)
 
 
   for(NJ_Known_Tox_Site& nsite: nntsl.sites())
@@ -206,18 +231,41 @@ int main(int argc, char *argv[])
    QVector<QPair<r8, NJ_TRI_Site*>> ds;
    make_distance_maps(nsite, ntsl, ds, threshold);
 
-   if(!ds.isEmpty())
+   QVector<QPair<r8, NJ_TRI_Site*>> dss;
+   QVector<QVector<r8>> sim;
+
+   for(auto pr: ds)
+   {
+    QVector<r8> sims;
+    if(compare_strings(nsite.street_address(), pr.second->street_address(), sims))
+    {
+     dss.push_back(pr);
+     sim.push_back(sims);
+    }
+   }
+
+   if(dss.isEmpty())
+     dss = ds;
+
+   if(!dss.isEmpty())
    {
     kdistance_summary_text += "\n\n%1: %2 %3 = %4 (%5)"_qt.arg(nsite.site_id())
       .arg(nsite.latitude()).arg(nsite.longitude())
       .arg(nsite.street_address()).arg(nsite.municipality());
 
-    for(auto pr: ds)
+    u1 count = 0;
+    for(auto pr: dss)
     {
      kdistance_summary_text += "\n %1 -> %2: %3 %4 = %5 (%6)"_qt
        .arg(pr.first).arg(pr.second->frs_id())
        .arg(pr.second->latitude()).arg(pr.second->longitude())
        .arg(pr.second->street_address()).arg(pr.second->municipality());
+
+     if(!sim.isEmpty())
+       kdistance_summary_text += "\n  Jaccard: %1; PSpectum: %2; LengthWeighted: %3"_qt
+         .arg(sim[count][0]).arg(sim[count][1]).arg(sim[count][2]);
+
+     ++count;
     }
    }
   }
@@ -227,18 +275,42 @@ int main(int argc, char *argv[])
    QVector<QPair<r8, NJ_Known_Tox_Site*>> ds;
    make_distance_maps(site, nntsl, ds, threshold);
 
-   if(!ds.isEmpty())
+   QVector<QPair<r8, NJ_Known_Tox_Site*>> dss;
+   QVector<QVector<r8>> sim;
+
+   for(auto pr: ds)
+   {
+    QVector<r8> sims;
+
+    if(compare_strings(site.street_address(), pr.second->street_address(), sims))
+    {
+     dss.push_back(pr);
+     sim.push_back(sims);
+    }
+   }
+
+   if(dss.isEmpty())
+     dss = ds;
+
+   if(!dss.isEmpty())
    {
     tdistance_summary_text += "\n\n%1: %2 %3 = %4 (%5)"_qt.arg(site.frs_id())
       .arg(site.latitude()).arg(site.longitude())
       .arg(site.street_address()).arg(site.municipality());
 
-    for(auto pr: ds)
+    u1 count = 0;
+    for(auto pr: dss)
     {
      tdistance_summary_text += "\n %1 -> %2: %3 %4 = %5 (%6)"_qt
       .arg(pr.first).arg(pr.second->site_id())
       .arg(pr.second->latitude()).arg(pr.second->longitude())
       .arg(pr.second->street_address()).arg(pr.second->municipality());
+
+     if(!sim.isEmpty())
+       tdistance_summary_text += "\n Jaccard: %1; PSpectum: %2; LengthWeighted: %3"_qt
+         .arg(sim[count][0]).arg(sim[count][1]).arg(sim[count][2]);
+
+     ++count;
     }
    }
   }
@@ -1717,6 +1789,8 @@ struct Doc_Page {
 
  u2 date_rank;
 
+ u2 adj;
+
  QVector<QPair<QString, QRectF>> annotations;
 };
 
@@ -1728,9 +1802,639 @@ struct Email {
 };
 
 
-int main11(int argc, char *argv[])
+
+void sort_with_emails(QVector<Doc_Page>& doc_pages,
+  QVector<Email>& emails, QVector<Doc_Page*>& result)
 {
- QString json_file = "/home/nlevisrael/sahana/sorted/Ss.pdf.json";
+ result.resize(doc_pages.size());
+
+ int i = 0;
+ for(Doc_Page& doc_page : doc_pages)
+ {
+  result[i++] = &doc_page;
+ }
+
+ std::sort(result.begin(), result.end(), [](Doc_Page* lhs, Doc_Page* rhs)
+ {
+  if(lhs->email_date == rhs->email_date)
+    return lhs->number < rhs->number;
+  return lhs->email_date < rhs->email_date;
+ });
+
+
+
+
+// Email* e;
+// if(local == 1)
+// {
+//  emails.push_back({});
+//  e = &emails.last();
+//  e->index = emails.size() - 1;
+//  e->page_count = 1;
+//  e->start_page = page;
+//  e->title = title;
+// }
+// else
+// {
+//  e = &emails.last();
+//  ++e->page_count;
+// }
+// doc_page.email = e->index;
+
+
+}
+
+
+//?void map_arrows()
+
+void json_to_doc_pages(QString json_file,
+  QVector<Doc_Page>& doc_pages, QVector<int>& arrow_pages)
+{
+
+ QJsonDocument qjd;
+ {
+  QFile f(json_file);
+  f.open(QIODevice::ReadOnly);
+  QByteArray qba = f.readAll();
+  qjd = QJsonDocument::fromJson(qba);
+ }
+
+ QJsonArray qja_pages = qjd.array();
+
+ for(auto obj: qja_pages)
+ {
+  QJsonObject qjo = obj.toObject();
+
+  u2 page = qjo.value("page").toInt();
+
+  bool is_arrow = qjo.value("arrow").toBool();
+
+  if(is_arrow)
+  {
+   arrow_pages.push_back(page);
+   continue;
+  }
+
+  QString title = qjo.value("title").toString();
+
+  u2 local = qjo.value("local").toInt();
+
+  doc_pages.push_back({});
+  Doc_Page& doc_page = doc_pages.last();
+  doc_page.index = doc_pages.size() - 1;
+  doc_page.number = page;
+  doc_page.local = local;
+  doc_page.title = title;
+  doc_page.date_rank = 0;
+  doc_page.adj = 0;
+
+  doc_page.email = 0;
+
+
+
+
+  auto& annotations = doc_page.annotations;
+
+  QJsonArray qja_notes = qjo.value("notes").toArray();
+
+  for(auto obj1: qja_notes)
+  {
+   QJsonObject obj_notes = obj1.toObject();
+   QString text = obj_notes.value("text").toString();
+   QRectF boundary;
+   {
+    QJsonArray qja2 = obj_notes.value("boundary").toArray();
+    boundary.setX(qja2[0].toDouble());
+    boundary.setY(qja2[1].toDouble());
+    boundary.setWidth(qja2[2].toDouble());
+    boundary.setHeight(qja2[3].toDouble());
+   }
+   annotations.push_back({text, boundary});
+  }
+
+   QRegularExpression rx("(20\\d\\d)[.,-](\\d+)[.,-](\\d+)");
+
+   QRegularExpressionMatch rxm = rx.match(doc_page.title);
+
+   QString date;
+   if(rxm.hasMatch())
+   {
+    date = "%1.%2.%3"_qt.arg(rxm.captured(1))
+      .arg(rxm.captured(2), 2, '0').arg(rxm.captured(3), 2, '0');
+   }
+   else
+   {
+    date = "2013.09.05";
+   }
+
+   doc_page.email_date = QDate::fromString(date, "yyyy.MM.dd");
+
+//     if(!doc_page.email_date.isValid())
+//     {
+//      qDebug() << doc_page.number << ": invalid date: ";
+//     }
+//     else
+//     {
+//      qDebug() << doc_page.number << ": " << doc_page.email_date.toString();
+//     }
+
+ }
+}
+
+
+
+
+int main1(int argc, char *argv[])
+{
+
+ QString json_file = "/home/nlevisrael/sahana/S.pdf.json";
+ QString sjson_file = "/home/nlevisrael/sahana/sorted/Sc.pdf.json";
+
+
+ QVector<Doc_Page> doc_pages, sdoc_pages;
+
+ QVector<int> arrows, sarrows;
+
+
+ json_to_doc_pages(json_file, doc_pages, arrows);
+ json_to_doc_pages(sjson_file, sdoc_pages, sarrows);
+
+ QVector<Email> emails;
+ QVector<Doc_Page*> sorted;// = doc_pages;
+
+ sort_with_emails(sdoc_pages, emails, sorted);
+
+
+ int i = 0;
+ for(Doc_Page* sdoc_page : sorted)
+ {
+  if(i)
+  {
+   if(sdoc_page->local == 1)
+     ++i;
+  }
+  ++i;
+  sdoc_page->adj = i;
+
+ }
+
+ QString u_lines = KA::TextIO::load_file("/home/nlevisrael/sahana/t/u");
+ QString us_lines = KA::TextIO::load_file("/home/nlevisrael/sahana/t/us");
+
+ QStringList u_list = u_lines.split("\n");
+ QStringList us_list = us_lines.split("\n");
+
+ QMap<QString, QPair<int, int>> u_map;
+
+ i = 0;
+ for(QString s : u_list)
+ {
+  if(u_map.contains(s))
+  {
+   qDebug() << s;
+
+  }
+  ++i;
+  u_map[s].first = i;
+ }
+
+ i = 0;
+ for(QString s : us_list)
+ {
+  ++i;
+  u_map[s].second = i;
+ }
+
+ QString ustr;
+ QMapIterator<QString, QPair<int, int>> uit(u_map);
+
+ while(uit.hasNext())
+ {
+  uit.next();
+  ustr += "\n%1 -> %2 / %3"_qt.arg(uit.key()).arg(uit.value().first)
+    .arg(uit.value().second);
+ }
+ KA::TextIO::save_file("/home/nlevisrael/sahana/t/um.txt", ustr);
+
+
+
+ QMap<QString, Doc_Page*> pg_map;
+ QMap<int, QPair<QString, Doc_Page*>> pg_pr_map;
+
+ QMap<QString, Doc_Page*> spg_map;
+ QMap<int, QPair<QString, Doc_Page*>> spg_pr_map;
+
+ QMap<QString, Doc_Page*> _spg_map;
+ QMap<int, QPair<QString, Doc_Page*>> _spg_pr_map;
+
+ QMap<QString, Doc_Page*> _pg_map;
+ QMap<int, QPair<QString, Doc_Page*>> _pg_pr_map;
+
+
+ for(Doc_Page& doc_page : doc_pages)
+ {
+  QString key = doc_page.email_date.toString("ddd/MMM/d/yyyy") + ": "
+    + doc_page.title + " (p. " + QString::number(doc_page.local) + ")";
+
+  if(pg_map.contains(key))
+    qDebug() << "??? " << key;
+
+  if(pg_pr_map.contains(doc_page.number))
+    qDebug() << "??? " << key;
+
+  pg_pr_map[doc_page.number] = {key, &doc_page};
+
+  pg_map[key] = &doc_page;
+ }
+
+
+
+ for(Doc_Page* sdoc_page : sorted)
+ {
+  QString key = sdoc_page->email_date.toString("ddd/MMM/d/yyyy") + ": "
+    + sdoc_page->title + " (p. " + QString::number(sdoc_page->local) + ")";
+
+  if(spg_map.contains(key))
+    qDebug() << "??? " << key;
+
+  if(spg_pr_map.contains(sdoc_page->number))
+    qDebug() << "??? " << key;
+
+  spg_map[key] = sdoc_page;
+  spg_pr_map[sdoc_page->number] = {key, sdoc_page};
+ }
+
+ QString ss_pg_sum;
+
+ for(Doc_Page& doc_page : doc_pages)
+ {
+  QString key = doc_page.email_date.toString("ddd/MMM/d/yyyy") + ": "
+    + doc_page.title + " (p. " + QString::number(doc_page.local) + ")";
+
+  if(spg_map.contains(key))
+  {
+   Doc_Page* doc_page = spg_map.take(key);
+   ss_pg_sum += "%1: %2"_qt.arg(doc_page->adj).arg(doc_page->number);
+   _spg_map[key] = doc_page;
+
+   spg_pr_map.take(doc_page->number);
+   _spg_pr_map[doc_page->number] = {key, doc_page};
+  }
+ }
+
+
+ QString s_pg_sum;
+
+ for(Doc_Page* sdoc_page : sorted)
+ {
+  QString key = sdoc_page->email_date.toString("ddd/MMM/d/yyyy") + ": "
+    + sdoc_page->title + " (p. " + QString::number(sdoc_page->local) + ")";
+
+  if(pg_map.contains(key))
+  {
+   Doc_Page* doc_page = pg_map.take(key);
+   s_pg_sum += "%1: %2"_qt.arg(sdoc_page->adj).arg(doc_page->number);
+   _pg_map[key] = doc_page;
+
+   pg_pr_map.take(doc_page->number);
+
+   _pg_pr_map[doc_page->number] = {key, doc_page};
+  }
+ }
+
+ QString sall;
+ for(int i = 1; i <= 426; ++i)
+ {
+  if(_spg_pr_map.contains(i))
+  {
+   auto pr = _spg_pr_map[i];
+
+   Doc_Page* doc_page = _pg_map.value(pr.first);
+
+   if(doc_page)
+     sall += "\n%2 | %1 -> %3"_qt.arg(pr.first).arg(pr.second->number).arg(doc_page->number);
+
+   else
+     sall += "\n%2 | %1 -> %3"_qt.arg(pr.first).arg(pr.second->number).arg(" XXXXX ");
+  }
+  else if(spg_pr_map.contains(i))
+  {
+   auto pr = spg_pr_map[i];
+   sall += "\n%2 ! %1 -> %3"_qt.arg(pr.first).arg(pr.second->number).arg(" ==== ");
+  }
+  else if(sarrows.contains(i))
+  {
+   sall += "\n%1 => arrow"_qt.arg(i);
+  }
+  else
+  {
+   sall += "\n%1 ?????"_qt.arg(i);
+  }
+
+ }
+ KA::TextIO::save_file("/home/nlevisrael/sahana/sall.txt", sall);
+
+
+ QMap<int, QString> all_map;
+
+ QString all;
+ for(int i = 1; i <= 433; ++i)
+ {
+  if(_pg_pr_map.contains(i))
+  {
+   auto pr = _pg_pr_map[i];
+
+   Doc_Page* sdoc_page = _spg_map.value(pr.first);
+
+   if(sdoc_page)
+   {
+    all_map[sdoc_page->adj] = pr.first;
+    all += "\n%2 => %3 | %1"_qt.arg(pr.first).arg(pr.second->number).arg(sdoc_page->adj);
+   }
+
+   else
+     all += "\n%2 | %1 -> %3"_qt.arg(pr.first).arg(pr.second->number).arg(" xxxxx ");
+
+  }
+  else if(pg_pr_map.contains(i))
+  {
+   auto pr = pg_pr_map[i];
+   all += "\n%2 (deleted: blank) %1"_qt.arg(pr.first).arg(pr.second->number);
+  }
+  else if(arrows.contains(i))
+  {
+   all += "\n%1 => arrow"_qt.arg(i);
+  }
+  else
+  {
+   all += "\n%1 (deleted: repeat)"_qt.arg(i);
+  }
+ }
+ KA::TextIO::save_file("/home/nlevisrael/sahana/all.txt", all);
+
+ QString all_map_str;
+ QMapIterator<int, QString> all_it(all_map);
+ while(all_it.hasNext())
+ {
+  all_it.next();
+  all_map_str += "\n%1 -> %2"_qt.arg(all_it.key()).arg(all_it.value());
+ }
+ KA::TextIO::save_file("/home/nlevisrael/sahana/all_map.txt", all_map_str);
+
+ QString aall_map_str;
+ for(int i = 1; i <= 433; ++i)
+ {
+  if(all_map.contains(i))
+    continue;
+
+  if(sarrows.contains(i))
+    aall_map_str += "\n%1 => arrow"_qt.arg(i);
+  else
+    aall_map_str += "\n%1 => ???"_qt.arg(i);
+ }
+ KA::TextIO::save_file("/home/nlevisrael/sahana/aall_map.txt", aall_map_str);
+
+
+
+ KA::TextIO::save_file("/home/nlevisrael/sahana/spg.txt", s_pg_sum);
+
+ QMapIterator<QString, Doc_Page*> pg_it(pg_map);
+
+ QString pggg;
+ while(pg_it.hasNext())
+ {
+  pg_it.next();
+  pggg += "\n%1 -> %2"_qt.arg(pg_it.key()).arg(pg_it.value()->number);
+ }
+ KA::TextIO::save_file("/home/nlevisrael/sahana/pggg.txt", pggg);
+
+
+ return 0;
+
+
+
+
+ for(Doc_Page* sdoc_page : sorted)
+ {
+  QString key = sdoc_page->email_date.toString("ddd/MMM/d/yyyy") + "=" +  sdoc_page->title;
+//  smmap[key].push_back(sdoc_page);
+
+//  qDebug() << key << "   =>   " << sdoc_page->adj;
+ }
+
+// for(Doc_Page& sdoc_page : sdoc_pages)
+// {
+//  QString key = sdoc_page.email_date.toString("ddd/MMM/yyyy=")+ sdoc_page.title;
+//  smmap[key].push_back(&sdoc_page);
+// }
+
+
+// QMapIterator<QString, QVector<Doc_Page*>> it(mmap_a);
+// while(it.hasNext())
+// {
+//  it.next();
+//  int c = 0;
+
+//  for(Doc_Page* dp : it.value())
+//  {
+//   ++c;
+//   if(dp->local == 1 && c > 1)
+//     qDebug() << "C!: " << dp->title;
+//  }
+// }
+
+// QMapIterator<QString, QVector<Doc_Page*>> ita(mmap_a);
+// while(ita.hasNext())
+// {
+//  ita.next();
+//  int c = 0;
+
+//  for(Doc_Page* dp : ita.value())
+//  {
+//   ++c;
+//   if(c > 1)
+//     qDebug() << "C!!: " << dp->title;
+//  }
+// }
+
+
+// int i = 0;
+
+ QString sum;
+
+
+ QMap<Doc_Page*, QVector<int>> p2p;
+ QMap<int, Doc_Page*> rev_p2p;
+
+// for(Doc_Page& doc_page : doc_pages)
+// {
+//  QString key = doc_page.email_date.toString("ddd/MMM/d/yyyy") + "=" + doc_page.title;
+// }
+
+
+ for(Doc_Page& doc_page : doc_pages)
+ {
+  if(doc_page.local == 1)
+  {
+
+   QString key = doc_page.email_date.toString("ddd/MMM/d/yyyy") + "=" + doc_page.title;
+
+//   int pn = 999;
+
+   QString pns;
+
+//   for(Doc_Page* dp : smmap.value(key))
+//   {
+//      pns += " %1"_qt.arg(dp->adj);
+
+//    p2p[&doc_page].push_back(dp->adj);
+//    rev_p2p[dp->adj] = &doc_page;
+//   }
+
+
+//   qDebug() << "pn = " << pn;
+
+//   ++i;
+
+   QString add = QString("\n%1 -> %2 : %3 (%4)").arg(doc_page.number)
+     .arg(pns)
+     .arg(doc_page.title).arg(doc_page.email_date.toString("ddd - MMM d - yyyy"));
+
+     sum += add;
+
+  }
+ }
+
+
+ KA::TextIO::save_file("/home/nlevisrael/sahana/sum.txt", sum);
+
+
+ QString p2p_sum;
+ QMapIterator<Doc_Page*, QVector<int>> p2p_it(p2p);
+ while(p2p_it.hasNext())
+ {
+  p2p_it.next();
+
+  QString j;
+  for(int i : p2p_it.value())
+  {
+   j += "%1/"_qt.arg(i);
+  }
+
+  p2p_sum += "\n%1 -> %2"_qt.arg(p2p_it.key()->number).arg(j);
+ }
+ KA::TextIO::save_file("/home/nlevisrael/sahana/p2p.txt", p2p_sum);
+
+ QString rev_p2p_sum;
+ QMapIterator<int, Doc_Page*> rev_p2p_it(rev_p2p);
+ while(rev_p2p_it.hasNext())
+ {
+  rev_p2p_it.next();
+  rev_p2p_sum += "\n%1 -> %2 (%3)"_qt.arg(rev_p2p_it.key())
+    .arg(rev_p2p_it.value()->number).arg(rev_p2p_it.value()->email_date.toString());
+ }
+ KA::TextIO::save_file("/home/nlevisrael/sahana/rev_p2p.txt", rev_p2p_sum);
+
+// QString arrows;
+
+// for(int a = 1; a <= 433; ++a)
+// {
+//  if(!rev_p2p.contains(a))
+//  {
+//   arrows += "\n" + QString::number(a);
+//  }
+// }
+// KA::TextIO::save_file("/home/nlevisrael/sahana/arrows.txt", arrows);
+
+
+
+ QString ssum;
+// i = 0;
+ for(Doc_Page* sdoc_page : sorted)
+ {
+  if(sdoc_page->local == 1)
+  {
+  QString key = sdoc_page->email_date.toString("ddd/MMM/d/yyyy") + "=" + sdoc_page->title;
+
+  int y = sdoc_page->email_date.year();
+
+
+  ssum += "%1 (%2) -> %3\n"_qt.arg(sdoc_page->adj).arg(y).arg(key);
+  }
+
+#ifdef HIDE
+  if(sdoc_page->local == 1)
+  {
+   QString key = sdoc_page->email_date.toString("ddd/MMM/yyyy=") + sdoc_page->title;
+   int pn = 0;
+
+   Doc_Page* dp = mmap.value(key).first();
+
+
+   if(dp)
+     pn = dp->number;
+
+
+
+   ssum += QString("\n%1 -> %2 : %3 (%4)").arg(sdoc_page->number)
+     .arg(pn)
+     .arg(sdoc_page->title).arg(sdoc_page->email_date.toString("ddd - MMM - yyyy"));
+  }
+#endif
+ }
+
+ KA::TextIO::save_file("/home/nlevisrael/sahana/ssum.txt", ssum);
+
+
+ return 0;
+
+#ifdef HIDE
+ QVector<Doc_Page*> sorted;// = doc_pages;
+ sorted.resize(doc_pages.size());
+
+ int i = 0;
+ for(Doc_Page& doc_page : doc_pages)
+ {
+  sorted[i++] = &doc_page;
+ }
+
+ std::sort(sorted.begin(), sorted.end(), [](Doc_Page* lhs, Doc_Page* rhs)
+ {
+  if(lhs->email_date == rhs->email_date)
+    return lhs->number < rhs->number;
+  return lhs->email_date < rhs->email_date;
+ });
+
+ i = 0;
+
+ QMap<Doc_Page*, int> test1;
+
+ for(Doc_Page* doc_page : sorted)
+ {
+  ++i;
+  test1[doc_page] = i;
+ }
+
+ for(Doc_Page& doc_page : doc_pages)
+ {
+  if(doc_page.local == 1)
+  {
+   sum += QString("\n%1 -> %2 : %3 (%4)").arg(doc_page.number)
+     .arg(test1[&doc_page])
+     .arg(doc_page.title).arg(doc_page.email_date.toString("ddd - MMM d - yyyy"));
+  }
+ }
+
+ KA::TextIO::save_file("/home/nlevisrael/sahana/sum.txt", sum);
+
+ return 0;
+
+#endif
+}
+
+int main(int argc, char *argv[])
+{
+ QString json_file = "/home/nlevisrael/sahana/sorted/Sc.pdf.json";
 
  QString bases_folder = "/home/nlevisrael/sahana/sorted/bases";
  QString pages_folder = "/home/nlevisrael/sahana/sorted/pages";
@@ -1774,6 +2478,7 @@ int main11(int argc, char *argv[])
   doc_page.local = local;
   doc_page.title = title;
   doc_page.date_rank = 0;
+  doc_page.adj = 0;
 
   doc_page.email = 0;
 
@@ -1879,6 +2584,32 @@ int main11(int argc, char *argv[])
 //  ptr->date_rank = i++;
 // }
 
+ #ifdef HIDE
+ QMap<QString, QVector<Doc_Page*>> titles;
+
+  for(Doc_Page* ptr : sorted)
+  {
+   QString tt = ptr->title;
+   titles[tt].push_back(ptr);
+  }
+
+  QMapIterator<QString, QVector<Doc_Page*>> it(titles);
+
+  while(it.hasNext())
+  {
+   it.next();
+
+   qDebug() << "\n=============\n" << it.key();
+   for(auto p : it.value())
+   {
+    qDebug() << " " << p->number;
+   }
+
+
+  }
+
+ return 0;
+#endif
 
 
  QVector<Doc_Page> sdoc_pages;
@@ -1912,6 +2643,8 @@ int main11(int argc, char *argv[])
   sdoc_page.email_date = doc_page->email_date;
   sdoc_page.annotations = doc_page->annotations;
   sdoc_page.date_rank = dr;
+
+  sdoc_page.adj = 0;
 
   Email* e;
   if(local == 1)
@@ -2005,13 +2738,18 @@ int main11(int argc, char *argv[])
 
   QRectF view_box = svr.viewBoxF();
 
-  r8 view_box_y_offset = 25;
+  r8 view_box_y_offset = 65;
+  r8 view_box_extra_height = 0;
+
+  r8 view_box_padding = 40;
+
 
   QString svg_view_box_string = "viewBox=\"%1 %2 %3 %4\""_qt
-    .arg(view_box.x()).arg(view_box.y() - view_box_y_offset).arg(view_box.width()).arg(view_box.height() + view_box_y_offset);
+    .arg(view_box.x()).arg(view_box.y() - view_box_y_offset).arg(view_box.width())
+    .arg(view_box.height() + view_box_y_offset);
 
   QString svg_wh_string = "width=\"%1pt\" height=\"%2pt\""_qt
-    .arg(view_box.width()).arg(view_box.height() + view_box_y_offset);
+    .arg(view_box.width()).arg(view_box.height() + view_box_y_offset + view_box_extra_height);
 
   QString main_image_wh = "width=\"%1\" height=\"%2\""_qt
     .arg(view_box.width()).arg(view_box.height());
@@ -2035,8 +2773,8 @@ int main11(int argc, char *argv[])
   html_text.replace("%thread-number%", QString::number(email.index + 1));
   html_text.replace("%thread-number-max%", QString::number(emails.size()));
 
-  html_text.replace("%wrw%", QString::number(view_box.width() + 40));
-  html_text.replace("%wrh%", QString::number(view_box.height() + 40));
+  html_text.replace("%wrw%", QString::number(view_box.width() + view_box_padding));
+  html_text.replace("%wrh%", QString::number(view_box.height() + view_box_padding + view_box_y_offset));
 
   html_text.replace("%title%", email.title);
   html_text.replace("%local%", QString::number(sdoc_page.local));
@@ -2047,7 +2785,7 @@ int main11(int argc, char *argv[])
   html_text.replace("%max-page%", QString::number(max_page));
 
   html_text.replace("%iframe-width%", "%1pt"_qt.arg(view_box.width()));
-  html_text.replace("%iframe-height%", "%1pt"_qt.arg(view_box.height()));
+  html_text.replace("%iframe-height%", "%1pt"_qt.arg(view_box.height() + view_box_y_offset));
 
 
   if(page == 1)
@@ -2231,7 +2969,7 @@ int main11(int argc, char *argv[])
    r8 h = qr.height();
 
    static r8 trapz_x_offset = 50;
-   static r8 trapz_y_offset = 0;
+   static r8 trapz_y_offset = 12;
 
    static r8 trapz_x_width = 200;
    static r8 trapz_y_height = 90;
@@ -2242,6 +2980,8 @@ int main11(int argc, char *argv[])
 
    r8 trapz_x = x + trapz_x_offset;
    r8 trapz_y = y + trapz_y_offset;
+
+   r8 trapz_y_extra = 3;
 
    QString text = pr.first;
 
@@ -2296,9 +3036,9 @@ int main11(int argc, char *argv[])
    trapezoid_br = pt_to_px( qr.bottomRight() );
    trapezoid_r = pt_to_px( qr.topRight() );
    trapezoid_tr = pt_to_px( {trapz_x + trapz_x_width + trapezoid_pushout,
-     trapz_y - trapz_y_height - trapezoid_pushout } );
+     trapz_y - trapz_y_height - trapezoid_pushout + trapz_y_extra} );
    trapezoid_tl = pt_to_px( {trapz_x - trapezoid_pushout,
-     trapz_y - trapz_y_height - trapezoid_pushout } );
+     trapz_y - trapz_y_height - trapezoid_pushout + trapz_y_extra } );
 
    points_to_strings();
 
@@ -2358,6 +3098,7 @@ int main11(int argc, char *argv[])
 
 }
 
+#ifdef HIDE
 int main21(int argc, char *argv[])
 {
  QString bases_folder = "/home/nlevisrael/sahana/bases";
@@ -2521,7 +3262,7 @@ int main21(int argc, char *argv[])
 
   QRectF view_box = svr.viewBoxF();
 
-  r8 view_box_y_offset = 25;
+  r8 view_box_y_offset = 45;
 
   QString svg_view_box_string = "viewBox=\"%1 %2 %3 %4\""_qt
     .arg(view_box.x()).arg(view_box.y() - view_box_y_offset).arg(view_box.width()).arg(view_box.height() + view_box_y_offset);
@@ -2718,7 +3459,7 @@ int main21(int argc, char *argv[])
    r8 h = qr.height();
 
    static r8 trapz_x_offset = 50;
-   static r8 trapz_y_offset = 0;
+   static r8 trapz_y_offset = -10;
 
    static r8 trapz_x_width = 200;
    static r8 trapz_y_height = 90;
@@ -2845,5 +3586,6 @@ int main21(int argc, char *argv[])
 
 //#endif //def HIDE
 
+#endif
 
 

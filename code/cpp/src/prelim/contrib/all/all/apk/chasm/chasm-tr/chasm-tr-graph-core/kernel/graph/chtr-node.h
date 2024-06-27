@@ -10,9 +10,9 @@
 
 #include "relae-graph/relae-node-ptr.h"
 
-#include "kernel/chtr-dominion.h"
+#include "chasm-tr-graph-core/kernel/chtr-dominion.h"
 
-#include "kernel/frame/chtr-frame.h"
+#include "chasm-tr-graph-core/kernel/frame/chtr-frame.h"
 
 #include "phaong/phaong.h"
 #include "phaong/phaong-types.h"

@@ -183,7 +183,9 @@ public:
 
   for(Context c : clist)
   {
-   context_triggers_[result.index].push_back(c.index);
+   // //  this should be switched -- not breaking anything?
+   //? context_triggers_[result.index].push_back(c.index);
+   context_triggers_[c.index].push_back(result.index);
   }
 
   return result;

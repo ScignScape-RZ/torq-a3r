@@ -20,6 +20,9 @@ CONFIG += c++17
 
 INCLUDEPATH += $$SRC_DIR $$SRC_GROUP_DIR $$SRC_ROOT_DIR
 
+INCLUDEPATH += $$SRC_GROUP_DIR/chasm-tr-graph-core
+
+
 INCLUDEPATH += $$RELAE_GRAPH_SRC_GROUP_DIR
 INCLUDEPATH += $$PHAON_GRAPH_SRC_GROUP_DIR
 
@@ -32,8 +35,6 @@ DEFINES += USE_AQNS
 
 
 HEADERS += \
-  $$SRC_DIR/kernel/dominion/types.h \
-  $$SRC_DIR/kernel/dominion/connectors.h \
   $$SRC_DIR/chtr-channel-object.h \
   $$SRC_DIR/chtr-channel-package.h \
   $$SRC_DIR/chtr-source-token.h \
@@ -45,7 +46,6 @@ HEADERS += \
   $$SRC_DIR/chvm/chvm-procedure.h \
   $$SRC_DIR/chvm/generators/chvm-code-statement-generator.h \
   $$SRC_DIR/eval/chvm-code-runner.h \
-
 
 
 SOURCES += \
@@ -64,22 +64,6 @@ SOURCES += \
 
 
 
-
-
-HEADERS += \
-  $$SRC_DIR/kernel/chtr-dominion.h \
-  $$SRC_DIR/kernel/frame/chtr-frame.h \
-  $$SRC_DIR/kernel/query/chtr-query.h \
-  $$SRC_DIR/kernel/graph/chtr-node.h \
-  $$SRC_DIR/kernel/graph/chtr-graph.h \
-
-
-SOURCES += \
-  $$SRC_DIR/kernel/chtr-dominion.cpp \
-  $$SRC_DIR/kernel/frame/chtr-frame.cpp \
-  $$SRC_DIR/kernel/query/chtr-query.cpp \
-  $$SRC_DIR/kernel/graph/chtr-node.cpp \
-  $$SRC_DIR/kernel/graph/chtr-graph.cpp \
 
 
 

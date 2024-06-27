@@ -20,12 +20,12 @@ exists($$ROOT_DIR/../preferred/compiler.pri): include($$ROOT_DIR/../preferred/co
 
 CONFIG += c++17
 
-#
-FEATURE_OpenCV = USE_OpenCV
+# FEATURE_OpenCV = USE_OpenCV
 
 # ### For OpenCV
 defined(FEATURE_OpenCV ,var) {
  message(Using OpenCV)
+
 
  DEFINES += USE_OpenCV
  exists($$ROOT_DIR/../preferred/opencv.pri): include($$ROOT_DIR/../preferred/opencv.pri)
@@ -34,11 +34,8 @@ defined(FEATURE_OpenCV ,var) {
  QT += widgets
 
  LIBS += -L$$OPENCV_LIB_DIR -lopencv_core  -lopencv_imgproc  -lopencv_imgcodecs
-
  LIBS += -L$$OPENCV_LIB_DIR  -lopencv_xfeatures2d  \
    -lopencv_features2d
-
-
 
 
  HEADERS += \
@@ -88,6 +85,8 @@ DEFINES += ROOT_FOLDER=\\\"$$ROOT_DIR\\\"
 #DEFINES += DEMO_CVM_FOLDER=\\\"$$ROOT_DIR/../chtr\\\"
 
 DEFINES += DEMO_CVM_FOLDER=\\\"$$ROOT_DIR/../torq\\\"
+
+
 
 SOURCES += \
   $$SRC_DIR/main.cpp \

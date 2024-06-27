@@ -38,6 +38,7 @@ DOMINION_TYPE(channel_object, ChTR_Channel_Object, Channel_Object)
 DOMINION_TYPE(source_file, ChTR_Source_File, Source_File)
 DOMINION_TYPE(code_statement, ChTR_Code_Statement, Code_Statement)
 
+DOMINION_TYPE(prep_casement_entry, ChTR_Prep_Casement_Entry, Prep_Casement_Entry)
 
 
 //#define DOMINION_INNER_NAMESPACE GBuild

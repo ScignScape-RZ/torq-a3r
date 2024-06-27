@@ -5,10 +5,10 @@
 //           http://www.boost.org/LICENSE_1_0.txt)
 
 
-int main()
-{
- return 0;
-}
+//int main()
+//{
+// return 0;
+//}
 
 #ifdef HIDE
 
@@ -883,7 +883,6 @@ int main()
 
 #endif
 
-#ifdef HIDE
 
 
 #include "rz-graph-visit/rz-graph-visitor-phaon.h"
@@ -898,14 +897,14 @@ int main()
 
 #include "rzns.h"
 
-#include "rz-graph-core/kernel/document/rz-re-document.h"
-#include "rz-graph-core/output/rz-re-pre-normal-lisp.h"
+#include "rz-graph-core/kernel/document/chasm-rz-document.h"
+#include "rz-graph-core/output/chasm-rz-pre-normal-asg.h"
 
-#include "rz-graph-code/prerun/rz-re-prerun-tokens.h"
-#include "rz-graph-code/prerun/rz-re-prerun-normalize.h"
-#include "rz-graph-code/prerun/rz-re-prerun-anticipate.h"
+#include "rz-graph-code/prerun/rz-prerun-tokens.h"
+#include "rz-graph-code/prerun/rz-prerun-normalize.h"
+#include "rz-graph-code/prerun/rz-prerun-anticipate.h"
 
-#include "rz-graph-visit/rz-lisp-graph-visitor.h"
+#include "rz-graph-visit/rz-asg-visitor.h"
 #include "rz-code-generators/rpi/rpi-output.h"
 
 #include "phr-graph-core/kernel/graph/phr-graph.h"
@@ -947,22 +946,22 @@ QString compile_rz(QString file_name)
 {
  QString result;
 
- RE_Document* doc = new RE_Document(file_name);
+ ChasmRZ_Document* doc = new ChasmRZ_Document(file_name);
  doc->parse();
 
  doc->report_graph(file_name + ".txt");
 
- RE_Pre_Normal_Lisp prenorm(doc);
+ ChasmRZ_Pre_Normal_ASG prenorm(doc);
  prenorm.output("..prenorm.txt");
 
- RE_Prerun_Tokens tokens(doc);
+ RZ_Prerun_Tokens tokens(doc);
  tokens.output("..prenorm2.txt");
 
 
- RE_Prerun_Normalize normalize(*doc->graph());
+ RZ_Prerun_Normalize normalize(*doc->graph());
 
 
- caon_ptr<RZ_Lisp_Graph_Visitor> visitor = normalize.scan();
+ caon_ptr<RZ_ASG_Visitor> visitor = normalize.scan();
 
  visitor->set_document_directory(doc->local_directory());
 
@@ -971,10 +970,10 @@ QString compile_rz(QString file_name)
 
  doc->report_graph(file_name + ".re1.txt");
 
- RE_Pre_Normal_Lisp prenorm1(doc);
+ ChasmRZ_Pre_Normal_ASG prenorm1(doc);
  prenorm1.output("..prenorm1.txt");
 
- RE_Prerun_Anticipate anticipate(*visitor, doc->local_path() + ".cprs");
+ RZ_Prerun_Anticipate anticipate(*visitor, doc->local_path() + ".cprs");
 
  anticipate.scan(nullptr);//[](RZ_Dynamo_Output& rzdo){rzdo.init_top_level_block();});
 
@@ -1033,7 +1032,7 @@ void run_phaon(QString phrf)
  qDebug() << "ok";
 }
 
-int main1(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
  QString phrf = compile_rz(RZ_KPH_DIR "/t1.rz");
 
@@ -1043,6 +1042,7 @@ int main1(int argc, char *argv[])
 }
 
 
+#ifdef HIDE
 
 #include "ffi.h"
 

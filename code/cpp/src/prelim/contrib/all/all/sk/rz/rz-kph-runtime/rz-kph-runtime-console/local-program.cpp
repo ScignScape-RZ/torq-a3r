@@ -26,7 +26,7 @@
 
 #include <QDebug>
 
-extern void* insert_envv(void* kind, void* test);
+//? extern void* insert_envv(void* kind, void* test);
 
 USING_KANS(Phaon)
 
@@ -69,7 +69,7 @@ void local_program(PhaonIR& phr, QString phrf)
 
  PHR_Env* penv = new PHR_Env(&pcm);
  QString penv_typename = "PHR_Env*";
- insert_envv(&penv_typename, penv);
+ //? insert_envv(&penv_typename, penv);
 
  pcm.create_and_register_type_object("PHR_Env*");
 

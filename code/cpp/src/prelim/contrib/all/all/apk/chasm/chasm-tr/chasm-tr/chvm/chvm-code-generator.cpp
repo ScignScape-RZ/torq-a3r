@@ -9,9 +9,9 @@
 
 #include "chvm-code-generator.h"
 
-#include "kernel/graph/chtr-node.h"
-#include "kernel/graph/chtr-graph.h"
-#include "kernel/query/chtr-query.h"
+#include "chasm-tr-graph-core/kernel/graph/chtr-node.h"
+#include "chasm-tr-graph-core/kernel/graph/chtr-graph.h"
+#include "chasm-tr-graph-core/kernel/query/chtr-query.h"
 
 #include "chtr-code-statement.h"
 
@@ -24,7 +24,7 @@ USING_AQNS(Chasm_TR)
 
 
 ChVM_Code_Generator::ChVM_Code_Generator(ChTR_Graph* ir_graph)
-  :  ir_graph_(ir_graph), qry_(ChTR_Relae_Query::instance())
+  :  ir_graph_(ir_graph), Qy_(ChTR_Query::instance())
 {
 
 }
@@ -37,7 +37,7 @@ ChVM_Code_Statement_Generator ChVM_Code_Generator::statement_generator(caon_ptr<
 void ChVM_Code_Generator::graph_to_chvm(QString& chvm)
 {
  ChTR_Node* root_node = ir_graph_->root_node();
- if(caon_ptr<ChTR_Node> n = qry_.Root_Sequence(root_node))
+ if(caon_ptr<ChTR_Node> n = Qy_.Root_Sequence(root_node))
  {
   if(caon_ptr<ChTR_Code_Statement> ccs = n->code_statement())
   {

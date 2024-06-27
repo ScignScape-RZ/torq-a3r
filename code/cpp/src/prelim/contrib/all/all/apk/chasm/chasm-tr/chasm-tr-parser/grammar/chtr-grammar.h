@@ -15,9 +15,9 @@
 
 AQNS_(Chasm_TR)
 
-class ChTR_Graph;
 class ChTR_Graph_Build;
 class ChTR_Parser;
+class ChTR_Graph;
 
 class ChTR_Grammar : public Relae_Grammar<ChTR_Graph, ChTR_Parser>
 {

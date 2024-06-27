@@ -29,6 +29,8 @@
 
 #include "chtr-document.h"
 
+#include "chasm-tr-graph-core/code/chtr-prep-casement-entry.h"
+
 //?#include "chasm-tr/kernel/dominion/types.h"
 
 
@@ -40,8 +42,11 @@ ChTR_Graph_Build::ChTR_Graph_Build(ChTR_Document* d, ChTR_Parser& p, ChTR_Graph&
    ,document_(d)
    ,graph_(g)
    ,parser_(p)
-   ,Cf(ChTR_Relae_Frame::instance())
-   ,qry_(ChTR_Relae_Query::instance())
+   ,Cf(ChTR_Frame::instance("casement"))
+   ,Sf(ChTR_Frame::instance("semantic"))
+   ,Pf(ChTR_Frame::instance("preview"))
+   ,Qy_(ChTR_Query::instance())
+   ,asg_position_(this)
    ,held_line_number_(0)
    ,current_context_code_(0)
    ,current_source_type_(nullptr)
@@ -49,6 +54,9 @@ ChTR_Graph_Build::ChTR_Graph_Build(ChTR_Document* d, ChTR_Parser& p, ChTR_Graph&
    ,current_channel_object_(nullptr)
    ,current_code_statement_(nullptr)
    ,current_statement_level_node_(nullptr)
+   ,prep_macro_entry_count_(0)
+   ,block_entry_count_(0)
+   ,tuple_entry_count_(0)
 {
  current_source_file_ = new ChTR_Source_File;
 }
@@ -100,6 +108,44 @@ void ChTR_Graph_Build::read_channel_string(QString channel_string)
  parse_context_.flags.active_channel = true;
 }
 
+
+caon_ptr<ChTR_Node> ChTR_Graph_Build::make_new_node(caon_ptr<ChTR_Prep_Casement_Entry> pce)
+{
+ caon_ptr<ChTR_Node> result = new ChTR_Node(pce);
+ RELAE_SET_NODE_LABEL(result, QString("<prep-macro %1>").arg(pce->call_id()));
+ return result;
+
+}
+
+caon_ptr<ChTR_Node> ChTR_Graph_Build::new_prep_casement_entry_node(QString macro_name,
+  caon_ptr<ChTR_Prep_Casement_Entry> parent_entry)
+{
+ caon_ptr<ChTR_Prep_Casement_Entry> new_entry = new ChTR_Prep_Casement_Entry(prep_macro_entry_count_);
+ ++prep_macro_entry_count_;
+
+ caon_ptr<ChTR_Node> result = make_new_node(new_entry);
+ return result;
+
+}
+
+void ChTR_Graph_Build::prepare_carrier_declaration(QString symbol)
+{
+ //parse_context_.
+ caon_ptr<ChTR_Node> macro_node = new_prep_casement_entry_node(symbol);
+
+
+}
+
+void ChTR_Graph_Build::prepare_symbol_binding_for_initialization(QString symbol)
+{
+
+}
+
+void ChTR_Graph_Build::non_prefixed_symbol(QString symbol)
+{
+
+}
+
 void ChTR_Graph_Build::enter_statement_body()
 {
  ChTR_Code_Statement* ccs = new ChTR_Code_Statement;
@@ -110,7 +156,7 @@ void ChTR_Graph_Build::enter_statement_body()
  if(current_statement_level_node_ == graph_.root_node())
  {
   ChTR_Node* n = new ChTR_Node(ccs);
-  current_statement_level_node_ << Cf/qry_.Root_Sequence >> n;
+  current_statement_level_node_ << Cf/Qy_.Root_Sequence >> n;
  }
 }
 

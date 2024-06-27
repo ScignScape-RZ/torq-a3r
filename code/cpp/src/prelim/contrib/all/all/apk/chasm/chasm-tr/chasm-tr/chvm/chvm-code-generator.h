@@ -36,7 +36,7 @@ class ChVM_Procedure;
 
 class ChTR_Graph;
 
-class ChTR_Relae_Query;
+class ChTR_Query;
 
 class ChVM_Code_Generator
 {
@@ -44,7 +44,7 @@ class ChVM_Code_Generator
 
  ChTR_Graph* ir_graph_;
 
- const ChTR_Relae_Query& qry_;
+ const ChTR_Query& Qy_;
 
 
 public:

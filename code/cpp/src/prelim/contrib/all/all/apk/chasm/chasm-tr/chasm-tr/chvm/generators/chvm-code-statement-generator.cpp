@@ -9,9 +9,9 @@
 
 #include "chvm-code-statement-generator.h"
 
-#include "kernel/graph/chtr-node.h"
-#include "kernel/graph/chtr-graph.h"
-#include "kernel/query/chtr-query.h"
+#include "chasm-tr-graph-core/kernel/graph/chtr-node.h"
+#include "chasm-tr-graph-core/kernel/graph/chtr-graph.h"
+#include "chasm-tr-graph-core/kernel/query/chtr-query.h"
 
 #include "chtr-code-statement.h"
 

@@ -86,7 +86,7 @@ USING_AQNS(Chasm_TR)
 #include "chasm-procedure-table/chasm-procedure-table.h"
 
 
-#include "stats/slico/slico.h"
+//? #include "stats/slico/slico.h"
 
 #include "chasm-chgr/chgr-environment.h"
 #include "chasm-chgr/chgr-hypernode.h"

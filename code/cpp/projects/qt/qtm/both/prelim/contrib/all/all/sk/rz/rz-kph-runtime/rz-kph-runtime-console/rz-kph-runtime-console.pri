@@ -83,35 +83,35 @@ SOURCES += \
 #  $$SRC_AREA_ROOT_DIR/default-test-functions.h \
 
 
-#SOURCES += \
-#  $$SRC_DIR/main.cpp \
-#  $$SRC_DIR/local-program.cpp \
+SOURCES += \
+  $$SRC_DIR/local-program.cpp \
+
 #  $$SRC_DIR/basic-functions.cpp \
 #  $$SRC_AREA_ROOT_DIR/default-basic-functions.cpp \
 #  $$SRC_AREA_ROOT_DIR/default-test-functions.cpp \
 
 
-#LIBS += -L$$TARGETSDIR  \
-#   -lrz-graph-core \
-#   -lrz-graph-token \
-#   -lrz-graph-code \
-#   -lrz-graph-visit \
-#   -lrz-code-generators \
-#   -lrz-graph-build \
-#   -lrz-graph-valuer \
-#   -lrz-graph-embed \
-#   -lrz-graph-embed-run \
-#   -lrz-graph-run \
-#   -lrz-graph-sre \
-#   -lrz-function-def \
-#   -lrz-code-elements \
+LIBS += -L$$TARGETSDIR  \
+   -lrz-graph-core \
+   -lrz-graph-token \
+   -lrz-graph-code \
+   -lrz-graph-visit \
+   -lrz-code-generators \
+   -lrz-graph-build \
+   -lrz-graph-valuer \
+   -lrz-graph-embed \
+   -lrz-graph-embed-run \
+   -lrz-graph-run \
+   -lrz-graph-sre \
+   -lrz-function-def \
+   -lrz-code-elements \
 
 
-#LIBS += -L$$TARGETSDIR  -lphr-graph-core
+LIBS += -L$$TARGETSDIR  -lphr-graph-core
 
 
-#LIBS += -L$$TARGETSDIR -lphaon-ir -lphr-direct-eval \
-#  -lphr-fn-doc  -lphr-env  -lphr-command-runtime
+LIBS += -L$$TARGETSDIR -lphaon-ir -lphr-direct-eval \
+  -lphr-fn-doc  -lphr-env  -lphr-command-runtime
 
 
 #CHOICE_FEATURES += kph-gen

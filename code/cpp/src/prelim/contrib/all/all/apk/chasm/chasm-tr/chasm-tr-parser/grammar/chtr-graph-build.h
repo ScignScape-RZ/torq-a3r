@@ -16,7 +16,9 @@
 
 #include "grammar/chtr-parse-context.h"
 
-#include "kernel/graph/chtr-graph.h"
+#include "chasm-tr-graph-core/kernel/graph/chtr-graph.h"
+
+#include "chasm-tr-graph-core/kernel/graph/chtr-asg-position.h"
 
 #include <QStack>
 
@@ -29,8 +31,8 @@ class ChTR_Node;
 class ChTR_Document;
 class ChTR_Parser;
 class ChTR_Graph;
-class ChTR_Relae_Frame;
-class ChTR_Relae_Query;
+class ChTR_Frame;
+class ChTR_Query;
 
 
 class ChTR_Source_Type;
@@ -40,6 +42,8 @@ class ChTR_Channel_Package;
 class ChTR_Channel_Object;
 class ChTR_Code_Statement;
 
+
+class ChTR_Prep_Casement_Entry;
 
 
 
@@ -74,9 +78,12 @@ private:
  ChTR_Parser& parser_;
  ChTR_Graph& graph_;
 
- ChTR_Relae_Frame& Cf;
- const ChTR_Relae_Query& qry_;
+ ChTR_Frame& Cf;
+ ChTR_Frame& Sf;
+ ChTR_Frame& Pf;
+ const ChTR_Query& Qy_;
 
+ ChTR_ASG_Position asg_position_;
 
  QVector<hypernode_type*> top_level_hypernodes_;
 
@@ -93,6 +100,12 @@ private:
 
  ChTR_Node* current_statement_level_node_;
 
+ u4 prep_macro_entry_count_;
+ u4 block_entry_count_;
+ u4 tuple_entry_count_;
+
+
+
 public:
 
  ChTR_Graph_Build(ChTR_Document* d, ChTR_Parser& p, ChTR_Graph& g);
@@ -105,11 +118,20 @@ public:
 
  void enter_statement_body();
 
+ void prepare_carrier_declaration(QString symbol);
+ void prepare_symbol_binding_for_initialization(QString symbol);
+ void non_prefixed_symbol(QString symbol);
+
  void enter_channel_body();
  void leave_channel_body();
 
  void read_channel_string(QString channel_string);
  void read_carrier_string(QString carrier_string);
+
+ caon_ptr<ChTR_Node> new_prep_casement_entry_node(QString macro_name,
+   caon_ptr<ChTR_Prep_Casement_Entry> parent_entry = nullptr);
+
+ caon_ptr<ChTR_Node> make_new_node(caon_ptr<ChTR_Prep_Casement_Entry> pce);
 
 
 };
