@@ -51,7 +51,6 @@ public:
   bool holding_retval_node:1;
  _flags
 
-private:
 
  enum class Position_States {
   Root, Active_Run_Casement_Node, Active_Run_Casement_Chief,
@@ -64,6 +63,10 @@ private:
 
 
  };
+
+private:
+
+ ChTR_Node* root_node_;
 
  Position_States position_state_;
  ChTR_Graph_Build* graph_build_;
@@ -113,7 +116,14 @@ public:
 
  ChTR_ASG_Position(ChTR_Graph_Build* graph_build);
 
+ ACCESSORS(Position_States ,position_state)
+ ACCESSORS(ChTR_Node* ,root_node)
+
+
 //? ACCESSORS(caon_ptr<ChTR_Node> ,current_node)
+
+
+ void insert_prep_casement_entry_node(caon_ptr<ChTR_Node> macro_node);
 
 
 };

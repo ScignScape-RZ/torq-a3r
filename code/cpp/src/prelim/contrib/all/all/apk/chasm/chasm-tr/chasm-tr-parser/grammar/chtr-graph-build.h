@@ -81,7 +81,7 @@ private:
  ChTR_Frame& Cf;
  ChTR_Frame& Sf;
  ChTR_Frame& Pf;
- const ChTR_Query& Qy_;
+ const ChTR_Query& Qy;
 
  ChTR_ASG_Position asg_position_;
 
@@ -113,6 +113,8 @@ public:
  ACCESSORS__RGET(ChTR_Parse_Context ,parse_context)
  ACCESSORS__RGET(QVector<hypernode_type*> ,top_level_hypernodes)
 
+ ChTR_Node* get_root_node();
+
 
  void init();
 
@@ -128,8 +130,15 @@ public:
  void read_channel_string(QString channel_string);
  void read_carrier_string(QString carrier_string);
 
+
  caon_ptr<ChTR_Node> new_prep_casement_entry_node(QString macro_name,
    caon_ptr<ChTR_Prep_Casement_Entry> parent_entry = nullptr);
+
+ caon_ptr<ChTR_Node> new_scoped_carrier_node(QString macro_name)
+ {
+
+ }
+
 
  caon_ptr<ChTR_Node> make_new_node(caon_ptr<ChTR_Prep_Casement_Entry> pce);
 

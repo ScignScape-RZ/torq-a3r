@@ -44,8 +44,8 @@ ChTR_Graph_Build::ChTR_Graph_Build(ChTR_Document* d, ChTR_Parser& p, ChTR_Graph&
    ,parser_(p)
    ,Cf(ChTR_Frame::instance("casement"))
    ,Sf(ChTR_Frame::instance("semantic"))
-   ,Pf(ChTR_Frame::instance("preview"))
-   ,Qy_(ChTR_Query::instance())
+   ,Pf(ChTR_Frame::instance("prep"))
+   ,Qy(ChTR_Query::instance())
    ,asg_position_(this)
    ,held_line_number_(0)
    ,current_context_code_(0)
@@ -82,6 +82,8 @@ void ChTR_Graph_Build::init()
  ChTR_Node* root_node = new ChTR_Node(root_file);
 
  graph_.set_root_node(root_node);
+ asg_position_.set_root_node(root_node);
+
  current_statement_level_node_ = root_node;
 
  //graph_.set
@@ -128,11 +130,18 @@ caon_ptr<ChTR_Node> ChTR_Graph_Build::new_prep_casement_entry_node(QString macro
 
 }
 
+ChTR_Node* ChTR_Graph_Build::get_root_node()
+{
+ return graph_.root_node();
+}
+
+
 void ChTR_Graph_Build::prepare_carrier_declaration(QString symbol)
 {
- //parse_context_.
- caon_ptr<ChTR_Node> macro_node = new_prep_casement_entry_node(symbol);
+ caon_ptr<ChTR_Node> macro_node = new_prep_casement_entry_node("type-decl");
+ asg_position_.insert_prep_casement_entry_node(macro_node);
 
+ caon_ptr<ChTR_Node> carrier_node = new_scoped_carrier_node(symbol);
 
 }
 
@@ -156,7 +165,7 @@ void ChTR_Graph_Build::enter_statement_body()
  if(current_statement_level_node_ == graph_.root_node())
  {
   ChTR_Node* n = new ChTR_Node(ccs);
-  current_statement_level_node_ << Cf/Qy_.Root_Sequence >> n;
+  current_statement_level_node_ << Cf/Qy.Root_Sequence >> n;
  }
 }
 

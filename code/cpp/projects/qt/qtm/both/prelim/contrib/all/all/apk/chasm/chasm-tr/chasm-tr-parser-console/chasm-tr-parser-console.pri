@@ -22,6 +22,11 @@ CONFIG += c++17
 
 INCLUDEPATH += $$SRC_DIR $$SRC_GROUP_DIR $$SRC_ROOT_DIR
 
+
+INCLUDEPATH += $$SRC_GROUP_DIR/chasm-tr-graph-core
+
+
+
 INCLUDEPATH += $$RELAE_GRAPH_SRC_GROUP_DIR
 INCLUDEPATH += $$PHAON_GRAPH_SRC_GROUP_DIR
 
@@ -46,7 +51,8 @@ SOURCES += \
   $$SRC_DIR/main.cpp \
 
 
-LIBS += -L$$TARGETSDIR -lchasm-tr  -lchasm-tr-parser
+LIBS += -L$$TARGETSDIR -lchasm-tr  -lchasm-tr-parser \
+   -lchasm-tr-graph-core
 
 
 LIBS += -L$$TARGETSDIR   -lchasm-lib  -lchasm-chgr  \

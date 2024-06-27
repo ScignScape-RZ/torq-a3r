@@ -198,7 +198,18 @@ class node_frame
  typedef typename GALAXY_Type::Connection_Caon_type Connection_Caon_type;
  typedef typename GALAXY_Type::Annotated_Connectors_type Annotated_Connectors_type;
 
+ QString label_;
+
 public:
+
+ node_frame(QString label = {})
+    :  label_(label)
+ {
+
+ }
+
+ QString label() const { return label_; }
+
  struct Frame_With_Connector
  {
   Frame_type& frame;
@@ -226,13 +237,13 @@ public:
  void connect(Node_Caon_type node,
    const Connectors_type& connector, Node_Caon_type target)
  {
-  node->connect(connector, target);
+  node->connect( static_cast<Frame_type*>(this), connector, target);
  }
 
  void connect(Node_Caon_type node,
    const Annotated_Connectors_type& annotated_connector, Node_Caon_type target)
  {
-  node->connect(annotated_connector.connector, annotated_connector.connection, target);
+  node->connect( static_cast<Frame_type*>(this), annotated_connector.connector, annotated_connector.connection, target);
  }
 
 };
@@ -261,9 +272,9 @@ protected:
 
  Type_Codes_type type_code_;
 
- QMultiMap<Connectors_Caon_type, Node_Caon_type> targets_;
+ QMap<Frame_type*, QMultiMap<Connectors_Caon_type, Node_Caon_type>> targets_;
 
- QMultiMap<Connectors_Caon_type, QPair<Connection_Caon_type, Node_Caon_type>> annotated_targets_;
+ QMap<Frame_type*, QMultiMap<Connectors_Caon_type, QPair<Connection_Caon_type, Node_Caon_type>>> annotated_targets_;
 
  typedef QMapIterator<Connectors_Caon_type, Node_Caon_type> targets_iterator_type;
  typedef QMapIterator<Connectors_Caon_type, QPair<Connection_Caon_type, Node_Caon_type>> annotated_targets_iterator_type;
@@ -334,37 +345,37 @@ public:
  typedef DOMINION_Type Dominion_type;
  typedef GALAXY_Type Galaxy_type;
 
- void connect(const Connectors_type& connector, Node_Caon_type target)
+ void connect(Frame_type* fr, const Connectors_type& connector, Node_Caon_type target)
  {
-  targets_.insert(caon_ptr<Connectors_type>(&connector), target);
+  targets_[fr].insert(caon_ptr<Connectors_type>(&connector), target);
  }
 
- void connect(const Connectors_type& connector, Connection_Caon_type connection, Node_Caon_type target)
+ void connect(Frame_type* fr, const Connectors_type& connector, Connection_Caon_type connection, Node_Caon_type target)
  {
-  annotated_targets_.insert(caon_ptr<Connectors_type>(&connector), {connection, target});
+  annotated_targets_[fr].insert(caon_ptr<Connectors_type>(&connector), {connection, target});
  }
 
 
- Node_Caon_type retrieve(const Connectors_type& connector)
+ Node_Caon_type retrieve(Frame_type* fr, const Connectors_type& connector)
  {
-  return targets_.value(caon_ptr<Connectors_type>(&connector));
+  return targets_[fr].value(caon_ptr<Connectors_type>(&connector));
  }
 
- Node_Caon_type retrieve(Connection_Caon_type& connection, const Connectors_type& connector)
+ Node_Caon_type retrieve(Frame_type* fr, Connection_Caon_type& connection, const Connectors_type& connector)
  {
-  if(annotated_targets_.contains(caon_ptr<Connectors_type>(&connector)))
+  if(annotated_targets_[fr].contains(caon_ptr<Connectors_type>(&connector)))
   {
    auto result = annotated_targets_.value(caon_ptr<Connectors_type>(&connector));
    connection = result.first;
    return result.second;
   }
   // // fall back to unannotated ...
-  return retrieve(connector);
+  return retrieve(fr, connector);
  }
 
- void match_relation(const Connectors_type& connector, QList<Node_Caon_type>& target_nodes)
+ void match_relation(Frame_type* fr, const Connectors_type& connector, QList<Node_Caon_type>& target_nodes)
  {
-  targets_iterator_type it(targets_);
+  targets_iterator_type it(targets_[fr]);
   while(it.hasNext())
   {
    it.next();
@@ -379,9 +390,9 @@ public:
   }
  }
 
- bool match_relation(const Connectors_type& connector, Node_Caon_type target)
+ bool match_relation(Frame_type* fr, const Connectors_type& connector, Node_Caon_type target)
  {
-  targets_iterator_type it(targets_);
+  targets_iterator_type it(targets_[fr]);
   while(it.hasNext())
   {
    it.next();

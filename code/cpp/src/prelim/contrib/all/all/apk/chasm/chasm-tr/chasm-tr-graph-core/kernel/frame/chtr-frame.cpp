@@ -17,7 +17,8 @@
 USING_AQNS(Chasm_TR)
 
 ChTR_Frame::ChTR_Frame(QString label)
-  :  label_(label), node_frame<ChTR_Dominion>()
+  :  //label_(label),
+     node_frame<ChTR_Dominion>(label)
 {
 
 

@@ -21,7 +21,7 @@ class ChTR_Frame : public node_frame<ChTR_Dominion>
 {
  ChTR_Frame(QString label = {});
 
- QString label_;
+// QString label_;
 
  // SY_Dominion::Connectors N_A;
 
