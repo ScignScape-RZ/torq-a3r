@@ -59,7 +59,7 @@ public:
 
  void report(QTextStream& qts);
  void report_from_node(QTextStream& qts,
-  const ChTR_Node& node, u1 indent);
+  const ChTR_Node& node, u1 indent = 0);
 
 };
 

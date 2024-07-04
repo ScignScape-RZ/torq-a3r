@@ -117,28 +117,32 @@ int main(int argc, char *argv[])
 {
  QVector<QVector<QString>> links {
 
-  {"app.com", "Asbury Park Press", "biden-app"},
-  {"pressconnects.com", "Binghamton Press Connects", "biden-press-connects"},
-  {"burlingtoncountytimes.com", "Burlington County Times.com", "biden-burlington"},
-  {"mycentraljersey.com", "Central New Jersey News", "biden-cnj"},
-  {"publicopiniononline.com", "Chambersburg Public Opinion", "biden-public-opinion"},
-  {"the-leader.com", "The Corning Leader", "biden-leader"},
+  {"app.com", "Asbury Park Press (Asbury Park, NJ)", "biden-app"},
+  {"northjersey.com", "The Bergen Record (Woodland Park, NJ)", "biden-bergen"},
+  {"pressconnects.com", "Binghamton Press Connects (Binghamton, NY)", "biden-press-connects"},
+  {"burlingtoncountytimes.com", "Burlington County Times (Westampton, NJ)", "biden-burlington"},
+  {"mycentraljersey.com", "Central New Jersey News (Somerville, NJ)", "biden-cnj"},
+  {"publicopiniononline.com", "Chambersburg Public Opinion (Chambersburg, PA)", "biden-public-opinion"},
+  {"the-leader.com", "The Corning Leader (Corning, NY))", "biden-leader"},
   {"thedailyjournal.com", "The Daily Journal (Vineland, NJ)", "biden-dj"},
   {"mpnnow.com", "Daily Messenger (Canandaigua, NY)", "biden-daily-messenger"},
   {"echo-pilot.com", "Echo Pilot (Greencastle, PA)", "biden-echo"},
-  {"eveningsun.com", "Hanover Evening Sun", "biden-eve-sun"},
-  {"ithacajournal.com", "Ithaca Journal", "biden-ithaca"},
-  {"ldnews.com", "Lebanon Daily News", "biden-lebanon"},
-  {"poconorecord.com", "Pocono Record", "biden-pocono"},
-  {"poughkeepsiejournal.com", "The Poughkeepsie Journal", "biden-poughkeepsie"},
+  {"eveningsun.com", "Hanover Evening Sun (Hanover, PA)", "biden-eve-sun"},
+  {"ithacajournal.com", "Ithaca Journal (Ithaca, NY)", "biden-ithaca"},
+  {"lohud.com", "The Journal News | lohud.com (Westchester County and Rockland County, NY)", "biden-lohud"},
+  {"ldnews.com", "Lebanon Daily News (Lebanon, PA)", "biden-lebanon"},
+  {"poconorecord.com", "Pocono Record (Stroudsburg, PA)", "biden-pocono"},
+  {"poughkeepsiejournal.com", "The Poughkeepsie Journal (Poughkeepsie, NY)", "biden-poughkeepsie"},
   {"stargazette.com", "Star Gazette (Elmira, NY)", "biden-star"},
   {"recordonline.com", "Times Herald-Record (Middletown, NY)", "biden-thr"},
   {"timestelegram.com", "The Times Telegram (Herkimer, NY)", "biden-times-telegram"},
-  {"tricountyindependent.com", "Tri-County Independent.com", "biden-tri"},
-  {"uticaod.com", "Utica Observer-Dispatch", "biden-utica"},
-  {"therecordherald.com", "Waynesboro Record Herald", "biden-trh"},
-  {"ydr.com", "York Daily Record", "biden-ydr"},
+  {"tricountyindependent.com", "Tri-County Independent (Honesdale, PA)", "biden-tri"},
+  {"uticaod.com", "Utica Observer-Dispatch (Utica, NY)", "biden-utica"},
+  {"therecordherald.com", "Waynesboro Record Herald (Waynesboro, PA)", "biden-trh"},
+  {"ydr.com", "York Daily Record (York, PA)", "biden-ydr"},
  };
+
+  QString text;
 
  for(auto pr: links)
  {
@@ -146,9 +150,30 @@ int main(int argc, char *argv[])
   QString paper = pr[1];
   QString file = pr[2];
 
+  QString html = R"_(
+
+<p class="Bulleted">&#8226; Neustein, A. and Etlin, M. (2024)  &mdash; OP-ED <a class="Body"
+<a href="https://www.%1/story/opinion/2024/07/03/joe-biden-presidential-debate-jill-biden-was-a-voice-of-reason/74279857007/">
+<span class="link">Jill Biden is actually a voice of reason following last week&rsquo;s debate debacle</span></a></a>.
+<em class="Emphasis">%2</em>, July 3, 2024;
+<i>pdf version:</i>
+<a href='http://www.amyneustein.com/usan/%3.pdf'>here</a>.
+</p>
+
+)_";
+
+  text += html.arg(link).arg(paper).arg(file);
+
+
 
 
  }
+
+ QString outfile = "/home/nlevisrael/Downloads/biden/usan/o.html";
+
+ KA::TextIO::save_file(outfile, text);
+
+ return 0;
 
 // https://www. story/opinion/2024/07/03/joe-biden-presidential-debate-jill-biden-was-a-voice-of-reason/74279857007/
 //                story/opinion/2024/07/03/joe-biden-presidential-debate-jill-biden-was-a-voice-of-reason/74279857007

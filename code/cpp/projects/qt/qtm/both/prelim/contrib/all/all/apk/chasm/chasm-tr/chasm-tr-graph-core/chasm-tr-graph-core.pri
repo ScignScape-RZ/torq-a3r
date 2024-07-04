@@ -58,6 +58,7 @@ HEADERS += \
   $$SRC_DIR/kernel/graph/chtr-node.h \
   $$SRC_DIR/kernel/graph/chtr-graph.h \
   $$SRC_DIR/kernel/graph/chtr-asg-position.h \
+  $$SRC_DIR/kernel/graph/chtr-connection.h \
 
 
 SOURCES += \
@@ -67,6 +68,7 @@ SOURCES += \
   $$SRC_DIR/kernel/graph/chtr-node.cpp \
   $$SRC_DIR/kernel/graph/chtr-graph.cpp \
   $$SRC_DIR/kernel/graph/chtr-asg-position.cpp \
+  $$SRC_DIR/kernel/graph/chtr-connection.cpp \
 
 
 

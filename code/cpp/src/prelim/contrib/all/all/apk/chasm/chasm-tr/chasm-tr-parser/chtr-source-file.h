@@ -43,6 +43,10 @@ public:
 
  ACCESSORS(QString ,path)
 
+ QString document_path()
+ {
+  return path_;
+ }
 // ACCESSORS(MACRO_PASTE(tsl::ordered_map<QString, ChTR_Source_Type*>) ,declared_types)
 // ACCESSORS(MACRO_PASTE(tsl::ordered_map<QString, ChTR_Source_Type*>) ,defined_types)
 

@@ -276,8 +276,11 @@ protected:
 
  QMap<Frame_type*, QMultiMap<Connectors_Caon_type, QPair<Connection_Caon_type, Node_Caon_type>>> annotated_targets_;
 
- typedef QMapIterator<Connectors_Caon_type, Node_Caon_type> targets_iterator_type;
- typedef QMapIterator<Connectors_Caon_type, QPair<Connection_Caon_type, Node_Caon_type>> annotated_targets_iterator_type;
+ typedef QMapIterator<Frame_type*, QMultiMap<Connectors_Caon_type, Node_Caon_type>> targets_iterator_type;
+ typedef QMapIterator<Frame_type*, QMultiMap<Connectors_Caon_type, QPair<Connection_Caon_type, Node_Caon_type>>> annotated_targets_iterator_type;
+
+ typedef QMapIterator<Connectors_Caon_type, Node_Caon_type> in_frame_targets_iterator_type;
+ typedef QMapIterator<Connectors_Caon_type, QPair<Connection_Caon_type, Node_Caon_type>> in_frame_annotated_targets_iterator_type;
 
  VERTEX_Type vertex_;
 

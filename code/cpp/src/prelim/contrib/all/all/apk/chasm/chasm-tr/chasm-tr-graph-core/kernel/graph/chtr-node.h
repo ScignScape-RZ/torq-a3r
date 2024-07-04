@@ -17,6 +17,8 @@
 #include "phaong/phaong.h"
 #include "phaong/phaong-types.h"
 
+#include "global-types.h"
+
 
 #include <functional>
 
@@ -26,6 +28,8 @@
 AQNS_(Chasm_TR)
 
 class ChTR_Channel_Object;
+class ChTR_Connection;
+class ChTR_Connectors;
 
 
 class ChTR_Node : public node_ptr<ChTR_Dominion>
@@ -40,6 +44,12 @@ public:
  #undef DOMINION_TYPE
 // #undef DOMINION_HIDE_NO_NAMESPACE
  #undef DOMINION_INNER_NAMESPACE
+
+
+ void each_connection(std::function<void(const ChTR_Frame& frame, u2 count_in_frame,
+   const ChTR_Connectors& connector,
+   const ChTR_Node&, const ChTR_Connection* connection)> fn)  const;
+
 
 };
 

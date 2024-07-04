@@ -9,6 +9,12 @@
 
 #include "code/chtr-scoped-carrier.h"
 
+#include "code/chtr-prep-casement-entry.h"
+
+#include "chtr-connection.h"
+
+#include "chtr-source-file.h"
+
 #include "aqns.h"
 
 USING_AQNS(Chasm_TR)
@@ -27,7 +33,7 @@ ChTR_Graph::ChTR_Graph(ChTR_Node* root_node)
 
 void ChTR_Graph::report(QTextStream& qts)
 {
- if(caon_ptr<ChTR_Root> root = root_node_->chtr_root())
+ if(caon_ptr<ChTR_Source_File> root = root_node_->source_file())
  {
   qts << "Root node: " << root->document_path();
  }
@@ -41,44 +47,45 @@ void ChTR_Graph::report_from_node(QTextStream& qts,
  qts << "\n" << padding;
  if(caon_ptr<ChTR_Scoped_Carrier> csc = node.scoped_carrier())
  {
-  qts << "[token= " << csc-> << "]";
+  qts << "[token= " << csc->symbol() << "]";
  }
- else if(caon_ptr<ChTR_Call_Entry> rce = node.chasm_rz_call_entry())
+ else if(caon_ptr<ChTR_Prep_Casement_Entry> pce = node.prep_casement_entry())
  {
-  CAON_PTR_DEBUG(ChasmRZ_Call_Entry ,rce)
+  CAON_PTR_DEBUG(ChTR_Prep_Casement_Entry ,pce)
   QString extra;
-  if(!rce->prefix().isEmpty())
+  if(!pce->prefix().isEmpty())
   {
-   extra = QString(" (%1) ").arg(rce->prefix());
+   extra = QString(" (%1) ").arg(pce->prefix());
   }
-  if(rce->flags.no_normalize)
-  {
-   extra += "nn";
-  }
-  if(rce->flags.no_anticipate)
-  {
-   extra += "na";
-  }
-  qts << QString("<call %1%2>").arg(rce->call_id()).arg(extra);
+//  if(pce->flags.no_normalize)
+//  {
+//   extra += "nn";
+//  }
+//  if(pce->flags.no_anticipate)
+//  {
+//   extra += "na";
+//  }
+  qts << QString("<call %1%2>").arg(pce->call_id()).arg(extra);
  }
- else if(caon_ptr<ChasmRZ_Block_Entry> rbe = node.chasm_rz_block_entry())
- {
-  qts << QString("<block %1:%2>").arg(rbe->block_id()).arg(rbe->nested_depth());
- }
- else if(caon_ptr<ChasmRZ_Tuple_Info> rti = node.chasm_rz_tuple_info())
- {
-  if(rti->is_entry())
-   qts << QString("<data %1 ...>").arg(rti->data_id());
-  else
-   qts << "<... data>";
- }
+// else if(caon_ptr<ChasmRZ_Block_Entry> rbe = node.chasm_rz_block_entry())
+// {
+//  qts << QString("<block %1:%2>").arg(rbe->block_id()).arg(rbe->nested_depth());
+// }
+// else if(caon_ptr<ChasmRZ_Tuple_Info> rti = node.chasm_rz_tuple_info())
+// {
+//  if(rti->is_entry())
+//   qts << QString("<data %1 ...>").arg(rti->data_id());
+//  else
+//   qts << "<... data>";
+// }
  else
  {
   qts << "<<node/" << node.label() << ">>";
  }
   //Run_Data_Entry
  node.each_connection([this, node, &qts, &padding, &indent]
-  (const ChasmRZ_Connectors& connector, const ChasmRZ_Node& target, const ChasmRZ_Connection* connection)
+  (const ChTR_Frame& frame, u2 count_in_frame,
+                      const ChTR_Connectors& connector, const ChTR_Node& target, const ChTR_Connection* connection)
  {
   // //   For debugging...
   QString label = node.label();
@@ -90,18 +97,18 @@ void ChTR_Graph::report_from_node(QTextStream& qts,
 //  }
 
   // //  This connector is tangential ...
-  if(connector.case_label == ChasmRZ_Connectors_Case_Labels::Assignment_Annotation)
-  {
-   qts << "\n" << padding << " (Has connection: " << connector.label() << ")\n";
-   return;
-  }
+//  if(connector.case_label == ChTR_Connectors_Case_Labels::Assignment_Annotation)
+//  {
+//   qts << "\n" << padding << " (Has connection: " << connector.label() << ")\n";
+//   return;
+//  }
 
   // //  This connector loops ...
-  if(connector.case_label == ChasmRZ_Connectors_Case_Labels::Parent_Block_Map)
-  {
-   qts << "\n\n" << padding << "Has connection: " << connector.label() << "\n";
-   return;
-  }
+//  if(connector.case_label == ChTR_Connectors_Case_Labels::Parent_Block_Map)
+//  {
+//   qts << "\n\n" << padding << "Has connection: " << connector.label() << "\n";
+//   return;
+//  }
 
   qts << "\n\n" << padding << "For connection: " << connector.label() << "\n"
       << padding << "==== ";
@@ -110,7 +117,7 @@ void ChTR_Graph::report_from_node(QTextStream& qts,
   {
    qts << "\n\n" << padding << "Annotated: \n";
 
-   if(caon_ptr<ChasmRZ_Node> cn = connection->chasm_rz_node())
+   if(caon_ptr<ChTR_Node> cn = connection->chtr_node())
    {
     qts << " [[" << cn->label() << "]]\n";
    }

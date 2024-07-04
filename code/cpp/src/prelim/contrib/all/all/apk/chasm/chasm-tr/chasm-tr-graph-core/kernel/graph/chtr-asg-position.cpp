@@ -55,7 +55,7 @@ void ChTR_ASG_Position::insert_opaque_token(caon_ptr<ChTR_Node> token_node)
  {
  case Position_States::Prep_Casement_Sequence:
   {
-   current_node_ << Pf/Qy.Prep_Casement_Sequence >> token_node;
+   current_prep_node_ << Pf/Qy.Prep_Casement_Sequence >> token_node;
   }
   break;
  }
