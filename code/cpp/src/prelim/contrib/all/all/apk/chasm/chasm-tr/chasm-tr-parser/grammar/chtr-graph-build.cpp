@@ -30,6 +30,10 @@
 #include "chtr-document.h"
 
 #include "chasm-tr-graph-core/code/chtr-prep-casement-entry.h"
+#include "chasm-tr-graph-core/code/chtr-scoped-carrier.h"
+#include "chasm-tr-graph-core/code/chtr-opaque-token.h"
+
+
 
 //?#include "chasm-tr/kernel/dominion/types.h"
 
@@ -116,8 +120,34 @@ caon_ptr<ChTR_Node> ChTR_Graph_Build::make_new_node(caon_ptr<ChTR_Prep_Casement_
  caon_ptr<ChTR_Node> result = new ChTR_Node(pce);
  RELAE_SET_NODE_LABEL(result, QString("<prep-macro %1>").arg(pce->call_id()));
  return result;
-
 }
+
+
+caon_ptr<ChTR_Node> ChTR_Graph_Build::make_new_node(caon_ptr<ChTR_Scoped_Carrier> csc)
+{
+ caon_ptr<ChTR_Node> result = new ChTR_Node(csc);
+ RELAE_SET_NODE_LABEL(result, QString("<scoped-carrier %1>").arg(scs->symbol()));
+ return result;
+}
+
+
+caon_ptr<ChTR_Node> ChTR_Graph_Build::make_new_node(caon_ptr<ChTR_Opaque_Token> token)
+{
+ caon_ptr<ChTR_Node> result = new ChTR_Node(token);
+ RELAE_SET_NODE_LABEL(result, QString("<opaque-token %1>").arg(token->symbol()));
+ return result;
+}
+
+
+
+caon_ptr<ChTR_Node> ChTR_Graph_Build::new_scoped_carrier_node(QString macro_name)
+{
+ caon_ptr<ChTR_Scoped_Carrier> new_carrier = new ChTR_Scoped_Carrier(macro_name);
+
+ caon_ptr<ChTR_Node> result = make_new_node(new_carrier);
+ return result;
+}
+
 
 caon_ptr<ChTR_Node> ChTR_Graph_Build::new_prep_casement_entry_node(QString macro_name,
   caon_ptr<ChTR_Prep_Casement_Entry> parent_entry)
@@ -127,7 +157,6 @@ caon_ptr<ChTR_Node> ChTR_Graph_Build::new_prep_casement_entry_node(QString macro
 
  caon_ptr<ChTR_Node> result = make_new_node(new_entry);
  return result;
-
 }
 
 ChTR_Node* ChTR_Graph_Build::get_root_node()
@@ -139,10 +168,9 @@ ChTR_Node* ChTR_Graph_Build::get_root_node()
 void ChTR_Graph_Build::prepare_carrier_declaration(QString symbol)
 {
  caon_ptr<ChTR_Node> macro_node = new_prep_casement_entry_node("type-decl");
- asg_position_.insert_prep_casement_entry_node(macro_node);
-
  caon_ptr<ChTR_Node> carrier_node = new_scoped_carrier_node(symbol);
 
+ asg_position_.insert_prep_casement_entry_node(macro_node, carrier_node);
 }
 
 void ChTR_Graph_Build::prepare_symbol_binding_for_initialization(QString symbol)
@@ -152,6 +180,15 @@ void ChTR_Graph_Build::prepare_symbol_binding_for_initialization(QString symbol)
 
 void ChTR_Graph_Build::non_prefixed_symbol(QString symbol)
 {
+ caon_ptr<ChTR_Opaque_Token> token = new ChTR_Opaque_Token(symbol);
+
+ CAON_PTR_DEBUG(ChTR_Opaque_Token ,token)
+
+ caon_ptr<ChTR_Node> node = make_new_node(token);
+ asg_position_.insert_opaque_token(node);
+
+
+ //asg_position_.insert_
 
 }
 

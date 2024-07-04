@@ -37,11 +37,15 @@ HEADERS += \
   $$SRC_DIR/kernel/dominion/types.h \
   $$SRC_DIR/kernel/dominion/connectors.h \
   $$SRC_DIR/code/chtr-prep-casement-entry.h \
+  $$SRC_DIR/code/chtr-scoped-carrier.h \
+  $$SRC_DIR/code/chtr-opaque-token.h \
 
 
 
 SOURCES += \
   $$SRC_DIR/code/chtr-prep-casement-entry.cpp \
+  $$SRC_DIR/code/chtr-scoped-carrier.cpp \
+  $$SRC_DIR/code/chtr-opaque-token.cpp \
 
 
 

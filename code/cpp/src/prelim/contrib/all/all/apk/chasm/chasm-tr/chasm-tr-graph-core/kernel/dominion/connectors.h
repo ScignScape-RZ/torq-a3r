@@ -11,3 +11,5 @@ DOMINION_CONNECTOR(Root_Sequence, "root-sequence")
 
 
 DOMINION_CONNECTOR(Prep_Casement_Entry, "prep-cassement-entry")
+DOMINION_CONNECTOR(Prep_Casement_Sequence, "prep-cassement-sequence")
+

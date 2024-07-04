@@ -102,6 +102,8 @@ void ChTR_Document::report_graph(QString path)
  if(file.open(QFile::WriteOnly | QIODevice::Text))
  {
   QTextStream qts(&file);
+  if(graph_)
+   graph_->report(qts);
  }
 }
 

@@ -112,24 +112,71 @@ void allocate_mempad(u4& id, u4 size)
 
 
 
+
+int main(int argc, char *argv[])
+{
+ QVector<QVector<QString>> links {
+
+  {"app.com", "Asbury Park Press", "biden-app"},
+  {"pressconnects.com", "Binghamton Press Connects", "biden-press-connects"},
+  {"burlingtoncountytimes.com", "Burlington County Times.com", "biden-burlington"},
+  {"mycentraljersey.com", "Central New Jersey News", "biden-cnj"},
+  {"publicopiniononline.com", "Chambersburg Public Opinion", "biden-public-opinion"},
+  {"the-leader.com", "The Corning Leader", "biden-leader"},
+  {"thedailyjournal.com", "The Daily Journal (Vineland, NJ)", "biden-dj"},
+  {"mpnnow.com", "Daily Messenger (Canandaigua, NY)", "biden-daily-messenger"},
+  {"echo-pilot.com", "Echo Pilot (Greencastle, PA)", "biden-echo"},
+  {"eveningsun.com", "Hanover Evening Sun", "biden-eve-sun"},
+  {"ithacajournal.com", "Ithaca Journal", "biden-ithaca"},
+  {"ldnews.com", "Lebanon Daily News", "biden-lebanon"},
+  {"poconorecord.com", "Pocono Record", "biden-pocono"},
+  {"poughkeepsiejournal.com", "The Poughkeepsie Journal", "biden-poughkeepsie"},
+  {"stargazette.com", "Star Gazette (Elmira, NY)", "biden-star"},
+  {"recordonline.com", "Times Herald-Record (Middletown, NY)", "biden-thr"},
+  {"timestelegram.com", "The Times Telegram (Herkimer, NY)", "biden-times-telegram"},
+  {"tricountyindependent.com", "Tri-County Independent.com", "biden-tri"},
+  {"uticaod.com", "Utica Observer-Dispatch", "biden-utica"},
+  {"therecordherald.com", "Waynesboro Record Herald", "biden-trh"},
+  {"ydr.com", "York Daily Record", "biden-ydr"},
+ };
+
+ for(auto pr: links)
+ {
+  QString link  = pr[0];
+  QString paper = pr[1];
+  QString file = pr[2];
+
+
+
+ }
+
+// https://www. story/opinion/2024/07/03/joe-biden-presidential-debate-jill-biden-was-a-voice-of-reason/74279857007/
+//                story/opinion/2024/07/03/joe-biden-presidential-debate-jill-biden-was-a-voice-of-reason/74279857007
+
+}
+
+
 // //   u1 = 1  u2 = 2  QString = 3
  //     u4 = 4  QByteArray = 5
  //     r8 = 6  QVariant = 7
  //     n8 = 8  ? = 9
 
-int main(int argc, char *argv[])
+int main1(int argc, char *argv[])
 {
 
- ChTR_Document chrd(ROOT_FOLDER "/../torq/t1/t1.cr");
+ ChTR_Document chd(ROOT_FOLDER "/../torq/t1/t1.cr");
 
- chrd.parse();
+ chd.parse();
 
- ChVM_Code_Generator ccg(chrd.graph());
+ chd.report_graph("..txt");
 
- QString chvm;
- ccg.graph_to_chvm(chvm);
 
- chrd.save_file("..chvm", chvm);
+
+// ChVM_Code_Generator ccg(chrd.graph());
+
+// QString chvm;
+// ccg.graph_to_chvm(chvm);
+// chrd.save_file("..chvm", chvm);
 
 //? ChVM_Channel_Package_Runner ccr();
 

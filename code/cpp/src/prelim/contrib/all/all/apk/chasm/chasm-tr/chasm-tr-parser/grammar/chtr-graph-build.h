@@ -44,6 +44,8 @@ class ChTR_Code_Statement;
 
 
 class ChTR_Prep_Casement_Entry;
+class ChTR_Scoped_Carrier;
+class ChTR_Opaque_Token;
 
 
 
@@ -134,13 +136,12 @@ public:
  caon_ptr<ChTR_Node> new_prep_casement_entry_node(QString macro_name,
    caon_ptr<ChTR_Prep_Casement_Entry> parent_entry = nullptr);
 
- caon_ptr<ChTR_Node> new_scoped_carrier_node(QString macro_name)
- {
-
- }
+ caon_ptr<ChTR_Node> new_scoped_carrier_node(QString symbol_name);
 
 
  caon_ptr<ChTR_Node> make_new_node(caon_ptr<ChTR_Prep_Casement_Entry> pce);
+ caon_ptr<ChTR_Node> make_new_node(caon_ptr<ChTR_Scoped_Carrier> csc);
+ caon_ptr<ChTR_Node> make_new_node(caon_ptr<ChTR_Opaque_Token> token);
 
 
 };

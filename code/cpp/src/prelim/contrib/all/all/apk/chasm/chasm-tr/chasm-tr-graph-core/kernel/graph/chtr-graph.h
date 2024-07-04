@@ -13,6 +13,8 @@
 
 #include "accessors.h"
 
+#include "global-types.h"
+
 #include "aqns.h"
 
 
@@ -23,6 +25,9 @@ USING_AQNS(Chasm_TR)
 #include "kernel/chtr-dominion.h"
 
 AQNS_(Chasm_TR)
+
+
+class ChTR_Node;
 
 
 class ChTR_Graph : public phaong<pg_t>
@@ -51,6 +56,10 @@ public:
 
 
  hypernode_type* new_hypernode_by_type_name(QString ty);
+
+ void report(QTextStream& qts);
+ void report_from_node(QTextStream& qts,
+  const ChTR_Node& node, u1 indent);
 
 };
 
