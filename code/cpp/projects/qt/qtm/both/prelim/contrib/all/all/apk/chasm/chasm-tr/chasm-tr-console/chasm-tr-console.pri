@@ -72,6 +72,9 @@ INCLUDEPATH += $$PHAON_GRAPH_SRC_GROUP_DIR
 
 INCLUDEPATH += $$SRC_GROUP_DIR/chasm-tr
 
+INCLUDEPATH += $$SRC_GROUP_DIR/chasm-tr-graph-core
+message($$SRC_GROUP_DIR/chasm-tr-graph-core)
+
 INCLUDEPATH += $$SRC_PROSET_DIR/chasm-vm
 INCLUDEPATH += $$SRC_PROSET_DIR/chasm-lib
 
@@ -92,7 +95,9 @@ SOURCES += \
   $$SRC_DIR/main.cpp \
 
 
-LIBS += -L$$TARGETSDIR -lchasm-tr  -lchasm-tr-parser  -lchasm-chgr
+LIBS += -L$$TARGETSDIR -lchasm-tr  -lchasm-tr-parser  \
+  -lchasm-chgr   -lchasm-tr-graph-core
+
 
 
 LIBS += -L$$TARGETSDIR -lchasm-lib  \

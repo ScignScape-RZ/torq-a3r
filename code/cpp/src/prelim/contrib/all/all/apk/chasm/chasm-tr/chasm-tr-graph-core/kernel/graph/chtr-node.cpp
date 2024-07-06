@@ -10,7 +10,8 @@
 USING_AQNS(Chasm_TR)
 
 
-void ChTR_Node::each_connection(std::function<void(const ChTR_Frame& frame, u2 count_in_frame,
+void ChTR_Node::each_connection(std::function<void(const ChTR_Frame& frame,
+  u2 count_in_frame, u2 rest_in_frame,
   const ChTR_Connectors& connector,
   const ChTR_Node&, const ChTR_Connection* connection)> fn) const
 {
@@ -25,7 +26,7 @@ void ChTR_Node::each_connection(std::function<void(const ChTR_Frame& frame, u2 c
    iit.next();
    const ChTR_Connectors& connector = *iit.key();
    const ChTR_Node& target = *iit.value();
-   fn(*it.key(), count, connector, target, nullptr);
+   fn(*it.key(), count, it.value().size() - count - 1, connector, target, nullptr);
    ++count;
   }
  }
@@ -42,7 +43,8 @@ void ChTR_Node::each_connection(std::function<void(const ChTR_Frame& frame, u2 c
    const ChTR_Connectors& connector = *iit.key();
    const ChTR_Connection* connection = iit.value().first.raw_pointer();
    const ChTR_Node& target = *iit.value().second;
-   fn(*ait.key(), count, connector, target, connection);
+   fn(*ait.key(), count, ait.value().size() - count - 1,
+     connector, target, connection);
    ++count;
   }
  }

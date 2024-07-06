@@ -38,13 +38,18 @@ class ChTR_Graph;
 
 class ChTR_Query;
 
+class ChTR_Frame;
+
 class ChVM_Code_Generator
 {
  QVector<ChVM_Procedure*> procedures_;
 
  ChTR_Graph* ir_graph_;
 
- const ChTR_Query& Qy_;
+ const ChTR_Frame& Cf;
+ const ChTR_Frame& Sf;
+ const ChTR_Frame& Pf;
+ const ChTR_Query& Qy;
 
 
 public:

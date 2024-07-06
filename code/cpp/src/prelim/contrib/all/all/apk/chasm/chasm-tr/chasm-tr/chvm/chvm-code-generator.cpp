@@ -24,7 +24,11 @@ USING_AQNS(Chasm_TR)
 
 
 ChVM_Code_Generator::ChVM_Code_Generator(ChTR_Graph* ir_graph)
-  :  ir_graph_(ir_graph), Qy_(ChTR_Query::instance())
+  :  ir_graph_(ir_graph)
+    ,Cf(ChTR_Frame::instance("casement"))
+    ,Sf(ChTR_Frame::instance("semantic"))
+    ,Pf(ChTR_Frame::instance("prep"))
+    ,Qy(ChTR_Query::instance())
 {
 
 }
@@ -37,7 +41,7 @@ ChVM_Code_Statement_Generator ChVM_Code_Generator::statement_generator(caon_ptr<
 void ChVM_Code_Generator::graph_to_chvm(QString& chvm)
 {
  ChTR_Node* root_node = ir_graph_->root_node();
- if(caon_ptr<ChTR_Node> n = Qy_.Root_Sequence(root_node))
+ if(caon_ptr<ChTR_Node> n = Qy.Root_Sequence(Cf, root_node))
  {
   if(caon_ptr<ChTR_Code_Statement> ccs = n->code_statement())
   {

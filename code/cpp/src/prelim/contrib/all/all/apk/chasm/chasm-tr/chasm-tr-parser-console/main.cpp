@@ -113,7 +113,7 @@ void allocate_mempad(u4& id, u4 size)
 
 
 
-int main(int argc, char *argv[])
+int main2(int argc, char *argv[])
 {
  QVector<QVector<QString>> links {
 
@@ -186,7 +186,7 @@ int main(int argc, char *argv[])
  //     r8 = 6  QVariant = 7
  //     n8 = 8  ? = 9
 
-int main1(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 
  ChTR_Document chd(ROOT_FOLDER "/../torq/t1/t1.cr");

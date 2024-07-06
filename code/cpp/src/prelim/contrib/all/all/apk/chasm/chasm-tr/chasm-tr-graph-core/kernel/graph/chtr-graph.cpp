@@ -8,8 +8,8 @@
 #include "chtr-graph.h"
 
 #include "code/chtr-scoped-carrier.h"
-
 #include "code/chtr-prep-casement-entry.h"
+#include "code/chtr-opaque-token.h"
 
 #include "chtr-connection.h"
 
@@ -47,7 +47,7 @@ void ChTR_Graph::report_from_node(QTextStream& qts,
  qts << "\n" << padding;
  if(caon_ptr<ChTR_Scoped_Carrier> csc = node.scoped_carrier())
  {
-  qts << "[token= " << csc->symbol() << "]";
+  qts << "[scoped carrier= " << csc->symbol() << "]";
  }
  else if(caon_ptr<ChTR_Prep_Casement_Entry> pce = node.prep_casement_entry())
  {
@@ -78,17 +78,30 @@ void ChTR_Graph::report_from_node(QTextStream& qts,
 //  else
 //   qts << "<... data>";
 // }
+
+ else if(caon_ptr<ChTR_Opaque_Token> cot = node.opaque_token())
+ {
+  qts << QString("<opaque token: %1>").arg(cot->symbol());
+ }
+
  else
  {
   qts << "<<node/" << node.label() << ">>";
  }
   //Run_Data_Entry
  node.each_connection([this, node, &qts, &padding, &indent]
-  (const ChTR_Frame& frame, u2 count_in_frame,
-                      const ChTR_Connectors& connector, const ChTR_Node& target, const ChTR_Connection* connection)
+  (const ChTR_Frame& frame, u2 count_in_frame, u2 rest_in_frame,
+     const ChTR_Connectors& connector, const ChTR_Node& target, const ChTR_Connection* connection)
  {
   // //   For debugging...
   QString label = node.label();
+
+  if(count_in_frame == 0)
+  {
+   qts << "\n\n" << padding << "__________ \n" << padding << "| Frame: " << frame.label()
+    << "\n" << padding << "|"; // << padding << "|\n";
+  }
+
 
 //  // //  Somehow, this connector is causing trouble
 //  if(connector.case_label == ChasmRZ_Connectors_Case_Labels::Run_Fundef_Map_Key_Sequence)
@@ -110,24 +123,29 @@ void ChTR_Graph::report_from_node(QTextStream& qts,
 //   return;
 //  }
 
-  qts << "\n\n" << padding << "For connection: " << connector.label() << "\n"
-      << padding << "==== ";
+  qts << "\n\n" << padding << "  For connection: " << connector.label() << "\n"
+      << padding << "  ==== ";
 
   if(connection)
   {
-   qts << "\n\n" << padding << "Annotated: \n";
+   qts << "\n\n" << padding << "  Annotated: \n";
 
    if(caon_ptr<ChTR_Node> cn = connection->chtr_node())
    {
     qts << " [[" << cn->label() << "]]\n";
    }
 
-   qts << padding << "---- ";
-
+   qts << padding << "  ---- ";
   }
 
-  report_from_node(qts, target, indent + 1);
-  qts << "\n" << padding << "....";
+  report_from_node(qts, target, indent + 2);
+  qts << "\n" << padding << "  ....";
+
+  if(rest_in_frame == 0)
+    qts << "\n" << padding << "|\n" << padding << "| ++++ ";
+
+
+
  });
 
 }

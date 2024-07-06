@@ -94,6 +94,7 @@ class node_connectors
  typedef typename GALAXY_Type::Connection_type Connection_type;
  typedef typename GALAXY_Type::Connection_Caon_type Connection_Caon_type;
  typedef typename GALAXY_Type::Annotated_Connectors_type Annotated_Connectors_type;
+ typedef typename GALAXY_Type::Frame_type Frame_type;
 
  typedef node_connectors<DOMINION_Type, GALAXY_Type> self_type;
 
@@ -118,10 +119,10 @@ public:
  {
   return label_;
  }
- Node_Caon_type operator()(Node_Caon_type node) const
+ Node_Caon_type operator()(const Frame_type& frame, Node_Caon_type node) const
  {
   const Connectors_type* cast = static_cast<const Connectors_type*>(this);
-  return node->retrieve(*cast);
+  return node->retrieve(&frame, *cast);
  }
 
  Node_With_Write_Connection operator[](Connection_Caon_type& cion) const
@@ -358,8 +359,8 @@ public:
   annotated_targets_[fr].insert(caon_ptr<Connectors_type>(&connector), {connection, target});
  }
 
-
- Node_Caon_type retrieve(Frame_type* fr, const Connectors_type& connector)
+//Frame_With_Connector
+ Node_Caon_type retrieve(const Frame_type* fr, const Connectors_type& connector)
  {
   return targets_[fr].value(caon_ptr<Connectors_type>(&connector));
  }

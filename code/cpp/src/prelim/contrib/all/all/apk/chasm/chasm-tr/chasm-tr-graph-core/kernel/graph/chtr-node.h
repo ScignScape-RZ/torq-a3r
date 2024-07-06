@@ -46,7 +46,8 @@ public:
  #undef DOMINION_INNER_NAMESPACE
 
 
- void each_connection(std::function<void(const ChTR_Frame& frame, u2 count_in_frame,
+ void each_connection(std::function<void(const ChTR_Frame& frame,
+   u2 count_in_frame, u2 rest_in_frame,
    const ChTR_Connectors& connector,
    const ChTR_Node&, const ChTR_Connection* connection)> fn)  const;
 
