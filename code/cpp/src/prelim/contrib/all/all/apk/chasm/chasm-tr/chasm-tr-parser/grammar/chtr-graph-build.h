@@ -123,7 +123,12 @@ public:
  void enter_statement_body();
 
  void prepare_carrier_declaration(QString symbol);
+
  void prepare_symbol_binding_for_initialization(QString symbol);
+ void null_statement_entry();
+
+ void parse_numeric_literal(QString sign, QString prefix, QString number);
+
  void non_prefixed_symbol(QString symbol);
 
  void enter_channel_body();
@@ -142,6 +147,7 @@ public:
  caon_ptr<ChTR_Node> make_new_node(caon_ptr<ChTR_Prep_Casement_Entry> pce);
  caon_ptr<ChTR_Node> make_new_node(caon_ptr<ChTR_Scoped_Carrier> csc);
  caon_ptr<ChTR_Node> make_new_node(caon_ptr<ChTR_Opaque_Token> token);
+ caon_ptr<ChTR_Node> make_new_node(caon_ptr<ChTR_Numeric_Literal> literal);
 
 
 };

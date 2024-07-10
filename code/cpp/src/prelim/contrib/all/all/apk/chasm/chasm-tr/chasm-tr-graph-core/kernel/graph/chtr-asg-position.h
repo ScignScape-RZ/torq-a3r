@@ -133,6 +133,7 @@ public:
    caon_ptr<ChTR_Node> symbol_node);
 
  void insert_opaque_token(caon_ptr<ChTR_Node> token_node);
+ void insert_numeric_literal(caon_ptr<ChTR_Node> literal_node);
 
 
 };

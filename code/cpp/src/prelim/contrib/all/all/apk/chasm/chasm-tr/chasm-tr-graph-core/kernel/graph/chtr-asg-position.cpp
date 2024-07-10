@@ -48,6 +48,20 @@ void ChTR_ASG_Position::insert_prep_casement_entry_node(caon_ptr<ChTR_Node> macr
 
 }
 
+void ChTR_ASG_Position::insert_numeric_literal(caon_ptr<ChTR_Node> literal_node)
+{
+ switch (position_state_)
+ {
+ case Position_States::Prep_Casement_Sequence:
+  {
+   current_prep_node_ << Pf/Qy.Prep_Casement_Sequence >> literal_node;
+  }
+  break;
+ }
+
+
+}
+
 
 void ChTR_ASG_Position::insert_opaque_token(caon_ptr<ChTR_Node> token_node)
 {

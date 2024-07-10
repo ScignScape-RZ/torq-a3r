@@ -32,6 +32,8 @@
 #include "chasm-tr-graph-core/code/chtr-prep-casement-entry.h"
 #include "chasm-tr-graph-core/code/chtr-scoped-carrier.h"
 #include "chasm-tr-graph-core/code/chtr-opaque-token.h"
+#include "chasm-tr-graph-core/code/chtr-numeric-literal.h"
+
 
 
 
@@ -115,6 +117,14 @@ void ChTR_Graph_Build::read_channel_string(QString channel_string)
 }
 
 
+caon_ptr<ChTR_Node> ChTR_Graph_Build::make_new_node(caon_ptr<ChTR_Numeric_Literal> literal)
+{
+ caon_ptr<ChTR_Node> result = new ChTR_Node(literal);
+ RELAE_SET_NODE_LABEL(result, QString("<numeric-literal: %1>").arg(literal));
+ return result;
+}
+
+
 caon_ptr<ChTR_Node> ChTR_Graph_Build::make_new_node(caon_ptr<ChTR_Prep_Casement_Entry> pce)
 {
  caon_ptr<ChTR_Node> result = new ChTR_Node(pce);
@@ -145,6 +155,7 @@ caon_ptr<ChTR_Node> ChTR_Graph_Build::new_scoped_carrier_node(QString macro_name
  caon_ptr<ChTR_Scoped_Carrier> new_carrier = new ChTR_Scoped_Carrier(macro_name);
 
  caon_ptr<ChTR_Node> result = make_new_node(new_carrier);
+ result->set_label(macro_name);
  return result;
 }
 
@@ -178,6 +189,51 @@ void ChTR_Graph_Build::prepare_symbol_binding_for_initialization(QString symbol)
 
 }
 
+void ChTR_Graph_Build::null_statement_entry()
+{
+
+}
+
+void ChTR_Graph_Build::parse_numeric_literal(QString sign, QString prefix, QString number)
+{
+ caon_ptr<ChTR_Numeric_Literal> literal = new ChTR_Numeric_Literal(number);
+
+ if(prefix.startsWith('0'))
+ {
+  QChar end = prefix.at(prefix.length() - 1);
+  switch (end.toLatin1())
+  {
+  case '0':
+    literal->flags.marked_octal = true; break;
+  case 'b':
+  case 'B':
+    literal->flags.marked_binary = true; break;
+  case 'x':
+  case 'X':
+    literal->flags.marked_hexadecimal = true; break;
+  default:
+   break;
+  }
+ }
+
+ if(sign == "+")
+   literal->flags.marked_positive = true;
+ else if(sign == "-")
+   literal->flags.marked_negative = true;
+
+
+ CAON_PTR_DEBUG(ChTR_Numeric_Literal ,literal)
+
+ caon_ptr<ChTR_Node> node = make_new_node(literal);
+// node->set_label(number);
+
+// RELAE_SET_NODE_LABEL(node, number)
+
+ asg_position_.insert_numeric_literal(node);
+
+}
+
+
 void ChTR_Graph_Build::non_prefixed_symbol(QString symbol)
 {
  caon_ptr<ChTR_Opaque_Token> token = new ChTR_Opaque_Token(symbol);
@@ -185,6 +241,8 @@ void ChTR_Graph_Build::non_prefixed_symbol(QString symbol)
  CAON_PTR_DEBUG(ChTR_Opaque_Token ,token)
 
  caon_ptr<ChTR_Node> node = make_new_node(token);
+ node->set_label(symbol);
+
  asg_position_.insert_opaque_token(node);
 
 

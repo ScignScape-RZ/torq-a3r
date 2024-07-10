@@ -75,6 +75,17 @@ void ChTR_Grammar::init(ChTR_Parser& p, ChTR_Graph& g, ChTR_Graph_Build& graph_b
 // });
 
 
+ add_rule(intra_line_context,
+   "numeric-literal",
+   "(?<sign>[+-])? (?<prefix>0[bx]?)? (?<number>\\d[\\d']*)"
+   ,[&]
+ {
+  QString sign = p.matched("sign");
+  QString prefix = p.matched("prefix");
+  QString number = p.matched("number").remove(QChar('\''));
+  graph_build.parse_numeric_literal(sign, prefix, number);
+ });
+
 
  add_rule(line_context,
    "carrier-declaration",
@@ -97,6 +108,14 @@ void ChTR_Grammar::init(ChTR_Parser& p, ChTR_Graph& g, ChTR_Graph_Build& graph_b
   activate_context("intra-line-context");
  });
 
+ add_rule(line_context,
+   "null-statement-entry",
+   "\\.\\\\"
+   ,[&]
+ {
+  graph_build.null_statement_entry();
+  activate_context("intra-line-context");
+ });
 
  add_rule(intra_line_context,
    "non-prefixed-symbol",

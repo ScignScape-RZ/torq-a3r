@@ -5,8 +5,6 @@
 #           http://www.boost.org/LICENSE_1_0.txt)
 
 
-PROJECT_NAME = chtr
-
 include(../build-group.pri)
 
 QT -= gui
@@ -39,6 +37,7 @@ HEADERS += \
   $$SRC_DIR/code/chtr-prep-casement-entry.h \
   $$SRC_DIR/code/chtr-scoped-carrier.h \
   $$SRC_DIR/code/chtr-opaque-token.h \
+  $$SRC_DIR/code/chtr-numeric-literal.h \
 
 
 
@@ -46,6 +45,7 @@ SOURCES += \
   $$SRC_DIR/code/chtr-prep-casement-entry.cpp \
   $$SRC_DIR/code/chtr-scoped-carrier.cpp \
   $$SRC_DIR/code/chtr-opaque-token.cpp \
+  $$SRC_DIR/code/chtr-numeric-literal.cpp \
 
 
 
