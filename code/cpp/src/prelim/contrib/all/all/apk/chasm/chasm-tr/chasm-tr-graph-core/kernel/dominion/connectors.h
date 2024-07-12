@@ -10,6 +10,9 @@ DOMINION_CONNECTOR(Generic, "generic")
 DOMINION_CONNECTOR(Root_Sequence, "root-sequence")
 
 
-DOMINION_CONNECTOR(Prep_Casement_Entry, "prep-cassement-entry")
-DOMINION_CONNECTOR(Prep_Casement_Sequence, "prep-cassement-sequence")
+DOMINION_CONNECTOR(Prep_Casement_Entry, "prep-casement-entry")
+DOMINION_CONNECTOR(Prep_Casement_Sequence, "prep-casement-sequence")
+DOMINION_CONNECTOR(Prep_Casement_Cross, "prep-casement-cross")
+
+
 

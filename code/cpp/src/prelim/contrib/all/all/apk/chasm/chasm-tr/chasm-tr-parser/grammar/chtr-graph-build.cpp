@@ -33,6 +33,7 @@
 #include "chasm-tr-graph-core/code/chtr-scoped-carrier.h"
 #include "chasm-tr-graph-core/code/chtr-opaque-token.h"
 #include "chasm-tr-graph-core/code/chtr-numeric-literal.h"
+#include "chasm-tr-graph-core/code/chtr-core-macro.h"
 
 
 
@@ -117,10 +118,10 @@ void ChTR_Graph_Build::read_channel_string(QString channel_string)
 }
 
 
-caon_ptr<ChTR_Node> ChTR_Graph_Build::make_new_node(caon_ptr<ChTR_Numeric_Literal> literal)
+caon_ptr<ChTR_Node> ChTR_Graph_Build::make_new_node(caon_ptr<ChTR_Numeric_Literal> cnl)
 {
- caon_ptr<ChTR_Node> result = new ChTR_Node(literal);
- RELAE_SET_NODE_LABEL(result, QString("<numeric-literal: %1>").arg(literal));
+ caon_ptr<ChTR_Node> result = new ChTR_Node(cnl);
+ RELAE_SET_NODE_LABEL(result, QString("<numeric-literal: %1>").arg(cnl->literal()));
  return result;
 }
 
@@ -128,15 +129,23 @@ caon_ptr<ChTR_Node> ChTR_Graph_Build::make_new_node(caon_ptr<ChTR_Numeric_Litera
 caon_ptr<ChTR_Node> ChTR_Graph_Build::make_new_node(caon_ptr<ChTR_Prep_Casement_Entry> pce)
 {
  caon_ptr<ChTR_Node> result = new ChTR_Node(pce);
- RELAE_SET_NODE_LABEL(result, QString("<prep-macro %1>").arg(pce->call_id()));
+ RELAE_SET_NODE_LABEL(result, QString("<prep-casement-entry %1>").arg(pce->call_id()));
  return result;
 }
+
+caon_ptr<ChTR_Node> ChTR_Graph_Build::make_new_node(caon_ptr<ChTR_Core_Macro> ccm)
+{
+ caon_ptr<ChTR_Node> result = new ChTR_Node(ccm);
+ RELAE_SET_NODE_LABEL(result, QString("<core-macro %1>").arg(ccm->name()));
+ return result;
+}
+
 
 
 caon_ptr<ChTR_Node> ChTR_Graph_Build::make_new_node(caon_ptr<ChTR_Scoped_Carrier> csc)
 {
  caon_ptr<ChTR_Node> result = new ChTR_Node(csc);
- RELAE_SET_NODE_LABEL(result, QString("<scoped-carrier %1>").arg(scs->symbol()));
+ RELAE_SET_NODE_LABEL(result, QString("<scoped-carrier %1>").arg(csc->symbol()));
  return result;
 }
 
@@ -159,14 +168,38 @@ caon_ptr<ChTR_Node> ChTR_Graph_Build::new_scoped_carrier_node(QString macro_name
  return result;
 }
 
+caon_ptr<ChTR_Node> ChTR_Graph_Build::new_core_macro_node(QString macro_name)
+{
+ caon_ptr<ChTR_Core_Macro> new_macro = new ChTR_Core_Macro(macro_name);
 
-caon_ptr<ChTR_Node> ChTR_Graph_Build::new_prep_casement_entry_node(QString macro_name,
+ caon_ptr<ChTR_Node> result = make_new_node(new_macro);
+
+ RELAE_SET_NODE_LABEL(result, "macro: %1"_qt.arg(macro_name));
+
+ CAON_PTR_DEBUG(ChTR_Node ,result)
+
+ return result;
+
+}
+
+
+caon_ptr<ChTR_Node> ChTR_Graph_Build::new_prep_casement_entry_node(QString text_hint,
   caon_ptr<ChTR_Prep_Casement_Entry> parent_entry)
 {
  caon_ptr<ChTR_Prep_Casement_Entry> new_entry = new ChTR_Prep_Casement_Entry(prep_macro_entry_count_);
- ++prep_macro_entry_count_;
+
+ CAON_PTR_DEBUG(ChTR_Prep_Casement_Entry ,new_entry)
+
+ new_entry->set_debug_text_hint(text_hint);
 
  caon_ptr<ChTR_Node> result = make_new_node(new_entry);
+
+ RELAE_SET_NODE_LABEL(result, "entry: %1"_qt.arg(prep_macro_entry_count_));
+
+ CAON_PTR_DEBUG(ChTR_Node ,result)
+
+ ++prep_macro_entry_count_;
+
  return result;
 }
 
@@ -178,19 +211,28 @@ ChTR_Node* ChTR_Graph_Build::get_root_node()
 
 void ChTR_Graph_Build::prepare_carrier_declaration(QString symbol)
 {
- caon_ptr<ChTR_Node> macro_node = new_prep_casement_entry_node("type-decl");
+ caon_ptr<ChTR_Node> entry_node = new_prep_casement_entry_node("type-decl (%1)"_qt.arg(symbol));
+ caon_ptr<ChTR_Node> macro_node = new_core_macro_node("type-decl");
  caon_ptr<ChTR_Node> carrier_node = new_scoped_carrier_node(symbol);
 
- asg_position_.insert_prep_casement_entry_node(macro_node, carrier_node);
+ asg_position_.insert_prep_casement_entry_node(entry_node, macro_node, carrier_node);
 }
 
 void ChTR_Graph_Build::prepare_symbol_binding_for_initialization(QString symbol)
 {
+ caon_ptr<ChTR_Node> entry_node = new_prep_casement_entry_node("initializing-anchor (%1)"_qt.arg(symbol));
+ caon_ptr<ChTR_Node> macro_node = new_core_macro_node("initializing-anchor");
+ caon_ptr<ChTR_Node> carrier_node = new_scoped_carrier_node(symbol);
 
+ asg_position_.insert_prep_casement_entry_node(entry_node, macro_node, carrier_node);
 }
 
 void ChTR_Graph_Build::null_statement_entry()
 {
+ caon_ptr<ChTR_Node> entry_node = new_prep_casement_entry_node("null-anchor-statement");
+ caon_ptr<ChTR_Node> macro_node = new_core_macro_node("null-anchor-statement");
+
+ asg_position_.hold_null_anchor_macro_node(entry_node, macro_node);
 
 }
 

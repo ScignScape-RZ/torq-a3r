@@ -38,10 +38,12 @@ DOMINION_TYPE(channel_object, ChTR_Channel_Object, Channel_Object)
 DOMINION_TYPE(source_file, ChTR_Source_File, Source_File)
 DOMINION_TYPE(code_statement, ChTR_Code_Statement, Code_Statement)
 
+
 DOMINION_TYPE(prep_casement_entry, ChTR_Prep_Casement_Entry, Prep_Casement_Entry)
 DOMINION_TYPE(scoped_carrier, ChTR_Scoped_Carrier, Scoped_Carrier)
 DOMINION_TYPE(opaque_token, ChTR_Opaque_Token, Opaque_Token)
 DOMINION_TYPE(numeric_literal, ChTR_Numeric_Literal, Numeric_Literal)
+DOMINION_TYPE(core_macro, ChTR_Core_Macro, Core_Macro)
 
 
 

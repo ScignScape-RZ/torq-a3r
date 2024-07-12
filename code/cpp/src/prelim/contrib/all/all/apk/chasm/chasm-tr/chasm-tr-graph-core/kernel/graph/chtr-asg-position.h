@@ -54,7 +54,7 @@ public:
 
  enum class Position_States {
 
-  Root, Prep_Casement_Sequence,
+  Root, Prep_Casement_Sequence, Held_Null_Anchor,
 
 
   Active_Run_Casement_Node, Active_Run_Casement_Chief,
@@ -73,6 +73,7 @@ private:
  ChTR_Node* root_node_;
 
  caon_ptr<ChTR_Node> current_prep_node_;
+ caon_ptr<ChTR_Node> current_prep_chief_;
 
  Position_States position_state_;
  ChTR_Graph_Build* graph_build_;
@@ -129,7 +130,11 @@ public:
 //? ACCESSORS(caon_ptr<ChTR_Node> ,current_node)
 
 
- void insert_prep_casement_entry_node(caon_ptr<ChTR_Node> macro_node,
+ void hold_null_anchor_macro_node(caon_ptr<ChTR_Node> entry_node,
+   caon_ptr<ChTR_Node> macro_node);
+
+ void insert_prep_casement_entry_node(caon_ptr<ChTR_Node> entry_node,
+   caon_ptr<ChTR_Node> macro_node,
    caon_ptr<ChTR_Node> symbol_node);
 
  void insert_opaque_token(caon_ptr<ChTR_Node> token_node);

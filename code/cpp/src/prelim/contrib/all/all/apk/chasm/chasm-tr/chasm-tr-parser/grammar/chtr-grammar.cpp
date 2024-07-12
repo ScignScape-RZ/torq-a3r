@@ -110,7 +110,7 @@ void ChTR_Grammar::init(ChTR_Parser& p, ChTR_Graph& g, ChTR_Graph_Build& graph_b
 
  add_rule(line_context,
    "null-statement-entry",
-   "\\.\\\\"
+   "[.]\\\\"
    ,[&]
  {
   graph_build.null_statement_entry();

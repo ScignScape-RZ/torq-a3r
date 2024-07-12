@@ -22,7 +22,7 @@ ChTR_Prep_Casement_Entry::ChTR_Prep_Casement_Entry(u4 call_id, QString prefix) /
  : // Flags(0), call_depth_(0),
 // line_number_(0),
 // file_id_(0),
-// call_id_(call_id),
+ call_id_(call_id),
  ref_node_(nullptr),
  parent_entry_node_(nullptr),
   self_node_(nullptr),

@@ -10,6 +10,8 @@
 #include "code/chtr-scoped-carrier.h"
 #include "code/chtr-prep-casement-entry.h"
 #include "code/chtr-opaque-token.h"
+#include "code/chtr-core-macro.h"
+#include "code/chtr-numeric-literal.h"
 
 #include "chtr-connection.h"
 
@@ -31,17 +33,17 @@ ChTR_Graph::ChTR_Graph(ChTR_Node* root_node)
  });
 }
 
-void ChTR_Graph::report(QTextStream& qts)
+void ChTR_Graph::report(QTextStream& qts, QString frame_restriction)
 {
  if(caon_ptr<ChTR_Source_File> root = root_node_->source_file())
  {
   qts << "Root node: " << root->document_path();
  }
- report_from_node(qts, *root_node_);
+ report_from_node(qts, *root_node_, frame_restriction);
 }
 
 void ChTR_Graph::report_from_node(QTextStream& qts,
- const ChTR_Node& node, u1 indent)
+ const ChTR_Node& node, QString frame_restriction, u1 indent)
 {
  QString padding(indent, ' ');
  qts << "\n" << padding;
@@ -81,7 +83,20 @@ void ChTR_Graph::report_from_node(QTextStream& qts,
 
  else if(caon_ptr<ChTR_Opaque_Token> cot = node.opaque_token())
  {
+  CAON_PTR_DEBUG(ChTR_Opaque_Token ,cot)
   qts << QString("<opaque token: %1>").arg(cot->symbol());
+ }
+
+ else if(caon_ptr<ChTR_Core_Macro> ccm = node.core_macro())
+ {
+  CAON_PTR_DEBUG(ChTR_Core_Macro ,ccm)
+  qts << QString("<core macro: %1>").arg(ccm->name());
+ }
+
+ else if(caon_ptr<ChTR_Numeric_Literal> cnl = node.numeric_literal())
+ {
+  CAON_PTR_DEBUG(ChTR_Numeric_Literal ,cnl)
+  qts << QString("[numeric literal= %1]").arg(cnl->literal());
  }
 
  else
@@ -89,14 +104,19 @@ void ChTR_Graph::report_from_node(QTextStream& qts,
   qts << "<<node/" << node.label() << ">>";
  }
   //Run_Data_Entry
- node.each_connection([this, node, &qts, &padding, &indent]
+ node.each_connection([this, node, &qts, &padding, &indent, &frame_restriction]
   (const ChTR_Frame& frame, u2 count_in_frame, u2 rest_in_frame,
      const ChTR_Connectors& connector, const ChTR_Node& target, const ChTR_Connection* connection)
  {
+  bool hide_frames = frame_restriction.isEmpty();
+  bool show_frames = !hide_frames;
+
+  QString space = show_frames? " " : "";
+
   // //   For debugging...
   QString label = node.label();
 
-  if(count_in_frame == 0)
+  if(count_in_frame == 0 && show_frames)
   {
    qts << "\n\n" << padding << "__________ \n" << padding << "| Frame: " << frame.label()
     << "\n" << padding << "|"; // << padding << "|\n";
@@ -123,25 +143,33 @@ void ChTR_Graph::report_from_node(QTextStream& qts,
 //   return;
 //  }
 
-  qts << "\n\n" << padding << "  For connection: " << connector.label() << "\n"
-      << padding << "  ==== ";
+  qts << "\n\n" << padding << space << " For connection: " << connector.label() << "\n"
+      << padding << space <<  " ==== ";
 
   if(connection)
   {
-   qts << "\n\n" << padding << "  Annotated: \n";
+   qts << "\n\n" << padding << space << " Annotated: \n";
 
    if(caon_ptr<ChTR_Node> cn = connection->chtr_node())
    {
     qts << " [[" << cn->label() << "]]\n";
    }
 
-   qts << padding << "  ---- ";
+   qts << padding << space << " ---- ";
   }
 
-  report_from_node(qts, target, indent + 2);
-  qts << "\n" << padding << "  ....";
+  if(show_frames)
+  {
+   report_from_node(qts, target, frame_restriction, indent + 2);
+   qts << "\n" << padding << "  ....";
+  }
+  else
+  {
+   report_from_node(qts, target, frame_restriction, indent + 1);
+   qts << "\n" << padding << " ....";
+  }
 
-  if(rest_in_frame == 0)
+  if(rest_in_frame == 0 && show_frames)
     qts << "\n" << padding << "|\n" << padding << "| ++++ ";
 
 

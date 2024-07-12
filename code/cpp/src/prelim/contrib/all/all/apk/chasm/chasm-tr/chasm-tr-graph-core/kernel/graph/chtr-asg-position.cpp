@@ -27,22 +27,61 @@ ChTR_ASG_Position::ChTR_ASG_Position(ChTR_Graph_Build* graph_build)
 }
 
 
-void ChTR_ASG_Position::insert_prep_casement_entry_node(caon_ptr<ChTR_Node> macro_node,
-  caon_ptr<ChTR_Node> symbol_node)
+void ChTR_ASG_Position::hold_null_anchor_macro_node(caon_ptr<ChTR_Node> entry_node,
+  caon_ptr<ChTR_Node> macro_node)
 {
+ CAON_PTR_DEBUG(ChTR_Node ,entry_node)
+ CAON_PTR_DEBUG(ChTR_Node ,macro_node)
+
  switch (position_state_)
  {
  case Position_States::Root:
-  {
-   root_node_ << Pf/Qy.Prep_Casement_Entry >> macro_node;
-  }
+  root_node_ << Pf/Qy.Prep_Casement_Entry >> entry_node;
   break;
+
+ case Position_States::Prep_Casement_Sequence:
+  current_prep_chief_ << Pf/Qy.Prep_Casement_Cross >> entry_node;
+  break;
+
  default:
   break;
  }
 
+ entry_node << Pf/Qy.Prep_Casement_Entry >> macro_node;
+
+ current_prep_chief_ = entry_node;
+ current_prep_node_ = macro_node;
+ position_state_ = Position_States::Held_Null_Anchor;
+}
+
+
+void ChTR_ASG_Position::insert_prep_casement_entry_node(caon_ptr<ChTR_Node> entry_node,
+  caon_ptr<ChTR_Node> macro_node, caon_ptr<ChTR_Node> symbol_node)
+{
+ CAON_PTR_DEBUG(ChTR_Node ,entry_node)
+ CAON_PTR_DEBUG(ChTR_Node ,macro_node)
+ CAON_PTR_DEBUG(ChTR_Node ,symbol_node)
+
+ switch (position_state_)
+ {
+ case Position_States::Root:
+  root_node_ << Pf/Qy.Prep_Casement_Entry >> entry_node;
+  break;
+
+ case Position_States::Prep_Casement_Sequence:
+  current_prep_chief_ << Pf/Qy.Prep_Casement_Cross >> entry_node;
+  break;
+
+ default:
+  break;
+ }
+
+ entry_node << Pf/Qy.Prep_Casement_Entry >> macro_node;
+
  macro_node << Pf/Qy.Prep_Casement_Sequence >> symbol_node;
  current_prep_node_ = symbol_node;
+
+ current_prep_chief_ = entry_node;
 
  position_state_ = Position_States::Prep_Casement_Sequence;
 
@@ -65,14 +104,21 @@ void ChTR_ASG_Position::insert_numeric_literal(caon_ptr<ChTR_Node> literal_node)
 
 void ChTR_ASG_Position::insert_opaque_token(caon_ptr<ChTR_Node> token_node)
 {
+ CAON_PTR_DEBUG(ChTR_Node ,token_node)
+ CAON_PTR_DEBUG(ChTR_Node ,current_prep_node_)
+
  switch (position_state_)
  {
+ case Position_States::Held_Null_Anchor:
+  current_prep_node_ << Pf/Qy.Prep_Casement_Entry >> token_node;
+  break;
+
  case Position_States::Prep_Casement_Sequence:
-  {
-   current_prep_node_ << Pf/Qy.Prep_Casement_Sequence >> token_node;
-  }
+  current_prep_node_ << Pf/Qy.Prep_Casement_Sequence >> token_node;
   break;
  }
+
+ position_state_ = Position_States::Prep_Casement_Sequence;
 
 }
 

@@ -31,6 +31,10 @@ DEFINES += USE_KANS
 DEFINES += USE_AQNS
 
 
+DEFINES += CAON_DEBUG
+DEFINES += RELAE_LABEL_NODES
+
+
 HEADERS += \
   $$SRC_DIR/kernel/dominion/types.h \
   $$SRC_DIR/kernel/dominion/connectors.h \
@@ -38,6 +42,7 @@ HEADERS += \
   $$SRC_DIR/code/chtr-scoped-carrier.h \
   $$SRC_DIR/code/chtr-opaque-token.h \
   $$SRC_DIR/code/chtr-numeric-literal.h \
+  $$SRC_DIR/code/chtr-core-macro.h \
 
 
 
@@ -46,6 +51,7 @@ SOURCES += \
   $$SRC_DIR/code/chtr-scoped-carrier.cpp \
   $$SRC_DIR/code/chtr-opaque-token.cpp \
   $$SRC_DIR/code/chtr-numeric-literal.cpp \
+  $$SRC_DIR/code/chtr-core-macro.cpp \
 
 
 

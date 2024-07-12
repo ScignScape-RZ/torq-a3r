@@ -57,9 +57,9 @@ public:
 
  hypernode_type* new_hypernode_by_type_name(QString ty);
 
- void report(QTextStream& qts);
+ void report(QTextStream& qts, QString frame_restriction = {});
  void report_from_node(QTextStream& qts,
-  const ChTR_Node& node, u1 indent = 0);
+  const ChTR_Node& node, QString frame_restriction, u1 indent = 0);
 
 };
 

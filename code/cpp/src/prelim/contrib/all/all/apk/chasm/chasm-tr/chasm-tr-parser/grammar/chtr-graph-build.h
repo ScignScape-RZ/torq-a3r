@@ -138,8 +138,10 @@ public:
  void read_carrier_string(QString carrier_string);
 
 
- caon_ptr<ChTR_Node> new_prep_casement_entry_node(QString macro_name,
+ caon_ptr<ChTR_Node> new_prep_casement_entry_node(QString text_hint,
    caon_ptr<ChTR_Prep_Casement_Entry> parent_entry = nullptr);
+
+ caon_ptr<ChTR_Node> new_core_macro_node(QString macro_name);
 
  caon_ptr<ChTR_Node> new_scoped_carrier_node(QString symbol_name);
 
@@ -148,6 +150,7 @@ public:
  caon_ptr<ChTR_Node> make_new_node(caon_ptr<ChTR_Scoped_Carrier> csc);
  caon_ptr<ChTR_Node> make_new_node(caon_ptr<ChTR_Opaque_Token> token);
  caon_ptr<ChTR_Node> make_new_node(caon_ptr<ChTR_Numeric_Literal> literal);
+ caon_ptr<ChTR_Node> make_new_node(caon_ptr<ChTR_Core_Macro> ccm);
 
 
 };
