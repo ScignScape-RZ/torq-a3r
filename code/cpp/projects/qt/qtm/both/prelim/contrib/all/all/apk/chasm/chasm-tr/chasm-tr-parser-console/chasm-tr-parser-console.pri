@@ -25,6 +25,7 @@ INCLUDEPATH += $$SRC_DIR $$SRC_GROUP_DIR $$SRC_ROOT_DIR
 
 INCLUDEPATH += $$SRC_GROUP_DIR/chasm-tr-graph-core
 
+INCLUDEPATH += $$SRC_PROSET_DIR/chtr-implementation
 
 
 INCLUDEPATH += $$RELAE_GRAPH_SRC_GROUP_DIR
@@ -58,6 +59,11 @@ SOURCES += \
 
 LIBS += -L$$TARGETSDIR -lchasm-tr  -lchasm-tr-parser \
    -lchasm-tr-graph-core
+
+
+LIBS += -L$$TARGETSDIR \
+   -lchtr-core-macro-runner  -lchtr-asg-visitor
+
 
 
 LIBS += -L$$TARGETSDIR   -lchasm-lib  -lchasm-chgr  \

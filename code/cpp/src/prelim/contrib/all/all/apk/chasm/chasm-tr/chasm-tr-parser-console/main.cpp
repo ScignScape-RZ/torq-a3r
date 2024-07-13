@@ -186,6 +186,10 @@ int main2(int argc, char *argv[])
  //     r8 = 6  QVariant = 7
  //     n8 = 8  ? = 9
 
+//chtr-implementation
+#include "chtr-asg-visitor/chtr-asg-visitor.h"
+#include "chtr-asg-visitor/prerun/chtr-prep-prerun-anticipate.h"
+
 int main(int argc, char *argv[])
 {
 
@@ -194,6 +198,13 @@ int main(int argc, char *argv[])
  chd.parse();
 
  chd.report_graph("..txt");
+
+ ChTR_ASG_Visitor visitor(*chd.graph());
+ ChTR_Prep_Prerun_Anticipate anticipate(visitor, chd.local_path() + ".cprs");
+   
+ anticipate.scan(nullptr);
+ anticipate.run_core_pairs_generations();
+
 
 
 
