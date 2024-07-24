@@ -1,0 +1,295 @@
+https://en.wikipedia.org/wiki/Determiner_phrase
+
+https://rucore.libraries.rutgers.edu/rutgers-lib/30277/PDF/1/play/
+EVIDENTIALITY AND THE STRUCTURE OF SPEECH ACTS
+
+https://www.sas.rochester.edu/lin/sgrimm/publications/Grimm_Morphology_Case.pdf
+Semantics of Case
+Scott Grimm
+
+https://en.wikipedia.org/wiki/Thematic_relation
+
+https://books.google.com/books?id=_FfPDwAAQBAJ&pg=PA1&source=kp_read_button&hl=en&newbks=1&newbks_redir=0#v=onepage&q&f=false
+
+
+https://www.ling.upenn.edu/~beatrice/syntax-textbook-2nd-ed/SKD_7_Case_theory.pdf
+
+he got ready to leave
+he got up to leave
+he stood up to leave
+he stood, ready to leave
+
+ready to leave, he stood
+*ready to leave, he get
+*up to leave, he get
+
+he was getting angry at the media
+he was getting increasingly angry at the media
+he was increasingly getting angry at the media
+angry at the media, he was getting 
+
+
+
+look out  vs.  watch out  vs.  gaze out
+CS theory  
+lexicalization is a matter of degree
+
+if the structural difference between two parse-graphs depends on whether or not we read a phrase as de facto a compound verb, and moreover if lexicalization is not all-or-nothing but shades between a fully conventionalized lexeme and an entirely novel construction -- with many cases lying in-between -- then inevitably parse-graph divergence also has to be seen as a matter of degree.  Two graphs can coexist as plausible breakdowns in the same way that (and as a consequence of how) a verb phrase must be assessed as partly a quasi-word and partly a not-fully-conventionalized expression.
+
+
+John waved out 
+
+How did you know we were here?
+I saw John staring.  Out the window.
+ 
+I saw John staring out the window.
+
+
+Where did you climb?
+I climbed up to the roof.
+
+How did you get to the roof?
+I climbed up (to the roof).
+
+How were you able to see over those trees?
+I climbed.  Up to the roof.
+
+
+
+How did you get here?
+I climbed up (a ladder).
+
+Where did you climb?
+(I climbed) up a ladder.
+
+How were you able to see everything?
+I climbed.  Up a ladder.
+
+
+If you gaze out the window, it could be that "out the window" is where you're gazing, but it could also be that you're "gazing out" -- by analogy to "looking through (a telescope/camera/pinhole)".  You could "climb out the window" as in climbing out *through" whe window, and also as in you're climbing, and it so happends that "out the window" is where you've climbed.
+
+
+
+
+John assumes Biden will step down.
+The flower assumes it will rain.
+
+
+People at the top get complacent.  A mountain assumes the valley will be there foreoever.
+People think they're indispensable.  A bridge assumes the river will be there foreoever.
+
+
+We're going to visit grandma.
+We're going to visit the leadership group.
+
+
+The White House has become increasingly belligerent toward China.
+Wall Street reacted favorably to the midterm elections.
+Brussels and London are negotiating again.
+
+type coercion.
+
+gradations in granularity between grammatical categories and semantic types
+
+A wooden bat breaks more easily than a metal one.
+*A red bat breaks more easily than a metal one.
+
+
+
+A French-suited deck is easier to shuffle than tarot cards.
+?A French-suited deck is easier to shuffle than laminated cards.
+
+a no-trump bid/contract/lead/strategy/defense
+
+?a no-trump hour  (plausible if many or all contracts won during some hour playing bridge were no-trump)
+
+??a no-trump moon  (plausible perhaps, allowing for figurative interpretations, from someone who has a tendency to be dealth hands suited to no-trump bids when the moon has a certain appearance; perhaps a joke alluding to superstitutions)
+
+
+a baseball fan/player/coach/team/journalist/stadium/bat/glove/addicionado
+
+a baseball city (implies that baseball is a popular or the most popular sport)
+a baseball century (implies discussing events from a 100-year periond related to baseball)
+?a baseball restaurant (plausible for a restaurant with a distinctive baseball theme -- framed meeorabilia and so forth)
+??a baseball presidency (plausible if suggesting that some president accomplished nothing other than watching baseball)
+
+
+
+ 
+Two themes: how to charactize the inacceptability of phrases which do not appear to repsect contextual framing; and how to model the coercion effects wherein contextual framing imposes restrictions on interpretation that would not exist in general.  For instance, "visited grandma" is narrower than just "spent time with" or "chatted with" (or even "visited with") and also narower than similar designations of place:
+
+We visited with grandma when she came here last week 
+* we visited grandma when she came here last week
+We drove by grandma on the way to school.  Later we learned she wasn't home.
+* we visited grandma but she wasn't home.
+
+"Visit" appears to coerce "Grandma" to a place (e.g., her home), but with the stipulation or narrowing that she must actually be there; thus "grandma" is not just a metonymic substitute for "grandma's home" the way it could be with "drove by", or with "we drove by the Mets on the way to the airport" (referring to the baseball stadium where they play) or "we walked past the dean to get to your office" (referring to the dean's office; contrast "we sneaked past the dean to get to your office"). "Visit" appears to impose a more granular and information-bearing contextual frame than "drive by", and likeise "sneak" versus "walk".
+
+Such framing effects can operate on different levesl: among the coarsest grammatical categories, so that the only explicit interpretive requirement is that words are treated as nouns, verbs, adjectives, and so on relative to the proper parse-graph ("baseball" becomes an adjective in "baseball bat", etc.); at an intermediate "ontological" level differentating places from objects, inanimate objects from sentient ones, etc. (you can only "sneak past" something capable of observing and of forming opinions); and at a fine-grained lexical level (see "no-trump" vis-a-vis card games).  To what extent should we consider the cognitive mechanisms behind contextual framing as similar across all three levels, versus stipulating that each level should be theorized separately?
+
+This question has two dimensions: whether it is most appropriate or fortuitous to *model* different levels of contextual framing as similar or distinct; and whether the actual cognitive/neurological processes carried out in the mind are similar or distinct.  These dimensions are somewhat separate, because in the absense of neurocognitive evidence it is a matter of speculation to what degree framing obeys similar intellectual mechanisms at different levels.  As such, preferring to unify the levels under a single theoretical umbrella depends more on which models feel like they have the most explanatory merit or structural propriety for further research/analysis.  [apart from neurological data, computational evidence that NLP engines which employ similar or, conversely, divergent algorithms for computing within contextual frames at different levels might also give empirical feedback.  I am not aware however of analyses which have compared NLP technology along such lines.]
+
+In general, "type-level" beta-reduction seems more compatible with assumptions that contextual framing is properly studied across multiple scales of granularity.  This is because beta-reduction as "type checking" works essentially the same irregardless of the paucity or numerosity of types over which nodes can quantify.  Moreover, there seems to be a gradation between "macro-types" (grammatical categories) and "meso-types" (ontological regions, in effect): consider singular/plural, or mass/count.  To what extent are mass and count nouns distinct grammatical categories, or are their differences more a semantic matter driven by situational differences (perceiving/experiencing/cognitizing some extent as mass or count representing an pragmatic stance toward those surroundings, motivated by extra-linguistic considerations).  Leveraing beta-reduction style models to span different levels of contextual granularity (of course the notion and specific details of "beta-reduction" don't need to be explicitly stated as such) helps acknolwedge that it is hard to draw a crisp line between the kind of contextual framing imposed by grammatical and by ontological categories.
+
+On the other hand, I do not seek to foreclose analyses which highlight differences between context-framing levels.  The rationale for modeling context (in the relevant sense) via beta-reduction is that such an analogy implies a reasonably formal/deterministic process which concludes that only certain interpretations of a phrase's constituents aggregate to a coherent whole.  "Visit the leadership group" only makes sense if we can read the group as a *place* (e.g., where they habitually gather -- ruling out, say, soliciting opinions for email or holding a conference call), with place-ness being part (though only part) of the conceptual matrix through which we figure the referent and signified for, e.g., "leadership group" as a phrase.  Moreover, context-framing constraints propagate from nested phrases outward: 
+
+I visited the leadership group and took a cab back. [no need to specify back from where]
+?I consulted with the leadership group and took a cab back. [the second half of the sentence supplies new information not presumptively included in the first part]
+*I studied the leadership group and took a cab back. 
+ 
+?I visited the newspaper yesterday and bought a copy today (plausible for someone who might have some special interest in learning about some newspaper, e.g. a prospective employee).
+
+
+Such propagation effects imply that types/categories need to "fold up", kind of by analogy to a cardboard box that can lie flat only when the flaps are collapsed in the right directions and order.  Novice box-folders tend to backtrack before getting the sequence right.  By analogy, perhaps our minds scan through diverse "folding patterns" measuring whether phrases collapse to a lucid proposition given specific lexical and part-of-speech interpretations of individual words or world-like phrases.  Computer programming languages work the same way when it comes to resolving overloaded procedures in a generic-programming context (see section 1).
+
+This all might seem like a lot of theoretical content to make the fairly obvious point that phrase-heirarchies cannot be assembled (or disassembled) in an incoherent manner.  Semantic and situational (as well as syntactic) reasonableness eliminate many hypothetical parse-trees, hopefully leaving only one still standing.  Notice, though, that insofar as contextual constraints on phrase-formation operate at differerent granularity levels, the "elimination" is driven by multiple levels concurrently (or at least each contributing their own qualifications); we therefore need a framework to study how the different levels interoperate.  In other words, assessing candidate parse-interpretations is a dynamic process steered by different granularity levels (perhaps in sequence, perhaps interleaved, perhaps cooperating); the propagatory facets of beta-reduction perhaps make this a more intuitive model for such dynamic processing than "static" constituency diagrams, such as those of X-bar theory.  
+
+Furthermore, elucidating a sentence's parse-graph is only one step in the comprehension process, and addressees still need to complete lexical details and resolve references/anaphora.  If we (perhaps as a simplifying abstraction) view parsing and overall comprehension as two successive stages, the amount of information yielded by the first phase can vary from case to case.  For instance, in "visit the newspaper" we have data to the effect that "the newspaper" must be read as a place-designation, from which it naturally follows that this phrase designates a building/location the paper occupies.
+
+If we picture parsing as "beta-reduction", the idea would be to treat the graph (one which is tree-like, but may contain lateral edges as well such as pronouns-to-antecedents) as comprised of nodes "labeled" with categorical or type attributions that bear at least some information.  Only certain such "labeling" would survive the eliminative process whereby mismatched part-of-speech (or finer) attributions fail to fold up to a coherent proposition-like whole.  So the labeling serves that eliminative purpose.  But simultaneously, the labeling produces information that remains in effect during subsequent comprehension: e.g., data such as "the newspaper" needing to reference a place (and not, say, an object).  The more granular the available set of node "labels", the more information leaks out from the first phase onto the second.
+
+In short, the processes which converge on our realization that a certain parse-graph is correct for a given sentence also result in criteria attached to individual words or phrases that then serve as a starting point for deciding what the sentence actually *means*.  More to the point, the *quantity* of this data would seem to be larger or smaller from sentence to another.  In some cases, we have lexical and/or morphological evidence of singular/plural or mass/count.  In other sentence, "deep case" or semantic-role considerations add extra details that are prerequisite for parse-graphs being admissible, thereby yielding a more granular array of data left over from the parsing "stage".  A useful model of these phenomena should thereby present a structural framework which adapts to diffrent amounts of information being provided based on different levels of specificity with respect to what content becomes associated with graph-node.  This works with a beta-reduction account because the reduction rules themselves adapt to the cardinality of sets over which node-labels quantify.  For some sentences only rudimentary part-of-speech constraints have any effect; for others, there is explicit contextual framing at an intermediate ("meso-type" or thematic-relation) level (e.g., how "assume" implies a sentient subject and a proposition-like object).  Arguably, in still further cases there are lexical considerations which impose even tighter contexts (and thus more detailed after-parse information), since some words force a specific topic on their neighbors (see "no-trump defense").       
+
+Beta-reduction thereby becomes a useful metaphor and structural precis; it doesn't need to be a rigorous formal simulation of linguistic processing (as compared to the case with implementing compilers for computer languages, which have a mathematical substrate: in the case of human language we do not need to picture the mind itself as some sort of lambda-calculus machine).  However, the "type-based" account of beta reduction captures only partial desiderata toward understanding sentences as a whole; in this sense the theories differs from ones I outlined earlier in the section, based on (e.g.) Category Theory or Predicate Logic, wherein the entirety of meaning (or at least of semantics, allowing for pragmatic resolving of deictic references and the like) is computed via a certain combinatorial process (for which beta-reduction would be a reasonable synopsis).  As a semantic theory the account presented thus far obviously then goes less far than those others.  I will now try to close some of that gap.
+
+--
+
+Beta reduction models how parsing constraints narrow the space of plausible parse-graphs to a few (potentially superimposed) which, assuming an unambiguous sentence, either yield similar interpretations for the overall sentence (recall the "look out" and "climb up" examples) or are subject to additional selective possibilities so as to converge on a single reading.  I have not addressed, however, the path which our minds take toward understanding a sentence in full detail, which would in general exhibit a greater degree of comprehension than parsing alone.  I might have a reasonable chance at guessing the syntactic properties of a sentence containing unfamilair words -- perhaps aided by morphological observations, such as gerunds on verbs or plurals on nounds -- but remain puzzled as to what the whole thing actually means.  There is obviously *some* gap between syntax and semantics/pragmatics.
+
+To explore it, I will start with the distinction between "theta roles" and "thematic relations" which I touched on earlier.  We assume that elements of a sentence can be classified in terms of the details they contribute to a verb -- i.e., through the verb we profile some event, state, or process; and surrounding words add information so as to characterize that events/states/processes more fully, reletive to how the speaker perceives them.  The "TAME" criteria cover various facets of verb detail: tense and aspect concern termporal matters, whereas evidentials report on how the speaker came to observe or believe the event/state/process signified.  These represent one layer of specifity pertientn to the verb's usage in context.
+
+Subject, object, and direct object are a (probably) different layer or "zone".  They appear to be intrinsic to the verb, in that -- modulo competing word-senses, e.g. "climb a mountain" versus intransitive "climb" qua activity -- verbs' meanings carry built-in expectations of subjects (even if "null" subjects like "it's raining", or commands' addressees) and, if applicable, direct then indirect objects.  To *give*, say, connotes a conceptual matrix which demands the fulfillment of subject (the giver), direct object (the thing given), and indirect object (recipient).  Absense of any of these forces us to read the constituents as obvious in context and therefore not explicitly stated (in "give to charity" it is understood that one is giving money).  To "introduce" implies a ditransitive structure separating an introducer, someone/thing introduced, and some sort of audience; absense of some part forces us either to read it contextually or to re-evaluate the lexical details, perhaps concluding that "introduced" is being employed in just the transitive sense (as in "she introduced the speaker").  Even here, though, one can debate whether the introduction's "audience" is unstated but implicit ("introduce a speaker" implies that there is a group of people whom the speaker will soon address) or whether there are two basically distinct word-senses for "introduce", one of which has an indirect object and one which does not.  In some cases the different-word-sense analysis is more straightforward: consider "I drew him" versus "I drew him a picture" (it is harder to read the "single-" transitive "draw" as actually a ditransitive verb with an indirect object understood by default when not stated, as compared to, say, "introduce").
+
+These subject/object considerations can be differentiated from TAME in that the former expectations are generically associated with the verb, in an abstract way that can be specified in a dictionary, whereas TAME depends on dialogic context.  It is an *instance* or *token* of a verb that has temporal bounding/specificity (or, alternatively, open-endedness) and which permits different evidential markers depending on the speaker's epistemic position.  By contrast, a verb's property of requiring, say, a direct object is not situation-specific (at least insofar as we are inclined to classify the optionality of a direct obejct in some cases as the verb being partially polysemous, rather than as a single meaning which can get grounded sometimes with a direct object and sometimes without).  The contrast between TAME and "theta roles" may not be entirely transparent, but it seems reasonable to argue that TAME data are *only* operative when we concern a specific grounded verb-instance, whereas "theta roles" are abstract slots built in to the meaning of a verb.
+
+This language implicitly assumes that we can distinguish theta roles (where are available for morphosyntactic/inflectional marking) from more general "thematic relations".  In English, of course, the indirect object can be introduced via a phrase ("I gave the book to him") but also positionally, implying the presence of an (unmarked) case ("I gave him the book").  The second form is a short-cut which suggests (and is possible because) a certain indirect-object relation is canonically associated with the corresponding verbs.  Other such relations are less conventional and therefore do not work except when phrasally articulated:
+
+I opened the bottle with a corkscrew.
+*I opened corkscrew the bottle.
+?I corkscrewed open the bottle.
+
+
+I signed the book for him.
+?I signed him the book.
+
+And "I read him the book" means *for* him, not *to* him.       
+
+
+In theories that differentiate theta roles from thematic relations (and this is not ubiquitous), the contrast is apparently driven by whether the relevant semantic roles are *necessary* for the verb to yield a complete idea.  This "I sent him the book" could be followed by further information (yesterday; by post; for you; from Manhattan) but the sentence is complete (enough to be coherent) by itself.  So we might distinghuish content which is necessary vis-a-vis the verb *instance* (TAME) from that necessary by lights of the verb's overall meaning (the cases it *must* support) and also from that which is somehow "optional".  I suggest this is analogous to a system of "zones" that organize sentence material in terms of their mandate's extent when fully grounding the relevant verb.  TAME details might be called the "innermost" zone because these are most likely to be marked on the verb itself (e.g., through conjugation patterns) whereas theta roles, if they are marked at all (as opposed to introduced via residual phrases) would depending on declensions on nouns, not the actual verbs.  "Optional" extra descriptions, such as where something happened, or how (etc.) act as a kind of "outermost" zone.
+
+Such a tripartite breakdown could be a good start, but consider again I question I mentioned earlier, namely the status of place nouns as the destination in verb of motion, such as "I climbed up to the roof".  Should we read "to the roof" as in a sense a direct object -- an answer to the question "where did you climb?" -- or is "I climbed up" a complete thought in and of itself?  In short, does "to the roof" here belong to the outermost zome (optional) or to an intermediary zone?
+
+Arguably, this kind of question is relative to the foci of the person observing the verb's action (or inaction).  Suppose 
+
+She turned onto Atlantic Avenue.
+
+Presumably the speaker is reporting the action of a driver (or maybe a bike rider, perhaps a pedestrian) who is now following Atlantic Avenue (but was not previously).  The interest seems to be in where that person is going now; by extention, then, on the practical ramification of the fact of making that turn (she's going in a different direction than if she'd stayed straight).  The specific seconds where tge actual turning occurred are less centralized; our mental attention is zoomed outward somewhat.  These attitudinal details appear to reinforce the reading that "turn onto" is functioning as a compound verb, and "Atlantic Avenue" as a direct object (insofar as "turn onto" evinces a conceptual matrix that requires specifying a new direction and location than before).
+
+Conversely, suppose we read (*) as if the verb itself were just "turn", and then "onto Atlantic Avenue" becomes supplemented but inessential detailing.  This gloss is only reasonable if the speaker's attention were zoomed in more narrowly onto the act of turning.  Compare a statement about some bike rider:
+
+He fell onto a railing, bruising his shoulder.
+He fell, bruising his shoulder.
+
+In the second case "fall" is the main event, and the speaker apparently wants to explain how that mishap affected the rider in hurting his shoulder.  Whereas [] pans attention out slightly to emphasize that the relevant event was not just a falling, but *falling onto* something (the fact that it was a presumably-hard railing implied to be partly why his shoulder got injured).  Here "the railing" could be read as a direct object for "fall onto" or, alternatively, "onto the railing" as the locative container for an intransitive "fall".
+
+
+      
+
+ 
+
+
+
+
+ 
+
+
+
+
+
+he gestured. toward the door.
+he gestured toward the door.
+
+1 - "toward the foor" modifies the proposition "he gestured"
+2 - "the door" is the direct object of compound verb "gesture toward"
+3 - "toward the foor" is a locative clause modifying the verb "gesture"
+
+1 - ((toward (the door))(gestured he))
+2 - ((gestured toward) he (the door))
+3 - (((toward (the door)) gestured) he)
+
+
+
+
+
+
+he gestured toward the window.
+he pointed toward the window.
+he pointed out the window.
+he pointed.  out the window.
+How did he let us know about the new car?  He just pointed.  Out the window.
+
+
+
+Language and Computation: The cognitive dimensions of a mathematical metaphor
+
+
+
+
+He went off toward the store
+
+went off he toward the store
+
+toward the store went off he 
+
+went he off toward the store
+
+off toward the store went he 
+
+
+
+library =
+I'm heading uot {to the store}
+
+
+
+
+I walked by that newspaper on the way to work
+That newspaper has published many op-eds about Biden's campaign
+That newspaper is on the table on top of your keys
+
+
+I walked by that newspaper, down the stairs, and onto the train
+
+
+I bought the newspaper for $5 (transitive or ditransitive)
+I bought the newspaper this morning
+
+I bought the newspaper for $5  vs.  Some corporation bought the newspaper for $50 million
+
+mesotypes vs deep case
+
+"democrats" can be anyone registered as a democratic; voters who usually select that party's candidates rather than alternatives; those who generally endorse democratic platforms and policies; political candidates themselves running as the party's official nominee and appearing in that row on ballots; elected officials who are members of the party; senators (like Bernie Sanders) who "caucus with" democratics for legistlative and procedural decisions and negotiations, etc.
+
+
+lexical, morphosyntactic, and intonational choices that nudge addressees' reception pragmatics in one direction or another
+    
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
