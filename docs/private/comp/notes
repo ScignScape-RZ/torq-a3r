@@ -193,7 +193,120 @@ He fell, bruising his shoulder.
 In the second case "fall" is the main event, and the speaker apparently wants to explain how that mishap affected the rider in hurting his shoulder.  Whereas [] pans attention out slightly to emphasize that the relevant event was not just a falling, but *falling onto* something (the fact that it was a presumably-hard railing implied to be partly why his shoulder got injured).  Here "the railing" could be read as a direct object for "fall onto" or, alternatively, "onto the railing" as the locative container for an intransitive "fall".
 
 
+Examples like these imply that questions over whether certain details are "essential" to a verb depend on the speakers' point of view.  That's not necessarily a bad outcome, but it does complicate the idea that "intermediate zone" semantic roles are intrinsic to the verb's (in its relevant word-sense) "dictionary meaning", in contrast to tense/aspect/mode/evidentiality which come into play with the specificity of the verb's *grounding* (it is only when instantiated that a verb suggests some temporal extent, say).  
+
+Along similar lines, observe also that inflectional or positional marking reinforces conceptual essentiality -- in English, details have to be supplied through (often preposition-led) phrases exce[t for canonical relations such as "give" and its indirect object ("I gave him the book").  But conceptual nonoptionality by itself does not guarantee that compressed non-phrasal constructions are permissable.  For instance, suppose someone says "I brought K'eyush to the store" (so he could select his own treats/because they allow dogs/because the dog-sitter's on vacation or whatever).  Now certainly no English speaker would balk at someone saying just "I brought K'eyush", but we should probably read that as simply implying an unstated location/indirect-object, as in by default "I brought K'eyush *here*".  The verb "bring", that is, probably always has a 3-part conceptual matrix where the "location" part (whatever place the direct object is brought *to*) defaults to the current place where the conversation is happening (similar to examples like "I rbought coffee", or "there's a lot of people", which in turn we take to mean a lot of people *here*).
+
+But despite that conceptual mandate (the location/indirect object must be present) we may not transpose sentences by analogy to "I gave him the book":
+
+*I brought the store K'eyush
+
+... although the compressed form works sometimes:
+
+I brought K'eyush some treats.
+I brought him a book.
+
+These seem admissible perhaps because the recipient is not only a *location* but also a *benefactor*.  If anything, though, the question of on whose behalf something is brought seems less non-eliminable than *where* it was brought.  Someone can certianly say "I brought some treats", implying (as I've argued) they've brough the treats *here*; and that is a complete idea, even though they could well add on "for K'eyush".  
+
+
+[https://gawron.sdsu.edu/syntax/course_core/final_13/theta_grids.pdf]
+
+
+The salient conceptual matrix for "bring" seems to be "*someone* brings *somthing* to *some place"" but, on reflection, perhaps we almost always infer a notion of beneficiary or recipient, even if unstated.  For instance, "I've brought coffee" implies "cofee for us/everyone (to drink)" unless the context compels a reading where they brought the coffee only for themselves (as in "what did you bring for your lunch?").  Indeed, the "recipient" role seems entrenched to the point where that thematic relation, and not location per se, gets slotted in for the condensed construction:
+
+I brought the house some dinner (i.e., dinner *for* the people *in* the house)
+I brought paint for the house.
+*I brought the house paint.
+
+The first example actually shows a type-coercion effect along the lines covered above, where "the house" must be read as a sentient beneficiary and therefore we take it as obliquely referring to people *in* the house.  It is not enough for there to be a reading where the recipient somehow benefits or is improved, as with bringing paint; we cannot transpose (2) to (3) in parrallel to these:
+
+I brought some paint for our young artist.
+I brought our young artist some paint.
+
+The recipient in () and () can presumably *experience* the benefits accured by whatever is brought, whereas "the house" might look better with a fresh coat of paint but would not experience itself as such.
+
+Perhaps, then, "bring" actually has a 4-part conceptual grid with a subject and direct object and then *two* essential further roles, that of a *place* where the latter is brought and that of a *recipient*.  Notice that both of these roles might be ineliminable; examples where notions of place are absent seem to be figurative metaphors rather than down-to-earth instances of a "bring" schema:
+
+You brought us all happiness
+Exercise brought him good health
+Fate brought him good luck
+
+These seem to play off of a metaphor of one's emotions or selfhood as a "place" -- perhaps figured as an interior, spiritual location, or perhaps as a target/destination -- rather than removing place from the schema entirely.  See:
+
+I was in a dark place.
+I'm in a better place now.
+At the end of this road lies sorrow.
+I'm on my way to happiness.
+
+Assuming both *recipient* and *place* are intrinsic parts of the "bring" schema, then it makes sense that the "brought K'eyush treats" pattern would be the one marked by word order rather than a nested clause, because the "place" component could be inferred from context as either the setting for the current dialog and/or wherever the recipient is/was.  There is an obvious default of "here" on the location slot but no similarly obvious default for the recipient slot.
+
+This part of my analysis is certain unoriginal.  I'm not trying to make a big deal about the existence of 4-part thematic-relation grids or tendencies guiding when semantic roles' participants can be introduced via marked positions (generically the indirect object) rather than prepositional phrases (since I'm only considering English I won't address case marking via morphology or inflection, but of course where those are present we could extend beyond positional marking alone).  What I want to emphasize instead is how these sorts of examples complicate intuitions that theta roles are distinguished from "optional" thematic relations in terms of conceptual requirements for a complete idea, and/or in terms of trsanspositions from preopositional clauses to positional marking.  
+
+The notion that some thematic relations are essential and some aren't evidently derives from our intuition that a proper verb-construction can yield a complete idea, even if there also exists plenty of options for refining it.  The "I brought coffee" is (arguably) a coherent proposition, whereas "I brought coffee for everyone" adds more detail but has some content which is not absolutely necessarily, at least if logical satisfiability is the main criteria (we can strip sentences down to the minimalest core having identifiable truth conditions).  Of course, the truth conditions of "I brought coffee for everyone" and "I brought coffee for the boss" are different, but we might say that both sentences have an overlapping core; "I brought coffee" by itself does indeed have determinate truth-conditions (basically, if the speaker can show the dark liquid, they're telling the truth).  The *recipient* and *place* roles may still be in effect, but with defaults: bringing coffee (barring some discourse to the contraey) *here* and *for everyone*.
+
+All that being said, however, looking for "complete ideas" may not be enough once we factor in dialog context.  We could have an exchange like this:
+
+I brought some cold beer.
+You sure it's still cold?
+I brought the beer in an ice-chest cooler.
+
+Given my discussion up to here, the "in an ice-chest cooler" specification would be in some sense 
+"inessential" (because *how* the bringing was enacted -- the means or vehicle -- is not part of the perhaps 4-part schema that is conceptually *necessary* for "bring").  In context, however, the other person(s) already knows the speaker had brought the beer, so it is really only that emendation that introduces new content.  Since the whole point of () is to report that the beers are staying cold, it seems counterintuitive to propose that the key phrase carrying that detail ("in an ice-chest cooler") is relatively less important.  Assuming we read that phrase as a "deep-case" instrumentive, it seems that in this specific context the *how* of "bring" is no less significant than the *where* and *for whom*.
+
+To unpack these issues, we might say that certain thematic relations are "situationally" essential; i.e., that, against the backdrop of the specific situation which the speakers seeks to emphasize, certain participants in the overall verb-detail complex are especially important.  But this is situation-specific, rather than a general phenomenon that could be described dictionary-like.  Such is a distinct notion of essentiality, divergent both from details that are unavoidable for any verb-grounding (i.e., the TAME facets) and from the schematic status of conceptual matrices that are supported by a verb in general.  Semantic roles that are schematically optional might nonetheless be intrinsic to a sentence's purpose in its specific situational context.
+
+Overall, then, the idea of an "intermediate zone" -- vis-a-vis the binding of words and phrases that add information to the profiled verb -- actually seems to span multiple "layers": constituents that are explicitly marked (e.g., as subject, direct object, or indirect object); those that are schematically intrinsic to the verb-sense and therefore must be present (albeit allowing for "defaults") even if there is no way to introduce them except via supplemental (typically prepositional) phrases; and details that are "situationally" intrinsic to the speaker's intent even if they would be deemed optional on more generic schematic/dictionary conceptualizations alone.  These various genrea of semantic roles and/or markings "propagate" from the verb outward (where inflectional variation like "brought" as past tense represent the innermost layer of detailing, at least vis-a-vis how it is grammaticalized, and supplemental phrases that seem to be tacked on to sentences as after-thoughts comprising the outermost layer).
+
+Returning to "beta-reduction modulo topology", then, this demarcation of different role "zones" add structure to the parse-graphs over which beta-reductions fold up.  Phrases belong to various zones, in ways that are not apparent from part-of-speech attributions alone.  For example, in "I heard that you brought treats from home for K'eyush in your purse", the "I heard that" phrase connects to the verb as an evidential, whereas "for K'eyush" is part of "bring"'s definitional conceptual schema, and "in your purse" is effectively instrumentive and supplemental (and "from home" the equivalent of ablative case, maybe?), except for situation-specific contexts such as the cooler for the cold beer, where seemingly-residual "deep cases" (ablative, instrumentive, etc.) are atypically foregrounded.  Although structurally we can still employ the paradigm wherein types and/or grammatical categories (at some level of granularity) beta-reduce up from leaves to roots, we now have further parameters insofar as now specific phrases (subtrees) -- and in some cases individual words/nodes -- can be classified in terms of their semantic role and its "zone" status.
+
+Such "zones" are then one step beyond the a bare-bones type-level beta reduction.  I said just before this section that I wanted to address how we can get from beta-reduction as "type-checking" for parse-graphs to actual sentence-meanings, given that (unlike possible-world semantics, say) I am not assuming that such meaning actually falls out of some computation.  Notions of type-coercion represent information "leaking" from the parse "phase" to a second "comprehension" phase.  "Zone" patterns separating out different types of semantic roles embody a differernt source of structure to help define processing and/or cognitive operations folling the gap between the two phases.
+
+
+---
+
+Given a theory of "verb detail zones", we can begin to consider the thought-processes involved as a person decides precisely how to formulate a sentence while they're speaking (by extension, the ideas which addressees must reverse engineer, or decode in revrswe, to reconstruct speakers' intensions from their projection onto purely linguistic formations).  
+
+It is at the speaker's discretion to decide how much or how little information to supply (within limits).  For any event (etc.) profiled by a verb, it would of course be possible to name reams of situational details: the journalistic *who*, *what*, *where*, *when*, *how*, and much more.  Because, in English, evidentiality is not grammaticized, speakers are not forced to reckon wuth that branch of detailing (by contrast to tense and aspect, say) just to enunciate the correct verb-form; but of course ecidential phrases *may* be introduced, so a speaker can always qualify their comments with "it seems that", "I was told", "I saw that", etc.  Passing from the verb to its immediate neighbors, the subject and (sometimes) object(s) have to be accounted for, even if they aren't actually spoken (the subject of an imperative; the "here" in "I brought coffee").  Words or phrases have to fill in the slots of the verb's relevant conceptual matrix.  Further outward, some added detail might actually be essnetial to the sentence's premise to begin with, why the speaker has reason to say it (as in the "ice-chest cooler" for the beers).  Some extra phrases may thereby seem to be ccc [mandated] by the situation at hand.  And then there's extra content a speaker might include for clarification, or parenthetically, or as a bridge to the next sentence.
+
+These are "rules", then, for filling in verb-related details.  Some details are mandated by morphosyntactic convention; others by verbs' "theta grid"; others by discourse priorities against the relvant situational backdrop -- if we take Grician conversational norms as imposing production-rules equal in force to syntax or semantics, then maxims such as "each sentence should present new information" would compel some detailing that would be seemingly optional, if abstracted from the current scenario around the conversation.  And some details *are* optional.  Guided by such paradigms, a speaker will embellish verbs with a succession of words or phrases that each contribute information vis-a-vis the verb in isolation from another, branching into different "zones" (in the sense I'm employing that term here), different theta-roles or TAME criteria, or different thematic relations.  
+
+Figuratively, rather than visualizing beta-reduction as a state-propagation that collapses toward the root, condensing the a single propositional type (assuming the sentence is well-formed), this "productive" model of the sentence branches out tree-like in the opposite direction, starting from the verb-root and "growing" new branches (which in turn might have their own verbs -- cf. "the dog who you saw yesterday" as a noun-phrase for, say, "our neighbors adopted") so that the productive process repeats iteratively (factorially, even).  
+
+At one level here I'm just evoking language's compositional creativity.  But notice that every production outward from the verb root still has to obey parameters that can be modeled in terms of beta-reduction in the opposite direction (*toward* the verb).  That is, type-level beta-reduction captures criteria that serve as guardrails shaping the production of new phrasal branches supplying new details to the verb.  
+  
+         
+
+
+
+ 
+
+
+
+     
+
+
+
+
+
+Suppose someone says one of  
+
+I brought K'eyush some treats here
+I brought K'eyush some treats over there
+
+
       
+
+
+
+
+ 
+
+     
+
+      
+
+
+   
 
  
 
