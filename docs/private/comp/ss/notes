@@ -1,0 +1,58 @@
+1 archer -- move along a primary diagonal (may not choose a direction wherein the first step would be adjacent to both the classifier and a side-neighbor).  May"turn" once 90-degrees at the center of a square
+2 bishop -- move in any of the 8 directions, the minimum number of steps needed to cross 2 different color gridlines (potentially one single step, if crossing an intersection diagonally)
+3 zebra -- in the typical case, move to a position 3 steps along a straight orthogonal line  from the classifier, 2 steps from the side-neighbor, and 1 step from the other vertical neighbor.  However, if the classifier is closest to the center of the board, move 1 step from the classifier and 3 steps from the other vertical neighbor    
+4 rook -- orthogonal along a line which leads unimpeded to the edge of the board, and optionally turn 90-degrees and continue so long as all intermediate slots, and the end step, are unimpeded to the same edge of the board as the initial direction.  "Unimpeded" means that all intervening slots are unoccupied excluding potential pieces on the outer 3 rings
+5 queue guard - move along a primary diagonal until crossing one center line (vertical or horizontal).  May stop on the slot immediately after that line or continue in the same direction potentially crossing the other center line (vertical after horizontal or vice-versa).  If a second center line is crossed, the piece must stop on the first slot thereafter.  Alternatively, move orthogonally toward a center line (either h or v), with the option of turning 90-degree and then moving toward the other center line; when moving orthogonally the piece may not cross either center line.
+6 kite - move to any slot one step removed from its current cluster -- i.e. a slot which is not adjacent to any piece in the cluster, but is adjacent to a slot which in turn is adjacent to at least one piece in the cluster.  If after that move the kite is now adjacent to a different cluster, the kite can be relocated to any other slot adjacent to that cluster.
+7 charger -- take 1-2 steps diagonally or 2-3 steps orthogonally in a straight line, crossing 1 or 2 gridlines; then take either one or 2 additional steps in any non-backtracking combination of directions; the supplemental steps should be equal in count to the number of gridlines crossed initially.  May jump over a neighboring (same-side) stone (but not another kind of piece), including the classifier, on the first step of the initial move.
+8 dragon - wind around the classifier
+9 triple guard - relocates to a slot adjacent to any piece, from either player (excluding neutral stones, and any diamond's arrow accompaniment), adjacent to its initial position.  If this is the full move, the triple-guard must end two steps from its initial position.  Alternatively, if the triple-guard relocates to a slot adjacent to a capturable opponent's piece, the triple-guard may take one step in a direction directly away from that piece, capturing it by withdrawal (in this case the piece may end any number of steps from its original position up to 3, including zero steps/returning to its starting point)
+
+In general, with 2-part moves players should, as a visual aid, place the classifier arrow on the intermediate slot reached after the first portion of the move 
+
+
+pattern definitions:
+
+
+
+Covering neighbor: a neighbor adjacent to all of a stone's other neighbors
+Isolated neighbor: a neighbor adjacent to none of a stone's other neighbors
+Disjoint neighbors: two neighbors which are not adjacent to each other
+
+
+
+[3 zebra - exactly 1 each down-neighbor, up-neighbor, and side neighbor, where the latter must be adjacent to the up-neighbor but cannot be orthogonally adjacent to both other neighbors. ]
+
+1 archer - at least one side neighbor and one vertical down-neighbor
+
+2 bishop - at least one side neighbor and one diagonal down-neighbor in the direction toward edge of the board (relative to the candidate)  
+
+3 zebra - Either exactly 2 nonadjecent neighbors, one diagonal (which becomes the classifier) and one orthogonal; or 1-2 up-neighbors, 1 down-neighbor (which becomes the classifier), and 1 side-neighbor that is neither covering nor isolated
+
+4 rook - No down-neighbors and exactly one side-neighbor (which becomes the classifier) that must in turn have either another side neighbor or an up-neighbor (or both); any up-neighbors must be adjacent to the classifier. 
+
+5 queue-guard - Exactly one neighbor (which becomes the classifier) which is adjacent to exactly one other stone, such that the classifier and its two neighbors (including the candidate) lie on a straight line
+
+6 kite - A group of three neighbors, one orthogonal and two diagonals, with the former adjacent to the latter 2 (note: the three neighbors will lie on a straight line); optionally, a fourth neighbor which cannot be adjacent to any in that line; or exactly 2 up and 2 down neighbors; or 2 nonadjacent orthogonal neighbors.
+
+7 charger - Exactly three neighbors, all non-covering including a disjoint pair with one orthogonal and one diagonal
+
+For kites and chargers, if there is exactly one orthogonal or, respectively, one diagonal neighbor this becomes the classifier unless the candidate has exactly one diagonal down-neighbor, which then becomes the classifier instead.
+
+
+8 triple-guard - 2-4 neighbors, all non-covering
+
+9 dragon - At least two neighbors, the classifier being a covering neighbor 
+
+For the triple-guard and dragon, the classifier is chosen by giving priority to the neighbor further down and (secondarily) closer to the center of the board  
+
+
+
+
+[9 dragon - At least three neighbors, or exactly two neighbors which do not collectively form a straight line with the candidate]
+
+
+
+
+8 triple-guard -  any formation where the candidate is adjacent to another stone (which becomes the classifier) that is itself adjacent to every stone adjacent to the candidate, of which there must be at least one (thus, a minimum of 3 stones total); either this classifier must be the only diagonal down-neighbor or it must be the only stone adjacent to all of the candidate's neighbors. 
+
