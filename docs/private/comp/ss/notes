@@ -29,9 +29,17 @@ Disjoint neighbors: two neighbors which are not adjacent to each other
 
 3 zebra - Either exactly 2 nonadjecent neighbors, one diagonal (which becomes the classifier) and one orthogonal; or 1-2 up-neighbors, 1 down-neighbor (which becomes the classifier), and 1 side-neighbor that is neither covering nor isolated
 
-4 rook - No down-neighbors and exactly one side-neighbor (which becomes the classifier) that must in turn have either another side neighbor or an up-neighbor (or both); any up-neighbors must be adjacent to the classifier. 
 
-5 queue-guard - Exactly one neighbor (which becomes the classifier) which is adjacent to exactly one other stone, such that the classifier and its two neighbors (including the candidate) lie on a straight line
+3 zebra - Either exactly 2 nonadjecent neighbors, one diagonal (which becomes the classifier) and one orthogonal; or 1-2 up-neighbors, 1 down-neighbor (which becomes the classifier), and 1 side-neighbor that is neither covering nor isolated
+
+
+3 zebra - Two nonadjecent neighbors, one diagonal and one orthogonal.  Either exactly 2 neighbors (the diagonal becomes the classifier) or exactly 1 down-neighbor (which becomes the classifier) and 1 side-neighbor that is neither covering nor isolated
+
+
+
+4 rook - No down-neighbors, optional up-neighbors must be adjacent to the classifier, and exactly one side-neighbor (which becomes the classifier) that must in turn have another orthogonal neighbor. 
+
+5 queue-guard - Exactly one neighbor (which becomes the classifier) that is adjacent to exactly one other stone, such that the classifier and its two neighbors (including the candidate) lie on a straight line
 
 6 kite - A group of three neighbors, one orthogonal and two diagonals, with the former adjacent to the latter 2 (note: the three neighbors will lie on a straight line); optionally, a fourth neighbor which cannot be adjacent to any in that line; or exactly 2 up and 2 down neighbors; or 2 nonadjacent orthogonal neighbors.
 

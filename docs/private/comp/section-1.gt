@@ -1,0 +1,723 @@
+
+`p.
+If we begin from a purely mathematical perspective, the notion of computation builds off of functions from a domain to a codomain, such as integers to integers or reals to reals; from θ to sin(θ), for instance.  Multiple expressions can be evaluated in sequence: the area of a circle segment, for instance, with radius r and sector-angle θ is (r2 / 2) [θ - sin θ]; i.e., start with the sin(θ) mapping and then calculate a subtraction, a square, a multiplication, and a division (by a factor of 2), in a fixed order.  Since there are 2 non-constant parameters in this formula, it describes in its own right a function on two numbers (its domain is an ordered pair of reals, RxR; its codomain is just R).  
+Assuming we have the capability of notating some collection of preliminary functions (sine, addition, multiplication, etc.) we can describe a infinite variety of derived functions, each of which has a domain and codomain that can be assembled from those of the preliminary functions (various tuples, cross-products, subspaces, and other constructions on those preliminary sets).  
+`p`
+
+`p.
+A canonical logicomathematical device for modeling derived computations is a *term algebra*.  A term algebra is an "algebra" in the sense that it describes operations which transform one term to another: in particular, a single constant or variable in a term may be replaced by a different term, yielding a nested hierarchy analogous to linguistic parse-trees.  Moreover, extending a term by one additional element yields a new term.  Each term contains one function (or a symbol or term that can be interpreted as identifying a function, or else evaluated to a function) and zero or more "argument" terms.  A term algebra is assumed to include some collection of symbols that designate functions, constants, or variables, with a single constant or variable understood as a term in its own right.  The set of all possible terms is constructed as the "closure" of a set of primitive terms under the term-building operations (by analogy, the set of natural numbers can be characterized as the cloure of a basis set such as zero and one under the operation of addition: the positive integers Z+ are the smallest set such as the sum of any two positive integers is in the set).  The axioms of term algebra are inspired by the concept of "applying" functions to parameters (under this interpretation terms are also called "applicative structures"), but the formal definition of terms makes no explicit use of this interpretation; the distinction of functions, constants, and variables is just an artifact for stipulating which structural arrangements of these constituent elements are a valid term.  From a linguistic perspective, term algebras can be seen as defining a class of formal languages, by filtering out a restricted set of structures as valid strings.  According to the Chomsky-Stultenberger Representation Theorem, a formal language adequate for modeling term algebras can be decomposed into a combination of two simpler languages, one for tuple-information and one essentially for "balancing parentheses".
+`p`
+
+`p.
+In logic and the foundations of mathematics, term algebras form the basis of lambda calculus, with the notion that non-constant variables are "lambda-abstracted", such that any particular value they might have is abstracted so as to yield a non-specific formula/expression.  A "variable" can be assigned a specific value on specific occasions, but in general it is associated with a domain of potential concrete values rather than a single concrete value (unlike a constant such as `pi`).  A formula containing a lambda-abstracted symbol similar accepts parameters from a domain-set rather than expressing a specific value.  This is a pretty intuitive and easily-definable account of "formulas" or "equations", which might seem sufficiently self-obvious as to preclude the need for detailed mathematical constructions.  Formalizing such familiar concepts in terms of term algebras and lambda calculii, however, establishes a structural framework whose merits become more obvious in contexts such as recursive function theory and the study of computable functions (questions such as, given a preiminary basis of predefined functions, topologically describing the space of functions, with given domains and codomains, that can be evaluated by a Turing-compatible computer in guaranteed finite time; and likewise discovering properties of functions that are *not* computable).
+`p`
+
+`p.
+A term whose structure is an n-ary function, together with the proper count $n$ of constant-valued arguments, can be *interpreted* as the result of applying that function to those values.  In lambda calculus, such evaluation is called "beta-reduction", and nested terms describe sequences wherein one beta reduction permits the replacement of a subterm with a single value, which in turn may allow some parent term to itself get evaluated, and so on iteratively.   A term is well-formed if a chain of such reductions eventually results in one sole term that generates a final value.  As such, one semantic reading of a term algebra can treat each term as a schema for coordinating a sequence of intermediate function-applications so as to compute the value of a formula, once all abstracted variables are assigned concrete values.
+`p`
+
+`p.
+It is obvious that such a framework sets the stage for a model of computation in general; however, there are several different mechanisms by which the intended semantic interpretation might be codified.  One possibility is to generalize one's definition of terms to include tuples of distinct terms, with the intention of reading tuples as instructions to substitute the trailing terms for unbound variables in the lead term.  Beta-reduction thereby becomes a partial lattice on the space of terms in this larger sense, which overall captures the idea that abstract terms are *potentials* to obtain specific values.  Another option is to construe beta-reduction as an eroding process, a kind of graph-transform system (taking trees as a special class of graphs) wherein each mapping of a term's full complement of unbound variables to a tuple of concrete values gets associated with a graph-transform sequences, governed by the rule that terms structurally expression function-application (i.e., those with no nested subterns) may be replaced by single-value terms.  Still a third idea is to treat terms as state machines: in their "raw" state with some tuple of unbound variables, they define generic formulae; substituting concrete values generates alternative states such as nested terms are paired with specific values within a relevant codomain (in other words, certain states of terms involve association with the elements of that set, capturing the idea that terms evaluate to results when all variables are bound to values), and beta-reduction observes a "propagation" of state-changes such that successive terms, from lower to higher on the tree-hierarchy, enter the state of having such fixed value-association.                 
+`p`
+
+`p.
+For sake of further discussion, I will present here a general model of computation which has some modest differences from preeminent theories as I am aware of them.  This will be a truncated outline compared to work I have published elsewhere, and I will try to limit the presentation of details which are tangential to natural human languages (as compared to artificial programming languages).  Nonetheless, given the popularity of language-as-computation metaphors, I believe it is helpful to work within a model of computation in general that has enough flexibility to represent multiple forms of computational systems.  
+While the details are different, the model presented here has similarities to analyses developed 
+in a more rigorous context, such as the notion of executable `RDF; graphs (cite Shanavier and Rodriguez), 
+and the `q.LMNtal` protocol developed at Waseda University as `a substrate language of diverse computational models, 
+especially ... Petri Nets, Interaction Nets, the Pi-Calculus, Chemical Abstract Machines, 
+Constraint Handling Rules, and Bigraphs`/.`footnote.
+https://github.com/lmntal
+`footnote` 
+`p`
+
+
+`subsection.Syntagmatic Graphs and Non-Constructive Type Theory`
+`p.
+For reasons I enumerate in [], I use the term `q.Syntagmatic Graphs` to designate the variety 
+of graph structures that underlie the model of computation I am presenting here.  I assume that computational 
+processes (canonically, computer source code) are represented via nodes which are associated with `q.carriers`/, i.e., 
+abstract entities that `q.carry` individual values (concretely, these might be thought of as addresses 
+in computer memory, but the overall model is intended to be more abstract than just  
+encodings of digital computations).  Nodes are distinguished from carriers in light of  
+graph-theoretic conventions wherein `q.nodes` specifically embody positions in a graph structure, whose 
+properties are fully designated by structural details (e.g., edge-agency lists) with no explicit semantic 
+content.  Insofar as graphs model real-world phenomena, information about specific empirical (or abstract) objects 
+is projected not onto nodes themselves, but onto some parallel data structures that may, if needed, be 
+uniquely correlated with nodes.  In the current context, then, nodes are positional objects which do no 
+hold interpretive content, but for each node there is a carrier that (potentially) expresses a single, 
+specific value.  I assume there is a collection of types such that every value has a unique type 
+(allowing for supertype-to-subtype relations; i.e., each value has a unique *most specific* type) 
+and that types are applied as classifiers to carriers as well. 
+`p`
+
+`p.
+Within this model, carriers, types, and concrete values are interconnection via a notion of 
+carrier `i.states`/.  Each carrier is assumed to possess a space of possible states, 
+a proper subset of which maps isomorphically to all currently realizable instances of its 
+corresponding value-type.  The qualification `q.currently realizable` acknowledges circumstances 
+wherein certain values that are consistent with the criteria for a given type might 
+be impossible to represent within the resources of a given computing environment, the 
+limits of which can change from moment to moment.  For example, any `q.collections` 
+types (e.g., lists of numbers, or matrices, as two-dimensional lists) could be 
+instantiated by sequences of arbitrary length, but physical computers' memory limits 
+place an upper bound on the size of lists that may actually appear as a runtime 
+value within a computer program.  As a result, not every feasible instantiation 
+of a type considering its formal description alone corresponds to the 
+state of a carrier associated with that type; in this case the hypothetical 
+type-instance would be deemed (at the present moment) non-realizable.   Every 
+type-instance that `i.is` realizable corresponds to a unique carrier-state. 
+`p`
+
+`p.
+At the same time, I assume that each carrier can exhibit one or more 
+`i.non-instantiated` states embodying the possibility of not carrying 
+any value at all.  Canonically, these states include a `q.pre-initialization` 
+phase prior to any value being `q.assigned` to the carrier.  In practice, 
+for most computer code, it is appropriate to also recognize states 
+characterized by having `i.had` a concrete value at some point in the 
+past, but no longer (typically because of source-code symbols going
+ `q.out of scope`/; I will briefly review issues of scope below).
+By representing the `i.absence` of any actual value as a `i.state` on carriers 
+%-- rather than some special `q.null` or `q.undefined` value 
+%-- the Syntagmatic Graph's type system does not itself need to represent 
+`q.uninhabitable` types or special `q.missing` values that would lie 
+at all types' intersections; such constructions are dubious when it comes 
+to the abstract concepts and concrete situations motivating a type system.`footnote.
+In practice, uninitialized values within computer code actually behave 
+as if they were values initialized at random; but it is awkward to model 
+this phenomenon in a formal type system. 
+`footnote`  
+`p`
+
+
+`p.
+Given the machinery of initialized and uninitialized carrier states, computational 
+processes can be defined as a progressive sequences of state-changes wherein 
+carriers successively switch from the latter ot the former: that is, 
+enter initialized states.  A single graph embodies a finite `i.procedure` 
+within which the number of not-yet-initialized carriers decreases over time.  
+Each procedure is `i.executed` within a discrete context (concretely 
+analogous to a `q.stack frame`/, although not necessarily implemented via a 
+stack data structure per se) such that each node holds a different carrier 
+per context (or, alternatively, each carrier has a different state per context).  
+In general, procedures effectuate carrier-initializations by `q.calling` 
+other procedures (more generally, by switching the runtime execution engine 
+from one procedure to another and then back again).  To express this 
+process, we can assume that carriers within one procedure's graph may be 
+connected to those in a different graph, either via `q.hand-off` actions 
+(where the state of one carrier is assigned to another) or by synchronization 
+(where two or more carriers, potentially in multiple graphs, are bound together 
+such that they always share the same state).  Carrier handoffs/synchronization 
+%-- we can define handoffs as one form of synchronization (which is `q.transient` 
+because it implies no further coupling between the two carriers involved) %--  
+capture the logistics of procedural `q.inputs` and `q.outputs`/, and, in general, 
+carriers become initialized by receiving a value from, or syncronizing with, a 
+carrier in a different procedure after the latter has completed, transferring control 
+back to the calling procedure (via stacks of separate contexts procedures may 
+also `q.call` themselves, recursively). 
+`p`
+
+
+`p.
+We may assume without loss of generality that any Syntagmatic Graph model can be 
+formalized in conjunction with a `q.virtual machine` (`VM;), something that simulates the 
+physical processes through which computations are enacted via electrical circuits 
+(e.g., stack frames, `CPU; registers, instruction pointers, etc.).  As such, 
+Syntagmatic Graphs codify recipes for generating sequences of `VM; instructions.  
+The details of `VM; opsets and formats are tangential to a theory of 
+Syntagmatic Graphs themselves, but the general attributes of `VM; instructions 
+can clarify details related to cross-procedure carrier connections, and 
+to graphs' type systems.  In particular, a given procedure-graph can represent 
+multiple different concrete procedures in the sense that the graph can generate 
+multiple lists of `VM; instructions.  This occurs when the graph nodes hold carriers 
+associated with families of types rather than single, specific type.  In short, 
+procedure graphs support `q.generic programming` such that some carriers 
+quantify over a plurality of possible types, and there are multiple 
+`VM; sequences that are feasible compilations of a given graph, differing 
+by the specific mappings of carriers to types %-- we might employ the 
+term `q.tapset`/, or `q.type attribution per symbol`/, in the sense that 
+carriers have nonexclusive tapsets and each selection of a type from the 
+corresponding set represents a potentially distinct compilation of the 
+overall graph.`footnote.
+However, certain type-attributions within a particular carrier's tapset 
+can narrow the acceptable range of other tapsets and vice-versa. 
+`p`
+
+
+`p.
+Within Syntagmatic Graphs, certain `q.procedure` nodes' carriers hold 
+`q.procedural values`/, which could be handles to `VM; sequences compiled 
+from graphs or else `q.native` functions accessible to the interpreter 
+that evaluates `VM; code.  For example, suppose that a program in 
+`Cpp; reads `VM; sequences and processes each instruction progressively; 
+insofar as that software exposes certain `Cpp; procedures to the 
+`VM; engine, or dynamic loads external `Cpp; libaries, than each 
+callable function from `Cpp; code can be considered a distinct 
+procedural value (e.g., via its function-pointer address).  In a generic-programming 
+context, a graph's procedure nodes might be associated with multiple 
+specific values, and the specific types associated with carriers 
+attached to the procedure-node determine whcih candidate 
+procedural value is correct for each specific `VM; instantiation of the 
+generic graph.  Adopting a common software engineering term, procedure-nodes 
+are thereby `q.overloaded` and must be `q.routed` to a single procedural 
+value based on information about surrounding carriers' types (such 
+`q.overload resolution` must be definitive in order for a graph to 
+compile in the first place).   
+`p`
+
+
+`p.
+We can then make overload-resolution a central feature of graohs' type systems, 
+in that procedural values (like values in general) have their own 
+types, which can also (according to conventional programming terminology) 
+be called `i.signatures`/.  A signature stipulates conditions on procedural 
+values, which we can identify in terms of `q.shape constraints` (a concept more 
+often associated with graph-like data `i.structures`/; here I adopt graphs-as-data 
+conventions to the framework of graphs as `i.procedures`/, the basic idea explored 
+by Marco Rodriguez, John Shinavier, and LMNtal).  Assume that graph-edges are 
+oriented such that (in terms from theories of directed graphs) procedure-nodes are 
+almost always `i.target` rather than `i.source` nodes; the `q.in-neighborhood` of a 
+node is the set of edges, together with their adjacent source nodes, which target 
+that node.  Procedural signatures can then be defined as constraints on 
+the in-neighborhood of any node whose carrier holds that specific procedural 
+value.  These contraints stipulate that carriers must be present in the 
+originating node's neighborhood that can be synchronized (specifying whether 
+or not such synchronization is transient) with nodes' carriers in the 
+graph wherein the called procedure is represented.`footnote.
+Or, in the case of exposed native functions, semantically equivalent 
+constraints defined by the relevant native calling convention.
+`footnote`  In particular, carriers in the former neighborhood must have 
+types (or be assigned types via tapset reduction) that are compatible with 
+correlated carriers in the called procedure's graph.       
+`p`
+
+
+`p.
+Semantically, then, types play a role in procedural `q.disambiguation`/; 
+types in a calling procedure must match those in a called procedure.  
+I assume type systems which lack the concept of `q.structural` equivalence: 
+two types that are functionally identical are considered distinct 
+unless one is explicitly declared as an alias for another (types can 
+have multiple names, but these merely different symbols for designating 
+one single type).  Formally, that is, I assume only `q.nominal` type 
+systems, although structural typing could be emulated by implementing 
+casts (i.e., type-conversions) between structurally isomorphic 
+types %-- given that isomorphism, such conversions could be 
+no-ops, but they still must be explicitly declared.  Semantically, then, 
+types' principal roles include overload resolution: attributing a given 
+type to a carrier filters down the range of options for disambiguating a
+neighboring procedure-node, helping achieve the compilation prerequisite 
+of uniquely resolving the latter node (or confirming that a unique 
+value will be discoverable at runtime).  
+`p`
+
+
+`p.
+Assumptions about nominal typing, as well as allowing for logically 
+valid but physically unrealizable type instances, distinguish this 
+kind of type system from the more mathematical ones associated, 
+in general, with `q.functional` programming languages.  Overall I 
+describe Syntagmatic Graphs as having `i.non-constructive` type 
+systems (see []) which, in generlal include `q.non-constructive` 
+types.  A `i.constructive` type, by contrast, is one wherein 
+every type-instance can be associated with a particular `q.construction 
+sequence` %-- that is, a history of procedure-calls which result 
+in a given particular value that instantiates a type.  Constructive 
+types in general have the property that the collection of 
+logically possible instances of that type is coextensive with a 
+collection of construction-histories; that is, the latter 
+collection provides a set-theoretic model of the type's 
+extension.  The canonical example here is a list: starting with an 
+empty list, every list of arbitrary size can be associated with a history 
+wherein an additional value is appended to the end of the list.  
+According to the present framework, a non-constructive type may 
+have logical properties which support a constructive model along these 
+lines in theory; however, a type would still be considered non-constructive 
+if there is no computationall efficient means of retracing 
+a construction-history given a single type-instance (with no 
+further information).  A `i.constructive` type, by contrast, 
+has values structured and implemented (qua digital artifact) in 
+ways that permit any instance to be `q.deconstructed` to an 
+immediately prior step in a construction history; such 
+deconstructions can be used as a basis for implementing procedures 
+which take an instance of the type as one parameter %-- which is a 
+common idiom in functional programming.`footnote.
+For example, any nonempty list-like type can be decomposed into a `q.head` 
+value plus a shorter-by-one list (a.k.a the `q.tail`/), 
+and procedures are implemented by taking the head and the tail as 
+distinct arguments to the procedure.  
+A non-constructive type system does not forbid signatures whose 
+parameters include deconstructed aggregates obtained from a single 
+type-instance, but such types must be explicitly marked as 
+`q.constructive` and concretely provide deconstruction procedures, 
+which would behave analogously to `q.user-defined` type casts.  
+`footnote`  
+`p`
+
+
+`p.
+Because non-constructive types do not (in general) have an explicit, logical model 
+of their construction-histories %-- and because of nominal typing, with the 
+consequence that structural properties are not sufficient to individuate 
+specific types %-- there is no straightforward logical framework which 
+supplies a semantics for the overall type system.  Of course, some types are 
+associated with a fixed, enumerable set of values (e.g., signed one-byte integers 
+are every whole number from -128 to 127, inclusive).  Many types, however, are 
+`q.collections` that list a varying number of values from some other type, 
+and/or `q.tuples` of variegated additional types which may, in turn, be 
+collections (e.g., a type may encode several data points about a person, 
+such as an employee in a company database; a collections data field might 
+be a list of that person's phone numbers, or email addresses).  In these caees,
+the tyoes are not extensionally determinate; there is no set-theoretic 
+definition which defines the types' semantics by a process of simply 
+naming or describing each possible instance.  We therefore need to 
+find some different approach to endow non-cconstructive types with  
+useful semantics.  
+`p`
+
+
+`p.
+Of course, the `q.real world` semantics of a type (apart from purely mathematical 
+magnitudes) depends on programming conventions.  For instance, there is nothing 
+intrinsic to the numbers encoding an employee's phone numbers or date of birth, 
+or the character strings for their names or addresses, that endows `q.employee` 
+type instances with those concrete interpretations.  A data structure's ability 
+to model real-world objects depends on conventions for how the relevant 
+types are used, from where the information is acquired to instantiate its 
+values, and how such values are presented to people via Human-Comptuer Interaction.
+Nonetheless, software code may enforce certain guarantees, such as a requirement 
+that any `q.employee` instance have a non-empty name, or perhaps 
+a nonzero identification number %-- any procedure which accepts values of those 
+types could assume that those data fields have proper values, because there 
+would be no procedure that could construct an `q.employee` instance otherwise.  
+In software engineering, employing intra-constructor guarantees is a way of 
+enforcing pre- and post-condition constraints directly through the type 
+system, rather than through some external validator or test-suite.  
+For example, given a mathematical functions which requires a pair of numbers 
+where the second is always greater than the first, a procedural implementation 
+could take, as its only argument, a type representing a `i.pair` of numbers 
+which must be monotonically increasing.  The constructor for such a 
+type would then be charged with ensuring that the pair's two values 
+are in the correct order, and would not actually produce a return value 
+otherwise.  Passing the corresponding pair-instance to the original 
+algorithm %-- rather than each number in isolation, as distinct parameters %-- 
+would then ensure that the constructor's precondition test 
+always executes before the main function, guarding against any corrupt data.
+In software develoment, many use-cases for such precondition tests 
+fall under the `q.Resource Acquisition is Initialization` (`RAII;) design pattern.
+`p`
+
+
+`p.
+As `RAII; demonstrates, value-constructors' guarantees that certain code 
+(including precondition tests) will necessarily be executed 
+(prior to any type-instance being created) provides the basis for a 
+kind of type-semantics.  In the context of Syntagmatic Graphs, 
+any initialized carrier state can be traced back to the successful 
+completion of some constructor procedure (possibly with multiple 
+intermediate carrier-handoffs in between).  Guarantees of execution thereby 
+propagate from constructors themselves across chains of synchronized carriers.  
+`p`
+
+
+`p.
+Thus far I have delayed defining `q.constructor procedures` themselves; 
+in practice, the precise relation between constructors and other 
+procedures varies among different computer languages.  For maximum 
+generality, I propose a definition based on one facet of Syntagmatic 
+Graphs that I have yet to mention, specifically what I have called 
+`q.channel algebras` (see []).   
+`p`
+
+
+`subsection.Channel Algebra and Digamma Reduction`
+`p.
+The traditional lambda calculus, effectively built atop term algebra, 
+models calculations with some tuple of `q.input` values and one `q.output`/.  
+This framework fails to represent many details of modern-day programming 
+languages, which often have more complex notions of input and output.  
+For example, `q.class` types in Object-Oriented programming are associated 
+with a set of specific procedures (so-called `q.methods`/) which take 
+a single `q.object` value %-- often called a `q.receiver` %-- which is separated from other input 
+parameters, with special properties.  The most common distinctive quality of 
+a method-receiver is that its type is weighted more heavily than other 
+arguments' during overload resolution.`footnote.
+When disambiguating an overloaded procedure symbol, wherein (according to 
+this paper's terminology) multiple carriers with nonsingular tapsets 
+all exist in the procedure-node's neighborhood, it is possible that several 
+possible multi-node type-attributions are all compatible with the range of 
+possible signatures for the relevant procedural value, which results 
+in a compilation error unless some devise is used to favor one 
+set of type-attributions over another (in programming language theory, 
+the ranking of type-attributions in this sense is commonly referred to as 
+`q.topological sorting`/).  Object-Oriented programming prioritizes 
+the method-receiver's type above others, which can yield a deterministic 
+type-attribution ranking in contexts that would otherwise be 
+ambiguous (i.e., if the special status for that specific parameter were ignored).  
+This is one of the principal semantic contributions of Object-Orientation 
+as an extension to generic programming-language implementations as 
+concrete expressions of a lambda calculus.  Another distinguishing feature of 
+Object-Orientation is that generic procedure-graphs (in the sense adopted here) 
+can be compiled to different `VM; instruction-sequences some of which 
+map procedure-nodes to signatures which have method-receiver arguments and 
+some of which do not.  This is possible when a calling procedure itself 
+has a method-receiver, which can be passed by default to a called 
+procedure that itself requires a distinguished receiver object (when such an 
+object is not explicitly designated in source code); but procedure-nodes 
+may be overloaded such that some potential signatures have method-receivers 
+and others do not (in `Cpp;, for instance, this possibility is addressed 
+in one specific section of the `CppTwoX; standard; see []).      
+`footnote`  Another familiar extension to the `q.basic` lambda calculus 
+is the idea of `q.exceptions`/, which are abrupt terminations of a 
+called procedure that would also terminate a calling procedure, and 
+so on up the call-chain, potentially crashing the overall program.  
+However, procedures can include code that `q.catches` exceptions so 
+as to resolve or address whatever anomalous condition trigger 
+the exception in the first place (such as a needed file being missing, 
+and attempted mathematically impossible operation like division by zero, 
+a zero value or empty list in a context where such low-information 
+values would be meaninfless, and so forth).  Propagating exceptions 
+embodies a different mechanism from passing control between procedures 
+than ordinary returns, and cannot be directly modeled via lambda calculs.   
+`p`
+
+
+`p.
+Coding formulations such as objects and exceptions can, in fact, be introduced 
+`i.into` lambda calculus via extensions, such as lambda calculii with exceptions 
+or the so-called `q.sigma` calculus (wherein `q.sigma` abstraction complements 
+lambda abstraction so as to model Object-Oriented method-calls).   
+The idea of `q.channel algebra` is to permit variegated extensions to 
+lambda calculus all together, leveraging the extra structure innate to 
+graph-based computational models.  In particular, the in-neighborhood of a 
+procedure node can be divided into multiple channels, potentially with 
+special properties.  For instance, method-receiver objects might be 
+linked to procedure nodes within a separate `q.sigma` channel (so named for 
+the sigma calculus), distinct from a `q.lambda` channel containing normal 
+inputs; and exceptions may be passed through a special `q.error` channel 
+separated from ordinary outputs.  Instead of a single input and output group, 
+then, the carriers affected by a procedure are organized into multiple 
+channels, each of which can have special programming features 
+(i.e., generated `VM; code may include special instructions for 
+manipulating carriers based on which sort of channel surrounds a given 
+cross-procedure synchronization).  Multiple channels are then pieced 
+together into a channel `q.package` which might be subject to certain 
+rules (for instance, the stipulation that procedures with both a 
+channel for exceptions and for normal outputs may not 
+simultaneously instantiates carriers in both channels; the 
+semantic of exceptions clarifies that whenever an exception is 
+thrown, there is no way for a procecure to `i.also` return an ordinary value).      
+`p`
+
+
+`p.
+In practical terms, the role of channel is to emulate various forms 
+of `q.calling conventions` within a virtual machine; this gives 
+rise to a possibility of `q.virtual calling conventions` enforced 
+via requirements on channel packages (for instance, the conventions 
+associated with exceptions may be modeled via stipulations 
+including %-- albeit not limited to %-- the impossibility 
+of exception and normal return values coexisting).  Employing 
+channels allows for the implementation of certain memory-management 
+and pre/post-condition veritications that are difficult to 
+incorporate into conventional compiler techniques.`footnote.
+In other words, I have explored a `VM; framework based on Syntagmatic 
+Graphs and Channel Algebra for the purpose of concrete 
+software language implementations %-- primarily for a cross-platform 
+and embeddable `VM; library that can be used to document and 
+synchronize scientific (and/or humanistic) data sets, with the 
+idea that code necessary to decode and deserialize a given 
+data set for a given computer might be compiled to special-purpose 
+`VM; code, which could take the place of variegated client libraries 
+that would otherwise be necessary to manipulate data sets 
+within a variety of Operating Systems and computing environments 
+(different programming languages, etc.).  Rigorous `VM; code 
+would not only allow for single modules to be published for 
+numerous compatible data-sets in lieu of a disparate 
+array of client libraries, but could also document the 
+scientific/theoretical milieu from which a data 
+set originates, with respect to such details as 
+the permissible range of data fields, distributional 
+properties of statistical variables, data-visualization coventions, 
+and so on. 
+`footnote`  Such software-engineering applications are outside 
+the scope of this paper, but I will note here that one 
+use-case involves demarcating `i.constructors`  
+from other procedures may be accomplished by designating a 
+separate channel for outputs wherein (according to the 
+intended semantic interpretatio) a type's value is 
+constructed `i.ab initio`/.  Constructors, as a special 
+class of procedures, can then be defined simply as any 
+procedure which has a `q.constructor` channel rather than 
+a normal output channel.  Types accordingly 
+have one or more such constructors, and any concrete 
+type-instances witnesses the fact that one of those constructors 
+did in fact execute, and returned a value over that 
+constructor channel (rather than, say, throwing an exception), thereby 
+offering a guarantee-of-execution that propagates across all 
+subsequent carrier-handoffs.
+`p`
+
+
+
+`p.
+On this theory, Channel Algebras`footnote.
+Pluralized because different restrictions on how channels fit together 
+can give rise to different variations, wherein a package that is legal 
+under one formulation might be illegal elsewhere
+`footnote` generalize term algebra insofar as a 
+`q.channel package` is analogous to a `q.term`/, except with a more 
+detailed representation of inputs and outputs potentially separated 
+into multiple channels.  In [] I proposed the term `q.digamma reduction` 
+to model the process wherein procedures evaluate over intermediate 
+steps to obtain concrete return values.`footnote.
+As motivation for adopting the archaic greek letter Digamma 
+here, note that such `q.reduction` is an interplay between 
+two different procedure-graphs; and it is commonplace 
+in graph theory to adopt the capital letter gamma (`Gamma;) 
+to stand for a `i.single` graph. 
+`footnote`  In brief, digamma reduction is to Channel Algebra 
+as beta reduction is to term algebra.  In lambda calculii, beta 
+reduction involves the substution of individual values for 
+erstwhile-abstracted terms.  Digamma reduction, by contrast, 
+expresses the phenomenon wherein runtime `q.control` (i.e., a 
+`VM;s current instruction-sequence) passes from a calling to a 
+called procedure and then back again, such that carrier-handoffs 
+during the `q.back again` phase result in carriers in the 
+calling procedure's context switching from uninitialized to 
+initialized states.  That is, the aggregate effect of one or 
+more carriers becoming initialized constitutes a `q.reduction` 
+(perhaps, a reduction in number of `q.unknowns`/) which is analogous 
+to beta reduction (in the simplified context of term algebra).  
+It is actually possible to prove fairly rigorously (see []) that 
+Channel Algebras reduce to term algebras under certain simplifying 
+conditions; that is, a minimal channel `q.system` yields a 
+framework functionally identical to a term algebra with 
+beta reduction.  In general, Channel Algebra with digamma reduction 
+intends to model multiple forms of computational structure, including 
+the traditional lambda calculus as a special case.
+`p`
+
+
+`p.
+I have outlined this Syntagmatic Graph framework because it intends to  
+provide a flexible model of computation which covers a wider range 
+of computing environments, as compared to more purely mathematical 
+presenttions (lambda calculus, Petri Nets, etc.).  When evaluating the 
+explantory merits of `q.language as computation` metaphors, it is 
+helpful to start with as broad-based account of computation itself 
+to begin with.  To demonstrate this point, I will identify several 
+theories which attempt to exploit computational models as 
+rigorous formalization of linguistic meaning/processing.  Mentioning 
+specific theories is not my endorsement of the underlying assumption 
+that linguistic phenomena `i.can`/, in fact, be studied computationally 
+(except perhaps up to limited approximations); but before addressing 
+possible `i.limits` to computational models it is appropriate 
+to discuss how a few of these models can work in practice.
+`p`
+
+
+`subsection.Truth-Theoretic Semantics and Categorial Grammar`
+`p.
+One intuitively appealing version of `q.language as computation` 
+is to regard well-formed sentences as, in effect, expressions in 
+Symbolic Logic.  This means that (complete) phrases are deemed 
+equivalent to predicate expressions; so 
+`q.John is bald` expresses a proposition which is true if, indeed, 
+John has no hair.  More complex sentences aggregate multiple 
+such expressions, via %-- for instance %-- boolean connectives; 
+so `q.John is bald but his brother is hairsute` would be 
+true if the two parts are true.  Logical operators such as 
+`q.and` and `q.or` connect phrases together, allowing for 
+complex phrases to hierarchically contain nested simpler parts.     
+`p`
+
+
+`p.
+Connectives such as `q.and` are nnly one (relatively unsubtle) means 
+by which aggregate phrases can involve multiple predicate truth-judgments.  
+As an oft-discussed example, truth-conditions for `q.The present king of France is bald` 
+are only satisfied if there is a person (at whatever time the sentence is 
+enunciated) who is the present king of France.  The sentence could 
+therefore be falsified `i.either` by there being no such person, `i.or` by 
+that person having hair.  Implicitly, then, the truth-conditions imply an 
+aggregate of simpler propositions, even though there is no 
+explicit conjunction in the sentence.  On this account, the 
+`q.meaning` of a sentence is the totality of what must be the case to make 
+the sentence true.  The more complex a sentence, the more such 
+details must be accounted for (in the example naming both John and 
+his brother, say, facts about both individuals play a role, creating a 
+higher bar than `q.John is bald` by itself). 
+`p`
+
+
+`p.
+Because people often talk in terms of hypotheticals and possibilities, 
+such a truth-theoretic semantics can be usefully generalized to a 
+`q.possible world semantics` based on modal logic.  In that case the 
+meaning of a sentence (and its constituent complete phrases) corresponds 
+to the set of possible worlds where the sentence/phrase is true.  
+Each semantically meaningful component `i.in` the sentence implies some narrowing of the 
+set of possible worlds %-- for instance, inclusion of `q.the present king of france` 
+implies that only possible worlds where France presently has a king (perhaps counterfactual 
+worlds, or fictional narratives, or sentences spoken during past centuries).  
+The possible worlds wherein a total sentence evaluates truthfully must lie 
+at the intersection of all the sets of possible worlds narrowed by 
+components words, phrases, and clauses (complete phrases).   
+`p`
+
+
+`p.
+It should be clear that such aggregate modal narrowing bears some resemblance 
+to term algebra: indeed, symbolic logic in general builds off of a 
+kind of term algebra where terms are, in effect, boolean-valued functions 
+(rather than functions with arbitrary codomains), supplemented 
+with existential and universal quantifiers.  Modal logic adds 
+operators for possibility and necessity, together with a possible 
+re-interpretation of propositional expressions as mapping terms 
+to sets of possible worlds (rather than to just 
+`q.true` or `q.false`/). 
+`p`
+
+
+`p.
+Since formal logic was a significant inspiration for analytic philosophy, 
+it is understandable that scholars thinking about language would 
+be attracted to paradigms wherein sentences, and fragments thereof, are 
+essentially conventionalized encodings of logical expressions.  And, 
+indeed, some conversational artifacts seem to justify such readings 
+fairly well.  Consider the sentence 
+
+() Soon after becoming British Prime Minister, Keir Starmer visited King Charles.
+
+There might be multiple individuals with the name Keir Starmer, but only one 
+has ever been British Prime Minister (although it's not impossible that, 
+in some future time, there will be another Keir Starmer who happens 
+to serve during the reign of a different King Charles).  The sentence is 
+still not logically airtight %-- conceivably some MP, say, could jokingly 
+name their dog `q.King Charles` and bring him to 10 Downing Street, inspiring 
+Starmer to come out of some office to pet the dog.  However, it requires 
+fairly improbably scenarios to envision the participants in () to 
+be other than the UK's king and prime minister respectively as of late 2024.  
+In that sense the individuals are neatly designated, and there are straightforward 
+conditions for the declared proposition to be facturally accurate 
+(one merely checks whether there was, in fact, an event wherein 
+Starmer visited Charles).
+`p`
+
+
+`p.
+Nonetheless, such relative transparency is probably not typical 
+of most real-world sentences.  Consider the following:
+
+() All New Yorkers live in one of five boroughs.
+() All New Yorkers complain about how long it takes to commute to New York City.
+
+In (), we can read `q.all New Yorkers` as literally designating the set of every person 
+who lives in New York City prooper, because, indeed, the city is geographically divided into 
+the five boroughs (although some ambiguities might still arise vis-a-vis the homeless, say, 
+or `q.snowbirds` that also own residences further south).  The implications of 
+() are less exact, however, because in this kind of usage `q.all` does not typically 
+mean `q.each and every`/, but more like `q.most`/.  Moreover, the sense of 
+`q.New Yorker` in () is fundamentally different from () %-- presumably () refers 
+to people who live in the New York metro area, not just the city proper 
+(since those already `i.in` the city would not typically `i.commute` there; except 
+that, idiomatically, residents of outlying neighbors do sometimes 
+refer to their travels to the city center as `q.commuting to New York City`/).  
+Understood set-theoretically, then, the extension referenced by the phrase 
+`q.New Yorker` is quite different in () and (), and, simultaneously, 
+the intended interpretation of the quantifier `q.all` is clearly different as well.   
+`p`
+
+
+`p.
+This example suggets limitations of Possible-World semantics because it is 
+unclear how to account for such differences via logical models 
+alone.  It is not obvious, in effect, how a paradigm within which 
+sentences essentially encode propositional expressions could explain 
+why a phrase like `q.All New Yorkers` designates different sets in different 
+contexts.  I acknowledge that more granular expressions could be 
+substituted in their place, such as `q.all residents of New York City proper` 
+for () and `q.many residents of the New York metro area` for () %-- 
+these amended sentences would, indeed, be more logically transparent 
+%-- but the sentences as given are, via pragmatic conventions, no 
+less clear than these more pedantic alternatives.  The expression 
+`q.All New Yorkers`/, in short, does not straightforwardly encode a 
+logical quantification; its actual meaning depends on context, 
+and English speakers presumably have some disambiguating 
+mechanism to account for that context.  Because a truth-theoretic 
+paradigm does not apparently analyze that mechanism, its 
+explanatory value appears notably limited.  One can provide a 
+logical gloss on the sentence's meaning, but propositional semantics 
+seems (at least in these kinds of cases) to do little more 
+than restate what that meaning is, rather than offer a 
+theory of how we arrive at the meaning in the first place. 
+`p`
+
+
+`p.
+Possible-world semantics, at best, would seem to be a useful representation 
+of meanings only in select cases, involving sentences which are 
+unusually free of implicit ambiguities and subtle context-dependency.  
+In that limited vein, however, this framework does present 
+one case-study for how beta reduction potentially simulates 
+language-processing.  Compared to generic term algebra, 
+propositional expressions map onto limited codomains 
+(either boolean values or sets of possible worlds), but they 
+augment the structure of term algebras with modals and quantifiers.  
+Lambda-calculus stlye beta reduction wherein nested terms are 
+hierarchically replaced by concrete values has an obvious 
+corrolary within truth-theoretic phrase structures, insofar 
+as nested phrases can be evaluaetd to truth-conditions and/or 
+possible worlds, a process that iterates from `q.leaves` to 
+roots insofar as the sentences have discoverable truth-conditions.  
+This is a realistic computational model of language-understanding, 
+but only for sentences which are logically transparent 
+and context-independent (consistent with the style of journalistic 
+prose, for instance).     
+`p`
+
+
+`p.
+Another computational formalization which I would like to consider 
+starts with a quite different paradigm, namely the Conceptual Space 
+Theory initially formulated by Peter `Gardenfors;.  This system 
+appears to have some traction in Cognitive Linguistics and 
+philosophy, but only in sporadic cases have researchers 
+attempted to codify it computational, e.g., for the sake 
+of `AI; language engines.  One exception is work 
+summarized in `Boltea;, describing an Oxford University 
+`q.research group` organized in the larger context of work 
+towards Quantum Computing technologies for 
+Natural Language Processing.     
+`p`
+
+
+
+
+
+`p.
+
+`p`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
