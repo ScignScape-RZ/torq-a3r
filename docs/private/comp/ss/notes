@@ -27,6 +27,11 @@ Disjoint neighbors: two neighbors which are not adjacent to each other
 
 2 bishop - at least one side neighbor and one diagonal down-neighbor in the direction toward edge of the board (relative to the candidate)  
 
+
+An archer or a bishop on the left half of the board which has 2 uo-neighbors becomes a glider
+
+
+
 3 zebra - Either exactly 2 nonadjecent neighbors, one diagonal (which becomes the classifier) and one orthogonal; or 1-2 up-neighbors, 1 down-neighbor (which becomes the classifier), and 1 side-neighbor that is neither covering nor isolated
 
 
@@ -48,9 +53,11 @@ Disjoint neighbors: two neighbors which are not adjacent to each other
 For kites and chargers, if there is exactly one orthogonal or, respectively, one diagonal neighbor this becomes the classifier unless the candidate has exactly one diagonal down-neighbor, which then becomes the classifier instead.
 
 
-8 triple-guard - 2-4 neighbors, all non-covering
+8 triple-guard - 2-4 neighbors, all non-covering.  
+An triple-guard with has 2 up-neighbors on the left half of the board  becomes a glider.
 
-9 dragon - At least two neighbors, the classifier being a covering neighbor 
+9 dragon - At least two neighbors, the classifier being a covering neighbor.  A dragon 
+on the left half of the board becomes a glider. 
 
 For the triple-guard and dragon, the classifier is chosen by giving priority to the neighbor further down and (secondarily) closer to the center of the board  
 
