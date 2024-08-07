@@ -657,6 +657,46 @@ theory of how we arrive at the meaning in the first place.
 
 
 `p.
+Elsewhere, rhetorically accepted logical constructions appear to 
+yield bizarre conclusions when taken literally,  For instance, 
+it is not unheard-of for a couple to say something like 
+`q.we found out we were pregnant in June` but of course only 
+one person is `i.actually` pregnant.  From `q.My wife and I are lawyers` 
+one reasonable concludes that the speaker is a lawyer; but from 
+`q.My wife and I are lawyers` only in special circumstances say, a 
+lesbian couple) would one conclude `q.I am pregnant`/.  Specificity 
+of referenec is another area context-sensitivty that seems hard to 
+translate into logical formulations.  When Dave visits an espresso bar 
+with his friend who says `q.Dave, your coffee's ready` we read this 
+as an intent to identify a specific person, known to the speaker.  
+But is the barista says `q.Dave, your coffee's ready` the most 
+common interpretation is that they have not attached the 
+name to a specific person, and are merely announcing that there is 
+some customer named Dave who can come to pick up his coffee.  
+Lastly, consider these comments about a concert from last night:
+
+Everyone in the audience sang two of the songs
+Every band that perform sang two of the songs
+
+We are inclined to hear () implying that everyone sang 
+`i.the same` two songs, but () suggests two `i.different 
+songs; i.e., the program included some list of songs, and 
+bands took turns performing them, in pairs.
+`p`
+
+
+`p.
+A productive explanation of meaningfulness would clarify how 
+one navigates through the logical implictures and 
+anti-derivations, connotatons and pragmatics, that 
+differentiate the communicative intents of these various 
+examples notwithstanding syntactic similarities.  It is not 
+clear how theories based on truth-conditions and possible-world 
+can actually get us closer to those goals. 
+`p`
+
+
+`p.
 Possible-world semantics, at best, would seem to be a useful representation 
 of meanings only in select cases, involving sentences which are 
 unusually free of implicit ambiguities and subtle context-dependency.  
@@ -690,19 +730,362 @@ of `AI; language engines.  One exception is work
 summarized in `Boltea;, describing an Oxford University 
 `q.research group` organized in the larger context of work 
 towards Quantum Computing technologies for 
-Natural Language Processing.     
+Natural Language Processing.  The resulting formalization, 
+based on Category Theory, essentially combines 
+Conceptual Space semantics with a version of 
+Combinatory Categorial Grammar at the syntactic level.   
+`p`
+
+
+`subsection.Conceptual Spaces and `q.Addition`/`
+`p.
+A good way to summarize `Boltea;'s theory is to 
+imagine that, in some straightforward and plausible 
+sense, concepts can be `q.added`/.  Thus, `q.red square` 
+is something like the sum of redness and squareness, with 
+each operand providing its own specificatory constraints 
+(only some shapes are squares; only some colors are reds). 
+Conceptual Spaces are natural foundations for `q.additive` 
+accounts of concepts because the juxtaposition of two 
+different conceptual spaces results (if interpreted as a 
+summation of classificatory features) in the (smaller and 
+more precise) intersection of those spaces.  For instance, 
+`q.red` and `q.shiny` combines two different spaces which 
+delineate certain classes of surface appearance; together 
+they form a space all of whose elements correspond to 
+surfaces which look red and also look shiny.  
+The red-plus-shiny addition works someone differently than 
+red-plus-square, because the former explicitly combines two 
+different criteria in the same overall domain (i.e., 
+the visible appearance of two-dimensional surfaces taking 
+into consideration ambient light, or something like that) 
+whereas `q.red` and `q.square` are more orthogonal 
+(though they both must be predicated of bounded, two-dimensional 
+objects).  Obviously, the cognitive status of concept-combinations 
+is affected by how two concepts might fit together; 
+ones that are functionally similar (e.g., red and pink) 
+do not substantially refine one another; but those that 
+are two disparate have few contexts where their `q.addition` 
+makes sense (we can talk about red numbers, say, and prime numbers, 
+but rarely `q.red primes`/). 
+`p`
+
+
+`p.
+Although `Boltea; track closer to `Gardenfors;'s own terminology, 
+I think consideration a notion of concept `q.addition` is a good 
+gloss on their basic strategy.  Concept-addition acting iteratively, 
+over the course of a sentence, converges on the specific idea which the 
+sentence seeks to convey.  For `Boltea;, the merging of 
+conceptual spaces is a reasonable device to model not only 
+commensurate attributes (like `i.red` and `i.square`/, i.e., two 
+adjectives) but also syntheses such as a verb and its subject (the 
+concept `q.`Keyush;` combines with `q.run` to yield a concrete 
+event-designation: `q.`Keyush; runs`/, or `q.is running`/, etc.).  
+In a complex sentence, of course, the order of such combinations 
+determines the proper reading.  Given
+
+On the bottom shelf is a round box marked with a red square
+
+the attributes `q.bottom`/, `q.round`/, and `q.red` have to 
+be joined to their proper bearers (not to mention, of course, 
+interrelations like the box being on the shelf, not vice-versa).  
+If we can imagine concept-addition as a kind of computational 
+process, then a sentence's proper evaluation depends on 
+chaining such additions together in the correct order.
+`p`
+
+
+`p.
+For `Boltea;, such conceptual-space juxtapositions are orchestrated 
+by syntax; the point of grammatical rules is to clump words 
+and phrases together so that the intended `q.additions` happen 
+at the right times.  A parse tree's hierarchical structure, for example, 
+tapers down to the provisional combinations that later get fused into 
+complex ideas: in (), say, the parse structure enforces that 
+`q.red` qualifies `q.square`/, `q.bottom` qualified `q.shelf`/, and 
+`q.round` qualifies `q.box`/, prior to larger relations (like box on shelf) 
+being cognizes (leaf nodes are merged before higher branches).  While this 
+might seem like just an obvious reiteration of lingusitic parsing in general, 
+the point behind `Boltea; seems to be that we have (in the absence of 
+parsing ambiguity) a fully determinstic model of how sentences destructure 
+in phrasal hierarchies, and that if we can similarly formalize addition or 
+combination of conceptual spaces, then we can treat semantics as systematically 
+generated from syntax.  They frame this account via Category Theory: given a 
+Category or parse-graphs and a Category of conceptual spaces, operations 
+in the former map organically to operations within the latter, 
+and those latter operations trace the emergence of a concrete idea from 
+an initially unstructured collation of disparate concepts. 
+`p`
+
+
+`p.
+On this theory, word-adjacency represents Category Theoretic 
+operations that map with the domain of words and phrases: 
+adjectives, for example, link with nouns to their right to 
+form noun-phrases.  So `q.red` to the left of `q.square` triggers 
+that combinatorial rule, which in turn compels the specific concept-summation 
+of `i.red` and `i.square` rather than some other combination 
+(`i.red` and `i.shelf`/, say).  Likewise, a verb to the `i.right` of 
+a noun usually triggers a rule wherein that latter becomes the 
+former's subject.  Via parts of speech, `Boltea; introduce a 
+type system organized on the grammatical category applicable to 
+phrases in relation to their constituent parts.  An intransitive verb, 
+for example, yields a `q.complete` idea (something expressing a 
+proposition, i.e., a phrase with `q.propositional` type) through 
+adjacency to a noun; employing `q.P` for propositions and `q.N` 
+for nouns, this can be notated as V `tof; P\N.  Meaning, a verb 
+combined with an adjacent noun to its left yields a proposition.  
+An adjective, on the other hand, takes a noun to its right 
+and produces a noun-phrase (something with the grammatical category 
+of a noun); i.e., A `tof; N/N.  As one more example, a transitive 
+verb needs nouns both left and right for subject and direct 
+object; this would be written V `tof; (P\N)/N.  Notations such as 
+P\N suggests that a verb is, in a sense, a proposition `q.missing` 
+a noun, or `q.needing` a noun to become concretized; and in that 
+sense, such type expressions can become more complex as more 
+substantial aggregates are needed produce `q.top level` types such as 
+nouns and propositions.  Ditransitive verbs, for instance, 
+need three different nouns or noun-phrases. 
+`p`
+
+
+`p.
+This model of parts of speech as comprising a type system, based 
+on left and right adjacency, is essentially the framework for 
+Combinatory Categorial Grammar.  A well-formed sentence implicitly 
+assigns types to its constituents such that the type of a phrase 
+is determined by the types of its parts, according to rules such as 
+N/N + N (i.e., adjective followed by noun) yields N, or 
+N + P\N yields P (transitive verb after noun yields proposition).  
+The nested types `q.fold up` with types being assigned to phrases, 
+continuing up the hierarchy until one reaches the root with proposition 
+type.  Such convergence is a defining feature of a correct 
+parse-tree, and syntactic rules ensure that only one parsing structure 
+produces a tree with that convergent property.   
+`p`
+
+
+`p.
+`Boltea;'s observation is that such `q.convergence` can be modeled in terms 
+of a Category of parese-graphs, wherein left and right adjacency operators 
+correspond to a variety of intra-category morphisms.  If we can also 
+supply a Categorical theory of `i.semantics`/, then the convergence of 
+sentence `i.meaning` to a telic idea is essentially `q.carried along` by 
+the underlying syntactic convergence.  Each word and phrase maps to 
+some semantic value; the correspondance between aggregate phrases and 
+their intended semantic interpretation amounts to a kind of commutative 
+diagram, where semantic vehicles are subject to operations mirroring 
+those on the syntactic register.  So the N/N -> N of `q.red square` maps, 
+within a syntax-to-semantics correlation, to the semantic merging 
+of `q.red` and `q.square`/.  The authors argue that in order to sustain 
+such a model, our formalization of semantics has to be based on a paradigm 
+that permits operations between semantic `q.values` that are isomorphic 
+to (or can be placed in isomorphic correspondance with) grammatical 
+operations such as left and right adjacency.  Here they suggest that 
+Conceptal Spaces are a better formalization than truth-theoretic semantics, 
+for example, because the additive dimension of mutually-refining 
+Conceptual Spaces is more directly interoperable with Categorial Grammars 
+than the forms of combination between semantic entities available 
+in Possible World semantics, say.  That is, Conceptual Space theory 
+permits a quasi-mathematical `q.addition` operation that can structurally 
+duplicate syntactic adjacency operator.  For every adjacency between syntactic 
+elements (words or phrases), there is a summation between two concepts that 
+yields a comprehensible, more-refined concept or conceptual space 
+(when this fails %-- i.e., in the presence of dubious or nonsensical 
+combinations like `q.red prime` %-- the sentence is not well-formed to begin with). 
+`p`
+
+
+`p.
+Whether or not this is a realistic account of linguistic processing, 
+`Boltea; help clarify the necessary qualities of a formal 
+semantics `i.if` we can have a computational or mathematical 
+representation of natural language.  That is, we first need a 
+basically deterministic and computationally tractable 
+theory of syntactic structures, and then we need a semantic 
+protocol wherein every syntactic operation has a `q.mirror image` 
+in the semantic register, such that the convergence of grammatical categories 
+to a complete sentence (e.g., a propositional type) is mirrored 
+by a convergence of semantic values to a complete idea 
+(the meaning of each sentence).  In `Boltea;, the basic operations 
+within the syntactic basis are left and right adjacency, whereas the 
+basic operations on the semantic level are concept-combinations 
+(which we can see as `q.additions`/, or as mutual-refinements 
+within Conceptual Spaces).  The latter are %-- in principle anyhow 
+%-- sufficiently formalizable, or `q.mathematical` in their 
+combinatory possibilities, that we can treat aggregate structures 
+in the semantic realm as a mirror image of combinatory structures 
+(sequences of adjacency-operations) within syntax.  The Category-Theoretic 
+machinery of functors and commutative diagrams helps reinforce 
+the intuition that semantic operations, such as concept-addition 
+%-- in terms of their transparency/tractability (absence of 
+ambiguities or pragmatic context-dependency) as well as their 
+determinate sequencing (we must make sense not only of two concepts 
+combining, but of the further synthesis of such a combination with 
+some third concept, and so on iteratively) %-- need a formal 
+architecture which can `q.mirror` the structural articulation of 
+the syntactic register.   
+`p`
+
+`subsection.Beta Reduction `q.Modulo Topology`/`
+`p.
+Setting aside for now the question of whether semantics 
+`i.can` be mechanistically formalized to this extent, 
+we can make some points about `Boltea; just on the 
+syntactic level.  Their model is centered on the core 
+operations of left and right adjacency, which of course 
+is heavily determined by specific language's word order.  
+SOV rather than SVO languages (the Indo-Iranian subfamily, say) would 
+obviously call for a slightly different type system, 
+assuming we consider left/right direction as an intrinsic 
+feature of grammatical categories as `q.types` (not to 
+mention free-word-order typology as in, e.g., Turkish).  
+It's not clear that left versus right must be an 
+explicit structural parameter in the first place, at 
+least in essentially theoretical settings 
+(the case of `Boltea; is a little different, insofar as they 
+are seeking not only a philosophically compelling 
+explanation of sentence-understanding but trying to 
+design effective `NLP; software).  Note that most 
+phrases have just two constituents (an adjactive modified 
+a noun, say, or a conjunction transforms a clause 
+from propositional type to a noun-phrase: I heard 
+`i.that you brought treats`/).  Verbs are an exception,`footnote.
+Another, less consequential, exceptions would be 
+conjunctions like the `q.and` in `Peter, Paul, and Mary`/).
+`footnote`
+but verbs, arguably, `i.always` have a subject %-- 
+even if it has no `q.definite` content (cf. `q.It is raining`/) 
+or is not explicitly mentioned (as in the addressee of an 
+imperative; the implicit `q.you` in `q.Close the door!`/) 
+%-- and they never have an indirect object `i.without` a 
+direct object.  So, there is a decisive ranking of 
+verbs' `q.arguments` through subject, direct object, indirect object, 
+such that the elements later in the list are never present without 
+those earlier.  For this reason we can always treat verbs as 
+having just a list of sibling elements where the first is always a subject, 
+the second (if present) a direct object, and the third 
+(again if present) always an indirect object.  There is no loss 
+of clarity in presenting these relationships solely through 
+constituent order (abstracted of course from the surface 
+syntax of the spoken dialect).   
 `p`
 
 
 
+`p.
+For these reasons, we do not actually need to impose 
+additional structure on parse-graphs such as distinguishing 
+left and right adjacency.  If we abstract those details, 
+then phrase hierarchies become essentially the same 
+structures as a term algebra.  If we operate solely 
+on a syntactic register, the leaves and branches on a 
+parse tree are marked with `q.types` based on 
+grammatical categories, which we can treat as a type 
+system over that term algebra in the sense that 
+`q.values` assigned to terms are selected from 
+the (co)domain of types themselves 
+(hence a notion of beta-reduction restricted to 
+types, abstracting away values %-- i.e., a term now 
+is considered to have a definite value when only 
+its `i.type` is known; we ignore the fact that a 
+type-attribution can be further specified to a 
+value-initialization.`footnote.
+See https://crypto.stanford.edu/~blynn/lambda/typo.html
+`footnote`).  Convergence to a canonical 
+`q.Proposition` (or `q.Sentence`/) type is 
+thus formally equivalent to beta-reduction, so long as 
+we restrict (co)domains to types and abstract values: 
+type-checking replaces full evaluation.  In `Boltea;, 
+grammar becomes mechanistically definitive because type-convergence 
+has the deterministic exactitude (for well-formed sentences) 
+of beta reduction within term algebras.   
+`p`
+
+
+`p.
+If we `i.do` distinguish left and right adjacency, then 
+the `Boltea; system amounts essentially to a structurally 
+augmented term algebra where we differentiate different 
+protocols for connecting the head of a term to its 
+siblings.  This does not fundamentally alter the status of beta-reduction, 
+but it means that reduction rules need to be adjusted in 
+recognition of these extra intra-term orginizational parameters.  
+Along the same lines, predicative convergence 
+in truth-theoretic or Possible World semantics is analogous to a 
+term algebra, except that terms are augmented with quantifiers 
+and, potentially, modal operators.  What the variations all 
+have in common is some notion of `q.syntactic convergence` 
+%-- posssibly with corollaries on the semantic side %-- 
+that prove to be natural generalizations of beta reduction, 
+reinterpreted to align with a more complex 
+structuration recognized as constituting each `q.term`/.
+Likewise, although the `q.Syntagmatic Graph` model I presented 
+earlier was not intended as a representation of natural language 
+`i.per se`/, there too `q.digamma` reduction is essentially 
+an adaptation of beta reduction to the more detailed 
+graph-forms embodied by Channel Algebra in lieu of term algebra.  
+`p`
+
+
+`p.
+Given these variegated formulations, an obvious precis is that the 
+basic concept of beta reduction can be lifted from the pure 
+lambda calculus and adapted to different graph- or tree-form 
+infrastructures.  Instead of `q.one` beta reduction, there 
+are multiple protocols for beta reduction differing in terms 
+of the structural features evinced by underlying graphs/trees.  
+We could say that these notions all exhibit the attributes 
+of a beta reduction except `q.modulo topology`/, i.e., 
+accommodating the specific structural parameters for an 
+underlying class of graphs.`footnote.
+Applying the term `q.topology` here more loosely than 
+the alternative in graph theory, where the topology of a graph 
+is the `i.specific` structure %-- e.g., the edge-adjacency matrix 
+%-- which renders two graphs isomorphically equivalent.  But 
+we can also consider graphs' topology to be only 
+the parameters that contribute to tests of equivalence: 
+two `i.directed` graphs, for instance, are isomorphic 
+only if there is a mapping which preserves edge-direction 
+as well as adjacency.  In this sense the `q.topology` of a 
+graph reflects the various parameters through which structurally 
+consequential details are asserted %-- edge directions, node/edge 
+labels, hypernodes, hyperedges, bipartition, multigraphs, 
+edge weights, etc., each introduce various details that complicate a 
+definitive articulation of any graph's structure %-- beyond a 
+binary adjacency matix.  
+`footnote`  Going forward, I will adopt the expression 
+`q.beta reduction modulo topology` to connote the idea that 
+various graph representations (including trees as a special case) 
+can be equippend with their own inherent notion of beta reduction, 
+playing a formal role analogous to beta-reduction over 
+simple term algebras.
+`p`
+
+`p.
+The minimal notion of term-evaluation 
+in lambda calculus might seem rather circular or nonsequitorous, 
+because it seems to assert only that the result of applying 
+some function to its arguments, is just to arrive at a single 
+value which is the output of that calculation.  That seemingly 
+self-evident construction of beta reduction, however, is useful 
+because it presents the `i.minimal` structure necessary to 
+have a useful model of computation.  In other words, only a 
+system `i.at least as` detailed as term algebra can support a 
+plausible definition of beta reduction and thereby a model 
+of computation.  On that minimal basis, numerous 
+enhancements to the underlying algebra are possible 
+%-- with Channels; with quantifiers and modals; with 
+left/right adacency %-- and we thereby arrive at 
+more sophisticated beta-reduction concepts.  The question is 
+which of these have bonafide explanatory merit in a linguistic context. 
+`p`
 
 
 `p.
 
 `p`
-
-
-
 
 
 

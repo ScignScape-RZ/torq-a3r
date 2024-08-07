@@ -1,0 +1,185 @@
+
+`section.Parse-Superpositions and Theta Grids`
+`p.
+In light of the previous section, I think we can summarize 
+the status of computational metaphors in linguistics 
+as follows: if there is some explanatorily 
+productive computational representation or simulation 
+of linguistic processing, then there is a notion of 
+beta reduction wherein convergence of `q.terms` 
+(analogous, e.g., to phrases) on syntactic and/or 
+semantic levels is coextensive with, or at least 
+coordinates, a convergence of smeantic precision onto 
+telic sentence-meanings.  The prior discussion 
+outlined plausible models within enriched `q.term algebras` 
+endowed with logical/quantification structures 
+(as in Possible World semantics) or left/right adjacency 
+(as in Combinatory Categorial Grammar combined with Conceptual 
+Space semantics).     
+`p`
+
+
+`p.
+In the present section I will propose an alternative 
+`q.beta reduction modulo topology` model, and then 
+consider to what extent schemata for 
+deterministic beta reduction in `i.syntax` can indeed 
+be extended to (presumptively formalizable) semantics.
+`p`
+
+
+`subsection.Are Parse Graphs (Qua Term Algebras with Solely Type-Level 
+Evaluation) Unique?`
+`p.
+In the spirit of `Boltea;, however we intend to model 
+semantics, it is reasonable to argue that syntax is 
+necessary to orchestrate the order of semantic combination.  
+We can leave the cogntive status of juxtaposed semantic 
+constituents open-ended for now: a sense of `q.concept addition` 
+is a useful place-holder, but I do not assume we have a non-circular 
+account of what it means, in general, to `q.add` two concepts together.  
+Conceptual Space theory attempts to present such an account, 
+but its specific parameters of dimensionality, convexivity, 
+constrast classes, and so forth, are not necessarily a persuasive 
+systematization exception for special cases (not to imply 
+that some other formalization is better).  Syntactically, 
+however, parse graphs %-- at least as posited retroactively %-- 
+do appear to have determinimistic structures mimicking 
+a term algebra (the problem for Natural Language Processing 
+is that, `i,prima facie`/, semantic information is needed to 
+pure the space of potential parses, so we seem to be in a 
+catch-22 wherein semantic understanding is a predondition for 
+syntax and vice-versa). 
+`p`
+
+
+`p.
+In short, I leave open the possibility that syntax and semantics 
+are cognitively entangled such that there is no non-circular 
+formulation of how parse-graphs are `i.realized` that does 
+not involve semantic reasoning, and vice-versa.  Nonetheless, 
+parse-graphs as syntactic artifacts do have a determinative 
+structure, even if it is not clear how that tractability plays a 
+role in actual language understanding.  Given a parsed sentence, 
+we can always apply a type system wherein constitutent 
+words/phrases are assigned distinct types (based on 
+grammatical categories or Parts of Speech) and where most 
+words (other than nouns) are categorized by the types of their 
+siblings in relation to containing phrases.  It seems 
+reasonable to ground the type system on the two canonical 
+categories of Propositions and Nouns, and other types 
+introduced by derivation.  For instance, verbs are a type 
+that, when combined with one, two, or three nouns, 
+yields propositional phrases.  A correct sentence converges  
+to a single `q.root` proposition (with allowance for mood variation, 
+e.g. the difference between asking a question and issuing a command), 
+a process which is essentially a form of beta-reduction so long as 
+we take phrases as terms and part-of-speech `q.types` as values assigned to terms 
+(abstracting lexical details).   
+`p`
+
+
+`p.
+Although reconstructing parsing details would seem to be 
+straightforward for many sentences, there may be more 
+siutations of theoretical ambiguity (which might or might 
+not correlate with actual communicative ambuity) than 
+we one expect.  Consider examples like 
+
+I looked out the window.
+I climbed up a tree.
+
+Are the verbs `q.look` and `q.climb` with objects `q.out the window` 
+and `q.up a tree`/?  Or are they `q.look out` and `q.climb up`/?  
+The parse-graphs would obviously be different, since the prepositions 
+(`i.out` and `i.up`/) would be attached to the verb in one case 
+and to the direct-object phrase in the other.`footnote.
+I will typically speak of parse `i.graphs` and not `i.trees` because 
+of phenomena such as anaphora resolution, that link leaf-nodes 
+across phrase boundaries.  The presence of such edges technically 
+make these structures in to graphs rather than trees, even if the 
+edges involved can be ignored for purposes of type-convergence.
+`footnote`
+`p`
+
+
+`p.
+Consider the following scenario: a bloke and his girlfriend are sitting 
+on her sofa.  He's reading and she's talking on the phone.  He stands 
+up and says 
+
+I'm going out to the store.
+
+Is the verb `i.go` or `i.go out`/?  Note that out intrpretation 
+might be influenced by enunciation patterns.  Suppose that the girlfriend 
+is seemingly engrossed in her conversation, and he does not wish to 
+unduly disturb her.  So he holds onto the possibility of keeping his 
+comment as short as possible.  He might just say `q.I'm going out`/, 
+if she appears distracted and only minimally paying attention.  On the 
+other hand, if she shifts her focus away from the phone and looks 
+at him more directly, he might take that as a cue to state 
+more information; instead of a curt `q.going out` he says () instead, 
+providing a rationale for his actions.
+`p`
+
+
+`p.
+We tend to analyze sentences as if they emerge fully-formed, but in 
+real life speaking happens in the midst of social interactions, 
+and people often adjust their speech-acts whle observing listener's 
+responses in the interim.
+
+I found the owner of that dog from yesterday %-- you know, the 
+one who was playing with `Keyush; %-- she lives down the block.
+
+The speaker might include that supplemental phrase identifying 
+to dog because of feedback from the addressee's facial expression; 
+if instead they gave the impression of immediately grasping 
+the referent for the `q.dog from yesterday` then the speaker might 
+have skipped the interregnum entirely.  And, verbal contours and 
+streeses differentiate what the speaker believes to be new information 
+versus familiar details vis-a-vis their listeners, or to sculpt a 
+speech act's meaning relative to common information.  Given
+
+You're coming with us on Saturday, right?
+
+a verbal emphasis on `i.you` seeks clarifiction that the person addressed 
+%-- not someone else %-- is to join them; stressing `q.us` would be 
+to confirm that the person is coming with a group including speaker 
+and not some different group; and emphasizing Saturday contrasts with 
+some other day.  Obviously, () would be spoken in a context where 
+at least one of these points of information has plausible alternatives 
+%-- e.g., if  Saturday is highlighted then there must be some 
+analogous trips happening on a different day %-- and presumably 
+both speaker and listener share beliefs about these details.  
+But articulatory patterns can confirm that their collective 
+beliefs are indeed as coordinated as the speaker assumes; 
+it is a way for the speaker to signify beliefs `i.about` 
+shared beliefs alongside the sentence's explicit content.  
+`p`
+
+
+`p.
+Notated parse-graphs would ordinarily overlook such 
+prosodic details.  However, mannerisms in how sentences 
+are enunciated will potentially favor one parse 
+over another.   
+`p`
+
+
+
+
+
+
+`p.
+
+`p`
+
+
+
+
+
+
+
+
+
