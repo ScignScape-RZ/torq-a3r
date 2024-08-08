@@ -974,10 +974,585 @@ than any semantic restriction.  Nevertheless, it separates out
 regard: to `q.put` does not imply some extended spatial 
 path with the final location as a destination, even if 
 there is `i.some` degree of purposeful movement.   
- 
-
- 
 `p`
+
+
+`p.
+A tempting hypothesis is that dative shift only works with mandatory 
+arguments %-- making it a plausible test of optionality %-- but 
+() looks to me like a counter-example.  Since optionality is 
+not the same as defaults, consider shorter versions of ()
+
+I left some treats in your purse.
+I'm leaving some treats.
+
+Given (), `q.leave` might be transitive but not ditransitive 
+on a surface level, but perhaps there is an implicit `q.here` 
+(whatever the site of the conversation) ensuring that 
+there is always an occupied location-role.  In (), then, 
+we might speculate that a similar `q.here` default supplies 
+the `i.actual` location-argument, such that `i.in your purse` 
+is actually a supplemental detail.  The important information 
+in () would seem to be that the speaker intends the dog to 
+benefit from the treats sometime in the future; the main 
+functional detail is that the treats are somewhere 
+conventiently accessible (it so happens they're in the purse, 
+but that's less essential).  There are, in other words, two 
+conceptually different locations evoked by the sentence, 
+a kind of functionally construed `q.here` versus 
+a narrower `i.in the purse` (albeit the latter being 
+contained in the former).  In (), however, there seems 
+to be no comparable bifurcation of the location-dimension; 
+we don't sense a conceptual role for a generic `q.here` 
+over and above the specific `i.in your purse`/.   
+`p`
+
+
+`p.
+Perhaps what's going on is that the dative form in () 
+shifts the sentence's emphasis away from the description of a 
+spatial configuration and toward a functional `q.gestalt`/, 
+foregrounding expectation that the dog gets the treats.  
+Conversely, () cognitively attends specifically to the 
+spatial positioning of the treats in the bag.  The spatial 
+details are thematically marginalized in () because that 
+utterance derives from an interest in the practical 
+scenario of the dog getting the treats, within which 
+those treats' precise spatial position is tangential.  
+Such contrast in attention-distribution apparently 
+governs how a dative shift works for () but not ().  
+The verb `q.put` appears to foreground the conveyed  
+spatial containment-relation more tightly than with 
+`i.leave`/; the latter, but not the former, tolerates a 
+ditransitive construction which perhaps imports an 
+implicit location-default (an ambient `q.here`/) and 
+relegates the actually stated location to a secondary 
+adjunct.  Or perhaps we actually read the shift 
+in () as, indeed, transposing an optional detail to a 
+non-prepositional indirect object, basing a reading 
+of that shift's permissibility on the same 
+cognitive factors. 
+`p`
+
+
+`p.
+There seem to be few, if any, cases where a dative shift 
+transposes any argument `i.without` a recipient role.  
+Examples like 
+
+I gave John a book.
+I gave a book to John.
+
+intimate that the indirect object can derive from a `q.to` clause [phr], 
+but conventional wisdom is that these are benefactives 
+in disguise.  The act of giving `q.transfers ownership` to a recipient, 
+and while that process often involves physical movement, it is the 
+beneficial intent that the verb emphasis, such that it may be 
+used in contexts precluding physical movement; whereas other 
+verbs without the same benefactive connotation do not accept dative shifts:
+
+She left her daughter the house (in her will).
+I deposited the book with John.
+* I deposited John the book.
+
+Examples such as () and () involving `q.facilitators` might appear to be dative shifts 
+that are actually locative, but (although I am not definitively endorsing 
+this reading) we can say that the facilitator is actually a variant 
+of the dative, and only secondarily a locative.      
+`p`
+
+
+`p.
+Accepting the language of `q.tyoe coercion` %-- which, if combined with theta-role 
+models, would characterize how nouns are interpreted when their ordinary meanings 
+are incompatible with thematic roles they play in some verb's theta grid  
+%-- such examples as `q.go to Grandma` are analyzed as `q.coercing` Grandma to a 
+place.  How that works in practice can vary, since (see ()) there are figurative 
+uses (going to the press might not be literally visiting a newspaper building) 
+plus defaults and proxying (cf. the question of whether `q.coercing` a person 
+to a place implies the person playing two theta-roles at once, or whether 
+the person and the place are, better, theorized as conceptually separate).  
+But `q.type coercion` terminology implies that formal type theory can 
+potentially provide systematic descriptions of these various interpretic 
+complications, rather than relegating them to lexical particularities 
+and/or extralinguistic situationalism and `q.background knowledge`/.  
+Theoretical questions %-- to the degree that we seek syntactic and 
+semantic, rather than cognitive/extra-linguistic models %-- 
+would include, for example, how to charactize the inacceptability of phrases 
+which do not appear to repsect relevant contextual framing; and how to model the coercion 
+effects wherein contextual framing imposes restrictions on interpretation that 
+would not exist in general.  For instance, `q.visited grandma` is narrower than just 
+`q.spent time with` or `q.chatted with` (or even `q.visited with`/) and also narower 
+than similar designations of place:  
+
+We visited with grandma when she came here last week 
+* we visited grandma when she came here last week
+We drove by grandma on the way to school.  Later we learned she wasn't home.
+* we visited grandma but she wasn't home.
+
+`q.Visit` appears to coerce `q.Grandma` to a place (e.g., her home), but with the 
+stipulation or narrowing that she must actually be there; thus `q.Grandma` is not 
+just a metonymic substitute for `q.Grandma's home` the way it could be with 
+`q.drove by`/, see `q.we drove by the Mets on the way to the airport` 
+(referring to the baseball stadium where they play); or `q.we walked past the dean to get to your office` 
+(referring to the dean's office; contrast `q.we sneaked past the dean to get to your office`/). 
+`q.Visit` appears to impose a more granular and information-bearing contextual frame than 
+`q.drive by`/, and likeise `q.sneak` versus `q.walk`/.
+`p`
+
+`p.
+Such framing effects can operate on different levesl: among the coarsest grammatical categories, 
+so that the only explicit interpretive requirement is that words are treated as nouns, verbs, 
+adjectives, and so on relative to the proper parse-graph (`q.baseball` becomes an adjective in 
+`q.baseball bat`/, etc.); at an intermediate `q.ontological` level differentating places from 
+objects, inanimate objects from sentient ones, etc. (you can only `q.sneak past` something 
+capable of observing and of forming opinions); and at a fine-grained lexical level 
+(see `q.no-trump` vis-a-vis card games).  To what extent should we consider the cognitive 
+mechanisms behind contextual framing as similar across all three levels, versus stipulating 
+that each level should be theorized separately?
+`p`
+
+`p.
+This question has two dimensions: whether it is most appropriate or fortuitous to `i.model` different levels 
+of contextual framing as similar or distinct; and whether the actual cognitive/neurological processes 
+carried out in the mind are similar or distinct.  These dimensions are somewhat separate, because in the 
+absense of neurocognitive evidence it is a matter of speculation to what degree framing obeys similar 
+intellectual mechanisms at different levels.  As such, preferring to unify the levels under a single 
+theoretical umbrella depends more on which models feel like they have the most explanatory merit or 
+structural propriety for further research/analysis.`footnote.
+Apart from neurological data, computational evidence that NLP engines which employ similar or, conversely, divergent algorithms for computing within contextual frames at different levels might also give empirical feedback.  I am not aware however of analyses which have compared NLP technology along such lines.
+`footnote`
+`p`
+
+`p.
+In general, `q.type-level` beta-reduction seems more compatible with assumptions that contextual 
+framing is properly studied across multiple scales of granularity.  This is because beta-reduction 
+as `q.type checking` works essentially the same irregardless of the paucity or numerosity of types 
+over which nodes can quantify.  Moreover, there seems to be a gradation between `q.macro-types` 
+(grammatical categories) and `q.meso-types` (ontological regions, in effect): consider singular/plural, 
+or mass/count.  To what extent are mass and count nouns distinct grammatical categories, or are 
+their differences more a semantic matter driven by situational differences 
+(perceiving/experiencing/cognitizing some extent as mass or count representing an pragmatic 
+stance toward those surroundings, motivated by extra-linguistic considerations).  Leveraging beta-reduction 
+style models to span different levels of contextual granularity (of course the notion and specific details 
+of `q.beta-reduction` don't need to be explicitly stated as such) 
+helps acknolwedge that it is hard to draw a crisp line between the kind of 
+contextual framing imposed by grammatical and by ontological categories.
+`p`
+
+`p.
+On the other hand, I do not seek to foreclose analyses which highlight differences 
+between context-framing levels.  The rationale for modeling context 
+(in the relevant sense) via beta-reduction is that such an analogy 
+implies a reasonably formal/deterministic process which concludes that only 
+certain interpretations of a phrase's constituents aggregate to a coherent whole.  
+`q.Visit the leadership group` only makes sense if we can read the group as a `i.place` 
+(e.g., where they habitually gather %-- ruling out, say, soliciting opinions by 
+email or holding a conference call), with place-ness being part (though only part) 
+of the conceptual matrix through which we figure the referent and signified for, 
+e.g., `q.leadership group` as a phrase.  Moreover, 
+context-framing constraints propagate from nested phrases outward: 
+
+I visited the leadership group and took a cab back. [no need to specify back from where]
+? I consulted with the leadership group and took a cab back. [the second half of the sentence supplies new information not presumptively included in the first part]
+* I studied the leadership group and took a cab back. 
+? I visited the newspaper yesterday and bought a copy today [plausible for someone who might have some special interest in learning about some newspaper, e.g. a prospective employee].
+
+
+Such propagation effects imply that types/categories need to `q.fold up`/, kind of by analogy to a cardboard 
+box that can lie flat only when the flaps are collapsed in the right directions and order.  
+Novice box-folders tend to backtrack before getting the sequence right.  
+By analogy, perhaps our minds scan through diverse `q.folding patterns` measuring whether phrases 
+collapse to a lucid proposition given specific lexical and part-of-speech interpretations of 
+individual words or world-like phrases.  Computer programming languages work the 
+same way when it comes to resolving overloaded procedures in a generic-programming context (see section 1).
+`p`
+
+`p.
+This all might seem like a lot of theoretical content to make the fairly obvious point that 
+phrase-heirarchies cannot be assembled (or disassembled) in an incoherent manner.  
+Semantic and situational (as well as syntactic) reasonableness eliminates many hypothetical parse-trees, 
+hopefully leaving only one still standing.  Notice, though, that insofar as contextual 
+constraints on phrase-formation operate at differerent granularity levels, the `q.elimination` is 
+driven by multiple levels concurrently (or at least each contributing their own qualifications); 
+we therefore demand a framework that studies how the different levels interoperate.  
+In other words, assessing candidate parse-interpretations is a dynamic process 
+steered by different granularity levels (perhaps in sequence, perhaps interleaved, perhaps cooperating); 
+the propagatory facets of beta-reduction perhaps make this a more intuitive model for 
+such dynamic processing than `q.static` constituency diagrams, such as those of X-bar theory.  
+`p`
+
+`p.
+Furthermore, elucidating a sentence's parse-graph is only one step in the comprehension process, 
+and addressees still need to complete lexical details and resolve references/anaphora.  
+If we (perhaps as a simplifying abstraction) view parsing and overall comprehension as two 
+successive stages, the amount of information yielded by the first phase can vary from case to case.  
+For instance, in `q.visit the newspaper` we have data to the effect that `q.the newspaper` must 
+be read as a place-designation, from which it naturally follows that this phrase designates a 
+building/location the paper occupies.
+`p`
+
+`p.
+If we picture parsing as `q.beta-reduction`/, the idea would be to treat the graph 
+(one which is tree-like, but may contain lateral edges as well such as pronouns-to-antecedents) 
+as comprised of nodes `q.labeled` with categorical or type attributions that bear at 
+least some information.  Only certain such `q.labeling` would survive the eliminative process 
+whereby mismatched part-of-speech (or finer) attributions fail to fold up to a coherent proposition-like whole.  
+So the labeling serves that eliminative purpose.  But simultaneously, the labeling produces information 
+that remains in effect during subsequent comprehension: e.g., data such as `q.the newspaper` needing 
+to reference a place (and not, say, an object).  The more granular the available set of 
+node `q.labels`/, the more information leaks out from the first phase onto the second.
+`p`
+
+`p.
+In short, the processes which converge on our realization that a certain parse-graph is correct for 
+a given sentence also result in criteria attached to individual words or phrases that then serve as 
+a starting point for deciding what the sentence actually `i.means`/.  More to the point, the 
+`i.quantity` of this data would seem to be larger or smaller from sentence to another.  
+In some cases, we have lexical and/or morphological evidence of singular/plural or mass/count.  
+In other sentences, `q.deep case` or semantic-role considerations add extra details that are prerequisite 
+for parse-graphs being admissible, thereby yielding a more granular array of data left over from the 
+parsing `q.stage`/.  A useful model of these phenomena should thereby present a structural 
+framework which adapts to diffrent amounts of information being provided based on different 
+levels of specificity with respect to what content becomes associated with graph-node.  
+This works with a beta-reduction account because the reduction rules themselves adapt to the cardinality of sets over which node-labels quantify.  For some sentences only rudimentary part-of-speech constraints 
+have any effect; for others, there is explicit contextual framing at an intermediate 
+(`q.meso-type` or thematic-relation) level (e.g., how `q.assume` implies a sentient subject 
+and a proposition-like object).  Arguably, in still further cases there are lexical 
+considerations that impose even tighter contexts 
+(and thus more detailed after-parse information), 
+since some words force a specific topic on their neighbors (see `q.no-trump defense`/).       
+`p`
+
+`p.
+Beta-reduction thereby becomes a useful metaphor and structural precis; it doesn't need 
+to be a rigorous formal simulation of linguistic processing (as compared to the case with 
+implementing compilers for computer languages, which have a mathematical substrate: in the 
+case of human language we do not need to picture the mind itself as some sort of lambda-calculus machine).  
+However, the `q.type-based` account of beta reduction captures only partial desiderata 
+toward understanding sentences as a whole; in this sense the theories differs from ones 
+I outlined earlier in the section, based on (e.g.) Category Theory or Predicate Logic, 
+wherein the entirety of meaning (or at least of semantics, allowing for pragmatic resolving of 
+deictic references and the like) is computed via a certain combinatorial process (for which beta-reduction would be a reasonable synopsis).  As a semantic theory the account presented thus far obviously then goes 
+less far than those others.
+`p`
+
+`p.
+Beta reduction models how parsing constraints narrow the space of plausible parse-graphs 
+to a few (potentially superimposed) which, assuming an unambiguous sentence, either yield 
+similar interpretations for the overall sentence (recall the `q.look out` and `q.climb up` 
+examples) or are subject to additional selective possibilities so as to converge on a single reading.  
+I have not addressed, however, the path which our minds take toward understanding a sentence 
+in full detail, which would in general exhibit a greater degree of comprehension 
+than parsing alone.  I might have a reasonable chance at guessing the syntactic 
+properties of a sentence containing unfamilair words %-- perhaps aided by morphological observations, such as gerunds on verbs or plurals on nounds %-- but remain puzzled as to what the whole thing actually means.  
+There is obviously `i.some` gap between syntax and semantics/pragmatics.
+`p`
+
+`p.
+To explore it, I will start with the distinction between `q.theta roles` and `q.thematic relations` 
+which I touched on earlier.  We assume that elements of a sentence can be classified in terms of the 
+details they contribute to a verb %-- i.e., through the verb we profile some event, state, or process; 
+and surrounding words add information so as to characterize that events/states/processes more fully, 
+reletive to how the speaker perceives them.  The `q.TAME` criteria cover various facets of verb detail: 
+tense and aspect concern termporal matters, whereas evidentials report on how the speaker came to 
+observe or believe the event/state/process signified.  These represent one layer of 
+specifity pertientn to the verb's usage in context.
+`p`
+
+`p.
+Subject, object, and direct object are a (probably) different layer or `q.zone`/.  They appear 
+to be intrinsic to the verb, in that %-- modulo competing word-senses, e.g. `q.climb a mountain` 
+versus intransitive `q.climb` qua activity %-- verbs' meanings carry built-in expectations 
+of subjects (even if `q.null` subjects like `q.it's raining`/, or commands' addressees) 
+and, if applicable, direct then indirect objects.  To `i.give`/, say, connotes a conceptual 
+matrix which demands the fulfillment of subject (the giver), direct object (the thing given), 
+and indirect object (recipient).  Absense of any of these forces us to read the constituents 
+as obvious in context and therefore not explicitly stated (in `q.give to charity` it is understood 
+that one is giving money).  To `q.introduce` implies a ditransitive structure separating an 
+introducer, someone/thing introduced, and some sort of audience; absense of some part forces us 
+either to read it contextually or to re-evaluate the lexical details, perhaps concluding that 
+`q.introduced` is being employed in just the transitive sense (as in `q.she introduced the speaker`/).  
+Even here, though, one can debate whether the introduction's `q.audience` is unstated but 
+implicit (`q.introduce a speaker` implies that there is a group of people whom the speaker 
+will soon address) or whether there are two basically distinct word-senses for `q.introduce`/, one 
+of which has an indirect object and one which does not.  In some cases the different-word-sense 
+analysis is more straightforward: consider `q.I drew him` versus `q.I drew him a picture` 
+(it is harder to read the `q.single-` transitive `q.draw` as actually a ditransitive verb 
+with an indirect object understood by default when not stated, as compared to, say, `q.introduce`/).
+`p`
+
+`p.
+These subject/object considerations can be differentiated from TAME in that the former expectations 
+are generically associated with the verb, in an abstract way that can be specified in a dictionary, 
+whereas TAME depends on dialogic context.  It is an `i.instance` or `i.token` of a verb that has 
+temporal bounding/specificity (or, alternatively, open-endedness) and which permits 
+different evidential markers depending on the speaker's epistemic position.  
+By contrast, a verb's property of requiring, say, a direct object is not situation-specific 
+(at least insofar as we are inclined to classify the optionality of a direct obejct in some 
+cases as the verb being partially polysemous, rather than as a single meaning which can get 
+grounded sometimes with a direct object and sometimes without).  The contrast between TAME and 
+`q.theta roles` may not be entirely transparent, but it seems reasonable to argue that 
+TAME data are `i.only` operative when we concern a specific grounded 
+verb-instance, whereas `q.theta roles` are abstract slots built in to the meaning of a verb.
+`p`
+
+`p.
+This language implicitly assumes that we can distinguish theta roles (where are available 
+for morphosyntactic/inflectional marking) from more general `q.thematic relations`/.  In English, 
+of course, the indirect object can be introduced via a phrase (`q.I gave the book to him`/) 
+but also positionally, implying the presence of an (unmarked) case (`q.I gave him the book`/).  
+The second form is a short-cut which suggests (and is possible because) a certain indirect-object 
+relation is canonically associated with the corresponding verbs.  Other such relations are 
+less conventional and therefore do not work except when phrasally articulated:
+
+I opened the bottle with a corkscrew.
+* I opened corkscrew the bottle.
+? I corkscrewed open the bottle.
+I signed the book for him.
+? I signed him the book.
+
+In theories that differentiate theta roles from thematic relations 
+(and this is not ubiquitous), the contrast is apparently driven by whether the 
+relevant semantic roles are `i.necessary` for the verb to yield a complete idea.  
+Thus `q.I sent him the book` could be followed by further information (yesterday; by post; 
+for you; from Manhattan) but the sentence is complete (enough to be coherent) by itself.  
+So we might distinghuish content which is necessary vis-a-vis the verb `i.instance` (TAME) 
+from that necessary by lights of the verb's overall meaning (the cases it `i.must` support) 
+and also from that which is somehow `q.optional`/.  I suggest this is analogous to a system of 
+`q.zones` that organize sentence material in terms of their mandate's extent when fully grounding 
+the relevant verb.  TAME details might be called the `q.innermost` zone because these are most 
+likely to be marked on the verb itself (e.g., through conjugation patterns) whereas theta roles, 
+if they are marked at all (as opposed to introduced via residual phrases) would depending on 
+declensions on nouns, not the actual verbs.  `q.Optional` extra descriptions, such as 
+where something happened, or how (etc.) act as a kind of `q.outermost` zone.
+`p`
+
+`p.
+Such a tripartite breakdown may be a good start, but consider again a question I mentioned earlier, 
+namely the status of place nouns as the destination in verb of motion, such as 
+`q.I climbed up to the roof`/.  Should we read `q.to the roof` as in a sense a 
+direct object %-- an answer to the question `q.where did you climb?` -- or is 
+`q.I climbed up` a complete thought in and of itself?  In short, 
+does `q.to the roof` here belong to the outermost zome (optional) or to an intermediary zone?
+`p`
+
+`p.
+Arguably, this kind of question is relative to the foci of the person observing the verb's 
+action (or inaction).  Suppose 
+
+She turned onto Atlantic Avenue.
+
+Presumably the speaker is reporting the action of a driver (or maybe a bike rider, perhaps a pedestrian) 
+who is now following Atlantic Avenue (but was not previously).  The interest seems to be in where that 
+person is going now; by extension, then, on the practical ramification of the fact of making that 
+turn (she's going in a different direction than if she'd stayed straight).  The specific 
+seconds where tge actual turning occurred are less centralized; our mental attention is zoomed outward somewhat.  
+These attitudinal details appear to reinforce the reading that `q.turn onto` is functioning as a 
+compound verb, and `q.Atlantic Avenue` as a direct object (insofar as `q.turn onto` evinces a 
+conceptual matrix that requires specifying a new direction and location than before).
+`p`
+
+`p.
+Conversely, suppose we read (*) as if the verb itself were just `q.turn`/, and 
+then `q.onto Atlantic Avenue` becomes supplemental but inessential detailing.  
+This gloss is only reasonable if the speaker's attention were zoomed in more 
+narrowly onto the act of turning.  Compare a statement about some bike rider:
+
+He fell onto a railing, bruising his shoulder.
+He fell, bruising his shoulder.
+
+In the second case `q.fall` is the main event, and the speaker apparently wants to explain 
+how that mishap affected the rider in hurting his shoulder.  Whereas [] pans attention out 
+slightly to emphasize that the relevant event was not just a falling, but `i.falling onto` 
+something (the fact that it was a presumably-hard railing implied to be partly 
+why his shoulder got injured).  Here `q.the railing` could be read as a direct object 
+for `q.fall onto` or, alternatively, `q.onto the railing` as the 
+locative container for an intransitive `q.fall`/.
+`p`
+
+`p.
+Examples like these imply that questions over whether certain details are `q.essential` 
+to a verb depend on the speakers' point of view.  That's not 
+necessarily a bad outcome, but it complicates the idea that 
+`q.intermediate zone` semantic roles are intrinsic to the verb's 
+(in its relevant word-sense) `q.dictionary meaning`/, in contrast to 
+tense/aspect/mode/evidentiality which come into play with the specificity 
+of the verb's `i.grounding` (it is only when instantiated that 
+a verb suggests some temporal extent, say).  
+`p`
+
+`p.
+Along similar lines, observe also that inflectional or positional marking reinforces 
+conceptual essentiality %-- in English, details have to be supplied through (often preposition-led) 
+phrases except for canonical relations such as `q.give` and its indirect object 
+(`q.I gave him the book`/).  But conceptual nonoptionality by itself does not guarantee 
+that compressed non-phrasal constructions are permissable.  For instance, 
+suppose someone says `q.I brought K'eyush to the store` (so he could select his own 
+treats/because they allow dogs/because the dog-sitter's on vacation or whatever).  
+Now certainly no English speaker would balk at someone saying just `q.I brought K'eyush`/, 
+but we should probably read that as simply implying an unstated location/indirect-object, 
+as in by default `q.I brought K'eyush `i.here`/`/.  As I argued above, the verb `q.bring`/, 
+that is, probably always has a 3-part conceptual matrix where the `q.location` part 
+(whatever place the direct object is brought `i.to`/) defaults to the current 
+place where the conversation is happening (similar to examples like 
+`q.I brought coffee`/, or `q.there's a lot of people`/, which 
+in turn we take to mean a lot of people `here`/).
+`p`
+
+`p.
+But despite that conceptual mandate (the location/indirect object must be present) 
+we may not transpose sentences by analogy to `q.I gave him the book`/:
+
+*I brought the store K'eyush
+
+... although the compressed form works sometimes:
+
+I brought K'eyush some treats.
+I brought him a book.
+
+Presumably these are admissible because the recipient is not only a `i.location` but also a `i.benefactor`/.  
+If anything, though, the question of on whose behalf something is brought seems 
+less non-eliminable than `i.where` it was brought.  Someone can certianly say `q.I brought some treats`/, 
+implying (as I've argued) they've brough the treats `i.here`/; and 
+that is a complete idea, even though they could well add on `q.for K'eyush`/.  
+`p`
+
+[https://gawron.sdsu.edu/syntax/course_core/final_13/theta_grids.pdf]
+
+`p.
+The salient conceptual matrix for `q.bring` seems to be `q.`i.someone` brings `i.somthing` to `i.some place`/` 
+but, on reflection, perhaps we almost always infer a notion of beneficiary 
+or recipient, even if unstated: `q.I've brought coffee` 
+implies `q.cofee for us/everyone (to drink)` unless the context compels 
+a reading where they brought the coffee only for themselves (as in `q.what did you bring for your lunch?`/).  
+Indeed, the `q.recipient` role seems entrenched to the point where that thematic relation, 
+and not location per se, gets slotted in for the condensed construction:
+
+I brought the house some dinner (i.e., dinner `i.for` the people `i.in` the house)
+I brought paint for the house.
+* I brought the house paint.
+
+Of course such data presumably lie behind the terminology `i.dative` shift.  By analogy 
+to a person-to-place coercion in `q.to Grandma`/, the dative criterion compels a 
+type-coercion to the role of `q.benefactor` if the indirect object does not 
+conceptually work, sans some intrerpretation as recipient of the `i.direct` object.
+In () `q.the house` must be read as a sentient beneficiary and therefore we take it as 
+obliquely referring to people `i.in` the house.  It is not enough for there to be 
+a reading where the recipient somehow benefits or is improved, 
+as with bringing paint; we cannot transpose (2) to (3) in parrallel to these:
+
+I brought some paint for our young artist.
+I brought our young artist some paint.
+
+The recipient in () and () can presumably `i.experience` the benefits accrued by 
+whatever is brought, whereas `q.the house` might look better with a 
+fresh coat of paint but would not experience itself as such.
+`p`
+
+`p.
+Hance I've argued that `q.bring` has a 4-part conceptual grid 
+with a subject and direct object and then `i.two` essential further 
+roles; `i.place` and `i.recipient`/.  Notice that both of these roles 
+might be ineliminable; examples where notions of place are absent seem 
+to be figurative metaphors rather than down-to-earth instances of a `q.bring` schema:
+
+You brought us all happiness
+Exercise brought him good health
+Fate brought him good luck
+
+These seem to play off of a metaphor of one's emotions or selfhood as a `q.place` %-- 
+perhaps figured as an interior, spiritual location, or perhaps as a 
+target/destination %-- rather than removing place from the schema entirely.  See:
+
+I was in a dark place.
+I'm in a better place now.
+At the end of this road lies sorrow.
+I'm on my way to happiness.
+
+Assuming both `i.recipient` and `i.place` are intrinsic parts of the 
+`q.bring` schema, then it makes sense that the `q.brought K'eyush treats` pattern 
+would be the one marked by word order rather than a nested clause, 
+because the `q.place` component could be inferred from context as either the setting 
+for the current dialog and/or wherever the recipient is/was.  
+There is an obvious default of `q.here` on the location slot but no 
+similarly obvious default for the recipient slot.
+`p`
+
+`p.
+Here then, finally, I can return to questions I posed at the start of this 
+subsection: why does the dative shift appear to be an almost unique 
+transposition in English, where a phrase supplying a 
+benefactive role (but rarely, perhaps never, others) can move 
+to an indirect-object slot?  In verbs with notions of both 
+recipients and locations (`i.bring`/, `i.give`/, `i.send`/, etc.) the 
+possibilities for unnamed defaults are evidently greater `visavis; the 
+latter than the former; that alone would warrant an economizing convention 
+where the recipient is dispatched concisely, right after the verb.  
+There are many situations where a recipient, but not a location, 
+must be explicitly stated; far fewer the other way around 
+(as in `q.I brought a book to the park`/).  Observe that 
+the dative shift is probably forbidden when both subordinates 
+are needed:
+
+I brought a book for John to his desk
+* I brought John a book to his desk
+
+So the transpose only really works when the recipient is 
+explicit and the location inferred by default; in which 
+case it is economical to compress the recipient-statement 
+into a small an area as possible.  Presumably, 
+conventions evolved to restrict other deep-case roles 
+from undergoing a comparable shift so as to avoid 
+confusion about the thematic status of an indirect 
+object.  We are primed to impose a `q.benefactive` 
+interpretation on whatever is enountered in an 
+indirect-object slot.  
+`p`
+
+`p.
+More to the point, there still may be supplemental information 
+which the speaker intends to include.  After a dative 
+shift, the thetic `q.portion` of the verb's detailing 
+%-- i.e., the slots for subject, direct object, and 
+indirect object, which cover semantically intrinsic 
+roles prerequisite for a complete idea %-- is finalized, 
+leaving open the possibility of further elaboration 
+in the rest of the sentence.  When processing sentences 
+that we hear, the syntagmatic boundary %-- `q.syntagmatic 
+in the sense 
+of language's structural plane, considered not only as a 
+static parse-tree but as an unfolding, dynamic process 
+%-- between the `q.theta grid` and more general thematic 
+relations for a verb helps organize our cognitive 
+reception.  That boundary marks the transition from filling 
+in generic theta details pre-anticipated by a verb's 
+abstract meaning, to parsing thematic relations 
+that are more situation-specific.
+`p`
+
+
+`subsection.Verb Detailing and Syntagmatic Zones`
+`p.
+
+`p`
+
+
+
+`p.
+This part of my analysis is certain unoriginal.  I'm not trying to make a big deal 
+about the existence of 4-part thematic-relation grids or tendencies guiding when 
+semantic roles' participants can be introduced via marked positions (generically the indirect object) 
+rather than prepositional phrases (since I'm only considering English I won't 
+address case marking via morphology or inflection, but of course where those are present 
+we could extend beyond positional marking alone).  What I want to emphasize instead 
+is how these sorts of examples complicate intuitions that theta roles are distinguished 
+from `q.optional` thematic relations in terms of conceptual requirements for a complete 
+idea, and/or in terms of trsanspositions from preopositional clauses to positional marking.  
+`p`
+
+
+
 
 
 
