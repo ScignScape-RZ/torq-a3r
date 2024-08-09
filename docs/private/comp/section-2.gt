@@ -926,6 +926,71 @@ minimal part-of-speech categories into levels of greater
 semantic precision.  
 `p`
 
+
+`p.
+Theta role theory identifies a canonical list of important thematic 
+relations, such as location and beneficiary, as well as 
+(e.g.) `i.cause`/, `i.possessor`/, and `i.experiencer`/.  
+These overlap with models of nouns being divided into 
+various `q.ontological` categories, such as (to take a 
+progressively refined chain) physical thing, living thing, 
+animate thing, sentient thing, human being.  Conditions 
+on a verb like `i.want` %-- its subject must have 
+conscious awareness (with room for metaphoric interpretions 
+like plants wanting water, where the literal meaning is closer 
+to `q.need` %-- could be modeled as extra specificity on the 
+attribution of the coarse type `q.noun` to the verb's subject, 
+`i.or` as the presence of a theta grid that supplements 
+purely syntactic Part of Speech labeling, imposing its 
+pwn semantic requirements.  In some cases (such as `q.experiencer`/) 
+the two subdivisions %-- those represented as `q.subtypes` and 
+those proposed as criteria situated in a theta grid 
+%-- may overlap.  However, I believe there are noticeable 
+theoretical differences between the two approaches.  
+As I remarked earlier, treating `q.ontological` variations 
+among nouns (e.g., in terms of `q.mesotypes`/) as 
+`i.subtypes`/, swapped in for the generic `q.noun` type 
+in convergence/reduction, imports semantic considerations into 
+otherwise purely-syntactic attribution rules, along the lines 
+of V + N = P.`footnote.
+This talk about `q.semantic` versus `q.purely syntactic` may sound 
+problemmatic, because one may doubt on cognitive grounds whether 
+semantics and syntax are ever truly separable.  However, the basic 
+idea of type-checking over phrase structure proposes that there is a 
+level of grammatical-category attribution which only 
+minimally incorporates semantic information, and presents 
+constrainst on well-formedness that can be expressed solely 
+through abstract Part of Speech categories without checking 
+semantic details except insofar as these play a role 
+in assigning parts of speech to begin with (cf. the adectival 
+status of `q.baseball` in e.g. `q.baseball bat`/).  I do 
+`i.not` claim that cognitive processes inferring 
+parts of speech can indeed be separated from matters of 
+semantics; instead the phrase-hierarchy type-checking is an 
+abstract reconstruction of processing constraints 
+extracted (perhaps retroactively) from overall 
+sentence understanding.      
+`footnote`  Via theta grids, conversely, semantic-role 
+constraints are modeled separately from type-convergence rules 
+such as substituting Proposition type for completed verb-phrases, 
+in the context of superordinate phrases.  Syntactic and 
+semantic well-formed-ness rules exist in separate registers 
+and (in logical reconstruction, if not actual semiotic cognition) 
+function independently to filter dubious constructions 
+(or, more likely, trigger interpretive resolutions when 
+literal meanings appear to violate conventions).  
+I think these are different theoretical systems, 
+although the differences might be an artifact of theoretical 
+preferences %-- that is, perhaps they are alternate 
+tactics for analyzing the same cognitive phenomena.  
+Maybe, however, one or another representational 
+architecture would indeed be more effective at 
+modeling the underlying cognitive processes 
+involved with understanding sentences. 
+`p`
+
+
+
 `subsection.Optional and Mandatory Thematic Relations`
 `p.
 The notion that theta roles cover `i.necessary` verb-details 
@@ -1404,14 +1469,14 @@ in turn we take to mean a lot of people `here`/).
 But despite that conceptual mandate (the location/indirect object must be present) 
 we may not transpose sentences by analogy to `q.I gave him the book`/:
 
-*I brought the store K'eyush
+* I brought the store K'eyush
 
 ... although the compressed form works sometimes:
 
 I brought K'eyush some treats.
 I brought him a book.
 
-Presumably these are admissible because the recipient is not only a `i.location` but also a `i.benefactor`/.  
+Presumably these are admissible because the recipient is not only a `i.location` but also a `i.beneficiary`/.  
 If anything, though, the question of on whose behalf something is brought seems 
 less non-eliminable than `i.where` it was brought.  Someone can certianly say `q.I brought some treats`/, 
 implying (as I've argued) they've brough the treats `i.here`/; and 
@@ -1435,7 +1500,7 @@ I brought paint for the house.
 
 Of course such data presumably lie behind the terminology `i.dative` shift.  By analogy 
 to a person-to-place coercion in `q.to Grandma`/, the dative criterion compels a 
-type-coercion to the role of `q.benefactor` if the indirect object does not 
+type-coercion to the role of `q.beneficiary` if the indirect object does not 
 conceptually work, sans some intrerpretation as recipient of the `i.direct` object.
 In () `q.the house` must be read as a sentient beneficiary and therefore we take it as 
 obliquely referring to people `i.in` the house.  It is not enough for there to be 
@@ -1534,27 +1599,191 @@ that are more situation-specific.
 
 `subsection.Verb Detailing and Syntagmatic Zones`
 `p.
-
-`p`
-
-
-
-`p.
-This part of my analysis is certain unoriginal.  I'm not trying to make a big deal 
-about the existence of 4-part thematic-relation grids or tendencies guiding when 
+Although English verbs are at most ditransitive (in terms of `q.compressed` theta 
+positions) their theta grids could have more than there elements, allowing 
+for defaults and/or doubling.  This is hardly an original claim; 
+I'm not trying to make a big deal about the existence of 4-part grids or tendencies guiding when 
 semantic roles' participants can be introduced via marked positions (generically the indirect object) 
 rather than prepositional phrases (since I'm only considering English I won't 
 address case marking via morphology or inflection, but of course where those are present 
 we could extend beyond positional marking alone).  What I want to emphasize instead 
 is how these sorts of examples complicate intuitions that theta roles are distinguished 
 from `q.optional` thematic relations in terms of conceptual requirements for a complete 
-idea, and/or in terms of trsanspositions from preopositional clauses to positional marking.  
+idea, and/or in terms of transpositions from preopositional clauses to positional marking.  
 `p`
 
 
+`p.
+The notion that some thematic relations are essential and some aren't evidently derives 
+from our intuition that a proper verb-construction can yield a complete idea, even if 
+there also exist plenty of options for refining it.  So `q.I brought coffee` is 
+(arguably) a coherent proposition, whereas `q.I brought coffee for everyone` adds more detail 
+but has some content which is not absolutely necessarily, at least if logical satisfiability 
+is the main criteria (we can strip sentences down to the minimalest core having 
+identifiable truth conditions).  Of course, the truth conditions of 
+`q.I brought coffee for everyone` and `q.I brought coffee for the boss` are different, 
+but we might say that both sentences have an overlapping core; `q.I brought coffee` by itself 
+does indeed have determinate truth-conditions (basically, if the speaker can show the dark liquid, 
+they're telling the truth).  The `i.recipient` and `i.location` roles may still be in effect, 
+but with defaults: bringing coffee (barring some discourse to the contraey) `i.here` 
+and `i.for everyone`/.
+`p`
 
 
+`p.
+All that being said, however, looking for `q.complete ideas` may not be enough once we factor 
+in dialog context.  We could have an exchange like this:
 
+I brought some cold beer.
+ You sure it's still cold?
+ I brought the beer in an ice-chest cooler.
+
+The `q.in an ice-chest cooler` specification is in some sense 
+`q.inessential` (because `i.how` the bringing was enacted %-- the means or vehicle %-- is not part 
+of the perhaps four-part schema that is conceptually `i.necessary` for `i.bring`/).  In context, 
+however, the other person(s) already knows the speaker had brought the beer, so it is really only 
+that emendation that introduces new content.  Since the whole point of () is to report that the 
+beers are staying cold, it seems counterintuitive to propose that the key phrase carrying that 
+detail (`q.in an ice-chest cooler`/) is relatively less important.  
+Assuming we read that phrase as a `q.deep-case` instrumentive, it seems that in this specific 
+context the `i.how` of `q.bring` is no less significant than the `i.where` and `i.for whom`/.
+`p`
+
+`p.
+To unpack these issues, we might say that certain thematic relations are `q.situationally` 
+essential; i.e., that, against the backdrop of the specific situation which the speaker 
+seeks to emphasize, certain participants in the overall verb-detail complex are especially 
+important.  But this is situation-specific, rather than a general phenomenon that could be 
+described dictionary-like.  Such is a distinct notion of essentiality, divergent both from 
+details that are unavoidable for any verb-grounding (i.e., the TAME facets) and from the 
+schematic status of conceptual matrices that are supported by a verb in general.  
+Semantic roles that are schematically optional might nonetheless be intrinsic to 
+a sentence's purpose in its specific conversational context.
+`p`
+
+
+`p.
+Overall, then, the idea of an `q.intermediate zone` %-- `visavis; the binding of words and phrases 
+that add information to the profiled verb %-- actually seems to span multiple `q.layers`/: constituents 
+that are explicitly marked (e.g., as subject, direct object, or indirect object); those that are 
+schematically intrinsic to the verb-sense and therefore must be present (albeit allowing for `q.defaults`/) 
+even if there is no way to introduce them except via supplemental (typically prepositional) phrases; 
+and details that are `q.situationally` intrinsic to the speaker's intent even if they would be deemed 
+optional on more generic schematic/dictionary conceptualizations alone.  These various genrea of 
+semantic roles and/or markings `q.propagate` from the verb outward (where inflectional variation 
+like `q.brought` as past tense represent the innermost layer of detailing, at least 
+vis-a-vis how it is grammaticalized, and supplemental phrases that seem to be tacked on to sentences 
+as after-thoughts comprising the outermost layer).
+`p`
+
+`p.
+Returning to `q.beta-reduction modulo topology`/, then, this demarcation of different 
+role `q.zones` add structure to the parse-graphs over which beta-reductions fold up.  
+Phrases belong to various zones, in ways that are not apparent from part-of-speech 
+attributions alone.  For example, in `q.I heard that you brought treats from home for K'eyush in your purse`/, 
+the `q.I heard that` phrase connects to the verb as an evidential, whereas `q.for K'eyush` is part 
+of `q.bring`/'s definitional conceptual schema, and `q.in your purse` is effectively instrumentive 
+and supplemental (and `q.from home` the equivalent of ablative case, maybe?), except for situation-specific 
+contexts such as the cooler for the cold beer, where seemingly-residual `q.deep cases` (ablative, instrumentive, etc.) 
+are atypically foregrounded.  Although structurally we can still employ the paradigm wherein 
+types and/or grammatical categories (at some level of granularity) beta-reduce up from leaves to roots, 
+we now have further parameters insofar as now specific phrases (subtrees) %-- and 
+in some cases individual words/nodes %-- can be classified in terms 
+of their semantic role and its `q.zone` status.
+`p`
+
+`p.
+Such `q.zones` are then one step beyond the a bare-bones type-level beta reduction.  
+I said before that I wanted to address how we can get from beta-reduction as `q.type-checking` for 
+parse-graphs to actual sentence-meanings, given that (unlike possible-world semantics, say) 
+I am not assuming that such meaning actually falls out of some computation.  
+Notions of type-coercion represent information `q.leaking` from the parse `q.phase` to a second 
+`q.comprehension` phase.  `q.Zone` patterns separating out different types of semantic 
+roles embody a differernt source of structure to help define processing and/or 
+cognitive operations folling the gap between the two phases.
+`p`
+
+  ---
+
+`p.
+Given a theory of `q.verb detail zones`/, we can begin to consider the thought-processes 
+involved as a person decides precisely how to formulate a sentence while they're speaking 
+(by extension, the ideas which addressees must reverse engineer, or decode in 
+revrswe, to reconstruct speakers' intensions from their projection 
+onto purely linguistic formations).  
+`p`
+
+`p.
+It is at the speaker's discretion to decide how much or how little information to 
+supply (within limits).  For any event (etc.) profiled by a verb, it would of 
+course be possible to name reams of situational details: the journalistic 
+`i.who`/, `i.what`/, `i.where`/, `i.when`/, `i.how`/, and much more.  Because, 
+in English, evidentiality is not grammaticized, speakers are not forced to 
+reckon wuth that branch of detailing (by contrast to tense and aspect, say) 
+just to enunciate the correct verb-form; but of course ecidential phrases `i.may` be 
+introduced, so a speaker can always qualify their comments with `q.it seems that`/, `q.I was told`/, 
+`q.I saw that`/, etc.  Passing from the verb to its immediate neighbors, the subject and 
+(sometimes) object(s) have to be accounted for, even if they aren't actually spoken 
+(the subject of an imperative; the `q.here` in `q.I brought coffee`/).  Words or phrases 
+have to fill in the slots of the verb's relevant conceptual matrix.  
+Further outward, some added detail might actually be essnetial to the 
+sentence's premise to begin with, why the speaker has reason to say it 
+(as in the `q.ice-chest cooler` for the beers).  Some extra phrases may thereby 
+feel ccc [mandated] by the situation at hand.  And then there's extra 
+content a speaker might include for clarification, 
+or parenthetically, or as a bridge to the next sentence.
+`p`
+
+`p.
+Such are `q.rules`/, then, for filling in verb-related details.  Some details are 
+mandated by morphosyntactic convention; others by verbs' `q.theta grid`/; others by 
+discourse priorities against the relvant situational backdrop %-- if we take Grician 
+conversational norms as imposing production-rules equal in force to syntax or semantics, 
+then maxims such as `q.each sentence should present new information` would compel 
+some detailing that would be seemingly optional, if abstracted from the current 
+scenario around the dialog.  And some details `i.are` optional.  Guided by such paradigms, 
+a speaker will embellish verbs with a succession of words or phrases that each contribute 
+information vis-a-vis the verb in isolation from another, branching into different 
+`q.zones` (in the sense I'm employing that term here), different theta-roles or 
+TAME criteria, or different thematic relations.  
+`p`
+
+`p.
+Figuratively, rather than visualizing beta-reduction as a state-propagation that 
+collapses toward the root, condensing the a single propositional type 
+(assuming the sentence is well-formed), this `q.productive` model of the sentence 
+branches out tree-like in the opposite direction, starting from the verb-root 
+and `q.growing` new branches (which in turn might have their own verbs %-- cf. 
+`q.the dog who you saw yesterday` as a noun-phrase for, say, 
+`q.our neighbors adopted`/) so that the productive process 
+repeats iteratively (factorially, even).  
+`p`
+
+`p.
+At one level here I'm just evoking language's compositional creativity. 
+ But notice that every production outward from the verb root still has to obey 
+parameters that can be modeled in terms of beta-reduction in the opposite 
+direction (`i.toward` the verb).  That is, type-level beta-reduction 
+captures criteria that serve as guardrails shaping the 
+production of new phrasal branches supplying new details to the verb.
+`p`
+
+`p.
+Meanwhile, the source material for successive verb-qualifications isn't purely linguistic; 
+it is the totality of situational context, which unfolds as the sentence-production 
+itself occurs.  A speaker forms an intent to create a sentence with a specific 
+meaning in light of the particulars that define the scenario immediately prior 
+to the enunciation (which includes what the current speaker, or others, 
+have said before).  The contours of a sentence can indeed change during 
+the course of its production, insofar as the speaker might observe 
+addressees' reactions (or respond to unanticipated extralinguistic goings-on).  
+`p`
+
+`p.
+By this account, sentence-production is a dynamic process shaped by the interplay of two tendencies: an outward-expand and situation-sensitive accumulation of verb details whose linguistic articulation begins with a verb root and branches out, from the verb's own inflections to surrounding words and then phrases; and, cutting in the opposite direction, an inward pull which constrains phrase-production accoring to rules preserving how the sentence as a whole `q.reduces`q., when fully understood, to a single proposition.     
+`p`
+
+         
 
 `p.
 

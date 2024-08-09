@@ -1,0 +1,150 @@
+
+
+`section.Conclusion`
+`p.
+In and if itself beta-reduction is banal; it basically reinforce conventions that 
+the `q.meaning` of, say, fx is the `q.result` of applying f to x.  
+What makes `q.beta-reduction modulo topology` a non-trivial paradigm, as I see it, 
+is the `q.modulo topology part`/: the idea that some version of beta-reduction 
+(defined, say, via propagating state-changes) exists for a variety of underlying 
+graph forms, recognizing extra structural parameters both in the domain of 
+computer programming languages (objects, channels, state-transitions) and natural 
+human language (qualifier scope, word-order consideraitons, link-grammar labels, 
+verb-detail `q.zones` as I've proposed them here).  Beta-reduction is thereby a formal 
+subsystem which can be embedded in more complex models of syntax and semantics.  
+The `q.minimal` structure for this reduction is that of term algebra, which %-- coupled 
+with a policy of quantifying node-states over types rather than type-instances %-- is, 
+I have claimed, sufficient to capture a lot of details about grammatical acceptability 
+and also (by merging coarse type-models in terms of grammatical categories with 
+more granular type systems recognizing `q.ontological` categories and 
+related theta roles) lay the groundword for sentences' preliminary semantic interpretations.  
+`p`
+
+`p.
+The possibility of a type system straddling the syntax/semantics line (not confined 
+to part-of-speech alone) amounts to modeling a larger area within formal semantics 
+via a type theory that also models a lot of syntax.  Joining a linguistic type theory 
+to theta roles (in the sense that `q.meso`q.-types are criteria on role instantiators 
+in the same way that coarser types are criteria on part-of-speech) %-- which to me is 
+a reasonable gloss on the language/type-theory literature %-- represents a 
+`q.semanticization` of types analogous to expressive type theories in programming 
+language implementation (see the popular sentiment in functional compiler 
+theory that `q.type checking is, ideally, program verification`/).
+`p`
+ [https://www.cis.upenn.edu/~mhnaik/papers/toplas08.pdf]
+
+`p.
+In all these variations, beta-reduction is a `i.model` for human cognitive 
+processes; the point is not that our human minds are built around some sort of 
+Turing machine %-- some formal system that can mechanically compute over term 
+algebras %-- but rather that beta-reduction obliquely models cognitive 
+activity attempting to capture only broad functional tendencies, 
+not a detailed replication of neuronal patterns.  This reflects a 
+broadly `q.functionalist` paradigm in the philosophy of mnid, 
+wherein (maybe artificially) intelligent systems are compared based on their 
+functional operation, not their inner workings; e.g., juxtaposing 
+machine translation of a natural-language text to the work of a 
+professional human translator.  The more the results match, 
+the more that the person and the software are behaving in functionally 
+equivalent ways, at least with respect to that one specific task.
+`p`
+
+`p.
+During the productive process of creating a sentence, then, 
+a speaker %-- on this theory %-- iteratively builds outward from a 
+root verb, selecting situational details while being nudged by lexical 
+and morphosyntactic conventions that demand attention to phenomena 
+such as tense/aspect (to yield the verb's proper inflected form) and 
+thematic relations (those are that definitionally intrinsic to the verb's meaning).  
+Surrounding these `q.nudges`/, situational details and dialogic maxims %-- e.g., 
+always presenting new information, and keeping track of which refential expressions are already established in the conversation; `q.a dog` introduced de novo can become `q.that dog` or `q.she` later %-- motivate 
+speakers to tack on further details as well via subordinate phrasing, 
+yielding a chain of phrases that branches outward.  If we deem the 
+results of this process just as a static hierarchy, we might find this 
+as a fairly mundane iterative phenomenon where some canonical 
+theory of phrase structure (X-bar, say) simply simply gets (re-)iterated 
+within nested phrases.  But my point is that the finished form of a phrase 
+hierachy evolves as a dynamic process guided by the speaker enmeshed in situations, 
+and situational details are select and filtered to sculpt the information 
+that a sentence conveys.  The cognitive faculties behind that actual `i.meaning` of a 
+sentence are those of speaker producing language in real time, foregrounding 
+certain situational details that seem pertinent to the current dialog and 
+enactive goals.  Linguistic conventions provide rules for how such details 
+may be encoded in speech, and in this sense they partly determine linguistic 
+content (e.g., grammaticalization of tense and aspect requires that the temporal 
+position and extent of states/events/processes are explicitly attended to 
+from among the overall space of situational details).  On the other hand, 
+presumably a large part of our situational reasoning is extra-linguistic 
+and in that sense we should not expect the relevant cognitive processes 
+to be analyzable in linguistic terms.  Formal methods such as type-level 
+beta reduction or theta-role type coercions will hopefully capture in indirect, 
+functionalistic terms the processing which governs how langauge encodes 
+situational accounts, but %-- in contrast to the aspirations of 
+possible-world semantics and predicate-logic sentence models, 
+say %-- we should not expect these formal subsystems to simulate most of `i.meaning` per se.  
+On the other hand, as with a theory of type-coercion in the context of theta grids, 
+when a linguistic (not extra-linguistic) model `i.does` account for observations 
+`visavis; admissibility and conventions, we should take this as likely 
+evidence that speakers have internalized specific norms for how situational 
+structured should be encoded in langauge, norms that they obey 
+instinctively so as to maximize the likelihood that communication 
+will proceed successfully.
+`p`
+
+`p.
+In short, compositionality is a dynamic, not static, phenomnenon.  Producing suborinate 
+clauses involves repeating the general form of branching patterns on the root verb in a 
+nested context, but this is not just a formal repetition of production rules away from 
+the root; rather a cognitive process wherein the speaker must keep track of the 
+root-verb's conceptual foundation while temporarily focusing on other aspects of the 
+situation.  As a purely formal matter the structure of a subtree can be modeled in 
+isolation from the tree overall, but as an intellectual facility we cannot assume that 
+placing attentional focus on a more granular detail causes more macroscopic 
+conceptualizations to go away; they just get temporarily overlaid.  
+In `q.I heard you brought treats for K'eyush in your purse` the overarching situation 
+presumably involving two people and a dog gets backgrounded when attention 
+switches, at the end of the sentence, to `q.the purse` %-- this might be 
+an actual shift of perceptual focus, if the speaker literally looks toward said purse, 
+though it could be merely a morphism in the conceptual foreground.  
+But the larger situation sustains a kind of retentional presence 
+during the finer-grained episode and presumably is poised to return as 
+attentional focus once the speaker (literally or figurative) looks away 
+from the purse and back toward the addressee, or the dog, or the room, or whatever.  
+Theoretical accounts of these attentional modulations would presumably come 
+from cognitive science and/or phenomenology, not form linguistics.  But 
+attentional patterning leaves a `i.trace` within language due 
+to production rules, and we can use formal models such as 
+type-level beta-reduction to outline how patterns of 
+cognitive attention become mirrored in phrase structure.
+`p`
+
+`p.
+At what level are speakers `q.computing` them?  Perhaps there 
+are possibilities to model transitions in cognitive-perceptual 
+focus in computational terms, against the basis of structural 
+theories for perceptual stimuli, or the visual field, or the 
+transcendental unity of apperception.  Software-based image analysis 
+and Computer Vision, for example, yields numerous algorithms which usefully 
+simulate certain processes through which humans (and other animals, presumably) navigate through the visual field, shifting focus across larger and smaller sites connected mereologically (by analogy, 
+image-segmentation yields finer or coarser region-sets depending on 
+the contour-detection threshold).  Of course, enactive cognition 
+within situations involves a lot more than vision alone, but the 
+study of visual consciousness is a good proxy for situational embodiment in general.
+`p`
+
+`p.
+Lingusitically, however, computational models of situational 
+reasoning are only tangential to how situational details are 
+encoded in language.  What we *can* do is model the `q.interface` 
+between situational cognition and language production, and at least 
+parts of that cognitive bridge-work appear to be formally tractable, 
+at least to an explatorily useful extent.  In that sense, employing cognitive proceses modeled via beta-reduction or theta-grids can indeed be regarded as `q.computing` over these structures.  Here 
+the `q.language as computation` metaphor is appropriate.  We should 
+not overestimate the scope, however, of the regions within language 
+specifically, or cogntion and consciousness in general, where the 
+metaphor gives us intuitions that are useful rather than oversimplifying and reductionistic.   
+`p`
+
+
+      
+
