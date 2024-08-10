@@ -1067,7 +1067,7 @@ simple term algebras.
 The minimal notion of term-evaluation 
 in lambda calculus might seem rather circular or nonsequitorous, 
 because it seems to assert only that the result of applying 
-some function to its arguments, is just to arrive at a single 
+some function to its arguments is arriving at a single 
 value which is the output of that calculation.  That seemingly 
 self-evident construction of beta reduction, however, is useful 
 because it presents the `i.minimal` structure necessary to 

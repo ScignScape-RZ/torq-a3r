@@ -1780,17 +1780,232 @@ addressees' reactions (or respond to unanticipated extralinguistic goings-on).
 `p`
 
 `p.
-By this account, sentence-production is a dynamic process shaped by the interplay of two tendencies: an outward-expand and situation-sensitive accumulation of verb details whose linguistic articulation begins with a verb root and branches out, from the verb's own inflections to surrounding words and then phrases; and, cutting in the opposite direction, an inward pull which constrains phrase-production accoring to rules preserving how the sentence as a whole `q.reduces`q., when fully understood, to a single proposition.     
+By this account, sentence-production is a dynamic process shaped by the interplay of two 
+tendencies: an outward-expand and situation-sensitive accumulation of verb details whose 
+linguistic articulation begins with a verb root and branches out, from the verb's own 
+inflections to surrounding words and then phrases; and, cutting in the opposite direction, 
+an inward pull which constrains phrase-production accoring to rules preserving how the 
+sentence as a whole `q.reduces`/, when fully understood, to a single proposition.     
 `p`
 
          
+`subsection.Zonal Grammar and Situational Semantics`
+`p.
+Thus far I have proposed two genre of structural parameters which add representational 
+elements to a minimal `q.term algebra` for phrase hierarchies %-- i.e., where  
+phrases simply nest inside one like terms in a lambda calculus.  First there is the 
+possibility of sentences having multiple reasonable parse-graphs which all contribute to 
+the overall reception of that speech-act (or more precisely which all model 
+cognitive processes involved).  Second, a notion of `q.zones` oriented concentrically 
+around each verb embodies supplemental data for specific words and phrases, with 
+inflectional marking on the verb itself constituting an innermost zone, and 
+supplemental adjunct phrases an outermost zone.  In between are theta-grid slots 
+(subject, direct object, indirect object), phrases that play generally requisite 
+thematic roles `visavis; the verb's overall meaning, and phrases that are supplemental 
+on purely lexical/semantic considerations but may be requisite pragmatically and situationally, 
+such as according to maxims of conversational relevance and information-content.    
+`p`
+
+
+`p.
+In this subsection I will explain how I see these two groups of structural parameters 
+(the extra `q.topology` `visavis; `q.beta reduction modulo topology`/) as being 
+sometimes interconnected.
+`p`
+
+
+`p.
+First, consider condensed examples where multiple graphs might be in effect.  Ordinarily 
+we read 
+
+She is running.
+He is sleeping.
+
+as a simple intransitive verb (`q.to run`/) conjugated in the present-progressive.  The fact 
+that is-running comprised two words is just an artifact of English not having one single inflectional 
+form for progressive tenses (contrast `q.runs` and `q.ran`/).  But there's also:
+
+The auto shop called, and your car is running again.
+The trains are running on a Sunday schedule.
+We were not sure she would declare herself as a candidate, but it turn out she's running after all.
+He is sleeping very soundly on the sofa.
+
+These are more metaphorical uses for `q.run`/, and in particular they involve an enduring state, not a 
+physical movement, as can be seen by plausible rewrites () through ():
+
+Your car is fixed.
+The metro is open until midnight.
+She is now a candidate for office.
+He is passed out on the sofa.
+
+
+Note that among these latter sentences, the pattern involves `q.is` as the actual 
+verb (not an auxiliary) plus an adjective (fixed, open); we can read the phrase 
+`q.a candidate` as `i.adjectival`/, where the `q.a` is typed as a 
+function-word that converts nouns to adjectives.  If we were to notate that as 
+Adj -> N, then `q.She is a candidate` would type-check as V + N + ((N -> Adj) + N) 
+= V + N + Adj = Proposition, assuming that the verb `q.is` is treated as a special 
+kind of verb whose second argument can be an adjective rather than a noun 
+(hence V + N + Adj = P rather than V + N + N = P).`footnote.
+Alternatively, we could read `q.fixed` and `q.open` as implicitly 
+re-interpreted as nouns rather than adjectives, perhaps silently 
+passing from the adjective to the `q.state of being` that adjective.  
+The awkwardness in such an analysis is that one cannot literally 
+substitute a `q.state of being` phrase: `q.* Your car is the state of 
+being fixed` makes no sense.  We need an `q.in`/: `q.Your car is in the state of 
+being fixed`/, which sounds correct although very non-idiomatic.  But 
+that `q.in` seems to play the role of converting a noun-phrase to an 
+adjective: it's hard to see `q.in the state of being (whatever)` as a 
+noun-phrase, and what purpose does `q.in` serve if the argument it modifies 
+and the resulting phrase are both noun-typed?  The same analysis would apply 
+to locations, like `q.in England` or `q.in your purse`/.   
+`footnote`  
+`p`
+
+
+[
+`p.
+As further evidence, note how gerunds can work with 
+both progressive-tense and is-plus-attribute constructions; cf.: 
+...
+`p`
+]
+
+`p.
+Moreover, it sounds normal to switch from progressive-tense 
+to is-plus-attribute constructions, even in one sentence:
+
+She is running. She must be in a hurry!
+She is running and must be in a great hurry.
+
+He is sleeping. He must be tired!
+He is sleeping and must really be tired.
+`p`
+
+
+`p.
+Since the `q.`i.is` plus adjective` pattern is ubiquitous, one is tempted to 
+perceive it as affecting the reception of gerund constructions as well:
+
+She is running for office.
+She is campaigning in Michigan.
+The machine is working perfectly.
+
+Here our conceptual appraisals of the situations might be to focus on the 
+adjectives as declarations of `i.state`/, and we are not attending to specific 
+moments or events which brought about that state.  Elsewhere our mental 
+lens instead would indeed be on a specific event that we, as observes, 
+experience as ongoing and extended through time, but having some anticipated 
+conclusion:
+
+I see her, she is running home.
+I see your father in the kitchen, he must be cooking dinner.
+
+Even when a verb-instance implies physical action (not just a condition, like 
+`q.working`/) our focus can apparently modulate from the specific event to the 
+implicit state:
+
+Your father is cooking Christmas dinner for everyone on Sunday.
+My favorite coffee bar is opening a new location in my neighborhood. 
+`p`
+
+
+`p.
+When our thoughts are with the state/condition described by a verb-turned-adjective 
+rather than with the concrete action the verb profiles, then a parse-graph 
+assigning an adjectival `q.role` seems more appropriate than one based 
+on conjugations.  For those graphs, instead of `q.is` being an auxiliary 
+that forms a verb-phrase like `q.is running`/, `q.is working`/, etc., 
+`q.is` instead because the actual verb and `q.running` (etc.) gets reinterpreted 
+as an adjective.  The two structures are obviously not isomorphic: an (intransitive) 
+verb-phrase plus subject versus a (transitive) verb with subject and a direct object 
+that, in effect, is an adjective.  Each structure apparently captures different 
+patterns in terms of our conceptual projections within the context.  Meanwhile, 
+though, the contrast between attending to a `q.state` or an `q.action` might 
+be a matter of degree, not a binary opposition.  Therefore the 
+patterns of cognitive focus implied by two different parse-graphs 
+might both have some relevance to the concepts involved, in which 
+case it is reasonable to model the graphs as somehow coexisting 
+and superimposed.  Indeed, one single utterance in a given situation 
+might tolerate both approaches involved in the recent examples, as in 
+
+John is coming home.
+
+The speaker of () could be actively watching John or could instead be reporting 
+on the fact of his imminent arrival.  We would not necessarily mentally 
+differentiate the two framings, and our listeners might not adopt identical 
+conceptual postures to our own.  The statement of () suggests the possibility 
+both of the speaker attending to John's physical motion and of the functional 
+state wherein John will be at home (so they could talk to him, have dinner, go 
+somewhere together, or whatever %-- the point is there's not just spatial 
+location involved, but most likely some practical actions preconditioned on his 
+being home rather than away); those are (I'd opine) distinct conceptualizations 
+but mutually coexisting, with possibly varying degrees of foregrounding 
+one and backgrounding the other. 
+`p`
+
+
+`p.
+Similar cognitive `q.superposition`/, I believe, affects examples where 
+parse-graphs differ on whether prepositions belong to verb-phrases or 
+verbs' argument, which I discussed earler; cases like
+
+We're going out to the store.
+She climbed up a tree.
+I looked out the window.
+He fell down the ravine.
+
+
+The theta-grid is `q.filled out` rather differently depending 
+on whether we read `q.out` and `q.up` as attached to the verb 
+or the (second) argument.  Such differences likely encode 
+distinct conceptual profilings of the underlying situation.  
+If `q.a tree` is the object in (), then we attend to the 
+tree as a single object and `q.climb` as a completed action.  
+If `q.up the tree` instead serves more as a direction for 
+the climbing, then we are focusing more on finer-scaled 
+spatial relations, with `q.up` being relative to the 
+person during the course of her climb.  Similarly, as I've claimed 
+above, () would be read as attending to the first phase of an 
+itinerary if we attach `q.out` to `q.go`/, profiling the act of 
+`i.leaving`/; but if we take `q.out to the store` more as a rationale 
+and destination (with `i.out` removed from the verb-phrase) 
+then we are anticipatorily figuring the complete trajectory. 
+In (), `q.out the window` could be apprehended as a `q.path` 
+for someone's gaze, with the window as a medium permitting 
+sight to be unimpeded; whereas `q.to look out` with 
+an object (not `q.look out` in the sense of 
+`q.watch out`//`q.be careful`/) %-- such that 
+the preposition merges into a verb-phrase %-- emphasizes 
+instead how the subject is on one side of the window 
+(inside a room, almost always) and 
+whatever they're observing is `i.out`/side.  This is a more 
+holistic construal than regarding the window as a 
+position on a `q.path` with line-of-sight as 
+metaphoric movement.  The overall pattern here 
+seems to be that a preposition bound to the 
+verb entails a more holistic framing, whereas 
+attaching it to an object-phrase suggests a cognitive 
+zoom into some more specific part of a (real or imagined) 
+trajectory. 
+`p`
+
+
+`p.
+For obvious reasons, binding a preposition with a verb, 
+or not, positions it in a different `q.zone` according to 
+my proposed model, since a verb-phrase would be an 
+innermost zone (or almost so, apart from inflection on the 
+actual verb lexeme) whereas a second-argument, direct-object-like 
+position is more of an intermediary (theta-grid) zone.  
+ 
+`p`
+
+
 
 `p.
 
 `p`
-
-
-
 
 
 
