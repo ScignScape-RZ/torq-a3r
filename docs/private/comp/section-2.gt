@@ -1998,7 +1998,43 @@ my proposed model, since a verb-phrase would be an
 innermost zone (or almost so, apart from inflection on the 
 actual verb lexeme) whereas a second-argument, direct-object-like 
 position is more of an intermediary (theta-grid) zone.  
- 
+In general, passing from inner to outer zones 
+involves grammatical conventions with progressively 
+less concision: there is inflection on the verb itself; 
+then constituents of a verb-phrase, which are in 
+its immediate neighborhood; and then subject and 
+object(s) sited directly adjacent to the verb (-phrase).  
+Rules for these zones appear to be relatively 
+formalized and strict, presumably so 
+multiple semantic entities can be packed into a 
+tight area without clarifying auxiliaries/prepositions 
+(e.g., the dative shift being `i.only` dative).  
+As our processing scans out from these `q.compressed` zones 
+to more free-form, subordinate-phrase-based parts of a 
+sentence, there is an overall syntactic shift toward 
+isolable phrases as well as a semantic shift toward 
+details which are more situation-specific and/or 
+supplemental to a sentence's key meaning.`footnote.
+The fact that English does not mark evidential status 
+on verbs directly might apply that, in English, such 
+content is less centralized than other TAME 
+dimensions (tense, aspect, mood).  However, this 
+status is often marked by anticipatory phrases 
+such as `i.I heard that`/, `It seems`/, etc., which 
+`i.precede` the root verb and, as such, perhaps a 
+zonally closer than trailing information provided 
+only after the verb and its intrinsic 
+arguments have been accounted for. 
+`footnote`  In other words, grammatical patterns 
+and modulation in conceptual status work 
+in synergy.  Insofar as, conceptually, a preposition 
+like `q.up` in `i.climb up` has a kind of indeterminate 
+status %-- not quite absolutely central to the 
+verb-profiled action but not quite supplemental detailing 
+either %-- it would make sense that the corresponding 
+syntactic status is indeterminate or blended as 
+well, as if hovering between/among two or more zones.  
+This would be modeled by a superposition of parse graphs. 
 `p`
 
 
