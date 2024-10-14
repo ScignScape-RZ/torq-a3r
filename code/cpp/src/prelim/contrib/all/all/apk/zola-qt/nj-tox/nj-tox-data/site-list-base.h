@@ -1733,6 +1733,17 @@ public:
 
  _define_setters define_setters() { return {this}; }
 
+ SITE_Type* begin()
+ {
+  return sites_.begin();
+ }
+
+ SITE_Type* end()
+ {
+  return sites_.end();
+ }
+
+
  SITE_Type& add_site()
  {
   sites_.push_back(SITE_Type{});

@@ -825,6 +825,542 @@ int main7(int argc, char *argv[])
 }
 
 
+
+// //   MAIN...
+
+
+int main(int argc, char *argv[])
+{
+ u2 current_year = 2022;
+
+ NJ_TRI_Site_List ntsl ("/home/nlevisrael/docker/gits/torq-wip/pres/tri/%1_nj-corrected.csv"_qt.arg(current_year));
+
+
+ ntsl.define_setters()
+
+//    [1]  ++
+//         (& NJ_TRI_Site::set_year)
+//         (& NJ_TRI_Site::set_year)
+//         (& NJ_TRI_Site::set_year)
+//    ()
+
+    [1]  (& NJ_TRI_Site::set_year)
+
+    [2]  (& NJ_TRI_Site::set_trifd)
+    [3]  (& NJ_TRI_Site::set_frs_id)
+    [4]  (& NJ_TRI_Site::set_facility_name)
+    [5]  (& NJ_TRI_Site::set_street_address)
+    [6]  (& NJ_TRI_Site::set_municipality)
+    [7]  (& NJ_TRI_Site::set_county)
+    [9]  (& NJ_TRI_Site::read_zip_code)
+
+
+    [11]  [& NJ_TRI_Site::set_tribe_name]
+
+    [12]  (& NJ_TRI_Site::set_latitude)
+    [13]  (& NJ_TRI_Site::set_longitude)
+    [14]  (& NJ_TRI_Site::read_horizontal_datum)
+    [15]  (& NJ_TRI_Site::set_parent_company_name)
+    [16]  (& NJ_TRI_Site::set_parent_company_db_number)
+    [17]  (& NJ_TRI_Site::set_parent_company_standardized_name)
+
+    [19]  (& NJ_TRI_Site::set_industry_sector_code)
+    [20]  (& NJ_TRI_Site::set_industry_sector)
+
+(0) [21]  ()
+     --
+    [26]  [& NJ_TRI_Site::add_SIC_code]
+
+(27, 32)  [& NJ_TRI_Site::add_NAICS_code]
+
+   [33]  (& NJ_TRI_Site::set_document_control_number)
+   [34]  (& NJ_TRI_Site::set_chemical_name)
+   [36]  (& NJ_TRI_Site::set_TRI_chemical_id)
+   [37]  (& NJ_TRI_Site::set_CAS_registry_number)
+   [38]  (& NJ_TRI_Site::set_SRS_id)
+   [40]  (& NJ_TRI_Site::read_classification)
+
+   [42]  (& NJ_TRI_Site::read_metal_category_with_corrections)
+
+
+//   48 - 61
+
+  ( "5.1"
+  , "5.2"
+  , "5.3"
+  , "5.4"
+  , "5.4.1"
+  , "5.4.2"
+  , "5.5.1"
+  , "5.5.1A"
+  , "5.5.1B"
+  , "5.5.2"
+  , "5.5.3"
+  , "5.5.3A"
+  , "5.5.3B"
+  , "5.5.4"
+  ) .nonzero [& NJ_TRI_Site::read_discharge_amount]
+
+
+   [63]  (& NJ_TRI_Site::set_potw_release_or_disposal)
+   [64]  (& NJ_TRI_Site::set_potw_further_treatment)
+   [65]  [& NJ_TRI_Site::set_potw_total]
+
+
+
+   ( "M10"
+   , "M41"
+   , "M62"
+   , "M40_metal"
+   , "M61_metal"
+   , "M71"
+   , "M81"
+   , "M82"
+   , "M72"
+   , "M63"
+   , "M66"
+   , "M67"
+   , "M64"
+   , "M65"
+   , "M73"
+   , "M79"
+   , "M90"
+   , "M94"
+   , "M99"
+   , "M20"
+   , "M24"
+   , "M26"
+   , "M28"
+   , "M93"
+   , "M56"
+   , "M92"
+   , "M40_non_metal"
+   , "M50"
+   , "M54"
+   , "M61_non_metal"
+   , "M69"
+   , "M95"
+   ) .nonzero [& NJ_TRI_Site::read_offsite_transfer_amount]
+
+++ [85]
+   [91]
+   [94]
+   [101]
+   [102]
+   [106]
+   [107] .nonzero (& NJ_TRI_Site::read_offsite_transfer_or_release_total)
+
+
+  ( "Onsite_Contained"
+  , "Onsite_Other"
+  , "Offsite_Contained"
+  , "Offsite_Other"
+  , "Onsite_Energy_Recovery"
+  , "Offsite_Energy_Recovery"
+  , "Onsite_Recycling"
+  , "Offsite_Recycling"
+  , "Onsite_Treatment"
+  , "Offsite_Treatment"
+  ) .nonzero (& NJ_TRI_Site::read_onsite_and_offsite_amounts)
+
+
+  [103] (& NJ_TRI_Site::set_overall_offsite_transfer_total)
+  [104] (& NJ_TRI_Site::set_onsite_and_offsite_releases_total)
+  [105] (& NJ_TRI_Site::set_source_reduction_releases_total)
+
+
+  [116] (& NJ_TRI_Site::set_production_waste)
+  [117] .nonzero [& NJ_TRI_Site::set_one_time_release]
+  [119] (& NJ_TRI_Site::set_production_ratio)
+
+
+  .default_flag_strings()
+
+  [10]  [& NJ_TRI_Site::set_BIA_code]
+  [10]  (& NJ_TRI_Site::set_flag <NJ_TRI_Site::on_tribal_land>)
+
+
+  [18]  (& NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>)
+
+//  [18] ++
+//       (& NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>)
+//       (& NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>)
+//       (& NJ_TRI_Site::set_flag <NJ_TRI_Site::federal_facility>)
+//   ()
+
+
+  [35] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::elemental_metal_included>)      // csv col 35
+  [39] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::clean_air_act_chemical>)        // csv col 39
+  [41] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::classified_as_metal>)           // csv col 41
+  [43] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::carcinogen>)                    // csv col 43
+  [44] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::pbt>)                           // csv col 44
+  [45] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::pfas>)                          // csv col 45
+
+  [46]
+   ("R") (& NJ_TRI_Site::set_flag <NJ_TRI_Site::form_r>)                        // csv col 46
+   ["A"] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::form_a>)                        // csv col 46
+
+
+  [47]
+   ("Pounds")  (& NJ_TRI_Site::set_flag <NJ_TRI_Site::units_pounds>)                  // csv col 47
+   ["Grams"]   (& NJ_TRI_Site::set_flag <NJ_TRI_Site::units_grams>)                   // csv col 47
+
+  [118]
+   ("PRODUCTION") (& NJ_TRI_Site::set_flag <NJ_TRI_Site::production_ratio_value>)        // csv col 118
+   ["ACTIVITY"] (& NJ_TRI_Site::set_flag <NJ_TRI_Site::activity_index_value>)          // csv col 118
+
+   ;
+
+
+ ntsl.read_csv_file();
+
+ QMap<QString, NJ_TRI_Site_List> sites_by_county;
+
+ QString html_folder = "/home/nlevisrael/docker/gits/torq-wip/pres/tri/html/";
+ QString base_folder = html_folder + "counties/%1/"_qt.arg(current_year);
+
+ for(NJ_TRI_Site site : ntsl.sites())
+ {
+  QString county = site.county_ucfirst();
+
+  if(!sites_by_county.contains(county))
+  {
+   QString county_folder = base_folder + county;
+
+   QDir qd(county_folder);
+   if(!qd.exists())
+     qd.mkpath(".");
+
+//   QString county_file = "%1/%2-2022-simplified.csv"_qt.arg(county_folder).arg(county);
+
+   QString html_file = "%1/%2-2022.htm"_qt.arg(county_folder).arg(county); // -simplified
+
+   sites_by_county[county] = NJ_TRI_Site_List(); //county_file);
+
+   sites_by_county[county].add_file_path("html", html_file);
+
+  }
+
+  sites_by_county[county].sites().push_back(site);
+ }
+
+// auto getters =  csv_field_getters_by_column<NJ_TRI_Site>
+//     ( //(typename csv_field_getters_by_column<NJ_TRI_Site>::methods_0_vector_type)
+//      {
+//       &NJ_TRI_Site::str_frs_id,
+//       &NJ_TRI_Site::facility_name,
+//       &NJ_TRI_Site::street_address,
+//       &NJ_TRI_Site::municipality,
+//       nullptr,
+//       &NJ_TRI_Site::str_zip_code,
+//       &NJ_TRI_Site::str_zplus_4,
+//       &NJ_TRI_Site::str_latitude,
+//       &NJ_TRI_Site::str_longitude,
+//       &NJ_TRI_Site::industry_sector,
+//       &NJ_TRI_Site::str_industry_sector_code,
+// //?      &NJ_TRI_Site::chemical,
+//       &NJ_TRI_Site::enum_to_numeric_str<NJ_TRI_Site::Classification_Keys>,
+// //?      &NJ_TRI_Site::metal_category,
+//     }, 2  // 2 is the offset, allowing for 2 default columns
+//     );
+
+
+
+// QStringList header {
+//  "_0", "_1",
+//  "frs_id",
+//  "facility_name",
+//  "street_address",
+//  "municipality",
+//  "county",
+//  "zip_code",
+//  "zplus_4",
+//  "latitude",
+//  "longitude",
+//  "industry_sector",
+//  "industry_sector_code",
+//  "classification",
+// };
+
+
+ QString html_template = html_folder + "template.htm";
+ QString template_text = KA::TextIO::load_file(html_template);
+
+
+ QMutableMapIterator it(sites_by_county);
+
+ u1 index = 0;
+ i1 max_index = sites_by_county.size();
+
+ QString last_county = sites_by_county.lastKey();
+ QString first_county = sites_by_county.firstKey();
+
+// u1 previous_index = 0;
+// u1 previous_index = 0;
+
+ u1 year_page = 1;
+ u1 previous_year_page = 0;
+ u1 max_year_page = 1;
+
+
+
+
+ while(it.hasNext())
+ {
+  it.next();
+
+  ++index;
+
+  QString html_template_text = template_text;
+
+
+  html_template_text.replace("%year%", QString::number(current_year));
+  html_template_text.replace("%year-page%", QString::number(year_page));
+  html_template_text.replace("%max-year-page%", QString::number(max_year_page));
+
+  html_template_text.replace("%county%", it.key());
+
+  html_template_text.replace("%pgnum%", QString::number(index));
+  html_template_text.replace("%max-pgnum%", QString::number(max_index));
+
+  if(index == 1)
+  {
+   html_template_text.replace("%uu-active%", "inactive");
+   html_template_text.replace("%uu-onclick%", "");
+  }
+  else
+  {
+   html_template_text.replace("%uu-active%", "active");
+   html_template_text.replace("%uu-onclick%", "location.href='../../%2/%1/%1-%2.htm'"_qt
+     .arg(first_county).arg(current_year));
+  }
+
+  if(index == max_index)
+  {
+   html_template_text.replace("%dd-active%", "inactive");
+   html_template_text.replace("%dd-onclick%", "");
+  }
+  else
+  {
+   html_template_text.replace("%dd-active%", "active");
+   html_template_text.replace("%dd-onclick%", "location.href='../../%2/%1/%1-%2.htm'"_qt
+     .arg(last_county).arg(current_year));
+  }
+
+// lup-active
+
+  if(year_page < max_year_page)
+  {
+   html_template_text.replace("%year-down%", "location.href='%1-%2.htm'"_qt
+     .arg(last_county).arg(current_year - 1));
+   html_template_text.replace("%year-down-active%", "active");
+  }
+  else
+  {
+   html_template_text.replace("%year-down%", "");
+   html_template_text.replace("%year-down-active%", "inactive");
+  }
+
+  if(year_page > 1)
+  {
+   html_template_text.replace("%year-up%", "location.href='%1-%2.htm'"_qt
+     .arg(last_county).arg(current_year + 1));
+   html_template_text.replace("%year-up-active%", "active");
+  }
+  else
+  {
+   html_template_text.replace("%year-up%", "");
+   html_template_text.replace("%year-up-active%", "inactive");
+  }
+
+  if(index < max_index)
+  {
+   html_template_text.replace("%county-down%", "location.href='../../%2/%1/%1-%2.htm'"_qt
+     .arg(sites_by_county.keys()[index]).arg(current_year));
+   html_template_text.replace("%county-down-active%", "active");
+  }
+  else
+  {
+   html_template_text.replace("%county-down%", "");
+   html_template_text.replace("%county-down-active%", "inactive");
+  }
+
+
+  if(index > 1)
+  {
+   html_template_text.replace("%county-up%", "location.href='../../%2/%1/%1-%2.htm'"_qt
+     .arg(sites_by_county.keys()[index - 1]).arg(current_year));
+   html_template_text.replace("%county-up-active%", "active");
+  }
+  else
+  {
+   html_template_text.replace("%county-up%", "");
+   html_template_text.replace("%county-up-active%", "inactive");
+  }
+
+
+//  uu-active
+
+  NJ_TRI_Site_List& county_ntsl = it.value();
+
+//  county_ntsl.default_json_field_getters();
+//  auto g = getters.copy();
+//  g.insert_default(it.key());
+//  county_ntsl.set_csv_field_getters(g);
+//  county_ntsl.save_to_csv_file("!", &header);
+//  county_ntsl.save_to_json_file();
+
+
+  QString path = county_ntsl.get_file_path("html");
+
+  QString html_text = "<tr><td colspan='2' class='county-plus-count'>"
+    "<span class='osa:scalar' data-osa_field='county'>"
+    "%1: %2 sites"
+    "</span>\n"_qt
+    .arg(it.key()).arg(county_ntsl.sites().size());
+
+  QString tr_text = R"(
+<tr><td class='field-name'>%1</td>
+<td><span class='osa:scalar'  data-osa_field='%2'>%3</span>
+</td></tr>)";
+
+
+  for(const NJ_TRI_Site& site : county_ntsl) //.sites())
+  {
+   html_text += "\n\n<!-- site -->\n";
+   html_text += "\n<tr class='new-site'><td colspan='2'>&nbsp;</td></tr>\n";
+
+   // // NAICS_codes
+   // // SIC_codes
+
+#define _as_tr_text(n, f, m) tr_text.arg(n).arg(#f).arg(site.m())
+#define as_tr_text(n, f) _as_tr_text(n, f, f)
+#define as_tr_text_str(n, f) tr_text.arg(n).arg(#f).arg(site.str_##f())
+#define as_tr_text_str_map(n, f) tr_text.arg(n).arg(#f).arg(site.str_map_##f())
+
+#define as_tr_text_str_enum(n, f, e) tr_text.arg(n).arg(#f).arg(site.enum_to_numeric_str<NJ_TRI_Site::e>())
+
+   //site.NAICS_codes()
+
+
+   html_text += as_tr_text_str("NAICS Codes", NAICS_codes).replace("class='field-name'",
+     "class='field-name first-line'");
+   html_text += as_tr_text_str("SIC Codes", SIC_codes);
+
+   html_text += as_tr_text("SRS ID", SRS_id); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='SRS_id'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.SRS_id());
+
+
+   html_text += as_tr_text("TRI Chemical Id", TRI_chemical_id); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='TRI_chemical_id'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.TRI_chemical_id());
+   html_text += as_tr_text("Chemical Name", chemical_name); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='chemical_name'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.chemical_name());
+
+   // // classification
+   html_text += as_tr_text_str_enum("Classification", classification, Classification_Keys);
+
+   html_text += as_tr_text("Document Control Number", document_control_number); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='document_control_number'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.document_control_number());
+   html_text += as_tr_text("Facility Name", facility_name); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='facility_name'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.facility_name());
+   html_text += as_tr_text("FRS ID", frs_id); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='frs_id'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.frs_id());
+
+   // //  horizontal datum
+   html_text += as_tr_text_str_enum("Horizontal Datum", horizontal_datum, Horizontal_Datum_Options);
+
+
+   html_text += as_tr_text("Industry Sector", industry_sector); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='industry_sector'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.industry_sector());
+   html_text += as_tr_text("Industry Sector Code", industry_sector_code); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='industry_sector_code'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.industry_sector_code());
+   html_text += as_tr_text("Latitude", latitude); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='latitude'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.latitude());
+   html_text += as_tr_text("Longitude", longitude); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='longitude'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.longitude());
+
+   // //  metal category
+   html_text += as_tr_text_str_enum("Metal Category", metal_category, Metal_Category);
+
+
+   html_text += as_tr_text("Municipality", municipality); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='municipality'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.municipality());
+
+   // // offsite transfer amounts
+   html_text += as_tr_text_str_map("Offsite Transfer Amounts", offsite_transfer_amounts);
+
+   // // offsite transfer or release totals
+   html_text += as_tr_text_str_map("Offsite Transfer or Release Totals", offsite_transfer_or_release_totals);
+
+
+   html_text += as_tr_text("One Iime Release", one_time_release); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='one_time_release'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.one_time_release());
+
+   // //  onsite_and_offsite_amounts
+   html_text += as_tr_text_str_map("Onsite and Offsite Amounts", onsite_and_offsite_amounts);
+
+   html_text += as_tr_text("Onsite and Offsite Releases Total", onsite_and_offsite_releases_total); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='onsite_and_offsite_releases_total'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.onsite_and_offsite_releases_total());
+   html_text += as_tr_text("Onsite Release Total", onsite_release_total); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='onsite_release_total'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.onsite_release_total());
+   html_text += as_tr_text("Overall Offsite Transfer Total", overall_offsite_transfer_total); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='overall_offsite_transfer_total'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.overall_offsite_transfer_total());
+
+   // //  parent company
+   html_text += _as_tr_text("Parent Company Name", parent_company:name, get_parent_company_name);
+   html_text += _as_tr_text("Parent Company Standardized Name", parent_company:name,
+     get_parent_company_standardized_name);
+   html_text += _as_tr_text("Parent Company DB#", parent_company:db_number, get_parent_company_db_number);
+
+
+
+   html_text += as_tr_text("POTW Further Treatment", potw_further_treatment); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='potw_further_treatment'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.potw_further_treatment());
+   html_text += as_tr_text("POTW Release or Disposal", potw_release_or_disposal); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='potw_release_or_disposal'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.potw_release_or_disposal());
+   html_text += as_tr_text("POTW Total", potw_total); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='potw_total'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.potw_total());
+   html_text += as_tr_text("Production Ratio", production_ratio); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='production_ratio'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.production_ratio());
+   html_text += as_tr_text("Production Waste", production_waste); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='production_waste'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.production_waste());
+   html_text += as_tr_text("Source Reduction Releases Total", source_reduction_releases_total); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='source_reduction_releases_total'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.source_reduction_releases_total());
+   html_text += as_tr_text("Street Address", street_address); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='street_address'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.street_address());
+   html_text += as_tr_text("TRIFD", trifd); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='trifd'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.trifd());
+   html_text += as_tr_text("ZIP Code", zip_code); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='zip_code'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.zip_code(), 5, 10, QChar('0'));
+   html_text += as_tr_text("ZIP plus 4", zplus_4); // "\n<tr><td></td><td><span   class='osa:scalar'  data-osa_field='zplus_4'>%1</span></td></tr>"_qt
+     // .arg("#field").arg(site.zplus_4(), 9, 10, QChar('0'));
+
+  }
+
+  html_template_text.replace("%%TEXT%%", html_text);
+
+  KA::TextIO::save_file(path, html_template_text);
+ }
+
+
+// auto g = getters.copy();
+// g.insert_default(it.key());
+
+// getters.insert_replacement(&NJ_TRI_Site::county);
+// ntsl.set_csv_field_getters(getters);
+// ntsl.save_to_csv_file(base_folder + "/nj.csv", &header);
+
+
+
+ return 0;
+}
+
+
+
+
+
+
+
 #ifdef HIDE
 
 void main_by_year(u2 year)
@@ -2432,7 +2968,7 @@ int main1(int argc, char *argv[])
 #endif
 }
 
-int main(int argc, char *argv[])
+int main20(int argc, char *argv[])
 {
  QString json_file = "/home/nlevisrael/sahana/sorted/Sc.pdf.json";
 
@@ -2681,22 +3217,57 @@ int main(int argc, char *argv[])
   return lhs.number < rhs.number;
  }) -> number;
 
+ QString url_base = "http://amyneustein.com/-prv/sahana/sorted/bases/";
 
 
  // //   create the index
+// <td class='categories'>%3</td>
 
  static QString static_index_text = R"_(
 
   <tr class='one-line'>
    <td class='page-number'>%1</td>
-   <td class='date'>%2</td>
-   <td class='link'>
-    <a href='%3'>%4</a></td>
+   <td class='date' colspan='4'>%2</td>
+    <!-- categories -->
+     <td class='fc'>&nbsp;</td> %3 <td class='lc'>&nbsp;</td>
+    <!-- end categories -->
+   <td class='link' colspan='3'>
+    <a href='%4%5'>%6</a></td>
   </tr>
    )_";
 
-
  QString index_text;
+
+ QMap<u2, u2> categories_map;
+
+ {
+  u2 held_first_page = 0;
+  u2 held_categories = 0;
+  for(Doc_Page& sdoc_page : sdoc_pages)
+  {
+   if(sdoc_page.local == 1)
+   {
+    if(held_first_page)
+    {
+     categories_map[held_first_page] = held_categories;
+     held_categories = 0;
+    }
+    held_first_page = sdoc_page.number;
+   }
+   for(auto pr : sdoc_page.annotations)
+   {
+    QString annotation = pr.first;
+    if(annotation.contains("DARVO", Qt::CaseInsensitive))
+      held_categories |= 1;
+    if(annotation.contains("Coercive", Qt::CaseInsensitive))
+      held_categories |= 2;
+    if(annotation.contains("Gaslighting", Qt::CaseInsensitive))
+      held_categories |= 4;
+    if(annotation.contains("idiom", Qt::CaseInsensitive))
+      held_categories |= 8;
+   }
+  }
+ }
 
  for(Doc_Page& sdoc_page : sdoc_pages)
  {
@@ -2705,28 +3276,97 @@ int main(int argc, char *argv[])
 
   QString href = "p%1.htm"_qt.arg(sdoc_page.number, 3, 10, QLatin1Char('0'));
 
+  QString categories;
+
+  u2 cs = categories_map.value(sdoc_page.number);
+
+//  if(cs & 1)
+//     categories += "DARVO, ";
+//  if(cs & 2)
+//     categories += "Coercive Control, ";
+//  if(cs & 4)
+//     categories += "Gaslighting, ";
+//  if(cs & 8)
+//     categories += "Excessive Use of Idioms, ";
+
+//  if(categories.endsWith(", "))
+//    categories.chop(2);
+
+//  if(categories.isEmpty())
+//    categories = "Subclinical";
+
+
+  if(cs & 1)
+    categories += "\n<td class='checked fc'><span>&#10004;</span></td>";
+  else
+    categories += "\n<td class='unchecked fc'><span>1</span></td>";
+
+  if(cs & 2)
+    categories += "\n<td class='checked'><span>&#10004;</span></td>";
+  else
+    categories += "\n<td class='unchecked'><span>2</span></td>";
+
+  if(cs & 4)
+    categories += "\n<td class='checked'><span>&#10004;</span></td>";
+  else
+    categories += "\n<td class='unchecked'><span>3</span></td>";
+
+  if(cs & 8)
+    categories += "\n<td class='checked'><span>&#10004;</span></td>";
+  else
+    categories += "\n<td class='unchecked'><span>4</span></td>";
+
+  if(cs == 0)
+    categories += "\n<td class='checked'><span>&#10004;</span></td>";
+  else
+    categories += "\n<td class='unchecked'><span>5</span></td>";
+
+
   index_text += static_index_text.arg(sdoc_page.number)
     .arg(sdoc_page.email_date.toString("ddd - MMM d - yyyy")
          .replace('-', "<span class='nd'>&ndash;</span>"))
-    .arg(href).arg(sdoc_page.title);
+   .arg(categories).arg(url_base).arg(href).arg(sdoc_page.title);
+
+
 //  u2 page = sdoc_page.number;
 //  qDebug() << page << ": " << sdoc_page.title << " (" << sdoc_page.local << ")";
  }
 
- QString index_file = "%1/pages-index.htm"_qt.arg(bases_folder);
+//? QString index_file = "%1/pages-index.htm"_qt.arg(bases_folder);
 
- QString index_template = "%1/pages-index.htm"_qt.arg(template_folder);
- QString index_html_text = KA::TextIO::load_file(index_template);
+ QString spreadsheet_index_file = "%1/spreadsheet.htm"_qt.arg(bases_folder);
+ QString page_index_file = "%1/pages-index.htm"_qt.arg(bases_folder);
 
- index_html_text.replace("%index-text%", index_text);
+ // Sahana-Email-Compilation_annotated
+ // Start page for email compilation document
+ // Date of email
+ // Analytic Categories
+ // Title of Emails
 
- KA::TextIO::save_file(index_file, index_html_text);
+ QString page_index_template = "%1/pages-index.htm"_qt.arg(template_folder);
+ QString spreadsheet_index_template = "%1/spreadsheet.htm"_qt.arg(template_folder);
+
+
+ QString page_index_html_text = KA::TextIO::load_file(page_index_template);
+ QString spreadsheet_index_html_text = KA::TextIO::load_file(spreadsheet_index_template);
+
+ spreadsheet_index_html_text.replace("%index-text%", index_text);
+ page_index_html_text.replace("%index-text%", index_text);
+
+ KA::TextIO::save_file(spreadsheet_index_file, spreadsheet_index_html_text);
+ KA::TextIO::save_file(page_index_file, page_index_html_text);
 
 
 
  for(Doc_Page& sdoc_page : sdoc_pages)
  {
   u2 page = sdoc_page.number;
+
+//  if(page < 48)
+//    continue;
+
+//  if(page == 48)
+//    qDebug() << page;
 
   Email& email = emails[sdoc_page.email];
 
@@ -2738,7 +3378,7 @@ int main(int argc, char *argv[])
 
   QRectF view_box = svr.viewBoxF();
 
-  r8 view_box_y_offset = 65;
+  r8 view_box_y_offset = 150;
   r8 view_box_extra_height = 0;
 
   r8 view_box_padding = 40;
@@ -2787,7 +3427,6 @@ int main(int argc, char *argv[])
   html_text.replace("%iframe-width%", "%1pt"_qt.arg(view_box.width()));
   html_text.replace("%iframe-height%", "%1pt"_qt.arg(view_box.height() + view_box_y_offset));
 
-
   if(page == 1)
   {
    html_text.replace("%uu-active%", "inactive");
@@ -2796,7 +3435,7 @@ int main(int argc, char *argv[])
   else
   {
    html_text.replace("%uu-active%", "active");
-   html_text.replace("%uu-onclick%", "location.href='p001.htm'");
+   html_text.replace("%uu-onclick%", "location.href='%1p001.htm'"_qt.arg(url_base));
   }
 
   if(page == max_page)
@@ -2807,7 +3446,7 @@ int main(int argc, char *argv[])
   else
   {
    html_text.replace("%dd-active%", "active");
-   html_text.replace("%dd-onclick%", "location.href='p%1.htm'"_qt.arg(max_page, 3, 10, QLatin1Char('0')));
+   html_text.replace("%dd-onclick%", "location.href='%1p%2.htm'"_qt.arg(url_base).arg(max_page, 3, 10, QLatin1Char('0')));
   }
 
 
@@ -2820,7 +3459,8 @@ int main(int argc, char *argv[])
 
   if(next_page && next_page->email == sdoc_page.email)
   {
-   html_text.replace("%ldown%", "location.href='p%1.htm'"_qt.arg(next_page->number, 3, 10, QLatin1Char('0')));
+   html_text.replace("%ldown%", "location.href='%1p%2.htm'"_qt
+                     .arg(url_base).arg(next_page->number, 3, 10, QLatin1Char('0')));
    html_text.replace("%ldown-active%", "active");
   }
   else
@@ -2831,7 +3471,8 @@ int main(int argc, char *argv[])
 
   if(prior_page && prior_page->email == sdoc_page.email)
   {
-   html_text.replace("%lup%", "location.href='p%1.htm'"_qt.arg(prior_page->number, 3, 10, QLatin1Char('0')));
+   html_text.replace("%lup%", "location.href='%1p%2.htm'"_qt.arg(url_base)
+     .arg(prior_page->number, 3, 10, QLatin1Char('0')));
    html_text.replace("%lup-active%", "active");
   }
   else
@@ -2842,7 +3483,8 @@ int main(int argc, char *argv[])
 
   if(next_email)
   {
-   html_text.replace("%edown%", "location.href='p%1.htm'"_qt.arg(next_email->start_page, 3, 10, QLatin1Char('0')));
+   html_text.replace("%edown%", "location.href='%1p%2.htm'"_qt
+     .arg(url_base).arg(next_email->start_page, 3, 10, QLatin1Char('0')));
    html_text.replace("%edown-active%", "active");
   }
   else
@@ -2854,7 +3496,8 @@ int main(int argc, char *argv[])
 
   if(prior_email)
   {
-   html_text.replace("%eup%", "location.href='p%1.htm'"_qt.arg(prior_email->start_page, 3, 10, QLatin1Char('0')));
+   html_text.replace("%eup%", "location.href='%1p%2.htm'"_qt
+     .arg(url_base).arg(prior_email->start_page, 3, 10, QLatin1Char('0')));
    html_text.replace("%eup-active%", "active");
   }
   else

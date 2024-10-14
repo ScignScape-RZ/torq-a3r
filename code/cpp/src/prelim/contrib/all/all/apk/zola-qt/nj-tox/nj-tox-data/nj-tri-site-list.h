@@ -76,6 +76,8 @@ public:
 
  ACCESSORS(QString ,data_source_string)
 
+
+
 // ACCESSORS__FNP__VOID(QString& ,address_edit_callback)
 // ACCESSORS__FNP__VOID(QString& ,municipality_edit_callback)
 
