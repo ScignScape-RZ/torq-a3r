@@ -258,6 +258,15 @@ inline QString copy_file_to_folder(QString path, QString folder)
  return newpath;
 }
 
+inline QString copy_file_to_file(QString path, QString newpath)
+{
+ QString contents;
+ load_file(path, contents);
+ save_file(newpath, contents);
+ return newpath;
+}
+
+
 inline QString copy_binary_file_to_folder(QString path, QString folder)
 {
  QFileInfo qfi(path);
