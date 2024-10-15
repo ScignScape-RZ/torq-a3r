@@ -832,6 +832,7 @@ int main7(int argc, char *argv[])
 int main(int argc, char *argv[])
 {
  u2 current_year = 2022;
+ u2 latest_year = 2024;
 
  NJ_TRI_Site_List ntsl ("/home/nlevisrael/docker/gits/torq-wip/pres/tri/%1_nj-corrected.csv"_qt.arg(current_year));
 
@@ -1014,18 +1015,33 @@ int main(int argc, char *argv[])
 
  ntsl.read_csv_file();
 
- QMap<QString, NJ_TRI_Site_List> sites_by_county;
+
+ QString kcsnj_folder = "/home/nlevisrael/docker/tox/objects/active/counties/";
+
+
+// for(QString county : counties)
+// {
+//  QString county_folder = folder + county;
+//  QString csv_file = "%1/%2-KCSNJ-active.csv"_qt.arg(county_folder).arg(county);
+// }
+
+
+
+ QMap<QString, NJ_TRI_Site_List> tri_sites_by_county;
+ QMap<QString, NJ_Known_Tox_Site_List> kcsnj_sites_by_county;
 
  QString html_folder = "/home/nlevisrael/docker/gits/torq-wip/pres/tri/html/";
  QString base_folder = html_folder + "counties/%1/"_qt.arg(current_year);
 
+
  for(NJ_TRI_Site site : ntsl.sites())
  {
   QString county = site.county_ucfirst();
+  QString county_folder;
 
-  if(!sites_by_county.contains(county))
+  if(!tri_sites_by_county.contains(county))
   {
-   QString county_folder = base_folder + county;
+   county_folder = base_folder + county;
 
    QDir qd(county_folder);
    if(!qd.exists())
@@ -1033,15 +1049,32 @@ int main(int argc, char *argv[])
 
 //   QString county_file = "%1/%2-2022-simplified.csv"_qt.arg(county_folder).arg(county);
 
-   QString html_file = "%1/%2-2022.htm"_qt.arg(county_folder).arg(county); // -simplified
+   QString html_file = "%1/%2-tri-%3.htm"_qt.arg(county_folder).arg(current_year); // -simplified
 
-   sites_by_county[county] = NJ_TRI_Site_List(); //county_file);
+   tri_sites_by_county[county] = NJ_TRI_Site_List(); //county_file);
 
-   sites_by_county[county].add_file_path("html", html_file);
+   tri_sites_by_county[county].add_file_path("html", html_file);
 
   }
 
-  sites_by_county[county].sites().push_back(site);
+  if(!kcsnj_sites_by_county.contains(county))
+  {
+   QString kcsnj_html_file = "%1/%2-kcsnj-%3.htm"_qt.arg(county_folder).arg(latest_year); // -simplified
+
+//   QString kcsnj_file = "%1/%2/%2-KCSNJ-active.csv"_qt.arg(kcsnj_folder).arg(county);
+   QString kcsnj_file = "%1/%2/%2-aggregate.json"_qt.arg(kcsnj_folder).arg(county);
+
+   kcsnj_sites_by_county[county] = NJ_Known_Tox_Site_List(); // kcsnj_file;
+
+   kcsnj_sites_by_county[county].default_json_field_setters();
+
+//   kcsnj_sites_by_county[county].read_csv_file();
+   kcsnj_sites_by_county[county].read_json_file(kcsnj_file);
+
+   kcsnj_sites_by_county[county].add_file_path("kcsnj", kcsnj_html_file);
+  }
+
+  tri_sites_by_county[county].sites().push_back(site);
  }
 
 // auto getters =  csv_field_getters_by_column<NJ_TRI_Site>
@@ -1087,13 +1120,19 @@ int main(int argc, char *argv[])
  QString template_text = KA::TextIO::load_file(html_template);
 
 
- QMutableMapIterator it(sites_by_county);
+ QString kcsnj_template = html_folder + "template.htm";
+ QString kcsnj_template_text = KA::TextIO::load_file(kcsnj_template);
+
+
+
+
+ QMutableMapIterator it(tri_sites_by_county);
 
  u1 index = 0;
- i1 max_index = sites_by_county.size();
+ i1 max_index = tri_sites_by_county.size();
 
- QString last_county = sites_by_county.lastKey();
- QString first_county = sites_by_county.firstKey();
+ QString last_county = tri_sites_by_county.lastKey();
+ QString first_county = tri_sites_by_county.firstKey();
 
 // u1 previous_index = 0;
 // u1 previous_index = 0;
@@ -1112,103 +1151,186 @@ int main(int argc, char *argv[])
   ++index;
 
   QString html_template_text = template_text;
+  QString html_kcsnj_template_text = kcsnj_template_text;
 
 
   html_template_text.replace("%year%", QString::number(current_year));
   html_template_text.replace("%year-page%", QString::number(year_page));
   html_template_text.replace("%max-year-page%", QString::number(max_year_page));
-
   html_template_text.replace("%county%", it.key());
-
   html_template_text.replace("%pgnum%", QString::number(index));
   html_template_text.replace("%max-pgnum%", QString::number(max_index));
+
+  html_kcsnj_template_text.replace("%year%", QString::number(current_year));
+  html_kcsnj_template_text.replace("%year-page%", QString::number(year_page));
+  html_kcsnj_template_text.replace("%max-year-page%", QString::number(max_year_page));
+  html_kcsnj_template_text.replace("%county%", it.key());
+  html_kcsnj_template_text.replace("%pgnum%", QString::number(index));
+  html_kcsnj_template_text.replace("%max-pgnum%", QString::number(max_index));
 
   if(index == 1)
   {
    html_template_text.replace("%uu-active%", "inactive");
    html_template_text.replace("%uu-onclick%", "");
+
+   html_kcsnj_template_text.replace("%uu-active%", "inactive");
+   html_kcsnj_template_text.replace("%uu-onclick%", "");
+
   }
   else
   {
    html_template_text.replace("%uu-active%", "active");
-   html_template_text.replace("%uu-onclick%", "location.href='../../%2/%1/%1-%2.htm'"_qt
+   html_template_text.replace("%uu-onclick%", "location.href='../../%2/%1/%1-tri-%2.htm'"_qt
      .arg(first_county).arg(current_year));
+
+   html_kcsnj_template_text.replace("%uu-active%", "active");
+   html_kcsnj_template_text.replace("%uu-onclick%", "location.href='../../%2/%1/%1-kcsnj-%2.htm'"_qt
+     .arg(first_county).arg(latest_year));
   }
 
   if(index == max_index)
   {
    html_template_text.replace("%dd-active%", "inactive");
    html_template_text.replace("%dd-onclick%", "");
+
+   html_kcsnj_template_text.replace("%dd-active%", "inactive");
+   html_kcsnj_template_text.replace("%dd-onclick%", "");
   }
   else
   {
    html_template_text.replace("%dd-active%", "active");
-   html_template_text.replace("%dd-onclick%", "location.href='../../%2/%1/%1-%2.htm'"_qt
+   html_template_text.replace("%dd-onclick%", "location.href='../../%2/%1/%1-tri-%2.htm'"_qt
      .arg(last_county).arg(current_year));
+
+   html_kcsnj_template_text.replace("%dd-active%", "active");
+   html_kcsnj_template_text.replace("%dd-onclick%", "location.href='../../%2/%1/%1-kcsnj-%2.htm'"_qt
+     .arg(last_county).arg(latest_year));
   }
 
 // lup-active
 
   if(year_page < max_year_page)
   {
-   html_template_text.replace("%year-down%", "location.href='%1-%2.htm'"_qt
+   html_template_text.replace("%year-down%", "location.href='%1-tri-%2.htm'"_qt
      .arg(last_county).arg(current_year - 1));
    html_template_text.replace("%year-down-active%", "active");
+
+   html_kcsnj_template_text.replace("%year-down%", "");
+   html_kcsnj_template_text.replace("%year-down-active%", "inactive");
   }
   else
   {
    html_template_text.replace("%year-down%", "");
    html_template_text.replace("%year-down-active%", "inactive");
+
+   html_kcsnj_template_text.replace("%year-down%", "");
+   html_kcsnj_template_text.replace("%year-down-active%", "inactive");
   }
 
   if(year_page > 1)
   {
-   html_template_text.replace("%year-up%", "location.href='%1-%2.htm'"_qt
+   html_template_text.replace("%year-up%", "location.href='%1-tri-%2.htm'"_qt
      .arg(last_county).arg(current_year + 1));
    html_template_text.replace("%year-up-active%", "active");
+
+   html_kcsnj_template_text.replace("%year-up%", "");
+   html_kcsnj_template_text.replace("%year-up-active%", "inactive");
+
   }
   else
   {
    html_template_text.replace("%year-up%", "");
    html_template_text.replace("%year-up-active%", "inactive");
+
+   html_kcsnj_template_text.replace("%year-up%", "");
+   html_kcsnj_template_text.replace("%year-up-active%", "inactive");
   }
 
   if(index < max_index)
   {
-   html_template_text.replace("%county-down%", "location.href='../../%2/%1/%1-%2.htm'"_qt
-     .arg(sites_by_county.keys()[index]).arg(current_year));
+   html_template_text.replace("%county-down%", "location.href='../../%2/%1/%1-tri-%2.htm'"_qt
+     .arg(tri_sites_by_county.keys()[index]).arg(current_year));
    html_template_text.replace("%county-down-active%", "active");
+
+   html_kcsnj_template_text.replace("%county-down%", "location.href='../../%2/%1/%1-kcsnj-%2.htm'"_qt
+     .arg(tri_sites_by_county.keys()[index]).arg(latest_year));
+   html_kcsnj_template_text.replace("%county-down-active%", "active");
   }
   else
   {
    html_template_text.replace("%county-down%", "");
    html_template_text.replace("%county-down-active%", "inactive");
+
+   html_kcsnj_template_text.replace("%county-down%", "");
+   html_kcsnj_template_text.replace("%county-down-active%", "inactive");
   }
 
 
   if(index > 1)
   {
-   html_template_text.replace("%county-up%", "location.href='../../%2/%1/%1-%2.htm'"_qt
-     .arg(sites_by_county.keys()[index - 1]).arg(current_year));
+   html_template_text.replace("%county-up%", "location.href='../../%2/%1/%1-tri-%2.htm'"_qt
+     .arg(tri_sites_by_county.keys()[index - 1]).arg(current_year));
    html_template_text.replace("%county-up-active%", "active");
+
+   html_kcsnj_template_text.replace("%county-up%", "location.href='../../%2/%1/%1-kcsnj-%2.htm'"_qt
+     .arg(tri_sites_by_county.keys()[index - 1]).arg(latest_year));
+   html_kcsnj_template_text.replace("%county-up-active%", "active");
   }
   else
   {
    html_template_text.replace("%county-up%", "");
    html_template_text.replace("%county-up-active%", "inactive");
+
+   html_kcsnj_template_text.replace("%county-up%", "");
+   html_kcsnj_template_text.replace("%county-up-active%", "inactive");
   }
 
+
+  NJ_Known_Tox_Site_List& kntsl = kcsnj_sites_by_county[it.key()];
+  QString kpath = kntsl.get_file_path("kcsnj");
+
+  QString khtml_text = "<tr><td colspan='2' class='county-plus-count'>"
+    "<span class='osa:scalar' data-osa_field='county'>"
+    "%1: %2 sites"
+    "</span>\n"_qt
+    .arg(it.key()).arg(kntsl.sites().size());
+
+
+  QString tr_text = R"(
+<tr><td class='field-name'>%1</td>
+<td><span class='osa:scalar'  data-osa_field='%2'>%3</span>
+</td></tr>)";
+
+#define _as_tr_text(n, f, m) tr_text.arg(n).arg(#f).arg(site.m())
+#define as_tr_text(n, f) _as_tr_text(n, f, f)
+#define as_tr_text_str(n, f) tr_text.arg(n).arg(#f).arg(site.str_##f())
+#define as_tr_text_str_map(n, f) tr_text.arg(n).arg(#f).arg(site.str_map_##f())
+
+#define as_tr_text_str_enum(n, f, e) tr_text.arg(n).arg(#f).arg(site.enum_to_numeric_str<NJ_TRI_Site::e>())
+
+
+  for(const NJ_Known_Tox_Site& site : kntsl) //.sites())
+  {
+   khtml_text += "\n\n<!-- site -->\n";
+   khtml_text += "\n<tr class='new-site'><td colspan='2'>&nbsp;</td></tr>\n";
+
+   khtml_text += as_tr_text("Latitude", latitude).replace("class='field-name'",
+     "class='field-name first-line'");
+   khtml_text += as_tr_text("Longitude", longitude);
+   khtml_text += as_tr_text("Municipality", municipality);
+   khtml_text += as_tr_text_str("Site Id", site_id);
+   khtml_text += as_tr_text_str("PI Number", pi_number);
+   khtml_text += as_tr_text("PI Name", pi_name);
+
+   khtml_text += as_tr_text("Coords Options", coords_options);
+   khtml_text += as_tr_text("Street Address", street_address);
+   khtml_text += as_tr_text("Home Owner Status", home_owner_status);
+  }
 
 //  uu-active
 
   NJ_TRI_Site_List& county_ntsl = it.value();
 
-//  county_ntsl.default_json_field_getters();
-//  auto g = getters.copy();
-//  g.insert_default(it.key());
-//  county_ntsl.set_csv_field_getters(g);
-//  county_ntsl.save_to_csv_file("!", &header);
-//  county_ntsl.save_to_json_file();
 
 
   QString path = county_ntsl.get_file_path("html");
@@ -1219,26 +1341,12 @@ int main(int argc, char *argv[])
     "</span>\n"_qt
     .arg(it.key()).arg(county_ntsl.sites().size());
 
-  QString tr_text = R"(
-<tr><td class='field-name'>%1</td>
-<td><span class='osa:scalar'  data-osa_field='%2'>%3</span>
-</td></tr>)";
-
 
   for(const NJ_TRI_Site& site : county_ntsl) //.sites())
   {
    html_text += "\n\n<!-- site -->\n";
    html_text += "\n<tr class='new-site'><td colspan='2'>&nbsp;</td></tr>\n";
 
-   // // NAICS_codes
-   // // SIC_codes
-
-#define _as_tr_text(n, f, m) tr_text.arg(n).arg(#f).arg(site.m())
-#define as_tr_text(n, f) _as_tr_text(n, f, f)
-#define as_tr_text_str(n, f) tr_text.arg(n).arg(#f).arg(site.str_##f())
-#define as_tr_text_str_map(n, f) tr_text.arg(n).arg(#f).arg(site.str_map_##f())
-
-#define as_tr_text_str_enum(n, f, e) tr_text.arg(n).arg(#f).arg(site.enum_to_numeric_str<NJ_TRI_Site::e>())
 
    //site.NAICS_codes()
 
@@ -1339,7 +1447,10 @@ int main(int argc, char *argv[])
 
   html_template_text.replace("%%TEXT%%", html_text);
 
+  html_kcsnj_template_text.replace("%%TEXT%%", khtml_text);
+
   KA::TextIO::save_file(path, html_template_text);
+  KA::TextIO::save_file(kpath, html_kcsnj_template_text);
  }
 
 

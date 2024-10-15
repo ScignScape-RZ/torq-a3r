@@ -64,6 +64,7 @@ public:
  ACCESSORS(QVector<void (NJ_Tox_Site::*)(QString)> ,csv_field_setters)
  ACCESSORS(QVector<QString (NJ_Tox_Site::*)() const> ,csv_field_getters)
 
+
  void check_addresses_json(QStringList geo_service_providers,
    QString found_file_path, QString missing_file_path);
 
