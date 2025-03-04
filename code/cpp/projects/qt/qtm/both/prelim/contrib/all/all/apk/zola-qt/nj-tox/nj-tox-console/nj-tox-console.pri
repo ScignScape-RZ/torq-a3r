@@ -18,6 +18,10 @@ QT += positioning
 QT += svg
 
 
+QT += charts
+
+
+
 LIBS += -L$$ROOT_DIR/../build-string-similarity-GCC_10-Debug \
   -lstring-similarity
 
@@ -64,6 +68,24 @@ LIBS += -L/home/nlevisrael/docker/gits/qtcsv/install/lib -lqtcsv
 
 SOURCES += \
   $$SRC_DIR/main.cpp \
+
+
+HEADERS += \
+  $$SRC_DIR/svg-pdf-web-engine-view.h \
+  $$SRC_DIR/svg-pdf-web-engine-page.h \
+  $$SRC_DIR/svg-pdf-web-view-dialog.h \
+  $$SRC_DIR/qwc-context.h \
+
+
+
+
+SOURCES += \
+  $$SRC_DIR/svg-pdf-web-engine-view.cpp \
+  $$SRC_DIR/svg-pdf-web-engine-page.cpp \
+  $$SRC_DIR/svg-pdf-web-view-dialog.cpp \
+  $$SRC_DIR/qwc-context.cpp \
+
+
 
 
 LIBS += -L$$TARGETSDIR -lnj-tox-data

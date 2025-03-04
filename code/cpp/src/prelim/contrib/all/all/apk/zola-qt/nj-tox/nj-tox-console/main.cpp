@@ -44,6 +44,38 @@
 #include <QGeoCoordinate>
 
 
+#include <QProcess>
+
+#ifdef HIDE
+int main()
+{
+ QString folder = "/home/nlevisrael/Downloads/colony/pages/all/";
+
+
+ for(int i = 1; i <= 20; ++i)
+ {
+  QString Sf = "%1/p%2"_qt.arg(folder).arg(i);
+  qDebug() << "Sf = " << Sf;
+
+  //  QString cmd = "cd %1; run-page.sh";
+  QString cmd = "/bin/sh";
+  QString scr = "run-page.sh";
+
+
+  QProcess process;
+
+  process.setWorkingDirectory(Sf);
+  process.setProgram(cmd);
+  process.setArguments({scr});
+
+  process.startDetached();
+ }
+}
+#endif
+
+
+
+
 //int main(int argc, char *argv[])
 //{
 // QGeoCoordinate c1 (39.586500, -74.860500);
@@ -825,11 +857,629 @@ int main7(int argc, char *argv[])
 }
 
 
+struct Composite_Page {
+ u2 index;
+ u2 page_number;
+ u2 local_number;
+ u2 inner_document_index;
+ QString title;
+ QVector<QPair<QString, QRectF>> annotations;
+};
+
+struct Composite_Inner_Document {
+ u2 index;
+ u2 start_page;
+ u2 page_count;
+ QString title;
+ QString source;
+ QString year;
+};
+
+int pt_to_px(int i)
+{
+ return i * (4./3);
+}
+
+QPointF pt_to_px(QPointF p)
+{
+ return {pt_to_px(p.x()), pt_to_px(p.y())};
+}
+
+int px_to_pt(int i)
+{
+ return i * (3./4);
+}
+
+
+
+#include "svg-pdf-web-view-dialog.h"
+
+int main11(int argc, char *argv[])
+{
+ QApplication a(argc, argv);
+
+
+ SVG_PDF_Web_View_Dialog* dlg = new SVG_PDF_Web_View_Dialog(nullptr);
+
+ dlg->show();
+
+ return a.exec();
+}
+
+// // //
+int main(int argc, char *argv[])
+{
+ QString json_file = "/home/nlevisrael/docker/gits/torq-wip/pres/introduction/composite/"
+   "composite-prelim.pdf.json";
+
+ QString bases_folder = "/home/nlevisrael/docker/gits/torq-wip/pres/introduction/composite/bases";
+ QString pages_folder = "/home/nlevisrael/docker/gits/torq-wip/pres/introduction/composite/pages";
+
+ QString template_folder = "/home/nlevisrael/docker/gits/torq-wip/pres/introduction/composite/templates";
+
+
+ QJsonDocument qjd;
+ {
+  QFile f(json_file);
+  f.open(QIODevice::ReadOnly);
+  QByteArray qba = f.readAll();
+  qjd = QJsonDocument::fromJson(qba);
+ }
+
+ QJsonArray qja_pages = qjd.array();
+
+ QVector<Composite_Page> doc_pages;
+ QVector<Composite_Inner_Document> inner_docs;
+
+ //QVector<Email> emails;
+
+ u1 current_inner_document = 0;
+ u2 local_page_count = 0;
+ u2 last_local_page_count = 0;
+
+// QMap<QString, QStringList> info;
+// info[""]
+ QVector<QStringList> info(5);
+
+ info[0] = QStringList{"Introduction", "Linguistic Technology Systems", "2024"};
+ info[1] = QStringList{"New Jersey Said 10 Years Ago ...", "ProPublica", "2019"};
+ info[2] = QStringList{"Toxic Release Inventory (Documentation)", "US Environmental Protection Agency", "2023"};
+ info[3] = QStringList{"Environmental Justice NYC &mdash; Access to Resources", "NYC Mayor&apos;s Office of Climate and Environmental Justice", "2024"};
+ info[4] = QStringList{"NYC Green Economy Action Plan", "New York City Economic Development Corporation", "2024"};
+
+
+// info[5] = QStringList{"Funding Your Brownfields Redevelopment Projects", "New Jersey Department of Environmental Protection", "2024"};
+
+
+ for(auto obj: qja_pages)
+ {
+  QJsonObject qjo = obj.toObject();
+
+  bool is_arrow = qjo.value("arrow").toBool();
+
+  if(is_arrow)
+    continue;
+
+  u2 page = qjo.value("page").toInt();
+  QString title = qjo.value("title").toString();
+
+//  qDebug() << "title: " << title;
+
+  u2 local = qjo.value("local").toInt();
+
+  if(local == 1)
+  {
+   if(!inner_docs.isEmpty())
+     inner_docs.last().page_count = local_page_count;
+
+   inner_docs.push_back({});
+   Composite_Inner_Document& doc = inner_docs.last();
+   current_inner_document = inner_docs.size() - 1;
+   doc.index = current_inner_document; //? inner_docs.size();
+
+   doc.title = info[current_inner_document][0];
+   doc.source = info[current_inner_document][1];
+   doc.year = info[current_inner_document][2];
+
+   doc.start_page = page;
+   last_local_page_count = local_page_count;
+   local_page_count = 0;
+  }
+
+  ++local_page_count;
+  doc_pages.push_back({});
+  Composite_Page& doc_page = doc_pages.last();
+  doc_page.index = doc_pages.size() - 1;
+  doc_page.page_number = page;
+  doc_page.local_number = local;
+  doc_page.title = title;
+  doc_page.inner_document_index = current_inner_document;
+
+//  doc_page.date_rank = 0;
+//  doc_page.adj = 0;
+//  doc_page.email = 0;
+
+  auto& annotations = doc_page.annotations;
+
+  QJsonArray qja_notes = qjo.value("notes").toArray();
+
+  for(auto obj1: qja_notes)
+  {
+   QJsonObject obj_notes = obj1.toObject();
+   QString text = obj_notes.value("text").toString();
+   QRectF boundary;
+   {
+    QJsonArray qja2 = obj_notes.value("boundary").toArray();
+    boundary.setX(qja2[0].toDouble());
+    boundary.setY(qja2[1].toDouble());
+    boundary.setWidth(qja2[2].toDouble());
+    boundary.setHeight(qja2[3].toDouble());
+   }
+   annotations.push_back({text, boundary});
+  }
+
+ }
+
+ if(!inner_docs.isEmpty())
+   inner_docs.last().page_count = last_local_page_count;
+
+
+
+ u2 max_page = std::max_element(doc_pages.begin(), doc_pages.end(),
+   [](const auto& lhs, const auto& rhs)
+ {
+  return lhs.page_number < rhs.page_number;
+ }) -> page_number;
+
+//?
+ QString url_base = "http://amyneustein.com/-prv/tri/composite/bases/";
+ //?QString url_base = "file:///home/nlevisrael/docker/gits/torq-wip/pres/introduction/composite/bases/";
+
+
+ // //   create the index
+// <td class='categories'>%3</td>
+
+ static QString static_index_text = R"_(
+
+  <tr class='one-line'>
+   <td class='page-number'>%1</td>
+   <td class='link'>
+    <a href='%2%3'>%4</a></td>
+   <td class='source'>%5 (%6)</td>
+  </tr>
+   )_";
+
+ QString index_text;
+
+
+ for(Composite_Page& doc_page : doc_pages)
+ {
+  if(doc_page.local_number != 1)
+    continue;
+
+  QString href = "p%1.htm"_qt.arg(doc_page.page_number, 3, 10, QLatin1Char('0'));
+
+  //QString source = "TBD";
+
+  Composite_Inner_Document& doc = inner_docs[doc_page.inner_document_index];
+
+  index_text += static_index_text.arg(doc_page.page_number)
+    .arg(url_base).arg(href).arg(doc.title).arg(doc.source).arg(doc.year);
+
+
+//  u2 page = doc_page.number;
+//  qDebug() << page << ": " << doc_page.title << " (" << doc_page.local << ")";
+ }
+
+//? QString index_file = "%1/pages-index.htm"_qt.arg(bases_folder);
+
+ QString composite_index_file = "%1/composite-index.htm"_qt.arg(bases_folder);
+
+ QString composite_index_template = "%1/composite-index.htm"_qt.arg(template_folder);
+
+
+ QString composite_index_html_text = KA::TextIO::load_file(composite_index_template);
+
+ composite_index_html_text.replace("%index-text%", index_text);
+
+ KA::TextIO::save_file(composite_index_file, composite_index_html_text);
+
+ for(Composite_Page& doc_page : doc_pages)
+ {
+  u2 page = doc_page.page_number;
+
+  Composite_Inner_Document& doc = inner_docs[doc_page.inner_document_index];
+
+
+  QString svg_file = "%1/p%2.svg"_qt.arg(pages_folder).arg(page, 3, 10, QLatin1Char('0'));
+
+  QSvgRenderer svr;
+  svr.load(svg_file);
+
+  QRectF view_box = svr.viewBoxF();
+
+  //?   r8 view_box_y_offset = 150;
+  r8 view_box_y_offset = 15;
+  r8 view_box_extra_height = 0;
+
+  r8 view_box_padding = 40;
+
+
+  QString svg_view_box_string = "viewBox=\"%1 %2 %3 %4\""_qt
+    .arg(view_box.x()).arg(view_box.y() - view_box_y_offset).arg(view_box.width())
+    .arg(view_box.height() + view_box_y_offset);
+
+  QString svg_wh_string = "width=\"%1pt\" height=\"%2pt\""_qt
+    .arg(view_box.width()).arg(view_box.height() + view_box_y_offset + view_box_extra_height);
+
+  QString main_image_wh = "width=\"%1\" height=\"%2\""_qt
+    .arg(view_box.width()).arg(view_box.height());
+
+  QString rbkg_inside_wh = "width=\"%1\" height=\"%2\""_qt
+    .arg(view_box.width()).arg(view_box.height());
+
+  QString rbkg_outside_y = "-%1"_qt.arg(view_box_y_offset);
+
+ // %main-image-wh%
+
+  QString base_file = "%1/p%2.svg"_qt.arg(bases_folder).arg(page, 3, 10, QLatin1Char('0'));
+  QString html_file = "%1/p%2.htm"_qt.arg(bases_folder).arg(page, 3, 10, QLatin1Char('0'));
+
+  QString html_template = "%1/overlay.htm"_qt.arg(template_folder);
+  QString html_text = KA::TextIO::load_file(html_template);
+
+  html_text.replace("%document-year%", doc.year);
+  html_text.replace("%document-source%", doc.source);
+
+//  html_text.replace("%email-date-rank%", QString::number(doc_page.date_rank));
+
+//  html_text.replace("%thread-number%", QString::number(email.index + 1));
+//  html_text.replace("%thread-number-max%", QString::number(emails.size()));
+
+  html_text.replace("%wrw%", QString::number(view_box.width() + view_box_padding));
+  html_text.replace("%wrh%", QString::number(view_box.height() + view_box_padding + view_box_y_offset));
+
+  html_text.replace("%title%", doc.title);
+  html_text.replace("%local%", QString::number(doc_page.local_number));
+  html_text.replace("%page%", "%1"_qt.arg(page, 3, 10, QLatin1Char('0')));
+  html_text.replace("%dpage%", QString::number(page));
+
+  html_text.replace("%local-max%", QString::number(doc.page_count));
+  html_text.replace("%max-page%", QString::number(max_page));
+
+  html_text.replace("%doc-number%", QString::number(doc_page.inner_document_index + 1));
+  html_text.replace("%doc-number-max%", QString::number(inner_docs.size()));
+
+
+  // /
+
+  html_text.replace("%iframe-width%", "%1pt"_qt.arg(view_box.width()));
+  html_text.replace("%iframe-height%", "%1pt"_qt.arg(view_box.height() + view_box_y_offset));
+
+  if(page == 1)
+  {
+   html_text.replace("%uu-active%", "inactive");
+   html_text.replace("%uu-onclick%", "");
+  }
+  else
+  {
+   html_text.replace("%uu-active%", "active");
+   html_text.replace("%uu-onclick%", "location.href='%1p001.htm'"_qt.arg(url_base));
+  }
+
+  if(page == max_page)
+  {
+   html_text.replace("%dd-active%", "inactive");
+   html_text.replace("%dd-onclick%", "");
+  }
+  else
+  {
+   html_text.replace("%dd-active%", "active");
+   html_text.replace("%dd-onclick%", "location.href='%1p%2.htm'"_qt.arg(url_base).arg(max_page, 3, 10, QLatin1Char('0')));
+  }
+
+  Composite_Inner_Document* prior_doc = doc_page.inner_document_index?
+     &inner_docs[doc_page.inner_document_index - 1] : (Composite_Inner_Document*) nullptr;
+
+  Composite_Inner_Document* next_doc = doc_page.inner_document_index < inner_docs.size() - 1?
+     &inner_docs[doc_page.inner_document_index + 1] : (Composite_Inner_Document*) nullptr;
+
+
+  Composite_Page* prior_page = doc_page.index? &doc_pages[doc_page.index - 1]
+    : (Composite_Page*) nullptr;
+  Composite_Page* next_page = doc_page.index < doc_pages.size() - 1? &doc_pages[doc_page.index + 1]
+    : (Composite_Page*) nullptr;
+
+
+  if(next_page && next_page->inner_document_index == doc_page.inner_document_index)
+  {
+   html_text.replace("%ldown%", "location.href='%1p%2.htm'"_qt
+     .arg(url_base).arg(next_page->page_number, 3, 10, QLatin1Char('0')));
+   html_text.replace("%ldown-active%", "active");
+  }
+  else
+  {
+   html_text.replace("%ldown%", "");
+   html_text.replace("%ldown-active%", "inactive");
+  }
+
+  if(prior_page && prior_page->inner_document_index == doc_page.inner_document_index)
+  {
+   html_text.replace("%lup%", "location.href='%1p%2.htm'"_qt.arg(url_base)
+     .arg(prior_page->page_number, 3, 10, QLatin1Char('0')));
+   html_text.replace("%lup-active%", "active");
+  }
+  else
+  {
+   html_text.replace("%lup%", "");
+   html_text.replace("%lup-active%", "inactive");
+  }
+
+  if(next_doc)
+  {
+   html_text.replace("%edown%", "location.href='%1p%2.htm'"_qt
+     .arg(url_base).arg(next_doc->start_page, 3, 10, QLatin1Char('0')));
+   html_text.replace("%edown-active%", "active");
+  }
+  else
+  {
+   html_text.replace("%edown%", "");
+   html_text.replace("%edown-active%", "inactive");
+  }
+
+
+  if(prior_doc)
+  {
+   html_text.replace("%eup%", "location.href='%1p%2.htm'"_qt
+     .arg(url_base).arg(prior_doc->start_page, 3, 10, QLatin1Char('0')));
+   html_text.replace("%eup-active%", "active");
+  }
+  else
+  {
+   html_text.replace("%eup%", "");
+   html_text.replace("%eup-active%", "inactive");
+  }
+
+//  if(prior_page)
+//    html_text.replace("%nup%", "location.href='p%1.htm'"_qt.arg(prior_page->number, 3, 10, QLatin1Char('0')));
+//  else
+//    html_text.replace("%nup%", "");
+
+
+  QString base_template = "%1/overlay.svg"_qt.arg(template_folder);
+  QString base_text = KA::TextIO::load_file(base_template);
+  base_text.replace("%page%", "%1"_qt.arg(page, 3, 10, QLatin1Char('0')));
+
+  base_text.replace("%svg-wh%", svg_wh_string);
+  base_text.replace("%svg-vb%", svg_view_box_string);
+
+  base_text.replace("%rbkg-outside-y%", rbkg_outside_y);
+  base_text.replace("%main-image-wh%", main_image_wh);
+  base_text.replace("%rbkg-inside-wh%", rbkg_inside_wh);
+
+  static QString static_marks_text = R"_(
+
+  <!-- note %1 -->
+
+  <g class='mark-g' id='mark-g-%1' onmouseover='show_popup_text_by_id(%1, event)'
+    onmouseout='check_hide_popup_text_by_id(%1, event)'>
+
+  <rect id='mark-r-%1'
+    class='area-rect' x='%2pt' y='%3pt' width='%4pt' height='%5pt'
+    />
+
+  </g>
+
+  <!-- end note %1 -->
+
+  )_";
+
+  static QString static_popup_text = R"_(
+
+   <!-- for note %1 -->
+
+  <g id='popup-%1' class='text-wrapper' transform='translate(%2, %3)'  data-xcoord='%2' >
+    <rect width='%4pt' height='%5pt' data-ycoord='%3'  data-index='%1'
+      x='%6pt' y='%7' class='foreign-object-bkg' id='fo-rect-%1'/>
+  )_";
+
+  static QString static_fo_text = R"_(
+    <foreignObject width="%2pt" height="%3pt" x='0' y='0' id='fo-%1'
+       requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+     <p xmlns="http://www.w3.org/1999/xhtml"
+       style='background:pink; font-size:11pt'>
+       %4
+     </p>
+   </foreignObject>
+  </g>
+
+   <!-- end for note %1 -->
+
+  )_";
+
+
+  static QString height_test = R"_(
+  <div style='width:200px' id='test-d-%1'>
+  <p class='for-height-test' font-size:11pt' id='test-p-%1'>
+  %2
+  </p>
+  </div>
+
+  )_";
+
+
+  QString html_test = height_test.arg(0).arg("X");
+
+
+  static QString static_trapezoids_text = R"_(
+    <!-- for note %1 -->
+
+    <!--  l: %2  bl: %3  br: %4  r: %5  tx: %6  tr: %7  tl: %8  -->
+    <polygon id="trapz-%1" points="%2 %3 %4 %5 %6 %7 %8"
+       class='trapz' onmouseout='leave_trapz(%1, event)' data-repl='%9' />
+
+    <!-- end for note %1 -->
+  )_";
+
+  auto& vec = doc_page.annotations;
+
+  QString marks_text;
+  QString trapezoids_text;
+
+  QString popup_text;
+
+  u1 i = 0;
+  for(auto& pr : vec)
+  {
+   ++i;
+
+   QRectF rf = pr.second;
+
+   QTransform qtr;
+   qtr.scale(px_to_pt(view_box.width()), px_to_pt(view_box.height()));
+
+   QRectF qr = qtr.mapRect(rf);
+
+   r8 x = qr.x();
+   r8 y = qr.y();
+   r8 w = qr.width();
+   r8 h = qr.height();
+
+   static r8 trapz_x_offset = 50;
+   static r8 trapz_y_offset = 12;
+
+   static r8 trapz_x_width = 200;
+   static r8 trapz_y_height = 90;
+
+   static u2 popup_width = 200;
+   static u2 popup_height = 90;
+
+
+   r8 trapz_x = x + trapz_x_offset;
+   r8 trapz_y = y + trapz_y_offset;
+
+   r8 trapz_y_extra = 3;
+
+   QString text = pr.first;
+
+
+   marks_text += static_marks_text.arg(i).arg(x).arg(y)
+     .arg(w).arg(h);
+
+
+   static r8 rect_fo_pushout = 5;
+
+   r8 rect_fo_x = -rect_fo_pushout;
+   r8 rect_fo_y = -rect_fo_pushout;
+   r8 rect_fo_width = popup_width + rect_fo_pushout + rect_fo_pushout;
+   r8 rect_fo_height = popup_height + rect_fo_pushout + rect_fo_pushout;
+
+   popup_text += static_popup_text.arg(i)
+     .arg(pt_to_px( trapz_x )).arg(pt_to_px( trapz_y - trapz_y_height ))
+     .arg(rect_fo_width).arg(rect_fo_height)
+     .arg(rect_fo_x).arg(rect_fo_y);
+
+   popup_text += static_fo_text.arg(i)
+     .arg(popup_width).arg(popup_height).arg(text);
+
+
+   html_test += height_test.arg(i).arg(text);
+
+   QPointF trapezoid_l, trapezoid_bl, trapezoid_br,
+     trapezoid_r, trapezoid_tr, trapezoid_tl;
+
+   QString trapezoid_ls, trapezoid_bls, trapezoid_brs,
+     trapezoid_rs, trapezoid_trs, trapezoid_tls;
+
+   auto point_to_string = [](QPointF p, QString& s)
+   {
+    s = "%1,%2"_qt.arg(p.x()).arg(p.y());
+   };
+
+   auto points_to_strings = [&]()
+   {
+    point_to_string(trapezoid_l, trapezoid_ls);
+    point_to_string(trapezoid_bl, trapezoid_bls);
+    point_to_string(trapezoid_br, trapezoid_brs);
+    point_to_string(trapezoid_r, trapezoid_rs);
+    point_to_string(trapezoid_tr, trapezoid_trs);
+    point_to_string(trapezoid_tl, trapezoid_tls);
+   };
+
+   static r8 trapezoid_pushout = 0;
+
+   trapezoid_l = pt_to_px( qr.topLeft() );
+   trapezoid_bl = pt_to_px( qr.bottomLeft() );
+   trapezoid_br = pt_to_px( qr.bottomRight() );
+   trapezoid_r = pt_to_px( qr.topRight() );
+   trapezoid_tr = pt_to_px( {trapz_x + trapz_x_width + trapezoid_pushout,
+     trapz_y - trapz_y_height - trapezoid_pushout + trapz_y_extra} );
+   trapezoid_tl = pt_to_px( {trapz_x - trapezoid_pushout,
+     trapz_y - trapz_y_height - trapezoid_pushout + trapz_y_extra } );
+
+   points_to_strings();
+
+   QString trapz_extra;
+   QString trapz_points;
+
+   if(w < popup_width)
+   {
+    trapz_points = "%1 %2 %3 %4 %5,Yx %6,Y1 %7,Y2"_qt
+      .arg(trapezoid_ls).arg(trapezoid_bls).arg(trapezoid_brs)
+      .arg(trapezoid_rs).arg(trapezoid_tr.x())
+      .arg(trapezoid_tr.x()).arg(trapezoid_tl.x());
+
+    trapz_extra = "%1,%2"_qt.arg(trapezoid_tr.x() + trapezoid_pushout)
+      .arg(trapezoid_tr.y() + pt_to_px(popup_height) + trapezoid_pushout);
+   }
+   else
+    trapz_points = "%1 %2 %3 %4 %5,Y1 %6,Y2"_qt
+      .arg(trapezoid_ls).arg(trapezoid_bls).arg(trapezoid_brs)
+      .arg(trapezoid_rs).arg(trapezoid_tr.x()).arg(trapezoid_tl.x());
+
+
+   trapezoids_text += static_trapezoids_text.arg(i)
+     .arg(trapezoid_ls).arg(trapezoid_bls).arg(trapezoid_brs)
+     .arg(trapezoid_rs).arg(trapz_extra).arg(trapezoid_trs)
+     .arg(trapezoid_tls).arg(trapz_points);
+
+
+
+
+
+   //
+  }
+
+  base_text.replace("%MARKS%", marks_text);
+
+  base_text.replace("%TEXTS%", popup_text);
+
+  base_text.replace("%TRAPEZOIDS%", trapezoids_text);
+
+  KA::TextIO::save_file(base_file, base_text);
+
+
+  html_text.replace("%test-count%", QString::number(i));
+
+  html_text.replace("%P%", html_test);
+  KA::TextIO::save_file(html_file, html_text);
+
+ }
+
+
+
+// // titles += " \\\n \\\n Ss.pdf";
+// // KA::TextIO::save_file("/home/nlevisrael/sahana/sorted/run-u-s.sh", titles);
+
+ return 0;
+
+}
+
 
 // //   MAIN...
 
 
-int main(int argc, char *argv[])
+int main30(int argc, char *argv[])
 {
  u2 current_year = 2022;
  u2 latest_year = 2024;
@@ -1328,14 +1978,14 @@ int main(int argc, char *argv[])
   }
 
 
-  if(index > 1)
+  if(index > 2)
   {
    html_tri_template_text.replace("%county-up%", "location.href='../../%2/%1/%1-tri-%2.htm'"_qt
-     .arg(tri_sites_by_county.keys()[index - 1]).arg(current_year));
+     .arg(tri_sites_by_county.keys()[index - 2]).arg(current_year));
    html_tri_template_text.replace("%county-up-active%", "active");
 
    html_kcsnj_template_text.replace("%county-up%", "location.href='../../%2/%1/%1-kcsnj-%2.htm'"_qt
-     .arg(tri_sites_by_county.keys()[index - 1]).arg(latest_year));
+     .arg(tri_sites_by_county.keys()[index - 2]).arg(latest_year));
    html_kcsnj_template_text.replace("%county-up-active%", "active");
   }
   else
@@ -2510,20 +3160,6 @@ void set_flag__activity_index_value()     // csv col 118
 
 
 // #ifdef HIDE
-int pt_to_px(int i)
-{
- return i * (4./3);
-}
-
-QPointF pt_to_px(QPointF p)
-{
- return {pt_to_px(p.x()), pt_to_px(p.y())};
-}
-
-int px_to_pt(int i)
-{
- return i * (3./4);
-}
 
 
 struct Doc_Page {
@@ -2691,7 +3327,7 @@ void json_to_doc_pages(QString json_file,
 
 
 
-int main1(int argc, char *argv[])
+int main212(int argc, char *argv[])
 {
 
  QString json_file = "/home/nlevisrael/sahana/S.pdf.json";
@@ -3179,7 +3815,87 @@ int main1(int argc, char *argv[])
 #endif
 }
 
-int main20(int argc, char *argv[])
+
+struct A { int Ac; };
+struct B { int Bc; };
+
+struct C : A { int CAc; };
+struct D : B { int DBc; };
+
+
+template<typename T1, typename T2>
+struct test_pr
+{
+ T1 arg1;
+ T2 arg2;
+
+ test_pr(T1 a1, T2 a2) : arg1(a1), arg2(a2) {}
+
+ virtual void deb() = 0;
+};
+
+
+struct test_pr_AB : test_pr<A, B>
+{
+ test_pr_AB(A a, B b) : test_pr(a, b) {}
+
+ virtual void deb()
+ {
+  qDebug() << "AB: " << arg1.Ac << " " << arg2.Bc;
+ }
+};
+
+struct test_pr_CD : test_pr<C, D>
+{
+ test_pr_CD(C c, D d) : test_pr<C, D>(c, d) {}
+
+ virtual void deb()
+ {
+  qDebug() << "CD: " << arg1.CAc << " " << arg2.DBc
+           << " " <<  arg1.Ac << " " << arg2.Bc ;
+ }
+};
+
+
+int main14(int argc, char *argv[])
+{
+ A a {10};
+ B b {11};
+
+ C c {21, 12};
+ D d {31, 13};
+
+ test_pr_AB ab {a, b};
+ test_pr_CD cd {c, d};
+
+ test_pr_AB abcd {c, d};
+
+ ab.deb();
+ cd.deb();
+ abcd.deb();
+
+
+}
+
+
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QMainWindow>
+#include <QtCharts/QChartView>
+#include <QtCharts/QPieSeries>
+#include <QtCharts/QPieSlice>
+
+
+
+#include <QLabel>
+#include <QScreen>
+
+#include <QSvgGenerator>
+#include <QGraphicsProxyWidget>
+
+QT_CHARTS_USE_NAMESPACE
+
+// // // //
+int main12(int argc, char *argv[])
 {
  QString json_file = "/home/nlevisrael/sahana/sorted/Sc.pdf.json";
 
@@ -3451,6 +4167,8 @@ int main20(int argc, char *argv[])
 
  QMap<u2, u2> categories_map;
 
+ u1 gl = 0;
+
  {
   u2 held_first_page = 0;
   u2 held_categories = 0;
@@ -3474,16 +4192,34 @@ int main20(int argc, char *argv[])
       held_categories |= 2;
     if(annotation.contains("Gaslighting", Qt::CaseInsensitive))
       held_categories |= 4;
+    else if(annotation.contains("Gaslight", Qt::CaseInsensitive))
+    {
+     held_categories |= 4;
+     ++gl;
+
+     if(annotation.contains("Gaslight", Qt::CaseInsensitive))
+       qDebug() << "ed";
+    }
     if(annotation.contains("idiom", Qt::CaseInsensitive))
       held_categories |= 8;
    }
   }
  }
 
+ qDebug() << "gl = " << gl;
+
+ QMap<QStringList, u2> list_counts;
+ QMap<QString, u2> counts;
+ QMap<QString, u2> overlap_counts;
+
+ u2 emails_count;
+
  for(Doc_Page& sdoc_page : sdoc_pages)
  {
   if(sdoc_page.local != 1)
     continue;
+
+  ++emails_count;
 
   QString href = "p%1.htm"_qt.arg(sdoc_page.number, 3, 10, QLatin1Char('0'));
 
@@ -3506,31 +4242,62 @@ int main20(int argc, char *argv[])
 //  if(categories.isEmpty())
 //    categories = "Subclinical";
 
+  QStringList acc_list;
 
   if(cs & 1)
-    categories += "\n<td class='checked fc'><span>&#10004;</span></td>";
+  {
+   categories += "\n<td class='checked fc'><span>&#10004;</span></td>";
+   ++counts["da"];
+   acc_list.push_back("da");
+  }
   else
     categories += "\n<td class='unchecked fc'><span>1</span></td>";
 
   if(cs & 2)
-    categories += "\n<td class='checked'><span>&#10004;</span></td>";
+  {
+   categories += "\n<td class='checked'><span>&#10004;</span></td>";
+   ++counts["cc"];
+   acc_list.push_back("cc");
+  }
   else
     categories += "\n<td class='unchecked'><span>2</span></td>";
 
   if(cs & 4)
-    categories += "\n<td class='checked'><span>&#10004;</span></td>";
+  {
+   categories += "\n<td class='checked'><span>&#10004;</span></td>";
+   ++counts["gl"];
+   acc_list.push_back("gl");
+  }
   else
     categories += "\n<td class='unchecked'><span>3</span></td>";
 
   if(cs & 8)
-    categories += "\n<td class='checked'><span>&#10004;</span></td>";
+  {
+   categories += "\n<td class='checked'><span>&#10004;</span></td>";
+   ++counts["xi"];
+   acc_list.push_back("xi");
+  }
   else
     categories += "\n<td class='unchecked'><span>4</span></td>";
 
   if(cs == 0)
-    categories += "\n<td class='checked'><span>&#10004;</span></td>";
+  {
+   categories += "\n<td class='checked'><span>&#10004;</span></td>";
+   ++counts["ab"];
+   acc_list.push_back("ab");
+  }
   else
     categories += "\n<td class='unchecked'><span>5</span></td>";
+
+
+  if(acc_list.size() > 1)
+  {
+   ++list_counts[acc_list];
+   for(QString s : acc_list)
+   {
+    ++overlap_counts[s];
+   }
+  }
 
 
   index_text += static_index_text.arg(sdoc_page.number)
@@ -3563,6 +4330,336 @@ int main20(int argc, char *argv[])
 
  spreadsheet_index_html_text.replace("%index-text%", index_text);
  page_index_html_text.replace("%index-text%", index_text);
+
+
+ spreadsheet_index_html_text.replace("%da%", QString::number(counts["da"]));
+ spreadsheet_index_html_text.replace("%cc%", QString::number(counts["cc"]));
+ spreadsheet_index_html_text.replace("%gl%", QString::number(counts["gl"]));
+ spreadsheet_index_html_text.replace("%xi%", QString::number(counts["xi"]));
+ spreadsheet_index_html_text.replace("%ab%", QString::number(counts["ab"]));
+
+ spreadsheet_index_html_text.replace("%da-cc%", QString::number(list_counts[{"da", "cc"}]));
+ spreadsheet_index_html_text.replace("%da-gl%", QString::number(list_counts[{"da", "gl"}]));
+ spreadsheet_index_html_text.replace("%da-xi%", QString::number(list_counts[{"da", "xi"}]));
+ spreadsheet_index_html_text.replace("%cc-xi%", QString::number(list_counts[{"cc", "xi"}]));
+
+ qDebug() << "\n\n\nOC: " << overlap_counts;
+
+ QMap<QStringList, u2> list_countsp;
+ QMap<QString, u2> countsp;
+
+ {
+  QMapIterator<QString, u2> it(counts);
+  while(it.hasNext())
+  {
+   it.next();
+   double v = it.value();
+   v /= emails_count;
+   v *= 100;
+   countsp[it.key()] = (u2) v;
+  }
+ }
+ {
+  QMapIterator<QStringList, u2> it(list_counts);
+  while(it.hasNext())
+  {
+   it.next();
+   double v = it.value();
+   v /= emails_count;
+   v *= 100;
+   list_countsp[it.key()] = (u2) v;
+  }
+ }
+
+ QApplication a(argc, argv);
+
+ QPieSeries* series = new QPieSeries();
+
+// series->setPieStartAngle(300);
+// series->setPieEndAngle(299);
+
+
+ // //  correct the p. 104 issue
+
+
+ series->append("Darvo alone", counts["da"] - overlap_counts["da"]);
+ series->append("Coercive Control alone", counts["cc"] - overlap_counts["cc"]);
+ series->append("Gaslighting alone", counts["gl"] - overlap_counts["gl"]);
+
+ series->append("Aberrant alone", counts["ab"] - overlap_counts["ab"]);
+
+ series->append("Darvo plus Coercive Control", list_counts[{"da", "cc"}]);
+ series->append("Darvo plus Gaslighting", list_counts[{"da", "gl"}]);
+ series->append("Darvo plus Idioms", list_counts[{"da", "xi"}]);
+ series->append("Coercive Control plus Idioms", list_counts[{"cc", "xi"}]);
+
+
+ QPieSeries* series1 = new QPieSeries();
+
+
+ QList<QColor> colors;
+ colors.push_back(QColor::fromRgb(145, 217, 208));
+ colors.push_back(QColor::fromRgb(193, 135, 196));
+ colors.push_back(QColor::fromRgb(94, 163, 83));
+ colors.push_back(QColor::fromRgb(217, 145, 187));
+ colors.push_back(QColor::fromRgb(6, 117, 161));
+ colors.push_back(QColor::fromRgb(230, 50, 23));
+ colors.push_back(QColor::fromRgb(240, 192, 62));
+ colors.push_back(QColor::fromRgb(157, 240, 62));
+
+ series->setHoleSize(0.02);
+
+ u1 sl = 0;
+ for(QPieSlice* slice : series->slices())
+
+// for(s1 ss = 0; ss < series->slices().size(); ++ss)
+ {
+ // QPieSlice* slice = series->slices().at(ss < 0? series->slices().size() + ss : ss);
+
+  QString label = slice->label();
+  QString num = "%1. "_qt.arg(sl + 1);
+  label.prepend(num);
+
+  series1->append(label + " (%1 out of %2)"_qt
+    .arg(slice->value()).arg(emails.size()), slice->value());
+
+  slice->setColor(colors[sl]);
+  series1->slices().at(sl)->setColor(colors[sl]);
+
+  label.replace("plus", "w/");
+
+
+
+  if(sl < 6)
+  {
+   slice->setLabel(label);
+
+   if(slice->value() > 20)
+     slice->setLabelPosition(QPieSlice::LabelInsideHorizontal);
+   else
+     slice->setLabelArmLengthFactor(0.1);
+  }
+  else
+  {
+   slice->setLabel(label);
+   if(sl == 6)
+     slice->setLabelArmLengthFactor(0.2);
+   else
+     slice->setLabelArmLengthFactor(0.33);
+  }
+  slice->setLabelVisible();
+
+  QFont f = slice->labelFont();
+  f.setPointSizeF(6.5);
+
+  slice->setLabelFont(f);
+
+  slice->setPen(Qt::NoPen);
+
+  ++sl;
+ }
+
+
+// QPieSlice* slice = series->slices().at(1);
+// slice->setPen(QPen(Qt::darkGreen, 2));
+// slice->setBrush(Qt::green);
+
+ series->setVerticalPosition(0.54);
+
+ QChart* chart = new QChart();
+
+
+ chart->addSeries(series);
+// chart->setTitle("Statistical Breakdown");
+// chart->legend()->detachFromChart();
+ chart->legend()->setVisible(false);
+ chart->setMinimumWidth(600);
+
+// chart->childItems()[0]->setRotation(-30);
+
+// chart->setRotation(-30);
+
+
+ QChart* chart1 = new QChart();
+ chart1->addSeries(series1);
+
+
+//?
+// chart->legend()->setAlignment(Qt::AlignLeft);
+
+ QLegend* legend = chart1->legend();
+ legend->setMarkerShape(QLegend::MarkerShapeCircle);
+
+ legend->detachFromChart();
+ legend->setMinimumHeight(240);
+
+// QChartView* chartView = new QChartView(chart);
+// chartView->setRenderHint(QPainter::Antialiasing);
+
+// QChart* chart = new QChart(chart);
+// chart->setRenderHint(QPainter::Antialiasing);
+
+ QMainWindow window;
+ QFrame* fr = new QFrame;
+
+ QVBoxLayout* vbl = new QVBoxLayout;
+
+ vbl->setMargin(0);
+ vbl->setContentsMargins(QMargins(0,0,0,0));
+ vbl->setSpacing(0);
+
+ QLabel* ql = new QLabel("Statistical Breakdown (# threads out of %1)"
+   "                                               "_qt.arg(emails.size()));
+ vbl->addWidget(ql, 1, Qt::AlignHCenter);
+
+ QGraphicsView* legend_view = new QGraphicsView;
+ QGraphicsScene* legend_scene = new QGraphicsScene;
+
+
+ chart->setPos(0, 22);
+ chart->setMinimumHeight(400);
+ chart->setMinimumWidth(500);
+ legend_scene->addItem(chart);
+
+ legend->setPos(60, 390);
+
+ legend_scene->addItem(legend);
+ legend_view->setScene(legend_scene);
+
+ QLabel* ql1 = new QLabel("  Fig. 1: Statistical Breakdown of %1 email threads"_qt.arg(emails.size()));
+ QLabel* ql2 = new QLabel("     -- consisting of approximately four emails per thread  ");
+
+ QFrame* qf1 = new QFrame;
+ QVBoxLayout* hb1 = new QVBoxLayout;
+
+ hb1->setMargin(0);
+ hb1->setContentsMargins(QMargins(0,0,0,0));
+ hb1->setSpacing(0);
+
+ hb1->addWidget(ql1);
+ hb1->addWidget(ql2);
+
+ QFrame* line = new QFrame;
+ line->setFrameShape(QFrame::HLine); // Horizontal line
+ line->setFrameShadow(QFrame::Sunken);
+ line->setLineWidth(4);
+
+ {
+  QBrush brush1(QColor::fromRgb(42, 52, 255));
+  brush1.setStyle(Qt::SolidPattern);
+
+  QBrush brush2(QColor::fromRgb(142, 152, 155));
+  brush2.setStyle(Qt::SolidPattern);
+
+  QPalette palette = line->palette();
+
+  //shadow color, dark and light palette roles
+  palette.setBrush(QPalette::Active, QPalette::Light, brush1);
+  palette.setBrush(QPalette::Active, QPalette::Dark, brush1);
+
+  //mid line color
+  palette.setBrush(QPalette::Active, QPalette::Mid, brush2);
+
+  line->setPalette(palette);
+
+//  qf1->setAutoFillBackground(false);
+ }
+
+ hb1->addStretch();
+ hb1->addWidget(line);
+// line->setMaximumWidth(5);
+
+// qf1->setFrameShape(QFrame::HLine); // Horizontal line
+// qf1->setFrameShadow(QFrame::Sunken);
+ qf1->setLineWidth(1);
+
+ qf1->setMinimumHeight(52);
+ qf1->setMaximumHeight(52);
+ qf1->setMaximumWidth(400);
+
+ qf1->setLayout(hb1);
+
+
+ {
+  QPalette palette;
+  palette.setBrush(QPalette::Background, QColor::fromRgb(242, 252, 255));
+  qf1->setPalette(palette);
+//  qf1->setAutoFillBackground(false);
+ }
+
+
+ QGraphicsProxyWidget* proxy = new QGraphicsProxyWidget;
+ proxy->setWidget(qf1);
+
+ proxy->setPos(20, 0);
+
+ legend_scene->addItem(proxy);
+
+
+ vbl->addWidget(legend_view);
+
+// chartView->layout()->add
+// window.setCentralWidget(chartView);
+
+// QLayout* cl = chartView->layout();
+// cl->setDirection(Qt::Vertical);
+// cl->addWidget(legend_view);
+
+ fr->setFrameShape(QFrame::NoFrame);
+ fr->setLineWidth(0);
+ fr->setLayout(vbl);
+ window.setCentralWidget(fr);
+ window.resize(650, 650);
+ window.show();
+
+
+
+ QSvgGenerator generator;
+ QSize sceneSize = legend_scene->sceneRect().size().toSize();
+     generator.setFileName(bases_folder + "/stats.svg");
+     generator.setSize(sceneSize);
+     generator.setViewBox(QRect(0, 0, sceneSize.width(), sceneSize.height()));
+     generator.setDescription("STATS");
+     generator.setTitle("stats");
+     QPainter painter;
+     painter.begin(&generator);
+     legend_scene->render(&painter);
+     painter.end();
+
+
+ a.exec();
+
+ QScreen* screen = window.screen();
+
+    // Grab the window contents
+    QPixmap screenshot = screen->grabWindow(window.winId(),
+      50, 0, 430, 640);
+
+    // Save the screenshot
+    screenshot.save(bases_folder + "/stats.png");
+
+
+// return 0;
+
+
+ spreadsheet_index_html_text.replace("%dap%", QString::number(countsp["da"]));
+ spreadsheet_index_html_text.replace("%ccp%", QString::number(countsp["cc"]));
+ spreadsheet_index_html_text.replace("%glp%", QString::number(countsp["gl"]));
+ spreadsheet_index_html_text.replace("%xip%", QString::number(countsp["xi"]));
+ spreadsheet_index_html_text.replace("%abp%", QString::number(countsp["ab"]));
+
+ spreadsheet_index_html_text.replace("%da-ccp%", QString::number(list_countsp[{"da", "cc"}]));
+ spreadsheet_index_html_text.replace("%da-glp%", QString::number(list_countsp[{"da", "gl"}]));
+ spreadsheet_index_html_text.replace("%da-xip%", QString::number(list_countsp[{"da", "xi"}]));
+ spreadsheet_index_html_text.replace("%cc-xip%", QString::number(list_countsp[{"cc", "xi"}]));
+
+
+
+
+ //spreadsheet_index_html_text.replace("%ab%", counts[ab]);
+
+ //qDebug() << "\n\n\nLC: " << list_counts;
+
 
  KA::TextIO::save_file(spreadsheet_index_file, spreadsheet_index_html_text);
  KA::TextIO::save_file(page_index_file, page_index_html_text);
@@ -3942,7 +5039,6 @@ int main20(int argc, char *argv[])
   KA::TextIO::save_file(html_file, html_text);
 
  }
-
 
 
 // // titles += " \\\n \\\n Ss.pdf";

@@ -17,6 +17,7 @@ INCLUDEPATH += $$SRC_DIR
 include($$ROOT_DIR/../preferred/poppler.pri)
 
 INCLUDEPATH += $$POPPLER_INCLUDE_DIR
+INCLUDEPATH += $$POPPLER_INCLUDE_DIR_QT5
 
 
 include($$ROOT_DIR/../preferred/compiler.pri)
@@ -124,9 +125,9 @@ SOURCES += \
   $$SRC_DIR/subwindows/multistep-annotation-base.cpp \
 
 
-POPPLER_DIR = ~/gits/okular/poppler-install/lib
+#POPPLER_DIR = ~/gits/okular/poppler-install/lib
 
-LIBS += -L$$POPPLER_DIR -lpoppler-qt5
+LIBS += -L$$POPPLER_LIB_DIR -lpoppler-qt5
 
 #LIBS += -L$$TARGETSDIR  -laimlib -ldcmsr -lofstd -loflog -ldcmdata \
 #   -ldcmimage -ldcmimgle

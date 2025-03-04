@@ -52,9 +52,16 @@
 
 //?USING_QSNS(Cy_Mesh)
 
-DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(QWidget* parent, QString pdf_file_path) //, NDP_Antemodel* antemodel)//, QString url, QWN_XMLDB_Configuration* config)
+#include "textio.h"
+
+USING_KANS(TextIO)
+
+
+DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(QWidget* parent,
+  QString pdf_file_path, QString notes_file, int requested_page) //, NDP_Antemodel* antemodel)//, QString url, QWN_XMLDB_Configuration* config)
  : QDialog(parent), pdf_file_path_(pdf_file_path)//, antemodel_(antemodel)//, config_(config)
 {
+ save_file(notes_file, "");
 
  main_layout_ = new QVBoxLayout();
 
@@ -228,6 +235,7 @@ DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(QWidget* parent, QString pdf_file_pat
 
 
  pdf_document_widget_->setDocument(pdf_file_path_);
+ pdf_document_widget_->setPage(requested_page);
 
   //  "/home/nlevisrael/NDP/pain-management-center-new-patient-history-2012.pdf"
 
@@ -245,6 +253,8 @@ DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(QWidget* parent, QString pdf_file_pat
  int nop = pdf_document_widget_->number_of_pages();
 
  page_spin_box_->set_maximum(nop - 1);
+
+  page_spin_box_->set_value(requested_page);
 
  connect(page_spin_box_, SIGNAL(value_changed(int)),
          pdf_document_widget_, SLOT(setPage(int)));
@@ -349,7 +359,17 @@ DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(QWidget* parent, QString pdf_file_pat
  retranslate_ui();
 
  Poppler::Document* popd = pdf_document_widget_->document();
- Poppler::Page* popg = popd->page(0);
+
+
+ Poppler::Page* popg = popd->page(pdf_document_widget_->get_current_page());
+
+
+ QString text = popg->text(QRectF({0, 0}, popg->pageSizeF()));
+ //qDebug() << text;
+
+ append_to_file(notes_file, "\n///////////\n", text);
+
+
  QList<Poppler::Annotation*> popas = popg->annotations();
 
  for(Poppler::Annotation* popa : popas)

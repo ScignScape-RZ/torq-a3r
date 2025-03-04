@@ -16,8 +16,11 @@ INCLUDEPATH += $$SRC_DIR
 
 INCLUDEPATH += $$SRC_GROUP_DIR/dhax-pdf-view-dialog
 
+include($$ROOT_DIR/../preferred/poppler.pri)
 
-INCLUDEPATH += /home/nlevisrael/gits/okular/poppler-install/include/poppler/qt5
+INCLUDEPATH += $$POPPLER_INCLUDE_DIR
+INCLUDEPATH += $$POPPLER_INCLUDE_DIR_QT5
+
 
 
 include($$ROOT_DIR/../preferred/compiler.pri)
@@ -60,10 +63,14 @@ INCLUDEPATH += $$WHITEDB_SRC_GROUP_DIR
 
 
 HEADERS += \
+  $$SRC_DIR/m2m.h \
+  $$SRC_DIR/index-entry-review-dialog.h \
 
 
 SOURCES += \
   $$SRC_DIR/main.cpp \
+  $$SRC_DIR/m2m.cpp \
+  $$SRC_DIR/index-entry-review-dialog.cpp \
 
 
 LIBS += -L$$TARGETSDIR  -ldhax-pdf-view-dialog

@@ -143,6 +143,11 @@ public:
 
     int number_of_pages();
 
+    int get_current_page()
+    {
+     return currentPage;
+    }
+
 
 public Q_SLOTS:
     QRectF searchBackwards(const QString &text);

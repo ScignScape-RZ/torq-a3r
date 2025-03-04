@@ -113,7 +113,8 @@ class DHAX_PDF_View_Dialog : public QDialog
 
 public:
 
- DHAX_PDF_View_Dialog(QWidget* parent, QString pdf_file_path); //, NDP_Antemodel* antemodel);
+ DHAX_PDF_View_Dialog(QWidget* parent,
+   QString pdf_file_path, QString notes_file, int requested_page = 1); //, NDP_Antemodel* antemodel);
  ~DHAX_PDF_View_Dialog();
 
  ACCESSORS(QString ,pdf_file_path)
