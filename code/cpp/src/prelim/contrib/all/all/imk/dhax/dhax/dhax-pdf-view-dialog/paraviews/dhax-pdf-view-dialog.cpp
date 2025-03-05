@@ -480,6 +480,7 @@ void DHAX_PDF_View_Dialog::search_update(QString text, int count_in_index, int p
    count_in_index = pages.size();
 
  int page_number = pages[count_in_index - 1];
+ highlight_match(text, page_number + 1, matches[page_number]);
 
 }
 

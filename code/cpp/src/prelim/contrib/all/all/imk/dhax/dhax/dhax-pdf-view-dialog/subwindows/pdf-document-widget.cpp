@@ -1248,7 +1248,7 @@ void PDF_Document_Widget::search_update(QString text, QMap<int, QVector<QRectF>>
 {
  for(int i = 0; i < number_of_pages(); ++i)
  {
-  Poppler::Page* p = doc->page(currentPage);
+  Poppler::Page* p = doc->page(i);
   QList<QRectF> results = p->search(text);
   if(results.isEmpty())
     continue;

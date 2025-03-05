@@ -175,7 +175,7 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  clear_earlier_highlights_button_ = new QPushButton("clear");
  search_update_button_ = new QPushButton("re-search");
 
- earlier_highlight_button_->setMaximumWidth(25);
+ earlier_highlight_button_->setMaximumWidth(45);
  clear_earlier_highlights_button_->setMaximumWidth(45);
 
  active_earlier_match_code_nav_layout_->addStretch();
