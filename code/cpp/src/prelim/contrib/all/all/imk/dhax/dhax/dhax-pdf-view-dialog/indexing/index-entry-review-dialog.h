@@ -214,6 +214,24 @@ class Index_Entry_Review_Dialog : public QMainWindow
  QPushButton* redo_later_match_button_;
  QPushButton* clean_later_match_button_;
 
+
+ QLineEdit* html_file_name_line_edit_;
+ QLineEdit* html_file_entries_line_edit_;
+
+ QPushButton* html_upload_button_;
+
+ QString html_text_;
+
+ QDockWidget* html_preview_dock_widget_;
+ QTextEdit* html_preview_text_edit_;
+
+ QHBoxLayout* html_details_layout_;
+
+ void reset_html_details();
+ void html_upload();
+ void ftp_upload(QString file_name, QString text);
+
+
  void redo_earlier_match();
  void redo_later_match();
 
@@ -246,9 +264,10 @@ public:
  void confirm_match(int page_number);
  void clear_most_recent_match(int page_number);
 
- void ftp_upload(QString file_name, QString text);
 
  void update_split_window(QString text1, QString text2);
+
+
 
 
  ACCESSORS(DHAX_PDF_View_Dialog* ,earlier_pdf_dialog)

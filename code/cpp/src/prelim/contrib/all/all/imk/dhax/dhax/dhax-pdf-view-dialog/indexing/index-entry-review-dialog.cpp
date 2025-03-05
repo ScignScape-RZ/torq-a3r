@@ -397,11 +397,47 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
  clean_later_match_button_->setMaximumWidth(40);
 
- current_matches_grid_layout_->addLayout(search_words_layout_, 0, 0, 1, 2);
+ current_matches_grid_layout_->addLayout(search_words_layout_, 0, 0, 1, 4);
 
- current_matches_grid_layout_->addWidget(new QLabel("Current Match:", this), 1, 0);
- current_matches_grid_layout_->addWidget(new QLabel("Status:", this), 1, 1);
+ current_matches_grid_layout_->addWidget(new QLabel("File Name:", this), 1, 0);
 
+ html_file_name_line_edit_ = new QLineEdit(this);
+ html_file_name_line_edit_->setPlaceholderText("N/A");
+
+ current_matches_grid_layout_->addWidget(html_file_name_line_edit_, 1, 1);
+
+ html_details_layout_ = new QHBoxLayout;
+
+ html_upload_button_ = new QPushButton("Upload");
+
+ connect(html_upload_button_, &QPushButton::clicked, [this]()
+ {
+  html_upload();
+ });
+
+ html_details_layout_->addWidget(html_upload_button_);
+
+ html_details_layout_->addWidget(new QLabel("Entries:", this));
+
+ html_file_entries_line_edit_ = new QLineEdit(this);
+ html_file_entries_line_edit_->setPlaceholderText("N/A");
+
+ html_details_layout_->addWidget(html_file_entries_line_edit_);
+
+ current_matches_grid_layout_->addLayout(html_details_layout_, 1, 2, 1, 2);
+
+
+
+ html_preview_dock_widget_ = new QDockWidget(this);
+ html_preview_text_edit_ = new QTextEdit(this);
+
+ html_preview_dock_widget_->setWidget(html_preview_text_edit_);
+ html_preview_dock_widget_->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
+
+ addDockWidget(Qt::BottomDockWidgetArea, html_preview_dock_widget_);
+
+
+// void reset_html_details();
 
 // connect(cb_number_of_children_,  QOverload<int>::of(&QComboBox::currentIndexChanged),
 //   [this](int which)
@@ -602,6 +638,19 @@ void Index_Entry_Review_Dialog::setup_comparison_window()
  addDockWidget(Qt::TopDockWidgetArea, comparison_dock_widget_);
 
  //comparison_dock_widget_
+}
+
+
+void Index_Entry_Review_Dialog::html_upload()
+{
+ QString file_name = html_file_name_line_edit_->text();
+ if(file_name.isEmpty())
+   return;
+
+ if(html_text_.isEmpty())
+   return;
+
+ ftp_upload(file_name, html_text_);
 }
 
 
