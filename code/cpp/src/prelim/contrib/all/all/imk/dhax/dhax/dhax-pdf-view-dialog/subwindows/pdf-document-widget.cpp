@@ -1369,13 +1369,15 @@ void PDF_Document_Widget::prepare_match_context(QString text,
 }
 
 void PDF_Document_Widget::search_update(QString text, QMap<int, Highlight_Info>& page_matches,
-  QMap<Highlight_Key, Highlight_Info>& cached_matches)
+  QMap<Highlight_Key, Highlight_Info>& cached_matches, QString* context)
 {
  for(int i = 0; i < number_of_pages(); ++i)
  {
   if(cached_matches.contains({i, text}))
   {
    page_matches[i] = cached_matches[{i, text}];
+   if(context)
+     *context = cached_matches[{i, text}].context;
    continue;
   }
 
@@ -1387,6 +1389,9 @@ void PDF_Document_Widget::search_update(QString text, QMap<int, Highlight_Info>&
   Highlight_Info hi = {results.toVector()};
   prepare_match_context(text, p, hi.context);
   cached_matches[{i, text}] = hi;
+
+  if(context)
+    *context = hi.context;
 
   page_matches[i] = hi;
  }
@@ -1414,7 +1419,8 @@ void PDF_Document_Widget::highlight_matches(int index_entry_id, const QVector<QR
  }
 }
 
-void PDF_Document_Widget::highlight_match(int index_entry_id, QString text, QList<QRectF>& results, QString* context)
+void PDF_Document_Widget::highlight_match(int index_entry_id, QString text, QList<QRectF>& results,
+  QString* context)
 {
  Poppler::Page* p = doc->page(currentPage);
 

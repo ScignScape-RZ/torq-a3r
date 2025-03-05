@@ -165,7 +165,8 @@ public:
 
     void highlight_matches(int index_entry_id, const QVector<QRectF>& matches);
 
-    void highlight_match(int index_entry_id, QString text, QList<QRectF>& results, QString* context);
+    void highlight_match(int index_entry_id, QString text,
+      QList<QRectF>& results, QString* context = nullptr);
 
     void highlight_rectangle(QRectF rect, QColor color);
 
@@ -194,7 +195,7 @@ public:
     }
 
     void search_update(QString text, QMap<int, Highlight_Info>& page_matches,
-      QMap<Highlight_Key, Highlight_Info>& cached_matches);
+      QMap<Highlight_Key, Highlight_Info>& cached_matches, QString* context);
 
 
     //QMap<PDF_Document_Widget::Highlight_Key, PDF_Document_Widget::Highlight_Info>

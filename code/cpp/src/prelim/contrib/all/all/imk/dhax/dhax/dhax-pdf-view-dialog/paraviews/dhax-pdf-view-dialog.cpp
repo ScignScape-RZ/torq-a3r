@@ -63,7 +63,9 @@ DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dial
   QString pdf_file_path, QString notes_file, int requested_page) //, NDP_Antemodel* antemodel)//, QString url, QWN_XMLDB_Configuration* config)
  : //QDialog(parent),
    entry_dialog_(entry_dialog), earlier_document_ref_(earlier_document_ref),
-   pdf_file_path_(pdf_file_path)//, antemodel_(antemodel)//, config_(config)
+   pdf_file_path_(pdf_file_path),
+   roman_start_(0), roman_end_(0), arabic_start_(0)
+ //, antemodel_(antemodel)//, config_(config)
 {
  save_file(notes_file, "");
 
@@ -130,23 +132,30 @@ DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dial
 
  _3->addWidget(search_label_);
 
+
  search_line_edit_ = new QLineEdit(this);
  search_line_edit_->setObjectName(QString::fromUtf8("search_line_edit_"));
- search_line_edit_->setEnabled(false);
+ search_line_edit_->setReadOnly(true);
+ search_line_edit_->setPlaceholderText("N/A");
+
 
  _3->addWidget(search_line_edit_);
 
- search_combo_box_ = new QComboBox(this);
- search_combo_box_->setObjectName(QString::fromUtf8("search_combo_box_"));
- search_combo_box_->setEnabled(false);
+ pages_combo_box_ = new QComboBox(this);
+ pages_combo_box_->setObjectName(QString::fromUtf8("pages_combo_box_"));
 
- _3->addWidget(search_combo_box_);
+ _3->addWidget(pages_combo_box_);
 
  find_button_ = new QPushButton(this);
  find_button_->setObjectName(QString::fromUtf8("find_button_"));
  find_button_->setEnabled(false);
 
  _3->addWidget(find_button_);
+
+ find_button_->hide();
+
+
+
 
  confirm_match_button_ = new QPushButton("Confirm", this);
  confirm_match_button_->setObjectName(QString::fromUtf8("confirm_match_button_"));
@@ -173,14 +182,18 @@ DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dial
    confirm_match_button_->hide();
 
 
- refocus_entry_dialog_button_ =  new QPushButton("=>>", this);
- refocus_entry_dialog_button_->setMaximumWidth(30);
- _3->addWidget(refocus_entry_dialog_button_);
+ _3->addSpacing(38);
+refocus_entry_dialog_button_ =  new QPushButton("=>>", this);
+refocus_entry_dialog_button_->setMaximumWidth(30);
+_3->addWidget(refocus_entry_dialog_button_);
+_3->addSpacing(8);
 
- connect(refocus_entry_dialog_button_, &QPushButton::clicked, [this]()
- {
-  entry_dialog_->reclaim_focus();
- });
+connect(refocus_entry_dialog_button_, &QPushButton::clicked, [this]()
+{
+ entry_dialog_->reclaim_focus();
+});
+
+
 
  hboxLayout->addLayout(_3);
 
@@ -391,6 +404,8 @@ DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dial
  main_frame_->setLayout(main_layout_);
  setCentralWidget(main_frame_);
 
+ reset_pages_combo_box();
+
  Poppler::Document* popd = pdf_document_widget_->document();
 
 
@@ -508,7 +523,8 @@ void DHAX_PDF_View_Dialog::clear_all_highlights()
  pdf_document_widget_->clear_all_highlights();
 }
 
-void DHAX_PDF_View_Dialog::search_update(int index_entry_id, QString text, int count_in_index, int page_hint)
+void DHAX_PDF_View_Dialog::search_update(int index_entry_id, QString text, int count_in_index,
+  int page_hint, QString* context)
 {
  QMap<int, PDF_Document_Widget::Highlight_Info> matches;
 
@@ -520,13 +536,15 @@ void DHAX_PDF_View_Dialog::search_update(int index_entry_id, QString text, int c
  }
  else
  {
-  pdf_document_widget_->search_update(text, matches, cached_highlights_);
+  pdf_document_widget_->search_update(text, matches, cached_highlights_, context);
   if(matches.isEmpty())
     return;
 
   pages = matches.keys().toVector();
   cached_page_matches_[text] = pages;
  }
+
+ reset_pages_combo_box(&pages);
 
  if(pages.isEmpty())
    return;
@@ -535,15 +553,17 @@ void DHAX_PDF_View_Dialog::search_update(int index_entry_id, QString text, int c
    count_in_index = pages.size();
 
  int page_number = pages[count_in_index - 1];
+
  highlight_match(index_entry_id, text, page_number + 1, matches[page_number]);
 
 }
 
-void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text, int page_number,
 
+void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text, int page_number,
   const PDF_Document_Widget::Highlight_Info& hi)
 {
  // //  assumes {text, page} is cached
+ search_line_edit_->setText(text);
 
  pdf_document_widget_->setPage(page_number);
  if(!visible_highlights_.contains({page_number, text}))
@@ -556,11 +576,16 @@ void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text, int
 
 void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text, QString& context)
 {
+ search_line_edit_->setText(text);
+
  int cp = pdf_document_widget_->get_current_page();
+
+ QVector<int> pages_combo {cp};
 
  if(visible_highlights_.contains({cp, text}))
  {
   context = cached_highlights_[{cp, text}].context;
+  reset_pages_combo_box(&pages_combo);
   return;
  }
 
@@ -568,6 +593,7 @@ void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text, QSt
  {
   context = cached_highlights_[{cp, text}].context;
   pdf_document_widget_->highlight_matches(index_entry_id, cached_highlights_[{cp, text}].boundaries);
+  reset_pages_combo_box(&pages_combo);
   return;
  }
 
@@ -575,7 +601,11 @@ void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text, QSt
  pdf_document_widget_->highlight_match(index_entry_id, text, results, &context);
 
  int rank = 0;
- if(!results.isEmpty())
+ if(results.isEmpty())
+ {
+  pages_combo.clear();
+ }
+ else
  {
   int ix = rank_in_pages_[cp].second.indexOf(text);
   if(ix == -1)
@@ -589,9 +619,74 @@ void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text, QSt
   }
  }
 
+ reset_pages_combo_box(&pages_combo);
  cached_highlights_[{cp, text}] = visible_highlights_[{cp, text}] = {results.toVector(), context, rank};
 
  //qDebug() << "context = " << context;
+}
+
+
+int DHAX_PDF_View_Dialog::page_number_to_text(int i, QString& result,
+  QString fallback_template)
+{
+ if(i >= arabic_start_)
+ {
+  result = QString::number(i - arabic_start_ + 1);
+  return 0;
+ }
+ else if(i > roman_end_ || i < roman_start_)
+ {
+  result = fallback_template.arg(i);
+  return 0;
+ }
+ i = i - roman_start_ + 1;
+
+ static QMap<int, QString> values =
+ {
+  {1000, "m"}, {900, "cm"}, {500, "d"}, {400, "cd"},
+  {100, "c"}, {90, "xc"}, {50, "l"}, {40, "xl"},
+  {10, "x"}, {9, "ix"}, {5, "v"}, {4, "iv"}, {1, "i"}
+ };
+
+ QMapIterator<int, QString> it(values);
+ while(it.hasNext())
+ {
+  it.next();
+  while (i >= it.key())
+  {
+   result += it.value();
+   i -= it.key();
+  }
+ }
+ return i;
+}
+
+void DHAX_PDF_View_Dialog::reset_pages_combo_box(QVector<int>* pages)
+{
+ pages_combo_box_->clear();
+
+ QStringList qsl;
+
+ if(pages)
+ {
+  if(pages->isEmpty())
+    qsl << "no match";
+  else
+  {
+   for(int i : *pages)
+   {
+    QString text;
+    int roman = page_number_to_text(i, text);
+    if(roman)
+      qsl << text;
+    else
+      qsl << text.prepend("p. ");
+   }
+  }
+ }
+ else
+   qsl << "Pages";
+ pages_combo_box_->insertItems(0, qsl);
 }
 
 
@@ -614,12 +709,7 @@ void DHAX_PDF_View_Dialog::retranslate_ui()
 //    menu_Windows->setTitle(QApplication::translate("MainWindow", "&Windows", 0 QUUTF8));
 //    controlsDockWidget->setWindowTitle(QApplication::translate("MainWindow", "Document Controls", 0 QUUTF8));
     page_label_->setText(QApplication::translate("CLG_DB_Anteview", "Page:", 0 QUUTF8));
-    search_label_->setText(QApplication::translate("MainWindow", "Search for:", 0 QUUTF8));
-    search_combo_box_->clear();
-    search_combo_box_->insertItems(0, QStringList()
-     << QApplication::translate("MainWindow", "Forwards", 0 QUUTF8)
-     << QApplication::translate("MainWindow", "Backwards", 0 QUUTF8)
-    );
+    search_label_->setText(QApplication::translate("MainWindow", "Search Text:", 0 QUUTF8));
     find_button_->setText(QApplication::translate("MainWindow", "Find", 0 QUUTF8));
 //?    clear_button_->setText(QApplication::translate("MainWindow", "Clear", 0 QUUTF8));
     scale_label_->setText(QApplication::translate("MainWindow", "Scale PDF Document:", 0 QUUTF8));

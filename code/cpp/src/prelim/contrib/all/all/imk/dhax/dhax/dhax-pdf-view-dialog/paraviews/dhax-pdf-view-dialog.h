@@ -89,7 +89,9 @@ class DHAX_PDF_View_Dialog : public QMainWindow
  QLabel* page_label_;
  QLabel* scale_label_;
  QComboBox* scale_combo_box_;
- QComboBox* search_combo_box_;
+
+ QComboBox* pages_combo_box_;
+
  QPushButton* find_button_;
 
  QPushButton* clear_most_recent_match_button_;
@@ -129,6 +131,11 @@ class DHAX_PDF_View_Dialog : public QMainWindow
  QMap<PDF_Document_Widget::Highlight_Key, PDF_Document_Widget::Highlight_Info> visible_highlights_;
  QMap<PDF_Document_Widget::Highlight_Key, PDF_Document_Widget::Highlight_Info> cached_highlights_;
 
+ int roman_start_;
+ int roman_end_;
+ int arabic_start_;
+
+
 
 public:
 
@@ -139,6 +146,11 @@ public:
 
  ACCESSORS(QString ,pdf_file_path)
 
+
+ int page_number_to_text(int i, QString& result, QString fallback_template = "(%1)");
+
+
+ void reset_pages_combo_box(QVector<int>* pages = {});
 
  void activate_search(QString text);
 
@@ -154,7 +166,8 @@ public:
 
  void clear_all_highlights();
 
- void search_update(int index_entry_id, QString text, int count_in_index, int page_hint);
+ void search_update(int index_entry_id, QString text, int count_in_index,
+   int page_hint, QString* context = nullptr);
 
 
  //int get_vertical_scroll();

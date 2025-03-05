@@ -189,6 +189,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  void check_nav_buttons();
 
+ void check_search_update();
  void search_update();
 
 
@@ -210,8 +211,13 @@ class Index_Entry_Review_Dialog : public QMainWindow
  QPushButton* search_words_slurp_button_;
 
  QPushButton* redo_earlier_match_button_;
+ QPushButton* redo_later_match_button_;
+ QPushButton* clean_later_match_button_;
 
  void redo_earlier_match();
+ void redo_later_match();
+
+ void clean_later_match();
 
  void reset_search_word_list(QStringList words);
  void reset_search_word_list(u2 low, u2 high);
