@@ -43,7 +43,6 @@
 
 #include <QListWidget>
 
-#include "subwindows/pdf-document-widget.h"
 
 #include "indexing/index-entry-review-dialog.h"
 
@@ -60,9 +59,10 @@ USING_KANS(TextIO)
 
 
 DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dialog,
+  DHAX_PDF_View_Dialog* earlier_document_ref,
   QString pdf_file_path, QString notes_file, int requested_page) //, NDP_Antemodel* antemodel)//, QString url, QWN_XMLDB_Configuration* config)
  : //QDialog(parent),
-   entry_dialog_(entry_dialog),
+   entry_dialog_(entry_dialog), earlier_document_ref_(earlier_document_ref),
    pdf_file_path_(pdf_file_path)//, antemodel_(antemodel)//, config_(config)
 {
  save_file(notes_file, "");
@@ -157,6 +157,20 @@ DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dial
   entry_dialog_->confirm_match(pdf_document_widget_->get_current_page());
  });
 
+ clear_most_recent_match_button_ = new QPushButton("Clear", this);
+ _3->addWidget(clear_most_recent_match_button_);
+
+ connect(clear_most_recent_match_button_, &QPushButton::clicked, [this]()
+ {
+  entry_dialog_->clear_most_recent_match(pdf_document_widget_->get_current_page());
+ });
+
+ if(earlier_document_ref_)
+//  clear_most_recent_match_button_->setEnabled(false);
+   clear_most_recent_match_button_->hide();
+ else
+//  confirm_match_button_->setEnabled(false);
+   confirm_match_button_->hide();
 
 
  refocus_entry_dialog_button_ =  new QPushButton("=>>", this);
@@ -471,17 +485,48 @@ void DHAX_PDF_View_Dialog::load_page(int number)
 }
 
 
+void DHAX_PDF_View_Dialog::clear_most_recent_match(int index_entry_id, int page_number)
+{
+ QMapIterator<PDF_Document_Widget::Highlight_Key,
+   PDF_Document_Widget::Highlight_Info> it(visible_highlights_);
+ while (it.hasNext())
+ {
+  it.next();
+  if(it.key().page_number == page_number)
+  {
+   pdf_document_widget_->clear_recent_highlights(index_entry_id, page_number);
+  }
+
+ }
+
+
+}
+
+
 void DHAX_PDF_View_Dialog::clear_all_highlights()
 {
  pdf_document_widget_->clear_all_highlights();
 }
 
-void DHAX_PDF_View_Dialog::search_update(QString text, int count_in_index, int page_hint)
+void DHAX_PDF_View_Dialog::search_update(int index_entry_id, QString text, int count_in_index, int page_hint)
 {
- QMap<int, QVector<QRectF>> matches;
- pdf_document_widget_->search_update(text, matches);
+ QMap<int, PDF_Document_Widget::Highlight_Info> matches;
 
- QList<int> pages = matches.keys();
+ QVector<int> pages;
+
+ if(cached_page_matches_.contains(text))
+ {
+  pages = cached_page_matches_[text];
+ }
+ else
+ {
+  pdf_document_widget_->search_update(text, matches, cached_highlights_);
+  if(matches.isEmpty())
+    return;
+
+  pages = matches.keys().toVector();
+  cached_page_matches_[text] = pages;
+ }
 
  if(pages.isEmpty())
    return;
@@ -490,34 +535,63 @@ void DHAX_PDF_View_Dialog::search_update(QString text, int count_in_index, int p
    count_in_index = pages.size();
 
  int page_number = pages[count_in_index - 1];
- highlight_match(text, page_number + 1, matches[page_number]);
+ highlight_match(index_entry_id, text, page_number + 1, matches[page_number]);
 
 }
 
-void DHAX_PDF_View_Dialog::highlight_match(QString text, int page_number, const QVector<QRectF>& matches)
+void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text, int page_number,
+
+  const PDF_Document_Widget::Highlight_Info& hi)
 {
+ // //  assumes {text, page} is cached
+
  pdf_document_widget_->setPage(page_number);
- if(!seen_highlights_.contains({page_number, text}))
+ if(!visible_highlights_.contains({page_number, text}))
  {
-  pdf_document_widget_->highlight_matches(matches);
+  pdf_document_widget_->highlight_matches(index_entry_id, hi.boundaries);
+  visible_highlights_[{page_number, text}] = hi;
  }
 }
 
 
-void DHAX_PDF_View_Dialog::highlight_match(QString text, QString& context)
+void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text, QString& context)
 {
  int cp = pdf_document_widget_->get_current_page();
 
- if(seen_highlights_.contains({cp, text}))
+ if(visible_highlights_.contains({cp, text}))
  {
-  context = seen_highlights_[{cp, text}];
+  context = cached_highlights_[{cp, text}].context;
   return;
  }
 
- pdf_document_widget_->highlight_match(text, context);
- seen_highlights_[{cp, text}] = context;
+ if(cached_highlights_.contains({cp, text}))
+ {
+  context = cached_highlights_[{cp, text}].context;
+  pdf_document_widget_->highlight_matches(index_entry_id, cached_highlights_[{cp, text}].boundaries);
+  return;
+ }
 
- qDebug() << "context = " << context;
+ QList<QRectF> results;
+ pdf_document_widget_->highlight_match(index_entry_id, text, results, &context);
+
+ int rank = 0;
+ if(!results.isEmpty())
+ {
+  int ix = rank_in_pages_[cp].second.indexOf(text);
+  if(ix == -1)
+  {
+   rank_in_pages_[cp].second.push_back(text);
+   rank = rank_in_pages_.size();
+  }
+  else
+  {
+   rank = ix + 1;
+  }
+ }
+
+ cached_highlights_[{cp, text}] = visible_highlights_[{cp, text}] = {results.toVector(), context, rank};
+
+ //qDebug() << "context = " << context;
 }
 
 

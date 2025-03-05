@@ -69,7 +69,8 @@ PDF_Document_Widget::PDF_Document_Widget(QWidget *parent)
  : QGraphicsView(parent), //QLabel(parent),
    surrounding_scroll_area_(nullptr),
    context_menu_rubber_band_(nullptr),
-   current_multistep_annotation_(nullptr)
+   current_multistep_annotation_(nullptr),
+   current_primary_highlights_index_entry_id_(0)
 {
  parent_dialog_ = qobject_cast<DHAX_PDF_View_Dialog*>(parent);
 
@@ -1224,17 +1225,56 @@ void PDF_Document_Widget::highlight_rectangle(QRectF rect, QColor color)
  qri->setBrush(color);
  qri->setPen(QColor(100,100,100,100));
  scene->addItem(qri);
- current_highlights_[scene].push_back(qri);
+ current_primary_highlights_[scene].push_back(qri);
+}
+
+
+void PDF_Document_Widget::reset_primary_highlights(QColor* new_color)
+{
+ // // moves all primary highlights to secondary
+ QList<QGraphicsScene*> keys = current_primary_highlights_.keys();
+ for(QGraphicsScene* scene : keys)
+ {
+  QVector<QGraphicsRectItem*> qgris = current_primary_highlights_.take(scene);
+  if(new_color)
+  {
+   for(QGraphicsRectItem* qgri : qgris)
+   {
+    qgri->setBrush(QBrush(*new_color));
+   }
+  }
+  current_secondary_highlights_[scene].append(qgris);
+ }
+}
+
+
+void PDF_Document_Widget::clear_recent_highlights(int index_entry_id, int page_number)
+{
+ QGraphicsScene* scene = scenes_[page_number];
+
+ QVector<QGraphicsRectItem*> qgris = current_primary_highlights_.take(scene);
+ if(qgris.isEmpty())
+   qgris = current_secondary_highlights_.take(scene);
+ if(qgris.isEmpty())
+   return;
+
+ for(QGraphicsRectItem* qgri : qgris)
+ {
+  scene->removeItem(qgri);
+  delete qgri;
+ }
 }
 
 
 void PDF_Document_Widget::clear_all_highlights()
 {
- QList<QGraphicsScene*> keys = current_highlights_.keys();
+ reset_primary_highlights();
+
+ QList<QGraphicsScene*> keys = current_secondary_highlights_.keys();
 
  for(QGraphicsScene* scene : keys)
  {
-  QVector<QGraphicsRectItem*> qgris = current_highlights_.take(scene);
+  QVector<QGraphicsRectItem*> qgris = current_primary_highlights_.take(scene);
   for(QGraphicsRectItem* qgri : qgris)
   {
    scene->removeItem(qgri);
@@ -1244,32 +1284,9 @@ void PDF_Document_Widget::clear_all_highlights()
 }
 
 
-void PDF_Document_Widget::search_update(QString text, QMap<int, QVector<QRectF>>& matches)
+void PDF_Document_Widget::prepare_match_context(QString text,
+  Poppler::Page* p, QString& context)
 {
- for(int i = 0; i < number_of_pages(); ++i)
- {
-  Poppler::Page* p = doc->page(i);
-  QList<QRectF> results = p->search(text);
-  if(results.isEmpty())
-    continue;
-  matches[i] = results.toVector();
- }
-}
-
-
-void PDF_Document_Widget::highlight_matches(const QVector<QRectF>& matches)
-{
- for(QRectF r : matches)
- {
-  r.adjust(-2, -2, 2, 2);
-  highlight_rectangle(r, QColor(142, 41, 9, 31));
- }
-}
-
-void PDF_Document_Widget::highlight_match(QString text, QString& context)
-{
- Poppler::Page* p = doc->page(currentPage);
-
  QString page_text = p->text(QRectF({0, 0}, p->pageSizeF()));
 
  QString _context;
@@ -1349,11 +1366,66 @@ void PDF_Document_Widget::highlight_match(QString text, QString& context)
  }
 
  context = _context;
+}
 
- QList<QRectF> results = p->search(text, Poppler::Page::IgnoreCase |
+void PDF_Document_Widget::search_update(QString text, QMap<int, Highlight_Info>& page_matches,
+  QMap<Highlight_Key, Highlight_Info>& cached_matches)
+{
+ for(int i = 0; i < number_of_pages(); ++i)
+ {
+  if(cached_matches.contains({i, text}))
+  {
+   page_matches[i] = cached_matches[{i, text}];
+   continue;
+  }
+
+  Poppler::Page* p = doc->page(i);
+  QList<QRectF> results = p->search(text);
+  if(results.isEmpty())
+    continue;
+
+  Highlight_Info hi = {results.toVector()};
+  prepare_match_context(text, p, hi.context);
+  cached_matches[{i, text}] = hi;
+
+  page_matches[i] = hi;
+ }
+}
+
+//void PDF_Document_Widget::resent_primary_highlights()
+//{
+
+//}
+
+
+void PDF_Document_Widget::highlight_matches(int index_entry_id, const QVector<QRectF>& matches)
+{
+ if(index_entry_id != current_primary_highlights_index_entry_id_)
+ {
+  static QColor secondary_highlight_color = QColor(12, 41, 219, 31);
+  reset_primary_highlights(&secondary_highlight_color);
+  current_primary_highlights_index_entry_id_ = index_entry_id;
+ }
+
+ for(QRectF r : matches)
+ {
+  r.adjust(-2, -2, 2, 2);
+  highlight_rectangle(r, QColor(142, 41, 9, 31));
+ }
+}
+
+void PDF_Document_Widget::highlight_match(int index_entry_id, QString text, QList<QRectF>& results, QString* context)
+{
+ Poppler::Page* p = doc->page(currentPage);
+
+ if(context)
+   prepare_match_context(text, p, *context);
+
+ results = p->search(text, Poppler::Page::IgnoreCase |
    Poppler::Page::IgnoreDiacritics | Poppler::Page::AcrossLines );
 
- highlight_matches(results.toVector());
+ if(!results.isEmpty())
+   highlight_matches(index_entry_id, results.toVector());
 
 // for(QRectF r : results)
 // {

@@ -17,7 +17,7 @@ int main1(int argc, char *argv[])
 
  QString n1file = "/home/nlevisrael/Downloads/m2m/w_pdf/notes1.txt";
 
- DHAX_PDF_View_Dialog* pvd1 = new DHAX_PDF_View_Dialog(nullptr,
+ DHAX_PDF_View_Dialog* pvd1 = new DHAX_PDF_View_Dialog(nullptr, nullptr,
    "/home/nlevisrael/Downloads/m2m/m2m-2003.pdf",
    n1file, 1);
 
@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
  Index_Entry_Review_Dialog* ierd = new Index_Entry_Review_Dialog(ifile, ftp_folder);
 
 
- DHAX_PDF_View_Dialog* pvd1 = new DHAX_PDF_View_Dialog(ierd,
+ DHAX_PDF_View_Dialog* pvd1 = new DHAX_PDF_View_Dialog(ierd, nullptr,
    "/home/nlevisrael/Downloads/m2m/m2m-2003.pdf",
    n1file,
    13);
@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
  pvd1->setWindowTitle("Earlier Document");
  pvd1->show();
 
- DHAX_PDF_View_Dialog* pvd2 = new DHAX_PDF_View_Dialog(ierd,
+ DHAX_PDF_View_Dialog* pvd2 = new DHAX_PDF_View_Dialog(ierd, pvd1,
    "/home/nlevisrael/Downloads/m2m/Neustein_Lesher_9780197661222_US_BITS.pdf",
    n2file,
    32);

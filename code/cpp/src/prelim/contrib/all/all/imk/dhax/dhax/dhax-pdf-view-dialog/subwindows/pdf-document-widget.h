@@ -122,7 +122,18 @@ private:
  MultiStep_Annotation_Base* current_multistep_annotation_; // current_arrow_annotation_;
 
 
- QMap<QGraphicsScene*, QVector<QGraphicsRectItem*>> current_highlights_;
+ QMap<QGraphicsScene*, QVector<QGraphicsRectItem*>> current_primary_highlights_;
+
+ QMap<QGraphicsScene*, QVector<QGraphicsRectItem*>> current_secondary_highlights_;
+
+ int current_primary_highlights_index_entry_id_;
+
+ void prepare_match_context(QString text, Poppler::Page* p, QString& context);
+
+ void reset_primary_highlights(QColor* new_color = nullptr);
+
+
+
 
 public:
 
@@ -132,13 +143,36 @@ public:
     ACCESSORS(QScrollArea* ,surrounding_scroll_area)
     ACCESSORS(QPixmap ,pixmap)
 
-    void highlight_matches(const QVector<QRectF>& matches);
+    struct Highlight_Info {
+      QVector<QRectF> boundaries;
+      QString context;
+      int rank_in_page;
+    };
 
-    void highlight_match(QString text, QString& context);
+    struct Highlight_Key {
+      int page_number;
+      QString search_text;
+    };
+
+    friend bool operator<(const Highlight_Key& lhs, const Highlight_Key& rhs)
+    {
+     if(lhs.page_number < rhs.page_number)
+       return true;
+     if(lhs.search_text < rhs.search_text)
+       return true;
+     return false;
+    }
+
+    void highlight_matches(int index_entry_id, const QVector<QRectF>& matches);
+
+    void highlight_match(int index_entry_id, QString text, QList<QRectF>& results, QString* context);
 
     void highlight_rectangle(QRectF rect, QColor color);
 
     void clear_all_highlights();
+
+    void clear_recent_highlights(int index_entry_id, int page_number);
+
 
 
     Poppler::Document* document();
@@ -159,9 +193,11 @@ public:
      return currentPage;
     }
 
+    void search_update(QString text, QMap<int, Highlight_Info>& page_matches,
+      QMap<Highlight_Key, Highlight_Info>& cached_matches);
 
-    void search_update(QString text, QMap<int, QVector<QRectF>>& matches);
 
+    //QMap<PDF_Document_Widget::Highlight_Key, PDF_Document_Widget::Highlight_Info>
 
 public Q_SLOTS:
     QRectF searchBackwards(const QString &text);
@@ -218,5 +254,7 @@ private:
     QRectF searchLocation;
     qreal scaleFactor;
 };
+
+
 
 #endif

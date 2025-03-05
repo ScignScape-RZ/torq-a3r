@@ -143,7 +143,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
  QPushButton* active_earlier_match_code_forward_button_;
  QPushButton* active_earlier_match_code_backward_button_;
 
- QPushButton* earlier_highlight_button_;
+ QPushButton* earlier_track_highlight_button_;
  QPushButton* clear_earlier_highlights_button_;
  QPushButton* search_update_button_;
 
@@ -176,6 +176,8 @@ class Index_Entry_Review_Dialog : public QMainWindow
  void add_current_match_line();
  void load_earlier_matches();
 
+ void check_earlier_highlight();
+
  void earlier_highlight();
  void clear_earlier_highlights();
 
@@ -207,6 +209,10 @@ class Index_Entry_Review_Dialog : public QMainWindow
  QPushButton* search_words_flip_button_;
  QPushButton* search_words_slurp_button_;
 
+ QPushButton* redo_earlier_match_button_;
+
+ void redo_earlier_match();
+
  void reset_search_word_list(QStringList words);
  void reset_search_word_list(u2 low, u2 high);
  void reset_search_word_list();
@@ -232,6 +238,7 @@ public:
  void reclaim_focus();
 
  void confirm_match(int page_number);
+ void clear_most_recent_match(int page_number);
 
  void ftp_upload(QString file_name, QString text);
 

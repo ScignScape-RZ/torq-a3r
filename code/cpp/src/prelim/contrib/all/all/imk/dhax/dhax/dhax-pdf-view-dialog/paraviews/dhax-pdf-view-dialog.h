@@ -30,7 +30,10 @@
 
 //?#include "view-ocr-fields-dialog.h"
 
-class PDF_Document_Widget;
+#include "subwindows/pdf-document-widget.h"
+
+
+//class PDF_Document_Widget;
 
 //#include "incident-form-dialog.h"
 
@@ -70,6 +73,7 @@ class DHAX_PDF_View_Dialog : public QMainWindow
  QString pdf_file_path_;
 
  Index_Entry_Review_Dialog* entry_dialog_;
+ DHAX_PDF_View_Dialog* earlier_document_ref_;
 
  QList<QRubberBand*> rubber_bands_;
 
@@ -88,6 +92,7 @@ class DHAX_PDF_View_Dialog : public QMainWindow
  QComboBox* search_combo_box_;
  QPushButton* find_button_;
 
+ QPushButton* clear_most_recent_match_button_;
  QPushButton* confirm_match_button_;
  QPushButton* refocus_entry_dialog_button_;
 
@@ -118,12 +123,17 @@ class DHAX_PDF_View_Dialog : public QMainWindow
 
  void retranslate_ui();
 
- QMap<QPair<int, QString>, QString> seen_highlights_;
+ QMap<QString, QVector<int>> cached_page_matches_;
+ QMap<int, QPair<QString, QStringList>> rank_in_pages_;
+
+ QMap<PDF_Document_Widget::Highlight_Key, PDF_Document_Widget::Highlight_Info> visible_highlights_;
+ QMap<PDF_Document_Widget::Highlight_Key, PDF_Document_Widget::Highlight_Info> cached_highlights_;
 
 
 public:
 
  DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dialog,
+   DHAX_PDF_View_Dialog* earlier_document_ref,
    QString pdf_file_path, QString notes_file, int requested_page = 1); //, NDP_Antemodel* antemodel);
  ~DHAX_PDF_View_Dialog();
 
@@ -136,14 +146,15 @@ public:
 
  void load_page(int number);
 
+ void clear_most_recent_match(int index_entry_id, int page_number);
 
- void highlight_match(QString text, int page_number, const QVector<QRectF>& matches);
+ void highlight_match(int index_entry_id, QString text, int page_number, const PDF_Document_Widget::Highlight_Info& hi);
 
- void highlight_match(QString text, QString& context);
+ void highlight_match(int index_entry_id, QString text, QString& context);
 
  void clear_all_highlights();
 
- void search_update(QString text, int count_in_index, int page_hint);
+ void search_update(int index_entry_id, QString text, int count_in_index, int page_hint);
 
 
  //int get_vertical_scroll();
