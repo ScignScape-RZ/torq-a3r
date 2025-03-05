@@ -18,6 +18,8 @@
 #include <QComboBox>
 #include <QRubberBand>
 
+#include <QMainWindow>
+
 #include "accessors.h"
 
 #include "flags.h"
@@ -61,7 +63,7 @@ class QTableWidgetItem;
 
 class Index_Entry_Review_Dialog;
 
-class DHAX_PDF_View_Dialog : public QDialog
+class DHAX_PDF_View_Dialog : public QMainWindow
 {
  Q_OBJECT
 
@@ -71,6 +73,8 @@ class DHAX_PDF_View_Dialog : public QDialog
 
  QList<QRubberBand*> rubber_bands_;
 
+
+ QFrame* main_frame_;
 
 // QFrame* controls_frame_;
  QVBoxLayout* controls_layout_;
@@ -83,8 +87,8 @@ class DHAX_PDF_View_Dialog : public QDialog
  QComboBox* scale_combo_box_;
  QComboBox* search_combo_box_;
  QPushButton* find_button_;
- QPushButton* clear_button_;
 
+ QPushButton* confirm_match_button_;
  QPushButton* refocus_entry_dialog_button_;
 
  QDialogButtonBox* button_box_;
@@ -114,12 +118,12 @@ class DHAX_PDF_View_Dialog : public QDialog
 
  void retranslate_ui();
 
- QSet<QPair<int, QString>> seen_highlights_;
+ QMap<QPair<int, QString>, QString> seen_highlights_;
 
 
 public:
 
- DHAX_PDF_View_Dialog(QWidget* parent, Index_Entry_Review_Dialog* entry_dialog,
+ DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dialog,
    QString pdf_file_path, QString notes_file, int requested_page = 1); //, NDP_Antemodel* antemodel);
  ~DHAX_PDF_View_Dialog();
 
@@ -135,7 +139,8 @@ public:
 
  void highlight_match(QString text, int page_number, const QVector<QRectF>& matches);
 
- void highlight_match(QString text);
+ void highlight_match(QString text, QString& context);
+
  void clear_all_highlights();
 
  void search_update(QString text, int count_in_index, int page_hint);

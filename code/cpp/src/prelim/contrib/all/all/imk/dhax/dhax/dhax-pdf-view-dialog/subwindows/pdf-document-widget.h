@@ -134,7 +134,7 @@ public:
 
     void highlight_matches(const QVector<QRectF>& matches);
 
-    void highlight_match(QString text);
+    void highlight_match(QString text, QString& context);
 
     void highlight_rectangle(QRectF rect, QColor color);
 

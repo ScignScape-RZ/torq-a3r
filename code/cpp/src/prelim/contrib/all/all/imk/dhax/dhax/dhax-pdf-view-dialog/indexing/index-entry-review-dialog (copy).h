@@ -17,7 +17,7 @@
 #include <QPoint>
 
 #include <QDialog>
-#include <QMainWindow>
+#include <QTableWidget>
 
 #include <functional>
 
@@ -47,8 +47,6 @@ class QTcpServer;
 class QGridLayout;
 class QCheckBox;
 
-class QSplitter;
-
 class ScignStage_Clickable_Label;
 
 class XPDF_Bridge;
@@ -59,7 +57,7 @@ class QComboBox;
 
 class DHAX_PDF_View_Dialog;
 
-class Index_Entry_Review_Dialog : public QMainWindow
+class Index_Entry_Review_Dialog : public QDialog
 {
 
  Q_OBJECT
@@ -70,21 +68,8 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
 
  QString earlier_match_file_;
- QString ftp_folder_;
-
-
  QVector<Index_Entry> index_entries_;
  Index_Entry* current_index_entry_;
-
- QFrame* main_frame_;
-
- QDockWidget* comparison_dock_widget_;
- QSplitter* comparison_splitter_;
- QTextEdit* comparison_left_text_edit_;
- QTextEdit* comparison_right_text_edit_;
-
-
- void setup_comparison_window();
 
  QDialogButtonBox* button_box_;
  QPushButton* button_ok_;
@@ -227,15 +212,13 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
 public:
 
- Index_Entry_Review_Dialog(QString earlier_match_file, QString ftp_folder);
+ Index_Entry_Review_Dialog(QString earlier_match_file, QWidget* parent = nullptr);
 
  void reclaim_focus();
 
  void confirm_match(int page_number);
 
- void ftp_upload(QString file_name, QString text);
-
- void update_split_window(QString text1, QString text2);
+ void create_split_window(QString text1, QString text2);
 
 
  ACCESSORS(DHAX_PDF_View_Dialog* ,earlier_pdf_dialog)

@@ -59,15 +59,17 @@
 USING_KANS(TextIO)
 
 
-DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(QWidget* parent, Index_Entry_Review_Dialog* entry_dialog,
+DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dialog,
   QString pdf_file_path, QString notes_file, int requested_page) //, NDP_Antemodel* antemodel)//, QString url, QWN_XMLDB_Configuration* config)
- : QDialog(parent),
+ : //QDialog(parent),
    entry_dialog_(entry_dialog),
    pdf_file_path_(pdf_file_path)//, antemodel_(antemodel)//, config_(config)
 {
  save_file(notes_file, "");
 
  main_layout_ = new QVBoxLayout();
+
+ main_frame_ = new QFrame(this);
 
  //controls_dock_widget_ = nullptr;
  //controls_frame_ = new QFrame(this);
@@ -146,13 +148,19 @@ DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(QWidget* parent, Index_Entry_Review_D
 
  _3->addWidget(find_button_);
 
- clear_button_ = new QPushButton(this);
- clear_button_->setObjectName(QString::fromUtf8("clear_button_"));
- clear_button_->setEnabled(false);
+ confirm_match_button_ = new QPushButton("Confirm", this);
+ confirm_match_button_->setObjectName(QString::fromUtf8("confirm_match_button_"));
+ _3->addWidget(confirm_match_button_);
 
- _3->addWidget(clear_button_);
+ connect(confirm_match_button_, &QPushButton::clicked, [this]()
+ {
+  entry_dialog_->confirm_match(pdf_document_widget_->get_current_page());
+ });
+
+
 
  refocus_entry_dialog_button_ =  new QPushButton("=>>", this);
+ refocus_entry_dialog_button_->setMaximumWidth(30);
  _3->addWidget(refocus_entry_dialog_button_);
 
  connect(refocus_entry_dialog_button_, &QPushButton::clicked, [this]()
@@ -363,9 +371,11 @@ DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(QWidget* parent, Index_Entry_Review_D
 
  main_layout_->addWidget(button_box_);
 
- setLayout(main_layout_);
 
  retranslate_ui();
+
+ main_frame_->setLayout(main_layout_);
+ setCentralWidget(main_frame_);
 
  Poppler::Document* popd = pdf_document_widget_->document();
 
@@ -494,16 +504,20 @@ void DHAX_PDF_View_Dialog::highlight_match(QString text, int page_number, const 
 }
 
 
-void DHAX_PDF_View_Dialog::highlight_match(QString text)
+void DHAX_PDF_View_Dialog::highlight_match(QString text, QString& context)
 {
  int cp = pdf_document_widget_->get_current_page();
 
  if(seen_highlights_.contains({cp, text}))
-   return;
+ {
+  context = seen_highlights_[{cp, text}];
+  return;
+ }
 
- seen_highlights_.insert({cp, text});
- pdf_document_widget_->highlight_match(text);
+ pdf_document_widget_->highlight_match(text, context);
+ seen_highlights_[{cp, text}] = context;
 
+ qDebug() << "context = " << context;
 }
 
 
@@ -533,7 +547,7 @@ void DHAX_PDF_View_Dialog::retranslate_ui()
      << QApplication::translate("MainWindow", "Backwards", 0 QUUTF8)
     );
     find_button_->setText(QApplication::translate("MainWindow", "Find", 0 QUUTF8));
-    clear_button_->setText(QApplication::translate("MainWindow", "Clear", 0 QUUTF8));
+//?    clear_button_->setText(QApplication::translate("MainWindow", "Clear", 0 QUUTF8));
     scale_label_->setText(QApplication::translate("MainWindow", "Scale PDF Document:", 0 QUUTF8));
     scale_combo_box_->clear();
     scale_combo_box_->insertItems(0, QStringList()
@@ -573,12 +587,13 @@ DHAX_PDF_View_Dialog::~DHAX_PDF_View_Dialog()
 
 void DHAX_PDF_View_Dialog::cancel()
 {
- Q_EMIT(canceled(this));Q_EMIT(rejected());close();
+ //?Q_EMIT(canceled(this));Q_EMIT(rejected());
+ close();
 // close();
 }
 
 void DHAX_PDF_View_Dialog::accept()
 {
- Q_EMIT(accepted(this));
+ //?Q_EMIT(accepted(this));
 // close();
 }

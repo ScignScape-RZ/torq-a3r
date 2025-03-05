@@ -76,18 +76,15 @@
 
 //?#include "case-map-gis-service.h"
 
-Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file, QString ftp_folder)
-  : current_entry_id_(0), max_entry_id_(0), current_index_entry_(nullptr),
+Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file, QWidget* parent)
+  : QDialog(parent), current_entry_id_(0), max_entry_id_(0), current_index_entry_(nullptr),
     active_earlier_match_code_index_(0), max_earlier_match_code_index_(0),
-    earlier_match_file_(earlier_match_file), ftp_folder_(ftp_folder),
+    earlier_match_file_(earlier_match_file),
     current_search_word_list_low_(0), available_search_word_list_count_(0),
     current_search_word_list_high_(0), flip_count_(0), slurp_count_(0),
     current_page_ref_pair_(Page_Ref_Pair::default_values())
 {
- main_frame_ = new QFrame(this);
-
-
- setup_comparison_window();
+ // // setup RZW
 
  button_box_ = new QDialogButtonBox(this);
 
@@ -461,9 +458,8 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
  main_layout_->addLayout(bottom_layout_);
 
- main_frame_->setLayout(main_layout_);
 
- setCentralWidget(main_frame_);
+ setLayout(main_layout_);
 
  setWindowTitle("Index Entry Dialog");
 
@@ -499,71 +495,32 @@ void Index_Entry_Review_Dialog::earlier_highlight()
  earlier_pdf_dialog_->setWindowState(Qt::WindowState::WindowActive);
  earlier_pdf_dialog_->activateWindow();
 
- QString context;
-
- earlier_pdf_dialog_->highlight_match(search_text_line_edit_->text(), context);
-
- comparison_right_text_edit_->setText(context);
+ earlier_pdf_dialog_->highlight_match(search_text_line_edit_->text());
 
 }
 
 
-void Index_Entry_Review_Dialog::setup_comparison_window()
+void Index_Entry_Review_Dialog::create_split_window(QString text1, QString text2)
 {
- comparison_dock_widget_ = new QDockWidget(this);
+ QSplitter* splitter = new QSplitter(this);
+ QTextEdit* left_text = new QTextEdit(text1, splitter);
+ QTextEdit* right_text = new QTextEdit(text2, splitter);
+ splitter->addWidget(left_text);
+ splitter->addWidget(right_text);
 
- comparison_splitter_ = new QSplitter(comparison_dock_widget_);
- comparison_left_text_edit_ = new QTextEdit(comparison_splitter_);
- comparison_right_text_edit_ = new QTextEdit(comparison_splitter_);
- comparison_splitter_->addWidget(comparison_left_text_edit_);
- comparison_splitter_->addWidget(comparison_right_text_edit_);
+ QMainWindow* mw = new QMainWindow(this);
+ main_layout_->addWidget(mw);
 
- comparison_dock_widget_->setWidget(comparison_splitter_);
+ QDockWidget* dw = new QDockWidget(mw);
+ dw->setWidget(splitter);
+ mw->addDockWidget(Qt::TopDockWidgetArea, dw);
 
- comparison_dock_widget_->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
-
- addDockWidget(Qt::TopDockWidgetArea, comparison_dock_widget_);
-
- //comparison_dock_widget_
-}
-
-
-void Index_Entry_Review_Dialog::ftp_upload(QString file_name, QString text)
-{
- QString template_path = ftp_folder_ + "/template";
- QString template_text = KA::TextIO::load_file(template_path);
-
- template_text.replace("%FILE%", file_name);
-
- KA::TextIO::save_file_to_folder(file_name, text, ftp_folder_);
-
- qDebug() << template_text;
-
- QProcess* qp = new QProcess();
-
- qp->setWorkingDirectory(ftp_folder_);
-
- qp->start(template_text);
- qp->waitForFinished(-1);
- QString output = qp->readAllStandardOutput();
- qp->terminate();
- qDebug() << output;
- qp->deleteLater();
-}
-
-
-void Index_Entry_Review_Dialog::update_split_window(QString text1, QString text2)
-{
- comparison_left_text_edit_->setText(text1);
- comparison_right_text_edit_->setText(text2);
-
- ftp_upload("ft.htm", "<b>ft ok</b>");
 }
 
 
 void Index_Entry_Review_Dialog::confirm_match(int page_number)
 {
- update_split_window("text1", "text2");
+ create_split_window("text1", "text2");
 }
 
 
@@ -1122,13 +1079,13 @@ Index_Entry_Review_Dialog::~Index_Entry_Review_Dialog()
 
 void Index_Entry_Review_Dialog::cancel()
 {
-// Q_EMIT(rejected());
-// Q_EMIT(canceled(this));
-// Q_EMIT(rejected());
+ Q_EMIT(rejected());
+ Q_EMIT(canceled(this));
+ Q_EMIT(rejected());
  close();
 }
 
 void Index_Entry_Review_Dialog::accept()
 {
-// Q_EMIT(accepted(this));
+ Q_EMIT(accepted(this));
 }

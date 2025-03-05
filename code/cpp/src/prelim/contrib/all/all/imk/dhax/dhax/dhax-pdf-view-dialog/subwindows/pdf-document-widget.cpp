@@ -1266,10 +1266,92 @@ void PDF_Document_Widget::highlight_matches(const QVector<QRectF>& matches)
  }
 }
 
-void PDF_Document_Widget::highlight_match(QString text)
+void PDF_Document_Widget::highlight_match(QString text, QString& context)
 {
  Poppler::Page* p = doc->page(currentPage);
- QList<QRectF> results = p->search(text);
+
+ QString page_text = p->text(QRectF({0, 0}, p->pageSizeF()));
+
+ QString _context;
+ QTextStream qts(&_context);
+
+ static constexpr u2 window = 30;
+ static constexpr u2 default_expand_max = 15;
+
+ // //  maybe allow this to be a parameter sometime
+ u2 expand_max = default_expand_max;
+
+ auto find_word_boundary_backward = [expand_max, &page_text](u2& index)
+ {
+  s4 i = index;
+  u2 count = 0;
+  while(i >= 0)
+  {
+   if(++count > expand_max)
+     break;
+   QChar c = page_text[i];
+   if(c.isSpace())
+     break;
+   --i;
+  }
+  index = i;
+ };
+
+ auto find_word_boundary_forward = [expand_max, &page_text](u2& index)
+ {
+  s4 i = index;
+  u2 max = page_text.size();
+  u2 count = 0;
+  while(i < max)
+  {
+   if(++count > expand_max)
+     break;
+   QChar c = page_text[i];
+   if(c.isSpace())
+     break;
+   ++i;
+  }
+  index = i;
+ };
+
+ s4 start_pos = 0;
+ u2 count = 0;
+ while(true)
+ {
+  start_pos = page_text.indexOf(text, start_pos);
+  if(start_pos == -1)
+    break;
+
+  if(++count > 1)
+    qts << "\n\n+++\n\n";
+
+  u2 pre = start_pos > window? start_pos - window : start_pos;
+  u2 post = qMin(start_pos + text.size() + window, page_text.size());
+
+  find_word_boundary_backward(pre);
+  find_word_boundary_forward(post);
+
+  if(pre == 0)
+    qts << " [:page:] ";
+  else
+    qts << " ... ";
+
+  QString context_text = page_text.mid(pre, post - pre);
+
+
+  qts << context_text;
+
+  if(post == page_text.size() - 1)
+    qts << " [:page:] ";
+  else
+    qts << " ... ";
+  start_pos += text.size();
+ }
+
+ context = _context;
+
+ QList<QRectF> results = p->search(text, Poppler::Page::IgnoreCase |
+   Poppler::Page::IgnoreDiacritics | Poppler::Page::AcrossLines );
 
  highlight_matches(results.toVector());
 

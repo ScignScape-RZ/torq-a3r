@@ -79,10 +79,16 @@ struct Page_Ref_Pair : QPair<Page_Ref, Page_Ref> {
   return "??";
  }
 
-
-
 };
 
+struct Index_Entry_Alignment {
+
+ int entry_id_;
+ int match_index_;
+ Page_Ref_Pair earlier_ref_;
+ Page_Ref_Pair later_ref_;
+
+};
 
 
 struct Index_Entry {
