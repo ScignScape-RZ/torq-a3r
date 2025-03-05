@@ -63,14 +63,10 @@ INCLUDEPATH += $$WHITEDB_SRC_GROUP_DIR
 
 
 HEADERS += \
-  $$SRC_DIR/m2m.h \
-  $$SRC_DIR/index-entry-review-dialog.h \
 
 
 SOURCES += \
   $$SRC_DIR/main.cpp \
-  $$SRC_DIR/m2m.cpp \
-  $$SRC_DIR/index-entry-review-dialog.cpp \
 
 
 LIBS += -L$$TARGETSDIR  -ldhax-pdf-view-dialog

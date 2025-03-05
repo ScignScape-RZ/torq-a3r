@@ -125,6 +125,18 @@ SOURCES += \
   $$SRC_DIR/subwindows/multistep-annotation-base.cpp \
 
 
+
+HEADERS += \
+  $$SRC_DIR/indexing/m2m.h \
+  $$SRC_DIR/indexing/index-entry-review-dialog.h \
+
+
+SOURCES += \
+  $$SRC_DIR/indexing/m2m.cpp \
+  $$SRC_DIR/indexing/index-entry-review-dialog.cpp \
+
+
+
 #POPPLER_DIR = ~/gits/okular/poppler-install/lib
 
 LIBS += -L$$POPPLER_LIB_DIR -lpoppler-qt5

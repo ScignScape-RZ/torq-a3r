@@ -7,17 +7,34 @@
 
 //USING_QSNS(Cy_Mesh)
 
-#include "m2m.h"
+#include "indexing/m2m.h"
 
-#include "index-entry-review-dialog.h"
+#include "indexing/index-entry-review-dialog.h"
+
+int main1(int argc, char *argv[])
+{
+ QApplication qapp(argc, argv);
+
+ QString n1file = "/home/nlevisrael/Downloads/m2m/w_pdf/notes1.txt";
+
+ DHAX_PDF_View_Dialog* pvd1 = new DHAX_PDF_View_Dialog(nullptr,nullptr,
+   "/home/nlevisrael/Downloads/m2m/m2m-2003.pdf",
+   n1file, 1);
+
+ pvd1->setWindowTitle("Earlier Document");
+ pvd1->show();
+
+ qapp.exec();
+ return 0;
+}
 
 int main(int argc, char *argv[])
 {
  QString ifile = "/home/nlevisrael/Downloads/m2m/w_pdf/dindex.txt";
 // QString ofile = "/home/nlevisrael/Downloads/m2m/w_pdf/tindex.txt";
 
- QString nfile = "/home/nlevisrael/Downloads/m2m/w_pdf/notes.txt";
  QString n1file = "/home/nlevisrael/Downloads/m2m/w_pdf/notes1.txt";
+ QString n2file = "/home/nlevisrael/Downloads/m2m/w_pdf/notes2.txt";
 
 // QString otext;
 // QTextStream oqts(&otext);
@@ -32,23 +49,27 @@ int main(int argc, char *argv[])
 
  Index_Entry_Review_Dialog* ierd = new Index_Entry_Review_Dialog(ifile);
 
+
+ DHAX_PDF_View_Dialog* pvd1 = new DHAX_PDF_View_Dialog(nullptr, ierd,
+   "/home/nlevisrael/Downloads/m2m/m2m-2003.pdf",
+   n1file,
+   13);
+
+ pvd1->setWindowTitle("Earlier Document");
+ pvd1->show();
+
+ DHAX_PDF_View_Dialog* pvd2 = new DHAX_PDF_View_Dialog(nullptr, ierd,
+   "/home/nlevisrael/Downloads/m2m/Neustein_Lesher_9780197661222_US_BITS.pdf",
+   n2file,
+   32);
+
+ pvd2->setWindowTitle("Later Document");
+ pvd2->show();
+
+ ierd->set_earlier_pdf_dialog(pvd1);
+ ierd->set_later_pdf_dialog(pvd2);
+
  ierd->show();
-
-// DHAX_PDF_View_Dialog* pvd = new DHAX_PDF_View_Dialog(nullptr,
-//   "/home/nlevisrael/Downloads/m2m/Neustein_Lesher_9780197661222_US_BITS.pdf",
-//   nfile,
-//   32);
-
-// pvd->show();
-
-
-// DHAX_PDF_View_Dialog* pvd1 = new DHAX_PDF_View_Dialog(nullptr,
-//   "/home/nlevisrael/Downloads/m2m/m2m-2003.pdf",
-//   n1file,
-//   13);
-
-// pvd1->show();
-
 
  qapp.exec();
  return 0;

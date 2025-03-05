@@ -116,11 +116,13 @@ private:
  QMap<QGraphicsScene*, QImage> images_;
 
  QPixmap pixmap_;
+ QGraphicsPixmapItem* current_pixmap_graphics_item_;
 
 // Arrow_Annotation* current_arrow_annotation_;
  MultiStep_Annotation_Base* current_multistep_annotation_; // current_arrow_annotation_;
 
 
+ QMap<QGraphicsScene*, QVector<QGraphicsRectItem*>> current_highlights_;
 
 public:
 
@@ -129,6 +131,15 @@ public:
 
     ACCESSORS(QScrollArea* ,surrounding_scroll_area)
     ACCESSORS(QPixmap ,pixmap)
+
+    void highlight_matches(const QVector<QRectF>& matches);
+
+    void highlight_match(QString text);
+
+    void highlight_rectangle(QRectF rect, QColor color);
+
+    void clear_all_highlights();
+
 
     Poppler::Document* document();
     QMatrix matrix() const;
@@ -147,6 +158,9 @@ public:
     {
      return currentPage;
     }
+
+
+    void search_update(QString text, QMap<int, QVector<QRectF>>& matches);
 
 
 public Q_SLOTS:

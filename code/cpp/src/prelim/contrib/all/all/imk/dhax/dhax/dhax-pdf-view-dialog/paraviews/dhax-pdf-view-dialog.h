@@ -59,12 +59,15 @@ class QTableWidgetItem;
 //class NDP_Project;
 //class NDP_Project_Initial;
 
+class Index_Entry_Review_Dialog;
 
 class DHAX_PDF_View_Dialog : public QDialog
 {
  Q_OBJECT
 
  QString pdf_file_path_;
+
+ Index_Entry_Review_Dialog* entry_dialog_;
 
  QList<QRubberBand*> rubber_bands_;
 
@@ -82,7 +85,7 @@ class DHAX_PDF_View_Dialog : public QDialog
  QPushButton* find_button_;
  QPushButton* clear_button_;
 
- QPushButton* box_button_;
+ QPushButton* refocus_entry_dialog_button_;
 
  QDialogButtonBox* button_box_;
 // QPushButton* button_ok_;
@@ -111,9 +114,12 @@ class DHAX_PDF_View_Dialog : public QDialog
 
  void retranslate_ui();
 
+ QSet<QPair<int, QString>> seen_highlights_;
+
+
 public:
 
- DHAX_PDF_View_Dialog(QWidget* parent,
+ DHAX_PDF_View_Dialog(QWidget* parent, Index_Entry_Review_Dialog* entry_dialog,
    QString pdf_file_path, QString notes_file, int requested_page = 1); //, NDP_Antemodel* antemodel);
  ~DHAX_PDF_View_Dialog();
 
@@ -123,6 +129,17 @@ public:
  void activate_search(QString text);
 
  bool wants_box();
+
+ void load_page(int number);
+
+
+ void highlight_match(QString text, int page_number, const QVector<QRectF>& matches);
+
+ void highlight_match(QString text);
+ void clear_all_highlights();
+
+ void search_update(QString text, int count_in_index, int page_hint);
+
 
  //int get_vertical_scroll();
 

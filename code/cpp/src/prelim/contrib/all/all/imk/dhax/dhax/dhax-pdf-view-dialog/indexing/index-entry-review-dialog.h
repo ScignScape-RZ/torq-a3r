@@ -25,6 +25,8 @@
 
 #include "m2m.h"
 
+#include "accessors.h"
+
 class QDialogButtonBox;
 class QLabel;
 class QLineEdit;
@@ -54,13 +56,19 @@ class QFormLayout;
 
 class QComboBox;
 
+class DHAX_PDF_View_Dialog;
+
 class Index_Entry_Review_Dialog : public QDialog
 {
 
  Q_OBJECT
 
 
- QString prior_match_file_;
+ DHAX_PDF_View_Dialog* earlier_pdf_dialog_;
+ DHAX_PDF_View_Dialog* later_pdf_dialog_;
+
+
+ QString earlier_match_file_;
  QVector<Index_Entry> index_entries_;
  Index_Entry* current_index_entry_;
 
@@ -79,7 +87,7 @@ class Index_Entry_Review_Dialog : public QDialog
  QVBoxLayout* entry_layout_;
 
  QGroupBox* info_group_box_;
- QGroupBox* prior_match_group_box_;
+ QGroupBox* earlier_match_group_box_;
  QGroupBox* current_search_group_box_;
 
  QVBoxLayout* info_group_box_layout_;
@@ -88,11 +96,11 @@ class Index_Entry_Review_Dialog : public QDialog
  QFormLayout* info_group_box_left_layout_;
  QFormLayout* info_group_box_right_layout_;
 
- QVBoxLayout* prior_match_group_box_layout_;
- QHBoxLayout* prior_match_group_box_bottom_layout_;
- QFormLayout* prior_match_group_box_top_layout_;
- QFormLayout* prior_match_group_box_left_layout_;
- QVBoxLayout* prior_match_group_box_right_layout_;
+ QVBoxLayout* earlier_match_group_box_layout_;
+ QHBoxLayout* earlier_match_group_box_bottom_layout_;
+ QFormLayout* earlier_match_group_box_top_layout_;
+ QFormLayout* earlier_match_group_box_left_layout_;
+ QVBoxLayout* earlier_match_group_box_right_layout_;
 
  QVBoxLayout* current_search_group_box_layout_;
  QFormLayout* current_search_group_box_layout_top_;
@@ -100,9 +108,9 @@ class Index_Entry_Review_Dialog : public QDialog
 
  QLineEdit* search_text_line_edit_;
 
- QLineEdit* prior_match_code_update_line_edit_;
- QLineEdit* active_prior_match_code_line_edit_;
- QCheckBox* active_prior_match_code_updated_check_box_;
+ QLineEdit* earlier_match_code_update_line_edit_;
+ QLineEdit* active_earlier_match_code_line_edit_;
+ QCheckBox* active_earlier_match_code_updated_check_box_;
 
  QTextEdit* match_codes_text_edit_;
 
@@ -115,17 +123,22 @@ class Index_Entry_Review_Dialog : public QDialog
  QLineEdit* count_in_parent_line_edit_;
  QLineEdit* subheading_count_line_edit_;
 
- QHBoxLayout* active_prior_match_code_nav_layout_;
+ QHBoxLayout* active_earlier_match_code_nav_layout_;
+ QHBoxLayout* active_earlier_match_code_highlight_layout_;
 
- QPushButton* active_prior_match_code_forward_button_;
- QPushButton* active_prior_match_code_backward_button_;
+ QPushButton* active_earlier_match_code_forward_button_;
+ QPushButton* active_earlier_match_code_backward_button_;
 
- u2 active_prior_match_code_index_;
- u2 max_prior_match_code_index_;
+ QPushButton* earlier_highlight_button_;
+ QPushButton* clear_earlier_highlights_button_;
+ QPushButton* search_update_button_;
 
- QVector<QPair<Page_Ref_Pair, QString>> prior_match_codes_;
+ u2 active_earlier_match_code_index_;
+ u2 max_earlier_match_code_index_;
 
- void reset_active_prior_match_code();
+ QVector<QPair<Page_Ref_Pair, QString>> earlier_match_codes_;
+
+ void reset_active_earlier_match_code();
  Page_Ref_Pair current_page_ref_pair_;
  QString current_page_ref_string_;
 
@@ -134,10 +147,12 @@ class Index_Entry_Review_Dialog : public QDialog
  u2 flip_count_;
  u2 slurp_count_;
 
+ //Page_Ref_Pair
+
  //QLabel* sentence_label_;
 
- void prior_match_forward();
- void prior_match_backward();
+ void earlier_match_forward();
+ void earlier_match_backward();
 
  void entry_forward();
  void entry_backward();
@@ -145,7 +160,11 @@ class Index_Entry_Review_Dialog : public QDialog
  void load_entry(u2 id);
 
  void add_current_match_line();
- void load_prior_matches();
+ void load_earlier_matches();
+
+ void earlier_highlight();
+ void clear_earlier_highlights();
+
 
  QString match_code_long_display(const Page_Ref_Pair& pr);
  void match_code_display(QString& text);
@@ -153,6 +172,9 @@ class Index_Entry_Review_Dialog : public QDialog
  QString match_code_display(const QVector<QPair<Page_Ref_Pair, QString>>& prs);
 
  void check_nav_buttons();
+
+ void search_update();
+
 
  u2 current_entry_id_;
  u2 max_entry_id_;
@@ -184,11 +206,19 @@ class Index_Entry_Review_Dialog : public QDialog
  void search_words_flip();
  void search_words_slurp();
 
+ u2 ref_code_to_earlier_page_number(const Page_Ref& page_ref);
+ u2 ref_code_to_later_page_number(const Page_Ref& page_ref);
+
+ //QMap<Page_Ref, >
+
 public:
 
+ Index_Entry_Review_Dialog(QString earlier_match_file, QWidget* parent = nullptr);
 
+ void reclaim_focus();
 
- Index_Entry_Review_Dialog(QString prior_match_file, QWidget* parent = nullptr);
+ ACCESSORS(DHAX_PDF_View_Dialog* ,earlier_pdf_dialog)
+ ACCESSORS(DHAX_PDF_View_Dialog* ,later_pdf_dialog)
 
  ~Index_Entry_Review_Dialog();
 

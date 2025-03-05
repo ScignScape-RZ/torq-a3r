@@ -70,12 +70,16 @@
 
 #include "global-types.h"
 
+#include "dhax-pdf-view-dialog/paraviews/dhax-pdf-view-dialog.h"
+
+
+
 //?#include "case-map-gis-service.h"
 
-Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString prior_match_file, QWidget* parent)
+Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file, QWidget* parent)
   : QDialog(parent), current_entry_id_(0), max_entry_id_(0), current_index_entry_(nullptr),
-    active_prior_match_code_index_(0), max_prior_match_code_index_(0),
-    prior_match_file_(prior_match_file),
+    active_earlier_match_code_index_(0), max_earlier_match_code_index_(0),
+    earlier_match_file_(earlier_match_file),
     current_search_word_list_low_(0), available_search_word_list_count_(0),
     current_search_word_list_high_(0), flip_count_(0), slurp_count_(0),
     current_page_ref_pair_(Page_Ref_Pair::default_values())
@@ -118,9 +122,9 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString prior_match_file, Q
  entry_layout_ = new QVBoxLayout;
 
  info_group_box_ = new QGroupBox("Entry Info", this);
- prior_match_group_box_ = new QGroupBox("Prior Match", this);
+ earlier_match_group_box_ = new QGroupBox("earlier Match", this);
  search_text_line_edit_ = new QLineEdit(this);
- search_text_line_edit_->setPlaceholderText("(derived by default from each prior entry)");
+ search_text_line_edit_->setPlaceholderText("(derived by default from each earlier entry)");
  search_text_line_edit_->setEnabled(false);
 
 
@@ -128,16 +132,16 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString prior_match_file, Q
 
 
 
- prior_match_group_box_layout_ = new QVBoxLayout;
- prior_match_group_box_top_layout_ = new QFormLayout;
- prior_match_group_box_left_layout_ = new QFormLayout;
- prior_match_group_box_bottom_layout_ = new QHBoxLayout;
- prior_match_group_box_right_layout_ = new QVBoxLayout;
+ earlier_match_group_box_layout_ = new QVBoxLayout;
+ earlier_match_group_box_top_layout_ = new QFormLayout;
+ earlier_match_group_box_left_layout_ = new QFormLayout;
+ earlier_match_group_box_bottom_layout_ = new QHBoxLayout;
+ earlier_match_group_box_right_layout_ = new QVBoxLayout;
 
 
- prior_match_code_update_line_edit_ = new QLineEdit(this);
- active_prior_match_code_line_edit_ = new QLineEdit(this);
- active_prior_match_code_updated_check_box_ = new QCheckBox(this);
+ earlier_match_code_update_line_edit_ = new QLineEdit(this);
+ active_earlier_match_code_line_edit_ = new QLineEdit(this);
+ active_earlier_match_code_updated_check_box_ = new QCheckBox(this);
 
 
  match_codes_text_edit_ = new QTextEdit(this);
@@ -147,52 +151,86 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString prior_match_file, Q
  match_codes_text_edit_->setReadOnly(true);
  match_codes_text_edit_->setMaximumHeight(60);
 
- prior_match_group_box_top_layout_->addRow("Match Codes", match_codes_text_edit_);
+ earlier_match_group_box_top_layout_->addRow("Match Codes", match_codes_text_edit_);
 
- prior_match_group_box_layout_->addLayout(prior_match_group_box_top_layout_);
+ earlier_match_group_box_layout_->addLayout(earlier_match_group_box_top_layout_);
 
- prior_match_group_box_left_layout_->addRow("Active", active_prior_match_code_line_edit_);
- prior_match_group_box_left_layout_->addRow("Update", prior_match_code_update_line_edit_);
- prior_match_group_box_left_layout_->addRow("Updated", active_prior_match_code_updated_check_box_);
+ earlier_match_group_box_left_layout_->addRow("Active", active_earlier_match_code_line_edit_);
+ earlier_match_group_box_left_layout_->addRow("Update", earlier_match_code_update_line_edit_);
+ earlier_match_group_box_left_layout_->addRow("Updated", active_earlier_match_code_updated_check_box_);
 
-// prior_match_code_update_line_edit_->hide();
-// active_prior_match_code_line_edit_->hide();
-// active_prior_match_code_updated_check_box_->hide();
+// earlier_match_code_update_line_edit_->hide();
+// active_earlier_match_code_line_edit_->hide();
+// active_earlier_match_code_updated_check_box_->hide();
 
- prior_match_group_box_bottom_layout_->addLayout(prior_match_group_box_left_layout_);
+ earlier_match_group_box_bottom_layout_->addLayout(earlier_match_group_box_left_layout_);
 
- active_prior_match_code_nav_layout_ = new QHBoxLayout;
+ active_earlier_match_code_nav_layout_ = new QHBoxLayout;
+ active_earlier_match_code_highlight_layout_ = new QHBoxLayout;
 
- active_prior_match_code_forward_button_ = new QPushButton("=>");
- active_prior_match_code_backward_button_ = new QPushButton("<=");
+ active_earlier_match_code_forward_button_ = new QPushButton("=>");
+ active_earlier_match_code_backward_button_ = new QPushButton("<=");
 
- prior_match_group_box_right_layout_->addLayout(active_prior_match_code_nav_layout_);
- active_prior_match_code_nav_layout_->addStretch();
- active_prior_match_code_nav_layout_->addWidget(active_prior_match_code_backward_button_);
- active_prior_match_code_nav_layout_->addWidget(active_prior_match_code_forward_button_);
+ earlier_highlight_button_ = new QPushButton("show");
+ clear_earlier_highlights_button_ = new QPushButton("clear");
+ search_update_button_ = new QPushButton("re-search");
 
- connect(active_prior_match_code_forward_button_, &QPushButton::clicked, [this]()
+ earlier_highlight_button_->setMaximumWidth(25);
+ clear_earlier_highlights_button_->setMaximumWidth(45);
+
+ active_earlier_match_code_nav_layout_->addStretch();
+ active_earlier_match_code_nav_layout_->addWidget(active_earlier_match_code_backward_button_);
+ active_earlier_match_code_nav_layout_->addWidget(active_earlier_match_code_forward_button_);
+ active_earlier_match_code_nav_layout_->addStretch();
+
+ earlier_match_group_box_right_layout_->addLayout(active_earlier_match_code_nav_layout_);
+
+ active_earlier_match_code_highlight_layout_->addStretch();
+ active_earlier_match_code_highlight_layout_->addWidget(earlier_highlight_button_);
+ active_earlier_match_code_highlight_layout_->addWidget(clear_earlier_highlights_button_);
+ active_earlier_match_code_highlight_layout_->addStretch();
+ active_earlier_match_code_highlight_layout_->addWidget(search_update_button_);
+ active_earlier_match_code_highlight_layout_->addStretch();
+
+ earlier_match_group_box_right_layout_->addLayout(active_earlier_match_code_highlight_layout_);
+
+ connect(search_update_button_, &QPushButton::clicked, [this]()
  {
-  prior_match_forward();
+  search_update();
  });
 
- connect(active_prior_match_code_backward_button_, &QPushButton::clicked, [this]()
+ connect(clear_earlier_highlights_button_, &QPushButton::clicked, [this]()
  {
-  prior_match_backward();
+  clear_earlier_highlights();
+ });
+
+ connect(earlier_highlight_button_, &QPushButton::clicked, [this]()
+ {
+  earlier_highlight();
+ });
+
+ connect(active_earlier_match_code_forward_button_, &QPushButton::clicked, [this]()
+ {
+  earlier_match_forward();
+ });
+
+ connect(active_earlier_match_code_backward_button_, &QPushButton::clicked, [this]()
+ {
+  earlier_match_backward();
  });
 
 
 
 // QTextEdit* address_text_edit = new QTextEdit(this);
 // address_text_edit->setPlaceholderText("Enter address here, or leave empty");
-// prior_match_group_box_right_layout_->addWidget(address_text_edit);
+// earlier_match_group_box_right_layout_->addWidget(address_text_edit);
 // address_text_edit->setMaximumHeight(65);
 
- prior_match_group_box_bottom_layout_->addLayout(prior_match_group_box_right_layout_);
+ earlier_match_group_box_bottom_layout_->addLayout(earlier_match_group_box_right_layout_);
 
- prior_match_group_box_layout_->addLayout(prior_match_group_box_bottom_layout_);
+ earlier_match_group_box_layout_->addLayout(earlier_match_group_box_bottom_layout_);
 
- prior_match_group_box_->setLayout(prior_match_group_box_layout_);
+ earlier_match_group_box_->setLayout(earlier_match_group_box_layout_);
 
 
  entry_layout_->addWidget(info_group_box_);
@@ -234,7 +272,7 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString prior_match_file, Q
 
  info_group_box_->setLayout(info_group_box_layout_);
 
- entry_layout_->addWidget(prior_match_group_box_);
+ entry_layout_->addWidget(earlier_match_group_box_);
 
 
  current_search_group_box_ = new QGroupBox;
@@ -425,8 +463,46 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString prior_match_file, Q
 
  setWindowTitle("Index Entry Dialog");
 
- load_prior_matches();
+ load_earlier_matches();
 
+}
+
+
+void Index_Entry_Review_Dialog::search_update()
+{
+ u2 page_number = ref_code_to_earlier_page_number(current_page_ref_pair_.first);
+ later_pdf_dialog_->search_update(search_text_line_edit_->text(),
+   active_earlier_match_code_index_, page_number);
+
+ setWindowState(Qt::WindowState::WindowNoState);
+
+ later_pdf_dialog_->setWindowState(Qt::WindowState::WindowActive);
+ later_pdf_dialog_->activateWindow();
+}
+
+void Index_Entry_Review_Dialog::clear_earlier_highlights()
+{
+ earlier_pdf_dialog_->clear_all_highlights();
+}
+
+void Index_Entry_Review_Dialog::earlier_highlight()
+{
+ u2 page_number = ref_code_to_earlier_page_number(current_page_ref_pair_.first);
+ earlier_pdf_dialog_->load_page(page_number);
+
+ setWindowState(Qt::WindowState::WindowNoState);
+
+ earlier_pdf_dialog_->setWindowState(Qt::WindowState::WindowActive);
+ earlier_pdf_dialog_->activateWindow();
+
+ earlier_pdf_dialog_->highlight_match(search_text_line_edit_->text());
+
+}
+
+
+void Index_Entry_Review_Dialog::reclaim_focus()
+{
+ setWindowState(Qt::WindowState::WindowActive);
 }
 
 
@@ -449,28 +525,28 @@ void Index_Entry_Review_Dialog::entry_backward()
 }
 
 
-void Index_Entry_Review_Dialog::prior_match_forward()
+void Index_Entry_Review_Dialog::earlier_match_forward()
 {
- ++active_prior_match_code_index_;
- reset_active_prior_match_code();
+ ++active_earlier_match_code_index_;
+ reset_active_earlier_match_code();
  check_nav_buttons();
 }
 
-void Index_Entry_Review_Dialog::prior_match_backward()
+void Index_Entry_Review_Dialog::earlier_match_backward()
 {
- --active_prior_match_code_index_;
- reset_active_prior_match_code();
+ --active_earlier_match_code_index_;
+ reset_active_earlier_match_code();
  check_nav_buttons();
 }
 
-void Index_Entry_Review_Dialog::reset_active_prior_match_code()
+void Index_Entry_Review_Dialog::reset_active_earlier_match_code()
 {
- current_page_ref_pair_ = prior_match_codes_[active_prior_match_code_index_ - 1].first;
- current_page_ref_string_ = prior_match_codes_[active_prior_match_code_index_ - 1].second;
+ current_page_ref_pair_ = earlier_match_codes_[active_earlier_match_code_index_ - 1].first;
+ current_page_ref_string_ = earlier_match_codes_[active_earlier_match_code_index_ - 1].second;
  current_page_ref_long_display_ = match_code_long_display(current_page_ref_pair_);
- active_prior_match_code_line_edit_->setText(current_page_ref_long_display_);
+ active_earlier_match_code_line_edit_->setText(current_page_ref_long_display_);
 
- prior_match_code_update_line_edit_->setFocus();
+ earlier_match_code_update_line_edit_->setFocus();
 }
 
 
@@ -523,15 +599,15 @@ void Index_Entry_Review_Dialog::check_nav_buttons()
    entry_forward_button_->setEnabled(false);
 
 
- if(active_prior_match_code_index_ < 2)
-   active_prior_match_code_backward_button_->setEnabled(false);
+ if(active_earlier_match_code_index_ < 2)
+   active_earlier_match_code_backward_button_->setEnabled(false);
  else
-   active_prior_match_code_backward_button_->setEnabled(true);
+   active_earlier_match_code_backward_button_->setEnabled(true);
 
- if(active_prior_match_code_index_ < max_prior_match_code_index_)
-   active_prior_match_code_forward_button_->setEnabled(true);
+ if(active_earlier_match_code_index_ < max_earlier_match_code_index_)
+   active_earlier_match_code_forward_button_->setEnabled(true);
  else
-   active_prior_match_code_forward_button_->setEnabled(false);
+   active_earlier_match_code_forward_button_->setEnabled(false);
 
 
  if(current_search_word_list_high_ < 2)
@@ -776,30 +852,30 @@ void Index_Entry_Review_Dialog::load_entry(u2 id)
   number_of_match_components_line_edit_->setEnabled(false);
  }
 
- prior_match_codes_.clear();
+ earlier_match_codes_.clear();
 
  QString match_codes_text;
 
  if(number_of_match_components)
  {
-  ref_pairs_to_string_list(ie.refs, prior_match_codes_);
-  match_codes_text = match_code_display(prior_match_codes_);
+  ref_pairs_to_string_list(ie.refs, earlier_match_codes_);
+  match_codes_text = match_code_display(earlier_match_codes_);
  }
  else
  {
   match_codes_text_edit_->setText("");
   match_codes_text_edit_->setEnabled(false);
 
-  prior_match_code_update_line_edit_->setText("");
-  prior_match_code_update_line_edit_->setEnabled(false);
+  earlier_match_code_update_line_edit_->setText("");
+  earlier_match_code_update_line_edit_->setEnabled(false);
 
-  active_prior_match_code_line_edit_->setText("");
-  active_prior_match_code_line_edit_->setEnabled(false);
+  active_earlier_match_code_line_edit_->setText("");
+  active_earlier_match_code_line_edit_->setEnabled(false);
 
  }
 
- max_prior_match_code_index_ = prior_match_codes_.size();
- active_prior_match_code_index_ = (bool)max_prior_match_code_index_;
+ max_earlier_match_code_index_ = earlier_match_codes_.size();
+ active_earlier_match_code_index_ = (bool)max_earlier_match_code_index_;
 
 
 
@@ -810,12 +886,12 @@ void Index_Entry_Review_Dialog::load_entry(u2 id)
  }
  else
  {
-  reset_active_prior_match_code();
+  reset_active_earlier_match_code();
 
   match_codes_text_edit_->setText(match_codes_text);
   match_codes_text_edit_->setEnabled(true);
 
-//  prior_match_code_update_line_edit_->setText(match_codes_text);
+//  earlier_match_code_update_line_edit_->setText(match_codes_text);
 
 //  match_codes_label_->setText(match_codes_text);
 //  match_codes_label_->setEnabled(true);
@@ -851,10 +927,52 @@ void Index_Entry_Review_Dialog::load_entry(u2 id)
  check_nav_buttons();
 }
 
-
-void Index_Entry_Review_Dialog::load_prior_matches()
+u2 roman_to_u2(QString roman)
 {
- QString text = KA::TextIO::load_file(prior_match_file_);
+ roman = roman.toLower();
+ u2 result = 0;
+
+ if(roman.contains("lx"))
+   result += 40;
+ else if(roman.contains("xxx"))
+  result += 30;
+ else if(roman.contains("xx"))
+  result += 20;
+ else if(roman.contains("x"))
+  result += 10;
+
+ if(roman.contains("iv"))
+   result += 4;
+ else if(roman.contains("iii"))
+  result += 3;
+ else if(roman.contains("ii"))
+  result += 2;
+ else if(roman.contains("i"))
+  result += 1;
+
+ return result;
+}
+
+u2 Index_Entry_Review_Dialog::ref_code_to_earlier_page_number(const Page_Ref& page_ref)
+{
+ if(page_ref.number)
+   return page_ref.number + 24;
+
+ return roman_to_u2(page_ref.roman);
+}
+
+u2 Index_Entry_Review_Dialog::ref_code_to_later_page_number(const Page_Ref& page_ref)
+{
+ if(page_ref.number)
+   return page_ref.number + 12;
+
+ return roman_to_u2(page_ref.roman);
+}
+
+
+void Index_Entry_Review_Dialog::load_earlier_matches()
+{
+ QString text = KA::TextIO::load_file(earlier_match_file_);
  read_index_entries(text, index_entries_);
  max_entry_id_ = index_entries_.size();
  load_entry(1);

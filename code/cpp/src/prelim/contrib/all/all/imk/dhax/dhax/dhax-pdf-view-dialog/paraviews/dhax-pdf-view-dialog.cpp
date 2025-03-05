@@ -45,6 +45,8 @@
 
 #include "subwindows/pdf-document-widget.h"
 
+#include "indexing/index-entry-review-dialog.h"
+
 
 #include "styles.h"
 //#include "silotypes/ndp-project/ndp-project.h"
@@ -57,9 +59,11 @@
 USING_KANS(TextIO)
 
 
-DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(QWidget* parent,
+DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(QWidget* parent, Index_Entry_Review_Dialog* entry_dialog,
   QString pdf_file_path, QString notes_file, int requested_page) //, NDP_Antemodel* antemodel)//, QString url, QWN_XMLDB_Configuration* config)
- : QDialog(parent), pdf_file_path_(pdf_file_path)//, antemodel_(antemodel)//, config_(config)
+ : QDialog(parent),
+   entry_dialog_(entry_dialog),
+   pdf_file_path_(pdf_file_path)//, antemodel_(antemodel)//, config_(config)
 {
  save_file(notes_file, "");
 
@@ -148,8 +152,13 @@ DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(QWidget* parent,
 
  _3->addWidget(clear_button_);
 
- box_button_ =  new QPushButton("Stencil", this);
- _3->addWidget(box_button_);
+ refocus_entry_dialog_button_ =  new QPushButton("=>>", this);
+ _3->addWidget(refocus_entry_dialog_button_);
+
+ connect(refocus_entry_dialog_button_, &QPushButton::clicked, [this]()
+ {
+  entry_dialog_->reclaim_focus();
+ });
 
  hboxLayout->addLayout(_3);
 
@@ -328,7 +337,7 @@ DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(QWidget* parent,
 // close_button_ = new QPushButton("Close", this);
 // go_button_->setStyleSheet(colorful_button_style_sheet);
 
- box_button_->setCheckable(true);
+ //? refocus_entry_dialog_button_->setCheckable(true);
 
  button_close_->setStyleSheet(basic_button_style_sheet_());
 
@@ -442,9 +451,59 @@ DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(QWidget* parent,
 
 bool DHAX_PDF_View_Dialog::wants_box()
 {
- return box_button_->isChecked();
+ return refocus_entry_dialog_button_->isChecked();
 }
 
+void DHAX_PDF_View_Dialog::load_page(int number)
+{
+ pdf_document_widget_->setPage(number);
+ page_spin_box_->set_value(number);
+}
+
+
+void DHAX_PDF_View_Dialog::clear_all_highlights()
+{
+ pdf_document_widget_->clear_all_highlights();
+}
+
+void DHAX_PDF_View_Dialog::search_update(QString text, int count_in_index, int page_hint)
+{
+ QMap<int, QVector<QRectF>> matches;
+ pdf_document_widget_->search_update(text, matches);
+
+ QList<int> pages = matches.keys();
+
+ if(pages.isEmpty())
+   return;
+
+ if(count_in_index > pages.size())
+   count_in_index = pages.size();
+
+ int page_number = pages[count_in_index - 1];
+
+}
+
+void DHAX_PDF_View_Dialog::highlight_match(QString text, int page_number, const QVector<QRectF>& matches)
+{
+ pdf_document_widget_->setPage(page_number);
+ if(!seen_highlights_.contains({page_number, text}))
+ {
+  pdf_document_widget_->highlight_matches(matches);
+ }
+}
+
+
+void DHAX_PDF_View_Dialog::highlight_match(QString text)
+{
+ int cp = pdf_document_widget_->get_current_page();
+
+ if(seen_highlights_.contains({cp, text}))
+   return;
+
+ seen_highlights_.insert({cp, text});
+ pdf_document_widget_->highlight_match(text);
+
+}
 
 
 #define QUUTF8

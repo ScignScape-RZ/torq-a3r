@@ -569,7 +569,23 @@ void PDF_Document_Widget::mousePressEvent(QMouseEvent *event)
 
 void PDF_Document_Widget::wheelEvent(QWheelEvent* event)
 {
- qDebug() << "Ad: " << event->angleDelta();
+ QPoint num_pixels = event->pixelDelta();
+
+ if(num_pixels.isNull())
+ {
+  QPoint num_degrees = event->angleDelta() / 8;
+  if(!num_degrees.isNull())
+  {
+   int v = verticalScrollBar()->value();
+   v -= num_degrees.y();
+   verticalScrollBar()->setValue(v);
+  }
+ }
+ else
+ {
+ }
+ event->accept(); // Accept the event to prevent further processing
+
 }
 
 void PDF_Document_Widget::mouseMoveEvent(QMouseEvent *event)
@@ -856,11 +872,17 @@ void PDF_Document_Widget::showPage(int page, bool scale_changed)
 
   //setPixmap(QPixmap::fromImage(image))
   set_pixmap(QPixmap::fromImage(image));
-  QGraphicsItem* gi = scene->addPixmap(pixmap_);
-  gi->setZValue(-1);
-  gi->setFlag(QGraphicsItem::ItemIsMovable);
+
+  current_pixmap_graphics_item_ = scene->addPixmap(pixmap_);
+
+  current_pixmap_graphics_item_->setZValue(-1);
+  current_pixmap_graphics_item_->setFlag(QGraphicsItem::ItemIsMovable);
   scenes_[currentPage] = scene;
  }
+
+ image.save("/home/nlevisrael/Downloads/m2m/image1.png");
+
+ //searchLocation = QRectF(0, 0, 200, 400);
 
  if (!searchLocation.isEmpty())
  {
@@ -869,9 +891,20 @@ void PDF_Document_Widget::showPage(int page, bool scale_changed)
   QImage highlight = image.copy(highlightRect);
   QPainter painter;
   painter.begin(&image);
-  painter.fillRect(image.rect(), QColor(0, 0, 0, 32));
+  painter.fillRect(image.rect(), QColor(153, 150, 0, 32));
   painter.drawImage(highlightRect, highlight);
   painter.end();
+  image.save("/home/nlevisrael/Downloads/m2m/image.png");
+  set_pixmap(QPixmap::fromImage(image));
+  current_pixmap_graphics_item_->setPixmap(pixmap_);
+
+//  QGraphicsItem* gi1 = scene->addPixmap(pixmap_);
+//  gi1->setZValue(-1);
+
+//  QGraphicsRectItem* qri = new QGraphicsRectItem(highlightRect);
+//  qri->setBrush((QColor(142, 141, 9, 111)));
+//  scene->addItem(qri);
+
  }
 
  setScene(scene);
@@ -1159,6 +1192,94 @@ int PDF_Document_Widget::number_of_pages()
  }
  return 0;
 }
+
+
+void highlightText(Poppler::Page *page, const QRectF &highlightArea)
+{
+ QRectF r;
+ r.setTopLeft({0,0});
+ r.setWidth(page->pageSizeF().width() * 1000);
+ r.setHeight(page->pageSizeF().height() * 1000);
+
+    Poppler::HighlightAnnotation* highlight = new Poppler::HighlightAnnotation();
+
+    highlight->setBoundary(r); //highlightArea);
+
+//    Poppler::AnnotationAppearance aa;
+
+
+
+    highlight->setHighlightType(Poppler::HighlightAnnotation::Highlight);
+    highlight->style().setColor(QColor(Qt::yellow));
+
+    page->addAnnotation(highlight);
+}
+
+
+void PDF_Document_Widget::highlight_rectangle(QRectF rect, QColor color)
+{
+ QGraphicsScene* scene = scenes_.value(currentPage, nullptr);
+ QRectF highlight_rect = matrix().mapRect(rect);
+ QGraphicsRectItem* qri = new QGraphicsRectItem(highlight_rect);
+ qri->setBrush(color);
+ qri->setPen(QColor(100,100,100,100));
+ scene->addItem(qri);
+ current_highlights_[scene].push_back(qri);
+}
+
+
+void PDF_Document_Widget::clear_all_highlights()
+{
+ QList<QGraphicsScene*> keys = current_highlights_.keys();
+
+ for(QGraphicsScene* scene : keys)
+ {
+  QVector<QGraphicsRectItem*> qgris = current_highlights_.take(scene);
+  for(QGraphicsRectItem* qgri : qgris)
+  {
+   scene->removeItem(qgri);
+   delete qgri;
+  }
+ }
+}
+
+
+void PDF_Document_Widget::search_update(QString text, QMap<int, QVector<QRectF>>& matches)
+{
+ for(int i = 0; i < number_of_pages(); ++i)
+ {
+  Poppler::Page* p = doc->page(currentPage);
+  QList<QRectF> results = p->search(text);
+  if(results.isEmpty())
+    continue;
+  matches[i] = results.toVector();
+ }
+}
+
+
+void PDF_Document_Widget::highlight_matches(const QVector<QRectF>& matches)
+{
+ for(QRectF r : matches)
+ {
+  r.adjust(-2, -2, 2, 2);
+  highlight_rectangle(r, QColor(142, 41, 9, 31));
+ }
+}
+
+void PDF_Document_Widget::highlight_match(QString text)
+{
+ Poppler::Page* p = doc->page(currentPage);
+ QList<QRectF> results = p->search(text);
+
+ highlight_matches(results.toVector());
+
+// for(QRectF r : results)
+// {
+//  r.adjust(-2, -2, 2, 2);
+//  highlight_rectangle(r, QColor(142, 41, 9, 31));
+// }
+}
+
 
 
 void PDF_Document_Widget::setPage(int page)
