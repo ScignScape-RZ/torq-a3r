@@ -51,6 +51,10 @@
  { \
   return lhs = (e) (lhs | rhs); \
  } \
+ f e operator-=(e& lhs, e rhs) \
+ { \
+  return lhs = (e) ((ty)lhs - (ty)rhs); \
+ } \
  f ty operator^(e lhs, e rhs) \
  { \
   return (ty) lhs ^ (ty) rhs; \

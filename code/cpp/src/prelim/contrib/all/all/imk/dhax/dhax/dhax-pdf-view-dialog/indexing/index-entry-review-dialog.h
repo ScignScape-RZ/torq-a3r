@@ -21,6 +21,8 @@
 
 #include <functional>
 
+#include "enum-macros.h"
+
 
 #include "m2m.h"
 
@@ -117,7 +119,9 @@ class Index_Entry_Review_Dialog : public QMainWindow
  QVBoxLayout* earlier_match_group_box_layout_;
  QHBoxLayout* earlier_match_group_box_bottom_layout_;
  QFormLayout* earlier_match_group_box_top_layout_;
+
  QFormLayout* earlier_match_group_box_left_layout_;
+
  QVBoxLayout* earlier_match_group_box_right_layout_;
 
  QVBoxLayout* current_search_group_box_layout_;
@@ -128,7 +132,16 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  QLineEdit* earlier_match_code_update_line_edit_;
  QLineEdit* active_earlier_match_code_line_edit_;
- QCheckBox* active_earlier_match_code_updated_check_box_;
+
+ QCheckBox* active_earlier_match_code_confirmed_check_box_;
+ QCheckBox* active_earlier_match_code_exclude_check_box_;
+ QCheckBox* detach_page_number_check_box_;
+ QCheckBox* active_earlier_match_manual_update_check_box_;
+ QPushButton* auto_detach_button_;
+
+
+ QGridLayout* earlier_match_group_box_middle_layout_;
+
 
  QTextEdit* match_codes_text_edit_;
 
@@ -146,6 +159,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  QPushButton* active_earlier_match_code_forward_button_;
  QPushButton* active_earlier_match_code_backward_button_;
+ QPushButton* active_earlier_match_code_back_to_start_button_;
 
  QPushButton* earlier_track_highlight_button_;
  QPushButton* clear_earlier_highlights_button_;
@@ -165,14 +179,83 @@ class Index_Entry_Review_Dialog : public QMainWindow
  u2 flip_count_;
  u2 slurp_count_;
 
+ enum class Entry_Update_Status {
+  N_A = 0, Confirmed = 1, Excluded = 2, New = 4,
+  Manually_Edited = 8, Detach_Page_Number = 16,
+  Unset = 64
+ };
+
+ ENUM_FLAGS_OP_MACROS(Entry_Update_Status)
+
+ struct Entry_Update_Key {
+  u2 entry_id;
+  s2 match_index;
+  u2 earlier_match_index()
+  {
+   return qMax(match_index, (s2)0);
+  }
+  u2 later_match_index()
+  {
+   return -qMin(match_index, (s2)0);
+  }
+
+  QPair<u2, s2> to_pair() const { return {entry_id, match_index}; }
+ };
+
+ friend bool operator<(const Entry_Update_Key& lhs, const Entry_Update_Key& rhs)
+ {
+  return lhs.to_pair() < rhs.to_pair();
+ }
+
+ struct Entry_Update_Value {
+   Entry_Update_Status status;
+   u2 index_as_new_;
+ };
+
+ Entry_Update_Key current_entry_key_;
+
+ QMap<Entry_Update_Key, Entry_Update_Value> entry_update_map_;
+
+#define ENTRY_UPDATE_NOTE_MACRO(x) \
+ void entry_update_note_##x(Entry_Update_Key k) \
+ { if(entry_update_map_.contains(k)) \
+     entry_update_map_[k].status |= Entry_Update_Status::x; } \
+ void entry_update_clear_##x(Entry_Update_Key k) \
+ { if(entry_update_map_.contains(k)) \
+     entry_update_map_[k].status -= Entry_Update_Status::x; } \
+ void entry_update_reset_##x(Entry_Update_Key k, bool b) \
+ { if(entry_update_map_.contains(k)) if(b) entry_update_note_##x(); \
+     else entry_update_clear_##x(); } \
+ void entry_update_reset_##x(bool b) { entry_update_reset_##x(current_entry_key_, b); } \
+ void entry_update_clear_##x() { entry_update_clear_##x(current_entry_key_); } \
+ void entry_update_note_##x() { entry_update_note_##x(current_entry_key_); } \
+ bool entry_update_is_##x(Entry_Update_Key k) \
+ { return entry_update_map_.contains(k) && \
+     entry_update_map_[k].status & Entry_Update_Status::x; } \
+ bool entry_update_is_##x() { entry_update_is_##x(current_entry_key_); } \
+
+ ENTRY_UPDATE_NOTE_MACRO(Confirmed)
+ ENTRY_UPDATE_NOTE_MACRO(Excluded)
+ ENTRY_UPDATE_NOTE_MACRO(New)
+ ENTRY_UPDATE_NOTE_MACRO(Manually_Edited)
+ ENTRY_UPDATE_NOTE_MACRO(Detach_Page_Number)
+
  //Page_Ref_Pair
 
  //QLabel* sentence_label_;
+
+ void check_update_entry_update_map();
+
+ void reset_current_entry_check_boxes();
+ void reset_current_entry_key(Index_Entry& ie);
+
+ void update_current_entry_map_index();
 
  void composite_upload();
 
  void earlier_match_forward();
  void earlier_match_backward();
+ void earlier_match_back_to_start();
 
  void entry_forward();
  void entry_backward();
@@ -215,6 +298,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  QPushButton* search_words_flip_button_;
  QPushButton* search_words_slurp_button_;
+ QPushButton* search_words_reset_button_;
 
  QPushButton* redo_earlier_match_button_;
  QPushButton* redo_later_match_button_;
@@ -253,6 +337,8 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  QMap<u2, QStringList> generated_htmls_;
 
+ QFrame* make_frame_as_line();
+
  void update_generated_htmls();
 
  QString get_preview_html();
@@ -288,6 +374,8 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  void search_words_inc_low();
  void search_words_dec_low();
+
+ void search_words_reset();
 
  void search_words_flip();
  void search_words_slurp();
