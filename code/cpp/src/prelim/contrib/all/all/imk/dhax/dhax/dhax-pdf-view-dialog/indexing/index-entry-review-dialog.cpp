@@ -27,6 +27,7 @@
 #include <QCheckBox>
 #include <QLineEdit>
 #include <QGroupBox>
+#include <QListWidget>
 
 #include <QLabel>
 
@@ -129,6 +130,16 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  search_text_line_edit_ = new QLineEdit(this);
  search_text_line_edit_->setPlaceholderText("(derived by default from each earlier entry)");
  search_text_line_edit_->setEnabled(false);
+
+
+ connect(search_text_line_edit_, &QLineEdit::textChanged, [this](QString text)
+ {
+  static constexpr u2 max = 50;
+  text = text.simplified().replace(" ", "-");
+  if(text.size() > max)
+    text = text.mid(0, max);
+  html_file_name_line_edit_->setText(text + ".htm");
+ });
 
 
  info_group_box_layout_ = new QVBoxLayout;
@@ -399,23 +410,24 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
  current_matches_grid_layout_->addLayout(search_words_layout_, 0, 0, 1, 4);
 
- current_matches_grid_layout_->addWidget(new QLabel("File Name:", this), 1, 0);
+ current_matches_grid_layout_->addWidget(new QLabel("File:", this), 1, 2);
 
  html_file_name_line_edit_ = new QLineEdit(this);
  html_file_name_line_edit_->setPlaceholderText("N/A");
 
- current_matches_grid_layout_->addWidget(html_file_name_line_edit_, 1, 1);
+ current_matches_grid_layout_->addWidget(html_file_name_line_edit_, 1, 3);
 
  html_details_layout_ = new QHBoxLayout;
 
  html_upload_button_ = new QPushButton("Upload");
+
+ html_upload_button_->setMaximumWidth(50);
 
  connect(html_upload_button_, &QPushButton::clicked, [this]()
  {
   html_upload();
  });
 
- html_details_layout_->addWidget(html_upload_button_);
 
  html_details_layout_->addWidget(new QLabel("Entries:", this));
 
@@ -424,7 +436,12 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
  html_details_layout_->addWidget(html_file_entries_line_edit_);
 
- current_matches_grid_layout_->addLayout(html_details_layout_, 1, 2, 1, 2);
+ html_details_layout_->addStretch();
+ html_details_layout_->addSpacing(10);
+ html_details_layout_->addWidget(html_upload_button_);
+ html_details_layout_->addSpacing(10);
+
+ current_matches_grid_layout_->addLayout(html_details_layout_, 1, 0, 1, 2);
 
 
 
@@ -435,6 +452,29 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  html_preview_dock_widget_->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
 
  addDockWidget(Qt::BottomDockWidgetArea, html_preview_dock_widget_);
+
+
+ confirms_dock_widget_ = new QDockWidget(this);
+ confirms_list_widget_ = new QListWidget(this);
+ confirms_dock_widget_->setWidget(confirms_list_widget_);
+ confirms_dock_widget_->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
+
+ confirms_list_widget_->setMaximumWidth(width() / 3);
+
+ confirms_list_widget_->setContextMenuPolicy(Qt::CustomContextMenu);
+ connect(confirms_list_widget_, &QListWidget::customContextMenuRequested,
+   [this](const QPoint& qp)
+ {
+  QListWidgetItem* item = confirms_list_widget_->itemAt(qp);
+  QMenu* menu = create_confirms_list_widget_context_menu(item);
+  if(menu)
+  {
+   menu->setAttribute(Qt::WA_DeleteOnClose);
+   menu->popup(confirms_list_widget_->viewport()->mapToGlobal(qp));
+  }
+ });
+
+ addDockWidget(Qt::BottomDockWidgetArea, confirms_dock_widget_);
 
 
 // void reset_html_details();
@@ -650,6 +690,156 @@ void Index_Entry_Review_Dialog::setup_comparison_window()
 }
 
 
+
+QMenu* Index_Entry_Review_Dialog::create_confirms_list_widget_context_menu(QListWidgetItem* item)
+{
+ QMenu* result;
+
+ if(!item)
+ {
+  QVector<QListWidgetItem*> restores;
+  for(int row = 0; row < confirms_list_widget_->count(); ++row)
+  {
+   QListWidgetItem* i = confirms_list_widget_->item(row);
+   if(i->flags() & Qt::ItemIsEnabled)
+     continue;
+   restores.push_back(i);
+  }
+
+  if(restores.isEmpty())
+    return nullptr;
+
+  result = new QMenu;
+  result->addAction("Restore All", [this, restores]()
+  {
+   for(QListWidgetItem* r : restores)
+   {
+    r->setFlags(r->flags() | Qt::ItemIsEnabled);
+   }
+  });
+
+  return result;
+ }
+
+ result = new QMenu;
+
+ QString text = item->text();
+
+ bool nn = text.contains("nn");
+ bool n = nn? false : text.contains("n");
+
+ if(nn)
+   result->addAction("Remove nn", [this, item]()
+   {
+    QString text = item->text();
+    int ix = text.indexOf("nn");
+    text = text.mid(0, ix);
+    item->setText(text);
+   });
+
+ if(n)
+   result->addAction("Remove n", [this, item]()
+   {
+    QString text = item->text();
+    int ix = text.indexOf("n");
+    text = text.mid(0, ix);
+    item->setText(text);
+   });
+
+ if(n && !nn)
+   result->addAction("Add nn", [this, item]()
+   {
+    QString text = item->text();
+    int ix = text.indexOf("n");
+    text.insert(ix, "n");
+    item->setText(text);
+   });
+
+ if(!n && !nn)
+ {
+  result->addAction("Add nn", [this, item]()
+  {
+   QString text = item->text();
+   text += "nn";
+   item->setText(text);
+  });
+
+  result->addAction("Add n", [this, item]()
+  {
+   QString text = item->text();
+   text += "n";
+   item->setText(text);
+  });
+ }
+
+ if(!text.contains("--"))
+ {
+  result->addAction("Add --", [this, item]()
+  {
+   QString text = item->text();
+   int ix = text.indexOf("n");
+   if(ix != -1)
+     text.insert(ix, "--");
+   else
+     text.prepend("--");
+   item->setText(text);
+  });
+ }
+
+ if(item->flags() & Qt::ItemIsEnabled)
+ {
+  result->addAction("Exclude", [this, item]()
+  {
+   item->setFlags(item->flags() & (~Qt::ItemIsEnabled));
+   item->setSelected(false);
+  });
+
+  if(item->isSelected())
+  {
+   result->addAction("Unselect", [this, item]()
+   {
+    item->setSelected(false);
+   });
+  }
+
+  result->addAction("Edit", [this, item]()
+  {
+   confirms_list_widget_->editItem(item);
+   item->setSelected(false);
+  });
+ }
+ else
+   result->addAction("Include", [this, item]()
+   {
+    item->setFlags(item->flags() | Qt::ItemIsEnabled);
+   });
+
+ result->addAction("Generate HTML", [this]()
+ {
+  regenrate_html();
+ });
+
+
+ return result;
+}
+
+
+void Index_Entry_Review_Dialog::regenrate_html()
+{
+ QStringList codes;
+
+ for(int row = 0; row < confirms_list_widget_->count(); ++row)
+ {
+  QListWidgetItem* i = confirms_list_widget_->item(row);
+  if(i->flags() & Qt::ItemIsEnabled)
+  {
+   codes.push_back(i->text());
+  }
+ }
+
+ update_html(codes);
+}
+
 void Index_Entry_Review_Dialog::html_upload()
 {
  QString file_name = html_file_name_line_edit_->text();
@@ -687,12 +877,26 @@ void Index_Entry_Review_Dialog::ftp_upload(QString file_name, QString text)
 }
 
 
-void Index_Entry_Review_Dialog::update_split_window(QString text1, QString text2)
+void Index_Entry_Review_Dialog::update_html(QStringList page_numbers)
 {
-// comparison_left_text_edit_->setText(text1);
-// comparison_right_text_edit_->setText(text2);
+ if(current_index_entry_)
+   update_html(current_index_entry_->key, page_numbers);
+}
 
-// ftp_upload("ft.htm", "<b>ft ok</b>");
+
+void Index_Entry_Review_Dialog::update_html(QString key, QStringList page_numbers)
+{
+ html_text_.clear();
+
+ static QString index_entry_template = R"(
+   <html><body><span>%1, %2</body></html>
+                                       )";
+
+ QString pages_text = page_numbers.join(", ");
+ QString text = index_entry_template.arg(key).arg(pages_text);
+ html_text_ = text;
+
+ html_preview_text_edit_->setPlainText(html_text_);
 }
 
 
@@ -704,7 +908,14 @@ void Index_Entry_Review_Dialog::update_split_window(QString text1, QString text2
 
 void Index_Entry_Review_Dialog::confirm_match(int page_number)
 {
- update_split_window("text1", "text2");
+ activateWindow();
+
+ if(!current_index_entry_)
+   return;
+
+ QListWidgetItem* item = new QListWidgetItem(QString::number(page_number), confirms_list_widget_);
+ item->setFlags(item->flags() | Qt::ItemIsEditable);
+ confirms_list_widget_->addItem(item);
 }
 
 
@@ -1022,6 +1233,8 @@ void Index_Entry_Review_Dialog::load_entry(u2 id)
  slurp_count_ = 0;
 
  Index_Entry& ie = index_entries_[id - 1];
+
+ current_index_entry_ = &ie;
 
 
  heading_line_edit_->setText(ie.key);

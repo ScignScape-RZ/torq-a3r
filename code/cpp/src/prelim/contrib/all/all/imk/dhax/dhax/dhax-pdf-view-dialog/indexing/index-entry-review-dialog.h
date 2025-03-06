@@ -46,6 +46,8 @@ class QProcess;
 class QTcpServer;
 class QGridLayout;
 class QCheckBox;
+class QListWidget;
+class QListWidgetItem;
 
 class QSplitter;
 
@@ -224,8 +226,16 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  QDockWidget* html_preview_dock_widget_;
  QTextEdit* html_preview_text_edit_;
-
  QHBoxLayout* html_details_layout_;
+
+
+ QDockWidget* confirms_dock_widget_;
+ QListWidget* confirms_list_widget_;
+
+ QMenu* create_confirms_list_widget_context_menu(QListWidgetItem* item);
+
+
+ void regenrate_html();
 
  void reset_html_details();
  void html_upload();
@@ -265,7 +275,8 @@ public:
  void clear_most_recent_match(int page_number);
 
 
- void update_split_window(QString text1, QString text2);
+ void update_html(QString key, QStringList page_numbers);
+ void update_html(QStringList page_numbers);
 
 
 
