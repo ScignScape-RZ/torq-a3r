@@ -126,7 +126,7 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  entry_layout_ = new QVBoxLayout;
 
  info_group_box_ = new QGroupBox("Entry Info", this);
- earlier_match_group_box_ = new QGroupBox("earlier Match", this);
+ earlier_match_group_box_ = new QGroupBox("Earlier Match", this);
  search_text_line_edit_ = new QLineEdit(this);
  search_text_line_edit_->setPlaceholderText("(derived by default from each earlier entry)");
  search_text_line_edit_->setEnabled(false);
@@ -474,6 +474,12 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
   }
  });
 
+ connect(confirms_list_widget_, &QListWidget::itemChanged,
+   [this](QListWidgetItem*)
+ {
+  check_generate_html();
+ });
+
  addDockWidget(Qt::BottomDockWidgetArea, confirms_dock_widget_);
 
 
@@ -567,11 +573,23 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
  });
 
+ always_generate_html_button_ = new QPushButton("auto html", this);
+ always_generate_html_button_->setCheckable(true);
+
+ connect(always_generate_html_button_, &QPushButton::toggled, [this](bool)
+ {
+  check_generate_html();
+ });
+
+
  bottom_layout_ = new QHBoxLayout;
 
  bottom_layout_->addWidget(entry_backward_button_);
  bottom_layout_->addWidget(entry_forward_button_);
  bottom_layout_->addStretch();
+ bottom_layout_->addWidget(always_generate_html_button_);
+ bottom_layout_->addStretch();
+
  bottom_layout_->addWidget(button_box_);
 
  main_layout_->addLayout(bottom_layout_);
@@ -690,6 +708,11 @@ void Index_Entry_Review_Dialog::setup_comparison_window()
 }
 
 
+void Index_Entry_Review_Dialog::clear_confirms_list_widget()
+{
+ confirms_list_widget_->clear();
+}
+
 
 QMenu* Index_Entry_Review_Dialog::create_confirms_list_widget_context_menu(QListWidgetItem* item)
 {
@@ -698,25 +721,42 @@ QMenu* Index_Entry_Review_Dialog::create_confirms_list_widget_context_menu(QList
  if(!item)
  {
   QVector<QListWidgetItem*> restores;
+  QVector<QListWidgetItem*> unselects;
   for(int row = 0; row < confirms_list_widget_->count(); ++row)
   {
    QListWidgetItem* i = confirms_list_widget_->item(row);
+   if(i->isSelected())
+     unselects.push_back(i);
    if(i->flags() & Qt::ItemIsEnabled)
      continue;
    restores.push_back(i);
   }
 
-  if(restores.isEmpty())
+  if(restores.isEmpty() && unselects.isEmpty())
     return nullptr;
 
   result = new QMenu;
-  result->addAction("Restore All", [this, restores]()
-  {
-   for(QListWidgetItem* r : restores)
-   {
-    r->setFlags(r->flags() | Qt::ItemIsEnabled);
-   }
-  });
+
+  if(!restores.isEmpty())
+    result->addAction("Restore All", [this, restores]()
+    {
+     for(QListWidgetItem* r : restores)
+     {
+      r->setFlags(r->flags() | Qt::ItemIsEnabled);
+     }
+     check_generate_html();
+    });
+
+  // //  can there ever be more than one?  Maybe someday this
+   //    will be a QListView subclass with multiple selections ...
+  if(!unselects.isEmpty())
+    result->addAction("Unselect", [this, unselects]()
+    {
+     for(QListWidgetItem* uns : unselects)
+     {
+      uns->setSelected(false);
+     }
+    });
 
   return result;
  }
@@ -792,6 +832,7 @@ QMenu* Index_Entry_Review_Dialog::create_confirms_list_widget_context_menu(QList
   {
    item->setFlags(item->flags() & (~Qt::ItemIsEnabled));
    item->setSelected(false);
+   check_generate_html();
   });
 
   if(item->isSelected())
@@ -812,6 +853,7 @@ QMenu* Index_Entry_Review_Dialog::create_confirms_list_widget_context_menu(QList
    result->addAction("Include", [this, item]()
    {
     item->setFlags(item->flags() | Qt::ItemIsEnabled);
+    check_generate_html();
    });
 
  result->addAction("Generate HTML", [this]()
@@ -821,6 +863,15 @@ QMenu* Index_Entry_Review_Dialog::create_confirms_list_widget_context_menu(QList
 
 
  return result;
+}
+
+
+void Index_Entry_Review_Dialog::check_generate_html()
+{
+ if(always_generate_html_button_->isChecked())
+ {
+  regenrate_html();
+ }
 }
 
 
@@ -836,6 +887,9 @@ void Index_Entry_Review_Dialog::regenrate_html()
    codes.push_back(i->text());
   }
  }
+
+ if(codes.isEmpty())
+   return;
 
  update_html(codes);
 }
@@ -1227,6 +1281,8 @@ void Index_Entry_Review_Dialog::search_words_dec_low()
 
 void Index_Entry_Review_Dialog::load_entry(u2 id)
 {
+ clear_confirms_list_widget();
+
  current_entry_id_ = id;
 
  flip_count_ = 0;

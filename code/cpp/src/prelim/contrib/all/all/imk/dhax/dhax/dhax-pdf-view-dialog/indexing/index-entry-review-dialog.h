@@ -234,8 +234,12 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  QMenu* create_confirms_list_widget_context_menu(QListWidgetItem* item);
 
+ QPushButton* always_generate_html_button_;
 
+
+ void clear_confirms_list_widget();
  void regenrate_html();
+ void check_generate_html();
 
  void reset_html_details();
  void html_upload();
@@ -263,6 +267,9 @@ class Index_Entry_Review_Dialog : public QMainWindow
  u2 ref_code_to_earlier_page_number(const Page_Ref& page_ref);
  u2 ref_code_to_later_page_number(const Page_Ref& page_ref);
 
+ void update_html(QString key, QStringList page_numbers);
+ void update_html(QStringList page_numbers);
+
  //QMap<Page_Ref, >
 
 public:
@@ -275,8 +282,6 @@ public:
  void clear_most_recent_match(int page_number);
 
 
- void update_html(QString key, QStringList page_numbers);
- void update_html(QStringList page_numbers);
 
 
 
