@@ -436,6 +436,11 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  html_file_entries_line_edit_ = new QLineEdit(this);
  html_file_entries_line_edit_->setPlaceholderText("N/A");
 
+ connect(html_file_entries_line_edit_, &QLineEdit::textChanged, [this](const QString& text)
+ {
+  composite_upload_button_->setEnabled(!text.isEmpty());
+ });
+
  html_details_layout_->addWidget(html_file_entries_line_edit_);
 
  html_details_layout_->addStretch();
@@ -550,8 +555,18 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
  main_layout_->addLayout(entry_layout_);
 
+ composite_upload_button_ = new QPushButton("composite", this);
+
  entry_forward_button_  = new QPushButton("->>", this);
  entry_backward_button_  = new QPushButton("<<-", this);
+
+ entry_forward_button_->setMaximumWidth(70);
+ entry_backward_button_->setMaximumWidth(70);
+
+ connect(composite_upload_button_, &QPushButton::clicked, [this]()
+ {
+  composite_upload();
+ });
 
  connect(entry_forward_button_, &QPushButton::clicked, [this]()
  {
@@ -595,6 +610,9 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
 
  bottom_layout_ = new QHBoxLayout;
+
+ bottom_layout_->addWidget(composite_upload_button_);
+ bottom_layout_->addStretch();
 
  bottom_layout_->addWidget(entry_backward_button_);
  bottom_layout_->addWidget(entry_forward_button_);
@@ -681,6 +699,13 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
    toggle_html();
   });
 
+  menu->addAction("Close All", [this]()
+  {
+   earlier_pdf_dialog_->close();
+   later_pdf_dialog_->close();
+   close();
+  });
+
   menu->popup(mapToGlobal(qp));
 
  });
@@ -712,6 +737,54 @@ void Index_Entry_Review_Dialog::search_update()
  later_pdf_dialog_->setWindowState(Qt::WindowState::WindowActive);
  later_pdf_dialog_->activateWindow();
 }
+
+
+
+
+void Index_Entry_Review_Dialog::composite_upload()
+{
+ update_generated_htmls();
+
+ QString file = html_file_entries_line_edit_->text();
+ if(file.isEmpty())
+   return;
+
+ QString text;
+ QTextStream qts(&text);
+
+ static QString pre_template = R"(
+ <html><head><style>
+div {padding-top:11pt;}
+ </style></head><body>)";
+
+ static QString post_template = R"(
+ </body></html>)";
+
+ qts << pre_template;
+
+ for(u2 i = entry_index_range_.first; i <= entry_index_range_.second; ++i)
+ {
+  QStringList qsl = generated_htmls_.value(i);
+  if(qsl.isEmpty())
+    continue;
+
+  qts << "<div class='index-entry'>"
+      << qsl.first();
+
+  if(qsl.size() == 1 || qsl[1].isEmpty())
+  {
+   qsl << "</div>\n";
+   continue;
+  }
+
+  qsl << ". " << qsl[1] << "</div>\n";
+ }
+
+ qts << post_template;
+
+ ftp_upload(file, text);
+}
+
 
 
 void Index_Entry_Review_Dialog::clear_most_recent_match(int page_number)
@@ -942,7 +1015,7 @@ QMenu* Index_Entry_Review_Dialog::create_confirms_list_widget_context_menu(QList
 
  result->addAction("Generate HTML", [this]()
  {
-  regenrate_html();
+  regenerate_html();
  });
 
 
@@ -954,12 +1027,12 @@ void Index_Entry_Review_Dialog::check_generate_html()
 {
  if(always_generate_html_button_->isChecked())
  {
-  regenrate_html();
+  regenerate_html();
  }
 }
 
 
-void Index_Entry_Review_Dialog::regenrate_html()
+void Index_Entry_Review_Dialog::regenerate_html()
 {
  QStringList codes;
 
@@ -1034,6 +1107,8 @@ void Index_Entry_Review_Dialog::update_html(QStringList page_numbers)
 
 void Index_Entry_Review_Dialog::update_html(QString key, QStringList page_numbers)
 {
+ reset_toggle_html();
+
  html_text_.clear();
 
  static QString index_entry_template = R"(
@@ -1390,9 +1465,24 @@ void Index_Entry_Review_Dialog::search_words_dec_low()
 }
 
 
+void Index_Entry_Review_Dialog::reset_toggle_html()
+{
+ if(current_phtml_.isEmpty()) // means plain
+ {
+
+ }
+ else
+ {
+  current_phtml_.clear();
+  html_preview_text_edit_->setPlainText(saved_phtml_);
+  html_preview_supplement_text_edit_->setPlainText(saved_shtml_);
+ }
+}
+
+
 void Index_Entry_Review_Dialog::toggle_html()
 {
- if(current_phtml_.isEmpty())
+ if(current_phtml_.isEmpty()) // means plain
  {
   QString ptext = html_preview_text_edit_->toPlainText();
   QString stext = html_preview_supplement_text_edit_->toPlainText();
@@ -1413,10 +1503,19 @@ void Index_Entry_Review_Dialog::toggle_html()
  }
 }
 
+QString Index_Entry_Review_Dialog::get_preview_html()
+{
+ return html_preview_text_edit_->toPlainText();
+}
+
+QString Index_Entry_Review_Dialog::get_supplement_html()
+{
+ return html_preview_supplement_text_edit_->toPlainText();
+}
 
 void Index_Entry_Review_Dialog::supplement_italicize()
 {
- QString text = html_preview_supplement_text_edit_->toPlainText();
+ QString text = get_supplement_html();
 
  //QString ital = "See Also";
 
@@ -1438,8 +1537,20 @@ void Index_Entry_Review_Dialog::supplement_italicize()
 }
 
 
+void Index_Entry_Review_Dialog::update_generated_htmls()
+{
+ if(current_entry_id_)
+ {
+  generated_htmls_[current_entry_id_] =
+    QStringList{get_preview_html(), get_supplement_html()};
+ }
+}
+
+
 void Index_Entry_Review_Dialog::load_entry(u2 id)
 {
+ update_generated_htmls();
+
  clear_confirms_list_widget();
 
  current_entry_id_ = id;

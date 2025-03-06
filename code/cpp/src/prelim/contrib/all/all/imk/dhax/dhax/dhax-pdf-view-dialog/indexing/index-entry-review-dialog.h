@@ -93,6 +93,8 @@ class Index_Entry_Review_Dialog : public QMainWindow
  QPushButton* button_cancel_;
  QPushButton* button_proceed_;
 
+ QPushButton* composite_upload_button_;
+
  QPushButton* entry_forward_button_;
  QPushButton* entry_backward_button_;
 
@@ -166,6 +168,8 @@ class Index_Entry_Review_Dialog : public QMainWindow
  //Page_Ref_Pair
 
  //QLabel* sentence_label_;
+
+ void composite_upload();
 
  void earlier_match_forward();
  void earlier_match_backward();
@@ -245,14 +249,22 @@ class Index_Entry_Review_Dialog : public QMainWindow
  QString saved_shtml_;
  QString current_phtml_;
 
- QPair<u4, u4> entry_index_range_;
+ QPair<u2, u2> entry_index_range_;
+
+ QMap<u2, QStringList> generated_htmls_;
+
+ void update_generated_htmls();
+
+ QString get_preview_html();
+ QString get_supplement_html();
 
  void toggle_html();
+ void reset_toggle_html();
 
  void supplement_italicize();
 
  void clear_confirms_list_widget();
- void regenrate_html();
+ void regenerate_html();
  void check_generate_html();
 
  void reset_html_details();
