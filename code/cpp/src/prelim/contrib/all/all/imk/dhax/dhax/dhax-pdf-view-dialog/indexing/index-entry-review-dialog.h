@@ -242,6 +242,8 @@ class Index_Entry_Review_Dialog : public QMainWindow
  QPushButton* always_generate_html_button_;
 
 
+ void supplement_italicize();
+
  void clear_confirms_list_widget();
  void regenrate_html();
  void check_generate_html();

@@ -1349,6 +1349,30 @@ void Index_Entry_Review_Dialog::search_words_dec_low()
 }
 
 
+void Index_Entry_Review_Dialog::supplement_italicize()
+{
+ QString text = html_preview_supplement_text_edit_->toPlainText();
+
+ //QString ital = "See Also";
+
+ auto italicize = [&text](QString ital)
+ {
+  int index = text.indexOf(ital);
+  if(index != -1)
+  {
+   text.insert(index + ital.size(), "</i>");
+   text.insert(index, "<i>");
+  }
+ };
+
+ italicize("See Also");
+ italicize("See also");
+ italicize("See");
+
+ html_preview_supplement_text_edit_->setPlainText(text);
+}
+
+
 void Index_Entry_Review_Dialog::load_entry(u2 id)
 {
  clear_confirms_list_widget();
@@ -1366,6 +1390,8 @@ void Index_Entry_Review_Dialog::load_entry(u2 id)
    html_preview_supplement_text_edit_->setText(ie.carried);
  else
    html_preview_supplement_text_edit_->clear();
+
+ supplement_italicize();
 
 
 
