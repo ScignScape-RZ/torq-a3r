@@ -73,6 +73,7 @@
 
 #include "dhax-pdf-view-dialog/paraviews/dhax-pdf-view-dialog.h"
 
+#include <QInputDialog>
 
 
 //?#include "case-map-gis-service.h"
@@ -601,6 +602,32 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  setWindowTitle("Index Entry Dialog");
 
  load_earlier_matches();
+
+ setContextMenuPolicy(Qt::CustomContextMenu);
+ connect(this, &QMainWindow::customContextMenuRequested,
+   [this](const QPoint& qp)
+ {
+  QMenu* menu = new QMenu; //(item);
+  menu->setAttribute(Qt::WA_DeleteOnClose);
+
+  menu->addAction("Browse to Entry", [this]()
+  {
+   QString text = QInputDialog::getText(this, "Enter Id",
+     "Must be a valid number");
+
+   u2 id = text.toInt();
+
+   if(id == 0 || id > max_entry_id_)
+     QMessageBox::warning(this, "Invalid", "Entry was not a valid number, or was too large");
+   else
+     load_entry(id);
+
+  });
+
+  menu->popup(mapToGlobal(qp));
+
+ });
+
 
 }
 
