@@ -57,6 +57,10 @@ int main(int argc, char *argv[])
    n1file,
    13);
 
+ pvd1->set_arabic_start(13);
+ pvd1->set_roman_end(12);
+ pvd1->set_roman_start(1);
+
  pvd1->setWindowTitle("Earlier Document");
  pvd1->show();
 
@@ -64,6 +68,11 @@ int main(int argc, char *argv[])
    "/home/nlevisrael/Downloads/m2m/Neustein_Lesher_9780197661222_US_BITS.pdf",
    n2file,
    32);
+
+ pvd2->set_arabic_start(86);
+ pvd2->set_roman_end(85);
+ pvd2->set_roman_start(1);
+
 
  pvd2->setWindowTitle("Later Document");
  pvd2->show();

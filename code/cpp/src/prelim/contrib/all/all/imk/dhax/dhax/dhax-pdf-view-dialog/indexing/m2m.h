@@ -17,6 +17,7 @@ struct Page_Ref {
 
  QString to_code() const;
  QString to_simple_text() const;
+ QString to_granular_text() const;
 
  static Page_Ref_Pair from(QString qs);
  static Page_Ref _from(QString qs);
@@ -29,6 +30,13 @@ struct Page_Ref {
 };
 
 struct Page_Ref_Pair : QPair<Page_Ref, Page_Ref> {
+
+ QString to_granular_text() const
+ {
+  if(second.is_valid())
+    return first.to_granular_text() + "--";
+  return first.to_granular_text();;
+ }
 
  static Page_Ref_Pair default_values()
  {

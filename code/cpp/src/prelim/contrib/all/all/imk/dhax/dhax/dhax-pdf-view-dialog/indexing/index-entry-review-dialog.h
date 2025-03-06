@@ -137,7 +137,8 @@ class Index_Entry_Review_Dialog : public QMainWindow
  QCheckBox* active_earlier_match_code_exclude_check_box_;
  QCheckBox* detach_page_number_check_box_;
  QCheckBox* active_earlier_match_manual_update_check_box_;
- QPushButton* auto_detach_button_;
+ QCheckBox* earlier_match_bookmarked_check_box_;
+// QPushButton* auto_detach_button_;
 
 
  QGridLayout* earlier_match_group_box_middle_layout_;
@@ -182,6 +183,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
  enum class Entry_Update_Status {
   N_A = 0, Confirmed = 1, Excluded = 2, New = 4,
   Manually_Edited = 8, Detach_Page_Number = 16,
+  Bookmarked = 32,
   Unset = 64
  };
 
@@ -198,6 +200,10 @@ class Index_Entry_Review_Dialog : public QMainWindow
   {
    return -qMin(match_index, (s2)0);
   }
+  static Entry_Update_Key from_pair(QPair<u2, s2> pr)
+  {
+   return {pr.first, pr.second};
+  }
 
   QPair<u2, s2> to_pair() const { return {entry_id, match_index}; }
  };
@@ -209,8 +215,11 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  struct Entry_Update_Value {
    Entry_Update_Status status;
-   u2 index_as_new_;
+   u2 index_as_new;
+   QString manual_update;
  };
+
+ void check_entry_value_manual_update();
 
  Entry_Update_Key current_entry_key_;
 
@@ -222,7 +231,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
      entry_update_map_[k].status |= Entry_Update_Status::x; } \
  void entry_update_clear_##x(Entry_Update_Key k) \
  { if(entry_update_map_.contains(k)) \
-     entry_update_map_[k].status -= Entry_Update_Status::x; } \
+     entry_update_map_[k].status &= ~Entry_Update_Status::x; } \
  void entry_update_reset_##x(Entry_Update_Key k, bool b) \
  { if(entry_update_map_.contains(k)) if(b) entry_update_note_##x(); \
      else entry_update_clear_##x(); } \
@@ -239,6 +248,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
  ENTRY_UPDATE_NOTE_MACRO(New)
  ENTRY_UPDATE_NOTE_MACRO(Manually_Edited)
  ENTRY_UPDATE_NOTE_MACRO(Detach_Page_Number)
+ ENTRY_UPDATE_NOTE_MACRO(Bookmarked)
 
  //Page_Ref_Pair
 
@@ -246,12 +256,16 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  void check_update_entry_update_map();
 
+ void reset_current_entry_update_text();
+
  void reset_current_entry_check_boxes();
- void reset_current_entry_key(Index_Entry& ie);
+ void reset_current_entry_key(Index_Entry& ie, const s2* const maybe_match_index);
 
  void update_current_entry_map_index();
 
  void composite_upload();
+
+ void earlier_match_set_index(u2 target);
 
  void earlier_match_forward();
  void earlier_match_backward();
@@ -260,7 +274,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
  void entry_forward();
  void entry_backward();
 
- void load_entry(u2 id);
+ void load_entry(u2 id, const s2* const maybe_match_index = nullptr);
 
  void add_current_match_line();
  void load_earlier_matches();
@@ -394,7 +408,7 @@ public:
 
  void reclaim_focus();
 
- void confirm_match(int page_number);
+ void confirm_match(QPair<u2, s2> pr, int page_number);
  void clear_most_recent_match(int page_number);
 
 

@@ -26,6 +26,8 @@
 
 #include "qsns.h"
 
+#include "global-types.h"
+
 #include "subwindows/reverse-spinbox.h"
 
 //?#include "view-ocr-fields-dialog.h"
@@ -109,6 +111,8 @@ class DHAX_PDF_View_Dialog : public QMainWindow
 
  PDF_Document_Widget* pdf_document_widget_;
 
+ QPair<u2, s2> held_index_entry_key_;
+
  QHBoxLayout* url_layout_;
  QVBoxLayout* main_layout_;
  //?NDP_Antemodel* antemodel_;
@@ -146,6 +150,10 @@ public:
 
  ACCESSORS(QString ,pdf_file_path)
 
+ ACCESSORS(int ,roman_start)
+ ACCESSORS(int ,roman_end)
+ ACCESSORS(int ,arabic_start)
+
 
  int page_number_to_text(int i, QString& result, QString fallback_template = "(%1)");
 
@@ -166,7 +174,7 @@ public:
 
  void clear_all_highlights();
 
- void search_update(int index_entry_id, QString text, int count_in_index,
+ void search_update(QPair<u2, s2> index_entry_key, int index_entry_id, QString text, int count_in_index,
    int page_hint, QString* context = nullptr);
 
 

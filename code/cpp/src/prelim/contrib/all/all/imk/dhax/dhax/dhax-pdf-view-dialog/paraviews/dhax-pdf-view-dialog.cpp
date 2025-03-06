@@ -63,7 +63,7 @@ DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dial
   QString pdf_file_path, QString notes_file, int requested_page) //, NDP_Antemodel* antemodel)//, QString url, QWN_XMLDB_Configuration* config)
  : //QDialog(parent),
    entry_dialog_(entry_dialog), earlier_document_ref_(earlier_document_ref),
-   pdf_file_path_(pdf_file_path),
+   pdf_file_path_(pdf_file_path), held_index_entry_key_({0, 0}),
    roman_start_(0), roman_end_(0), arabic_start_(0)
  //, antemodel_(antemodel)//, config_(config)
 {
@@ -163,7 +163,7 @@ DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dial
 
  connect(confirm_match_button_, &QPushButton::clicked, [this]()
  {
-  entry_dialog_->confirm_match(pdf_document_widget_->get_current_page());
+  entry_dialog_->confirm_match(held_index_entry_key_, pdf_document_widget_->get_current_page());
  });
 
  clear_most_recent_match_button_ = new QPushButton("Clear", this);
@@ -534,9 +534,12 @@ void DHAX_PDF_View_Dialog::clear_all_highlights()
  pdf_document_widget_->clear_all_highlights();
 }
 
-void DHAX_PDF_View_Dialog::search_update(int index_entry_id, QString text, int count_in_index,
+void DHAX_PDF_View_Dialog::search_update(QPair<u2, s2> index_entry_key,
+  int index_entry_id, QString text, int count_in_index,
   int page_hint, QString* context)
 {
+ held_index_entry_key_ = index_entry_key;
+
  QMap<int, PDF_Document_Widget::Highlight_Info> matches;
 
  QVector<int> pages;
@@ -576,7 +579,9 @@ void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text, int
  // //  assumes {text, page} is cached
  search_line_edit_->setText(text);
 
- pdf_document_widget_->setPage(page_number);
+ load_page(page_number);
+// pdf_document_widget_->setPage(page_number);
+
  if(!visible_highlights_.contains({page_number, text}))
  {
   pdf_document_widget_->highlight_matches(index_entry_id, hi.boundaries);

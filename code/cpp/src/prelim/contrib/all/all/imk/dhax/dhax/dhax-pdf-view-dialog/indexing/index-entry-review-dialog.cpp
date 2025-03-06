@@ -175,44 +175,97 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
  earlier_match_group_box_middle_layout_ = new QGridLayout;
 
- active_earlier_match_code_exclude_check_box_ = new QCheckBox("Exclude", this);
+ active_earlier_match_code_exclude_check_box_ = new QCheckBox("Excluded", this);
  active_earlier_match_code_confirmed_check_box_ = new QCheckBox("Confirmed", this);
  detach_page_number_check_box_ = new QCheckBox("Detach Page Number", this);
  active_earlier_match_manual_update_check_box_ = new QCheckBox("Manual Edit", this);
+ earlier_match_bookmarked_check_box_ = new QCheckBox("Bookmarked", this);
+
+ auto uncheck_active_earlier_match_code_exclude_check_box = [this]()
+ {
+  active_earlier_match_code_exclude_check_box_->blockSignals(true);
+  entry_update_clear_Excluded();
+  active_earlier_match_code_exclude_check_box_->setChecked(false);
+  active_earlier_match_code_exclude_check_box_->blockSignals(false);
+ };
 
  connect(active_earlier_match_code_exclude_check_box_, &QCheckBox::toggled,
    [this](bool b)
  {
   entry_update_reset_Excluded(b);
+  QVector<QCheckBox*> all = {active_earlier_match_code_confirmed_check_box_,
+    detach_page_number_check_box_, active_earlier_match_manual_update_check_box_};
+  if(b)
+  {
+   for(QCheckBox* qcb : all)
+   {
+    qcb->blockSignals(true);
+    qcb->setEnabled(false);
+    qcb->setChecked(false);
+    entry_update_clear_Confirmed();
+    entry_update_clear_Detach_Page_Number();
+    entry_update_clear_Manually_Edited();
+    qcb->blockSignals(false);
+   }
+  }
+  else
+  {
+   for(QCheckBox* qcb : all)
+   {
+    qcb->blockSignals(true);
+    qcb->setEnabled(true);
+    qcb->blockSignals(false);
+   }
+  }
  });
+
  connect(active_earlier_match_code_confirmed_check_box_, &QCheckBox::toggled,
-   [this](bool b)
+   [this, uncheck_active_earlier_match_code_exclude_check_box](bool b)
  {
   entry_update_reset_Confirmed(b);
+  if(b)
+    uncheck_active_earlier_match_code_exclude_check_box();
+
  });
  connect(detach_page_number_check_box_, &QCheckBox::toggled,
-   [this](bool b)
+   [this, uncheck_active_earlier_match_code_exclude_check_box](bool b)
  {
   entry_update_reset_Detach_Page_Number(b);
+  if(b)
+    uncheck_active_earlier_match_code_exclude_check_box();
+
  });
  connect(active_earlier_match_manual_update_check_box_, &QCheckBox::toggled,
-   [this](bool b)
+   [this, uncheck_active_earlier_match_code_exclude_check_box](bool b)
  {
   entry_update_reset_Manually_Edited(b);
+  if(b)
+    uncheck_active_earlier_match_code_exclude_check_box();
  });
 
+ connect(earlier_match_bookmarked_check_box_, &QCheckBox::toggled,
+   [this](bool b)
+ {
+  entry_update_reset_Bookmarked(b);
+ });
 
+ connect(earlier_match_code_update_line_edit_, &QLineEdit::textEdited,
+   [this](const QString&)
+ {
+  entry_update_note_Manually_Edited();
+  active_earlier_match_manual_update_check_box_->blockSignals(true);
+  active_earlier_match_manual_update_check_box_->setChecked(true);
+  active_earlier_match_manual_update_check_box_->blockSignals(false);
+ });
 
- auto_detach_button_ = new QPushButton("auto detach", this);
- auto_detach_button_->setCheckable(true);
 
  earlier_match_group_box_middle_layout_->setRowStretch(0, 1);
  earlier_match_group_box_middle_layout_->setRowStretch(3, 1);
 
  earlier_match_group_box_middle_layout_->
-   addWidget(detach_page_number_check_box_, 1, 0, 1, 4);
+   addWidget(detach_page_number_check_box_, 1, 3, 1, 3);
  earlier_match_group_box_middle_layout_->
-   addWidget(auto_detach_button_, 1, 4, 1, 2);
+   addWidget(earlier_match_bookmarked_check_box_, 1, 0, 1, 3);
 
  earlier_match_group_box_middle_layout_->
    addWidget(active_earlier_match_code_confirmed_check_box_, 2, 0, 1, 2);
@@ -647,8 +700,8 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  entry_forward_button_  = new QPushButton("->>", this);
  entry_backward_button_  = new QPushButton("<<-", this);
 
- entry_forward_button_->setMaximumWidth(70);
- entry_backward_button_->setMaximumWidth(70);
+ entry_forward_button_->setMaximumWidth(60);
+ entry_backward_button_->setMaximumWidth(60);
 
  connect(composite_upload_button_, &QPushButton::clicked, [this]()
  {
@@ -824,13 +877,24 @@ QString escape_context(QString context, QColor color)
    .arg(color.alpha())).replace("@)", "</span>");
 }
 
+
+
+void Index_Entry_Review_Dialog::check_entry_value_manual_update()
+{
+ if(entry_update_is_Manually_Edited())
+ {
+  entry_update_map_[current_entry_key_].manual_update = earlier_match_code_update_line_edit_->text();
+ }
+}
+
+
 void Index_Entry_Review_Dialog::search_update()
 {
  u2 page_number = ref_code_to_earlier_page_number(current_page_ref_pair_.first);
 
  QString context;
 
- later_pdf_dialog_->search_update(current_entry_id_, search_text_line_edit_->text(),
+ later_pdf_dialog_->search_update(current_entry_key_.to_pair(), current_entry_id_, search_text_line_edit_->text(),
    active_earlier_match_code_index_, page_number, &context);
 
  comparison_left_text_edit_->setHtml(escape_context(context, QColor(50, 200, 100, 30)));
@@ -1232,14 +1296,56 @@ void Index_Entry_Review_Dialog::update_html(QString key, QStringList page_number
 //}
 
 
-void Index_Entry_Review_Dialog::confirm_match(int page_number)
+void Index_Entry_Review_Dialog::confirm_match(QPair<u2, s2> pr, int page_number)
 {
  activateWindow();
 
  if(!current_index_entry_)
    return;
 
- QListWidgetItem* item = new QListWidgetItem(QString::number(page_number), confirms_list_widget_);
+ Entry_Update_Key key = Entry_Update_Key::from_pair(pr);
+
+ if(key.entry_id != current_entry_id_)
+ {
+  load_entry(key.entry_id, &key.match_index);
+  entry_index_range_ = {key.entry_id, key.entry_id};
+  reset_file_entries_text();
+ }
+ else if(key.match_index != current_entry_key_.match_index)
+ {
+  earlier_match_set_index(key.match_index);
+ }
+
+ entry_update_note_Confirmed();
+ // //  is there a way to avoid extraneous checks?
+ reset_current_entry_check_boxes();
+
+ //entry_update_map_.value(current_entry_key_)
+
+ QString text;
+ int roman = later_pdf_dialog_->page_number_to_text(page_number, text); //QString::number(page_number);
+
+ const QVector<Page_Ref_Pair>& refs = current_index_entry_->refs;
+ if(current_entry_key_.match_index > 0 && current_entry_key_.match_index <= refs.size())
+ {
+
+  if(entry_update_is_Manually_Edited())
+  {
+   QString upd = entry_update_map_.value(current_entry_key_).manual_update;
+   if(upd.isEmpty())
+     text += "??";
+   else
+     text = upd;
+  }
+  else
+  {
+   Page_Ref_Pair ref = refs[current_entry_key_.match_index - 1];
+   if(!entry_update_is_Detach_Page_Number())
+     text += ref.to_granular_text();
+  }
+ }
+
+ QListWidgetItem* item = new QListWidgetItem(text, confirms_list_widget_);
  item->setFlags(item->flags() | Qt::ItemIsEditable);
  confirms_list_widget_->addItem(item);
 }
@@ -1312,6 +1418,21 @@ void Index_Entry_Review_Dialog::update_current_entry_map_index()
  current_entry_key_.match_index = active_earlier_match_code_index_;
  check_update_entry_update_map();
  reset_current_entry_check_boxes();
+ reset_current_entry_update_text();
+}
+
+
+void Index_Entry_Review_Dialog::earlier_match_set_index(u2 target)
+{
+ if(target > max_earlier_match_code_index_)
+   return;
+
+ active_earlier_match_code_index_ = target;
+ reset_active_earlier_match_code();
+ check_nav_buttons();
+
+ check_earlier_highlight();
+ update_current_entry_map_index();
 }
 
 
@@ -1335,6 +1456,7 @@ void Index_Entry_Review_Dialog::earlier_match_backward()
  update_current_entry_map_index();
 }
 
+
 void Index_Entry_Review_Dialog::earlier_match_back_to_start()
 {
  active_earlier_match_code_index_ = 1;
@@ -1344,6 +1466,7 @@ void Index_Entry_Review_Dialog::earlier_match_back_to_start()
  check_earlier_highlight();
  update_current_entry_map_index();
 }
+
 
 void Index_Entry_Review_Dialog::reset_active_earlier_match_code()
 {
@@ -1686,12 +1809,20 @@ void Index_Entry_Review_Dialog::update_generated_htmls()
 }
 
 
+void Index_Entry_Review_Dialog::reset_current_entry_update_text()
+{
+ earlier_match_code_update_line_edit_
+   ->setText(entry_update_map_.value(current_entry_key_).manual_update);
+}
+
+
 void Index_Entry_Review_Dialog::reset_current_entry_check_boxes()
 {
  QVector<QCheckBox*> all = {active_earlier_match_code_exclude_check_box_,
    active_earlier_match_code_confirmed_check_box_,
    detach_page_number_check_box_,
-   active_earlier_match_manual_update_check_box_ };
+   active_earlier_match_manual_update_check_box_,
+   earlier_match_bookmarked_check_box_};
 
  for(QCheckBox* qcb : all)
  {
@@ -1700,16 +1831,11 @@ void Index_Entry_Review_Dialog::reset_current_entry_check_boxes()
 
  if(current_entry_key_.match_index)
  {
-  bool e = entry_update_is_Excluded();
-  bool c = entry_update_is_Confirmed();
-  bool d = entry_update_is_Detach_Page_Number();
-  bool m = entry_update_is_Manually_Edited();
-
   active_earlier_match_code_exclude_check_box_->setChecked(entry_update_is_Excluded());
   active_earlier_match_code_confirmed_check_box_->setChecked(entry_update_is_Confirmed());
   detach_page_number_check_box_->setChecked(entry_update_is_Detach_Page_Number());
   active_earlier_match_manual_update_check_box_->setChecked(entry_update_is_Manually_Edited());
-
+  earlier_match_bookmarked_check_box_->setChecked(entry_update_is_Bookmarked());
   for(QCheckBox* qcb : all)
   {
    qcb->setEnabled(true);
@@ -1737,21 +1863,29 @@ void Index_Entry_Review_Dialog::check_update_entry_update_map()
  if(!entry_update_map_.contains(current_entry_key_))
  {
   entry_update_map_[current_entry_key_]
-    = Entry_Update_Value{Entry_Update_Status::Unset, 0};
+    = Entry_Update_Value{Entry_Update_Status::N_A, 0};
  }
+ //?else if(entry_update_map_[current_entry_key_].)
 }
 
-void Index_Entry_Review_Dialog::reset_current_entry_key(Index_Entry& ie)
+
+
+void Index_Entry_Review_Dialog::reset_current_entry_key(Index_Entry& ie,
+  const s2* const maybe_match_index)
 {
- if(ie.refs.size())
+ if(maybe_match_index)
+   current_entry_key_ = {ie.id, *maybe_match_index};
+ else if(ie.refs.size())
    current_entry_key_ = {ie.id, 1};
  else
    current_entry_key_ = {ie.id, 0};
 }
 
 
-void Index_Entry_Review_Dialog::load_entry(u2 id)
+void Index_Entry_Review_Dialog::load_entry(u2 id, const s2* const maybe_match_index)
 {
+ check_entry_value_manual_update();
+
  update_generated_htmls();
 
  clear_confirms_list_widget();
@@ -1763,9 +1897,10 @@ void Index_Entry_Review_Dialog::load_entry(u2 id)
 
  Index_Entry& ie = index_entries_[id - 1];
 
- reset_current_entry_key(ie);
+ reset_current_entry_key(ie, maybe_match_index);
  check_update_entry_update_map();
  reset_current_entry_check_boxes();
+ reset_current_entry_update_text();
 
  if(!ie.supplement.isEmpty())
    html_preview_supplement_text_edit_->setText(ie.supplement);

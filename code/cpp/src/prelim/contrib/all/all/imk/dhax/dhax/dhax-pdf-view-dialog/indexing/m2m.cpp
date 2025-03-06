@@ -18,6 +18,14 @@ QString Page_Ref::to_code() const
  return "$%1"_qt.arg(roman);
 }
 
+QString Page_Ref::to_granular_text() const
+{
+ if(secondary_note)
+   return "nn%1-%2"_qt.arg(note).arg(secondary_note);
+ if(note)
+   return "n%1"_qt.arg(note);
+ return {};
+}
 
 QString Page_Ref::to_simple_text() const
 {
