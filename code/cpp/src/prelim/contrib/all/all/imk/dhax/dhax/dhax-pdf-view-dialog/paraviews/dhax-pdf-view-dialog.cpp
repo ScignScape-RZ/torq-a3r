@@ -268,6 +268,17 @@ connect(refocus_entry_dialog_button_, &QPushButton::clicked, [this]()
 
  pdf_document_widget_ = new PDF_Document_Widget(this);
 
+ if(earlier_document_ref)
+ {
+  pdf_document_widget_->set_primary_highlight_color(QColor(142, 41, 9, 31));
+  pdf_document_widget_->set_secondary_highlight_color(QColor(12, 41, 219, 31));
+ }
+ else
+ {
+  pdf_document_widget_->set_primary_highlight_color(QColor(237, 189, 31));
+  pdf_document_widget_->set_secondary_highlight_color(QColor(168, 50, 164, 31));
+ }
+
  connect(pdf_document_widget_, SIGNAL(save_stencil_to_file_requested()),
    this, SLOT(handle_save_stencil_to_file_requested()));
 

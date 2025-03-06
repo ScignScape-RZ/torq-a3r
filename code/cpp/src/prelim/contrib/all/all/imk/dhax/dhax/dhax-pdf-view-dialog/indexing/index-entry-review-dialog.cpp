@@ -546,6 +546,13 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
 }
 
+QString escape_context(QString context, QColor color)
+{
+ return context.replace("(@",
+   QString("<span style='background:rgba(%1,%2,%3,%4)'>")
+   .arg(color.red()).arg(color.green()).arg(color.blue())
+   .arg(color.alpha())).replace("@)", "</span>");
+}
 
 void Index_Entry_Review_Dialog::search_update()
 {
@@ -556,7 +563,7 @@ void Index_Entry_Review_Dialog::search_update()
  later_pdf_dialog_->search_update(current_entry_id_, search_text_line_edit_->text(),
    active_earlier_match_code_index_, page_number, &context);
 
- comparison_left_text_edit_->setText(context);
+ comparison_left_text_edit_->setHtml(escape_context(context, QColor(50, 200, 100, 30)));
 
  setWindowState(Qt::WindowState::WindowNoState);
 
@@ -616,8 +623,7 @@ void Index_Entry_Review_Dialog::earlier_highlight()
 
  earlier_pdf_dialog_->highlight_match(current_entry_id_, search_text_line_edit_->text(), context);
 
- comparison_right_text_edit_->setText(context);
-
+ comparison_right_text_edit_->setHtml(escape_context(context, QColor(50, 100, 200, 30)));
 }
 
 
@@ -636,6 +642,9 @@ void Index_Entry_Review_Dialog::setup_comparison_window()
  comparison_dock_widget_->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
 
  addDockWidget(Qt::TopDockWidgetArea, comparison_dock_widget_);
+
+// comparison_right_text_edit_->setFormat(Qt::RichText);
+// comparison_left_text_edit_->setFormat(Qt::RichText);
 
  //comparison_dock_widget_
 }
@@ -680,10 +689,10 @@ void Index_Entry_Review_Dialog::ftp_upload(QString file_name, QString text)
 
 void Index_Entry_Review_Dialog::update_split_window(QString text1, QString text2)
 {
- comparison_left_text_edit_->setText(text1);
- comparison_right_text_edit_->setText(text2);
+// comparison_left_text_edit_->setText(text1);
+// comparison_right_text_edit_->setText(text2);
 
- ftp_upload("ft.htm", "<b>ft ok</b>");
+// ftp_upload("ft.htm", "<b>ft ok</b>");
 }
 
 

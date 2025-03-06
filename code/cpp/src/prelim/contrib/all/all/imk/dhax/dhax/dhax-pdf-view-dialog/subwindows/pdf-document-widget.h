@@ -132,6 +132,8 @@ private:
 
  void reset_primary_highlights(QColor* new_color = nullptr);
 
+ QColor primary_highlight_color_;
+ QColor secondary_highlight_color_;
 
 
 
@@ -142,6 +144,9 @@ public:
 
     ACCESSORS(QScrollArea* ,surrounding_scroll_area)
     ACCESSORS(QPixmap ,pixmap)
+
+    ACCESSORS(QColor ,secondary_highlight_color)
+    ACCESSORS(QColor ,primary_highlight_color)
 
     struct Highlight_Info {
       QVector<QRectF> boundaries;

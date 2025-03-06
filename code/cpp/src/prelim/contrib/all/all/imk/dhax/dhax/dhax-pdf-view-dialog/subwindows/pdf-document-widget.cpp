@@ -1353,10 +1353,15 @@ void PDF_Document_Widget::prepare_match_context(QString text,
   else
     qts << " ... ";
 
-  QString context_text = page_text.mid(pre, post - pre);
+  QString pre_context_text = page_text.mid(pre, start_pos - pre);// post - pre);
+
+  QString context_text = page_text.mid(start_pos, text.size());
+
+  QString post_context_text = page_text.mid(start_pos + text.size(),
+    post - start_pos + text.size());
 
 
-  qts << context_text;
+  qts << pre_context_text << "(@" << context_text << "@)" << post_context_text;
 
   if(post == page_text.size() - 1)
     qts << " [:page:] ";
@@ -1407,15 +1412,14 @@ void PDF_Document_Widget::highlight_matches(int index_entry_id, const QVector<QR
 {
  if(index_entry_id != current_primary_highlights_index_entry_id_)
  {
-  static QColor secondary_highlight_color = QColor(12, 41, 219, 31);
-  reset_primary_highlights(&secondary_highlight_color);
+  reset_primary_highlights(&secondary_highlight_color_);
   current_primary_highlights_index_entry_id_ = index_entry_id;
  }
 
  for(QRectF r : matches)
  {
   r.adjust(-2, -2, 2, 2);
-  highlight_rectangle(r, QColor(142, 41, 9, 31));
+  highlight_rectangle(r, primary_highlight_color_);
  }
 }
 
