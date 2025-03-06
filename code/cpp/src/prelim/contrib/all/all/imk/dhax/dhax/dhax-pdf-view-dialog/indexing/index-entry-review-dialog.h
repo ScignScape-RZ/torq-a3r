@@ -241,6 +241,13 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  QPushButton* always_generate_html_button_;
 
+ QString saved_phtml_;
+ QString saved_shtml_;
+ QString current_phtml_;
+
+ QPair<u4, u4> entry_index_range_;
+
+ void toggle_html();
 
  void supplement_italicize();
 
@@ -252,6 +259,8 @@ class Index_Entry_Review_Dialog : public QMainWindow
  void html_upload();
  void ftp_upload(QString file_name, QString text);
 
+
+ void reset_file_entries_text();
 
  void redo_earlier_match();
  void redo_later_match();

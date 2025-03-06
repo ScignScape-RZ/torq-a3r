@@ -84,7 +84,8 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
     earlier_match_file_(earlier_match_file), ftp_folder_(ftp_folder),
     current_search_word_list_low_(0), available_search_word_list_count_(0),
     current_search_word_list_high_(0), flip_count_(0), slurp_count_(0),
-    current_page_ref_pair_(Page_Ref_Pair::default_values())
+    current_page_ref_pair_(Page_Ref_Pair::default_values()),
+    entry_index_range_({0, 0})
 {
  main_frame_ = new QFrame(this);
 
@@ -630,8 +631,25 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
    if(id == 0 || id > max_entry_id_)
      QMessageBox::warning(this, "Invalid", "Entry was not a valid number, or was too large");
    else
-     load_entry(id);
+   {
+    load_entry(id);
+    entry_index_range_ = {id, id};
+    reset_file_entries_text();
+   }
 
+  });
+
+  menu->addAction("Back to First Entry", [this]()
+  {
+   load_entry(1);
+   entry_index_range_ = {1, 1};
+   reset_file_entries_text();
+  });
+
+  menu->addAction("Collapse Entry Range", [this]()
+  {
+   entry_index_range_.second = entry_index_range_.first;
+   reset_file_entries_text();
   });
 
   menu->addAction("Merge HTML", [this]()
@@ -655,6 +673,12 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
   {
    QString text = QInputDialog::getText(this, "Enter Search Term",
        "Will match supplements (e.g., \"See Also\"");
+  });
+
+
+  menu->addAction("Toggle HTML/Plain Text", [this]()
+  {
+   toggle_html();
   });
 
   menu->popup(mapToGlobal(qp));
@@ -1054,17 +1078,34 @@ QString Index_Entry_Review_Dialog::match_code_long_display(const Page_Ref_Pair& 
  return pr.to_long_display();
 }
 
+void Index_Entry_Review_Dialog::reset_file_entries_text()
+{
+ if(entry_index_range_.first == entry_index_range_.second)
+   html_file_entries_line_edit_->setText(QString("%1.htm")
+     .arg(entry_index_range_.first));
+ else
+   html_file_entries_line_edit_->setText(QString("%1-%2.htm")
+     .arg(entry_index_range_.first).arg(entry_index_range_.second));
+}
 
 void Index_Entry_Review_Dialog::entry_forward()
 {
  if(current_entry_id_ < max_entry_id_)
-   load_entry(current_entry_id_ + 1);
+ {
+  load_entry(current_entry_id_ + 1);
+  entry_index_range_.second = current_entry_id_;
+  reset_file_entries_text();
+ }
 }
 
 void Index_Entry_Review_Dialog::entry_backward()
 {
  if(current_entry_id_ > 1)
-   load_entry(current_entry_id_ - 1);
+ {
+  load_entry(current_entry_id_ - 1);
+  entry_index_range_.first = current_entry_id_;
+  reset_file_entries_text();
+ }
 }
 
 
@@ -1349,25 +1390,49 @@ void Index_Entry_Review_Dialog::search_words_dec_low()
 }
 
 
+void Index_Entry_Review_Dialog::toggle_html()
+{
+ if(current_phtml_.isEmpty())
+ {
+  QString ptext = html_preview_text_edit_->toPlainText();
+  QString stext = html_preview_supplement_text_edit_->toPlainText();
+
+  saved_phtml_ = ptext;
+  saved_shtml_ = stext;
+
+  html_preview_text_edit_->setHtml(ptext);
+  html_preview_supplement_text_edit_->setHtml(stext);
+
+  current_phtml_ = html_preview_text_edit_->toHtml();
+ }
+ else
+ {
+  current_phtml_.clear();
+  html_preview_text_edit_->setPlainText(saved_phtml_);
+  html_preview_supplement_text_edit_->setPlainText(saved_shtml_);
+ }
+}
+
+
 void Index_Entry_Review_Dialog::supplement_italicize()
 {
  QString text = html_preview_supplement_text_edit_->toPlainText();
 
  //QString ital = "See Also";
 
- auto italicize = [&text](QString ital)
+ auto italicize = [&text](QString ital) -> bool
  {
   int index = text.indexOf(ital);
   if(index != -1)
   {
    text.insert(index + ital.size(), "</i>");
    text.insert(index, "<i>");
+   return true;
   }
+  return false;
  };
 
- italicize("See Also");
- italicize("See also");
- italicize("See");
+ italicize("See Also") || italicize("See also") || italicize("See");
 
  html_preview_supplement_text_edit_->setPlainText(text);
 }
@@ -1586,6 +1651,8 @@ void Index_Entry_Review_Dialog::load_earlier_matches()
  read_index_entries(text, index_entries_);
  max_entry_id_ = index_entries_.size();
  load_entry(1);
+ entry_index_range_ = {1, 1};
+ reset_file_entries_text();
 }
 
 void Index_Entry_Review_Dialog::add_current_match_line()
