@@ -447,9 +447,19 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
 
  html_preview_dock_widget_ = new QDockWidget(this);
- html_preview_text_edit_ = new QTextEdit(this);
 
- html_preview_dock_widget_->setWidget(html_preview_text_edit_);
+ html_preview_splitter_ = new QSplitter(Qt::Vertical, this);
+
+ html_preview_text_edit_ = new QTextEdit(this);
+ html_preview_supplement_text_edit_ = new QTextEdit(this);
+
+ html_preview_text_edit_->setMaximumHeight(80);
+ html_preview_supplement_text_edit_->setMaximumHeight(80);
+
+ html_preview_splitter_->addWidget(html_preview_text_edit_);
+ html_preview_splitter_->addWidget(html_preview_supplement_text_edit_);
+
+ html_preview_dock_widget_->setWidget(html_preview_splitter_);
  html_preview_dock_widget_->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
 
  addDockWidget(Qt::BottomDockWidgetArea, html_preview_dock_widget_);
@@ -622,6 +632,29 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
    else
      load_entry(id);
 
+  });
+
+  menu->addAction("Merge HTML", [this]()
+  {
+   QString t = html_preview_text_edit_->toPlainText();
+   QString s = html_preview_supplement_text_edit_->toPlainText();
+   if(!s.isEmpty())
+     t += ". " + s;
+
+   html_preview_text_edit_->setText(t);
+   html_preview_supplement_text_edit_->clear();
+  });
+
+  menu->addAction("Search entry keys", [this]()
+  {
+   QString text = QInputDialog::getText(this, "Enter Search Term",
+     "Will match entry keys");
+  });
+
+  menu->addAction("Search supplement", [this]()
+  {
+   QString text = QInputDialog::getText(this, "Enter Search Term",
+       "Will match supplements (e.g., \"See Also\"");
   });
 
   menu->popup(mapToGlobal(qp));
@@ -927,10 +960,20 @@ void Index_Entry_Review_Dialog::html_upload()
  if(file_name.isEmpty())
    return;
 
- if(html_text_.isEmpty())
+
+ QString text = html_text_;
+
+ QString s = html_preview_supplement_text_edit_->toPlainText();
+
+ if(!s.isEmpty())
+ {
+  text += ". " + s;
+ }
+
+ if(text.isEmpty())
    return;
 
- ftp_upload(file_name, html_text_);
+ ftp_upload(file_name, text);
 }
 
 
@@ -970,7 +1013,7 @@ void Index_Entry_Review_Dialog::update_html(QString key, QStringList page_number
  html_text_.clear();
 
  static QString index_entry_template = R"(
-   <html><body><span>%1, %2</body></html>
+   <html><body><span>%1</span>, %2</body></html>
                                        )";
 
  QString pages_text = page_numbers.join(", ");
@@ -1316,6 +1359,17 @@ void Index_Entry_Review_Dialog::load_entry(u2 id)
  slurp_count_ = 0;
 
  Index_Entry& ie = index_entries_[id - 1];
+
+ if(!ie.supplement.isEmpty())
+   html_preview_supplement_text_edit_->setText(ie.supplement);
+ else if(!ie.carried.isEmpty())
+   html_preview_supplement_text_edit_->setText(ie.carried);
+ else
+   html_preview_supplement_text_edit_->clear();
+
+
+
+ html_preview_text_edit_->clear();
 
  current_index_entry_ = &ie;
 

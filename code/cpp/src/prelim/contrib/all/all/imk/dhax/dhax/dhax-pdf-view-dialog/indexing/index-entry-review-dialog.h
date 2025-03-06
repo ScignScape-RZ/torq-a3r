@@ -225,7 +225,12 @@ class Index_Entry_Review_Dialog : public QMainWindow
  QString html_text_;
 
  QDockWidget* html_preview_dock_widget_;
+
+ QSplitter* html_preview_splitter_;
  QTextEdit* html_preview_text_edit_;
+ QTextEdit* html_preview_supplement_text_edit_;
+
+
  QHBoxLayout* html_details_layout_;
 
 
