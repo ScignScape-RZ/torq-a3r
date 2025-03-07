@@ -10,12 +10,32 @@
 #include <QFocusEvent>
 
 
-
 RSB_Line_Edit::RSB_Line_Edit(QWidget* parent)
   :  QLineEdit(parent)
 {
+
  setReadOnly(true);
 }
+
+void RSB_Line_Edit::paintEvent(QPaintEvent* e)
+{
+ QLineEdit::paintEvent(e);
+
+    QPainter painter(this);
+
+    static int left = 22;
+    static int right = 3;
+
+    int width = size().width() - left - right;
+    int height = size().height();
+
+    painter.fillRect(left, 0, width, height, QColor(97,12,120, 25));
+
+//    painter.drawText(10, 10, "Machine ");
+}
+
+
+#ifdef HIDE
 
 void RSB_Line_Edit::focusInEvent(QFocusEvent *e)
 {
@@ -48,7 +68,7 @@ void Reverse_Spin_Box::focusOutEvent(QFocusEvent *e)
 {
  e->accept();
 }
-
+#endif
 
 Reverse_Spin_Box::Reverse_Spin_Box(DHAX_PDF_View_Dialog* parent)
  : QSpinBox(parent)
@@ -59,6 +79,12 @@ Reverse_Spin_Box::Reverse_Spin_Box(DHAX_PDF_View_Dialog* parent)
 
  connect(this, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
              [&, this](){this->findChild<QLineEdit*>()->deselect();}, Qt::QueuedConnection);
+
+
+ QString nohighlights = "color: black; background: white; selection-color: black; "
+                        "selection-background-color: rgba(170, 243, 250, 22);";
+
+ lineEdit()->setStyleSheet( nohighlights );
 
  connect(this, SIGNAL(valueChanged(int)),
    this, SLOT(reverse_value_changed(int)));
@@ -93,9 +119,12 @@ QString Reverse_Spin_Box::textFromValue(int value) const
  QString text;
  parent_view_->page_number_to_text(0 - value, text);
 
- lineEdit()->deselect();
+ if(text.size() == 1)
+   text += " ";
 
- return tv + " -> " + text; // QSpinBox::textFromValue(1 - value);
+ QString result = tv + "    " + text;
+
+ return result.leftJustified(11, ' '); // QSpinBox::textFromValue(1 - value);
 
 }
 

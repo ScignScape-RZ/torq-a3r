@@ -8,21 +8,23 @@
 
 class DHAX_PDF_View_Dialog;
 
-
 class RSB_Line_Edit : public QLineEdit
 {
  public:
 
  RSB_Line_Edit(QWidget* parent);
 
- virtual void focusInEvent(QFocusEvent *e);
- virtual void focusOutEvent(QFocusEvent *e);
+ virtual void paintEvent(QPaintEvent* e)  Q_DECL_OVERRIDE;
 
- void mousePressEvent(QMouseEvent *) Q_DECL_OVERRIDE;
 
- void mouseMoveEvent(QMouseEvent *) Q_DECL_OVERRIDE;
+// virtual void focusInEvent(QFocusEvent *e);
+// virtual void focusOutEvent(QFocusEvent *e);
 
- void mouseReleaseEvent(QMouseEvent *) Q_DECL_OVERRIDE;
+// void mousePressEvent(QMouseEvent *) Q_DECL_OVERRIDE;
+
+// void mouseMoveEvent(QMouseEvent *) Q_DECL_OVERRIDE;
+
+// void mouseReleaseEvent(QMouseEvent *) Q_DECL_OVERRIDE;
 
 };
 
@@ -31,6 +33,8 @@ class Reverse_Spin_Box : public QSpinBox
  Q_OBJECT
 
  DHAX_PDF_View_Dialog* parent_view_;
+ QString highlights_;
+ QString no_highlights_;
 
 public:
 
@@ -43,8 +47,8 @@ public:
 
  QValidator::State validate(QString &input, int &pos) const;
 
- virtual void focusInEvent(QFocusEvent *e);
- virtual void focusOutEvent(QFocusEvent *e);
+// virtual void focusInEvent(QFocusEvent *e);
+// virtual void focusOutEvent(QFocusEvent *e);
 
  //QValidator validate()
 

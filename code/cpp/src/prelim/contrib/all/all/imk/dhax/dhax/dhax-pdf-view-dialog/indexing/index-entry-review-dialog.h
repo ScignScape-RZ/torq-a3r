@@ -342,6 +342,10 @@ class Index_Entry_Review_Dialog : public QMainWindow
  QDockWidget* confirms_dock_widget_;
  QListWidget* confirms_list_widget_;
 
+ QPlainTextEdit* page_text_view_text_edit_;
+ QDockWidget* page_text_view_dock_widget_;
+
+
  QMenu* create_confirms_list_widget_context_menu(QListWidgetItem* item);
 
  QPushButton* always_generate_html_button_;
@@ -418,6 +422,7 @@ public:
  void clear_most_recent_match(int page_number);
 
 
+ void set_page_text_view_text(QString text);
 
 
 

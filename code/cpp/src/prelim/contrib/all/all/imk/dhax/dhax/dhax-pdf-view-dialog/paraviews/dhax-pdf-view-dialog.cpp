@@ -467,6 +467,7 @@ connect(refocus_entry_dialog_button_, &QPushButton::clicked, [this]()
 
  append_to_file(notes_file, "\n///////////\n", text);
 
+ entry_dialog_->set_page_text_view_text(text);
 
  QList<Poppler::Annotation*> popas = popg->annotations();
 
@@ -564,6 +565,9 @@ void DHAX_PDF_View_Dialog::load_page(int number, QObject* origin)
  //qDebug() << text;
 
  save_file(notes_file_, QString::number(number) + "\n///////////\n" + text);
+
+
+
  //append_to_file(notes_file, "\n///////////\n", text);
 }
 

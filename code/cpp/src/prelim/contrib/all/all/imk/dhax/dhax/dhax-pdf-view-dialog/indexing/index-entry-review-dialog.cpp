@@ -635,7 +635,30 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  html_preview_dock_widget_->setWidget(html_preview_splitter_);
  html_preview_dock_widget_->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
 
+ html_preview_dock_widget_->setMaximumWidth(3 * width() / 4);
+
  addDockWidget(Qt::BottomDockWidgetArea, html_preview_dock_widget_);
+
+
+ page_text_view_text_edit_ = new QPlainTextEdit(this);
+ page_text_view_dock_widget_ = new QDockWidget(this);
+
+ page_text_view_dock_widget_->setMaximumWidth(width() / 4);
+
+ page_text_view_dock_widget_->setWidget(page_text_view_text_edit_);
+ page_text_view_dock_widget_->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
+ addDockWidget(Qt::TopDockWidgetArea, page_text_view_dock_widget_);
+
+ connect(page_text_view_dock_widget_, &QDockWidget::topLevelChanged,
+    [this](bool b)
+ {
+  page_text_view_dock_widget_->setMaximumWidth(300);
+  page_text_view_dock_widget_->resize(300, 300);
+
+  html_preview_dock_widget_->setMaximumWidth(width());
+
+ });
+
 
 
  confirms_dock_widget_ = new QDockWidget(this);
@@ -896,6 +919,11 @@ QFrame* Index_Entry_Review_Dialog::make_frame_as_line()
  result->setFrameShape(QFrame::HLine);
  result->setFrameShadow(QFrame::Sunken);
  return result;
+}
+
+void Index_Entry_Review_Dialog::set_page_text_view_text(QString text)
+{
+ page_text_view_text_edit_->setPlainText(text);
 }
 
 
