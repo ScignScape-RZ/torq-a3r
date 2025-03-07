@@ -121,6 +121,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
  QFormLayout* earlier_match_group_box_top_layout_;
 
  QFormLayout* earlier_match_group_box_left_layout_;
+ QHBoxLayout* earlier_match_group_box_bottom_left_layout_;
 
  QVBoxLayout* earlier_match_group_box_right_layout_;
 
@@ -130,6 +131,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  QLineEdit* search_text_line_edit_;
 
+ QLineEdit* earlier_match_code_edit_line_edit_;
  QLineEdit* earlier_match_code_update_line_edit_;
  QLineEdit* active_earlier_match_code_line_edit_;
 

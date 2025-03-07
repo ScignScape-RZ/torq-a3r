@@ -144,6 +144,17 @@ DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dial
  pages_combo_box_ = new QComboBox(this);
  pages_combo_box_->setObjectName(QString::fromUtf8("pages_combo_box_"));
 
+ connect(pages_combo_box_, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+   [this](int index)
+ {
+  int n = cached_pages_combo_values_.value(index);
+  if(n)
+  {
+   load_page(n + 1);
+  }
+ }
+ );
+
  _3->addWidget(pages_combo_box_);
 
  find_button_ = new QPushButton(this);
@@ -544,21 +555,27 @@ void DHAX_PDF_View_Dialog::search_update(QPair<u2, s2> index_entry_key,
 
  QVector<int> pages;
 
+ // //?
+ pdf_document_widget_->search_update(text, matches, cached_highlights_, nullptr); //, context);
+ if(matches.isEmpty())
+   return;
+
  if(cached_page_matches_.contains(text))
  {
   pages = cached_page_matches_[text];
  }
  else
  {
-  pdf_document_widget_->search_update(text, matches, cached_highlights_, context);
-  if(matches.isEmpty())
-    return;
-
   pages = matches.keys().toVector();
   cached_page_matches_[text] = pages;
  }
 
- reset_pages_combo_box(&pages);
+ if(pages != cached_pages_combo_values_)
+   reset_pages_combo_box(&pages);
+
+ pages_combo_box_->blockSignals(true);
+ pages_combo_box_->setCurrentIndex(count_in_index - 1);
+ pages_combo_box_->blockSignals(false);
 
  if(pages.isEmpty())
    return;
@@ -567,6 +584,9 @@ void DHAX_PDF_View_Dialog::search_update(QPair<u2, s2> index_entry_key,
    count_in_index = pages.size();
 
  int page_number = pages[count_in_index - 1];
+
+ if(context)
+   *context = matches[page_number].context;
 
  highlight_match(index_entry_id, text, page_number + 1, matches[page_number]);
 
@@ -578,6 +598,7 @@ void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text, int
 {
  // //  assumes {text, page} is cached
  search_line_edit_->setText(text);
+ search_line_edit_->setCursorPosition(0);
 
  load_page(page_number);
 // pdf_document_widget_->setPage(page_number);
@@ -645,6 +666,8 @@ void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text, QSt
 int DHAX_PDF_View_Dialog::page_number_to_text(int i, QString& result,
   QString fallback_template)
 {
+ // //  the roman, arabic fields assume starting at 1 ...
+
  if(i >= arabic_start_)
  {
   result = QString::number(i - arabic_start_ + 1);
@@ -655,7 +678,9 @@ int DHAX_PDF_View_Dialog::page_number_to_text(int i, QString& result,
   result = fallback_template.arg(i);
   return 0;
  }
- i = i - roman_start_ + 1;
+ i = i - roman_start_ + 2;
+
+ int oldi = i;
 
  static QMap<int, QString> values =
  {
@@ -664,21 +689,31 @@ int DHAX_PDF_View_Dialog::page_number_to_text(int i, QString& result,
   {10, "x"}, {9, "ix"}, {5, "v"}, {4, "iv"}, {1, "i"}
  };
 
- QMapIterator<int, QString> it(values);
- while(it.hasNext())
+ static QVector<int> keys;
+ if(keys.isEmpty())
  {
-  it.next();
-  while (i >= it.key())
+  keys = values.keys().toVector();
+  std::sort(keys.begin(), keys.end(), std::greater<int>());
+ }
+
+ for(int k : keys)
+ {
+  while (i >= k)
   {
-   result += it.value();
-   i -= it.key();
+   result += values[k];
+   i -= k;
   }
  }
- return i;
+ return oldi;
 }
 
 void DHAX_PDF_View_Dialog::reset_pages_combo_box(QVector<int>* pages)
 {
+ if(pages)
+   cached_pages_combo_values_ = *pages;
+ else
+   cached_pages_combo_values_.clear();
+
  pages_combo_box_->clear();
 
  QStringList qsl;

@@ -156,6 +156,9 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
 
  earlier_match_code_update_line_edit_ = new QLineEdit(this);
+
+ earlier_match_code_update_line_edit_->setReadOnly(true);
+
  active_earlier_match_code_line_edit_ = new QLineEdit(this);
 
 
@@ -170,8 +173,25 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
  earlier_match_group_box_layout_->addLayout(earlier_match_group_box_top_layout_);
 
+ earlier_match_group_box_bottom_left_layout_ = new QHBoxLayout;
+
  earlier_match_group_box_left_layout_->addRow("Active", active_earlier_match_code_line_edit_);
- earlier_match_group_box_left_layout_->addRow("Update", earlier_match_code_update_line_edit_);
+//? earlier_match_group_box_left_layout_->addRow("Update", earlier_match_code_update_line_edit_);
+
+ earlier_match_group_box_bottom_left_layout_->addWidget(new QLabel("Update", this));
+ earlier_match_group_box_bottom_left_layout_->addWidget(earlier_match_code_update_line_edit_);
+
+ earlier_match_code_update_line_edit_->setMaximumWidth(60);
+
+ earlier_match_code_edit_line_edit_ = new QLineEdit(this);
+
+ earlier_match_code_edit_line_edit_->setMaximumWidth(60);
+
+ earlier_match_group_box_bottom_left_layout_->addWidget(new QLabel("Edit", this));
+ earlier_match_group_box_bottom_left_layout_->addWidget(earlier_match_code_edit_line_edit_);
+
+ earlier_match_group_box_left_layout_->addRow(earlier_match_group_box_bottom_left_layout_);
+
 
  earlier_match_group_box_middle_layout_ = new QGridLayout;
 
@@ -249,7 +269,7 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
   entry_update_reset_Bookmarked(b);
  });
 
- connect(earlier_match_code_update_line_edit_, &QLineEdit::textEdited,
+ connect(earlier_match_code_edit_line_edit_, &QLineEdit::textEdited,
    [this](const QString&)
  {
   entry_update_note_Manually_Edited();
@@ -513,6 +533,8 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
 
  search_words_layout_ = new QHBoxLayout;
+ search_words_layout_->addWidget(search_words_reset_button_);
+ search_words_layout_->addSpacing(20);
  search_words_layout_->addWidget(search_words_dec_high_button_);
  search_words_layout_->addWidget(search_words_inc_high_button_);
  search_words_layout_->addSpacing(20);
@@ -521,8 +543,6 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  search_words_layout_->addSpacing(20);
  search_words_layout_->addWidget(search_words_dec_low_button_);
  search_words_layout_->addWidget(search_words_inc_low_button_);
- search_words_layout_->addSpacing(20);
- search_words_layout_->addWidget(search_words_reset_button_);
  search_words_layout_->addStretch();
 
 
@@ -883,7 +903,7 @@ void Index_Entry_Review_Dialog::check_entry_value_manual_update()
 {
  if(entry_update_is_Manually_Edited())
  {
-  entry_update_map_[current_entry_key_].manual_update = earlier_match_code_update_line_edit_->text();
+  entry_update_map_[current_entry_key_].manual_update = earlier_match_code_edit_line_edit_->text();
  }
 }
 
@@ -1475,7 +1495,7 @@ void Index_Entry_Review_Dialog::reset_active_earlier_match_code()
  current_page_ref_long_display_ = match_code_long_display(current_page_ref_pair_);
  active_earlier_match_code_line_edit_->setText(current_page_ref_long_display_);
 
- earlier_match_code_update_line_edit_->setFocus();
+ earlier_match_code_edit_line_edit_->setFocus();
 }
 
 
@@ -1811,7 +1831,7 @@ void Index_Entry_Review_Dialog::update_generated_htmls()
 
 void Index_Entry_Review_Dialog::reset_current_entry_update_text()
 {
- earlier_match_code_update_line_edit_
+ earlier_match_code_edit_line_edit_
    ->setText(entry_update_map_.value(current_entry_key_).manual_update);
 }
 
@@ -1992,8 +2012,8 @@ void Index_Entry_Review_Dialog::load_entry(u2 id, const s2* const maybe_match_in
   match_codes_text_edit_->setText("");
   match_codes_text_edit_->setEnabled(false);
 
-  earlier_match_code_update_line_edit_->setText("");
-  earlier_match_code_update_line_edit_->setEnabled(false);
+  earlier_match_code_edit_line_edit_->setText("");
+  earlier_match_code_edit_line_edit_->setEnabled(false);
 
   active_earlier_match_code_line_edit_->setText("");
   active_earlier_match_code_line_edit_->setEnabled(false);

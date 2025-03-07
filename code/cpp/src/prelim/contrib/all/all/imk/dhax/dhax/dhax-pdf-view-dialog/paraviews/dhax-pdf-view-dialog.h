@@ -139,7 +139,7 @@ class DHAX_PDF_View_Dialog : public QMainWindow
  int roman_end_;
  int arabic_start_;
 
-
+ QVector<int> cached_pages_combo_values_;
 
 public:
 
