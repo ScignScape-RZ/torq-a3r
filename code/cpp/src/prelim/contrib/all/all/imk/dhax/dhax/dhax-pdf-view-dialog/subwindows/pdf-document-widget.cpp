@@ -1285,9 +1285,47 @@ void PDF_Document_Widget::clear_all_highlights()
 
 
 void PDF_Document_Widget::prepare_match_context(QString text,
-  Poppler::Page* p, QString& context)
+  Poppler::Page* p, int page_number, QStringList* paragraph_codes, QString& context)
 {
  QString page_text = p->text(QRectF({0, 0}, p->pageSizeF()));
+
+ if(paragraph_codes)
+ {
+  if(!cached_paragraph_code_locations_.contains(page_number))
+  {
+   QMap<int, QString> map;
+   QVector<QPair<int, QString>> vec;
+
+   QRegularExpression qre("C\\d+P\\d+");
+   QRegularExpressionMatchIterator it = qre.globalMatch(page_text);
+   while(it.hasNext())
+   {
+    QRegularExpressionMatch match = it.next();
+    map[match.capturedStart()] = match.captured();
+   }
+
+   if(map.isEmpty())
+   {
+    vec = {{0, "??"}};
+   }
+   else
+   {
+    QVector<int> keys = map.keys().toVector();
+
+    vec.resize(keys.size());
+
+    std::sort(keys.begin(), keys.end());
+
+    for(int i = 0; i < keys.size(); ++i)
+    {
+     vec[i] = {keys[i], map[keys[i]]};
+    }
+   }
+   cached_paragraph_code_locations_[page_number] = vec;
+  }
+ }
+
+ const QVector<QPair<int, QString>>& paragraph_code_locations = cached_paragraph_code_locations_[page_number];
 
  QString _context;
  QTextStream qts(&_context);
@@ -1297,6 +1335,26 @@ void PDF_Document_Widget::prepare_match_context(QString text,
 
  // //  maybe allow this to be a parameter sometime
  u2 expand_max = default_expand_max;
+
+
+ auto find_paragraph_code = [&page_text, paragraph_code_locations] (u2 index) -> QString
+ {
+  QString seen;
+  for(const QPair<int, QString>& pr : paragraph_code_locations)
+  {
+   if(index < pr.first)
+     break;
+   seen = pr.second;
+  }
+  if(seen.isEmpty())
+  {
+   QString par1 = paragraph_code_locations.first().second;
+   int ix = par1.indexOf("P") + 1;
+   int pnum = par1.mid(ix).toInt() - 1; // //  -1 is to go to previous paragraph
+   seen = par1.mid(0, ix) + QString::number(pnum);
+  }
+  return seen;
+ };
 
  auto find_word_boundary_backward = [expand_max, &page_text](u2& index)
  {
@@ -1339,6 +1397,9 @@ void PDF_Document_Widget::prepare_match_context(QString text,
   if(start_pos == -1)
     break;
 
+  if(paragraph_codes)
+    paragraph_codes->push_back(find_paragraph_code(start_pos));
+
   if(++count > 1)
     qts << "\n\n+++\n\n";
 
@@ -1374,7 +1435,7 @@ void PDF_Document_Widget::prepare_match_context(QString text,
 }
 
 void PDF_Document_Widget::search_update(QString text, QMap<int, Highlight_Info>& page_matches,
-  QMap<Highlight_Key, Highlight_Info>& cached_matches, QString* context)
+  QMap<Highlight_Key, Highlight_Info>& cached_matches, QStringList* paragraph_codes, QString* context)
 {
  for(int i = 0; i < number_of_pages(); ++i)
  {
@@ -1392,7 +1453,7 @@ void PDF_Document_Widget::search_update(QString text, QMap<int, Highlight_Info>&
     continue;
 
   Highlight_Info hi = {results.toVector()};
-  prepare_match_context(text, p, hi.context);
+  prepare_match_context(text, p, i, paragraph_codes, hi.context);
   cached_matches[{i, text}] = hi;
 
   if(context)
@@ -1424,12 +1485,12 @@ void PDF_Document_Widget::highlight_matches(int index_entry_id, const QVector<QR
 }
 
 void PDF_Document_Widget::highlight_match(int index_entry_id, QString text, QList<QRectF>& results,
-  QString* context)
+  QStringList* paragraph_codes, QString* context)
 {
  Poppler::Page* p = doc->page(currentPage);
 
  if(context)
-   prepare_match_context(text, p, *context);
+   prepare_match_context(text, p, currentPage, paragraph_codes, *context);
 
  results = p->search(text, Poppler::Page::IgnoreCase |
    Poppler::Page::IgnoreDiacritics | Poppler::Page::AcrossLines );

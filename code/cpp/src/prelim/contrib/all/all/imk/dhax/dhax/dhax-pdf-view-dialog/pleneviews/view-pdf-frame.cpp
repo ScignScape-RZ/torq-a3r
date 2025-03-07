@@ -89,7 +89,7 @@ View_PDF_Frame::View_PDF_Frame(QWidget* parent, QString pdf_file_path) //, NDP_A
 
  _2->addWidget(page_label_);
 
- page_spin_box_ = new Reverse_Spin_Box(this);
+ page_spin_box_ = new Reverse_Spin_Box(nullptr);
  //?page_spin_box_->setObjectName(QString::fromUtf8("page_spin_box_"));
 //? page_spin_box_->setEnabled(false);
 

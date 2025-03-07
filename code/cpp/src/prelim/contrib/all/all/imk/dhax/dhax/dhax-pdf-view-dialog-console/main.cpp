@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
  DHAX_PDF_View_Dialog* pvd1 = new DHAX_PDF_View_Dialog(ierd, nullptr,
    "/home/nlevisrael/Downloads/m2m/m2m-2003.pdf",
    n1file,
-   13);
+   13, 13);
 
  pvd1->set_arabic_start(13);
  pvd1->set_roman_end(12);
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
  DHAX_PDF_View_Dialog* pvd2 = new DHAX_PDF_View_Dialog(ierd, pvd1,
    "/home/nlevisrael/Downloads/m2m/Neustein_Lesher_9780197661222_US_BITS.pdf",
    n2file,
-   32);
+   86, 32);
 
  pvd2->set_arabic_start(86);
  pvd2->set_roman_end(85);

@@ -3,13 +3,38 @@
 
 #include <QSpinBox>
 
+#include <QLineEdit>
+
+
+class DHAX_PDF_View_Dialog;
+
+
+class RSB_Line_Edit : public QLineEdit
+{
+ public:
+
+ RSB_Line_Edit(QWidget* parent);
+
+ virtual void focusInEvent(QFocusEvent *e);
+ virtual void focusOutEvent(QFocusEvent *e);
+
+ void mousePressEvent(QMouseEvent *) Q_DECL_OVERRIDE;
+
+ void mouseMoveEvent(QMouseEvent *) Q_DECL_OVERRIDE;
+
+ void mouseReleaseEvent(QMouseEvent *) Q_DECL_OVERRIDE;
+
+};
+
 class Reverse_Spin_Box : public QSpinBox
 {
  Q_OBJECT
 
+ DHAX_PDF_View_Dialog* parent_view_;
+
 public:
 
- Reverse_Spin_Box(QWidget* parent = nullptr);
+ Reverse_Spin_Box(DHAX_PDF_View_Dialog* parent); // = nullptr);
 
  void set_maximum(int max);
 
@@ -17,6 +42,10 @@ public:
  QString textFromValue(int value) const;
 
  QValidator::State validate(QString &input, int &pos) const;
+
+ virtual void focusInEvent(QFocusEvent *e);
+ virtual void focusOutEvent(QFocusEvent *e);
+
  //QValidator validate()
 
 Q_SIGNALS:

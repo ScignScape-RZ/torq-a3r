@@ -1,9 +1,65 @@
 
 #include "reverse-spinbox.h"
 
-Reverse_Spin_Box::Reverse_Spin_Box(QWidget* parent)
+#include "pdf-document-widget.h"
+
+#include "paraviews/dhax-pdf-view-dialog.h"
+
+#include <QLineEdit>
+
+#include <QFocusEvent>
+
+
+
+RSB_Line_Edit::RSB_Line_Edit(QWidget* parent)
+  :  QLineEdit(parent)
+{
+ setReadOnly(true);
+}
+
+void RSB_Line_Edit::focusInEvent(QFocusEvent *e)
+{
+ setFocusPolicy(Qt::NoFocus);
+}
+
+void RSB_Line_Edit::focusOutEvent(QFocusEvent *e)
+{
+
+}
+
+
+void RSB_Line_Edit::mousePressEvent(QMouseEvent *)
+{}
+
+void RSB_Line_Edit::mouseMoveEvent(QMouseEvent *)
+{}
+
+void RSB_Line_Edit::mouseReleaseEvent(QMouseEvent *)
+{}
+
+
+
+void Reverse_Spin_Box::focusInEvent(QFocusEvent *e)
+{
+ e->accept();
+}
+
+void Reverse_Spin_Box::focusOutEvent(QFocusEvent *e)
+{
+ e->accept();
+}
+
+
+Reverse_Spin_Box::Reverse_Spin_Box(DHAX_PDF_View_Dialog* parent)
  : QSpinBox(parent)
 {
+ parent_view_ = parent;
+
+ setLineEdit(new RSB_Line_Edit(this));
+
+ connect(this, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
+             [&, this](){this->findChild<QLineEdit*>()->deselect();}, Qt::QueuedConnection);
+
  connect(this, SIGNAL(valueChanged(int)),
    this, SLOT(reverse_value_changed(int)));
 }
@@ -28,7 +84,19 @@ int Reverse_Spin_Box::valueFromText(const QString& text) const
 
 QString Reverse_Spin_Box::textFromValue(int value) const
 {
- return QSpinBox::textFromValue(1 - value);
+ QString tv = QSpinBox::textFromValue(1 - value);
+
+ //return tv;
+
+ //DHAX_PDF_View_Dialog* dialog = qobject_cast<DHAX_PDF_View_Dialog*>(parent());
+
+ QString text;
+ parent_view_->page_number_to_text(0 - value, text);
+
+ lineEdit()->deselect();
+
+ return tv + " -> " + text; // QSpinBox::textFromValue(1 - value);
+
 }
 
 void Reverse_Spin_Box::set_value(int value)

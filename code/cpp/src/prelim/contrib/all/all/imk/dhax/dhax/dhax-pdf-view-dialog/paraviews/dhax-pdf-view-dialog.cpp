@@ -60,13 +60,17 @@ USING_KANS(TextIO)
 
 DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dialog,
   DHAX_PDF_View_Dialog* earlier_document_ref,
-  QString pdf_file_path, QString notes_file, int requested_page) //, NDP_Antemodel* antemodel)//, QString url, QWN_XMLDB_Configuration* config)
+  QString pdf_file_path, QString notes_file, int ars, int requested_page) //, NDP_Antemodel* antemodel)//, QString url, QWN_XMLDB_Configuration* config)
  : //QDialog(parent),
    entry_dialog_(entry_dialog), earlier_document_ref_(earlier_document_ref),
    pdf_file_path_(pdf_file_path), held_index_entry_key_({0, 0}),
-   roman_start_(0), roman_end_(0), arabic_start_(0)
+   roman_start_(0), roman_end_(0), arabic_start_(0), notes_file_(notes_file)
  //, antemodel_(antemodel)//, config_(config)
 {
+ arabic_start_ = ars;
+ roman_end_ = ars - 1;
+ roman_start_ = 1;
+
  save_file(notes_file, "");
 
  main_layout_ = new QVBoxLayout();
@@ -174,7 +178,8 @@ DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dial
 
  connect(confirm_match_button_, &QPushButton::clicked, [this]()
  {
-  entry_dialog_->confirm_match(held_index_entry_key_, pdf_document_widget_->get_current_page());
+  entry_dialog_->confirm_match(held_index_entry_key_,
+    pdf_document_widget_->get_current_page(), QString() );
  });
 
  clear_most_recent_match_button_ = new QPushButton("Clear", this);
@@ -273,8 +278,9 @@ connect(refocus_entry_dialog_button_, &QPushButton::clicked, [this]()
  button_box_->addButton(button_close_, QDialogButtonBox::AcceptRole);
 
  //connect(button_proceed_, SIGNAL(clicked()), this, SLOT(proceed()));
- connect(button_box_, SIGNAL(accepted()), this, SLOT(accept()));
- connect(button_box_, SIGNAL(rejected()), this, SLOT(cancel()));
+
+ connect(button_box_, SIGNAL(accepted()), this, SLOT(close()));
+ connect(button_box_, SIGNAL(rejected()), this, SLOT(close()));
 
 
  pdf_document_widget_ = new PDF_Document_Widget(this);
@@ -322,8 +328,17 @@ connect(refocus_entry_dialog_button_, &QPushButton::clicked, [this]()
 
   page_spin_box_->set_value(requested_page);
 
- connect(page_spin_box_, SIGNAL(value_changed(int)),
-         pdf_document_widget_, SLOT(setPage(int)));
+// connect(page_spin_box_, SIGNAL(value_changed(int)),
+//         pdf_document_widget_, SLOT(setPage(int)));
+
+ connect(page_spin_box_, &Reverse_Spin_Box::value_changed,
+    [this](int i)
+ {
+  load_page(i, page_spin_box_);
+ });
+
+//         pdf_document_widget_, SLOT(setPage(int)));
+
 
  connect(pdf_document_widget_, SIGNAL(pageChanged(int)),
          page_spin_box_, SLOT(set_value(int)));
@@ -333,17 +348,15 @@ connect(refocus_entry_dialog_button_, &QPushButton::clicked, [this]()
 
 //? pdf_document_vbox->setSizeConstraint(QLayout::SetFixedSize);
 
- go_button_ = new QPushButton("Go", this);
+ // go_button_ = new QPushButton("Go", this);
+ // open_button_ = new QPushButton("Open", this);
+ //  connect(go_button_, &QPushButton::clicked, [this]
+ //  {
+ // pdf_file_path_ = url_line_edit_->text();
+ // pdf_document_widget_->setDocument(pdf_file_path_);
+ //  });
 
- open_button_ = new QPushButton("Open", this);
-
-
- connect(go_button_, &QPushButton::clicked, [this]
- {
-  pdf_file_path_ = url_line_edit_->text();
-  pdf_document_widget_->setDocument(pdf_file_path_);
- });
-
+#ifdef HIDE
  connect(open_button_, &QPushButton::clicked, [this]
  {
   QFileInfo qfi(pdf_file_path_);
@@ -371,19 +384,36 @@ connect(refocus_entry_dialog_button_, &QPushButton::clicked, [this]()
    page_spin_box_->set_maximum(nop);
   }
  });
+#endif //HIDE
 
- url_label_  = new QLabel("URL", this);
- url_line_edit_ = new QLineEdit(this);
 
- url_layout_ = new QHBoxLayout;
- url_layout_->addWidget(url_label_);
- url_layout_->addWidget(url_line_edit_);
- url_layout_->addWidget(go_button_);
- url_layout_->addWidget(open_button_);
+ path_layout_ = new QGridLayout;
+ file_label_ = new QLabel("File", this);
+ file_line_edit_ = new QLineEdit(pdf_file_path, this);
+ status_line_edit_ = new QLineEdit(this);
+ file_line_edit_ ->setReadOnly(true);
+ status_line_edit_ ->setReadOnly(true);
+ notes_label_ = new QLabel("Notes", this);
+ notes_line_edit_ = new QLineEdit(notes_file, this);
+ notes_line_edit_->setReadOnly(true);
+
+ file_line_edit_->setCursorPosition(0);
+ notes_line_edit_->setCursorPosition(0);
+
+ path_layout_->addWidget(file_label_, 0, 0);
+ path_layout_->addWidget(file_line_edit_, 0, 1);
+
+ path_layout_->addWidget(notes_label_, 0, 2);
+ path_layout_->addWidget(notes_line_edit_, 0, 3);
+
+ path_layout_->addWidget(status_line_edit_, 1, 0, 1, 4);
+
+ path_layout_->setColumnStretch(1, 1);
+ path_layout_->setColumnStretch(3, 1);
 
 
  main_layout_->addWidget(pdf_document_widget_);
- main_layout_->addLayout(url_layout_);
+ main_layout_->addLayout(path_layout_);
 
 // QString colorful_button_style_sheet = colorful_button_style_sheet_();
 // QString colorful_button_style_sheet_down = colorful_button_style_sheet_down_();
@@ -430,9 +460,7 @@ connect(refocus_entry_dialog_button_, &QPushButton::clicked, [this]()
 
  Poppler::Document* popd = pdf_document_widget_->document();
 
-
  Poppler::Page* popg = popd->page(pdf_document_widget_->get_current_page());
-
 
  QString text = popg->text(QRectF({0, 0}, popg->pageSizeF()));
  //qDebug() << text;
@@ -510,15 +538,33 @@ connect(refocus_entry_dialog_button_, &QPushButton::clicked, [this]()
  //?show();
 }
 
+void DHAX_PDF_View_Dialog::show_status(QString text)
+{
+ status_line_edit_->setText(text);
+ status_line_edit_->setCursorPosition(0);
+}
+
 bool DHAX_PDF_View_Dialog::wants_box()
 {
  return refocus_entry_dialog_button_->isChecked();
 }
 
-void DHAX_PDF_View_Dialog::load_page(int number)
+void DHAX_PDF_View_Dialog::load_page(int number, QObject* origin)
 {
  pdf_document_widget_->setPage(number);
- page_spin_box_->set_value(number);
+
+ if(origin != page_spin_box_)
+   page_spin_box_->set_value(number);
+
+ Poppler::Document* popd = pdf_document_widget_->document();
+
+ Poppler::Page* popg = popd->page(pdf_document_widget_->get_current_page());
+
+ QString text = popg->text(QRectF({0, 0}, popg->pageSizeF()));
+ //qDebug() << text;
+
+ save_file(notes_file_, QString::number(number) + "\n///////////\n" + text);
+ //append_to_file(notes_file, "\n///////////\n", text);
 }
 
 
@@ -547,7 +593,7 @@ void DHAX_PDF_View_Dialog::clear_all_highlights()
 
 void DHAX_PDF_View_Dialog::search_update(QPair<u2, s2> index_entry_key,
   int index_entry_id, QString text, int count_in_index,
-  int page_hint, QString* context)
+  int page_hint, QStringList* paragraph_codes, QString* context)
 {
  held_index_entry_key_ = index_entry_key;
 
@@ -556,7 +602,7 @@ void DHAX_PDF_View_Dialog::search_update(QPair<u2, s2> index_entry_key,
  QVector<int> pages;
 
  // //?
- pdf_document_widget_->search_update(text, matches, cached_highlights_, nullptr); //, context);
+ pdf_document_widget_->search_update(text, matches, cached_highlights_, paragraph_codes, context); //, context);
  if(matches.isEmpty())
    return;
 
@@ -611,7 +657,8 @@ void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text, int
 }
 
 
-void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text, QString& context)
+void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text,
+  QStringList* paragraph_codes, QString& context)
 {
  search_line_edit_->setText(text);
 
@@ -635,7 +682,7 @@ void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text, QSt
  }
 
  QList<QRectF> results;
- pdf_document_widget_->highlight_match(index_entry_id, text, results, &context);
+ pdf_document_widget_->highlight_match(index_entry_id, text, results, paragraph_codes, &context);
 
  int rank = 0;
  if(results.isEmpty())
@@ -657,7 +704,8 @@ void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text, QSt
  }
 
  reset_pages_combo_box(&pages_combo);
- cached_highlights_[{cp, text}] = visible_highlights_[{cp, text}] = {results.toVector(), context, rank};
+ cached_highlights_[{cp, text}] = visible_highlights_[{cp, text}] = {results.toVector(),
+   context, paragraph_codes, rank};
 
  //qDebug() << "context = " << context;
 }

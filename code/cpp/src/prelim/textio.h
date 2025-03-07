@@ -155,13 +155,14 @@ inline void save_file(QString path, QString text)
  outfile.close();
 }
 
-inline void save_file_to_folder(QString path, QString text, QString folder)
+inline QString save_file_to_folder(QString path, QString text, QString folder)
 {
  QFileInfo qfi(path);
  QString fn = qfi.fileName();
  QDir qd(folder);
  QString newpath = qd.filePath(fn);
  save_file(newpath, text);
+ return newpath;
 }
 
 

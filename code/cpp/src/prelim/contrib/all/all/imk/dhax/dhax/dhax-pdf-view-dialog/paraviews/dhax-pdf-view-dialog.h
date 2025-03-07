@@ -106,24 +106,32 @@ class DHAX_PDF_View_Dialog : public QMainWindow
 // QPushButton* button_proceed_;
  QPushButton* button_close_;
 
- QLabel* url_label_;
- QLineEdit* url_line_edit_;
 
  PDF_Document_Widget* pdf_document_widget_;
 
  QPair<u2, s2> held_index_entry_key_;
 
- QHBoxLayout* url_layout_;
+ QGridLayout* path_layout_;
+ QLabel* file_label_;
+ QLineEdit* file_line_edit_;
+ QLineEdit* status_line_edit_;
+ QLabel* notes_label_;
+ QLineEdit* notes_line_edit_;
+
+
  QVBoxLayout* main_layout_;
+
  //?NDP_Antemodel* antemodel_;
  QScrollArea* pdf_document_scroll_area_;
 
 // QHBoxLayout* go_button_layout_;
- QPushButton* go_button_;
- QPushButton* open_button_;
+// QPushButton* go_button_;
+// QPushButton* open_button_;
 
 // QHBoxLayout* close_button_layout_;
 // QPushButton* close_button_;
+
+ QString notes_file_;
 
  void read_file(QString path, QPlainTextEdit* qpte);
 
@@ -145,7 +153,8 @@ public:
 
  DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dialog,
    DHAX_PDF_View_Dialog* earlier_document_ref,
-   QString pdf_file_path, QString notes_file, int requested_page = 1); //, NDP_Antemodel* antemodel);
+   QString pdf_file_path, QString notes_file,
+   int ars,   int requested_page = 1); //, NDP_Antemodel* antemodel);
  ~DHAX_PDF_View_Dialog();
 
  ACCESSORS(QString ,pdf_file_path)
@@ -157,6 +166,7 @@ public:
 
  int page_number_to_text(int i, QString& result, QString fallback_template = "(%1)");
 
+ void show_status(QString text);
 
  void reset_pages_combo_box(QVector<int>* pages = {});
 
@@ -164,18 +174,19 @@ public:
 
  bool wants_box();
 
- void load_page(int number);
+ void load_page(int number, QObject* origin = nullptr);
 
  void clear_most_recent_match(int index_entry_id, int page_number);
 
- void highlight_match(int index_entry_id, QString text, int page_number, const PDF_Document_Widget::Highlight_Info& hi);
+ void highlight_match(int index_entry_id, QString text, int page_number,
+   const PDF_Document_Widget::Highlight_Info& hi);
 
- void highlight_match(int index_entry_id, QString text, QString& context);
+ void highlight_match(int index_entry_id, QString text,   QStringList* paragraph_codes, QString& context);
 
  void clear_all_highlights();
 
  void search_update(QPair<u2, s2> index_entry_key, int index_entry_id, QString text, int count_in_index,
-   int page_hint, QString* context = nullptr);
+   int page_hint, QStringList* paragraph_codes, QString* context = nullptr);
 
 
  //int get_vertical_scroll();

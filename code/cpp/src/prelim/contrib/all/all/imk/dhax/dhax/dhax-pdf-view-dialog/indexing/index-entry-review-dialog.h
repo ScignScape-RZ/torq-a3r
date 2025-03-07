@@ -91,9 +91,9 @@ class Index_Entry_Review_Dialog : public QMainWindow
  void setup_comparison_window();
 
  QDialogButtonBox* button_box_;
- QPushButton* button_ok_;
- QPushButton* button_cancel_;
- QPushButton* button_proceed_;
+ QPushButton* button_close_all_;
+ QPushButton* button_close_;
+// QPushButton* button_proceed_;
 
  QPushButton* composite_upload_button_;
 
@@ -170,6 +170,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  u2 active_earlier_match_code_index_;
  u2 max_earlier_match_code_index_;
+
 
  QVector<QPair<Page_Ref_Pair, QString>> earlier_match_codes_;
 
@@ -353,6 +354,9 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  QMap<u2, QStringList> generated_htmls_;
 
+ QMap<Entry_Update_Key, QStringList> cached_paragraph_codes_;
+
+
  QFrame* make_frame_as_line();
 
  void update_generated_htmls();
@@ -410,7 +414,7 @@ public:
 
  void reclaim_focus();
 
- void confirm_match(QPair<u2, s2> pr, int page_number);
+ void confirm_match(QPair<u2, s2> pr, int page_number, QString paragraph_code);
  void clear_most_recent_match(int page_number);
 
 

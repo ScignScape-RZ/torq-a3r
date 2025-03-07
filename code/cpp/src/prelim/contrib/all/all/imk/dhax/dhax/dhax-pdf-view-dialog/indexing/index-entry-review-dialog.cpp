@@ -73,6 +73,8 @@
 
 #include "dhax-pdf-view-dialog/paraviews/dhax-pdf-view-dialog.h"
 
+#include "styles-alt.h"
+
 #include <QInputDialog>
 
 
@@ -94,35 +96,36 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
  button_box_ = new QDialogButtonBox(this);
 
- button_ok_ = new QPushButton("OK");
- button_proceed_ = new QPushButton("Edit");
- button_cancel_ = new QPushButton("Cancel");
+ button_close_ = new QPushButton("Close");
+ button_close_all_ = new QPushButton("Close All");
 
- button_ok_->setDefault(false);
- button_ok_->setAutoDefault(false);
+ button_close_->setDefault(false);
+ button_close_->setAutoDefault(false);
+ button_close_->setStyleSheet(basic_button_style_sheet_());
 
- button_proceed_->setDefault(false);
- button_proceed_->setAutoDefault(false);
+ button_close_all_->setDefault(false);
+ button_close_all_->setAutoDefault(false);
+ button_close_all_->setStyleSheet(colorful_button_style_sheet_());
 
- button_cancel_->setDefault(true);
-
- button_ok_->setEnabled(false);
-
- // // unless this is being embedded ...
- button_proceed_->setEnabled(false);
- button_cancel_->setText("Close");
-
- button_box_->addButton(button_ok_, QDialogButtonBox::AcceptRole);
- button_box_->addButton(button_proceed_, QDialogButtonBox::ApplyRole);
- button_box_->addButton(button_cancel_, QDialogButtonBox::RejectRole);
+ button_box_->addButton(button_close_all_, QDialogButtonBox::AcceptRole);
+ button_box_->addButton(button_close_, QDialogButtonBox::RejectRole);
 
 // button_ok_->setStyleSheet(basic_button_style_sheet_());
 // button_proceed_->setStyleSheet(basic_button_style_sheet_());
 // button_cancel_->setStyleSheet(basic_button_style_sheet_());
 
- connect(button_proceed_, SIGNAL(clicked()), this, SLOT(proceed()));
- connect(button_box_, SIGNAL(accepted()), this, SLOT(accept()));
- connect(button_box_, SIGNAL(rejected()), this, SLOT(cancel()));
+ connect(button_box_, SIGNAL(accepted()), this, SLOT(close()));
+
+ connect(button_box_, &QDialogButtonBox::accepted,
+  [this]()
+  {
+   earlier_pdf_dialog_->close();
+   later_pdf_dialog_->close();
+   close();
+  });
+
+
+// connect(button_box_, SIGNAL(rejected()), this, SLOT(cancel()));
 
  main_layout_ = new QVBoxLayout;
  entry_layout_ = new QVBoxLayout;
@@ -314,9 +317,13 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  active_earlier_match_code_highlight_layout_ = new QHBoxLayout;
 
  active_earlier_match_code_forward_button_ = new QPushButton("=>");
+ make_light_forward_button(active_earlier_match_code_forward_button_);
+
  active_earlier_match_code_backward_button_ = new QPushButton("<=");
+ make_light_back_button(active_earlier_match_code_backward_button_);
 
  active_earlier_match_code_back_to_start_button_ = new QPushButton("<<=");
+ make_back_button(active_earlier_match_code_back_to_start_button_);
 
 
  active_earlier_match_code_forward_button_->setMaximumWidth(37);
@@ -794,6 +801,9 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
  setCentralWidget(main_frame_);
 
+
+ //?setStyleSheet(basic_button_style_sheet_());
+
  setWindowTitle("Index Entry Dialog");
 
  load_earlier_matches();
@@ -913,9 +923,12 @@ void Index_Entry_Review_Dialog::search_update()
  u2 page_number = ref_code_to_earlier_page_number(current_page_ref_pair_.first);
 
  QString context;
+ QStringList paragraph_codes;
 
  later_pdf_dialog_->search_update(current_entry_key_.to_pair(), current_entry_id_, search_text_line_edit_->text(),
-   active_earlier_match_code_index_, page_number, &context);
+   active_earlier_match_code_index_, page_number, &paragraph_codes, &context);
+
+ cached_paragraph_codes_[current_entry_key_] = paragraph_codes;
 
  comparison_left_text_edit_->setHtml(escape_context(context, QColor(50, 200, 100, 30)));
 
@@ -1022,8 +1035,10 @@ void Index_Entry_Review_Dialog::earlier_highlight()
  earlier_pdf_dialog_->activateWindow();
 
  QString context;
+ //QStringList paragraph_codes;
 
- earlier_pdf_dialog_->highlight_match(current_entry_id_, search_text_line_edit_->text(), context);
+ earlier_pdf_dialog_->highlight_match(current_entry_id_, search_text_line_edit_->text(),
+   nullptr, context);
 
  comparison_right_text_edit_->setHtml(escape_context(context, QColor(50, 100, 200, 30)));
 }
@@ -1268,7 +1283,7 @@ void Index_Entry_Review_Dialog::ftp_upload(QString file_name, QString text)
 
  template_text.replace("%FILE%", file_name);
 
- KA::TextIO::save_file_to_folder(file_name, text, ftp_folder_);
+ QString full_path = KA::TextIO::save_file_to_folder(file_name, text, ftp_folder_);
 
  qDebug() << template_text;
 
@@ -1280,6 +1295,16 @@ void Index_Entry_Review_Dialog::ftp_upload(QString file_name, QString text)
  qp->waitForFinished(-1);
  QString output = qp->readAllStandardOutput();
  qp->terminate();
+
+ if(output.isEmpty())
+ {
+  later_pdf_dialog_->show_status("ftp upload: %1"_qt.arg(full_path));
+ }
+ else
+ {
+  later_pdf_dialog_->show_status("ftp output: %1"_qt.arg(output));
+ }
+
  qDebug() << output;
  qp->deleteLater();
 }
@@ -1316,7 +1341,8 @@ void Index_Entry_Review_Dialog::update_html(QString key, QStringList page_number
 //}
 
 
-void Index_Entry_Review_Dialog::confirm_match(QPair<u2, s2> pr, int page_number)
+void Index_Entry_Review_Dialog::confirm_match(QPair<u2, s2> pr,
+  int page_number, QString paragraph_code)
 {
  activateWindow();
 
@@ -1324,6 +1350,8 @@ void Index_Entry_Review_Dialog::confirm_match(QPair<u2, s2> pr, int page_number)
    return;
 
  Entry_Update_Key key = Entry_Update_Key::from_pair(pr);
+
+ QStringList paragraph_codes = cached_paragraph_codes_.value(key);
 
  if(key.entry_id != current_entry_id_)
  {
@@ -1364,6 +1392,8 @@ void Index_Entry_Review_Dialog::confirm_match(QPair<u2, s2> pr, int page_number)
      text += ref.to_granular_text();
   }
  }
+
+ text += ".@" + paragraph_codes.join(";");
 
  QListWidgetItem* item = new QListWidgetItem(text, confirms_list_widget_);
  item->setFlags(item->flags() | Qt::ItemIsEditable);
