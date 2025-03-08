@@ -1546,6 +1546,9 @@ inline QString entry_nav_button_style_sheet_()
          }
 
   QPushButton:disabled {background:rgb(150,140,190);}
+
+        QPushButton:checked {background:rgb(150,14,1);color:white;font-weight:900;border:2px ridge pink;}
+
    )";
 }
 
@@ -1553,9 +1556,9 @@ inline QString entry_nav_button_style_sheet_()
 
 
 
-inline QString entry_nav_button_style_sheet_green_()
+inline QString entry_nav_button_style_sheet_green_(int font_size = 13)
 {
- return entry_nav_button_style_sheet_().arg(13).arg("normal").arg("#116f63");
+ return entry_nav_button_style_sheet_().arg(font_size).arg("normal").arg("#116f63");
 }
 
 

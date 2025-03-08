@@ -915,6 +915,10 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
  generate_html_button_ = new QPushButton("html", this);
  generate_html_button_->setToolTip("Generate html");
+ generate_html_button_->setMaximumWidth(50);
+ generate_html_button_->setMaximumHeight(20);
+ generate_html_button_->setStyleSheet(entry_nav_button_style_sheet_green_(10));
+
 
  connect(generate_html_button_, &QPushButton::clicked, [this]()
  {
@@ -937,6 +941,10 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  always_generate_html_button_ = new QPushButton("auto", this);
  always_generate_html_button_->setCheckable(true);
  always_generate_html_button_->setToolTip("Always generate html on match confirm");
+ always_generate_html_button_->setMaximumWidth(50);
+ always_generate_html_button_->setMaximumHeight(20);
+ always_generate_html_button_->setStyleSheet(entry_nav_button_style_sheet_green_(10));
+
 
  connect(always_generate_html_button_, &QPushButton::toggled, [this](bool b)
  {
