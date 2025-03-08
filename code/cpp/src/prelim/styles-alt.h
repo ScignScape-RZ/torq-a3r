@@ -1635,11 +1635,11 @@ inline QString nav_button_style_sheet_orange_15()
 
 
 template<typename WIDGET_Type>
-inline void make_nav_button(WIDGET_Type* w, int uni, int size)
+inline void make_nav_button(WIDGET_Type* w, int uni, int size, int mw = 45)
 {
  make_unicode_text(w, uni);
  w->setStyleSheet(nav_button_style_sheet_orange_(size));
- w->setMaximumWidth(45);
+ w->setMaximumWidth(mw);
  w->setMaximumHeight(25);
 }
 
@@ -1650,7 +1650,7 @@ inline void make_slurp_button(WIDGET_Type* w)
 {
 // QString unicode = QString("%1").arg(QChar(5184));
 
- make_unicode_text(w, 0x2386);
+ make_unicode_text(w, 0x2941);
 // QString unicode = QString(QChar(0x27F9));
 // w->setText(unicode);
  w->setStyleSheet(nav_button_style_sheet_orange_15());

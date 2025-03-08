@@ -319,6 +319,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
  QPushButton* search_words_flip_button_;
  QPushButton* search_words_slurp_button_;
  QPushButton* search_words_reset_button_;
+ QPushButton* search_words_take_visible_first_button_;
 
  QPushButton* redo_both_matches_button_;
 
@@ -405,6 +406,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
  void search_words_inc_low();
  void search_words_dec_low();
 
+ void search_words_take_visible_first();
  void search_words_reset();
 
  void search_words_flip();

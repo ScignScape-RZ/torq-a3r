@@ -1,0 +1,866 @@
+
+#include "dhax-pdf-view-dialog.h"
+
+//#include "clg-db-antemodel.h";
+
+#include <QApplication>
+
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+
+#include <QScrollArea>
+#include <QFileDialog>
+#include <QTabWidget>
+#include <QSplitter>
+#include <QDialogButtonBox>
+#include <QFormLayout>
+#include <QCheckBox>
+#include <QLineEdit>
+#include <QGroupBox>
+#include <QDockWidget>
+#include <QFileInfo>
+
+#include <QDesktopWidget>
+
+#include <QPlainTextEdit>
+#include <QTextStream>
+#include <QProgressBar>
+
+#include <QFileDialog>
+
+#include <QProcess>
+
+#include <QTableWidget>
+
+#include <QMessageBox>
+
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QUrlQuery>
+
+#include <QHeaderView>
+
+#include <QListWidget>
+
+
+#include "indexing/index-entry-review-dialog.h"
+
+
+#include "styles.h"
+//#include "silotypes/ndp-project/ndp-project.h"
+//#include "silotypes/ndp-project/ndp-project-initial.h"
+
+//?USING_QSNS(Cy_Mesh)
+
+#include "textio.h"
+
+USING_KANS(TextIO)
+
+
+DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dialog,
+  DHAX_PDF_View_Dialog* earlier_document_ref,
+  QString pdf_file_path, QString notes_file, int ars, int requested_page) //, NDP_Antemodel* antemodel)//, QString url, QWN_XMLDB_Configuration* config)
+ : //QDialog(parent),
+   entry_dialog_(entry_dialog), earlier_document_ref_(earlier_document_ref),
+   pdf_file_path_(pdf_file_path), held_index_entry_key_({0, 0}),
+   roman_start_(0), roman_end_(0), arabic_start_(0), notes_file_(notes_file)
+ //, antemodel_(antemodel)//, config_(config)
+{
+ arabic_start_ = ars;
+ roman_end_ = ars - 1;
+ roman_start_ = 1;
+
+ save_file(notes_file, "");
+
+ main_layout_ = new QVBoxLayout();
+
+ main_frame_ = new QFrame(this);
+
+ //controls_dock_widget_ = nullptr;
+ //controls_frame_ = new QFrame(this);
+
+ controls_layout_ = new QVBoxLayout;
+
+// controls_dock_widget_ = new QDockWidget(this);
+// controls_dock_widget_->setObjectName(QString::fromUtf8("controlsDockWidget"));
+// controls_dock_widget_->setEnabled(true);
+// controls_dock_widget_->setFloating(false);
+// controls_dock_widget_->setFeatures(QDockWidget::AllDockWidgetFeatures);
+// controls_dock_widget_->setAllowedAreas(Qt::BottomDockWidgetArea|Qt::TopDockWidgetArea);
+
+// QWidget* dockWidgetContents = new QWidget(this);
+// dockWidgetContents->setObjectName(QString::fromUtf8("dockWidgetContents"));
+// QVBoxLayout* vboxLayout = new QVBoxLayout;//(dockWidgetContents);
+
+ QHBoxLayout* hboxLayout = new QHBoxLayout(); // dockWidgetContents);
+ hboxLayout->setObjectName(QString::fromUtf8("hboxLayout"));
+ hboxLayout->setContentsMargins(4, 0, 4, 0);
+ QSpacerItem* horizontalSpacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+ hboxLayout->addItem(horizontalSpacer);
+
+ QHBoxLayout* _2 = new QHBoxLayout();
+ _2->setObjectName(QString::fromUtf8("_2"));
+
+ page_label_ = new QLabel(this);
+ page_label_->setObjectName(QString::fromUtf8("page_label_"));
+
+ _2->addWidget(page_label_);
+
+ page_spin_box_ = new Reverse_Spin_Box(this);
+ //?page_spin_box_->setObjectName(QString::fromUtf8("page_spin_box_"));
+//? page_spin_box_->setEnabled(false);
+
+// page_spin_box_->setMaximum(0);
+// page_spin_box_->setMinimum(-8);
+
+ //page_spin_box_->set_maximum()
+
+
+ _2->addWidget(page_spin_box_);
+
+
+ hboxLayout->addLayout(_2);
+
+ QSpacerItem* horizontalSpacer_2 = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+ hboxLayout->addItem(horizontalSpacer_2);
+
+ QHBoxLayout* _3 = new QHBoxLayout();
+ _3->setObjectName(QString::fromUtf8("_3"));
+
+ search_label_ = new QLabel(this);
+ search_label_->setObjectName(QString::fromUtf8("search_label_"));
+ search_label_->setTextFormat(Qt::AutoText);
+
+ _3->addWidget(search_label_);
+
+
+ search_line_edit_ = new QLineEdit(this);
+ search_line_edit_->setObjectName(QString::fromUtf8("search_line_edit_"));
+ search_line_edit_->setReadOnly(true);
+ search_line_edit_->setPlaceholderText("N/A");
+
+
+ _3->addWidget(search_line_edit_);
+
+ pages_combo_box_ = new QComboBox(this);
+ pages_combo_box_->setObjectName(QString::fromUtf8("pages_combo_box_"));
+
+ connect(pages_combo_box_, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+   [this](int index)
+ {
+  int n = cached_pages_combo_values_.value(index);
+  if(n)
+  {
+   load_page(n + 1);
+  }
+ }
+ );
+
+ _3->addWidget(pages_combo_box_);
+
+ find_button_ = new QPushButton(this);
+ find_button_->setObjectName(QString::fromUtf8("find_button_"));
+ find_button_->setEnabled(false);
+
+ _3->addWidget(find_button_);
+
+ find_button_->hide();
+
+
+
+
+ confirm_match_button_ = new QPushButton("Confirm", this);
+ confirm_match_button_->setObjectName(QString::fromUtf8("confirm_match_button_"));
+ _3->addWidget(confirm_match_button_);
+
+ connect(confirm_match_button_, &QPushButton::clicked, [this]()
+ {
+  entry_dialog_->confirm_match(held_index_entry_key_,
+    pdf_document_widget_->get_current_page(), QString() );
+ });
+
+ clear_most_recent_match_button_ = new QPushButton("Clear", this);
+ _3->addWidget(clear_most_recent_match_button_);
+
+ connect(clear_most_recent_match_button_, &QPushButton::clicked, [this]()
+ {
+  entry_dialog_->clear_most_recent_match(pdf_document_widget_->get_current_page());
+ });
+
+ if(earlier_document_ref_)
+//  clear_most_recent_match_button_->setEnabled(false);
+   clear_most_recent_match_button_->hide();
+ else
+//  confirm_match_button_->setEnabled(false);
+   confirm_match_button_->hide();
+
+
+ _3->addSpacing(38);
+refocus_entry_dialog_button_ =  new QPushButton("=>>", this);
+refocus_entry_dialog_button_->setMaximumWidth(30);
+_3->addWidget(refocus_entry_dialog_button_);
+_3->addSpacing(8);
+
+connect(refocus_entry_dialog_button_, &QPushButton::clicked, [this]()
+{
+ entry_dialog_->reclaim_focus();
+});
+
+
+
+ hboxLayout->addLayout(_3);
+
+ QSpacerItem* spacerItem = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+ hboxLayout->addItem(spacerItem);
+
+ scale_label_ = new QLabel(this);
+ scale_label_->setObjectName(QString::fromUtf8("label"));
+
+ hboxLayout->addWidget(scale_label_);
+
+ scale_combo_box_ = new QComboBox(this);
+ scale_combo_box_->setObjectName(QString::fromUtf8("scale_combo_box_"));
+ scale_combo_box_->setEnabled(true);
+
+ hboxLayout->addWidget(scale_combo_box_);
+
+ QSpacerItem* horizontalSpacer_3 = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+ hboxLayout->addItem(horizontalSpacer_3);
+
+ controls_layout_->addLayout(hboxLayout);
+
+// vboxLayout->addLayout(hboxLayout);
+// dockWidgetContents->setLayout(vboxLayout);
+// controls_frame_->setLayout(controls_layout_);
+
+ //controls_layout_->addWidget(controls_frame_);
+
+ main_layout_->addLayout(controls_layout_);
+
+// controls_frame_
+
+// controls_dock_widget_->setWidget(dockWidgetContents);
+ //
+ //local_main_window_->addDockWidget(static_cast<Qt::DockWidgetArea>(4), controls_dock_widget_);
+
+
+// connect(scale_combo_box_, SIGNAL(currentIndexChanged(int)),
+//         centerview_, SLOT(scale_document(int)));
+
+
+// connect(centerview_, SIGNAL(activate_screenshot()),
+//         this, SLOT(activate_screenshot_requested()));
+
+
+
+ button_box_ = new QDialogButtonBox(this);
+
+ button_close_ = new QPushButton("Close");
+// button_ok_ = new QPushButton("OK");
+// button_proceed_ = new QPushButton("Proceed");
+// button_cancel_ = new QPushButton("Cancel");
+// button_ok_->setDefault(false);
+// button_ok_->setAutoDefault(false);
+// button_proceed_->setDefault(false);
+// button_proceed_->setAutoDefault(false);
+// button_cancel_->setDefault(true);
+// button_ok_->setEnabled(false);
+
+// button_box_->addButton(button_ok_, QDialogButtonBox::AcceptRole);
+// button_box_->addButton(button_proceed_, QDialogButtonBox::ApplyRole);
+// button_box_->addButton(button_cancel_, QDialogButtonBox::RejectRole);
+
+ button_box_->addButton(button_close_, QDialogButtonBox::AcceptRole);
+
+ //connect(button_proceed_, SIGNAL(clicked()), this, SLOT(proceed()));
+
+ connect(button_box_, SIGNAL(accepted()), this, SLOT(close()));
+ connect(button_box_, SIGNAL(rejected()), this, SLOT(close()));
+
+
+ pdf_document_widget_ = new PDF_Document_Widget(this);
+
+ if(earlier_document_ref)
+ {
+  pdf_document_widget_->set_primary_highlight_color(QColor(142, 41, 9, 31));
+  pdf_document_widget_->set_secondary_highlight_color(QColor(12, 41, 219, 31));
+ }
+ else
+ {
+  pdf_document_widget_->set_primary_highlight_color(QColor(237, 189, 31));
+  pdf_document_widget_->set_secondary_highlight_color(QColor(168, 50, 164, 31));
+ }
+
+ connect(pdf_document_widget_, SIGNAL(save_stencil_to_file_requested()),
+   this, SLOT(handle_save_stencil_to_file_requested()));
+
+ connect(pdf_document_widget_, SIGNAL(open_stencil_from_file_requested()),
+   this, SLOT(handle_open_stencil_from_file_requested()));
+
+ connect(pdf_document_widget_, SIGNAL(ocr_conversion_requested()),
+   this, SLOT(handle_ocr_conversion_requested()));
+
+
+ pdf_document_widget_->setDocument(pdf_file_path_);
+ pdf_document_widget_->setPage(requested_page);
+
+  //  "/home/nlevisrael/NDP/pain-management-center-new-patient-history-2012.pdf"
+
+// QFrame* qf = new QFrame(this);
+// QVBoxLayout* pdf_document_vbox = new QVBoxLayout;
+// pdf_document_vbox->addWidget(pdf_document_widget_);
+// qf->setLayout(pdf_document_vbox);
+
+// pdf_document_scroll_area_ = new QScrollArea(this);
+// pdf_document_scroll_area_->setWidget(pdf_document_widget_);
+// pdf_document_widget_->set_surrounding_scroll_area(pdf_document_scroll_area_);
+
+ pdf_document_scroll_area_ = nullptr;
+
+ int nop = pdf_document_widget_->number_of_pages();
+
+ page_spin_box_->set_maximum(nop - 1);
+
+  page_spin_box_->set_value(requested_page);
+
+// connect(page_spin_box_, SIGNAL(value_changed(int)),
+//         pdf_document_widget_, SLOT(setPage(int)));
+
+ connect(page_spin_box_, &Reverse_Spin_Box::value_changed,
+    [this](int i)
+ {
+  load_page(i, page_spin_box_);
+ });
+
+//         pdf_document_widget_, SLOT(setPage(int)));
+
+
+ connect(pdf_document_widget_, SIGNAL(pageChanged(int)),
+         page_spin_box_, SLOT(set_value(int)));
+
+
+//? qf->setMinimumSize(300, 300);
+
+//? pdf_document_vbox->setSizeConstraint(QLayout::SetFixedSize);
+
+ // go_button_ = new QPushButton("Go", this);
+ // open_button_ = new QPushButton("Open", this);
+ //  connect(go_button_, &QPushButton::clicked, [this]
+ //  {
+ // pdf_file_path_ = url_line_edit_->text();
+ // pdf_document_widget_->setDocument(pdf_file_path_);
+ //  });
+
+#ifdef HIDE
+ connect(open_button_, &QPushButton::clicked, [this]
+ {
+  QFileInfo qfi(pdf_file_path_);
+
+  QString dir = qfi.absoluteDir().absolutePath();
+
+  QString fp = QFileDialog::getOpenFileName(this, "Open PDF File", dir, "*.pdf");
+
+  pdf_document_widget_->setDocument(fp);
+
+  int nop = pdf_document_widget_->number_of_pages();
+
+  if(nop == 0)
+  {
+   QMessageBox::information(this,
+     "Load Error", "PDF File Not Recognized.  File not loaded.");
+
+   pdf_document_widget_->setDocument(pdf_file_path_);
+  }
+  else
+  {
+   pdf_file_path_ = fp;
+   url_line_edit_->setText(pdf_file_path_);
+   //pdf_document_widget_->setDocument(pdf_file_path_);
+   page_spin_box_->set_maximum(nop);
+  }
+ });
+#endif //HIDE
+
+
+ path_layout_ = new QGridLayout;
+ file_label_ = new QLabel("File", this);
+ file_line_edit_ = new QLineEdit(pdf_file_path, this);
+ status_line_edit_ = new QLineEdit(this);
+ file_line_edit_ ->setReadOnly(true);
+ status_line_edit_ ->setReadOnly(true);
+ notes_label_ = new QLabel("Notes", this);
+ notes_line_edit_ = new QLineEdit(notes_file, this);
+ notes_line_edit_->setReadOnly(true);
+
+ file_line_edit_->setCursorPosition(0);
+ notes_line_edit_->setCursorPosition(0);
+
+ path_layout_->addWidget(file_label_, 0, 0);
+ path_layout_->addWidget(file_line_edit_, 0, 1);
+
+ path_layout_->addWidget(notes_label_, 0, 2);
+ path_layout_->addWidget(notes_line_edit_, 0, 3);
+
+ path_layout_->addWidget(status_line_edit_, 1, 0, 1, 4);
+
+ path_layout_->setColumnStretch(1, 1);
+ path_layout_->setColumnStretch(3, 1);
+
+
+ main_layout_->addWidget(pdf_document_widget_);
+ main_layout_->addLayout(path_layout_);
+
+// QString colorful_button_style_sheet = colorful_button_style_sheet_();
+// QString colorful_button_style_sheet_down = colorful_button_style_sheet_down_();
+// QString colorful_button_quiet_style_sheet = colorful_button_quiet_style_sheet_();
+
+
+// go_button_ = new QPushButton("Go", this);
+// close_button_ = new QPushButton("Close", this);
+// go_button_->setStyleSheet(colorful_button_style_sheet);
+
+ //? refocus_entry_dialog_button_->setCheckable(true);
+
+ button_close_->setStyleSheet(basic_button_style_sheet_());
+
+// go_button_layout_ = new QHBoxLayout;
+// go_button_layout_->addStretch();
+// go_button_layout_->addWidget(go_button_);
+// go_button_layout_->addStretch();
+
+// main_layout_->addLayout(go_button_layout_);
+
+// close_button_layout_ = new QHBoxLayout;
+// close_button_layout_->addStretch();
+// close_button_layout_->addWidget(close_button_);
+// close_button_layout_->addStretch();
+
+// main_layout_->addLayout(close_button_layout_);
+
+// connect(go_button_, SIGNAL(clicked()), this,
+//         SLOT(go_button_clicked()));
+
+
+
+
+ main_layout_->addWidget(button_box_);
+
+
+ retranslate_ui();
+
+ main_frame_->setLayout(main_layout_);
+ setCentralWidget(main_frame_);
+
+ reset_pages_combo_box();
+
+ Poppler::Document* popd = pdf_document_widget_->document();
+
+ Poppler::Page* popg = popd->page(pdf_document_widget_->get_current_page());
+
+ QString text = popg->text(QRectF({0, 0}, popg->pageSizeF()));
+ //qDebug() << text;
+
+ append_to_file(notes_file, "\n///////////\n", text);
+
+ entry_dialog_->set_page_text_view_text(text);
+
+ QList<Poppler::Annotation*> popas = popg->annotations();
+
+ for(Poppler::Annotation* popa : popas)
+ {
+//  QString aun = popa->uniqueName();
+//  qDebug() << "AUN: " << aun;
+
+  Poppler::Annotation::SubType antype = popa->subType();
+
+  if(antype == Poppler::Annotation::ALink)
+  {
+   QString con = popa->contents();
+   Poppler::LinkAnnotation* popla = dynamic_cast<Poppler::LinkAnnotation*>(popa);
+   Poppler::Link* popl = popla->linkDestination();
+   if(popl)
+   {
+    Poppler::Link::LinkType ltype = popl->linkType();
+    qDebug() << "LType: " << ltype;
+    if(ltype == Poppler::Link::Goto)
+    {
+     Poppler::LinkGoto* poplg = dynamic_cast<Poppler::LinkGoto*>(popl);
+     QString fn = poplg->fileName();
+     Poppler::LinkDestination popld = poplg->destination();
+     QString dn = popld.destinationName();
+     QString ts = popld.toString();
+
+     //?qDebug() << ts;
+    }
+    else if(ltype == Poppler::Link::JavaScript)
+    {
+     Poppler::LinkJavaScript* popljs = dynamic_cast<Poppler::LinkJavaScript*>(popl);
+     QString js = popljs->script();
+     qDebug() << js;
+    }
+
+   }
+  }
+  if(antype == Poppler::Annotation::AFileAttachment)
+  {
+   QString con = popa->contents();
+   QString un = popa->uniqueName();
+   Poppler::FileAttachmentAnnotation* popfa = dynamic_cast<Poppler::FileAttachmentAnnotation*>(popa);
+   Poppler::EmbeddedFile* popef = popfa->embeddedFile();
+   QRectF qrf = popfa->boundary();
+
+   qreal tlx = qrf.topLeft().x();
+   qreal tly = qrf.topLeft().y();
+
+   qreal brx = qrf.bottomRight().x();
+   qreal bry = qrf.bottomRight().y();
+
+   quint64 tlx_pg = tlx * popg->pageSizeF().width();
+   quint64 tly_pg = tly * popg->pageSizeF().height();
+
+   quint64 brx_pg = brx * popg->pageSizeF().width();
+   quint64 bry_pg = bry * popg->pageSizeF().height();
+
+   qDebug() << "qrf: " << qrf;
+
+   QByteArray qba = popef->data();
+   qDebug() << "QBA: " << qba;
+
+  }
+  //qDebug() << "AUN: " << aun;
+
+ }
+
+ //?show();
+}
+
+void DHAX_PDF_View_Dialog::show_status(QString text)
+{
+ status_line_edit_->setText(text);
+ status_line_edit_->setCursorPosition(0);
+}
+
+bool DHAX_PDF_View_Dialog::wants_box()
+{
+ return refocus_entry_dialog_button_->isChecked();
+}
+
+void DHAX_PDF_View_Dialog::load_page(int number, QObject* origin)
+{
+ pdf_document_widget_->setPage(number);
+
+ if(origin != page_spin_box_)
+   page_spin_box_->set_value(number);
+
+ Poppler::Document* popd = pdf_document_widget_->document();
+
+ Poppler::Page* popg = popd->page(pdf_document_widget_->get_current_page());
+
+ QString text = popg->text(QRectF({0, 0}, popg->pageSizeF()));
+ //qDebug() << text;
+
+ save_file(notes_file_, QString::number(number) + "\n///////////\n" + text);
+
+
+
+ //append_to_file(notes_file, "\n///////////\n", text);
+}
+
+
+void DHAX_PDF_View_Dialog::clear_most_recent_match(int index_entry_id, int page_number)
+{
+ QMapIterator<PDF_Document_Widget::Highlight_Key,
+   PDF_Document_Widget::Highlight_Info> it(visible_highlights_);
+ while (it.hasNext())
+ {
+  it.next();
+  if(it.key().page_number == page_number)
+  {
+   pdf_document_widget_->clear_recent_highlights(index_entry_id, page_number);
+  }
+
+ }
+
+
+}
+
+
+void DHAX_PDF_View_Dialog::clear_all_highlights()
+{
+ pdf_document_widget_->clear_all_highlights();
+}
+
+void DHAX_PDF_View_Dialog::search_update(QPair<u2, s2> index_entry_key,
+  int index_entry_id, QString text, int count_in_index,
+  int page_hint, QStringList* paragraph_codes, QString* context)
+{
+ held_index_entry_key_ = index_entry_key;
+
+ QMap<int, PDF_Document_Widget::Highlight_Info> matches;
+
+ QVector<int> pages;
+
+ // //?
+ pdf_document_widget_->search_update(text, matches, cached_highlights_, paragraph_codes, context); //, context);
+ if(matches.isEmpty())
+   return;
+
+ if(cached_page_matches_.contains(text))
+ {
+  pages = cached_page_matches_[text];
+ }
+ else
+ {
+  pages = matches.keys().toVector();
+  cached_page_matches_[text] = pages;
+ }
+
+ if(pages != cached_pages_combo_values_)
+   reset_pages_combo_box(&pages);
+
+ pages_combo_box_->blockSignals(true);
+ pages_combo_box_->setCurrentIndex(count_in_index - 1);
+ pages_combo_box_->blockSignals(false);
+
+ if(pages.isEmpty())
+   return;
+
+ if(count_in_index > pages.size())
+   count_in_index = pages.size();
+
+ int page_number = pages[count_in_index - 1];
+
+ if(context)
+   *context = matches[page_number].context;
+
+ highlight_match(index_entry_id, text, page_number + 1, matches[page_number]);
+
+}
+
+
+void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text, int page_number,
+  const PDF_Document_Widget::Highlight_Info& hi)
+{
+ // //  assumes {text, page} is cached
+ search_line_edit_->setText(text);
+ search_line_edit_->setCursorPosition(0);
+
+ load_page(page_number);
+// pdf_document_widget_->setPage(page_number);
+
+ if(!visible_highlights_.contains({page_number, text}))
+ {
+  pdf_document_widget_->highlight_matches(index_entry_id, hi.boundaries);
+  visible_highlights_[{page_number, text}] = hi;
+ }
+}
+
+
+void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text,
+  QStringList* paragraph_codes, QString& context)
+{
+ search_line_edit_->setText(text);
+
+ int cp = pdf_document_widget_->get_current_page();
+
+ QVector<int> pages_combo {cp};
+
+ if(visible_highlights_.contains({cp, text}))
+ {
+  context = cached_highlights_[{cp, text}].context;
+  reset_pages_combo_box(&pages_combo);
+  return;
+ }
+
+ if(cached_highlights_.contains({cp, text}))
+ {
+  context = cached_highlights_[{cp, text}].context;
+  pdf_document_widget_->highlight_matches(index_entry_id, cached_highlights_[{cp, text}].boundaries);
+  reset_pages_combo_box(&pages_combo);
+  return;
+ }
+
+ QList<QRectF> results;
+ pdf_document_widget_->highlight_match(index_entry_id, text, results, paragraph_codes, &context);
+
+ int rank = 0;
+ if(results.isEmpty())
+ {
+  pages_combo.clear();
+ }
+ else
+ {
+  int ix = rank_in_pages_[cp].second.indexOf(text);
+  if(ix == -1)
+  {
+   rank_in_pages_[cp].second.push_back(text);
+   rank = rank_in_pages_.size();
+  }
+  else
+  {
+   rank = ix + 1;
+  }
+ }
+
+ reset_pages_combo_box(&pages_combo);
+ cached_highlights_[{cp, text}] = visible_highlights_[{cp, text}] = {results.toVector(),
+   context, paragraph_codes, rank};
+
+ //qDebug() << "context = " << context;
+}
+
+
+int DHAX_PDF_View_Dialog::page_number_to_text(int i, QString& result,
+  QString fallback_template)
+{
+ // //  the roman, arabic fields assume starting at 1 ...
+
+ if(i >= arabic_start_)
+ {
+  result = QString::number(i - arabic_start_ + 1);
+  return 0;
+ }
+ else if(i > roman_end_ || i < roman_start_)
+ {
+  result = fallback_template.arg(i);
+  return 0;
+ }
+ i = i - roman_start_ + 2;
+
+ int oldi = i;
+
+ static QMap<int, QString> values =
+ {
+  {1000, "m"}, {900, "cm"}, {500, "d"}, {400, "cd"},
+  {100, "c"}, {90, "xc"}, {50, "l"}, {40, "xl"},
+  {10, "x"}, {9, "ix"}, {5, "v"}, {4, "iv"}, {1, "i"}
+ };
+
+ static QVector<int> keys;
+ if(keys.isEmpty())
+ {
+  keys = values.keys().toVector();
+  std::sort(keys.begin(), keys.end(), std::greater<int>());
+ }
+
+ for(int k : keys)
+ {
+  while (i >= k)
+  {
+   result += values[k];
+   i -= k;
+  }
+ }
+ return oldi;
+}
+
+void DHAX_PDF_View_Dialog::reset_pages_combo_box(QVector<int>* pages)
+{
+ if(pages)
+   cached_pages_combo_values_ = *pages;
+ else
+   cached_pages_combo_values_.clear();
+
+ pages_combo_box_->clear();
+
+ QStringList qsl;
+
+ if(pages)
+ {
+  if(pages->isEmpty())
+    qsl << "no match";
+  else
+  {
+   for(int i : *pages)
+   {
+    QString text;
+    int roman = page_number_to_text(i, text);
+    if(roman)
+      qsl << text;
+    else
+      qsl << text.prepend("p. ");
+   }
+  }
+ }
+ else
+   qsl << "Pages";
+ pages_combo_box_->insertItems(0, qsl);
+}
+
+
+#define QUUTF8
+
+void DHAX_PDF_View_Dialog::retranslate_ui()
+{
+//    MainWindow->setWindowTitle(QApplication::translate("MainWindow", "PDF Viewer", 0 QUUTF8));
+//    openAction->setText(QApplication::translate("MainWindow", "&Open...", 0 QUUTF8));
+//    openAction->setShortcut(QApplication::translate("MainWindow", "Ctrl+O", 0 QUUTF8));
+//    exitAction->setText(QApplication::translate("MainWindow", "E&xit", 0 QUUTF8));
+//    exitAction->setShortcut(QApplication::translate("MainWindow", "Ctrl+Q", 0 QUUTF8));
+//    increaseScaleAction->setText(QApplication::translate("MainWindow", "&Increase Scale", 0 QUUTF8));
+//    increaseScaleAction->setShortcut(QApplication::translate("MainWindow", "Ctrl++", 0 QUUTF8));
+//    decreaseScaleAction->setText(QApplication::translate("MainWindow", "&Decrease Scale", 0 QUUTF8));
+//    decreaseScaleAction->setShortcut(QApplication::translate("MainWindow", "Ctrl+-", 0 QUUTF8));
+//    documentControlsAction->setText(QApplication::translate("MainWindow", "&Document Controls", 0 QUUTF8));
+//    selectedTextAction->setText(QApplication::translate("MainWindow", "&Selected Text", 0 QUUTF8));
+//    menu_File->setTitle(QApplication::translate("MainWindow", "&File", 0 QUUTF8));
+//    menu_Windows->setTitle(QApplication::translate("MainWindow", "&Windows", 0 QUUTF8));
+//    controlsDockWidget->setWindowTitle(QApplication::translate("MainWindow", "Document Controls", 0 QUUTF8));
+    page_label_->setText(QApplication::translate("CLG_DB_Anteview", "Page:", 0 QUUTF8));
+    search_label_->setText(QApplication::translate("MainWindow", "Search Text:", 0 QUUTF8));
+    find_button_->setText(QApplication::translate("MainWindow", "Find", 0 QUUTF8));
+//?    clear_button_->setText(QApplication::translate("MainWindow", "Clear", 0 QUUTF8));
+    scale_label_->setText(QApplication::translate("MainWindow", "Scale PDF Document:", 0 QUUTF8));
+    scale_combo_box_->clear();
+    scale_combo_box_->insertItems(0, QStringList()
+     << QApplication::translate("MainWindow", "25%", 0 QUUTF8)
+     << QApplication::translate("MainWindow", "50%", 0 QUUTF8)
+     << QApplication::translate("MainWindow", "75%", 0 QUUTF8)
+     << QApplication::translate("MainWindow", "100%", 0 QUUTF8)
+     << QApplication::translate("MainWindow", "125%", 0 QUUTF8)
+     << QApplication::translate("MainWindow", "150%", 0 QUUTF8)
+     << QApplication::translate("MainWindow", "200%", 0 QUUTF8)
+     << QApplication::translate("MainWindow", "300%", 0 QUUTF8)
+     << QApplication::translate("MainWindow", "400%", 0 QUUTF8)
+    );
+    scale_combo_box_->setCurrentIndex(3);
+
+     //selectionDockWidget->setWindowTitle(QApplication::translate("MainWindow", "Selected Text", 0 QUUTF8));
+} // retranslateUi
+
+
+
+
+
+
+DHAX_PDF_View_Dialog::~DHAX_PDF_View_Dialog()
+{
+// delete button_ok_;
+// delete button_proceed_;
+// delete button_cancel_;
+
+ delete button_close_;
+
+// delete url_label_;
+// delete name_qle_;
+}
+
+
+
+void DHAX_PDF_View_Dialog::cancel()
+{
+ //?Q_EMIT(canceled(this));Q_EMIT(rejected());
+ close();
+// close();
+}
+
+void DHAX_PDF_View_Dialog::accept()
+{
+ //?Q_EMIT(accepted(this));
+// close();
+}

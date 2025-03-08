@@ -514,12 +514,24 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
 
  search_words_reset_button_ = new QPushButton("reset");
- search_words_reset_button_->setMaximumWidth(50);
+ make_nav_button(search_words_reset_button_, 0x2386, 11, 28); //0x2940
+ search_words_reset_button_->setToolTip("Reset");
+
+ search_words_take_visible_first_button_ = new QPushButton("reset");
+ make_nav_button(search_words_take_visible_first_button_, 0x293D, 11, 28);
+ search_words_take_visible_first_button_->setToolTip("Use first word only");
+
 
  connect(search_words_reset_button_, &QPushButton::clicked, [this]()
  {
   search_words_reset();
  });
+
+ connect(search_words_take_visible_first_button_, &QPushButton::clicked, [this]()
+ {
+  search_words_take_visible_first();
+ });
+
 
 
  connect(search_words_slurp_button_, &QPushButton::clicked, [this]()
@@ -579,6 +591,8 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
  search_words_layout_ = new QHBoxLayout;
  search_words_layout_->addWidget(search_words_reset_button_);
+ search_words_layout_->addSpacing(14);
+ search_words_layout_->addWidget(search_words_take_visible_first_button_);
  search_words_layout_->addSpacing(14);
  search_words_layout_->addWidget(search_words_dec_high_button_);
  search_words_layout_->addWidget(search_words_inc_high_button_);
@@ -1712,6 +1726,11 @@ QString Index_Entry_Review_Dialog::match_code_display(const QVector<QPair<Page_R
 
 void Index_Entry_Review_Dialog::check_nav_buttons()
 {
+ if(max_entry_id_ > 1)
+   search_words_take_visible_first_button_->setEnabled(true);
+ else
+   search_words_take_visible_first_button_->setEnabled(false);
+
  if(current_entry_id_ < 2)
    entry_backward_button_->setEnabled(false);
  else
@@ -1845,6 +1864,23 @@ void Index_Entry_Review_Dialog::reset_search_word_list(QStringList words)
 
  reset_search_word_list();
 }
+
+void Index_Entry_Review_Dialog::search_words_take_visible_first()
+{
+ if(flip_count_)
+ {
+  current_search_word_list_low_ = flip_count_;
+  current_search_word_list_high_ = flip_count_;
+
+  flip_count_ = 0;
+
+  reset_search_word_list();
+  check_nav_buttons();
+ }
+ else
+   search_words_reset();
+}
+
 
 
 void Index_Entry_Review_Dialog::search_words_reset()
