@@ -292,7 +292,7 @@ connect(refocus_entry_dialog_button_, &QPushButton::clicked, [this]()
  }
  else
  {
-  pdf_document_widget_->set_primary_highlight_color(QColor(237, 189, 31));
+  pdf_document_widget_->set_primary_highlight_color(QColor(237, 189, 31, 31));
   pdf_document_widget_->set_secondary_highlight_color(QColor(168, 50, 164, 31));
  }
 
@@ -597,7 +597,7 @@ void DHAX_PDF_View_Dialog::clear_all_highlights()
 
 void DHAX_PDF_View_Dialog::search_update(QPair<u2, s2> index_entry_key,
   int index_entry_id, QString text, int count_in_index,
-  int page_hint, QStringList* paragraph_codes, QString* context)
+  int page_hint, QStringList* page_paragraph_codes, QString* context)
 {
  held_index_entry_key_ = index_entry_key;
 
@@ -606,7 +606,14 @@ void DHAX_PDF_View_Dialog::search_update(QPair<u2, s2> index_entry_key,
  QVector<int> pages;
 
  // //?
- pdf_document_widget_->search_update(text, matches, cached_highlights_, paragraph_codes, context); //, context);
+ if(page_paragraph_codes)
+ {
+  QMap<int, QStringList> paragraph_codes;
+  pdf_document_widget_->search_update(text, matches, cached_highlights_, &paragraph_codes, context); //, context);
+ }
+ else
+   pdf_document_widget_->search_update(text, matches, cached_highlights_, nullptr, context); //, context);
+
  if(matches.isEmpty())
    return;
 
@@ -637,6 +644,9 @@ void DHAX_PDF_View_Dialog::search_update(QPair<u2, s2> index_entry_key,
 
  if(context)
    *context = matches[page_number].context;
+
+ if(page_paragraph_codes)
+   *page_paragraph_codes = matches[page_number].paragraph_codes;
 
  highlight_match(index_entry_id, text, page_number + 1, matches[page_number]);
 
@@ -709,7 +719,7 @@ void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text,
 
  reset_pages_combo_box(&pages_combo);
  cached_highlights_[{cp, text}] = visible_highlights_[{cp, text}] = {results.toVector(),
-   context, paragraph_codes, rank};
+   context, *paragraph_codes, rank};
 
  //qDebug() << "context = " << context;
 }

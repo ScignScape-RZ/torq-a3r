@@ -1398,7 +1398,11 @@ void PDF_Document_Widget::prepare_match_context(QString text,
     break;
 
   if(paragraph_codes)
-    paragraph_codes->push_back(find_paragraph_code(start_pos));
+  {
+   QString fpc = find_paragraph_code(start_pos);
+   if(paragraph_codes->isEmpty() || paragraph_codes->last() != fpc)
+     paragraph_codes->push_back(fpc);
+  }
 
   if(++count > 1)
     qts << "\n\n+++\n\n";
@@ -1435,7 +1439,7 @@ void PDF_Document_Widget::prepare_match_context(QString text,
 }
 
 void PDF_Document_Widget::search_update(QString text, QMap<int, Highlight_Info>& page_matches,
-  QMap<Highlight_Key, Highlight_Info>& cached_matches, QStringList* paragraph_codes, QString* context)
+  QMap<Highlight_Key, Highlight_Info>& cached_matches, QMap<int, QStringList>* paragraph_codes, QString* context)
 {
  for(int i = 0; i < number_of_pages(); ++i)
  {
@@ -1453,8 +1457,21 @@ void PDF_Document_Widget::search_update(QString text, QMap<int, Highlight_Info>&
     continue;
 
   Highlight_Info hi = {results.toVector()};
-  prepare_match_context(text, p, i, paragraph_codes, hi.context);
-  cached_matches[{i, text}] = hi;
+
+  if(paragraph_codes)
+  {
+   QStringList page_paragraph_codes;
+   prepare_match_context(text, p, i, &page_paragraph_codes, hi.context);
+   hi.paragraph_codes = page_paragraph_codes;
+   cached_matches[{i, text}] = hi;
+   paragraph_codes->insert(i, page_paragraph_codes);
+  }
+  else
+  {
+   prepare_match_context(text, p, i, nullptr, hi.context);
+   cached_matches[{i, text}] = hi;
+  }
+
 
   if(context)
     *context = hi.context;

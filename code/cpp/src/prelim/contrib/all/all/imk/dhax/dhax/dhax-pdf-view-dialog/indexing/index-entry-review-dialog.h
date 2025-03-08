@@ -320,6 +320,8 @@ class Index_Entry_Review_Dialog : public QMainWindow
  QPushButton* search_words_slurp_button_;
  QPushButton* search_words_reset_button_;
 
+ QPushButton* redo_both_matches_button_;
+
  QPushButton* redo_earlier_match_button_;
  QPushButton* redo_later_match_button_;
  QPushButton* clean_later_match_button_;
@@ -387,6 +389,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  void reset_file_entries_text();
 
+ void redo_both_matches();
  void redo_earlier_match();
  void redo_later_match();
 

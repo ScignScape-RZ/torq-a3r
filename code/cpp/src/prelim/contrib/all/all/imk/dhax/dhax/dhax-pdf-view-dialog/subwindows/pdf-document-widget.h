@@ -156,7 +156,7 @@ public:
     struct Highlight_Info {
       QVector<QRectF> boundaries;
       QString context;
-      QStringList* paragraph_codes;
+      QStringList paragraph_codes;
       int rank_in_page;
     };
 
@@ -207,7 +207,7 @@ public:
 
     void search_update(QString text, QMap<int, Highlight_Info>& page_matches,
       QMap<Highlight_Key, Highlight_Info>& cached_matches,
-      QStringList* paragraph_codes, QString* context);
+      QMap<int, QStringList>* paragraph_codes, QString* context);
 
 
     //QMap<PDF_Document_Widget::Highlight_Key, PDF_Document_Widget::Highlight_Info>

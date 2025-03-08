@@ -186,7 +186,7 @@ public:
  void clear_all_highlights();
 
  void search_update(QPair<u2, s2> index_entry_key, int index_entry_id, QString text, int count_in_index,
-   int page_hint, QStringList* paragraph_codes, QString* context = nullptr);
+   int page_hint, QStringList* page_paragraph_codes = nullptr, QString* context = nullptr);
 
 
  //int get_vertical_scroll();
