@@ -146,7 +146,10 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
   text = text.simplified().replace(" ", "-");
   if(text.size() > max)
     text = text.mid(0, max);
-  html_file_name_line_edit_->setText(text + ".htm");
+
+  text += "_%1.htm"_qt.arg(current_entry_id_);
+
+  html_file_name_line_edit_->setText(text);
  });
 
 

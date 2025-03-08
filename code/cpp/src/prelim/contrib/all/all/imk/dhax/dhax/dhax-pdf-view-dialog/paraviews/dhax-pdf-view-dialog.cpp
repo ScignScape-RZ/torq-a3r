@@ -682,6 +682,7 @@ void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text,
   QStringList* paragraph_codes, QString& context)
 {
  search_line_edit_->setText(text);
+ search_line_edit_->setCursorPosition(0);
 
  int cp = pdf_document_widget_->get_current_page();
 
