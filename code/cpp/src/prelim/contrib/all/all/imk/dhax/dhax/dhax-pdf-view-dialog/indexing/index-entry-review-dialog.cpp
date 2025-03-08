@@ -469,12 +469,12 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
  search_words_inc_high_button_ = new QPushButton("+");
  make_nav_button(search_words_inc_high_button_, 0x2942, 14);
- search_words_dec_low_button_->setToolTip("Add entry word to search");
+ search_words_inc_high_button_->setToolTip("Add entry word to search");
 
 
  search_words_dec_high_button_ = new QPushButton("-");
  make_nav_button(search_words_dec_high_button_, 0x2943, 14);
- search_words_dec_low_button_->setToolTip("Remove last word");
+ search_words_dec_high_button_->setToolTip("Remove last word");
 
 
  redo_earlier_match_button_ = new QPushButton("~>");
@@ -865,6 +865,8 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
  always_generate_html_button_ = new QPushButton("auto html", this);
  always_generate_html_button_->setCheckable(true);
+
+ always_generate_html_button_->setToolTip("Always generate html on match confirm");
 
  connect(always_generate_html_button_, &QPushButton::toggled, [this](bool)
  {
@@ -1496,7 +1498,7 @@ void Index_Entry_Review_Dialog::confirm_match(QPair<u2, s2> pr,
   }
  }
 
- text += ".@" + paragraph_codes.join(";");
+ text += " @" + paragraph_codes.join(";");
 
  QListWidgetItem* item = new QListWidgetItem(text, confirms_list_widget_);
  item->setFlags(item->flags() | Qt::ItemIsEditable);
