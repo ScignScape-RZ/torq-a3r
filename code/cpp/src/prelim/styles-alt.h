@@ -1558,6 +1558,23 @@ inline QString entry_nav_button_style_sheet_green_()
  return entry_nav_button_style_sheet_().arg(13).arg("normal").arg("#116f63");
 }
 
+
+
+template<typename WIDGET_Type>
+inline void make_entry_nav_button(WIDGET_Type* w, int uni, int mw = 45)
+{
+// QString unicode = QString("%1").arg(QChar(5184));
+
+ make_unicode_text(w, uni);
+// QString unicode = QString(QChar(0x27F9));
+// w->setText(unicode);
+ w->setStyleSheet(entry_nav_button_style_sheet_green_());
+ w->setMaximumWidth(mw);
+ w->setMaximumHeight(15);
+}
+
+
+
 template<typename WIDGET_Type>
 inline void make_entry_forward_button(WIDGET_Type* w)
 {

@@ -363,6 +363,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  QPushButton* always_generate_html_button_;
  QPushButton* generate_html_button_;
+ QPushButton* generate_then_forward_button_;
 
  QString saved_phtml_;
  QString saved_shtml_;

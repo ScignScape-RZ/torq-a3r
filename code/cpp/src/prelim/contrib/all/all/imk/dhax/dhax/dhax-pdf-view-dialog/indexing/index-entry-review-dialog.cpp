@@ -914,12 +914,25 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
 
  generate_html_button_ = new QPushButton("html", this);
- generate_html_button_->setToolTip("Generate html on match confirm");
+ generate_html_button_->setToolTip("Generate html");
 
  connect(generate_html_button_, &QPushButton::clicked, [this]()
  {
   regenerate_html();
  });
+
+
+ generate_then_forward_button_ = new QPushButton("html->", this);
+ generate_then_forward_button_->setToolTip("Generate html, then entry forward");
+ make_entry_nav_button(generate_then_forward_button_, 0x21ac);  //21DB
+
+
+ connect(generate_then_forward_button_, &QPushButton::clicked, [this]()
+ {
+  regenerate_html();
+  entry_forward();
+ });
+
 
  always_generate_html_button_ = new QPushButton("auto", this);
  always_generate_html_button_->setCheckable(true);
@@ -938,12 +951,14 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  bottom_layout_->addStretch();
 
  bottom_layout_->addWidget(entry_double_backward_button_);
- bottom_layout_->addSpacing(20);
+ bottom_layout_->addSpacing(17);
  bottom_layout_->addWidget(entry_backward_button_);
  bottom_layout_->addWidget(entry_forward_button_);
  bottom_layout_->addStretch();
  bottom_layout_->addWidget(generate_html_button_);
- bottom_layout_->addSpacing(7);
+ bottom_layout_->addSpacing(2);
+ bottom_layout_->addWidget(generate_then_forward_button_);
+ bottom_layout_->addSpacing(20);
  bottom_layout_->addWidget(always_generate_html_button_);
  bottom_layout_->addStretch();
 
@@ -1180,7 +1195,7 @@ void Index_Entry_Review_Dialog::composite_upload()
 
  static QString pre_template = R"(
  <html><head><style>
-div {padding-top:11pt; font-size:14pt;}
+div {padding-top:11pt; font-size:18pt;}
  </style></head><body>)";
 
  static QString post_template = R"(
@@ -1511,7 +1526,7 @@ void Index_Entry_Review_Dialog::html_upload()
 
  static QString pre_template = R"(
  <html><head><style>
-div {padding-top:11pt; font-size:14pt;}
+div {padding-top:11pt; font-size:18pt;}
  </style></head>)";
 
 
@@ -1572,7 +1587,7 @@ void Index_Entry_Review_Dialog::update_html(QString key, QStringList page_number
  html_text_.clear();
 
  static QString index_entry_template = R"(
-   <html><body><span>%1</span>, %2</body></html>
+   <html><body><div class='index-entry'><span>%1</span>, %2</div></body></html>
                                        )";
 
  QString pages_text = page_numbers.join(", ");
