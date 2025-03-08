@@ -31,7 +31,9 @@ int main1(int argc, char *argv[])
 int main(int argc, char *argv[])
 {
  QString ifile = "/home/nlevisrael/Downloads/m2m/w_pdf/dindex.txt";
-// QString ofile = "/home/nlevisrael/Downloads/m2m/w_pdf/tindex.txt";
+ QString bfile = "/home/nlevisrael/Downloads/m2m/w_pdf/bookmarks.txt";
+
+ // QString ofile = "/home/nlevisrael/Downloads/m2m/w_pdf/tindex.txt";
 
  QString n1file = "/home/nlevisrael/Downloads/m2m/w_pdf/notes1.txt";
  QString n2file = "/home/nlevisrael/Downloads/m2m/w_pdf/notes2.txt";
@@ -49,7 +51,7 @@ int main(int argc, char *argv[])
 
  QApplication qapp(argc, argv);
 
- Index_Entry_Review_Dialog* ierd = new Index_Entry_Review_Dialog(ifile, ftp_folder);
+ Index_Entry_Review_Dialog* ierd = new Index_Entry_Review_Dialog(ifile, bfile, ftp_folder);
 
 
  DHAX_PDF_View_Dialog* pvd1 = new DHAX_PDF_View_Dialog(ierd, nullptr,

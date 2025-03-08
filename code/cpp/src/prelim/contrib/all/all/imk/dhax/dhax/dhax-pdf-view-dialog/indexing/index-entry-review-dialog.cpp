@@ -81,10 +81,12 @@
 
 //?#include "case-map-gis-service.h"
 
-Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file, QString ftp_folder)
+Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
+    QString bookmarks_file, QString ftp_folder)
   : current_entry_id_(0), max_entry_id_(0), current_index_entry_(nullptr),
     active_earlier_match_code_index_(0), max_earlier_match_code_index_(0),
-    earlier_match_file_(earlier_match_file), ftp_folder_(ftp_folder),
+    earlier_match_file_(earlier_match_file), bookmarks_file_(bookmarks_file),
+    ftp_folder_(ftp_folder),
     current_search_word_list_low_(0), available_search_word_list_count_(0),
     current_search_word_list_high_(0), flip_count_(0), slurp_count_(0),
     current_page_ref_pair_(Page_Ref_Pair::default_values()),
@@ -270,6 +272,10 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  connect(earlier_match_bookmarked_check_box_, &QCheckBox::toggled,
    [this](bool b)
  {
+  if(b)
+    check_bookmark();
+  else
+    remove_bookmark();
   entry_update_reset_Bookmarked(b);
  });
 
@@ -906,14 +912,23 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
  });
 
- always_generate_html_button_ = new QPushButton("auto html", this);
- always_generate_html_button_->setCheckable(true);
 
+ generate_html_button_ = new QPushButton("html", this);
+ generate_html_button_->setToolTip("Generate html on match confirm");
+
+ connect(generate_html_button_, &QPushButton::clicked, [this]()
+ {
+  regenerate_html();
+ });
+
+ always_generate_html_button_ = new QPushButton("auto", this);
+ always_generate_html_button_->setCheckable(true);
  always_generate_html_button_->setToolTip("Always generate html on match confirm");
 
- connect(always_generate_html_button_, &QPushButton::toggled, [this](bool)
+ connect(always_generate_html_button_, &QPushButton::toggled, [this](bool b)
  {
-  check_generate_html();
+  if(b)
+    check_generate_html();
  });
 
 
@@ -927,6 +942,8 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  bottom_layout_->addWidget(entry_backward_button_);
  bottom_layout_->addWidget(entry_forward_button_);
  bottom_layout_->addStretch();
+ bottom_layout_->addWidget(generate_html_button_);
+ bottom_layout_->addSpacing(7);
  bottom_layout_->addWidget(always_generate_html_button_);
  bottom_layout_->addStretch();
 
@@ -948,6 +965,8 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  //?setStyleSheet(basic_button_style_sheet_());
 
  setWindowTitle("Index Entry Dialog");
+
+ load_bookmarks_file();
 
  load_earlier_matches();
 
@@ -1041,6 +1060,61 @@ QFrame* Index_Entry_Review_Dialog::make_frame_as_line()
  return result;
 }
 
+void Index_Entry_Review_Dialog::load_bookmarks_file()
+{
+ QString text = KA::TextIO::load_file(bookmarks_file_);
+ QStringList qsl = text.simplified().split(" ");
+ for(QString s : qsl)
+ {
+  QStringList qsl1 = s.split(";");
+  bookmarks_.push_back({qsl1.first().toInt(),
+    qsl1.last().toInt()});
+ }
+}
+
+void Index_Entry_Review_Dialog::save_bookmarks_file()
+{
+ QString content;
+ for(Entry_Update_Key k : bookmarks_)
+ {
+  content += "%1;%2 \n"_qt.arg(k.entry_id).arg(k.match_index);
+ }
+ KA::TextIO::save_file(bookmarks_file_, content);
+}
+
+void Index_Entry_Review_Dialog::check_for_bookmarks()
+{
+ if(bookmarks_.contains(current_entry_key_) && !entry_update_is_Bookmarked())
+ {
+  entry_update_note_Bookmarked();
+ }
+
+}
+
+
+void Index_Entry_Review_Dialog::check_bookmark()
+{
+ if(!bookmarks_.contains(current_entry_key_))
+ {
+  bookmarks_.push_back(current_entry_key_);
+  save_bookmarks_file();
+ }
+}
+
+
+void Index_Entry_Review_Dialog::remove_bookmark()
+{
+ int ix = bookmarks_.indexOf(current_entry_key_);
+
+ if(ix != -1)
+ {
+  bookmarks_.remove(ix);
+  save_bookmarks_file();
+ }
+
+}
+
+
 void Index_Entry_Review_Dialog::set_page_text_view_text_earlier(QString text)
 {
  page_text_view_text_edit_earlier_->setPlainText(text);
@@ -1106,7 +1180,7 @@ void Index_Entry_Review_Dialog::composite_upload()
 
  static QString pre_template = R"(
  <html><head><style>
-div {padding-top:11pt;}
+div {padding-top:11pt; font-size:14pt;}
  </style></head><body>)";
 
  static QString post_template = R"(
@@ -1435,6 +1509,14 @@ void Index_Entry_Review_Dialog::html_upload()
   text += ". " + s;
  }
 
+ static QString pre_template = R"(
+ <html><head><style>
+div {padding-top:11pt; font-size:14pt;}
+ </style></head>)";
+
+
+ text.replace("<html>", pre_template);
+
  if(text.isEmpty())
    return;
 
@@ -1645,6 +1727,7 @@ void Index_Entry_Review_Dialog::update_current_entry_map_index()
 {
  current_entry_key_.match_index = active_earlier_match_code_index_;
  check_update_entry_update_map();
+ check_for_bookmarks();
  reset_current_entry_check_boxes();
  reset_current_entry_update_text();
 }
@@ -2155,6 +2238,7 @@ void Index_Entry_Review_Dialog::load_entry(u2 id, const s2* const maybe_match_in
 
  reset_current_entry_key(ie, maybe_match_index);
  check_update_entry_update_map();
+ check_for_bookmarks();
  reset_current_entry_check_boxes();
  reset_current_entry_update_text();
 

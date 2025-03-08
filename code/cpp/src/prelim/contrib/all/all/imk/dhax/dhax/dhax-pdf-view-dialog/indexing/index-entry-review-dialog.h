@@ -72,7 +72,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
  DHAX_PDF_View_Dialog* earlier_pdf_dialog_;
  DHAX_PDF_View_Dialog* later_pdf_dialog_;
 
-
+ QString bookmarks_file_;
  QString earlier_match_file_;
  QString ftp_folder_;
 
@@ -218,6 +218,11 @@ class Index_Entry_Review_Dialog : public QMainWindow
   return lhs.to_pair() < rhs.to_pair();
  }
 
+ friend bool operator==(const Entry_Update_Key& lhs, const Entry_Update_Key& rhs)
+ {
+  return lhs.to_pair() == rhs.to_pair();
+ }
+
  struct Entry_Update_Value {
    Entry_Update_Status status;
    u2 index_as_new;
@@ -357,6 +362,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
  QMenu* create_confirms_list_widget_context_menu(QListWidgetItem* item);
 
  QPushButton* always_generate_html_button_;
+ QPushButton* generate_html_button_;
 
  QString saved_phtml_;
  QString saved_shtml_;
@@ -424,7 +430,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
 public:
 
- Index_Entry_Review_Dialog(QString earlier_match_file, QString ftp_folder);
+ Index_Entry_Review_Dialog(QString earlier_match_file, QString bookmarks_file, QString ftp_folder);
 
  void reclaim_focus();
 
@@ -435,7 +441,15 @@ public:
  void set_page_text_view_text_earlier(QString text);
  void set_page_text_view_text_later(QString text);
 
+ QVector<Entry_Update_Key> bookmarks_;
 
+ void check_for_bookmarks();
+
+ void check_bookmark();
+ void remove_bookmark();
+
+ void load_bookmarks_file();
+ void save_bookmarks_file();
 
 
  ACCESSORS(DHAX_PDF_View_Dialog* ,earlier_pdf_dialog)
