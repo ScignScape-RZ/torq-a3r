@@ -348,7 +348,9 @@ class Index_Entry_Review_Dialog : public QMainWindow
  QDockWidget* confirms_dock_widget_;
  QListWidget* confirms_list_widget_;
 
- QPlainTextEdit* page_text_view_text_edit_;
+ QTabWidget* page_text_view_tab_widget_;
+ QPlainTextEdit* page_text_view_text_edit_earlier_;
+ QPlainTextEdit* page_text_view_text_edit_later_;
  QDockWidget* page_text_view_dock_widget_;
 
 
@@ -430,7 +432,8 @@ public:
  void clear_most_recent_match(int page_number);
 
 
- void set_page_text_view_text(QString text);
+ void set_page_text_view_text_earlier(QString text);
+ void set_page_text_view_text_later(QString text);
 
 
 

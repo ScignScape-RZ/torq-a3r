@@ -597,11 +597,11 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  search_words_layout_->addWidget(search_words_dec_high_button_);
  search_words_layout_->addWidget(search_words_inc_high_button_);
  search_words_layout_->addSpacing(14);
- search_words_layout_->addWidget(search_words_flip_button_);
- search_words_layout_->addWidget(search_words_slurp_button_);
- search_words_layout_->addSpacing(14);
  search_words_layout_->addWidget(search_words_dec_low_button_);
  search_words_layout_->addWidget(search_words_inc_low_button_);
+ search_words_layout_->addSpacing(14);
+ search_words_layout_->addWidget(search_words_flip_button_);
+ search_words_layout_->addWidget(search_words_slurp_button_);
  search_words_layout_->addStretch();
 
 
@@ -696,23 +696,38 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
  addDockWidget(Qt::BottomDockWidgetArea, html_preview_dock_widget_);
 
-
- page_text_view_text_edit_ = new QPlainTextEdit(this);
+ page_text_view_tab_widget_ = new QTabWidget(this);
+ page_text_view_text_edit_earlier_ = new QPlainTextEdit(this);
+ page_text_view_text_edit_later_ = new QPlainTextEdit(this);
+ page_text_view_tab_widget_->addTab(page_text_view_text_edit_earlier_, "Earlier");
+ page_text_view_tab_widget_->addTab(page_text_view_text_edit_later_, "Later");
  page_text_view_dock_widget_ = new QDockWidget(this);
 
  page_text_view_dock_widget_->setMaximumWidth(width() / 4);
+ page_text_view_dock_widget_->setMaximumHeight(80);
 
- page_text_view_dock_widget_->setWidget(page_text_view_text_edit_);
+ page_text_view_dock_widget_->setWidget(page_text_view_tab_widget_);
  page_text_view_dock_widget_->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
  addDockWidget(Qt::TopDockWidgetArea, page_text_view_dock_widget_);
 
  connect(page_text_view_dock_widget_, &QDockWidget::topLevelChanged,
     [this](bool b)
  {
-  page_text_view_dock_widget_->setMaximumWidth(QDesktopWidget().availableGeometry().width());
-  page_text_view_dock_widget_->resize(300, 400);
+  if(b)
+  {
+   page_text_view_dock_widget_->setMaximumWidth(QDesktopWidget().availableGeometry().width());
+   page_text_view_dock_widget_->setMaximumHeight(QDesktopWidget().availableGeometry().height());
+   page_text_view_dock_widget_->resize(300, 400);
 
-  html_preview_dock_widget_->setMaximumWidth(width());
+   html_preview_dock_widget_->setMaximumWidth(width());
+  }
+  else
+  {
+   page_text_view_dock_widget_->setMaximumWidth(width() / 4);
+   page_text_view_dock_widget_->setMaximumHeight(80);
+   page_text_view_dock_widget_->resize(width() / 4, 80);
+
+  }
 
  });
 
@@ -1026,11 +1041,15 @@ QFrame* Index_Entry_Review_Dialog::make_frame_as_line()
  return result;
 }
 
-void Index_Entry_Review_Dialog::set_page_text_view_text(QString text)
+void Index_Entry_Review_Dialog::set_page_text_view_text_earlier(QString text)
 {
- page_text_view_text_edit_->setPlainText(text);
+ page_text_view_text_edit_earlier_->setPlainText(text);
 }
 
+void Index_Entry_Review_Dialog::set_page_text_view_text_later(QString text)
+{
+ page_text_view_text_edit_later_->setPlainText(text);
+}
 
 QString escape_context(QString context, QColor color)
 {

@@ -467,7 +467,10 @@ connect(refocus_entry_dialog_button_, &QPushButton::clicked, [this]()
 
  append_to_file(notes_file, "\n///////////\n", text);
 
- entry_dialog_->set_page_text_view_text(text);
+ if(earlier_document_ref_)
+   entry_dialog_->set_page_text_view_text_later(text);
+ else
+   entry_dialog_->set_page_text_view_text_earlier(text);
 
  QList<Poppler::Annotation*> popas = popg->annotations();
 
@@ -718,8 +721,13 @@ void DHAX_PDF_View_Dialog::highlight_match(int index_entry_id, QString text,
  }
 
  reset_pages_combo_box(&pages_combo);
- cached_highlights_[{cp, text}] = visible_highlights_[{cp, text}] = {results.toVector(),
-   context, *paragraph_codes, rank};
+
+ if(paragraph_codes)
+   cached_highlights_[{cp, text}] = visible_highlights_[{cp, text}] = {results.toVector(),
+     context, *paragraph_codes, rank};
+ else
+   cached_highlights_[{cp, text}] = visible_highlights_[{cp, text}] = {results.toVector(),
+     context, {}, rank};
 
  //qDebug() << "context = " << context;
 }
