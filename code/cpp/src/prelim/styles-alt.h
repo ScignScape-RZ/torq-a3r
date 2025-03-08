@@ -24,6 +24,7 @@ inline void add_style_sheet(WIDGET_Type* w, QString ss)
  w->setStyleSheet(w->styleSheet() + ss);
 }
 
+
 inline QString back_forward_button_style_sheet_()
 {
  return R"(
@@ -124,6 +125,7 @@ inline QString color_label_style_sheet_orange_()
  return color_label_style_sheet_().arg(8).arg("normal").arg("#B52B1A");
 }
 
+
 inline QString light_back_forward_button_style_sheet_()
 {
  return R"(
@@ -131,6 +133,8 @@ inline QString light_back_forward_button_style_sheet_()
    font-weight: %2;
    color: %3;})";
 }
+
+
 
 inline QString light_back_forward_button_style_sheet_blue_()
 {
@@ -168,10 +172,13 @@ inline QString light_back_forward_button_style_sheet_light_blue_larger_(u1 font_
 }
 
 
+
 inline QString light_back_forward_button_style_sheet_green_()
 {
  return light_back_forward_button_style_sheet_().arg(13).arg("normal").arg("#116f63");
 }
+
+
 
 template<typename WIDGET1_Type, typename WIDGET2_Type>
 inline void share_tooltip(WIDGET1_Type* w1, WIDGET2_Type* w2)
@@ -1463,6 +1470,225 @@ inline  QString toggle_button_style_sheet_()
 
 }
 
+
+
+
+
+inline QString index_entry_nav_button_style_sheet_()
+{
+ return R"(
+   QPushButton{font-size: 14pt;
+   font-weight: bold;
+   color: brown;}
+
+  QPushButton:disabled {background:rgb(150,140,190);}
+
+        QPushButton:hover {background-color:rgba(150,240,190,120);
+          border: 3px ridge rgb(150,240,190); border-right: 3px groove rgb(150,240,190);
+          border-top:none; border-bottom:none;
+         }
+
+  )";
+}
+
+//QPushButton:hover {background:rgb(50,240,190);
+//  border: 4px groove rgb(50,240,190);}
+
+
+template<typename WIDGET_Type>
+inline void make_index_entry_ref_forward_button(WIDGET_Type* w)
+{
+ make_unicode_text(w, 0xF09FA0BA);
+// QString unicode = QString(QChar(0x21E2));
+// w->setText(unicode);
+ w->setStyleSheet(index_entry_nav_button_style_sheet_());
+ w->setMaximumWidth(19);
+ w->setMaximumHeight(15);
+}
+
+template<typename WIDGET_Type>
+inline void make_index_entry_ref_backward_button(WIDGET_Type* w)
+{
+ make_unicode_text(w, 0xF09FA0B8);
+// QString unicode = QString(QChar(0x21E0));
+// w->setText(unicode);
+ w->setStyleSheet(index_entry_nav_button_style_sheet_());
+ w->setMaximumWidth(19);
+ w->setMaximumHeight(15);
+}
+
+
+template<typename WIDGET_Type>
+inline void make_index_entry_ref_double_backward_button(WIDGET_Type* w)
+{
+ make_unicode_text(w, 0x293a);
+// QString unicode = QString(QChar(0x21E0));
+// w->setText(unicode);
+ w->setStyleSheet(index_entry_nav_button_style_sheet_());
+ w->setMaximumWidth(19);
+ w->setMaximumHeight(15);
+}
+
+
+// //150,40,190
+
+inline QString entry_nav_button_style_sheet_()
+{
+ return R"(
+   QPushButton{font-size: %1pt;
+   font-weight: %2;
+   color: %3;
+        }
+
+        QPushButton:hover {background-color:rgba(150,20,79,120);
+          border: 3px ridge rgb(150,240,19); border-right: 3px groove rgb(150,240,19);
+          border-top:none; border-bottom:none;
+         }
+
+  QPushButton:disabled {background:rgb(150,140,190);}
+   )";
+}
+
+
+
+
+
+inline QString entry_nav_button_style_sheet_green_()
+{
+ return entry_nav_button_style_sheet_().arg(13).arg("normal").arg("#116f63");
+}
+
+template<typename WIDGET_Type>
+inline void make_entry_forward_button(WIDGET_Type* w)
+{
+// QString unicode = QString("%1").arg(QChar(5184));
+
+ make_unicode_text(w, 0x21E2);
+// QString unicode = QString(QChar(0x27F9));
+// w->setText(unicode);
+ w->setStyleSheet(entry_nav_button_style_sheet_green_());
+ w->setMaximumWidth(45);
+ w->setMaximumHeight(15);
+}
+
+
+template<typename WIDGET_Type>
+inline void make_entry_backward_button(WIDGET_Type* w)
+{
+// QString unicode = QString("%1").arg(QChar(5184));
+
+ make_unicode_text(w, 0x21E0);
+// QString unicode = QString(QChar(0x27F9));
+// w->setText(unicode);
+ w->setStyleSheet(entry_nav_button_style_sheet_green_());
+ w->setMaximumWidth(45);
+ w->setMaximumHeight(15);
+}
+
+
+template<typename WIDGET_Type>
+inline void make_entry_double_backward_button(WIDGET_Type* w)
+{
+// QString unicode = QString("%1").arg(QChar(5184));
+
+ make_unicode_text(w, 0x23ea);
+// QString unicode = QString(QChar(0x27F9));
+// w->setText(unicode);
+ w->setStyleSheet(entry_nav_button_style_sheet_green_());
+ w->setMaximumWidth(55);
+ w->setMaximumHeight(15);
+}
+
+
+
+
+//115,20,19,170
+
+inline QString nav_button_style_sheet_()
+{
+ return R"(
+   QPushButton{font-size: %1pt;
+   font-weight: %2;
+   color: %3;
+        }
+
+        QPushButton:hover {background-color:rgba(115,20,19,170);
+          border: 3px ridge rgb(50,240,219); border-right: 3px groove rgb(50,240,219);
+          border-top:none; border-bottom:none;
+         }
+
+  QPushButton:disabled {background:rgb(150,140,190);}
+   )";
+}
+
+
+inline QString nav_button_style_sheet_orange_(int i)
+{
+ return nav_button_style_sheet_().arg(i).arg("normal").arg("#de4b07");
+}
+
+inline QString nav_button_style_sheet_orange_15()
+{
+ return nav_button_style_sheet_().arg(15).arg("normal").arg("#de4b07");
+}
+
+
+
+template<typename WIDGET_Type>
+inline void make_nav_button(WIDGET_Type* w, int uni, int size)
+{
+ make_unicode_text(w, uni);
+ w->setStyleSheet(nav_button_style_sheet_orange_(size));
+ w->setMaximumWidth(45);
+ w->setMaximumHeight(25);
+}
+
+
+
+template<typename WIDGET_Type>
+inline void make_slurp_button(WIDGET_Type* w)
+{
+// QString unicode = QString("%1").arg(QChar(5184));
+
+ make_unicode_text(w, 0x2386);
+// QString unicode = QString(QChar(0x27F9));
+// w->setText(unicode);
+ w->setStyleSheet(nav_button_style_sheet_orange_15());
+ w->setMaximumWidth(45);
+ w->setMaximumHeight(15);
+}
+
+
+template<typename WIDGET_Type>
+inline void make_flip_button(WIDGET_Type* w)
+{
+// QString unicode = QString("%1").arg(QChar(5184));
+
+ make_unicode_text(w, 0x293a);
+// QString unicode = QString(QChar(0x27F9));
+// w->setText(unicode);
+ w->setStyleSheet(nav_button_style_sheet_orange_15());
+ w->setMaximumWidth(45);
+ w->setMaximumHeight(15);
+}
+
+
+
+
+
+
+//template<typename WIDGET_Type>
+//inline void make_entry_double_backward_button(WIDGET_Type* w)
+//{
+//// QString unicode = QString("%1").arg(QChar(5184));
+
+// make_unicode_text(w, 0x21DA);
+//// QString unicode = QString(QChar(0x27F9));
+//// w->setText(unicode);
+// w->setStyleSheet(entry_nav_button_style_sheet_green_());
+// w->setMaximumWidth(25);
+// w->setMaximumHeight(15);
+//}
 
 
 #endif

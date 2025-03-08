@@ -29,6 +29,7 @@
 #include <QGroupBox>
 #include <QListWidget>
 
+#include <QDesktopWidget>
 #include <QLabel>
 
 #include <QPlainTextEdit>
@@ -317,13 +318,16 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  active_earlier_match_code_highlight_layout_ = new QHBoxLayout;
 
  active_earlier_match_code_forward_button_ = new QPushButton("=>");
- make_light_forward_button(active_earlier_match_code_forward_button_);
+ make_index_entry_ref_forward_button(active_earlier_match_code_forward_button_);
 
  active_earlier_match_code_backward_button_ = new QPushButton("<=");
- make_light_back_button(active_earlier_match_code_backward_button_);
+ make_index_entry_ref_backward_button(active_earlier_match_code_backward_button_);
+
 
  active_earlier_match_code_back_to_start_button_ = new QPushButton("<<=");
- make_back_button(active_earlier_match_code_back_to_start_button_);
+ make_index_entry_ref_double_backward_button(active_earlier_match_code_back_to_start_button_);
+
+ //make_back_button(active_earlier_match_code_back_to_start_button_);
 
 
  active_earlier_match_code_forward_button_->setMaximumWidth(37);
@@ -464,22 +468,45 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  current_matches_grid_layout_ = new QGridLayout;
 
  search_words_inc_high_button_ = new QPushButton("+");
+ make_nav_button(search_words_inc_high_button_, 0x2942, 14);
+ search_words_dec_low_button_->setToolTip("Add entry word to search");
+
+
  search_words_dec_high_button_ = new QPushButton("-");
+ make_nav_button(search_words_dec_high_button_, 0x2943, 14);
+ search_words_dec_low_button_->setToolTip("Remove last word");
+
 
  redo_earlier_match_button_ = new QPushButton("~>");
- redo_earlier_match_button_->setMaximumWidth(20);
+ make_nav_button(redo_earlier_match_button_, 0x2AF8, 14);  //21DB
+ redo_earlier_match_button_->setToolTip("Search in earlier document");
+//? redo_earlier_match_button_->setMaximumWidth(20);
 
  redo_later_match_button_ = new QPushButton("<~");
- redo_later_match_button_->setMaximumWidth(20);
+ make_nav_button(redo_later_match_button_, 0x2AF7, 14);
+ redo_later_match_button_->setToolTip("Search in later document");
+// redo_later_match_button_->setMaximumWidth(20);
 
  clean_later_match_button_ = new QPushButton("clean");
 
 
  search_words_inc_low_button_ = new QPushButton(".+");
+ make_nav_button(search_words_inc_low_button_, 0x2945, 14);
+ search_words_inc_low_button_->setToolTip("Skip first visible word");
+
  search_words_dec_low_button_ = new QPushButton(".-");
+ make_nav_button(search_words_dec_low_button_, 0x2946, 14);
+ search_words_dec_low_button_->setToolTip("Unskip first visible word");
+
 
  search_words_flip_button_ = new QPushButton("<->");
  search_words_slurp_button_ = new QPushButton("<@>");
+ make_slurp_button(search_words_slurp_button_);
+ make_flip_button(search_words_flip_button_);
+
+ search_words_flip_button_->setToolTip("Flip first and last words");
+ search_words_slurp_button_->setToolTip("Merge all words into search");
+
 
  search_words_reset_button_ = new QPushButton("reset");
  search_words_reset_button_->setMaximumWidth(50);
@@ -589,6 +616,8 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  html_details_layout_ = new QHBoxLayout;
 
  html_upload_button_ = new QPushButton("Upload");
+ make_nav_button(html_upload_button_, 0x21EE, 14);  //21DB
+ html_upload_button_->setToolTip("Upload");
 
  html_upload_button_->setMaximumWidth(50);
 
@@ -652,8 +681,8 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  connect(page_text_view_dock_widget_, &QDockWidget::topLevelChanged,
     [this](bool b)
  {
-  page_text_view_dock_widget_->setMaximumWidth(300);
-  page_text_view_dock_widget_->resize(300, 300);
+  page_text_view_dock_widget_->setMaximumWidth(QDesktopWidget().availableGeometry().width());
+  page_text_view_dock_widget_->resize(300, 400);
 
   html_preview_dock_widget_->setMaximumWidth(width());
 
@@ -667,6 +696,30 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  confirms_dock_widget_->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
 
  confirms_list_widget_->setMaximumWidth(width() / 3);
+
+ connect(confirms_dock_widget_, &QDockWidget::topLevelChanged,
+    [this](bool b)
+ {
+  if(b)
+  {
+   confirms_dock_widget_->setMaximumWidth(QDesktopWidget().availableGeometry().width());
+   confirms_list_widget_->setMaximumWidth(QDesktopWidget().availableGeometry().width());
+   html_preview_dock_widget_->setMaximumWidth(QDesktopWidget().availableGeometry().width());
+  }
+  else
+  {
+   confirms_dock_widget_->setMaximumWidth(width() / 3);
+   confirms_list_widget_->setMaximumWidth(width() / 3);
+   html_preview_dock_widget_->setMaximumWidth(2 * width() / 3);
+  }
+
+
+  //  confirms_dock_widget_->resize(300, 300);
+
+//  html_preview_dock_widget_->setMaximumWidth(width());
+
+ });
+
 
  confirms_list_widget_->setContextMenuPolicy(Qt::CustomContextMenu);
  connect(confirms_list_widget_, &QListWidget::customContextMenuRequested,
@@ -746,12 +799,27 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  main_layout_->addLayout(entry_layout_);
 
  composite_upload_button_ = new QPushButton("composite", this);
+ make_nav_button(composite_upload_button_, 0x23C3, 16);  //21DB
+ composite_upload_button_->setToolTip("Composite upload");
 
  entry_forward_button_  = new QPushButton("->>", this);
  entry_backward_button_  = new QPushButton("<<-", this);
+ entry_double_backward_button_ = new QPushButton("<<--", this);
+ make_entry_backward_button(entry_backward_button_);
+ make_entry_forward_button(entry_forward_button_);
+ make_entry_double_backward_button(entry_double_backward_button_);
 
- entry_forward_button_->setMaximumWidth(60);
- entry_backward_button_->setMaximumWidth(60);
+ entry_forward_button_->setToolTip("Next index entry");
+ entry_backward_button_->setToolTip("Previous index entry");
+ entry_backward_button_->setToolTip("First index entry");
+
+// entry_backward_button_->setEnabled(false);
+// entry_double_backward_button_->setEnabled(false);
+
+// entry_backward_button_->setMaximumWidth(60);
+
+// entry_forward_button_->setMaximumWidth(60);
+// entry_backward_button_->setMaximumWidth(60);
 
  connect(composite_upload_button_, &QPushButton::clicked, [this]()
  {
@@ -761,6 +829,11 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  connect(entry_forward_button_, &QPushButton::clicked, [this]()
  {
   entry_forward();
+ });
+
+ connect(entry_double_backward_button_, &QPushButton::clicked, [this]()
+ {
+  entry_back_to_start();
  });
 
  connect(entry_backward_button_, &QPushButton::clicked, [this]()
@@ -804,6 +877,8 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  bottom_layout_->addWidget(composite_upload_button_);
  bottom_layout_->addStretch();
 
+ bottom_layout_->addWidget(entry_double_backward_button_);
+ bottom_layout_->addSpacing(20);
  bottom_layout_->addWidget(entry_backward_button_);
  bottom_layout_->addWidget(entry_forward_button_);
  bottom_layout_->addStretch();
@@ -1450,6 +1525,18 @@ void Index_Entry_Review_Dialog::reset_file_entries_text()
      .arg(entry_index_range_.first).arg(entry_index_range_.second));
 }
 
+
+void Index_Entry_Review_Dialog::entry_back_to_start()
+{
+ if(current_entry_id_ != 1)
+ {
+  load_entry(1);
+  entry_index_range_.second = current_entry_id_;
+  reset_file_entries_text();
+ }
+}
+
+
 void Index_Entry_Review_Dialog::entry_forward()
 {
  if(current_entry_id_ < max_entry_id_)
@@ -1599,6 +1686,12 @@ void Index_Entry_Review_Dialog::check_nav_buttons()
    entry_backward_button_->setEnabled(false);
  else
    entry_backward_button_->setEnabled(true);
+
+ if(current_entry_id_ < 3)
+   entry_double_backward_button_->setEnabled(false);
+ else
+   entry_double_backward_button_->setEnabled(true);
+
 
  if(current_entry_id_ < max_entry_id_)
    entry_forward_button_->setEnabled(true);

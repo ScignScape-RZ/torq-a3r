@@ -100,6 +100,8 @@ class Index_Entry_Review_Dialog : public QMainWindow
  QPushButton* entry_forward_button_;
  QPushButton* entry_backward_button_;
 
+ QPushButton* entry_double_backward_button_;
+
  QHBoxLayout* bottom_layout_;
 
  QVBoxLayout* main_layout_;
@@ -276,6 +278,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  void entry_forward();
  void entry_backward();
+ void entry_back_to_start();
 
  void load_entry(u2 id, const s2* const maybe_match_index = nullptr);
 
