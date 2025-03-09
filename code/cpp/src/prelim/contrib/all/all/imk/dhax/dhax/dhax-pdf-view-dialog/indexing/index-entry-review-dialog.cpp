@@ -147,7 +147,7 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
   if(text.size() > max)
     text = text.mid(0, max);
 
-  text += "_%1.htm"_qt.arg(current_entry_id_);
+  text += "._%1.htm"_qt.arg(current_entry_id_);
 
   html_file_name_line_edit_->setText(text);
  });
@@ -521,6 +521,10 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  search_words_flip_button_->setToolTip("Flip first and last words");
  search_words_slurp_button_->setToolTip("Merge all words into search");
 
+ search_words_slurp_and_flip_button_ = new QPushButton("<@->");
+ make_nav_button(search_words_slurp_and_flip_button_, 0x2BB6, 14);
+ search_words_slurp_and_flip_button_->setToolTip("Merge and flip (e.g., reorder a proper name)");
+ search_words_slurp_and_flip_button_->setMaximumHeight(22);
 
  search_words_reset_button_ = new QPushButton("reset");
  make_nav_button(search_words_reset_button_, 0x2386, 11, 28); //0x2940
@@ -552,6 +556,14 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  {
   search_words_flip();
  });
+
+ connect(search_words_slurp_and_flip_button_, &QPushButton::clicked, [this]()
+ {
+  search_words_slurp();
+  search_words_flip();
+ });
+
+
 
  connect(search_words_inc_high_button_, &QPushButton::clicked, [this]()
  {
@@ -611,6 +623,8 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  search_words_layout_->addSpacing(14);
  search_words_layout_->addWidget(search_words_flip_button_);
  search_words_layout_->addWidget(search_words_slurp_button_);
+ search_words_layout_->addSpacing(8);
+ search_words_layout_->addWidget(search_words_slurp_and_flip_button_);
  search_words_layout_->addStretch();
 
 
@@ -1039,7 +1053,12 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
    QString t = html_preview_text_edit_->toPlainText();
    QString s = html_preview_supplement_text_edit_->toPlainText();
    if(!s.isEmpty())
-     t += ". " + s;
+   {
+    if(t.simplified().endsWith(":"))
+      t += s;
+    else
+      t += ". " + s;
+   }
 
    html_preview_text_edit_->setText(t);
    html_preview_supplement_text_edit_->clear();
@@ -1220,23 +1239,41 @@ div {padding-top:11pt; font-size:18pt;}
   if(qsl.isEmpty())
     continue;
 
+  QString ind = "\n  <span class='note'> {%1} </span> \n"_qt.arg(i);
+
   QString html = qsl.first();
   html.remove("<html>");
   html.remove("<body>");
   html.remove("</body>");
   html.remove("</html>");
+  html.remove("</div>");
 
-  qts << "<div class='index-entry'>"
-      << html;
+  qts //<< "<div class='index-entry'>"
+      << html.simplified();
 
   if(qsl.size() == 1 || qsl[1].isEmpty())
   {
-   qts << "</div>\n";
+   qts << ind << "</div>\n\n";
    continue;
   }
 
-  qts << ". " << qsl[1] << "</div>\n";
+  qDebug() << "  \n\n\n  ";
+
+  qDebug() << text;
+
+  qDebug() << "  \n\n\n  ";
+
+  qDebug() << html.simplified();
+
+  if(html.simplified().endsWith(": </span>"))
+    qts << qsl[1] << ind << "</div>\n\n";
+  else
+    qts << ". " << qsl[1] << ind << "</div>\n\n";
  }
+
+ qDebug() << "  \n\n\n  ";
+
+ qDebug() << text;
 
  qts << post_template;
 
@@ -1513,9 +1550,6 @@ void Index_Entry_Review_Dialog::regenerate_html()
   }
  }
 
- if(codes.isEmpty())
-   return;
-
  update_html(codes);
 }
 
@@ -1532,7 +1566,10 @@ void Index_Entry_Review_Dialog::html_upload()
 
  if(!s.isEmpty())
  {
-  text += ". " + s;
+  text.replace(": </span></div>", ": </span>%1<@/div>"_qt.arg(s));
+
+  text.replace("</div>", ". %1</div>"_qt.arg(s));
+  text.replace("<@/div>", "</div>");
  }
 
  static QString pre_template = R"(
@@ -1586,24 +1623,71 @@ void Index_Entry_Review_Dialog::ftp_upload(QString file_name, QString text)
 
 void Index_Entry_Review_Dialog::update_html(QStringList page_numbers)
 {
+ QString sub_only;
+ if(page_numbers.isEmpty())
+ {
+  if(current_index_entry_)
+  {
+   QString supp = current_index_entry_->supplement;
+   QString carr = current_index_entry_->carried;
+   if(supp.isEmpty() && carr.isEmpty())
+   {
+    if(current_index_entry_->sub_count > 1)
+      sub_only = "(%1 subentries)"_qt.arg(current_index_entry_->sub_count);
+    else if(current_index_entry_->sub_count == 1)
+      sub_only = "(%1 subentry)"_qt.arg(current_index_entry_->sub_count);
+    else
+      return;
+
+   }
+  }
+ }
+
  if(current_index_entry_)
-   update_html(current_index_entry_->key, page_numbers);
+ {
+  QString parent_ref;
+  if(current_index_entry_->parent_id)
+  {
+   Index_Entry& ie = index_entries_[current_index_entry_->parent_id - 1];
+   parent_ref = ie.key;
+   if(parent_ref.size() > 12)
+   {
+    parent_ref.truncate(12);
+    parent_ref.append("...");
+   }
+   parent_ref = " [%1/%2] "_qt.arg(parent_ref).arg(ie.id);
+  }
+  update_html(current_index_entry_->key, parent_ref, page_numbers, sub_only);
+ }
 }
 
 
-void Index_Entry_Review_Dialog::update_html(QString key, QStringList page_numbers)
+void Index_Entry_Review_Dialog::update_html(QString key, QString parent_ref,
+  QStringList page_numbers, QString sub_only)
 {
  reset_toggle_html();
 
  html_text_.clear();
 
+ //Index_Entry& ie = index_entries_[]
+
  static QString index_entry_template = R"(
-   <html><body><div class='index-entry'><span>%1</span>, %2</div></body></html>
+   <html><body><div class='index-entry'><span>%1%2</span>, %3</div></body></html>
                                        )";
 
- QString pages_text = page_numbers.join(", ");
- QString text = index_entry_template.arg(key).arg(pages_text);
- html_text_ = text;
+ static QString index_entry_template_alt = R"(
+   <html><body><div class='index-redirect'><span>%1%2: %3</span></div></body></html>
+                                       )";
+
+ if(page_numbers.isEmpty())
+ {
+  html_text_ = index_entry_template_alt.arg(parent_ref).arg(key).arg(sub_only);
+ }
+ else
+ {
+  QString pages_text = page_numbers.join(", ");
+  html_text_ = index_entry_template.arg(parent_ref).arg(key).arg(pages_text);
+ }
 
  html_preview_text_edit_->setPlainText(html_text_);
 }
@@ -1664,8 +1748,30 @@ void Index_Entry_Review_Dialog::confirm_match(QPair<u2, s2> pr,
    Page_Ref_Pair ref = refs[current_entry_key_.match_index - 1];
    if(!entry_update_is_Detach_Page_Number())
      text += ref.to_granular_text();
+
+   if(text.endsWith("--"))
+   {
+    text += "*";
+    Index_Entry& ie = index_entries_[current_entry_key_.entry_id - 1];
+    Page_Ref_Pair pr1 = ie.refs[current_entry_key_.match_index - 1];
+    if(pr1.second.is_valid())
+    {
+     if(pr1.second.number)
+     {
+      int diff = pr1.second.number - pr1.first.number;
+      int n1 = page_number + diff;
+      QString ntext;
+      int nroman = later_pdf_dialog_->page_number_to_text(n1, ntext); //QString::number(page_number);
+      text += ntext;
+     }
+     else text += "?";
+    }
+    else text += "?";
+   }
+
   }
  }
+
 
  text += " @" + paragraph_codes.join(";");
 
@@ -2289,7 +2395,7 @@ void Index_Entry_Review_Dialog::load_entry(u2 id, const s2* const maybe_match_in
 
  QStringList qre_matches;
 
- QRegularExpression qre("\\w+");
+ QRegularExpression qre("([\\w]'(?!')|[\\w-])+");
  QRegularExpressionMatchIterator it = qre.globalMatch(ie.key);
  while(it.hasNext())
  {
@@ -2401,8 +2507,6 @@ void Index_Entry_Review_Dialog::load_entry(u2 id, const s2* const maybe_match_in
   count_in_parent_line_edit_->setPlaceholderText("N/A");
   count_in_parent_line_edit_->setEnabled(false);
  }
-
-
 
  u2 subheading_count = ie.sub_count;
  if(subheading_count)

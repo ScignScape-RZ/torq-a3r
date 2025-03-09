@@ -321,6 +321,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
  QPushButton* search_words_inc_low_button_;
  QPushButton* search_words_dec_low_button_;
 
+ QPushButton* search_words_slurp_and_flip_button_;
  QPushButton* search_words_flip_button_;
  QPushButton* search_words_slurp_button_;
  QPushButton* search_words_reset_button_;
@@ -424,7 +425,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
  u2 ref_code_to_earlier_page_number(const Page_Ref& page_ref);
  u2 ref_code_to_later_page_number(const Page_Ref& page_ref);
 
- void update_html(QString key, QStringList page_numbers);
+ void update_html(QString key, QString parent_ref, QStringList page_numbers, QString sub_only);
  void update_html(QStringList page_numbers);
 
  //QMap<Page_Ref, >

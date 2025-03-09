@@ -1289,6 +1289,8 @@ void PDF_Document_Widget::prepare_match_context(QString text,
 {
  QString page_text = p->text(QRectF({0, 0}, p->pageSizeF()));
 
+ qDebug() << "\n\n\n page (" << page_number << ") = " << page_text << "\n\n";
+
  if(paragraph_codes)
  {
   if(!cached_paragraph_code_locations_.contains(page_number))
@@ -1306,7 +1308,7 @@ void PDF_Document_Widget::prepare_match_context(QString text,
 
    if(map.isEmpty())
    {
-    vec = {{0, "??"}};
+    //?  vec = {{0, "??"}};
    }
    else
    {
@@ -1337,7 +1339,7 @@ void PDF_Document_Widget::prepare_match_context(QString text,
  u2 expand_max = default_expand_max;
 
 
- auto find_paragraph_code = [&page_text, paragraph_code_locations] (u2 index) -> QString
+ auto find_paragraph_code = [&page_text, page_number,  paragraph_code_locations] (u2 index) -> QString
  {
   QString seen;
   for(const QPair<int, QString>& pr : paragraph_code_locations)
@@ -1348,10 +1350,19 @@ void PDF_Document_Widget::prepare_match_context(QString text,
   }
   if(seen.isEmpty())
   {
-   QString par1 = paragraph_code_locations.first().second;
-   int ix = par1.indexOf("P") + 1;
-   int pnum = par1.mid(ix).toInt() - 1; // //  -1 is to go to previous paragraph
-   seen = par1.mid(0, ix) + QString::number(pnum);
+   if(paragraph_code_locations.isEmpty())
+   {
+    int pn =  page_number;
+    qDebug() << "\n --- " << pn;
+    seen = "C???";
+   }
+   else
+   {
+    QString par1 = paragraph_code_locations.first().second;
+    int ix = par1.indexOf("P") + 1;
+    int pnum = par1.mid(ix).toInt() - 1; // //  -1 is to go to previous paragraph
+    seen = par1.mid(0, ix) + QString::number(pnum);
+   }
   }
   return seen;
  };
