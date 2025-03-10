@@ -59,8 +59,8 @@ int main(int argc, char *argv[])
    n1file,
    13, 13);
 
- pvd1->set_arabic_start(13);
- pvd1->set_roman_end(12);
+ pvd1->set_arabic_start(24);
+ pvd1->set_roman_end(23);
  pvd1->set_roman_start(1);
 
  pvd1->setWindowTitle("Earlier Document");

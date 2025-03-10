@@ -505,12 +505,12 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
 
  search_words_inc_low_button_ = new QPushButton(".+");
- make_nav_button(search_words_inc_low_button_, 0x2945, 14);
- search_words_inc_low_button_->setToolTip("Skip first visible word");
+ make_nav_button(search_words_inc_low_button_, 0x2945, 14); // 2945
+ search_words_inc_low_button_->setToolTip("Skip first (unflipped) word");
 
  search_words_dec_low_button_ = new QPushButton(".-");
  make_nav_button(search_words_dec_low_button_, 0x2946, 14);
- search_words_dec_low_button_->setToolTip("Unskip first visible word");
+ search_words_dec_low_button_->setToolTip("Unskip first (unflipped) word");
 
 
  search_words_flip_button_ = new QPushButton("<->");
@@ -615,16 +615,16 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  search_words_layout_->addSpacing(14);
  search_words_layout_->addWidget(search_words_take_visible_first_button_);
  search_words_layout_->addSpacing(14);
- search_words_layout_->addWidget(search_words_dec_high_button_);
- search_words_layout_->addWidget(search_words_inc_high_button_);
- search_words_layout_->addSpacing(14);
  search_words_layout_->addWidget(search_words_dec_low_button_);
  search_words_layout_->addWidget(search_words_inc_low_button_);
  search_words_layout_->addSpacing(14);
+ search_words_layout_->addWidget(search_words_dec_high_button_);
+ search_words_layout_->addWidget(search_words_inc_high_button_);
+ search_words_layout_->addSpacing(14);
  search_words_layout_->addWidget(search_words_flip_button_);
- search_words_layout_->addWidget(search_words_slurp_button_);
- search_words_layout_->addSpacing(8);
  search_words_layout_->addWidget(search_words_slurp_and_flip_button_);
+ search_words_layout_->addSpacing(8);
+ search_words_layout_->addWidget(search_words_slurp_button_);
  search_words_layout_->addStretch();
 
 
@@ -1191,6 +1191,9 @@ void Index_Entry_Review_Dialog::check_entry_value_manual_update()
 
 void Index_Entry_Review_Dialog::search_update()
 {
+ if(active_earlier_match_code_index_ == 0)
+   return;
+
  u2 page_number = ref_code_to_earlier_page_number(current_page_ref_pair_.first);
 
  QString context;
@@ -1226,7 +1229,9 @@ void Index_Entry_Review_Dialog::composite_upload()
  static QString pre_template = R"(
  <html><head><style>
 div {padding-top:11pt; font-size:18pt;}
- </style></head><body>)";
+ </style></head><body>
+
+  )";
 
  static QString post_template = R"(
  </body></html>)";
@@ -1276,6 +1281,8 @@ div {padding-top:11pt; font-size:18pt;}
  qDebug() << text;
 
  qts << post_template;
+
+ KA::TextIO::save_file("/home/nlevisrael/Downloads/m2m/w_pdf/hold.txt", text);
 
  ftp_upload(file, text);
 }

@@ -606,6 +606,8 @@ void DHAX_PDF_View_Dialog::search_update(QPair<u2, s2> index_entry_key,
   int index_entry_id, QString text, int count_in_index,
   int page_hint, QStringList* page_paragraph_codes, QString* context)
 {
+
+
  held_index_entry_key_ = index_entry_key;
 
  QMap<int, PDF_Document_Widget::Highlight_Info> matches;
@@ -643,6 +645,8 @@ void DHAX_PDF_View_Dialog::search_update(QPair<u2, s2> index_entry_key,
 
  if(pages.isEmpty())
    return;
+
+
 
  if(count_in_index > pages.size())
    count_in_index = pages.size();

@@ -332,7 +332,7 @@ void read_index_entries(QString text, QVector<Index_Entry>& ies)
   read_index_entry(text.mid(spos + 2, epos - spos - 2).simplified(), ie);
   ies.push_back(ie);
 
-  if(ie.sub_count)
+  if(ie.sub_count > 1)
     current_parent = &ies.back();
   else if(ie.count_in_parent)
     ies.back().parent_id = current_parent->id;
