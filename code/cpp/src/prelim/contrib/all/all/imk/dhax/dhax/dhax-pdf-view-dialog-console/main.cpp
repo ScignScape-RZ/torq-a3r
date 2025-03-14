@@ -11,6 +11,260 @@
 
 #include "indexing/index-entry-review-dialog.h"
 
+
+QSet<int>* make_addendum_pages()
+{
+ QSet<int>* result = new QSet<int>;
+
+ for(int i = 1; i <= 451; ++i)
+ {
+  if(i < 32)
+    continue;
+
+  if(i <= 71)
+  {
+   result->insert(i);
+   continue;
+  }
+
+  if(i < 183)
+    continue;
+
+  if(i <= 197) //  ch4
+  {
+   result->insert(i);
+   continue;
+  }
+
+
+  if(i < 227)
+    continue;
+
+  if(i <= 230) //  ch5
+  {
+   result->insert(i);
+   continue;
+  }
+
+  if(i < 269)
+    continue;
+
+  if(i <= 287)  //  ch6
+  {
+   result->insert(i);
+   continue;
+  }
+
+  if(i < 332)
+    continue;
+
+  if(i <= 344) //  ch7
+  {
+   result->insert(i);
+   continue;
+  }
+
+//  if(i < 269)
+//    continue;
+
+//  if(i < 287)
+//  {
+//   result->insert(i);
+//   continue;
+//  }
+
+ }
+
+ return result;
+
+}
+
+
+int main5(int argc, char *argv[])
+{
+ QString aofile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out.txt";
+ QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test.txt";
+
+ QFile outfile(aotfile);
+ if (!outfile.open(QIODevice::WriteOnly))
+   return 0;
+
+ QTextStream qts(&outfile);
+
+
+ QString text = KA::TextIO::load_file(aofile);
+
+ QRegularExpression qre("#(\\d+)\\s+\\$([ser])<([^>]+)>([,:.]?)\\s+\\$\\[([^\\]]+)]\\s+\\+\\{([^}]+)\\}"
+                        );
+
+ QRegularExpression qre1("#(\\d+)\\s+\\$([ser])<([^>]+)>([,:.])\\s+\\$\\[([^\\]]+)]\\s+" //\\s+\\+\\{([^}]+)\\}"
+                        );
+
+
+
+// QRegularExpression qre("<div\\s+class='index-(\\w+)'><span>");
+
+
+ QRegularExpressionMatchIterator it = qre.globalMatch(text);
+
+ while(it.hasNext())
+ {
+  QRegularExpressionMatch match = it.next();
+
+  QString entry_id = match.captured(1);
+  QString type = match.captured(2);
+  QString heading = match.captured(3);
+  QString follow = match.captured(4);
+  QString pages = match.captured(5);
+  QString supp = match.captured(6);
+
+  if(entry_id == 30)
+    qDebug() << entry_id;
+
+  qts << "#" << entry_id << " ";
+
+  qts << "$" << type[0] << "<" << heading << ">"
+      << follow << "\n";
+
+  qts << " $[" << pages << "]\n";
+  qts << " +{" << supp << "}\n";
+
+
+//  qts << type << "\n";
+//  qts << heading << "\n";
+//  qts << follow << "\n";
+
+//  qts << pages << "\n";
+//  qts << " += " << supp << "\n";
+//  qts << entry_id << "\n";
+
+  qts << "\n";
+ }
+
+ outfile.close();
+
+ return 0;
+
+
+}
+
+int main4(int argc, char *argv[])
+{
+ QString ifile = "/home/nlevisrael/Downloads/m2m/w_pdf/dindex.txt";
+ QString afile = "/home/nlevisrael/Downloads/m2m/w_pdf/all";
+ QString aofile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out.txt";
+
+
+ QFile outfile(aofile);
+ if (!outfile.open(QIODevice::WriteOnly))
+   return 0;
+
+ QTextStream qts(&outfile);
+
+
+ QString text = KA::TextIO::load_file(afile);
+
+ QRegularExpression qre("<div\\s+class='index-(\\w+)'><span>([^<]+)</span>([,:.]?)"
+   "\\s*((?:[^<]|<i>|</i>)+?)(?:[.]((?:[^<]|<i>|</i>)+?))?\\s+<span\\s+class='note'>\\s+\\{(\\d+)\\}\\s+</span>\\s+</div>"
+
+ //  "\\s*[^<]+\\s+<span\\s+class='note'>\\s+\\{(\\d+\\}\\s+</span>\\s+</div>"
+                        );
+
+// QRegularExpression qre("<div\\s+class='index-(\\w+)'><span>");
+
+
+ QRegularExpressionMatchIterator it = qre.globalMatch(text);
+
+ QSet<int> ids;
+
+ while(it.hasNext())
+ {
+  QRegularExpressionMatch match = it.next();
+
+  QString type = match.captured(1);
+  QString heading = match.captured(2);
+  QString follow = match.captured(3);
+  QString pages = match.captured(4);
+  QString supp = match.captured(5);
+  QString entry_id = match.captured(6);
+
+  if(supp.isEmpty() && follow == ":")
+  {
+   supp = pages;
+   pages.clear();
+  }
+
+
+  qts << "#" << entry_id << " ";
+
+  qts << "$" << type[0] << "<" << heading << ">"
+      << follow << "\n";
+
+  pages.replace(",", " ,,");
+
+  qts << " $[" << pages << "]\n";
+  qts << " +{ " << supp << "}\n";
+
+
+//  qts << type << "\n";
+//  qts << heading << "\n";
+//  qts << follow << "\n";
+
+//  qts << pages << "\n";
+//  qts << " += " << supp << "\n";
+//  qts << entry_id << "\n";
+
+  qts << "\n";
+
+  ids.insert(entry_id.toInt());
+ }
+
+ for(int i = 1; i <= 428; ++i)
+ {
+  if(ids.contains(i))
+    continue;
+
+  qDebug() << i;
+
+
+ }
+
+// 13
+// 44
+// 45
+// 46
+// 52
+// 101
+// 102
+// 108
+// 122
+// 133
+// 134
+// 145
+// 148
+// 149
+// 150
+// 151
+// 157
+// 177
+// 194
+// 196
+// 211
+// 317
+// 359
+// 377
+// 389
+// 392
+// 426
+
+
+ return 0;
+
+
+}
+
+
+
 int main1(int argc, char *argv[])
 {
  QApplication qapp(argc, argv);
@@ -75,6 +329,10 @@ int main(int argc, char *argv[])
  pvd2->set_roman_end(85);
  pvd2->set_roman_start(1);
 
+ QSet<int>* addendum = make_addendum_pages();
+
+ pvd2->set_addendum_pages(addendum);
+ ierd->set_addendum_pages(addendum);
 
  pvd2->setWindowTitle("Later Document");
  pvd2->show();

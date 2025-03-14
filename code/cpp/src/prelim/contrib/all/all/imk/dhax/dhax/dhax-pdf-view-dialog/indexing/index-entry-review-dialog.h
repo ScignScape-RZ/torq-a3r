@@ -72,6 +72,8 @@ class Index_Entry_Review_Dialog : public QMainWindow
  DHAX_PDF_View_Dialog* earlier_pdf_dialog_;
  DHAX_PDF_View_Dialog* later_pdf_dialog_;
 
+ QSet<int>* addendum_pages_;
+
  QString bookmarks_file_;
  QString earlier_match_file_;
  QString ftp_folder_;
@@ -327,6 +329,8 @@ class Index_Entry_Review_Dialog : public QMainWindow
  QPushButton* search_words_reset_button_;
  QPushButton* search_words_take_visible_first_button_;
 
+ QLineEdit* addendum_hits_line_edit_;
+
  QPushButton* redo_both_matches_button_;
 
  QPushButton* redo_earlier_match_button_;
@@ -456,11 +460,12 @@ public:
 
  ACCESSORS(DHAX_PDF_View_Dialog* ,earlier_pdf_dialog)
  ACCESSORS(DHAX_PDF_View_Dialog* ,later_pdf_dialog)
+ ACCESSORS(QSet<int>* ,addendum_pages)
 
  ~Index_Entry_Review_Dialog();
 
 
-
+ void note_addendum_hits(QVector<int>& hits);
 
 
 Q_SIGNALS:

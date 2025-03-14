@@ -149,6 +149,8 @@ class DHAX_PDF_View_Dialog : public QMainWindow
 
  QVector<int> cached_pages_combo_values_;
 
+ QSet<int>* addendum_pages_;
+
 public:
 
  DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dialog,
@@ -162,6 +164,7 @@ public:
  ACCESSORS(int ,roman_start)
  ACCESSORS(int ,roman_end)
  ACCESSORS(int ,arabic_start)
+ ACCESSORS(QSet<int>* ,addendum_pages)
 
 
  int page_number_to_text(int i, QString& result, QString fallback_template = "(%1)");
@@ -180,6 +183,8 @@ public:
 
  void highlight_match(int index_entry_id, QString text, int page_number,
    const PDF_Document_Widget::Highlight_Info& hi);
+
+ void highlight_all_matches(QMap<int, PDF_Document_Widget::Highlight_Info>& matches);
 
  void highlight_match(int index_entry_id, QString text,   QStringList* paragraph_codes, QString& context);
 

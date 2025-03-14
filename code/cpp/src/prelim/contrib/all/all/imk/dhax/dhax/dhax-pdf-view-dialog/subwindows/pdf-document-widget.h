@@ -174,7 +174,11 @@ public:
      return false;
     }
 
-    void highlight_matches(int index_entry_id, const QVector<QRectF>& matches);
+    void highlight_matches(int page_number,
+      const QVector<QRectF>& matches, QSet<int>* addendum_pages);
+
+    void highlight_matches(int index_entry_id,
+      const QVector<QRectF>& matches);
 
     void highlight_match(int index_entry_id, QString text,
       QList<QRectF>& results, QStringList* paragraph_codes, QString* context = nullptr);
@@ -229,7 +233,9 @@ protected:
 
     void wheelEvent(QWheelEvent *event) Q_DECL_OVERRIDE;
 
+
 Q_SIGNALS:
+
     void pageChanged(int currentPage);
     void textSelected(const QString &text);
 

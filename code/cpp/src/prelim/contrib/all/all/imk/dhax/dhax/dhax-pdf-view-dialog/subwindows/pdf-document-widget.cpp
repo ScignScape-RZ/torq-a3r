@@ -1491,10 +1491,58 @@ void PDF_Document_Widget::search_update(QString text, QMap<int, Highlight_Info>&
  }
 }
 
-//void PDF_Document_Widget::resent_primary_highlights()
-//{
 
-//}
+void PDF_Document_Widget::highlight_matches(int page_number,
+  const QVector<QRectF>& matches, QSet<int>* addendum_pages)
+{
+ QGraphicsScene* scene = scenes_.value(page_number, nullptr);
+
+// current_primary_highlights_[scene].push_back(qri);
+
+
+ for(QRectF r : matches)
+ {
+  r.adjust(-2, -2, 2, 2);
+
+  QRectF highlight_rect = matrix().mapRect(r);
+  QGraphicsRectItem* qri = new QGraphicsRectItem(highlight_rect);
+
+  qri->setBrush(primary_highlight_color_);
+
+  if(addendum_pages->contains(page_number))
+  {
+   if(page_number <  parent_dialog_->arabic_start())
+     qri->setPen(QPen(QBrush(QColor(200,0,0,100)), 3));
+   else
+     qri->setPen(QPen(QBrush(QColor(200,0,200,100)), 3));
+  }
+  else
+    qri->setPen(QColor(100,100,0,200));
+
+  if(!scene)
+  {
+   scene = new QGraphicsScene(this);
+   scenes_[page_number] = scene;
+
+   QImage image = doc->page(page_number)
+     ->renderToImage(scaleFactor * physicalDpiX(), scaleFactor * physicalDpiY());
+
+   images_[scene] = image;
+
+   //setPixmap(QPixmap::fromImage(image))
+   QPixmap px = QPixmap::fromImage(image);
+
+   QGraphicsPixmapItem* pi = scene->addPixmap(px);
+
+   pi->setZValue(-1);
+   pi->setFlag(QGraphicsItem::ItemIsMovable);
+   scenes_[page_number] = scene;
+  }
+
+  scene->addItem(qri);
+ }
+
+}
 
 
 void PDF_Document_Widget::highlight_matches(int index_entry_id, const QVector<QRectF>& matches)

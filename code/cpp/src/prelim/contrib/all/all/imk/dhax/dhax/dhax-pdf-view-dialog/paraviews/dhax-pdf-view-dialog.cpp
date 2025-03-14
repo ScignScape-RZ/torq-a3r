@@ -659,8 +659,36 @@ void DHAX_PDF_View_Dialog::search_update(QPair<u2, s2> index_entry_key,
  if(page_paragraph_codes)
    *page_paragraph_codes = matches[page_number].paragraph_codes;
 
- highlight_match(index_entry_id, text, page_number + 1, matches[page_number]);
+ if(addendum_pages_)
+ {
+  highlight_all_matches(matches);
+ }
+ else
+   highlight_match(index_entry_id, text, page_number + 1, matches[page_number]);
 
+}
+
+void DHAX_PDF_View_Dialog::highlight_all_matches(QMap<int, PDF_Document_Widget::Highlight_Info>& matches)
+{
+ QMapIterator it(matches);
+
+ QVector<int> hits;
+
+ while(it.hasNext())
+ {
+  it.next();
+  if(addendum_pages_->contains(it.key()))
+    hits.push_back(it.key());
+
+  pdf_document_widget_->highlight_matches(it.key(), it.value().boundaries, addendum_pages_);
+ }
+
+ if(hits.isEmpty())
+   confirm_match_button_->setText("Confirm");
+ else
+   confirm_match_button_->setText("*Confirm");
+
+ entry_dialog_->note_addendum_hits(hits);
 }
 
 
@@ -806,11 +834,17 @@ void DHAX_PDF_View_Dialog::reset_pages_combo_box(QVector<int>* pages)
    for(int i : *pages)
    {
     QString text;
+    QString pre;
     int roman = page_number_to_text(i, text);
+    if(addendum_pages_)
+    {
+     if(addendum_pages_->contains(i))
+       pre = "*";
+    }
     if(roman)
-      qsl << text;
+      qsl << text.prepend(pre);
     else
-      qsl << text.prepend("p. ");
+      qsl << QString("%1p. %2").arg(pre).arg(text);
    }
   }
  }

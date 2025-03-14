@@ -485,7 +485,6 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  make_nav_button(search_words_dec_high_button_, 0x2943, 14);
  search_words_dec_high_button_->setToolTip("Remove last word");
 
-
  redo_both_matches_button_ = new QPushButton("<~>");
  make_nav_button(redo_both_matches_button_, 0x2B80, 15);  //21DB
  redo_both_matches_button_->setToolTip("Search in both documents");
@@ -626,7 +625,7 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  search_words_layout_->addSpacing(8);
  search_words_layout_->addWidget(search_words_slurp_button_);
  search_words_layout_->addStretch();
-
+//? search_words_layout_->addStretch();
 
  search_words_layout_->addWidget(redo_both_matches_button_);
  search_words_layout_->addSpacing(17);
@@ -651,11 +650,11 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
 
  clean_later_match_button_->setMaximumWidth(40);
 
- current_matches_grid_layout_->addLayout(search_words_layout_, 0, 0, 1, 5);
+ current_matches_grid_layout_->addLayout(search_words_layout_, 0, 0, 1, 6);
 
  QFrame* current_matches_grid_layout_line = make_frame_as_line();
 
- current_matches_grid_layout_->addWidget(current_matches_grid_layout_line, 1, 0, 1, 5);
+ current_matches_grid_layout_->addWidget(current_matches_grid_layout_line, 1, 0, 1, 6);
 
  current_matches_grid_layout_->addWidget(new QLabel("File:", this), 2, 2);
 
@@ -663,6 +662,13 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  html_file_name_line_edit_->setPlaceholderText("N/A");
 
  current_matches_grid_layout_->addWidget(html_file_name_line_edit_, 2, 3);
+
+ addendum_hits_line_edit_ = new QLineEdit(this);
+ addendum_hits_line_edit_->setPlaceholderText("hits");
+ addendum_hits_line_edit_->setMaximumWidth(120);
+
+ current_matches_grid_layout_->addWidget(addendum_hits_line_edit_, 2, 4);
+
 
  html_details_layout_ = new QHBoxLayout;
 
@@ -696,7 +702,7 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
  current_matches_grid_layout_->addLayout(html_details_layout_, 2, 0, 1, 2);
 // html_details_layout_->addSpacing(10);
 // html_details_layout_->addWidget(html_upload_button_);
- current_matches_grid_layout_->addWidget(html_upload_button_, 2, 4);
+ current_matches_grid_layout_->addWidget(html_upload_button_, 2, 5);
 
 
  html_preview_dock_widget_ = new QDockWidget(this);
@@ -1104,6 +1110,20 @@ QFrame* Index_Entry_Review_Dialog::make_frame_as_line()
  result->setFrameShadow(QFrame::Sunken);
  return result;
 }
+
+
+void Index_Entry_Review_Dialog::note_addendum_hits(QVector<int>& hits)
+{
+ QString text;
+ for(int i : hits)
+   text += "%1;"_qt.arg(i);
+
+ if(text.endsWith(";"))
+   text.chop(1);
+
+ addendum_hits_line_edit_->setText(text);
+}
+
 
 void Index_Entry_Review_Dialog::load_bookmarks_file()
 {
@@ -1682,13 +1702,20 @@ void Index_Entry_Review_Dialog::update_html(QString key, QString parent_ref,
    <html><body><div class='index-entry'><span>%1%2</span>, %3</div></body></html>
                                        )";
 
- static QString index_entry_template_alt = R"(
-   <html><body><div class='index-redirect'><span>%1%2: %3</span></div></body></html>
+ static QString index_entry_template_redirect = R"(
+   <html><body><div class='index-redirect'><span>%1%2: </span></div></body></html>
+                                       )";
+
+ static QString index_entry_template_subentries = R"(
+   <html><body><div class='index-subentries'><span>%1%2: %3</span></div></body></html>
                                        )";
 
  if(page_numbers.isEmpty())
  {
-  html_text_ = index_entry_template_alt.arg(parent_ref).arg(key).arg(sub_only);
+  if(sub_only.isEmpty())
+    html_text_ = index_entry_template_redirect.arg(parent_ref).arg(key);
+  else
+    html_text_ = index_entry_template_subentries.arg(parent_ref).arg(key).arg(sub_only);
  }
  else
  {
