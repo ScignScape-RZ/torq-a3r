@@ -11,6 +11,8 @@
 
 #include "indexing/index-entry-review-dialog.h"
 
+#include "indexing/index-ref.h"
+
 
 QSet<int>* make_addendum_pages()
 {
@@ -80,7 +82,142 @@ QSet<int>* make_addendum_pages()
 }
 
 
-int main5(int argc, char *argv[])
+int main(int argc, char *argv[])
+{
+ QString aofile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out.txt";
+ QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test.txt";
+
+ QFile outfile(aotfile);
+ if (!outfile.open(QIODevice::WriteOnly))
+   return 0;
+
+ QTextStream qts(&outfile);
+
+
+ QString text = KA::TextIO::load_file(aofile);
+
+ QVector<Index_Ref_Group> refs;
+
+ refs.resize(428);
+
+ QRegularExpression qre("#(\\d+)\\s+\\$([ser])<([^>]+)>([,:.]?)\\s+\\$\\[([^\\]]+)]\\s+\\+\\{([^}]+)\\}"
+                        );
+
+// QRegularExpression qre1("#(\\d+)\\s+\\$([ser])<([^>]+)>([,:.])\\s+\\$\\[([^\\]]+)]\\s+" //\\s+\\+\\{([^}]+)\\}"
+//                        );
+
+
+
+// QRegularExpression qre("<div\\s+class='index-(\\w+)'><span>");
+
+
+ QRegularExpressionMatchIterator it = qre.globalMatch(text);
+
+ while(it.hasNext())
+ {
+  QRegularExpressionMatch match = it.next();
+
+  QString entry_id = match.captured(1);
+  QString type = match.captured(2);
+  QString heading = match.captured(3);
+  QString follow = match.captured(4);
+  QString pages = match.captured(5);
+  QString supp = match.captured(6);
+
+  int index = entry_id.toInt() - 1;
+
+  refs[index].entry_id = entry_id.toInt();
+  refs[index].type = type;
+  refs[index].follow = follow;
+  refs[index].supplement = supp;
+
+  QRegularExpression qre0("\\s*\\[([^/]+)/(\\d+)\\]\\s+");
+  QRegularExpressionMatch match0 = qre0.match(heading);
+
+  if(match0.hasMatch())
+  {
+   refs[index].parent_hint = match0.captured(1);
+   refs[index].parent_id = match0.captured(2);
+   refs[index].heading = heading.mid(match0.capturedEnd());
+  }
+  else
+    refs[index].heading = heading;
+
+  QStringList pp = pages.split(",,");
+
+  for(QString p : pp)
+  {
+//   QRegularExpression qre1("([\\dlxvi]+)([*-]*)([\\dxvi]*)\\s@([\\w?]+)");
+   QRegularExpression qre1("([\\dlxvin*-]+)\\s@([\\w?]+)");
+   QRegularExpressionMatch match1 = qre1.match(p.simplified());
+
+   if(match1.hasMatch())
+   {
+//    QString low = match1.captured(1);
+//    QString between = match1.captured(2);
+//    QString high = match1.captured(3);
+
+    QString low, high, between, note_low, note_high ;
+
+    QString range = match1.captured(1);
+    QString para = match1.captured(2);
+
+    if(range.contains("nn"))
+    {
+     QRegularExpression qre2("(\\d+)nn(\\d+)-(\\d+)");
+     QRegularExpressionMatch match2 = qre2.match(range.simplified());
+     if(match2.hasMatch())
+     {
+      low = match2.captured(1);
+      note_low = match2.captured(2);
+      note_high = match2.captured(3);
+     }
+    }
+    else if(range.contains("n" && range.contains("--")))
+    {
+     QRegularExpression qre2("(\\d+)--(\\d+)n(\\d+)");
+     QRegularExpressionMatch match2 = qre2.match(range.simplified());
+     if(match2.hasMatch())
+     {
+      low = match2.captured(1);
+      high = match2.captured(2);
+      note_low = match2.captured(3);
+      between = "--";
+     }
+    }
+    else if(range.contains("n"))
+    {
+     QRegularExpression qre2("(\\d+)n(\\d+)");
+     QRegularExpressionMatch match2 = qre2.match(range.simplified());
+     if(match2.hasMatch())
+     {
+      low = match2.captured(1);
+      note_low = match2.captured(2);
+     }
+    }
+    else if(range.contains("--"))
+    {
+     QRegularExpression qre2("(\\d+)([*?-])(\\d+)");
+     QRegularExpressionMatch match2 = qre2.match(range.simplified());
+     if(match2.hasMatch())
+     {
+      low = match2.captured(1);
+      high = match2.captured(2);
+     }
+    }
+    else
+      low = range.simplified();
+
+    refs[index].index_refs.push_back(
+       {low, high, between, note_low, note_high, para});
+   }
+  }
+ }
+ return 0;
+}
+
+
+int main6(int argc, char *argv[])
 {
  QString aofile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out.txt";
  QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test.txt";
@@ -282,7 +419,7 @@ int main1(int argc, char *argv[])
  return 0;
 }
 
-int main(int argc, char *argv[])
+int main5(int argc, char *argv[])
 {
  QString ifile = "/home/nlevisrael/Downloads/m2m/w_pdf/dindex.txt";
  QString bfile = "/home/nlevisrael/Downloads/m2m/w_pdf/bookmarks.txt";
