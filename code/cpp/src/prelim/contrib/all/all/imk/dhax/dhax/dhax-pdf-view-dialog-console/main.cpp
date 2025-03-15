@@ -85,13 +85,13 @@ QSet<int>* make_addendum_pages()
 int main(int argc, char *argv[])
 {
  QString aofile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out.txt";
- QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test.txt";
+// QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test.txt";
 
- QFile outfile(aotfile);
- if (!outfile.open(QIODevice::WriteOnly))
-   return 0;
+// QFile outfile(aotfile);
+// if (!outfile.open(QIODevice::WriteOnly))
+//   return 0;
 
- QTextStream qts(&outfile);
+// QTextStream qts(&outfile);
 
 
  QString text = KA::TextIO::load_file(aofile);
@@ -137,7 +137,7 @@ int main(int argc, char *argv[])
   if(match0.hasMatch())
   {
    refs[index].parent_hint = match0.captured(1);
-   refs[index].parent_id = match0.captured(2);
+   refs[index].parent_id = match0.captured(2).toInt();
    refs[index].heading = heading.mid(match0.capturedEnd());
   }
   else
@@ -147,8 +147,8 @@ int main(int argc, char *argv[])
 
   for(QString p : pp)
   {
-//   QRegularExpression qre1("([\\dlxvi]+)([*-]*)([\\dxvi]*)\\s@([\\w?]+)");
-   QRegularExpression qre1("([\\dlxvin*-]+)\\s@([\\w?]+)");
+//   QRegularExpression qre1("([\\dlxvi]+)([*?-]*)([\\dxvi]*)\\s@([\\w?]+)");
+   QRegularExpression qre1("([\\dlxvin*?-]+)\\s@([\\w?;]+)");
    QRegularExpressionMatch match1 = qre1.match(p.simplified());
 
    if(match1.hasMatch())
@@ -175,14 +175,14 @@ int main(int argc, char *argv[])
     }
     else if(range.contains("n" && range.contains("--")))
     {
-     QRegularExpression qre2("(\\d+)--(\\d+)n(\\d+)");
+     QRegularExpression qre2("(\\d+)([*?-])(\\d+)n(\\d+)");
      QRegularExpressionMatch match2 = qre2.match(range.simplified());
      if(match2.hasMatch())
      {
       low = match2.captured(1);
-      high = match2.captured(2);
-      note_low = match2.captured(3);
-      between = "--";
+      between = match2.captured(2);
+      high = match2.captured(3);
+      note_low = match2.captured(4);
      }
     }
     else if(range.contains("n"))
@@ -197,22 +197,40 @@ int main(int argc, char *argv[])
     }
     else if(range.contains("--"))
     {
-     QRegularExpression qre2("(\\d+)([*?-])(\\d+)");
+     QRegularExpression qre2("(\\d+)([*?-]+)(\\d+)");
      QRegularExpressionMatch match2 = qre2.match(range.simplified());
      if(match2.hasMatch())
      {
       low = match2.captured(1);
-      high = match2.captured(2);
+      between = match2.captured(2);
+      high = match2.captured(3);
      }
     }
     else
       low = range.simplified();
 
     refs[index].index_refs.push_back(
-       {low, high, between, note_low, note_high, para});
+       Index_Ref::from_strings({low, high, between, note_low, note_high, para}));
    }
   }
  }
+
+ QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test1.txt";
+
+ QFile outfile(aotfile);
+ if (!outfile.open(QIODevice::WriteOnly))
+   return 0;
+
+ QTextStream qts(&outfile);
+
+ for(const Index_Ref_Group& g : refs)
+ {
+  if(g.entry_id)
+    qts << g.to_string();
+ }
+
+ outfile.close();
+
  return 0;
 }
 
