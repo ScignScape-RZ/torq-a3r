@@ -305,7 +305,8 @@ void read_index_entries(QString text, QVector<Index_Entry>& ies)
  int spos = 0, epos = 0;
  int sspos = 0, sepos = 0;
 
- Index_Entry* current_parent = nullptr;
+// Index_Entry* current_parent = nullptr;
+ u2 current_parent = 0;
 
  while(true)
  {
@@ -333,9 +334,9 @@ void read_index_entries(QString text, QVector<Index_Entry>& ies)
   ies.push_back(ie);
 
   if(ie.sub_count > 1)
-    current_parent = &ies.back();
+    current_parent = ie.id;// &ies.back();
   else if(ie.count_in_parent)
-    ies.back().parent_id = current_parent->id;
+    ies.back().parent_id = current_parent; //->id;
   else
     ies.back().parent_id = 0;
  }

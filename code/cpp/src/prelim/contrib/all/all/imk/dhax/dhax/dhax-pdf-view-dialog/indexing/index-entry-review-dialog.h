@@ -25,6 +25,7 @@
 
 
 #include "m2m.h"
+#include "index-ref.h"
 
 #include "accessors.h"
 
@@ -73,6 +74,23 @@ class Index_Entry_Review_Dialog : public QMainWindow
  DHAX_PDF_View_Dialog* later_pdf_dialog_;
 
  QSet<int>* addendum_pages_;
+ QVector<Index_Ref_Group>* ref_groups_;
+
+ QVector<Index_Ref_Group*> ref_groups_filtered_Range_;
+ QVector<Index_Ref_Group*> ref_groups_filtered_Roman_;
+ QVector<Index_Ref_Group*> ref_groups_filtered_New_Terms_;
+
+ enum class Nav_Filters {
+  None, Range, Roman, New_Terms
+ };
+
+ Nav_Filters current_nav_filter_;
+ void activate_nav_filter(Nav_Filters f)
+ {
+  current_nav_filter_ = f;
+ }
+
+ QMap<Nav_Filters, QVector<u2>> ref_groups_filtered_;
 
  QString bookmarks_file_;
  QString earlier_match_file_;
@@ -285,6 +303,10 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  void entry_forward();
  void entry_backward();
+
+ void entry_forward(QVector<u2>& vec);
+ void entry_backward(QVector<u2>& vec);
+
  void entry_back_to_start();
 
  void load_entry(u2 id, const s2* const maybe_match_index = nullptr);
@@ -440,6 +462,8 @@ public:
 
  void reclaim_focus();
 
+ void filter_ref_groups();
+
  void confirm_match(QPair<u2, s2> pr, int page_number, QString paragraph_code);
  void clear_most_recent_match(int page_number);
 
@@ -461,6 +485,7 @@ public:
  ACCESSORS(DHAX_PDF_View_Dialog* ,earlier_pdf_dialog)
  ACCESSORS(DHAX_PDF_View_Dialog* ,later_pdf_dialog)
  ACCESSORS(QSet<int>* ,addendum_pages)
+ ACCESSORS(QVector<Index_Ref_Group>* ,ref_groups)
 
  ~Index_Entry_Review_Dialog();
 

@@ -86,7 +86,7 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
   : current_entry_id_(0), max_entry_id_(0), current_index_entry_(nullptr),
     active_earlier_match_code_index_(0), max_earlier_match_code_index_(0),
     earlier_match_file_(earlier_match_file), bookmarks_file_(bookmarks_file),
-    ftp_folder_(ftp_folder),
+    ftp_folder_(ftp_folder), ref_groups_(nullptr), current_nav_filter_(Nav_Filters::None),
     current_search_word_list_low_(0), available_search_word_list_count_(0),
     current_search_word_list_high_(0), flip_count_(0), slurp_count_(0),
     current_page_ref_pair_(Page_Ref_Pair::default_values()),
@@ -1088,6 +1088,38 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
    toggle_html();
   });
 
+  if(current_nav_filter_ != Nav_Filters::Range)
+  {
+   menu->addAction("Activate \"--\" Nav Filter", [this]()
+   {
+    activate_nav_filter(Nav_Filters::Range);
+   });
+  }
+
+  if(current_nav_filter_ != Nav_Filters::Roman)
+  {
+   menu->addAction("Activate \"Roman\" Nav Filter", [this]()
+   {
+    activate_nav_filter(Nav_Filters::Roman);
+   });
+  }
+
+  if(current_nav_filter_ != Nav_Filters::New_Terms)
+  {
+   menu->addAction("Activate \"New Terms\" Nav Filter", [this]()
+   {
+    activate_nav_filter(Nav_Filters::New_Terms);
+   });
+  }
+
+  if(current_nav_filter_ != Nav_Filters::None)
+  {
+   menu->addAction("Deactivate Nav Filter", [this]()
+   {
+    activate_nav_filter(Nav_Filters::None);
+   });
+  }
+
   menu->addAction("Close All", [this]()
   {
    earlier_pdf_dialog_->close();
@@ -1848,8 +1880,40 @@ void Index_Entry_Review_Dialog::entry_back_to_start()
 }
 
 
+void Index_Entry_Review_Dialog::entry_forward(QVector<u2>& vec)
+{
+ s4 ix = vec.indexOf(current_entry_id_);
+ if(ix == -1)
+ {
+  if(vec.last() <= current_entry_id_)
+    return;
+  for(u2 i = 0; i < vec.size(); ++i)
+  {
+   if(vec[i] > current_entry_id_)
+   {
+    ix = i;
+    break;
+   }
+  }
+ }
+ else if(ix == vec.size())
+   return;
+ else
+   ++ix;
+
+ load_entry(vec[ix]);
+ entry_index_range_.second = current_entry_id_;
+ reset_file_entries_text();
+}
+
 void Index_Entry_Review_Dialog::entry_forward()
 {
+ if(current_nav_filter_ != Nav_Filters::None)
+ {
+  entry_forward(ref_groups_filtered_[current_nav_filter_]);
+  return;
+ }
+
  if(current_entry_id_ < max_entry_id_)
  {
   load_entry(current_entry_id_ + 1);
@@ -1858,8 +1922,42 @@ void Index_Entry_Review_Dialog::entry_forward()
  }
 }
 
+void Index_Entry_Review_Dialog::entry_backward(QVector<u2>& vec)
+{
+ s4 ix = vec.indexOf(current_entry_id_);
+
+ if(ix == -1)
+ {
+  if(vec.first() >= current_entry_id_)
+    return;
+  for(u2 i = 1; i < vec.size(); ++i)
+  {
+   if(vec[i] > current_entry_id_)
+   {
+    ix = i - 1;
+    break;
+   }
+  }
+ }
+ else if(ix == 0)
+   return;
+ else
+   --ix;
+
+ load_entry(vec[ix]);
+ entry_index_range_.first = current_entry_id_;
+ reset_file_entries_text();
+}
+
+
 void Index_Entry_Review_Dialog::entry_backward()
 {
+ if(current_nav_filter_ != Nav_Filters::None)
+ {
+  entry_backward(ref_groups_filtered_[current_nav_filter_]);
+  return;
+ }
+
  if(current_entry_id_ > 1)
  {
   load_entry(current_entry_id_ - 1);
@@ -2564,23 +2662,36 @@ u2 roman_to_u2(QString roman)
  roman = roman.toLower();
  u2 result = 0;
 
- if(roman.contains("lx"))
+
+ if(roman.contains("xl"))
    result += 40;
- else if(roman.contains("xxx"))
-  result += 30;
- else if(roman.contains("xx"))
-  result += 20;
- else if(roman.contains("x"))
-  result += 10;
+ else
+ {
+  if(roman.contains("l"))
+   result += 50;
+
+  if(roman.contains("xxx"))
+    result += 30;
+  else if(roman.contains("xx"))
+    result += 20;
+  else if(roman.contains("x"))
+    result += 10;
+ }
 
  if(roman.contains("iv"))
    result += 4;
- else if(roman.contains("iii"))
-  result += 3;
- else if(roman.contains("ii"))
-  result += 2;
- else if(roman.contains("i"))
-  result += 1;
+ else
+ {
+  if(roman.contains("v"))
+    result += 5;
+
+  if(roman.contains("iii"))
+    result += 3;
+  else if(roman.contains("ii"))
+    result += 2;
+  else if(roman.contains("i"))
+    result += 1;
+ }
 
  return result;
 }
@@ -2629,6 +2740,36 @@ void Index_Entry_Review_Dialog::add_current_match_line()
 
 }
 
+
+void Index_Entry_Review_Dialog::filter_ref_groups()
+{
+ static u2 new_terms_threshold = 429;
+
+ for(const Index_Ref_Group& irg : *ref_groups_)
+ {
+  bool _Range = false, _Roman = false, _New_Terms = irg.entry_id >= new_terms_threshold;
+  for(const Index_Ref& ir : irg.index_refs)
+  {
+   _Range = _Range || ir.high;
+   _Roman = _Roman || ir.region_code == 1;
+  }
+  if(_Range)
+  {
+   ref_groups_filtered_Range_.push_back(const_cast<Index_Ref_Group*>(&irg));
+   ref_groups_filtered_[Nav_Filters::Range].push_back(irg.entry_id);
+  }
+  if(_Roman)
+  {
+   ref_groups_filtered_Roman_.push_back(const_cast<Index_Ref_Group*>(&irg));
+   ref_groups_filtered_[Nav_Filters::Roman].push_back(irg.entry_id);
+  }
+  if(_New_Terms)
+  {
+   ref_groups_filtered_New_Terms_.push_back(const_cast<Index_Ref_Group*>(&irg));
+   ref_groups_filtered_[Nav_Filters::New_Terms].push_back(irg.entry_id);
+  }
+ }
+}
 
 
 

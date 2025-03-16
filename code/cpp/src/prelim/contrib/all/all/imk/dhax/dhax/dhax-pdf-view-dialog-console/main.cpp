@@ -82,22 +82,13 @@ QSet<int>* make_addendum_pages()
 }
 
 
-int main(int argc, char *argv[])
+QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
 {
- QString aofile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out.txt";
-// QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test.txt";
+ QString text = KA::TextIO::load_file(file);
 
-// QFile outfile(aotfile);
-// if (!outfile.open(QIODevice::WriteOnly))
-//   return 0;
+ QVector<Index_Ref_Group>* result = new QVector<Index_Ref_Group>;
 
-// QTextStream qts(&outfile);
-
-
- QString text = KA::TextIO::load_file(aofile);
-
- QVector<Index_Ref_Group> refs;
-
+ QVector<Index_Ref_Group>& refs = *result;
  refs.resize(428);
 
  QRegularExpression qre("#(\\d+)\\s+\\$([ser])<([^>]+)>([,:.]?)\\s+\\$\\[([^\\]]+)]\\s+\\+\\{([^}]+)\\}"
@@ -215,6 +206,27 @@ int main(int argc, char *argv[])
   }
  }
 
+ return result;
+
+}
+
+
+int main6(int argc, char *argv[])
+{
+ QString aofile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out.txt";
+// QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test.txt";
+
+// QFile outfile(aotfile);
+// if (!outfile.open(QIODevice::WriteOnly))
+//   return 0;
+
+// QTextStream qts(&outfile);
+
+
+
+ QVector<Index_Ref_Group>* refs = make_ref_group_vector(aofile);
+
+
  QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test1.txt";
 
  QFile outfile(aotfile);
@@ -223,7 +235,7 @@ int main(int argc, char *argv[])
 
  QTextStream qts(&outfile);
 
- for(const Index_Ref_Group& g : refs)
+ for(const Index_Ref_Group& g : *refs)
  {
   if(g.entry_id)
     qts << g.to_string();
@@ -235,7 +247,7 @@ int main(int argc, char *argv[])
 }
 
 
-int main6(int argc, char *argv[])
+int main7(int argc, char *argv[])
 {
  QString aofile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out.txt";
  QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test.txt";
@@ -437,7 +449,7 @@ int main1(int argc, char *argv[])
  return 0;
 }
 
-int main5(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
  QString ifile = "/home/nlevisrael/Downloads/m2m/w_pdf/dindex.txt";
  QString bfile = "/home/nlevisrael/Downloads/m2m/w_pdf/bookmarks.txt";
@@ -457,11 +469,15 @@ int main5(int argc, char *argv[])
 
 // return 0;
 
+ QString aofile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out.txt";
+ QVector<Index_Ref_Group>* refs = make_ref_group_vector(aofile);
 
  QApplication qapp(argc, argv);
 
  Index_Entry_Review_Dialog* ierd = new Index_Entry_Review_Dialog(ifile, bfile, ftp_folder);
 
+ ierd->set_ref_groups(refs);
+ ierd->filter_ref_groups();
 
  DHAX_PDF_View_Dialog* pvd1 = new DHAX_PDF_View_Dialog(ierd, nullptr,
    "/home/nlevisrael/Downloads/m2m/m2m-2003.pdf",
