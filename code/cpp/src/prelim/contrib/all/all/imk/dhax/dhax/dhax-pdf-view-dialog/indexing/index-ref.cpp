@@ -172,6 +172,10 @@ QString Index_Ref_Group::to_string() const
  if(join.isEmpty())
    join = " ";
 
+ QString supp = supplement;
+ if(supp.isEmpty())
+   supp = " ";
+
  return ref_template.arg(entry_id).arg(type).arg(h)
-   .arg(follow).arg(join).arg(supplement);
+   .arg(follow).arg(join).arg(supp);
 }

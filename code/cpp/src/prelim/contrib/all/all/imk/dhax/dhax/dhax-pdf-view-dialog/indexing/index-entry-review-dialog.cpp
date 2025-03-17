@@ -1104,6 +1104,14 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
    });
   }
 
+  if(current_nav_filter_ != Nav_Filters::Missing)
+  {
+   menu->addAction("Activate \"Missing\" Nav Filter", [this]()
+   {
+    activate_nav_filter(Nav_Filters::Missing);
+   });
+  }
+
   if(current_nav_filter_ != Nav_Filters::New_Terms)
   {
    menu->addAction("Activate \"New Terms\" Nav Filter", [this]()
@@ -2747,7 +2755,9 @@ void Index_Entry_Review_Dialog::filter_ref_groups()
 
  for(const Index_Ref_Group& irg : *ref_groups_)
  {
-  bool _Range = false, _Roman = false, _New_Terms = irg.entry_id >= new_terms_threshold;
+  bool _Range = false, _Missing = irg.index_refs.isEmpty() && irg.type == "e",
+    _Roman = false, _New_Terms = irg.entry_id >= new_terms_threshold;
+
   for(const Index_Ref& ir : irg.index_refs)
   {
    _Range = _Range || ir.high;
@@ -2762,6 +2772,11 @@ void Index_Entry_Review_Dialog::filter_ref_groups()
   {
    ref_groups_filtered_Roman_.push_back(const_cast<Index_Ref_Group*>(&irg));
    ref_groups_filtered_[Nav_Filters::Roman].push_back(irg.entry_id);
+  }
+  if(_Missing)
+  {
+   ref_groups_filtered_Missing_.push_back(const_cast<Index_Ref_Group*>(&irg));
+   ref_groups_filtered_[Nav_Filters::Missing].push_back(irg.entry_id);
   }
   if(_New_Terms)
   {

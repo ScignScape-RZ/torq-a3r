@@ -78,10 +78,11 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  QVector<Index_Ref_Group*> ref_groups_filtered_Range_;
  QVector<Index_Ref_Group*> ref_groups_filtered_Roman_;
+ QVector<Index_Ref_Group*> ref_groups_filtered_Missing_;
  QVector<Index_Ref_Group*> ref_groups_filtered_New_Terms_;
 
  enum class Nav_Filters {
-  None, Range, Roman, New_Terms
+  None, Range, Roman, Missing, New_Terms
  };
 
  Nav_Filters current_nav_filter_;

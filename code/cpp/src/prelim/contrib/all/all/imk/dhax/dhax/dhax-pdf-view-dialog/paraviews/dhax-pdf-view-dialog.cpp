@@ -64,7 +64,8 @@ DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dial
  : //QDialog(parent),
    entry_dialog_(entry_dialog), earlier_document_ref_(earlier_document_ref),
    pdf_file_path_(pdf_file_path), held_index_entry_key_({0, 0}),
-   roman_start_(0), roman_end_(0), arabic_start_(0), notes_file_(notes_file)
+   roman_start_(0), roman_end_(0), arabic_start_(0), notes_file_(notes_file),
+   addendum_pages_(nullptr)
  //, antemodel_(antemodel)//, config_(config)
 {
  arabic_start_ = ars;

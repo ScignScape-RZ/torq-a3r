@@ -227,6 +227,11 @@ int main6(int argc, char *argv[])
  QVector<Index_Ref_Group>* refs = make_ref_group_vector(aofile);
 
 
+ QString ifile = "/home/nlevisrael/Downloads/m2m/w_pdf/dindex.txt";
+ QVector<Index_Entry> ies;
+ QString itext = KA::TextIO::load_file(ifile);
+ read_index_entries(itext, ies);
+
  QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test1.txt";
 
  QFile outfile(aotfile);
@@ -235,10 +240,23 @@ int main6(int argc, char *argv[])
 
  QTextStream qts(&outfile);
 
- for(const Index_Ref_Group& g : *refs)
+ u2 i = 0;
+ for(Index_Ref_Group& g : *refs)
  {
+  ++i;
+
   if(g.entry_id)
     qts << g.to_string();
+
+  else
+  {
+   g.entry_id = i;
+   g.heading = ies[i - 1].key;
+   g.type = "e";
+
+   qts << g.to_string();
+//   qDebug() << "Missing: " << g.heading;
+  }
  }
 
  outfile.close();
