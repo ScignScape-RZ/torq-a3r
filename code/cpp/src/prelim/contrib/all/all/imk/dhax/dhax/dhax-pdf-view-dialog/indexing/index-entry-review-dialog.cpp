@@ -1890,6 +1890,9 @@ void Index_Entry_Review_Dialog::entry_back_to_start()
 
 void Index_Entry_Review_Dialog::entry_forward(QVector<u2>& vec)
 {
+ if(vec.isEmpty())
+   return;
+
  s4 ix = vec.indexOf(current_entry_id_);
  if(ix == -1)
  {
@@ -1932,6 +1935,9 @@ void Index_Entry_Review_Dialog::entry_forward()
 
 void Index_Entry_Review_Dialog::entry_backward(QVector<u2>& vec)
 {
+ if(vec.isEmpty())
+   return;
+
  s4 ix = vec.indexOf(current_entry_id_);
 
  if(ix == -1)
