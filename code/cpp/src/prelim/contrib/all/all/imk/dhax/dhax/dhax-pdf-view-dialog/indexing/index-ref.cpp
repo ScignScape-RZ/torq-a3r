@@ -151,17 +151,17 @@ QString Index_Ref::to_string() const
 QString Index_Ref_Group::to_html(const Index_Entry& ie) const
 {
  static QString entry_template = R"(
-   <div class='index-entry'><span>%1%2</span>, %3%4
+   <div class='index-entry%7'><span>%1%2</span>, %3%4
     %5 %6 </div>
                                  )";
 
  static QString redirect_template = R"(
-   <div class='index-redirect'><span>%1%2. </span>
+   <div class='index-redirect%5'><span>%1%2. </span>
     %3 %4 </div>
                                     )";
 
  static QString subentries_template = R"(
-   <div class='index-subentries'><span>%1%2</span>
+   <div class='index-subentries%5'><span>%1%2</span>
     %3 %4 </div>
                                       )";
 
@@ -180,21 +180,34 @@ QString Index_Ref_Group::to_html(const Index_Entry& ie) const
  h.replace("``", "&ldquo;");
  h.replace("''", "&rdquo;");
 
+ QString maybe_ital;
+
+ if(h.startsWith(":"))
+ {
+  h = h.mid(1);
+  maybe_ital = " ital";
+ }
+
+ h.replace("|", ">");
+
  if(type == "s")
-   return subentries_template.arg(p).arg(h).arg(supplement).arg(note);
+   return subentries_template.arg(p).arg(h).arg(supplement).arg(note).arg(maybe_ital);
 
  if(type == "r")
-   return redirect_template.arg(p).arg(h).arg(supplement).arg(note);
+   return redirect_template.arg(p).arg(h).arg(supplement).arg(note).arg(maybe_ital);
 
  QStringList pages;
 
  for(const Index_Ref& ir : index_refs)
  {
+  if(ir.region_code == 1 && ir.low <= 31)
+    continue; //qDebug() << ir.low << ": " << _to_roman(ir.low);
+
   pages.push_back(ir.to_string());
  }
 
  QString join = pages.join(", ");
- return entry_template.arg(p).arg(h).arg(join).arg(dot).arg(supplement).arg(note);
+ return entry_template.arg(p).arg(h).arg(join).arg(dot).arg(supplement).arg(note).arg(maybe_ital);
 }
 
 

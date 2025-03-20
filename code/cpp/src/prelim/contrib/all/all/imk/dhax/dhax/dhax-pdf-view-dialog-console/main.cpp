@@ -244,6 +244,7 @@ int main(int argc, char *argv[])
  static QString pre_template = R"(
  <html><head><style>
 div {padding-top:11pt; font-size:18pt;}
+.ital {font-style:italic;}
  </style></head><body>
 
   )";
