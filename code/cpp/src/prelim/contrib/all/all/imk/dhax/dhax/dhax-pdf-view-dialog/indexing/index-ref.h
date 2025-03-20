@@ -7,6 +7,7 @@
 
 #include "global-types.h"
 
+struct Index_Entry;
 
 struct Index_Ref_Strings {
 
@@ -55,6 +56,8 @@ struct Index_Ref_Group {
   QString parent_hint;
 
   QString to_string() const;
+
+  QString to_html(const Index_Entry& ie) const;
 
 };
 

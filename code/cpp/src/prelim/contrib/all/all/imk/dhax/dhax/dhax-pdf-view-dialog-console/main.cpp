@@ -211,7 +211,7 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
 }
 
 
-int main6(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
  QString aofile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out.txt";
 // QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test.txt";
@@ -232,7 +232,8 @@ int main6(int argc, char *argv[])
  QString itext = KA::TextIO::load_file(ifile);
  read_index_entries(itext, ies);
 
- QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test1.txt";
+//? QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test1.txt";
+ QString aotfile = "/home/nlevisrael/Downloads/m2m/all-out.html";
 
  QFile outfile(aotfile);
  if (!outfile.open(QIODevice::WriteOnly))
@@ -240,24 +241,50 @@ int main6(int argc, char *argv[])
 
  QTextStream qts(&outfile);
 
+ static QString pre_template = R"(
+ <html><head><style>
+div {padding-top:11pt; font-size:18pt;}
+ </style></head><body>
+
+  )";
+
+ static QString post_template = R"(
+ </body></html>
+                                )";
+
+ qts << pre_template;
+
  u2 i = 0;
  for(Index_Ref_Group& g : *refs)
  {
+  Index_Entry& ie = ies[i];
+
   ++i;
 
   if(g.entry_id)
-    qts << g.to_string();
+  {
+   QString div = g.to_html(ie);
+   if(div.contains(";</span>,"))
+   {
+    div.replace("&rdquo;</span>,", ",&rdquo;</span>");
+    //? div.replace("&rsquo;</span>,", ",&rsquo;</span>");
+   }
 
+   qts << div;
+
+  }
   else
   {
-   g.entry_id = i;
-   g.heading = ies[i - 1].key;
-   g.type = "e";
+//   g.entry_id = i;
+//   g.heading = ies[i - 1].key;
+//   g.type = "e";
 
-   qts << g.to_string();
-//   qDebug() << "Missing: " << g.heading;
+//   qts << g.to_string();
+   qDebug() << "Missing: " << g.heading;
   }
  }
+
+ qts << post_template;
 
  outfile.close();
 
@@ -467,7 +494,7 @@ int main1(int argc, char *argv[])
  return 0;
 }
 
-int main(int argc, char *argv[])
+int main6(int argc, char *argv[])
 {
  QString ifile = "/home/nlevisrael/Downloads/m2m/w_pdf/dindex.txt";
  QString bfile = "/home/nlevisrael/Downloads/m2m/w_pdf/bookmarks.txt";

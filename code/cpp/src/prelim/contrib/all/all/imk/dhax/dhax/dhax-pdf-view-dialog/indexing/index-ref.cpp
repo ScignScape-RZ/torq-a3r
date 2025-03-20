@@ -1,6 +1,8 @@
 
 #include "index-ref.h"
 
+#include "m2m.h"
+
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
 
@@ -143,6 +145,56 @@ QString Index_Ref::to_string() const
 
 
  return result;
+}
+
+
+QString Index_Ref_Group::to_html(const Index_Entry& ie) const
+{
+ static QString entry_template = R"(
+   <div class='index-entry'><span>%1%2</span>, %3%4
+    %5 %6 </div>
+                                 )";
+
+ static QString redirect_template = R"(
+   <div class='index-redirect'><span>%1%2. </span>
+    %3 %4 </div>
+                                    )";
+
+ static QString subentries_template = R"(
+   <div class='index-subentries'><span>%1%2</span>
+    %3 %4 </div>
+                                      )";
+
+ QString note = "\n  <span class='note'> {%1} </span> \n"_qt.arg(entry_id);
+
+ QString p;
+
+ if(parent_id)
+ {
+  p = " [%1/%2] "_qt.arg(parent_hint).arg(parent_id);
+ }
+
+ QString dot = supplement.trimmed().isEmpty()? " " : ". ";
+
+ QString h = heading;
+ h.replace("``", "&ldquo;");
+ h.replace("''", "&rdquo;");
+
+ if(type == "s")
+   return subentries_template.arg(p).arg(h).arg(supplement).arg(note);
+
+ if(type == "r")
+   return redirect_template.arg(p).arg(h).arg(supplement).arg(note);
+
+ QStringList pages;
+
+ for(const Index_Ref& ir : index_refs)
+ {
+  pages.push_back(ir.to_string());
+ }
+
+ QString join = pages.join(", ");
+ return entry_template.arg(p).arg(h).arg(join).arg(dot).arg(supplement).arg(note);
 }
 
 
