@@ -148,6 +148,122 @@ QString Index_Ref::to_string() const
 }
 
 
+QPair<QString, QString> Index_Ref_Group::to_html_bookstyle(const Index_Entry& ie,
+   Index_Entry* parent, Index_Ref_Group* pg)  const
+{
+ QString div;
+ QString close;
+
+ QString div_or_span;
+
+ QString s ;// = supplement;
+
+ if(ie.id == 9)
+ {
+  qDebug() << ie.id;
+ }
+
+
+ if(ie.id >= 21 && ie.id < 24)
+ {
+  qDebug() << ie.id;
+ }
+
+
+ if(ie.sub_count > 1)
+ {
+  if(supplement.isEmpty())
+    close = "\n\n  </div>\n";
+  else
+    close = "\n" + supplement + "\n  </div>\n";
+ }
+ else
+ {
+  div = "</div>\n";
+  s = supplement;
+ }
+
+
+
+ static QString entry_template = R"(
+   <%8 class='index-entry%6'><span>%1%2</span>, %3%4
+    %5 %7
+                                 )";
+
+ static QString redirect_template = R"(
+   <%6 class='index-redirect%4'><span>%1%2. </span>
+    %3 %5
+                                    )";
+
+ static QString subentries_template = R"(
+   <%6 class='index-subentries%5'><span>%1%2</span>
+    %3 %4
+                                      )";
+
+// QString note = "\n  <span class='note'> {%1} </span> \n"_qt.arg(entry_id);
+
+ QString p;
+
+ if(parent_id)
+ {
+  div_or_span = "span";
+
+  if(ie.count_in_parent == parent->sub_count - (pg->type == "e"))
+  {
+   if(parent->supplement.isEmpty())
+     div = "</span>\n";
+   else
+     div = ".</span>\n";
+  }
+  else
+    div = "</span>;\n";
+  //?p = " [%1/%2] "_qt.arg(parent_hint).arg(parent_id);
+ }
+ else
+ {
+  div_or_span = "div";
+ }
+
+ QString dot = supplement.trimmed().isEmpty()? " " : ". ";
+
+ QString h = heading;
+ h.replace("``", "&ldquo;");
+ h.replace("''", "&rdquo;");
+
+ h.replace(QRegularExpression("\\(\\d+\\s+subentries\\)"), "");
+
+ QString maybe_ital;
+
+ if(h.startsWith(":"))
+ {
+  h = h.mid(1);
+  maybe_ital = " ital";
+ }
+
+ h.replace("|", ">");
+
+ if(type == "s")
+   return {subentries_template.arg(p).arg(h).arg(s).arg(maybe_ital).arg(div).arg(div_or_span),
+      close};
+
+ if(type == "r")
+   return {redirect_template.arg(p).arg(h).arg(s).arg(maybe_ital).arg(div).arg(div_or_span), close};
+
+ QStringList pages;
+
+ for(const Index_Ref& ir : index_refs)
+ {
+  if(ir.region_code == 1 && ir.low <= 31)
+    continue; //qDebug() << ir.low << ": " << _to_roman(ir.low);
+
+  pages.push_back(ir.to_string());
+ }
+
+ QString join = pages.join(", ");
+ return {entry_template.arg(p).arg(h).arg(join).arg(dot)
+   .arg(s).arg(maybe_ital).arg(div).arg(div_or_span), close};
+}
+
 QString Index_Ref_Group::to_html(const Index_Entry& ie) const
 {
  static QString entry_template = R"(

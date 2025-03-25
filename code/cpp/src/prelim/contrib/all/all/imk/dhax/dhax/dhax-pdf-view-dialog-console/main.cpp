@@ -233,7 +233,10 @@ int main(int argc, char *argv[])
  read_index_entries(itext, ies);
 
 //? QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test1.txt";
- QString aotfile = "/home/nlevisrael/Downloads/m2m/all-out.html";
+
+// QString aotfile = "/home/nlevisrael/Downloads/m2m/all-out.html";
+
+ QString aotfile = "/home/nlevisrael/Downloads/m2m/all-out-b.html";
 
  QFile outfile(aotfile);
  if (!outfile.open(QIODevice::WriteOnly))
@@ -244,7 +247,8 @@ int main(int argc, char *argv[])
  static QString pre_template = R"(
  <html><head><style>
 div {padding-top:11pt; font-size:18pt;}
-.ital {font-style:italic;}
+.ital span {font-style:italic;}
+.norm {font-style: normal;}
  </style></head><body>
 
   )";
@@ -255,6 +259,8 @@ div {padding-top:11pt; font-size:18pt;}
 
  qts << pre_template;
 
+ QString held;
+
  u2 i = 0;
  for(Index_Ref_Group& g : *refs)
  {
@@ -262,17 +268,42 @@ div {padding-top:11pt; font-size:18pt;}
 
   ++i;
 
+  if(!held.isEmpty() && !ie.parent_id)
+  {
+   qts << held;
+   held.clear();
+  }
+
+
   if(g.entry_id)
   {
-   QString div = g.to_html(ie);
-   if(div.contains(";</span>,"))
+   Index_Entry* parent = g.parent_id? &ies[g.parent_id - 1] : nullptr;
+   Index_Ref_Group* pg = g.parent_id? &((*refs)[g.parent_id - 1]) : nullptr;
+
+   QPair<QString, QString> div = g.to_html_bookstyle(ie, parent, pg);
+
+//?   QString div = g.to_html(ie);
+
+
+   if(div.first.contains(";</span>,"))
    {
-    div.replace("&rdquo;</span>,", ",&rdquo;</span>");
+    div.first.replace("&rdquo;</span>,", ",&rdquo;</span>");
     //? div.replace("&rsquo;</span>,", ",&rsquo;</span>");
    }
 
-   qts << div;
+   div.first.replace(QRegularExpression("\\s+\\.</span>;"), ".</span>;");
+   div.first.replace(QRegularExpression("\\s+</span>;"), "</span>;");
 
+
+   if(ie.sub_count > 1 && g.type == "e")
+     qts << div.first.trimmed() << ";";
+
+   else
+     qts << div.first;
+
+
+   if(!div.second.isEmpty())
+     held = div.second;
   }
   else
   {

@@ -59,6 +59,9 @@ struct Index_Ref_Group {
 
   QString to_html(const Index_Entry& ie) const;
 
+  QPair<QString, QString> to_html_bookstyle(const Index_Entry& ie,
+    Index_Entry* parent = nullptr, Index_Ref_Group* pg = nullptr) const;
+
 };
 
 

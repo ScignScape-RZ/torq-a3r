@@ -1,0 +1,2568 @@
+
+ [[ "adjournments in contemplation of dismissal" &1 =>  ^%31
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Alonso, Carmen" &2 =>  ^@256/28
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "American Bar Association, in cooperation with the Association of Family and Conciliation Courts (1988)" &3 =>  ^%11 -> ^%201
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "American Coalition for Fathers and Children (ACFC)" &4 =>  ^%13
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "American Journal of Public Health" &5 =>  ^%8
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "American Jurisprudence Proof of Facts" &6 =>  ^%11 -> ^%27
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "American Psychiatric Association" &7 =>  ^%147 -> ^@262/9
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "American Psychological Association" &8 #1 =>  ^%84 -> ^%226
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Violence and the Family (1996)" &9 *1 =>  ^%26 -> ^%147
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Anderson, Karen" &10 +{See also California Protective Parents Association} =>  ^%228
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "anorexia nervosa" &11 =>  ^%106 -> ^%122 -> ^^%141--%142
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "appellate review" &12 =>  ^$xxi -> ^%16 -> ^%24 -> ^^%30--%31 -> ^%59 -> ^^%60--%61 -> ^^%66--%67 -> ^^%76--%77 -> ^%87 -> ^%90 -> ^%99 -> ^%102 -> ^^%104--%105 -> ^%166 -> ^^%217--%218 -> ^%226 -> ^%229 -> ^@240/38 -> ^^%241--@242/9 -> ^@242/3 -> ^@243/15 -> ^@245/38 -> ^@246/64 -> ^@251/60 -> ^@255/6 -> ^@265/5
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Apolo, Julio" &13 =>  ^%157
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Armstrong, Louise" &14 =>  ^$xx -> ^%13 -> ^%17
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Arizona Coalition against Domestic Violence" &15 +{See also Battered Mothers' Testimony Project} =>  ^%149
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Australian mothers, study of" &16 +{See also Munchausen Syndrome By Proxy (MSBP)} =>  ^@260/111
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Aylsworth, John" &17 +{See also Marks, Bridget; Port, Bob} =>  ^%5
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``Baby M'' case" &18 =>  ^^%104--%105
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Battered Mothers' Testimony Project" &19 +{See also Arizona Coalition against Domestic Violence} =>  ^%8
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Battered Mothers Speak Out (November 2002)" &20 +{See also Wellesley Centers for Women} =>  ^%8
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Bell, Mariam" &21 #2 =>  ^$xvii -> ^@237/6
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Childhelp USA" &22 *1 =>  ^$xvii
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "``System Failure Project''" &23 *2 =>  ^$xvii
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Billings, Lucy" &24 =>  ^^%115--%116 -> ^%120
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Boston Phoenix (2003)" &25 =>  ^%3
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Brooklyn Bar Association, matrimonial committee of" &26 =>  ^%11
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Brooklyn Family Court" &27 +{See also Deutsch, Leon} =>  ^^%13--%14 -> ^%52 -> ^%79 -> ^%97 -> ^%129 -> ^%140 -> ^%188
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Brooklyn Society for the Prevention of Cruelty to Children (BSPCC)" &28 =>  ^%139
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Bronx Legal Services" &29 =>  ^%115
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Bruch, Carol" &30 =>  ^%156
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "BSPCC" &31 +{See Brooklyn Society for the Prevention of Cruelty to Children (BSPCC)} => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Buckmaster, Henrietta" &32 =>  ^%109
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Burgasser, George" &33 =>  ^%121 -> ^@264/16
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Burton, Randy" &34 =>  ^%78
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "California" &35 #1 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "women's and children's advocacy groups and organizations" &36 *1 =>  ^%213
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "commissions and professional associations" &37 *2 =>  ^%213
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "California Protective Parents Association" &38 =>  ^%213
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Campbell, Bonnie" &39 +{See also U.S. Department of Justice, Violence Against Women Office} =>  ^@237/5
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "CAPTA" &40 +{See Child Abuse Prevention and Treatment Act of 1974 (CAPTA)} => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Carpenter, McKenzie (Pittsburgh Post-Gazette)" &41 =>  ^%20
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Chesler, Phyllis" &42 =>  ^%18
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "child" &43 #2 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "best interests of" &44 *1 =>  ^%96 -> ^%104 -> ^%142 -> ^%198 -> ^%206 -> ^%213 -> ^^%217--%218 -> ^%221 -> ^%223
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "imminent danger or risk of harm" &45 *2 =>  ^^%92--%94 -> ^%126 -> ^%127 -> ^%130 -> ^%210 -> ^@249/14 -> ^@251/60 -> ^@265/3
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "welfare of" &46 *3 =>  ^%112 -> ^%163 -> ^^%198--%199 -> ^%200 -> ^%212
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``Child Abuse Accommodation Syndrome''" &47 =>  ^%149
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Child Abuse Prevention and Treatment Act of 1974 (CAPTA)" &48 =>  ^%89 -> ^%121 -> ^%204 -> ^%212 -> ^%213 -> ^%220 -> ^%232 -> ^@263/9 -> ^@264/16
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "ChildhelpUSA" &49 +{See Bell, Mariam} => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Child Protective Services (CPS)" &50 #3 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "child fatalities" &51 *1 =>  ^%143
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "child neglect, charge of" &52 *2 =>  ^%29 -> ^^%46--%48 -> ^%53 -> ^%58 -> ^%68 -> ^%89 -> ^%96 -> ^%112 -> ^%115 -> ^%118 -> ^%119 -> ^%124 -> ^^%126--%129 -> ^%131 -> ^%136 -> ^%139 -> ^%142 -> ^%168 -> ^%184 -> ^%207 -> ^%211 -> ^^%232--%235 -> ^^%248--@249/8 -> ^@251/61 -> ^@253/27 -> ^@263/6
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "home study" &53 *3 =>  ^%22 -> ^%74
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "``surprise'' (unannounced) visits" &54 *4 =>  ^%119 -> ^^%130--%131 -> ^@261/8
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``Children of the Underground''" &55 +{See also Yager, Faye} =>  ^%18 -> ^%20
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Children's Rights of America" &56 =>  ^@261/3
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "child custody and child sexual abuse, professional literature on" &57 #38 -{See also Gardner Richard A.; Green, Arthur; Niggemyer, Kathleen; Pennington, H. Joan; Summit, Roland} => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Berliner (1988)" &58 *1 =>  ^$xviii
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Corwin, Berliner, Goodman, Goodwin, and White (1987)" &59 *2 =>  ^$xvi -> ^%27 -> ^%149 -> ^%152 -> ^%155
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Deblinger, Stauffer, and Steer (2001)" &60 *3 =>  ^%150
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Denike, Huang, and Kachuk (1998)" &61 *4 =>  ^$xviii
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Dziech and Schudson (1989)" &62 *5 =>  ^$xviii -> ^%39
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Everson and Boat (1989)" &63 *6 =>  ^%23
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Faller (1998)" &64 *7 =>  ^%169
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Faller (2000)" &65 *8 =>  ^%6
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Faller (2002)" &66 *9 =>  ^%158
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Faller, Corwin, and Olafson (1993)" &67 *10 =>  ^$xviii -> ^%155
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Faller and DeVoe (1995)" &68 *11 =>  ^$xviii -> ^@237/8
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Finkelhor (1986)" &69 *12 =>  ^%6
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Friedrich (1993)" &70 *13 =>  ^%228
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Froning (1988)" &71 *14 =>  ^%152
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Gould (1998)" &72 *15 =>  ^%145 -> ^%162
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Jones and McGraw (1987)" &73 *16 =>  ^@238/11
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Jones and Seig (1988)" &74 *17 =>  ^@238/11
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Keating (1998)" &75 *18 =>  ^%5
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Lawson and Chaffin (1992)" &76 *19 =>  ^$xviii
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Lidman and Hollingsworth (1998)" &77 *20 =>  ^%86 -> ^%90
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Massat and Lundy (1998)" &78 *21 =>  ^%7 -> ^%184
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Massat and Lundy (1999)" &79 *22 =>  ^%38
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "McDonald (1998)" &80 *23 =>  ^$xviii
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "McGraw and Smith (1992)" &81 *24 =>  ^@238/11
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Melton, Petrila, Poythress, and Slobogin (1997)" &82 *25 =>  ^%227
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Myers (1997)" &83 *26 =>  ^%6 -> ^%10
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Neustein and Goetting (1999)" &84 *27 =>  ^%6
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Nicholson and Bulkley (1988)" &85 *28 =>  ^%11
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Palmer and Brown (1999)" &86 *29 =>  ^%149
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Penfold (1997)" &87 *30 =>  ^%6
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Pennington and Woods (1990)" &88 *31 =>  ^%17 -> ^%87
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Quinn (1988)" &89 *32 =>  ^$xviii
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Russell (1983)" &90 *33 =>  ^%6
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Russell (1986)" &91 *34 =>  ^%6
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Schafran (1987)" &92 *35 =>  ^%9 -> ^%228
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Smith and Coukos (1997)" &93 *36 =>  ^^%27--%28 -> ^%148
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Stern and Oehme (2002)" &94 *37 =>  ^%25
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Thoennes, Pearson, and Tjaden (1988)" &95 *38 =>  ^$xviii
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Thoennes and Tjaden (1990)" &96 *39 =>  ^$xviii
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Child Welfare" &97 =>  ^%7
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "circumscribed psychosis" &98 =>  ^%141 -> ^%147 -> ^%153 -> ^%155 -> ^%165
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Civic Research Institute" &99 +{See also Zorza, Joan} =>  ^@262/1
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "civil rights" &100 #2 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "constitutional rights" &101 *1 =>  ^$xiv -> ^%26 -> ^%59 -> ^%85 -> ^%201 -> ^%203 -> ^%207 -> ^%210 -> ^%211 -> ^%217 -> ^%218
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "due process" &102 *2 =>  ^$xxii -> ^^%7--%8 -> ^%15 -> ^%30 -> ^%45 -> ^%73 -> ^%80 -> ^^%83--%84 -> ^%201 -> ^%203 -> ^%207 -> ^%218 -> ^%235
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "equal protection" &103 *3 =>  ^%8 -> ^%29
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Cobb County Bar Association" &104 =>  ^^%171--%172 -> ^@259/83
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Code of Judicial Conduct" &105 =>  ^%222 -> ^%230
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "colposcopic examination" &106 =>  ^%98 -> ^%134 -> ^%174
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Conducting Scientifically Crafted Child Custody Evaluations" &107 =>  ^%145
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "confidentiality" &108 +{See also ``gag'' order} =>  ^%28 -> ^%79 -> ^^%106--%107 -> ^%116 -> ^^%204--%207 -> ^%233
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "contempt of court" &109 =>  ^%51 -> ^%60 -> ^^%64--%71 -> ^%73 -> ^%91 -> ^%101 -> ^%132 -> ^%191 -> ^%204 -> ^^%214--%216 -> ^%231 -> ^@263/9
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Curran, William (1985)" &110 =>  ^%26
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Curtis, April" &111 =>  ^%3
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Dale, Sebe" &112 =>  ^%20
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Deutsch, Leon" &113 +{See also Brooklyn Family Court; Paterson, David A. } =>  ^^%13--%14 -> ^%69 -> ^%79 -> ^%216 -> ^@245/50 -> ^@263/10
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``Diagnostic Impression'' chart" &114 =>  ^%164
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Displaced Mother Syndrome" &115 =>  ^^%105--%110
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Divorced from Justice (Winner)" &116 =>  ^%9
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``domestic relations'' exception" &117 =>  ^%218
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "domestic violence" &118 =>  ^%128
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Ducote, Richard" &119 =>  ^^%87--%89 -> ^%171 -> ^@248/5 -> ^@259/83
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Durkheim, Emile" &120 =>  ^%36
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "English common law" &121 =>  ^%197
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "ethics" &122 =>  ^%51 -> ^%58 -> ^%75 -> ^%81 -> ^%203 -> ^%216 -> ^^%222--%225 -> ^%228 -> ^%230 -> ^@241/8 -> ^@250/43 -> ^@265/13
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "ethnomethodological studies" &123 #8 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Garfinkel (1967)" &124 *1 =>  ^%38 -> ^@241/4
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Garfinkel and Bittner (1967)" &125 *2 =>  ^%47 -> ^@249/9
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Garfinkel and Sacks (1970)" &126 *3 =>  ^%42 -> ^%74
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Heritage and Sefi (1992)" &127 *4 =>  ^%46
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Heritage and Watson (1979)" &128 *5 =>  ^%74
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Holstein and Gubrium (1995)" &129 *6 =>  ^$xxi -> ^^%42--%43
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Lynch (1997)" &130 *7 =>  ^$xxi -> ^^%36--%37 -> ^%46
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Meehan (1997)" &131 *8 =>  ^$xxi -> ^%47 -> ^%50 -> ^^%90--%91 -> ^@241/7
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Pollner (1979)" &132 *9 =>  ^$xxi -> ^^%40--%41 -> ^%77
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "ethnomethodology" &133 #12 -{See also sociological inquiry} =>  ^$xxi -> ^$xxiii -> ^^%35--%37 -> ^%42 -> ^%44 -> ^%45 -> ^%47 -> ^%50 -> ^%91 -> ^%136 -> ^%146 -> ^@237/10
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "``accountable,'' ``publicly'' observable actions" &134 *1 =>  ^%37 -> ^@241/3
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "``contractual'' use of records" &135 *2 =>  ^^%47--%48 -> ^%96 -> ^%125 -> ^%137
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "conversation analysis" &136 *3 =>  ^%46
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "documentary method of interpretation" &137 *4 =>  ^^%37--%38 -> ^%82 -> ^%136
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "explicative transactions" &138 *5 =>  ^^%40--%41 -> ^%77
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "formulating" &139 *6 =>  ^%42 -> ^%74 -> ^%75
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "``methodically'' ordered social practices" &140 *7 =>  ^$xxi -> ^@237/10
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "practical accomplishment" &141 *8 =>  ^^%45--%46 -> ^%47 -> ^%64 -> ^%176
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "practical reasoning" &142 *9 =>  ^%36 -> ^^%38--%39 -> ^%43 -> ^%45 -> ^^%84--%85 -> ^%136
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "reflexive" &143 *10 =>  ^^%36--%37 -> ^%40 -> ^%51 -> ^%70 -> ^%146
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "running record" &144 *11 =>  ^%49 -> ^%50 -> ^%115 -> ^%131 -> ^%134 -> ^^%144--%145 -> ^%165 -> ^%175 -> ^@241/7 -> ^^%241--@242/9 -> ^@253/34
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "situated meaning, accomplishment, achievement, definition, action" &145 *12 =>  ^%35 -> ^%36 -> ^%37 -> ^%40 -> ^%44 -> ^^%42--%46 -> ^%50 -> ^^%71--%72 -> ^%77 -> ^^%80--%81 -> ^^%84--%85 -> ^%91 -> ^%106 -> ^%110 -> ^%171 -> ^%178
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "evidentiary hearing" &146 =>  ^%59 -> ^@246/64
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "ex parte (without the knowledge of the other party)" &147 #3 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "communication" &148 *1 =>  ^%49 -> ^^%58--%59 -> ^^%223--%224 -> ^%230 -> ^@241/8 -> ^@250/43 -> ^@265/4
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "hearing" &149 *2 =>  ^%209 -> ^%210
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "motion" &150 *3 =>  ^%68
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "order" &151 *4 =>  ^%69 -> ^%187 -> ^%192 -> ^%209 -> ^@253/36 -> ^@254/37 -> ^@254/38 -> ^@263/5
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Faller, Kathleen Coulborn" &152 +{See also child custody and child sexual abuse, professional literature on} =>  ^$xviii -> ^%6 -> ^%152 -> ^%155 -> ^%158 -> ^%169 -> ^@237/8
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Family Law Quarterly" &153 =>  ^%156
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Fathers' Rights Association of Metro New York and Long Island" &154 +{See also Deutsch, Leon; Middleton, Humberto; Shoulson, Jay} =>  ^%13
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "fathers' rights groups" &155 =>  ^$xx -> ^%13
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Fink, Paul" &156 =>  ^%147
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "fitness, parental" &157 =>  ^^%43--%47 -> ^%57 -> ^^%84--%85 -> ^%127 -> ^^%130--%133 -> ^%147 -> ^%154 -> ^%157 -> ^%161 -> ^%164 -> ^%168 -> ^%178 -> ^^%202--%203 -> ^^%243--@244/19
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "flight risk" &158 +{See also kidnapping, parental; ``Underground Railroad''} =>  ^%123 -> ^%165 -> ^%204 -> ^%209 -> ^@257/50
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "folie à deux" &159 =>  ^^%155--%156 -> ^%158 -> ^@257/39
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "folie à trois" &160 =>  ^%156
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Fox, Meera" &161 =>  ^%228
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Fund for Modern Courts" &162 =>  ^^%28--%29
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``gag'' order" &163 +{See also confidentiality} =>  ^%28 -> ^%138 -> ^%190 -> ^%206 -> ^@262/19
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Gallet, Jeffrey" &164 =>  ^%79 -> ^%80
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Gandy, Kim" &165 =>  ^$xiv -> ^$xvi
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Gardner, Richard A." &166 +{See also Parental Alienation Syndrome} =>  ^^%26--%27 -> ^%99 -> ^^%146--%148 -> ^^%150--%152 -> ^%156 -> ^%158 -> ^%162 -> ^%169 -> ^%172 -> ^%174 -> ^%175 -> ^^%199--%200 -> ^@240/4 -> ^@255/8 -> ^@256/16 -> ^@256/21 -> ^@257/34 -> ^@257/39 -> ^@259/72
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Garfinkel, Harold" &167 +{See also ethnomethodological studies} =>  ^%36
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Geffner, Robert" &168 =>  ^@245/42 -> ^@245/46
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "gender bias" &169 =>  ^$xxi -> ^%7 -> ^%8 -> ^%9 -> ^%10 -> ^%37 -> ^%45 -> ^%217
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Geraldo Rivera Show" &170 =>  ^%180
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Gill, John Edward" &171 =>  ^%186
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Goodenough-Draw-A-Person test" &172 =>  ^@260/108
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Good Housekeeping" &173 =>  ^%3
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Goodhue, Mary B." &174 =>  ^%30 -> ^@240/8
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Gothard, Sol" &175 =>  ^%219
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Grant, Lee" &176 =>  ^%3
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Green, Arthur" &177 +{See also circumscribed psychosis} =>  ^%15 -> ^^%26--%27 -> ^%57 -> ^%63 -> ^%80 -> ^%141 -> ^^%147--%148 -> ^^%150--%152 -> ^^%154--%155 -> ^%164 -> ^%165 -> ^%230 -> ^@245/37 -> ^@251/61 -> ^@258/58;59 -> ^@260/111
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Greenspan, Arthur" &178 =>  ^@256/30
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Grossman, Louis" &179 +{See also New York, state of, Commission on Judicial Conduct} =>  ^@244/33
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Hannah, Maureen Therese" &180 =>  ^%18
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Hanson, Graeme" &181 =>  ^%15 -> ^%150
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Harman, Rosalie" &182 =>  ^^%121--%122 -> ^@252/13
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Heit, Julia" &183 =>  ^^%11--%12 -> ^%52 -> ^^%246--@247/73
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Help Us Regain The Children (HURT)" &184 =>  ^$xv
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Hobson's choice" &185 =>  ^%151
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Home Front, The (Armstrong)" &186 =>  ^%17
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Hostage Child, The (Rosen and Etlin)" &187 =>  ^%7 -> ^%10
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "House Judiciary Committee (1992)" &188 +{See also Pennington} =>  ^$xiv -> ^%20 -> ^%28 -> ^%206
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "H. Joan hunger strike" &189 =>  ^$xix -> ^%138
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``Hunted'' Syndrome" &190 =>  ^^%183--%186
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "HURT" &191 +{See Help Us Regain The Children (HURT)} => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "hypoglycemia" &192 =>  ^%178
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Illinois Department of Children and Family Services" &193 =>  ^%120
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "immunity" &194 =>  ^%26 -> ^%89 -> ^%103 -> ^%125 -> ^%211 -> ^%215 -> ^^%221--%222 -> ^%234 -> ^^%264--@265/1;2
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "in camera (in judge's chambers)" &195 +{See also off-the-record conferences} =>  ^%59 -> ^^%61--%64 -> ^%72 -> ^%205 -> ^%207
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "infanticide, mothers who commit" &196 =>  ^^%109--%110 -> ^%188 -> ^@254/54
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "International Pediatrics" &197 =>  ^%157
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "intimate partner violence" &198 +{See also Battered Mothers Speak Out} =>  ^%8 -> ^@239/17
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Issues in Child Abuse Accusations" &199 =>  ^%158
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Jane Addams College of Social Work of the University of Illinois" &200 +{See also Lundy, Marta; Massat, Carol Rippey} =>  ^%7 -> ^%38 -> ^%120 -> ^%184 -> ^@252/10
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Jensen, Rita Henley" &201 =>  ^$xv -> ^@237/4
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Journal of Child Sexual Abuse" &202 =>  ^%6
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Journal of Interpersonal Violence" &203 =>  ^$xviii -> ^%149
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Journal of the American Academy of Child and Adolescent Psychiatry" &204 =>  ^%15 -> ^%150 -> ^%152
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``Judge Judy'' (Judith Scheindlin)" &205 =>  ^%12
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Judges' Journal" &206 =>  ^%27
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Judicare" &207 =>  ^%9
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Judicial Council of California Administrative Office of the Courts (1990)" &208 =>  ^%8
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "judicial hearing officer (JHO)" &209 +{See also Deutsch, Leon} =>  ^%216 -> ^@263/10 -> ^@264/15
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Judicial Training Act, The" &210 +{See also Pennington, H. Joan} =>  ^@237/3 -> ^@240/45 -> ^@240/6
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "junk science" &211 =>  ^$xiii -> ^^%26--%28 -> ^^%144--%148 -> ^%150 -> ^%153 -> ^^%161--%63 -> ^%167 -> ^%168 -> ^%200 -> ^%203 -> ^^%227--%232 -> ^%235 -> ^@251/61 -> ^@260/112
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Jurow, Abraham" &212 =>  ^%16
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Justice for Children" &213 =>  ^%21
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Justice Seekers, Inc." &214 +{See also Winner Karen} =>  ^%9
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Kafkaesque, court experience as" &215 =>  ^%73 -> ^%111 -> ^%182
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``kangaroo courts''" &216 =>  ^%28
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Kaplan, S., and S. Kaplan" &217 =>  ^%155
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Katherine Crier Live" &218 =>  ^%3
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``Kelly-Frye'' rule" &219 =>  ^%147
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Kidnapping, parental" &220 +{See also flight risk; ``Underground Railroad''} =>  ^%18 -> ^%186
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "King, Eileen" &221 =>  ^%21
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Koppell, Oliver" &222 =>  ^^%78--%79
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Krause, Alanna" &223 =>  ^^%102--%104
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "LaLonde, Virginia" &224 =>  ^%20
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Lasswell, Harold" &225 =>  ^$xix
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Legal Aid Society" &226 =>  ^%12 -> ^@250/25
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Legal Issues and Legal Options in Civil Child Sexual Abuse Cases" &227 =>  ^%17 -> ^%87
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Lexington Herald-Leader" &228 =>  ^^%100--%101
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Libow, J. A." &229 =>  ^%157
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``Lost Limb'' Syndrome" &230 =>  ^^%186--%187
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Loyola Journal of Public Interest Law" &231 =>  ^%87
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Loyola Law Review" &232 =>  ^%5
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Lundy, Marta" &233 +{See also Jane Addams College of Social Work of the University of Illinois} =>  ^^%120--%121 -> ^@252/8
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Malicious Mother Syndrome (MMS)" &234 +{See also Turkat, Ira} =>  ^$xxiii -> ^^%27--%28 -> ^%148
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "mandatory reporting laws" &235 =>  ^^%120--%121
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Mandel, Steve" &236 =>  ^@244/20
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Marks, Bridget" &237 =>  ^%4
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Martindale, David A." &238 =>  ^%231
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``Masochistic Mother'' Syndrome" &239 =>  ^%187 -> ^%188
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Massachusetts Senate Committee on Post Audit and Oversight" &240 =>  ^%87
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Massat, Carol Rippey" &241 +{See also Jane Addams College of Social Work of the University of Illinois} =>  ^%121 -> ^@264/16
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "matrimonial bar" &242 =>  ^%51 -> ^%201
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Mazierski, Kathryn" &243 =>  ^$xiv -> ^$xv -> ^$xvi
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "McAlary, Mike" &244 =>  ^@239/28
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "McDonald, Michael, O." &245 =>  ^^%99--%101
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "McKenna, Jeremiah B." &246 +{See also New York, state of, Senate Committee on Crime and Correction} =>  ^%217 -> ^@243/16 -> ^@247/76 -> ^@261/5
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Meadow, Roy" &247 =>  ^%157
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Meltzer, Anne" &248 =>  ^%30 -> ^%63 -> ^@256/28
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Men's Equality Now International Coalition" &249 =>  ^%13
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "men's rights groups" &250 +{See fathers' rights groups} => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Metro Atlanta Board of Mental Health Professionals" &251 =>  ^%172 -> ^@259/83
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Middleton, Humberto" &252 +{See also Deutsch, Leon} =>  ^^%13--%14 -> ^@239/30
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Miller, Liliane Heller" &253 =>  ^%18
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Millon Clinical Multiaxial Inventory (MCMI)" &254 =>  ^%95 -> ^@260/108
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Minnesota Multiphasic Personality Inventory (MMPI)" &255 =>  ^%179 -> ^%229 -> ^@260/108
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Minnesota Office of the Legislative Auditor, Program Evaluation Division" &256 =>  ^%89
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "MMPI" &257 +{See Minnesota Multiphasic Personality Inventory (MMPI)} => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``moral earthquake" &258 =>  ^%183
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Moran, Grace" &259 +{See also New York, state of, Grievance Committee for the Tenth Judicial District} =>  ^@251/52
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Morgan, Elizabeth" &260 =>  ^%4 -> ^%39 -> ^%85
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Mostofsky, Steven" &261 +{See also Deutsch Leon; Paterson, David A.} =>  ^%216
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Mother's Day press conference" &262 =>  ^$xv
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Mothers on Trial (Chesler)" &263 =>  ^%18
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "MSBP" &264 +{See Munchausen Syndrome By Proxy (MSBP)} => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Munchausen Syndrome By Proxy (MSBP), factious disorder by proxy" &265 =>  ^^%156--%160 -> ^%167 -> ^@257/43 -> ^@260/112
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Nadler, Jerrold" &266 =>  ^%15 -> ^%18
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "National Alliance for the Mentally Ill" &267 =>  ^%161 -> ^@258/51
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "National Association of Social Workers" &268 =>  ^%232
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "National Center on Child Abuse and Neglect (NCCAN)" &269 =>  ^%121 -> ^@252/7 -> ^@264/16
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "National Center for Protective Parents" &270 +{See also Pennington, H. Joan} =>  ^$xiv -> ^%57
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "National Center on Women and Family Law" &271 +{See also Pennington, H. Joan} =>  ^%87 -> ^@248/3
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "National Child Abuse and Neglect Data System (NCANDS)" &272 #1 =>  ^%143 -> ^@255/64
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Child Maltreatment 2002" &273 *1 =>  ^%143
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "National Judicial Education Program" &274 =>  ^%228
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "National Law Journal" &275 =>  ^%109
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "National Organization for Women (NOW)" &276 #2 =>  ^$xiv -> ^%3 -> ^%7
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "California state chapter" &277 *1 =>  ^%7 -> ^%213
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "New York state chapter" &278 *2 =>  ^^$xiv--$xv
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "NCCAN" &279 +{See National Center on Child Abuse and Neglect (NCCAN)} => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "NCANDS" &280 +{See National Child Abuse and Neglect Data System (NCANDS)} => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "New England Journal of Medicine" &281 =>  ^%26
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "New Jersey Administrative Code" &282 =>  ^@252/3
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Newsom, Karen" &283 =>  ^^%19--%20
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Newsweek" &284 =>  ^%4
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "New York, city of" &285 #4 -{(see also Winner, Karen)} => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Administration for Children's Services (ACS)" &286 *1 =>  ^%17 -> ^%24
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Child Fatality Review Panel" &287 *2 =>  ^^%105--%106
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Child Welfare Administration (CWA)" &288 *3 =>  ^^%121--%122
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Council" &289 *4 =>  ^%15
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Department of Consumer Affairs" &290 *5 =>  ^%9
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "New York, state of" &291 #9 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Assembly Committee on Children and Families" &292 *1 =>  ^@239/23 -> ^@239/29 -> ^@247/74
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Assembly Committee on Judiciary" &293 *2 =>  ^@239/23 -> ^@239/29 -> ^@243/18 -> ^@247/74 -> ^@256/31
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Assembly Subcommittee on Family Law" &294 *3 =>  ^@239/23 -> ^@239/29 -> ^@247/74
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Bar Association" &295 *4 =>  ^%15 -> ^%144
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Commission on Judicial Conduct" &296 *5 =>  ^^%62--%63 -> ^@244/33
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Grievance Committee for the Tenth Judicial District" &297 *6 =>  ^@245/47;48 -> ^@251/51
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Senate Committee on Child Care" &298 *7 =>  ^%30 -> ^@239/23 -> ^@239/29 -> ^@247/74
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Senate Committee on Crime and Correction" &299 *8 =>  ^%217 -> ^@254/56 -> ^@258/59
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Women's Office at the Archdiocese" &300 *9 =>  ^%19
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Task Force on Gender Bias in the Courts" &301 *10 =>  ^%9
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "New York & Company (WNYC public radio)" &302 =>  ^@245/40
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "New York Daily News" &303 =>  ^$x -> ^%188
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "New York Law Journal" &304 =>  ^^%15--%16 -> ^%24 -> ^%80 -> ^%144 -> ^%227 -> ^@238/3 -> ^@251/60
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "New York Medical College" &305 =>  ^@260/105
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "New York Newsday" &306 =>  ^%79 -> ^%138
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "New York Post" &307 =>  ^%15 -> ^^%121--%122 -> ^%182
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "New York Times" &308 +{See also Quindlen, Anna} =>  ^$x -> ^%4
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "New York Woman" &309 =>  ^%4
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Nicholson v. ACS" &310 =>  ^%17
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Niggemyer, Kathleen" &311 =>  ^%146
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "NOW" &312 +{See National Organization for Women} => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "off-the-record conferences" &313 +{See also in camera} =>  ^^%207--%208
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Ortiz, Felix" &314 =>  ^%19
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Pagnozzi, Amy" &315 =>  ^%182
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "parens patriae" &316 =>  ^^%197--%201
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Parental Alienation Syndrome (PAS)" &317 +{See also Gardner, Richard A.} =>  ^$xxiii -> ^^%26--%27 -> ^^%83--%84 -> ^%99 -> ^%146 -> ^%147 -> ^%156 -> ^%158 -> ^%162 -> ^%167 -> ^%169 -> ^%172 -> ^^%174--%175 -> ^%227 -> ^%228 -> ^%232 -> ^@240/4 -> ^@255/6 -> ^@257/34 -> ^@259/72
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "parental kidnapping" &318 +{See Kidnapping parental} => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Paterson, David A." &319 +{See also Deutsch, Leon} =>  ^^%14--%15 -> ^%21 -> ^%64 -> ^%69 -> ^%122 -> ^%216
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "pelvic inflammatory disease (PID)" &320 =>  ^%135 -> ^%136 -> ^%137
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Pennington, H. Joan" &321 +{See also Judicial Training Act, The} =>  ^$xiv -> ^$xv -> ^$xvi -> ^%17 -> ^%20 -> ^%28 -> ^%57 -> ^%206 -> ^%219 -> ^@240/45 -> ^@240/6
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Pittsburgh Post-Gazette" &322 =>  ^%20
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "pogroms, medieval Jewish" &323 =>  ^%109
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Port, Bob" &324 +{See also Aylsworth John; Marks, Bridget} =>  ^@238/8
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "presentment agencies" &325 =>  ^%21
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "primary caretaker" &326 =>  ^%158 -> ^^%247--@248/93
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "pro se rebels" &327 =>  ^%19
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "protective parent, definition of" &328 =>  ^$xiv -> ^@237/2
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "pseudoscience" &329 +{See junk science} => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "quackery" &330 +{See junk science} => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Quindlen, Anna" &331 =>  ^%4 -> ^@238/6
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Quirk, Sherry" &332 =>  ^@264/14
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Radek, Lee J." &333 =>  ^%122
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Rand, Deirdre Conway" &334 =>  ^%158 -> ^@257/43
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "rape prosecutions" &335 =>  ^@263/12
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Rayner, Lydia, on 60 Minutes (CBS)" &336 =>  ^%20
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Reynolds, Barbara (USA Today)" &337 =>  ^%4 -> ^%19
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Rocking the Cradle of Sexual Politics (Armstrong)" &338 =>  ^$xx -> ^%13
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Rorschach" &339 =>  ^%171 -> ^%179 -> ^@260/108
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Rosen, Leora N., and Michelle Etlin" &340 =>  ^%7 -> ^%10
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Rosenthal, Kathy" &341 =>  ^@261/3
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Rosenfeld, A." &342 =>  ^%10 -> ^%11
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Sally Jessy Raphael" &343 +{See also Curtis April} =>  ^%4
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Schecter, Marjori" &344 =>  ^@250/27
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Schreier, Herbert A." &345 =>  ^%157
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "search warrant" &346 =>  ^%114
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Seventh Annual Northern New England Conference on Child Maltreatment" &347 =>  ^%158
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Sexual Assault Report" &348 +{See also Zorza, Joan} =>  ^@262/1
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "sexually transmitted disease" &349 =>  ^$xviii -> ^%18 -> ^%56 -> ^^%134--%135 -> ^%184
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Shoulson, Jay" &350 +{See also Deutsch, Leon; Middleton, Humberto} =>  ^^%13--%14
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Siena College" &351 =>  ^%18
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Silbermann, Jacqueline" &352 =>  ^^%147--%148
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Sinanan, K., and H. Houghton" &353 =>  ^^%157--%158
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Singer, Cecile" &354 =>  ^@263/6
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Singley, Dorrie Lyn" &355 =>  ^^%19--%20
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "slaves, American" &356 =>  ^%109 -> ^@258/61
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Small Justice (prod. Waller)" &357 =>  ^%3
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "social variables" &358 #5 -{(see also gender bias)} =>  ^%35 -> ^%37 -> ^%39
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "education" &359 *1 =>  ^%23 -> ^%37 -> ^%39
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "ethnicity" &360 *2 =>  ^%37
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "gender" &361 *3 +{(see also gender bias)} =>  ^%37
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "race" &362 *4 =>  ^%39
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "socioeconomic status" &363 *5 =>  ^%23 -> ^%37 -> ^%39
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "sociology" &364 #3 -{See also ethnomethodological studies; ethnomethodology} =>  ^$xvii -> ^%36 -> ^%90 -> ^%183
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Marxist arguments" &365 *1 =>  ^%39
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "sociohistorical analysis of sexual abuse awareness" &366 *2 =>  ^%10
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "sociological inquiry" &367 *3 =>  ^$xxi -> ^$xxiii -> ^%35 -> ^%37 -> ^%50
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Solomonic choice" &368 =>  ^^%148--%149
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "spina bifida" &369 =>  ^^%158--%159
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``stepchild'' of the court system, family court as" &370 =>  ^%202
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Strand, Virginia" &371 =>  ^@252/63
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "suicide" &372 #1 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "children who are suicidal" &373 *1 =>  ^^%69--%70 -> ^%92 -> ^%124 -> ^%184
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "mothers who commit" &374 *2 =>  ^%188 -> ^@245/50
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Summit, Roland" &375 +{See also ``Child Abuse Accommodation Syndrome''} =>  ^%149
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``superparent''" &376 =>  ^%198 -> ^%201
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "supervised visitation" &377 =>  ^%25 -> ^%41 -> ^%68 -> ^%114 -> ^%117 -> ^%118 -> ^%119 -> ^%123 -> ^%124 -> ^%130 -> ^%132 -> ^%133 -> ^%145 -> ^^%160--%162 -> ^%165 -> ^%167 -> ^%175 -> ^%179 -> ^%180 -> ^%190 -> ^%193 -> ^^%200--%201 -> ^%212 -> ^%213 -> ^^%248--@249/8
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "symbiosis" &378 =>  ^%163 -> ^%168
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``System Failure Project''" &379 +{See Bell, Mariam} => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Temple Law Review" &380 =>  ^%25
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Temple University" &381 =>  ^%147
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "termination of parental rights" &382 =>  ^%44 -> ^%131 -> ^%233
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Texas Supreme Court Task Force on Judicial Appointments" &383 =>  ^%78
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Thompson, William" &384 =>  ^%14
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Tippins, Timothy" &385 =>  ^%144 -> ^%227 -> ^%230
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "True and False Accusations of Child Sexual Abuse (Gardner)" &386 =>  ^%26 -> ^%150
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Turkat, Ira" &387 =>  ^%27 -> ^%148
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``Underground Railroad''" &388 #3 -{See also flight risk; kidnapping, parental} => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "abscond or flee with child" &389 *1 =>  ^%20 -> ^%71 -> ^%73 -> ^%85 -> ^^%118--%119 -> ^%145 -> ^%160 -> ^%165 -> ^^%172--%173 -> ^%214 -> ^@257/50
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "history of modern-day underground movement" &390 *2 =>  ^%17 -> ^%18 -> ^^%19--%21
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "runner, profile of" &391 *3 =>  ^%166
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "underground fugitive mothers" &392 *4 =>  ^$xix -> ^$xxiii -> ^%4 -> ^%18 -> ^%19 -> ^^%20--%21 -> ^%56 -> ^^%135--%136 -> ^^%183--%185 -> ^^%260--@261/2
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "University of Arkansas Little Rock Law Review" &393 =>  ^%6
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "University of California, Los Angeles" &394 =>  ^%149
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "University of California, San Francisco" &395 =>  ^%150
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "University of Michigan School of Social Work" &396 =>  ^$xviii -> ^%158
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "USA Today" &397 =>  ^%4 -> ^%19
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "U.S. Department of Justice" &398 #2 -{(see also Campbell Bonnie)} => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Child Exploitation and Obscenity Section" &399 *1 =>  ^%21 -> ^%121 -> ^@264/16
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Public Integrity Division" &400 *2 =>  ^%122 -> ^@252/14
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "Violence Against Women Office" &401 *3 =>  ^$xv
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "U.S. House Subcommittee on Select Education of the Committee on Education and Labor" &402 =>  ^%115 -> ^%246 -> ^@247/73 -> ^@252/1 -> ^@254/39 -> ^@254/44;46 -> ^@254/48 -> ^@256/29 -> ^@256/31 -> ^^%261--@262/17
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "U.S. News and World Report" &403 =>  ^%4
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Valentine, Constance" &404 +{See also California Protective Parents Association} =>  ^%228
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``vexatious'' litigant" &405 =>  ^^%43--%44
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "vigilantism" &406 =>  ^%57 -> ^%59 -> ^%61 -> ^%191
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Village Voice" &407 =>  ^%4
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``Violence and the Family''" &408 +{See American Psychological Association, Presidential Task Force on Violence and the Family} => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Violence Update" &409 =>  ^%228
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "voir dire" &410 =>  ^%231
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "von Münchausen, Baron" &411 =>  ^%157
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Walker, Lenore" &412 =>  ^%60 -> ^@250/33
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Waller, Garland" &413 =>  ^%3
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Warren, William" &414 =>  ^^%108--%110
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Wechsler Adult Intelligence Scale (WAIS)" &415 =>  ^@260/108
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Weinstein, Jack" &416 =>  ^^%16--%17
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Wellesley Centers for Women" &417 +{See also Battered Mothers Speak Out} =>  ^%7
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Whitehead, Mary Beth" &418 +{See ``Baby M'' case} => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "White House Women's Office" &419 =>  ^%197
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Wilson, Trish" &420 =>  ^@239/27
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Winner, Karen" &421 =>  ^^%9--%10 -> ^%14 -> ^%201
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Wittmann, Jeffrey" &422 =>  ^%229
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Women on Trial (prod. Grant)" &423 =>  ^%3
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Women's eNews" &424 =>  ^$xv
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Yager, Faye" &425 #1 =>  ^%18 -> ^^%20--%21
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "on 60 Minutes (CBS)" &426 *1 =>  ^%20
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Yudes, James" &427 =>  ^@257/40
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Zorza, Joan" &428 =>  ^%197 -> ^@262/1
+ ]] 
+ (( 
+
+ )) 
