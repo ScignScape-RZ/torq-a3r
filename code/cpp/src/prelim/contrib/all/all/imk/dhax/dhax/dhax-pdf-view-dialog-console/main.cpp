@@ -89,7 +89,9 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
  QVector<Index_Ref_Group>* result = new QVector<Index_Ref_Group>;
 
  QVector<Index_Ref_Group>& refs = *result;
- refs.resize(428);
+
+ // // //
+ refs.resize(503);
 
  QRegularExpression qre("#(\\d+)\\s+\\$([ser])<([^>]+)>([,:.]?)\\s+\\$\\[([^\\]]+)]\\s+\\+\\{([^}]+)\\}"
                         );
@@ -115,7 +117,12 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
   QString pages = match.captured(5);
   QString supp = match.captured(6);
 
+
+
   int index = entry_id.toInt() - 1;
+
+  if(index >= 449)
+    qDebug() << entry_id;
 
   refs[index].entry_id = entry_id.toInt();
   refs[index].type = type;
@@ -139,7 +146,7 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
   for(QString p : pp)
   {
 //   QRegularExpression qre1("([\\dlxvi]+)([*?-]*)([\\dxvi]*)\\s@([\\w?]+)");
-   QRegularExpression qre1("([\\dlxvin*?-]+)\\s@([\\w?;]+)");
+   QRegularExpression qre1("([\\d!lxvin*?-]+)\\s@+([\\w?;]+)");
    QRegularExpressionMatch match1 = qre1.match(p.simplified());
 
    if(match1.hasMatch())
@@ -162,6 +169,16 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
       low = match2.captured(1);
       note_low = match2.captured(2);
       note_high = match2.captured(3);
+     }
+    }
+    else if(range.contains("!n"))
+    {
+     QRegularExpression qre2("([ivxl]+)!n(\\d+)");
+     QRegularExpressionMatch match2 = qre2.match(range.simplified());
+     if(match2.hasMatch())
+     {
+      low = match2.captured(1);
+      note_low = match2.captured(2);
      }
     }
     else if(range.contains("n" && range.contains("--")))
@@ -211,38 +228,101 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
 }
 
 
-int main(int argc, char *argv[])
+int main11(int argc, char *argv[])
+{
+ QString ifile = "/home/nlevisrael/Downloads/m2m/new/dindex-updated.txt";
+
+ QVector<Index_Entry> ies;
+ QString itext = KA::TextIO::load_file(ifile);
+ read_index_entries(itext, ies);
+
+ QString ofile = "/home/nlevisrael/Downloads/m2m/new/dindex-test.txt";
+
+ {
+  QString otext;
+  QTextStream oqts(&otext);
+
+  write_index_entries(ies, oqts);
+  KA::TextIO::save_file(ofile, otext);
+ }
+
+ return 0;
+}
+
+
+
+
+int main10(int argc, char *argv[])
 {
  QString aofile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out.txt";
-// QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test.txt";
-
-// QFile outfile(aotfile);
-// if (!outfile.open(QIODevice::WriteOnly))
-//   return 0;
-
-// QTextStream qts(&outfile);
-
-
-
  QVector<Index_Ref_Group>* refs = make_ref_group_vector(aofile);
 
+ QString ofile = "/home/nlevisrael/Downloads/m2m/dindex-updated.txt";
 
  QString ifile = "/home/nlevisrael/Downloads/m2m/w_pdf/dindex.txt";
  QVector<Index_Entry> ies;
  QString itext = KA::TextIO::load_file(ifile);
  read_index_entries(itext, ies);
 
-//? QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test1.txt";
+ u2 i = 0;
 
-// QString aotfile = "/home/nlevisrael/Downloads/m2m/all-out.html";
+ for(Index_Ref_Group& g : *refs)
+ {
+  ++i;
 
- QString aotfile = "/home/nlevisrael/Downloads/m2m/all-out-b.html";
+  if(i > 428)
+  {
+   Index_Entry ie;
+   ie.parent_id = 0;
+   ie.count_in_parent = 0;
+   ie.id = g.entry_id;
+   ie.sub_count = 0;
+   ie.key = g.heading;
+   ies.push_back(ie);
+  }
+
+ }
+
+ {
+  QString otext;
+  QTextStream oqts(&otext);
+
+  write_index_entries(ies, oqts);
+  KA::TextIO::save_file(ofile, otext);
+ }
+
+ return 0;
+}
+
+
+int main(int argc, char *argv[])
+{
+// QString aofile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out.txt";
+// QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test.txt";
+
+ QString aofile = "/home/nlevisrael/Downloads/m2m/new/all.txt";
+
+ QVector<Index_Ref_Group>* refs = make_ref_group_vector(aofile);
+
+
+ QString ifile = "/home/nlevisrael/Downloads/m2m/new/dindex-updated.txt";
+ QVector<Index_Entry> ies;
+ QString itext = KA::TextIO::load_file(ifile);
+ read_index_entries(itext, ies);
+
+ QString aotfile = "/home/nlevisrael/Downloads/m2m/new/all-out.html";
+ QString aotbfile = "/home/nlevisrael/Downloads/m2m/new/all-out-b.html";
 
  QFile outfile(aotfile);
  if (!outfile.open(QIODevice::WriteOnly))
    return 0;
 
+ QFile boutfile(aotbfile);
+ if (!boutfile.open(QIODevice::WriteOnly))
+   return 0;
+
  QTextStream qts(&outfile);
+ QTextStream bqts(&boutfile);
 
  static QString pre_template = R"(
  <html><head><style>
@@ -258,6 +338,7 @@ div {padding-top:11pt; font-size:18pt;}
                                 )";
 
  qts << pre_template;
+ bqts << pre_template;
 
  QString held;
 
@@ -268,9 +349,12 @@ div {padding-top:11pt; font-size:18pt;}
 
   ++i;
 
+  if(i == 442)
+    qDebug() << i;
+
   if(!held.isEmpty() && !ie.parent_id)
   {
-   qts << held;
+   bqts << held;
    held.clear();
   }
 
@@ -280,30 +364,41 @@ div {padding-top:11pt; font-size:18pt;}
    Index_Entry* parent = g.parent_id? &ies[g.parent_id - 1] : nullptr;
    Index_Ref_Group* pg = g.parent_id? &((*refs)[g.parent_id - 1]) : nullptr;
 
-   QPair<QString, QString> div = g.to_html_bookstyle(ie, parent, pg);
+   QPair<QString, QString> divs = g.to_html_bookstyle(ie, parent, pg);
 
-//?   QString div = g.to_html(ie);
+   QString div = g.to_html(ie);
 
 
-   if(div.first.contains(";</span>,"))
+   if(div.contains(";</span>,"))
    {
-    div.first.replace("&rdquo;</span>,", ",&rdquo;</span>");
-    //? div.replace("&rsquo;</span>,", ",&rsquo;</span>");
+    div.replace("&rsquo;</span>,", ",&rsquo;</span>");
    }
 
-   div.first.replace(QRegularExpression("\\s+\\.</span>;"), ".</span>;");
-   div.first.replace(QRegularExpression("\\s+</span>;"), "</span>;");
+   if(divs.first.contains(";</span>,"))
+   {
+    divs.first.replace("&rdquo;</span>,", ",&rdquo;</span>");
+   }
 
+   divs.first.replace(QRegularExpression("\\s+\\.</span>;"), ".</span>;");
+   divs.first.replace(QRegularExpression("\\s+</span>;"), "</span>;");
+
+   div.replace(QRegularExpression("\\s+\\.</span>;"), ".</span>;");
+   div.replace(QRegularExpression("\\s+</span>;"), "</span>;");
 
    if(ie.sub_count > 1 && g.type == "e")
-     qts << div.first.trimmed() << ";";
-
+   {
+    bqts << divs.first.trimmed() << ";";
+   }
    else
-     qts << div.first;
+   {
+    bqts << divs.first;
+   }
+
+   qts << div;
 
 
-   if(!div.second.isEmpty())
-     held = div.second;
+   if(!divs.second.isEmpty())
+     held = divs.second;
   }
   else
   {
@@ -317,6 +412,7 @@ div {padding-top:11pt; font-size:18pt;}
  }
 
  qts << post_template;
+ bqts << post_template;
 
  outfile.close();
 

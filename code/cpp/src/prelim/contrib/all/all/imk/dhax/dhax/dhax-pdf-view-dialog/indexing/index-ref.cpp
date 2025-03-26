@@ -20,6 +20,12 @@ u2 _roman_to_u2(QString roman)
   if(roman.contains("l"))
    result += 50;
 
+  if(roman.endsWith("ix"))
+  {
+   result += 9;
+   roman.chop(2);
+  }
+
   if(roman.contains("xxx"))
     result += 30;
   else if(roman.contains("xx"))
