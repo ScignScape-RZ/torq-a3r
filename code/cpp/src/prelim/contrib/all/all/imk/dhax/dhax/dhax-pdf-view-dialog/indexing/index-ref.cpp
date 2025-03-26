@@ -164,13 +164,13 @@ QPair<QString, QString> Index_Ref_Group::to_html_bookstyle(const Index_Entry& ie
 
  QString s ;// = supplement;
 
- if(ie.id == 9)
+ if(ie.id == 145)
  {
   qDebug() << ie.id;
  }
 
 
- if(ie.id >= 21 && ie.id < 24)
+ if(ie.id >= 35 && ie.id < 38)
  {
   qDebug() << ie.id;
  }
@@ -214,9 +214,9 @@ QPair<QString, QString> Index_Ref_Group::to_html_bookstyle(const Index_Entry& ie
  {
   div_or_span = "span";
 
-  if(ie.count_in_parent == parent->sub_count - (pg->type == "e"))
+  if(ie.count_in_parent == parent->sub_count) //? - (pg->type == "e"))
   {
-   if(parent->supplement.isEmpty())
+   if(parent->supplement.isEmpty() && parent->sub_carried.isEmpty())
      div = "</span>\n";
    else
      div = ".</span>\n";

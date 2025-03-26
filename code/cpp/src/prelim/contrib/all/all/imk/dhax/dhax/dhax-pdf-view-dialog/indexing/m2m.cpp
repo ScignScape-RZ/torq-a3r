@@ -205,7 +205,7 @@ void read_index_entry(QString text, Index_Entry& ie)
 
  QString key = text.mid(qspos, qepos - qspos);
 
- if(key == "California")
+ if(key == "Childhelp USA")
    qDebug() << key;
 
  text = text.mid(qepos + 1).simplified();
@@ -263,7 +263,7 @@ void read_index_entry(QString text, Index_Entry& ie)
  ie.sub_carried = sub_carried;
  ie.key = key;
  ie.count_in_parent = count_in_parent_token.toInt();
- ie.sub_count = sub_count_token.toInt() + 1;  //somehow we're off by 1 ...
+ ie.sub_count = sub_count_token.toInt(); // + 1;  //somehow we're off by 1 ... not anymore
  ie.id = id_token.toInt();
 
  if(ie.key.contains("Childhelp"))

@@ -349,7 +349,7 @@ div {padding-top:11pt; font-size:18pt;}
 
   ++i;
 
-  if(i == 442)
+  if(i >= 493)
     qDebug() << i;
 
   if(!held.isEmpty() && !ie.parent_id)
@@ -379,10 +379,10 @@ div {padding-top:11pt; font-size:18pt;}
     divs.first.replace("&rdquo;</span>,", ",&rdquo;</span>");
    }
 
-   divs.first.replace(QRegularExpression("\\s+\\.</span>;"), ".</span>;");
+   divs.first.replace(QRegularExpression("\\s+\\.</span>"), ".</span>");
    divs.first.replace(QRegularExpression("\\s+</span>;"), "</span>;");
 
-   div.replace(QRegularExpression("\\s+\\.</span>;"), ".</span>;");
+   div.replace(QRegularExpression("\\s+\\.</span>"), ".</span>");
    div.replace(QRegularExpression("\\s+</span>;"), "</span>;");
 
    if(ie.sub_count > 1 && g.type == "e")

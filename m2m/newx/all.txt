@@ -550,7 +550,7 @@
  $[lxxxii @C??? ,, 45--*46 @C3P19;C3P20;21;22 ,, 87 @C4P104;105]
  +{ }
                               
-#133 $s<ethnomethodology: (12 subentries)>
+#133 $s<ethnomethodology (12 subentries)>
  $[ ]
  +{ <i>See also</i> sociological inquiry }
                               
