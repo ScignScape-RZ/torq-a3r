@@ -2958,36 +2958,35 @@ Children from Abuse''" &461 =>
 
  )) 
 
- [[  "foster placement" &494 *1 => 
+ [[  "population" &494 *1 => 
  ]] 
  (( 
 
  )) 
 
- [[  "population" &495 *2 => 
+ [[  "mother" &495 *2 => 
  ]] 
  (( 
 
  )) 
 
- [[  "protective mother" &496 *3 => 
+ [[  "supervised visitation, police station" &496 *3 => 
  ]] 
  (( 
 
  )) 
 
- [[  "psychopathological labels ascribed to" &497 *4 => 
+ [[  "foster placement" &497 *4 => 
  ]] 
  (( 
 
  )) 
 
- [[  "supervised visitation, police station" &498 *5 => 
+ [[  "psychopathological labels ascribed to" &498 *5 => 
  ]] 
  (( 
 
  )) 
-
 
  [[ "incarceration" &499 #2 => 
  ]] 
@@ -2995,13 +2994,13 @@ Children from Abuse''" &461 =>
 
  )) 
 
- [[  "incarcerating mothers" &500 *1  => 
+ [[  "threat of" &500 *1 => 
  ]] 
  (( 
 
  )) 
 
- [[  "threat of" &501 *2 => 
+ [[  "incarcerating mothers" &501 *2  => 
  ]] 
  (( 
 
@@ -3085,43 +3084,43 @@ Children from Abuse''" &461 =>
 
  )) 
 
- [[  "conviction for criminal endangerment of welfare of child" &515 *3 => 
+ [[  "disorderly conduct" &515 *3 => 
  ]] 
  (( 
 
  )) 
 
- [[  "cursing child" &516 *4 => 
+ [[  "DUI" &516 *4 => 
  ]] 
  (( 
 
  )) 
 
- [[  "cursing out mother" &517 *5 => 
- ]] 
- (( 
-
- )) 
-
- [[  "disorderly conduct" &518 *6 => 
- ]] 
- (( 
-
- )) 
-
- [[  "DUI" &519 *7 => 
- ]] 
- (( 
-
- )) 
-
- [[  "illegal possession of firearms" &520 *8 => 
+ [[  "illegal possession of firearms" &517 *5 => 
  ]] 
  (( 
 
  )) 
  
- [[  "impulse control, lack of" &521 *9 => 
+ [[  "conviction for criminal endangerment of welfare of child" &518 *6 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "inpulse control, lack of" &519 *7 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "cursing child" &520 *8 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[  "cursing out mother" &521 *9 => 
  ]] 
  (( 
 
@@ -3182,19 +3181,19 @@ Children from Abuse''" &461 =>
 
  )) 
 
- [[  "child abuse, charge of" &531 *1 => 
+ [[  "child fatalities" &531 *1 =>  ^%143
  ]] 
  (( 
 
  )) 
 
- [[  "child fatalities" &532 *2 =>  ^%143
+ [[  "child neglect, charge of" &532 *2 =>  ^%29 -> ^^%46--%48 -> ^%53 -> ^%58 -> ^%68 -> ^%89 -> ^%96 -> ^%112 -> ^%115 -> ^%118 -> ^%119 -> ^%124 -> ^^%126--%129 -> ^%131 -> ^%136 -> ^%139 -> ^%142 -> ^%168 -> ^%184 -> ^%207 -> ^%211 -> ^^%232--%235 -> ^^%248--@249/8 -> ^@251/61 -> ^@253/27 -> ^@263/6
  ]] 
  (( 
 
  )) 
 
- [[  "child neglect, charge of" &533 *3 =>  ^%29 -> ^^%46--%48 -> ^%53 -> ^%58 -> ^%68 -> ^%89 -> ^%96 -> ^%112 -> ^%115 -> ^%118 -> ^%119 -> ^%124 -> ^^%126--%129 -> ^%131 -> ^%136 -> ^%139 -> ^%142 -> ^%168 -> ^%184 -> ^%207 -> ^%211 -> ^^%232--%235 -> ^^%248--@249/8 -> ^@251/61 -> ^@253/27 -> ^@263/6
+ [[  "child abuse, charge of" &533 *3 => 
  ]] 
  (( 
 
@@ -3261,13 +3260,13 @@ Children from Abuse''" &461 =>
 
  )) 
 
- [[ "``abstention'' doctrines" &544 => 
+ [[ "``Abstention Doctrines''" &544 => 
  ]] 
  (( 
 
  )) 
 
- [[ "Parental Alienation Syndrome (PAS), variants: (3 subentries)" &545 #3 -{<i>See also</i> enmeshment} => 
+ [[ "Parental Alienation Syndrome (PAS), variants: (3 subentries)" &545 #3 => 
  ]] 
  (( 
 

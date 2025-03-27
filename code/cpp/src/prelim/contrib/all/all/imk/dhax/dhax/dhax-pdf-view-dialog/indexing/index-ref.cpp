@@ -164,20 +164,15 @@ QPair<QString, QString> Index_Ref_Group::to_html_bookstyle(const Index_Entry& ie
 
  QString s ;// = supplement;
 
- if(ie.id == 8)
- {
-  qDebug() << ie.id;
- }
- if(ie.id == 9)
+ if(ie.id == 548)
  {
   qDebug() << ie.id;
  }
 
-
- if(ie.id >= 499 && ie.id < 502)
- {
-  qDebug() << ie.id;
- }
+// if(ie.id >= 499 && ie.id < 502)
+// {
+//  qDebug() << ie.id;
+// }
 
 
  if(ie.sub_count > 0)
@@ -237,7 +232,9 @@ QPair<QString, QString> Index_Ref_Group::to_html_bookstyle(const Index_Entry& ie
   div_or_span = "div";
  }
 
- QString dot = supplement.trimmed().isEmpty()? " " : ". ";
+ QString dot =
+   (supplement.trimmed().isEmpty()
+    || ie.sub_count > 0 || ie.count_in_parent > 0)? " " : ". ";
 
  QString h = heading;
  h.replace("``", "&ldquo;");
@@ -254,6 +251,9 @@ QPair<QString, QString> Index_Ref_Group::to_html_bookstyle(const Index_Entry& ie
  }
 
  h.replace("|", ">");
+
+ s.replace("``", "&ldquo;");
+ s.replace("''", "&rdquo;");
 
  if(type == "s")
    return {subentries_template.arg(p).arg(h).arg(s).arg(maybe_ital).arg(div).arg(div_or_span),

@@ -91,7 +91,7 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
  QVector<Index_Ref_Group>& refs = *result;
 
  // // //
- refs.resize(551);
+ refs.resize(558);
 
  QRegularExpression qre("#(\\d+)\\s+\\$([ser])<([^>]+)>([,:.]?)\\s+\\$\\[([^\\]]+)]\\s+\\+\\{([^}]+)\\}"
                         );
@@ -395,7 +395,7 @@ div {padding-top:11pt; font-size:18pt;}
 
   ++i;
 
-  if(i >= 499)
+  if(i == 548)
     qDebug() << i;
 
   if(!held.isEmpty() && !ie.parent_id)
@@ -425,10 +425,18 @@ div {padding-top:11pt; font-size:18pt;}
     divs.first.replace("&rdquo;</span>,", ",&rdquo;</span>");
    }
 
+   divs.first.replace("&rdquo;.", ".&rdquo;");
+
    divs.first.replace(QRegularExpression("\\s+\\.</span>"), ".</span>");
    divs.first.replace(QRegularExpression("\\s+</span>;"), "</span>;");
 
+   divs.first.replace("Munchausen", "M&uuml;nchausen");
+
+   divs.first.replace("'s", "&rsquo;s");
+
+
    //?divs.first.replace(QRegularExpression("\\s+;"), ";");
+   //divs.first.replace(QRegularExpression("\\.\\s*;"), ";");
 
    div.replace(QRegularExpression("\\s+\\.</span>"), ".</span>");
    div.replace(QRegularExpression("\\s+</span>;"), "</span>;");

@@ -1417,7 +1417,7 @@
                               
 #343 $e<:Sally Jessy Raphael>,
  $[4 @C1P5]
- +{  <i>See also</i> Curtis, April}
+ +{  <i>See also</i> Curtis April}
                               
 #344 $e<Schecter, Marjori>,
  $[346n27 @@C5P45]
@@ -1477,7 +1477,7 @@
                               
 #358 $e<social variables>,
  $[39 @C3P1 ,, 41 @C3P8]
- +{ }
+ +{ (see also gender bias)}
                               
 #359 $e< [social varia.../358] education>
  $[27 @C2P6 ,, 41 @C3P8 ,, 44 @C3P13]
@@ -1489,7 +1489,7 @@
                               
 #361 $e< [social varia.../358] gender>,
  $[xxxvi @C??? ,, 41 @C3P8]
- +{ (<i>see also</i> gender bias)}
+ +{  (see also gender bias)}
                               
 #362 $e< [social varia.../358] race>,
  $[xxxvi @C??? ,, 44 @C3P14]
@@ -2027,41 +2027,40 @@ Children from Abuse''>,
  $[ ]
  +{ }
 
-#494 $e< [BIPOC/493] foster placement>,
- $[199 @C6P186;C6P187]
- +{ }
-
-#495 $e< [BIPOC/493] population>,
+#494 $e< [BIPOC/493] population>,
  $[lviii @C??? ,, 98 @C4P132]
  +{ }
 
-#496 $e< [BIPOC/493] protective mothers>,
+#495 $e< [BIPOC/493] protective mothers>,
  $[lv @C??? ,, 184  @C6P148;C6P149]
- +{(<i>see also</i> modern-day lynching; CPS documents, gratuitous statements)}
+ +{(<i>See also</i> modern-day lynching; CPS documents, gratuitous statements)}
 
-#497 $e< [BIPOC/493] psychopathological labels ascribed to>,
- $[200 @C6P190]
- +{ }
-
-#498 $e< [BIPOC/493] supervised visitation, police station>,
+#496 $e< [BIPOC/493] supervised visitation, police station>,
  $[lvii @C??? ,, 99--*100 @C4P136;C4P137]
  +{ }
 
+#497 $e< [BIPOC/493] foster placement>,
+ $[199 @C6P186;C6P187]
+ +{ }
+
+#498 $e< [BIPOC/493] psychopathological labels ascribed to>,
+ $[200 @C6P190]
+ +{ }
 
 
 #499 $s<incarceration: (2 subentries)>,
  $[105 @C4P151]
  +{ }
 
-#500 $e<[incarceration/499] incarcerating mothers>,
- $[lvi @C??? ,, lvi @C??? ,, 46 @C3P23 ]
- +{ }
-
-#501 $e<[incarceration/499] threat of>,
+#500 $e<[incarceration/499] threat of>,
  $[xl @C??? ,, 74 @C4P49]
  +{ }
 
-#502 $e<multiple generations>,
+#501 $e<[incarceration/499] incarcerating mothers>,
+ $[lvi @C??? ,, lvi @C??? ,, 46 @C3P23 ]
+ +{ }
+
+#502 $e<Multiple Generations>,
  $[lxvi @C???]
  +{ }
 
@@ -2114,32 +2113,32 @@ Children from Abuse''>,
  $[102 @C4P142 ,, 258 @C7P182]
  +{ }
 
-#515 $e<[asoc/512] conviction for criminal endangerment of welfare of child>,
- $[142 @C5P108]
- +{ }
-
-#516 $e<[asoc/512] cursing child>,
- $[143 @C5P113]
- +{ }
-
-#517 $e<[asoc/512] cursing out mother>,
- $[100 @C4P137]
- +{ }
-
-#518 $e<[asoc/512] disorderly conduct>,
+#515 $e<[asoc/512] disorderly conduct>,
  $[100 @C4P138 ,, 258 @C7P182]
  +{ }
 
-#519 $e<[asoc/512] DUI>,
+#516 $e<[asoc/512] DUI>,
  $[258 @C7P182]
  +{ }
 
-#520 $e<[asoc/512] illegal possession of firearms>,
+#517 $e<[asoc/512] illegal possession of firearms>,
  $[258 @C7P182]
  +{ }
 
-#521 $e<[asoc/512] impulse control, lack of>,
+#518 $e<[asoc/512] conviction for criminal endangerment of welfare of child>,
+ $[142 @C5P108]
+ +{ }
+
+#519 $e<[asoc/512] inpulse control, lack of>,
  $[142 @C5P110]
+ +{ }
+
+#520 $e<[asoc/512] cursing child>,
+ $[143 @C5P113]
+ +{ }
+
+#521 $e<[asoc/512] cursing out mother>,
+ $[100 @C4P137]
  +{ }
 
 #522 $e<[asoc/512] resisting arrest>,
@@ -2179,15 +2178,11 @@ Children from Abuse''>,
  $[ ]
  +{ }
                               
-#531 $e< [Child Protective.../530] child abuse, charge of>,
- $[183 @C6P147]
- +{ }
-
-#532 $e< [Child Protective.../530] child fatalities>,
+#531 $e< [Child Protective.../530] child fatalities>,
  $[182 @C6P144]
  +{ }
-                                        
-#533 $e< [Child Protective.../530] child neglect, charge of>
+                              
+#532 $e< [Child Protective.../530] child neglect, charge of>
  $[34 @C2P26::C2P29 ,, 52 @C3P42::C3P49 ,, 59 @C4P6;C4P7 ,, 65 @C4P25 ,, 77 @C4P60 ,, 115 @C5P15 
    ,, 124 @C5P44 ,, 146 @C6P3 ,, 149 @C6P18;C6P19 ,, 153 @C6P29 ,, 155 @C6P34 ,, 160 @C6P55 
    ,, 162--*164 @C6P61::C6P69 ,, 169 @C6P89 ,, 175 @C8P118 ,, 178 @C6P130 ,, 181 @C6P139
@@ -2196,6 +2191,11 @@ Children from Abuse''>,
    ,, 347n61 @@C5P96 ,, 349n27 @@C6P68 ,, 362n6 @@C10P22]  
  +{ }
 
+
+#533 $e< [Child Protective.../530] child abuse, charge of>,
+ $[183 @C6P147]
+ +{ }
+                  
 #534 $e< [Child Protective.../530] documents, gratuitous statements>,
  $[184 @C6P149 ,, 196 @C6P176]
  +{ }
@@ -2236,7 +2236,7 @@ Children from Abuse''>,
  $[lxv @C???]
  +{ }
 
-#544 $e<``abstention'' doctrines>,
+#544 $e<``Abstention Doctrines''>,
  $[lxix @C???]
  +{ }
 
@@ -2253,7 +2253,7 @@ Children from Abuse''>,
  +{ }
 
 #548 $e< [par/545] ``Resist and Refuse Dynamics'' (R-RD)>,
- $[246 @C7P152 ,, 253 @C7P169::C7P172]
+ $[246 @C7P152 ,, 253 @C7P169::C7P172 ]
  +{ }
 
 #549 $e<enmeshment>,
@@ -2272,7 +2272,7 @@ Children from Abuse''>,
  $[105 @C4P151]
  +{ }
 
-#553 $r<:Effective Intervention in Domestic Violence and Child Maltreatment: Guidelines for Policy and Practice>:
+#553 $e<:Effective Intervention in Domestic Violence and Child Maltreatment: Guidelines for Policy and Practice>,
  $[ ]
  +{<i>See</i> ``Green Book''}
 
