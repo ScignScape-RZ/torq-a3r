@@ -1942,7 +1942,7 @@ Children from Abuse''>,
  $[ ]
  +{<i>See</i> Meier, Joan S.}
 
-#472 $r<Gentile, Olivia>,
+#472 $e<Gentile, Olivia>,
  $[ ]
  +{See <i>Insider</i>}
 

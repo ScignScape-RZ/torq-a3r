@@ -91,7 +91,7 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
  QVector<Index_Ref_Group>& refs = *result;
 
  // // //
- refs.resize(503);
+ refs.resize(551);
 
  QRegularExpression qre("#(\\d+)\\s+\\$([ser])<([^>]+)>([,:.]?)\\s+\\$\\[([^\\]]+)]\\s+\\+\\{([^}]+)\\}"
                         );
@@ -295,17 +295,63 @@ int main10(int argc, char *argv[])
 }
 
 
+
+
+int main13(int argc, char *argv[])
+{
+ QString aofile = "/home/nlevisrael/Downloads/m2m/new/addenda.txt";
+ QVector<Index_Ref_Group>* refs = make_ref_group_vector(aofile);
+
+ QString ofile = "/home/nlevisrael/Downloads/m2m/new/dindex-addenda.txt";
+
+ QVector<Index_Entry> ies;
+
+ u2 i = 0;
+
+ for(Index_Ref_Group& g : *refs)
+ {
+  ++i;
+
+  if(i >= 493)
+  {
+   Index_Entry ie;
+   ie.parent_id = 0;
+   ie.count_in_parent = 0;
+   ie.id = g.entry_id;
+   ie.sub_count = 0;
+   ie.key = g.heading;
+   ies.push_back(ie);
+  }
+
+ }
+
+ {
+  QString otext;
+  QTextStream oqts(&otext);
+
+  write_index_entries(ies, oqts);
+  KA::TextIO::save_file(ofile, otext);
+ }
+
+ return 0;
+}
+
+
+
+
 int main(int argc, char *argv[])
 {
 // QString aofile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out.txt";
 // QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test.txt";
 
- QString aofile = "/home/nlevisrael/Downloads/m2m/new/all.txt";
+//? QString aofile = "/home/nlevisrael/Downloads/m2m/new/all.txt";
+ QString aofile = "/home/nlevisrael/Downloads/m2m/new/addenda.txt";
 
  QVector<Index_Ref_Group>* refs = make_ref_group_vector(aofile);
 
+ //? QString ifile = "/home/nlevisrael/Downloads/m2m/new/dindex-updated.txt";
+ QString ifile = "/home/nlevisrael/Downloads/m2m/new/dindex-add.txt";
 
- QString ifile = "/home/nlevisrael/Downloads/m2m/new/dindex-updated.txt";
  QVector<Index_Entry> ies;
  QString itext = KA::TextIO::load_file(ifile);
  read_index_entries(itext, ies);
@@ -349,7 +395,7 @@ div {padding-top:11pt; font-size:18pt;}
 
   ++i;
 
-  if(i >= 493)
+  if(i >= 499)
     qDebug() << i;
 
   if(!held.isEmpty() && !ie.parent_id)
@@ -382,10 +428,12 @@ div {padding-top:11pt; font-size:18pt;}
    divs.first.replace(QRegularExpression("\\s+\\.</span>"), ".</span>");
    divs.first.replace(QRegularExpression("\\s+</span>;"), "</span>;");
 
+   //?divs.first.replace(QRegularExpression("\\s+;"), ";");
+
    div.replace(QRegularExpression("\\s+\\.</span>"), ".</span>");
    div.replace(QRegularExpression("\\s+</span>;"), "</span>;");
 
-   if(ie.sub_count > 1 && g.type == "e")
+   if(ie.sub_count > 0 && g.type == "e")
    {
     bqts << divs.first.trimmed() << ";";
    }

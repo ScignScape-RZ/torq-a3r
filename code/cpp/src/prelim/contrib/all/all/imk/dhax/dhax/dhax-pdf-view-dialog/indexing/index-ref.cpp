@@ -164,24 +164,31 @@ QPair<QString, QString> Index_Ref_Group::to_html_bookstyle(const Index_Entry& ie
 
  QString s ;// = supplement;
 
- if(ie.id == 145)
+ if(ie.id == 8)
+ {
+  qDebug() << ie.id;
+ }
+ if(ie.id == 9)
  {
   qDebug() << ie.id;
  }
 
 
- if(ie.id >= 35 && ie.id < 38)
+ if(ie.id >= 499 && ie.id < 502)
  {
   qDebug() << ie.id;
  }
 
 
- if(ie.sub_count > 1)
+ if(ie.sub_count > 0)
  {
-  if(supplement.isEmpty())
+  if(supplement.simplified().isEmpty())
     close = "\n\n  </div>\n";
   else
     close = "\n" + supplement + "\n  </div>\n";
+
+//  if(type == "e")
+//    div = ";";
  }
  else
  {
