@@ -88,6 +88,7 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
 
  QVector<Index_Ref_Group>* result = new QVector<Index_Ref_Group>;
 
+// QVector<Index_Ref_Group>& refs = *result;
  QVector<Index_Ref_Group>& refs = *result;
 
  // // //
@@ -359,8 +360,14 @@ int main(int argc, char *argv[])
  QString aotfile = "/home/nlevisrael/Downloads/m2m/new/all-out.html";
  QString aotbfile = "/home/nlevisrael/Downloads/m2m/new/all-out-b.html";
 
+ QString aosfile = "/home/nlevisrael/Downloads/m2m/new/all-out-summary.txt";
+
  QFile outfile(aotfile);
  if (!outfile.open(QIODevice::WriteOnly))
+   return 0;
+
+ QFile soutfile(aosfile);
+ if (!soutfile.open(QIODevice::WriteOnly))
    return 0;
 
  QFile boutfile(aotbfile);
@@ -369,6 +376,7 @@ int main(int argc, char *argv[])
 
  QTextStream qts(&outfile);
  QTextStream bqts(&boutfile);
+ QTextStream sqts(&soutfile);
 
  static QString pre_template = R"(
  <html><head><style>
@@ -386,16 +394,116 @@ div {padding-top:11pt; font-size:18pt;}
  qts << pre_template;
  bqts << pre_template;
 
+ auto str_clean = [] (QString& s)
+ {
+  s.replace("&agrave;", "");
+
+  s.replace("&ldquo;", "");
+  s.replace("&rdquo;", "");
+  s.replace("&lsquo;", "");
+  s.replace("&rsquo;", "");
+  s.replace("&uuml;", "u");
+  s.replace("`", "");
+  s.replace("'", "");
+  s.replace("<i>", "");
+  s.replace("</i>", "");
+
+  if(s.startsWith(":"))
+    s = s.mid(1);
+
+  if(s.endsWith(":"))
+    s.chop(1);
+
+  s4 ix = s.indexOf(QRegularExpression(":\\s*\\("));
+  if(ix != -1)
+    s = s.mid(0, ix);
+
+  s = s.toLower();
+ };
+
+ auto str_compare = [str_clean](QString lhs, QString rhs) -> bool
+ {
+  str_clean(lhs);
+  str_clean(rhs);
+
+  return lhs < rhs;
+ };
+
+
+ std::sort(refs->begin(), refs->end(), [&ies, str_compare]
+   (const Index_Ref_Group& lhs, const Index_Ref_Group& rhs)
+   -> bool
+ {
+  u2 lid = lhs.entry_id;
+  u2 rid = rhs.entry_id;
+
+//  if(lid == 43)
+//    qDebug() << "lid";
+
+//  if(rid == 43)
+//    qDebug() << "rid";
+
+  if(lid == 43 && rid == 97)
+    qDebug() << "lr";
+
+  if(rid == 43 && lid == 97)
+    qDebug() << "rl";
+
+  u2 lpid = lhs.parent_id;
+  u2 rpid = rhs.parent_id;
+
+  if(lpid && rpid)
+  {
+   if(lpid == rpid)
+     return lid < rid;
+
+   Index_Entry& lie = ies[lpid - 1];
+   Index_Entry& rie = ies[rpid - 1];
+
+   return str_compare(lie.key, rie.key);
+  }
+
+  else if(lpid)
+  {
+   if(lpid == rid)
+     return false; // parents always come before children
+
+   Index_Entry& lie = ies[lpid - 1];
+   return str_compare(lie.key, rhs.heading);
+  }
+
+  else if(rpid)
+  {
+   if(rpid == lid)
+     return true; // parents always come before children
+
+   Index_Entry& rie = ies[rpid - 1];
+   bool c = str_compare(lhs.heading, rie.key);
+   return c;
+  }
+
+  bool cc = str_compare(lhs.heading, rhs.heading);
+  return cc;
+ });
+
+
+
  QString held;
 
  u2 i = 0;
  for(Index_Ref_Group& g : *refs)
  {
-  Index_Entry& ie = ies[i];
+  //Index_Entry& ie = ies[i];
+  Index_Entry& ie = ies[g.entry_id - 1];
 
   ++i;
 
-  if(i == 548)
+  sqts << "\n%1: %2 = %3"_qt.arg(i).arg(g.heading).arg(g.entry_id);
+  if(g.parent_id)
+    sqts << " (%1 -> %2 = %3)"_qt.arg(g.parent_hint).arg(g.parent_id).arg(ie.count_in_parent);
+
+
+  if(g.entry_id >= 493 && g.entry_id <= 498)
     qDebug() << i;
 
   if(!held.isEmpty() && !ie.parent_id)
@@ -433,6 +541,7 @@ div {padding-top:11pt; font-size:18pt;}
    divs.first.replace("Munchausen", "M&uuml;nchausen");
 
    divs.first.replace("'s", "&rsquo;s");
+   divs.first.replace("s-'", "s&rsquo;");
 
 
    //?divs.first.replace(QRegularExpression("\\s+;"), ";");
@@ -471,6 +580,8 @@ div {padding-top:11pt; font-size:18pt;}
  bqts << post_template;
 
  outfile.close();
+ boutfile.close();
+ soutfile.close();
 
  return 0;
 }

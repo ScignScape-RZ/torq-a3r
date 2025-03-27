@@ -1,0 +1,354 @@
+
+ [[ "BIPOC (Black, Indigenous, and People of Color): (5 subentries)" &493 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "population" &494 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "protective mothers" &495 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "supervised visitation, police station" &496 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "foster placement" &497 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "psychopathological labels ascribed to" &498 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "incarceration: (2 subentries)" &499 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "threat of" &500 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "incarcerating mothers" &501 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Multiple Generations" &502 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "psychological symptoms, children's manifestation: (8 subentries)" &503 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "emotional regression" &504 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "encopresis" &505 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "enuresis/bed wetting" &506 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "disrobing" &507 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "low self-esteem" &508 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "night terrors" &509 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "screaming in sleep" &510 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "sexually acting out" &511 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "asocial behavior, fathers'" &512 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "cocaine use" &513 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "alcohol abuse" &514 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "disorderly conduct" &515 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "DUI" &516 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "illegal possession of firearms" &517 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "conviction for criminal endangerment of welfare of child" &518 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "inpulse control, lack of" &519 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "cursing child" &520 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "cursing out mother" &521 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "ransom: (4 subentries)" &522 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "visits" &523 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "custody evaluator report" &524 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "court fees" &525 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "court order therapist" &526 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "ad hoc social networks, bred by family court" &527 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``modern day lynching''" &528 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Woods-lamp" &529 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Child Protective Services (CPS): (7 subentries)" &530 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "child fatalities" &531 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "child neglect, charge of" &532 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "child abuse, charge of" &533 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "documents, gratuitous statements" &534 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "foster care, convenient segue toward transferring custody to father" &535 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "home study" &536 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``surprise'' (unannounced) visits" &537 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``medical child abuse''" &538 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Due Process Clause, Fourteenth Amendment" &539 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "lawyers, retaliation from" &540 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``Child Abuse Accommodation Syndrome''" &541 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``an hysterical Hispanic''" &542 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Family Ecosystem" &543 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``Abstention Doctrines''" &544 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "Parental Alienation Syndrome (PAS), variants: (3 subentries)" &545 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``Alienation (A)''" &546 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "parental alienation (PA)" &547 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "``Resist and Refuse Dynamics'' (R-RD)" &548 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "enmeshment" &549 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "criminal undertones" &550 => 
+ ]] 
+ (( 
+
+ )) 
+
+ [[ "racist views, system saturated by" &551 => 
+ ]] 
+ (( 
+
+ )) 

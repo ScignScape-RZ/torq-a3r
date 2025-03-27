@@ -78,7 +78,7 @@
  $[134--*135 @C5P79;C5P80]
  +{ }
                               
-#19 $e<:Battered Mothers-' Testimony Project>,
+#19 $e<:Battered Mothers' Testimony Project>,
  $[9 @C1P19]
  +{  <i>See also</i> Arizona Coalition against Domestic Violence}
                               
@@ -635,11 +635,11 @@
  $[217 @C7P53]
  +{ }
                               
-#154 $e<Fathers-' Rights Association of Metro New York and Long Island>,
+#154 $e<Fathers' Rights Association of Metro New York and Long Island>,
  $[15 @C1P37]
  +{  <i>See also</i> Deutsch, Leon; Middleton, Humberto; Shoulson, Jay}
                               
-#155 $e<fathers-' rights groups>,
+#155 $e<fathers' rights groups>,
  $[xii @C??? ,, 15 @C1P36]
  +{ }
                               
@@ -657,11 +657,11 @@
  $[122 @C5P38 ,, 155 @C6P34 ,, 159 @C6P49 ,, 263 @C8P18 ,, 285 @C10P2 ,, 356n50 @@C7P71]
  +{  <i>See also</i> kidnapping, parental; ``Underground Railroad''}
                               
-#159 $e<folie &agrave; deux>,
+#159 $e<folie &agrave deux>,
  $[216--217 @C7P48;C7P49;C7P50;C7P51;C7P52;C7P53 ,, 218 @C7P59 ,, 219 @C7P60 ,, 355n39 @@C7P53]
  +{ }
                               
-#160 $e<folie &agrave; trois>,
+#160 $e<folie &agrave  trois>,
  $[217 @C7P52]
  +{ }
                               
@@ -812,7 +812,7 @@
    ,, 299 @C10P40 ,, 306 @C11P3;C11P4;C11P5 ,, 321 @C11P49 ,, 363n1 @@C11P3 ,, 363n2 @@C11P4]
  +{ }
                               
-#195 $e<:in camera <span style='font-style:normal'|(in judge's chambers)</span|>,
+#195 $e<:in camera (in judge's chambers)>,
  $[69 @C4P36 ,, 73--*76 @C4P44 ,, 287 @C10P7 ,, 289 @C10P12]
  +{  <i>See also</i> off-the-record conferences}
                               
@@ -856,7 +856,7 @@
  $[14 @C1P34]
  +{ }
                               
-#206 $e<:Judges-' Journal>,
+#206 $e<:Judges' Journal>,
  $[32 @C3P22]
  +{ }
                               
@@ -1128,7 +1128,7 @@
  $[182 @C6P144 ,, 350n64 @@C6P144]
  +{ }
                               
-#273 $e< [National.../272] :Child Maltreatment 2002>,
+#273 $e<Child Maltreatment 2002>,
  $[182 @C6P144]
  +{ }
                               
@@ -1935,7 +1935,7 @@ Children from Abuse''>,
  $[ ]
  +{<i>See</i> Laurie Udesky}
 
-#471 $e<:Journal of Family Trauma, Child Custody, and Child Development>,
+#471 $e<Journal of Family Trauma, Child Custody, and Child Development>,
  $[xlvii @C???]
  +{<i>See also</i> Meier, Joan S.}
 
@@ -1991,7 +1991,7 @@ Children from Abuse''>,
  $[lii @C???]
  +{ }
 
-#485 $e<``Mothers-' Vote,'' ad hoc voting block>,
+#485 $e<``Mothers' Vote,'' ad hoc voting block>,
  $[lii @C???]
  +{ }
 
@@ -2069,80 +2069,80 @@ Children from Abuse''>,
  $[ ]
  +{ }
 
-#504 $e<[psych/503] emotional regression>,
+#504 $e<[psych/504] emotional regression>,
  $[249 @C7P158]
  +{ }
 
-#505 $e<[psych/503] encopresis>,
+#505 $e<[psych/504] encopresis>,
  $[100 @C4P138 ,, @C4P147]
  +{ }
 
-#506 $e<[psych/503] enuresis/bed wetting>,
+#506 $e<[psych/504] enuresis/bed wetting>,
  $[100 @C4P138 ,, @C4P147 ,, 200 @C6P187 ,, 255 @C7P175]
  +{ }
 
-#507 $e<[psych/503] disrobing>,
+#507 $e<[psych/504] disrobing>,
  $[100 @C4P138]
  +{ }
 
-#508 $e<[psych/503] low self-esteem>,
+#508 $e<[psych/504] low self-esteem>,
  $[100 @C4P138]
  +{ }
 
-#509 $e<[psych/503] night terrors>,
+#509 $e<[psych/504] night terrors>,
  $[100 @C4P138 ,, 104 @C4P147 ,, 249 @C7P158
    ,, 199 @C6P184 ,, 200 @C6P187 ,, 249 @C7P158]
  +{ }
 
-#510 $e<[psych/503] screaming in sleep>,
+#510 $e<[psych/504] screaming in sleep>,
  $[100 @C4P138 ,, @C4P147]
  +{ }
 
-#511 $e<[psych/503] sexually acting out>,
+#511 $e<[psych/504] sexually acting out>,
  $[100 @C4P138]
  +{ }
 
-#512 $s<antisocial behavior, fathers-': (10 subentries)>,
+#512 $s<antisocial behavior, fathers': (10 subentries)>,
  $[ ]
  +{ }
 
-#513 $e<[antisoc/512] alcohol abuse>,
+#513 $e<[asoc/512] alcohol abuse>,
  $[102 @C4P142 ,, 258 @C7P182]
  +{ }
 
-#514 $e<[antisoc/512] cocaine use>,
+#514 $e<[asoc/512] cocaine use>,
  $[102 @C4P142 ,, 258 @C7P182]
  +{ }
 
-#515 $e<[antisoc/512] conviction for criminal endangerment of welfare of child>,
+#515 $e<[asoc/512] conviction for criminal endangerment of welfare of child>,
  $[142 @C5P108]
  +{ }
 
-#516 $e<[antisoc/512] cursing child>,
+#516 $e<[asoc/512] cursing child>,
  $[143 @C5P113]
  +{ }
 
-#517 $e<[antisoc/512] cursing out mother>,
+#517 $e<[asoc/512] cursing out mother>,
  $[100 @C4P137]
  +{ }
 
-#518 $e<[antisoc/512] disorderly conduct>,
+#518 $e<[asoc/512] disorderly conduct>,
  $[100 @C4P138 ,, 258 @C7P182]
  +{ }
 
-#519 $e<[antisoc/512] DUI>,
+#519 $e<[asoc/512] DUI>,
  $[258 @C7P182]
  +{ }
 
-#520 $e<[antisoc/512] illegal possession of firearms>,
+#520 $e<[asoc/512] illegal possession of firearms>,
  $[258 @C7P182]
  +{ }
 
-#521 $e<[antisoc/512] impulse control, lack of>,
+#521 $e<[asoc/512] impulse control, lack of>,
  $[142 @C5P110]
  +{ }
 
-#522 $e<[antisoc/512] resisting arrest>,
+#522 $e<[asoc/512] resisting arrest>,
  $[100 @C4P137 ,, 142 @C5P109 ,, 258 @C7P182]
  +{ }
 
@@ -2155,15 +2155,15 @@ Children from Abuse''>,
  $[lxiii @C??? ,, 108 @C4P158 ,, 109 @C4P160]
  +{ }
 
-#525 $e<[ransom/523] custody evaluator report>,
+#525 $e<[ransom/524] custody evaluator report>,
  $[lxiv @C???]
  +{ }
 
-#526 $e<[ransom/523] court fees>,
+#526 $e<[ransom/525] court fees>,
  $[lxv @C??? ,, lxvi @C???]
  +{ }
 
-#527 $e<[ransom/523] court order therapist>,
+#527 $e<[ransom/526] court order therapist>,
  $[109 @C4P160]
  +{ }
 
