@@ -47,7 +47,7 @@
 
  )) 
 
- [[  "Presidential Task Force on Violence and the Family (1996)" &9 *1 =>  ^%26 -> ^%147
+ [[  "Violence and the Family (1996)" &9 *1 =>  ^%26 -> ^%147
  ]] 
  (( 
 
@@ -251,7 +251,7 @@
 
  )) 
 
- [[ "child" &43 #4 => 
+ [[ "child" &43 #3 => 
  ]] 
  (( 
 
@@ -263,19 +263,19 @@
 
  )) 
 
- [[  "gifted" &45 *2 => 
+ [[  "imminent danger or risk of harm" &45 *2 =>  ^^%92--%94 -> ^%126 -> ^%127 -> ^%130 -> ^%210 -> ^@249/14 -> ^@251/60 -> ^@265/3
  ]] 
  (( 
 
  )) 
 
- [[  "imminent danger or risk of harm" &46 *3 =>  ^^%92--%94 -> ^%126 -> ^%127 -> ^%130 -> ^%210 -> ^@249/14 -> ^@251/60 -> ^@265/3
+ [[  "welfare of" &46 *3 =>  ^%112 -> ^%163 -> ^^%198--%199 -> ^%200 -> ^%212
  ]] 
  (( 
 
  )) 
 
- [[  "welfare of" &47 *4 =>  ^%112 -> ^%163 -> ^^%198--%199 -> ^%200 -> ^%212
+ [[ "``Child Abuse Accommodation Syndrome''" &47 =>  ^%149
  ]] 
  (( 
 
@@ -293,31 +293,31 @@
 
  )) 
 
- [[ "Office of Justice Programs" &50 => 
+ [[ "Child Protective Services (CPS)" &50 #4 => 
  ]] 
  (( 
 
  )) 
 
- [[ "Department of Children and Family Services (DCFS)" &51 => 
+ [[  "child fatalities" &51 *1 =>  ^%143
  ]] 
  (( 
 
  )) 
 
- [[ "hallucinations" &52 => 
+ [[  "child neglect, charge of" &52 *2 =>  ^%29 -> ^^%46--%48 -> ^%53 -> ^%58 -> ^%68 -> ^%89 -> ^%96 -> ^%112 -> ^%115 -> ^%118 -> ^%119 -> ^%124 -> ^^%126--%129 -> ^%131 -> ^%136 -> ^%139 -> ^%142 -> ^%168 -> ^%184 -> ^%207 -> ^%211 -> ^^%232--%235 -> ^^%248--@249/8 -> ^@251/61 -> ^@253/27 -> ^@263/6
  ]] 
  (( 
 
  )) 
 
- [[ "CPS" &53 => 
+ [[  "home study" &53 *3 =>  ^%22 -> ^%74
  ]] 
  (( 
 
  )) 
 
- [[ "gaslighting" &54 => 
+ [[  "``surprise'' (unannounced) visits" &54 *4 =>  ^%119 -> ^^%130--%131 -> ^@261/8
  ]] 
  (( 
 
@@ -2579,7 +2579,7 @@
 
  )) 
 
- [[ "``Green Book''" &431 => 
+ [[ ":Effective Intervention in Domestic Violence and Child Maltreatment: Guidelines for Policy and Practice" &431 => 
  ]] 
  (( 
 
@@ -2946,62 +2946,61 @@ Children from Abuse''" &461 =>
 
  )) 
 
- [[ "Schechter, Susan" &492 => 
+ [[ "United Nations Human Rights Office" &492 => 
  ]] 
  (( 
 
  )) 
 
- [[ "BIPOC (Black, Indigenous, and People of Color): (5 subentries)" &493 #5 => 
+ [[ "BIPOC (Black, Indigenous, and People of Color): (3 subentries)" &493 #3 => 
  ]] 
  (( 
 
  )) 
 
- [[  "foster placement" &494 *1 => 
+ [[ "population" &494 *1 => 
  ]] 
  (( 
 
  )) 
 
- [[  "population" &495 *2 => 
+ [[ "mother" &495 *2 => 
  ]] 
  (( 
 
  )) 
 
- [[  "protective mother" &496 *3 => 
+ [[ "supervised visitation, police station" &496 *3 => 
  ]] 
  (( 
 
  )) 
 
- [[  "psychopathological labels ascribed to" &497 *4 => 
+ [[ "``an hysterical Hispanic''" &497 => 
  ]] 
  (( 
 
  )) 
 
- [[  "supervised visitation, police station" &498 *5 => 
+ [[ "incarcerating mothers" &498 => 
  ]] 
  (( 
 
  )) 
 
-
- [[ "incarceration" &499 #2 => 
+ [[ "incarceration, threat of" &499 => 
  ]] 
  (( 
 
  )) 
 
- [[  "incarcerating mothers" &500 *1  => 
+ [[ "ransom" &500 => 
  ]] 
  (( 
 
  )) 
 
- [[  "threat of" &501 *2 => 
+ [[ "Family Ecosystem" &501 => 
  ]] 
  (( 
 
@@ -3013,336 +3012,8 @@ Children from Abuse''" &461 =>
 
  )) 
 
- [[ "psychological symptoms, children's manifestation: (8 subentries)" &503 #8 => 
+ [[ "``Abstention Doctrines''" &503 => 
  ]] 
  (( 
 
  )) 
-
- [[ "emotional regression" &504 *1 => 
- ]] 
- (( 
-
- )) 
-
- [[ "encopresis" &505 *2 => 
- ]] 
- (( 
-
- )) 
-
- [[ "enuresis" &506 *3 => 
- ]] 
- (( 
-
- )) 
-
- [[ "disrobing" &507 *4 => 
- ]] 
- (( 
-
- )) 
-
- [[ "low self-esteem" &508 *5 => 
- ]] 
- (( 
-
- )) 
-
- [[ "night terrors" &509 *6 => 
- ]] 
- (( 
-
- )) 
-
- [[ "screaming in sleep" &510 *7 => 
- ]] 
- (( 
-
- )) 
-
- [[ "sexually acting out" &511 *8 => 
- ]] 
- (( 
-
- )) 
-
- [[ "antisocial behavior, fathers': (10 subentries)" &512 #10 => 
- ]] 
- (( 
-
- )) 
-
- [[  "alcohol abuse" &513 *1 => 
- ]] 
- (( 
-
- )) 
-
- [[  "cocaine use" &514 *2 => 
- ]] 
- (( 
-
- )) 
-
- [[  "conviction for criminal endangerment of welfare of child" &515 *3 => 
- ]] 
- (( 
-
- )) 
-
- [[  "cursing child" &516 *4 => 
- ]] 
- (( 
-
- )) 
-
- [[  "cursing out mother" &517 *5 => 
- ]] 
- (( 
-
- )) 
-
- [[  "disorderly conduct" &518 *6 => 
- ]] 
- (( 
-
- )) 
-
- [[  "DUI" &519 *7 => 
- ]] 
- (( 
-
- )) 
-
- [[  "illegal possession of firearms" &520 *8 => 
- ]] 
- (( 
-
- )) 
- 
- [[  "impulse control, lack of" &521 *9 => 
- ]] 
- (( 
-
- )) 
-
- [[  "resisting arrest" &522 *10 => 
- ]] 
- (( 
-
- )) 
-
-
- [[ "ransom: (4 subentries)" &523 #4 => 
- ]] 
- (( 
-
- )) 
-
- [[  "visits" &524 *1 => 
- ]] 
- (( 
-
- )) 
-
- [[  "custody evaluator report" &525 *2 => 
- ]] 
- (( 
-
- )) 
-
- [[  "court fees" &526 *3 => 
- ]] 
- (( 
-
- )) 
-
- [[  "court order therapist" &527 *4 => 
- ]] 
- (( 
-
- )) 
-
- [[ "``modern day lynching''" &528 => 
- ]] 
- (( 
-
- )) 
-
- [[ "Woods-lamp" &529 => 
- ]] 
- (( 
-
- )) 
-
- [[ "Child Protective Services (CPS): (7 subentries)" &530 #7 => 
- ]] 
- (( 
-
- )) 
-
- [[  "child abuse, charge of" &531 *1 => 
- ]] 
- (( 
-
- )) 
-
- [[  "child fatalities" &532 *2 =>  ^%143
- ]] 
- (( 
-
- )) 
-
- [[  "child neglect, charge of" &533 *3 =>  ^%29 -> ^^%46--%48 -> ^%53 -> ^%58 -> ^%68 -> ^%89 -> ^%96 -> ^%112 -> ^%115 -> ^%118 -> ^%119 -> ^%124 -> ^^%126--%129 -> ^%131 -> ^%136 -> ^%139 -> ^%142 -> ^%168 -> ^%184 -> ^%207 -> ^%211 -> ^^%232--%235 -> ^^%248--@249/8 -> ^@251/61 -> ^@253/27 -> ^@263/6
- ]] 
- (( 
-
- )) 
-
- [[  "documents, gratuitous statements" &534 *4 => 
- ]] 
- (( 
-
- )) 
-
- [[  "foster care, convenient segue toward transferring custody to father" &535 *5 => 
- ]] 
- (( 
-
- )) 
-
- [[  "home study" &536 *6 =>  ^%22 -> ^%74
- ]] 
- (( 
-
- )) 
-
- [[  "``surprise'' (unannounced) visits" &537 *7 =>  ^%119 -> ^^%130--%131 -> ^@261/8
- ]] 
- (( 
-
- )) 
-
- [[ "``medical child abuse''" &538 => 
- ]] 
- (( 
-
- )) 
-
- [[ "Due Process Clause, Fourteenth Amendment" &539 => 
- ]] 
- (( 
-
- )) 
-
- [[ "lawyers, retaliation from" &540 => 
- ]] 
- (( 
-
- )) 
-
- [[ "``Child Abuse Accommodation Syndrome''" &541 => 
- ]] 
- (( 
-
- )) 
-
-
- [[ "``an hysterical Hispanic''" &542 => 
- ]] 
- (( 
-
- )) 
-
- [[ "Family Ecosystem" &543 => 
- ]] 
- (( 
-
- )) 
-
- [[ "``abstention'' doctrines" &544 => 
- ]] 
- (( 
-
- )) 
-
- [[ "Parental Alienation Syndrome (PAS), variants: (3 subentries)" &545 #3 -{<i>See also</i> enmeshment} => 
- ]] 
- (( 
-
- )) 
-
- [[ "``Alienation (A)''" &546 *1 => 
- ]] 
- (( 
-
- )) 
-
- [[ "parental alienation (PA)" &547 *2 => 
- ]] 
- (( 
-
- )) 
-
- [[ "``Resist and Refuse Dynamics'' (R-RD)" &548 *3 => 
- ]] 
- (( 
-
- )) 
-
- [[ "enmeshment" &549 => 
- ]] 
- (( 
-
- )) 
-
- [[ "criminal undertones" &550 => 
- ]] 
- (( 
-
- )) 
-
- [[ "racist views, system saturated by" &551 => 
- ]] 
- (( 
-
- )) 
-
- [[ "ad hoc social networks, bred by family court" &552 => 
- ]] 
- (( 
-
- )) 
-
- [[ ":Effective Intervention in Domestic Violence and Child Maltreatment: Guidelines for Policy and Practice" &553 => 
- ]] 
- (( 
-
- )) 
-
- [[ "``cross-system dialogues''" &554 => 
- ]] 
- (( 
-
- )) 
-
- [[ "David and Lucille Packard Foundation" &555 => 
- ]] 
- (( 
-
- )) 
-
- [[ "Edwards, Leonard" &556 => 
- ]] 
- (( 
-
- )) 
-
- [[ "Lucero, Katherine" &557 => 
- ]] 
- (( 
-
- )) 
-
-

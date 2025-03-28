@@ -92,7 +92,7 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
  QVector<Index_Ref_Group>& refs = *result;
 
  // // //
- refs.resize(558);
+ refs.resize(557);
 
  QRegularExpression qre("#(\\d+)\\s+\\$([ser])<([^>]+)>([,:.]?)\\s+\\$\\[([^\\]]+)]\\s+\\+\\{([^}]+)\\}"
                         );
@@ -122,7 +122,7 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
 
   int index = entry_id.toInt() - 1;
 
-  if(index >= 449)
+  if(index == 23)
     qDebug() << entry_id;
 
   refs[index].entry_id = entry_id.toInt();
@@ -147,7 +147,7 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
   for(QString p : pp)
   {
 //   QRegularExpression qre1("([\\dlxvi]+)([*?-]*)([\\dxvi]*)\\s@([\\w?]+)");
-   QRegularExpression qre1("([\\d!lxvin*?-]+)\\s@+([\\w?;]+)");
+   QRegularExpression qre1("([\\d!lxvin*?-]+)\\s@+([\\w?:;]+)");
    QRegularExpressionMatch match1 = qre1.match(p.simplified());
 
    if(match1.hasMatch())
@@ -486,6 +486,38 @@ div {padding-top:11pt; font-size:18pt;}
   return cc;
  });
 
+ QVector<QPair<u2, u2>> chapter_ranges_m {
+  {3, 25},
+  {26, 36},
+  {39, 56},
+  {57, 111},
+  {112, 144},
+
+  {145, 201},
+  {202, 258},
+  {259, 273},
+  {277, 284},
+  {285, 304},
+  {305, 317},
+ };
+
+
+ QVector<QPair<u2, u2>> chapter_ranges {
+  {332, 334},
+  {334, 334},
+  {334, 335},
+  {336, 343},
+  {344, 347},
+
+  {348, 353},
+  {353, 359},
+  {360, 361},
+  {361, 361},
+  {362, 362},
+  {363, 364},
+ };
+
+
 
 
  QString held;
@@ -493,6 +525,27 @@ div {padding-top:11pt; font-size:18pt;}
  u2 i = 0;
  for(Index_Ref_Group& g : *refs)
  {
+  for(Index_Ref ir : g.index_refs)
+  {
+   if(ir.note_low)
+   {
+    QString pc = ir.paragraph_codes.value(0);
+    QRegularExpression qre("C(\\d+)");
+    QRegularExpressionMatch m = qre.match(pc);
+    if(m.hasMatch())
+    {
+     u2 chap = m.captured(1).toInt();
+     QPair<u2, u2> r = chapter_ranges[chap - 1];
+     if(ir.low >= r.first && ir.low <= r.second)
+       qDebug() << "ok";
+     else
+       qDebug() << "\n\n!!!!!!!\nnot ok\n!!!!!!\n\n";
+    }
+   }
+  }
+
+
+
   //Index_Entry& ie = ies[i];
   Index_Entry& ie = ies[g.entry_id - 1];
 
@@ -515,6 +568,10 @@ div {padding-top:11pt; font-size:18pt;}
 
   if(g.entry_id)
   {
+   if(g.entry_id == 177)
+     qDebug() << g.entry_id;
+
+
    Index_Entry* parent = g.parent_id? &ies[g.parent_id - 1] : nullptr;
    Index_Ref_Group* pg = g.parent_id? &((*refs)[g.parent_id - 1]) : nullptr;
 
@@ -543,6 +600,31 @@ div {padding-top:11pt; font-size:18pt;}
    divs.first.replace("'s", "&rsquo;s");
    divs.first.replace("s-'", "s&rsquo;");
 
+   bool clean = true;
+   if(clean)
+   {
+//    if(divs.first.contains("Trish"))
+//      qDebug() << divs.first;
+
+    divs.first.replace(QRegularExpression("\\d+nn(\\d+)-(\\d+)\\s+@@?([CP\\d]+)"),
+                       "\\3nn\\1&ndash;\\2");
+
+    divs.first.replace(QRegularExpression("\\d+--\\*?\\d+\\s+@@?"), "");
+
+    // C\\d+P\\d+
+    divs.first.replace(QRegularExpression("\\d+(n\\d+)\\s+@([CP\\d]+)"), "\\2\\1");
+
+    divs.first.replace(QRegularExpression("\\d+\\s+@@?"), "");
+
+    //    divs.first.replace(QRegularExpression(";C\\d+P\\d+;"), ";;");
+
+    divs.first.replace(QRegularExpression(";[CP\\d;]+;"), ";;");
+    divs.first.replace(QRegularExpression("(C\\d+P\\d+);+(C\\d+P\\d+)"), "\\1&ndash;\\2");
+
+    divs.first.replace(QRegularExpression("(C\\d+P\\d+)::(C\\d+P\\d+)"), "\\1&ndash;\\2");
+
+    divs.first.replace(QRegularExpression("Cn(\\d+)\\?\\?\\?"), "C?P?n\\1");
+   }
 
    //?divs.first.replace(QRegularExpression("\\s+;"), ";");
    //divs.first.replace(QRegularExpression("\\.\\s*;"), ";");

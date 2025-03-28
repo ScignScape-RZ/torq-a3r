@@ -164,7 +164,7 @@ QPair<QString, QString> Index_Ref_Group::to_html_bookstyle(const Index_Entry& ie
 
  QString s ;// = supplement;
 
- if(ie.id == 548)
+ if(ie.id == 24)
  {
   qDebug() << ie.id;
  }

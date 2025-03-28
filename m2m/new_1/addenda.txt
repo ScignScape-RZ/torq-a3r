@@ -99,7 +99,7 @@
  +{ }
                               
 #24 $e<Billings, Lucy>,
- $[150--*151 @C6P21::C6P24 ,, 155 @C6P36]
+ $[150--?151 @C6P21 ,, 155 @C6P36]
  +{ }
                               
 #25 $e<Boston Phoenix (2003)>,
@@ -278,7 +278,7 @@
  +{ }
                               
 #68 $e< [child custody.../57] Faller and DeVoe (1995)>,
- $[lxxviii @C??? ,, 331n8 @@C???]
+ $[lxxviii @C??? ,, 331n8 @@C1P11]
  +{ }
                               
 #69 $e< [child custody.../57] Finkelhor (1986)>,
@@ -537,7 +537,7 @@
  +{ }
                               
 #131 $e< [ethnomethodological.../123] Meehan (1997)>,
- $[lxxxii @C??? ,, 53 @C3P46 ,, 55 @C3P50;C3P52 ,, 56 @C3P55 ,, 117--*118 @C5P22;C5P23;C5P24 ,, 335n7 @@C3P51]
+ $[lxxxii @C??? ,, 53 @C3P46 ,, 55 @C3P50;C3P52 ,, 56 @C3P55 ,, 117--*118 @C5P22;23;24 ,, 335n7 @@C4P13]
  +{ }
                               
 #132 $e< [ethnomethodological.../123] Pollner (1979)>,
@@ -724,7 +724,7 @@
  +{ }
                               
 #174 $e<Goodhue, Mary B.>,
- $[36 @C2P30 ,, 334n8 @@C2P30]
+ $[36 @C2P30 ,, 334n8 @@C7P143]
  +{ }
                               
 #175 $e<Gothard, Sol>,
@@ -738,8 +738,8 @@
 #177 $e<Green, Arthur>
  $[18 @C1P45;C1P46 ,, 31--*32 @C2P20;C2P21 ,, 64 @C4P22 ,, 71 @C4P39 ,, 90 @C4P113 
    ,, 180 @C6P137 ,, 206--*207 @C7P14::C7P17 ,, 209--*212 @C7P26::C7P37 ,, 214--*215 @C7P42::C7P47 
-   ,, 226--*227 @C7P89::C7P91 ,, 316 @C11P35 ,, 338n37 @@C4P39 
-   ,, 347n61 @@C5P96 ,, 356nn58-59 @@C7P89 ,, 358n111 @@C7P150]
+   ,, 226--*227 @C7P89::C7P91 ,, 316 @C11P35 ,, 338n37 @@C5P51 
+   ,, 347n61 @@C5P96 ,, 356nn58-59 @@7P89 ,, 358n111 @@C7P150]
  +{  <i>See also</i> circumscribed psychosis}
                                                                
       
@@ -967,7 +967,7 @@
  +{ }
                               
 #233 $e<Lundy, Marta>,
- $[155--*156 @C6P37 ,, 348n8 @@C6P38]
+ $[155--*156 @C6P37 ,, 348n8 @@C8P16]
  +{  <i>See also</i> Jane Addams College of Social Work of the University of Illinois}
                               
 #234 $e<Malicious Mother Syndrome (MMS)>,
@@ -1178,7 +1178,7 @@
                               
 #285 $s<New York, city of: (5 subentries)>
  $[ ]
- +{ (<i>See also</i> Winner, Karen)}
+ +{ (see also Winner, Karen)}
                               
 #286 $e< [New York, ci.../285] Administration for Children's Services (ACS)>,
  $[19 @C1P49 ,, 20 @C1P50 ,, 28 @C2P9 ,, 255 @C7P174 ,, 256--*257 @C7P178;C7P179]
@@ -1783,7 +1783,7 @@
  +{<i>See also</i> Robert Gefner}
 
 #433 $e<United Nations Human Rights Office of the High Commissioner>,
- $[xxxv @C??? ,, xxxvi @C??? ,, lv @C???]
+ $[xxxv @C???, xxxvi @C???]
  +{ }
 
 #434 $e<Dumas, Cindy>,
@@ -1838,9 +1838,9 @@
  $[xl @C??? ,, lxvii @C??? ,, lxxiv @C???]
  +{ }
 
-#447 $e<United States Attorney General>,
+#447 $e<United States Attourney General>,
  $[xl @C???]
- +{<i>See also</i> Garland, Merrick; US Department of Justice}
+ +{<i>See also</i> Garland, Merrick; US Deptartment of Justice}
 
 #448 $e<Garland, Merrick>,
  $[196 @C6P175]
@@ -1967,7 +1967,7 @@ Children from Abuse''>,
  $[ ]
  +{<i>See</i> Child At Risk Classification Office}
 
-#479 $r<Children of Underground &mdash; FX 5 part docuseries>,
+#479 $r<Children of Undeground &emdash; FX 5 part docuseries>,
  $[ ]
  +{<i>See</i> Story Syndicate; Gesing, Ted}
 
@@ -2019,9 +2019,9 @@ Children from Abuse''>,
  $[liv @C???]
  +{ }
 
-#492 $e<Schechter, Susan>,
- $[xxxiii @C??? ,, 323 @C11P56]
- +{<i>See also</i> Edleson, Jeffrey L.}
+#492 $e<United Nations Human Rights Office>,
+ $[lv @C???]
+ +{ }
 
 #493 $s<BIPOC (Black, Indigenous, and People of Color): (5 subentries)>,
  $[ ]
@@ -2046,6 +2046,8 @@ Children from Abuse''>,
 #498 $e< [BIPOC/493] supervised visitation, police station>,
  $[lvii @C??? ,, 99--*100 @C4P136;C4P137]
  +{ }
+
+
 
 #499 $s<incarceration: (2 subentries)>,
  $[105 @C4P151]
@@ -2290,7 +2292,9 @@ Children from Abuse''>,
  $[325 @C11P61;C11P62]
  +{ }
 
-
+#558 $e<Schechter, Susan>,
+ $[xxxiii @C??? ,, 323 @C11P56]
+ +{<i>See also</i> Edleson, Jeffrey L.}
 
 
 
