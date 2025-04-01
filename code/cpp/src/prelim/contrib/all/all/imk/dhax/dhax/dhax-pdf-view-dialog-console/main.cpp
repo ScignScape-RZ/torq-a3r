@@ -608,7 +608,97 @@ int main23(int argc, char *argv[])
 }
 
 
-int main22(int argc, char *argv[])
+
+int main30(int argc, char *argv[])
+{
+ QString aofile = "/home/nlevisrael/Downloads/m2m/new/addenda-prcodes.txt";
+ QVector<Index_Ref_Group>* refs = make_ref_group_vector(aofile);
+
+ QString ifile = "/home/nlevisrael/Downloads/m2m/new/dindex-add.txt";
+ QVector<Index_Entry> ies;
+ QString itext = KA::TextIO::load_file(ifile);
+ read_index_entries(itext, ies);
+
+ QVector<QPair<u2, u2>> chapter_ranges_m {
+  {3, 25},
+  {26, 36},
+  {39, 56},
+  {57, 111},
+  {112, 144},
+
+  {145, 201},
+  {202, 258},
+  {259, 273},
+  {277, 284},
+  {285, 304},
+  {305, 327},
+ };
+
+
+ for(Index_Ref_Group& g : *refs)
+ {
+  for(Index_Ref ir : g.index_refs)
+  {
+   if(ir.note_low)
+     continue;
+
+   for(QString para : ir.paragraph_codes)
+   {
+    if(para.startsWith("Pr"))
+    {
+     if(ir.region_code != 1)
+       qDebug() << "R?";
+
+     u2 page = ir.low;
+     if( (page < 32) || (page > 71) )
+     {
+      qDebug() << "Page? " << page << " {"
+         << g.entry_id << "}  " << g.heading;
+     }
+     continue;
+    }
+
+    if(para.startsWith("Io"))
+    {
+     if(ir.region_code != 1)
+       qDebug() << "R?";
+
+     u2 page = ir.low;
+     if( (page < 72) || (page > 85) )
+     {
+      qDebug() << "Page? " << page << " {"
+         << g.entry_id << "}  " << g.heading;
+     }
+     continue;
+    }
+
+
+    QRegularExpression rx("C(\\d+)P");
+    QRegularExpressionMatch m = rx.match(para);
+    if(m.hasMatch())
+    {
+     u2 cn = m.captured(1).toInt();
+     u2 page = ir.low;
+
+     QPair<u2, u2> pr = chapter_ranges_m[cn - 1];
+
+     if(page < pr.first || page > pr.second)
+       qDebug() << "Page? " << page << " {"
+          << g.entry_id << "}  " << g.heading;
+
+    }
+
+   }
+
+  }
+
+
+ }
+
+}
+
+
+int main(int argc, char *argv[])
 {
 // QString aofile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out.txt";
 // QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test.txt";
@@ -754,21 +844,6 @@ div {padding-top:11pt; font-size:18pt;}
   bool cc = str_compare(lhs.heading, rhs.heading);
   return cc;
  });
-
- QVector<QPair<u2, u2>> chapter_ranges_m {
-  {3, 25},
-  {26, 36},
-  {39, 56},
-  {57, 111},
-  {112, 144},
-
-  {145, 201},
-  {202, 258},
-  {259, 273},
-  {277, 284},
-  {285, 304},
-  {305, 317},
- };
 
 
  QVector<QPair<u2, u2>> chapter_ranges {
@@ -1152,7 +1227,7 @@ int main31(int argc, char *argv[])
  return 0;
 }
 
-int main(int argc, char *argv[])
+int main22(int argc, char *argv[])
 {
  QString ifile = "/home/nlevisrael/Downloads/m2m/w_pdf/dindex.txt";
  QString bfile = "/home/nlevisrael/Downloads/m2m/w_pdf/bookmarks.txt";
