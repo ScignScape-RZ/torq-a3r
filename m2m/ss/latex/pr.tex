@@ -1,0 +1,49 @@
+
+\documentclass[11pt]{article}
+
+\usepackage[top=.8in, bottom=.7in, left=1.7in, right=.7in, marginparwidth=75pt, 
+paperheight=13.25in,paperwidth=10.45in]{geometry}
+
+\reversemarginpar
+
+%\usepackage[oneside, marginparwidth=75pt]{geometry}    "(@Pr\d+)"
+
+\usepackage{xcolor}
+
+\newcommand{\notePage}[1]{ === page #1 === }
+
+\newcommand{\quasiPar}[1]{}
+
+\newcommand{\prQuote}[1]{``{#1}''}
+
+
+\newcommand{\prSect}[1]{
+\noindent{\LARGE{#1}}\vspace{1em}
+}
+
+
+\newcommand{\prPart}[1]{
+\vspace{15pt}\noindent{\Large{#1}}\vspace{1em}
+}
+
+\newcommand{\prHead}[1]{
+\vspace{9pt}\noindent{\Large{#1}}\vspace{1em}
+}
+
+
+\newcounter{prPar}
+
+
+%\DeclareRobustCommand{\mymarginpar}[1]{%
+% \marginpar[\hspace{200pt}\raggedleft#1]{\raggedright#1}}
+
+\newcommand{\pfl}{\stepcounter{prPar}% -\theprPar= 
+\vspace{10pt}\marginpar{\raisebox{-30pt}{@Pr\theprPar}}
+}
+
+
+\begin{document}
+
+\input{prologue}
+
+\end{document}

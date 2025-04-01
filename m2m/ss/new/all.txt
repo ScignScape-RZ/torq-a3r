@@ -1,0 +1,2073 @@
+
+#1 $e<adjournments in contemplation of dismissal>,
+ $[36 @C2P30]
+ +{ }
+                              
+#2 $e<Alonso, Carmen>,
+ $[354n28 @@C7P44]
+ +{ }
+                              
+#3 $e<American Bar Association, in cooperation with the Association of Family and Conciliation Courts 
+    (1988)>,
+ $[12 @C1P29 ,, 282 @C9P15]
+ +{ }
+                              
+#4 $e<American Coalition for Fathers and Children (ACFC)>,
+ $[15 @C1P36]
+ +{ }
+                              
+#5 $e<:American Journal of Public Health>,
+ $[9 @C1P18]
+ +{ }
+                              
+#6 $e<:American Jurisprudence Proof of Facts>,
+ $[13 @C1P29 ,, 32 @C2P21]
+ +{ }
+                              
+#7 $e<American Psychiatric Association>,
+ $[206 @C7P13 ,, 361n9 @@C9P8]
+ +{ }
+                              
+#8 $e<American Psychological Association>,
+ $[31 @C2P19 ,, 95 @C4P125]
+ +{ }
+                              
+#9 $e< [American Psychological Association/8] Presidential Task Force on Violence and the Family (1996)>,
+ $[205 @C7P12]
+ +{ }
+                              
+#10 $e<Anderson, Karen>,
+ $[313 @C11P25]
+ +{  <i>See also</i> 
+       California Protective Parents Association}
+                              
+#11 $e<anorexia nervosa>,
+ $[136 @C5P87 ,, 157 @C6P46]
+ +{ }
+                              
+#12 $e<appellate review>
+ $[lxxxi @C??? ,, 18 @C1P47 ,, 29 @C2P10 ,, 35--*36 @C2P29;C2P30;C2P31 ,, 66 @C4P28 
+  ,, 68 @C4P33 ,, 75 @C4P53 ,, 86--*87 @C4P101 ,, 117 @C5P19 ,, 128 @C5P57 ,, 130 @C5P62 
+  ,, 131 @C5P66 ,, 134 @C5P78 ,, 228 @C7P96 ,, 300--*301 @C10P46 ,, 310 @C11P17 ,, 311 @C11P19 
+  ,, 314 @C11P28 ,, 334n38 @@C1P47 ,, 335n9 @@C3P55 ,, 336n3 @@C4P5 ,, 337n15 @@CC4P17 ,, 338n38 @@C4P40 
+  ,, 339n64 @@C4P95 ,, 347n60 @@C5P95 ,, 353n6 @@C7P13 ,, 363n5 @@C11P17]
+ +{ }
+
+                              
+#13 $e<Apolo, Julio>,
+ $[218 @C7P57]
+ +{ }
+                              
+#14 $e<Armstrong, Louise>,
+ $[lxxx @C??? ,, 15 @C1P35 ,, 20 @C1P50]
+ +{ }
+                              
+#15 $e<Arizona Coalition against Domestic Violence>,
+ $[208 @C7P22]
+ +{  
+    See also <i>Battered Mothers' Testimony Project</i>}
+                              
+#16 $e<Australian mothers, study of>,
+ $[358n112 @@C7P151]
+ +{  <i>See also</i> Munchausen Syndrome By Proxy (MSBP)}
+                              
+#17 $e<Aylsworth, John>,
+ $[5 @C1P9;C1P10]
+ +{  <i>See also</i> Marks, Bridget; Port, Bob}
+                              
+#18 $e<``Baby M'' case>,
+ $[134--*135 @C5P79;C5P80]
+ +{ }
+                              
+#19 $e<:Battered Mothers' Testimony Project>,
+ $[9 @C1P19]
+ +{  <i>See also</i> Arizona Coalition against Domestic Violence}
+                              
+#20 $e<:Battered Mothers Speak Out <span style='font-style:normal'|(November 2002)</span|>,
+ $[9 @C1P18]
+ +{  <i>See also</i> Wellesley Centers for Women}
+                              
+#21 $e<Bell, Mariam>,
+ $[lxxvii @C??? ,, 331n6 @@C???]
+ +{ }
+                              
+#22 $e< [Bell, Mariam/21] Childhelp USA>,
+ $[lxxvi @C???]
+ +{ }
+                              
+#23 $e< [Bell, Mariam/21] ``System Failure Project''>,
+ $[lxxvii @C???]
+ +{ }
+                              
+#24 $e<Billings, Lucy>,
+ $[150--?151 @C6P21 ,, 155 @C6P36]
+ +{ }
+                              
+#25 $e<Boston Phoenix (2003)>,
+ $[3 @C1P1;C1P2]
+ +{ }
+                              
+#26 $e<Brooklyn Bar Association, matrimonial committee of>,
+ $[13 @C1P29]
+ +{ }
+                              
+#27 $e<Brooklyn Family Court>,
+ $[lvi @C??? ,, 15 @C1P37;C1P38 ,, 16 @C1P39 ,, 58 @C4P3 ,, 89 @C4P109 ,, 125 @C5P46 ,, 166 @C6P75]
+ +{   <i>See also</i> Deutsch, Leon}
+                              
+#28 $e<Brooklyn Society for the Prevention of Cruelty to Children (BSPCC)>,
+ $[178 @C6P130]
+ +{ }
+                              
+#29 $e<Bronx Legal Services>,
+ $[150 @C6P21]
+ +{ }
+                              
+#30 $e<Bruch, Carol>,
+ $[217 @C7P53]
+ +{ }
+                              
+#31 $r<BSPCC>:
+ $[ ]
+ +{ <i>See</i> Brooklyn Society for the Prevention of Cruelty to Children (BSPCC)}
+                              
+#32 $e<Buckmaster, Henrietta>,
+ $[139 @C5P100]
+ +{ }
+                              
+#33 $e<Burgasser, George>,
+ $[156 @C6P43 ,, 363n16 @@C10P56]
+ +{ }
+                              
+#34 $e<Burton, Randy>,
+ $[88 @C4P106]
+ +{ }
+                              
+#35 $s<California: (2 subentries)>
+ $[ ]
+ +{ }
+                              
+#36 $e< [California/35] women's and children's advocacy groups and organizations>,
+ $[296 @C10P31]
+ +{ }
+                              
+#37 $e< [California/35] commissions and professional associations>,
+ $[296 @C10P31]
+ +{ }
+                              
+#38 $e<California Protective Parents Association>,
+ $[xliv @C??? ,, liii @C???]
+ +{ }
+                              
+#39 $e<Campbell, Bonnie>,
+ $[331n5 @@C???]
+ +{  
+  <i>See also</i> U.S. Department of Justice, Violence Against Women Office}
+                              
+#40 $r<CAPTA>:
+ $[ ]
+ +{ <i>See</i> Child Abuse Prevention and Treatment Act of 1974 (CAPTA)}
+                              
+#41 $e<Carpenter, McKenzie (Pittsburgh Post-Gazette)>,
+ $[24 @C1P64]
+ +{ }
+                              
+#42 $e<Chesler, Phyllis>,
+ $[21 @C1P53]
+ +{ }
+                              
+#43 $s<child: (3 subentries)>
+ $[ ]
+ +{ }
+                              
+#44 $e< [child/43] best interests of>
+ $[124 @C5P43 ,, 133 @C5P76 ,, 182 @C6P142 ,, 278 @C9P5 ,, 288 @C10P10 ,, 295 @C10P30 ,, 301 @C10P46 ,, 305 @C11P3 ,, 305 @C11P7]
+ +{ }
+                              
+#45 $e< [child/43] imminent danger or risk of harm>
+ $[120--*122 @C5P30::C5P35 ,, 162 @C6P62 ,, 163 @C6P64 ,, 167 @C6P81 ,, 292 @C10P22 ,, 345n14 @C??? ,, 347n60 @C??? ,, 363n3 @@C11P7]
+ +{ }
+
+                              
+#46 $e< [child/43] welfare of>
+ $[146 @C6P3 ,, 225 @C7P83 ,, 279 @C9P6;C9P7 ,, 281 @C9P11 ,, 294 @C10P27]
+ +{ }
+
+                              
+#47 $e<``Child Abuse Accommodation Syndrome''>,
+ $[208 @C7P21 ,, 354 @C???]
+ +{ }
+                              
+#48 $e<Child Abuse Prevention and Treatment Act of 1974 (CAPTA)>,
+ $[116 @C5P15 ,, 157 @C6P43 ,, 286 @C10P3 ,, 294 @C10P26 ,, 298 @C10P39 ,, 304 @C10P56 ,, 318 @C11P39;C11P40 ,, 323 @C11P57 ,, 324 @C11P58
+   ,, 362n9 @@C10P39 ,, 362n16 @@C10P56]
+ +{ }
+                              
+#49 $r<ChildhelpUSA>:
+ $[ ]
+ +{ <i>See</i> Bell, Mariam}
+                              
+#50 $s<Child Protective Services (CPS): (4 subentries)>
+ $[ ]
+ +{ }
+                              
+#51 $e< [Child Protective.../50] child fatalities>,
+ $[182 @C6P144]
+ +{ }
+                              
+#52 $e< [Child Protective.../50] child neglect, charge of>
+ $[34 @C2P26::C2P29 ,, 52 @C3P42::C3P49 ,, 59 @C4P6;C4P7 ,, 65 @C4P25 ,, 77 @C4P60 ,, 115 @C5P15 
+   ,, 124 @C5P44 ,, 146 @C6P3 ,, 149 @C6P18;C6P19 ,, 153 @C6P29 ,, 155 @C6P34 ,, 160 @C6P55 
+   ,, 162--*164 @C6P61::C6P69 ,, 169 @C6P89 ,, 175 @C8P118 ,, 178 @C6P130 ,, 181 @C6P139 ,, 230 @C7P105 
+   ,, 262 @C8P14 ,, 289 @C10P12 ,, 293 @C10P24 ,, 319--*321 @C11P42::C11P50 ,, 344n8 @@C5P19 
+   ,, 347n61 @@C5P96 ,, 349n27 @@C6P68 ,, 362n6 @@C10P22]
+ +{ }
+
+                              
+#53 $e< [Child Protective.../50] home study>,
+ $[27 @C2P5 ,, 84 @C4P92]
+ +{ }
+                              
+#54 $e< [Child Protective.../50] ``surprise'' (unannounced) visits>,
+ $[154 @C1P28 ,, 263 @C8P16 ,, 360n8 @@C8P16]
+ +{ }
+                              
+#55 $e<``Children of the Underground''>,
+ $[21 @C1P55 ,, 24 @C1P64]
+ +{  <i>See also</i> Yager, Faye}
+                              
+#56 $e<Children's Rights of America>,
+ $[360n3 @@C8P9]
+ +{ }
+                              
+#57 $s<child custody and child sexual abuse, professional literature on: (39 subentries)>
+ $[ ]
+ +{ <i>See also</i> Gardner Richard A.; Green, Arthur; Niggemyer, Kathleen; Pennington, H. Joan; Summit, Roland}
+                              
+#58 $e< [child custody.../57] Berliner (1988)>,
+ $[lxxviii @C???]
+ +{ }
+                              
+#59 $e< [child custody.../57] Corwin, Berliner, Goodman, Goodwin, and White (1987)>,
+ $[lxxviii @C??? ,, 32 @C1P25 ,, 208 @C7P20 ,, 211 @C7P34 ,, 354n12 @@C7P20]
+ +{ }
+                              
+#60 $e< [child custody.../57] Deblinger, Stauffer, and Steer (2001)>,
+ $[210 @C7P27]
+ +{ }
+                              
+#61 $e< [child custody.../57] Denike, Huang, and Kachuk (1998)>,
+ $[lxxviii @C???]
+ +{ }
+                              
+#62 $e< [child custody.../57] Dziech and Schudson (1989)>,
+ $[lxxviii @C??? ,, 43 @C3P12]
+ +{ }
+                              
+#63 $e< [child custody.../57] Everson and Boat (1989)>,
+ $[27 @C2P6]
+ +{ }
+                              
+#64 $e< [child custody.../57] Faller (1998)>,
+ $[232 @C7P106]
+ +{ }
+                              
+#65 $e< [child custody.../57] Faller (2000)>,
+ $[7 @C1P15]
+ +{ }
+                              
+#66 $e< [child custody.../57] Faller (2002)>,
+ $[219 @C7P60]
+ +{ }
+                              
+#67 $e< [child custody.../57] Faller, Corwin, and Olafson (1993)>,
+ $[lxxviii @C??? ,, 215 @C7P48 ,, 216 @C7P49]
+ +{ }
+                              
+#68 $e< [child custody.../57] Faller and DeVoe (1995)>,
+ $[lxxviii @C??? ,, 331n8 @@C1P11]
+ +{ }
+                              
+#69 $e< [child custody.../57] Finkelhor (1986)>,
+ $[7 @C1P14]
+ +{ }
+                              
+#70 $e< [child custody.../57] Friedrich (1993)>,
+ $[313 @C11P26]
+ +{ }
+                              
+#71 $e< [child custody.../57] Froning (1988)>,
+ $[212 @C7P35]
+ +{ }
+                              
+#72 $e< [child custody.../57] Gould (1998)>,
+ $[204 @C7P6 ,, 224 @C7P81]
+ +{ }
+                              
+#73 $e< [child custody.../57] Jones and McGraw (1987)>,
+ $[332n11 @@C1P15]
+ +{ }
+                              
+#74 $e< [child custody.../57] Jones and Seig (1988)>,
+ $[332n11 @@C1P15]
+ +{ }
+                              
+#75 $e< [child custody.../57] Keating (1998)>,
+ $[6 @C1P12]
+ +{ }
+                              
+#76 $e< [child custody.../57] Lawson and Chaffin (1992)>,
+ $[331n7 @@C???]
+ +{ }
+                              
+#77 $e< [child custody.../57] Lidman and Hollingsworth (1998)>,
+ $[112 @C5P1 ,, 116 @C5P18]
+ +{ }
+                              
+#78 $e< [child custody.../57] Massat and Lundy (1998)>,
+ $[8 @C1P17 ,, 43 @C3P12]
+ +{ }
+                              
+#79 $e< [child custody.../57] Massat and Lundy (1999)>,
+ $[43 @C1P17]
+ +{ }
+                              
+#80 $e< [child custody.../57] McDonald (1998)>,
+ $[lxxviii @C???]
+ +{ }
+                              
+#81 $e< [child custody.../57] McGraw and Smith (1992)>,
+ $[332n11 @@C1P15]
+ +{ }
+                              
+#82 $e< [child custody.../57] Melton, Petrila, Poythress, and Slobogin (1997)>,
+ $[312--313 @C11P23]
+ +{ }
+                              
+#83 $e< [child custody.../57] Myers (1997)>,
+ $[7 @C1P14 ,, 11 @C1P25]
+ +{ }
+                              
+#84 $e< [child custody.../57] Neustein and Goetting (1999)>,
+ $[7 @C1P13]
+ +{ }
+                              
+#85 $e< [child custody.../57] Nicholson and Bulkley (1988)>,
+ $[12 @C1P29]
+ +{ }
+                              
+#86 $e< [child custody.../57] Palmer and Brown (1999)>,
+ $[208 @C7P22]
+ +{ }
+                              
+#87 $e< [child custody.../57] Penfold (1997)>,
+ $[7 @C1P15]
+ +{ }
+                              
+#88 $e< [child custody.../57] Pennington and Woods (1990)>,
+ $[20 @C1P52 ,, 113 @C5P6]
+ +{ }
+                              
+#89 $e< [child custody.../57] Quinn (1988)>,
+ $[lxxviii @C???]
+ +{ }
+                              
+#90 $e< [child custody.../57] Russell (1983)>,
+ $[7 @C1P14]
+ +{ }
+                              
+#91 $e< [child custody.../57] Russell (1986)>,
+ $[7 @C1P14]
+ +{ }
+                              
+#92 $e< [child custody.../57] Schafran (1987)>,
+ $[10 @C1P21]
+ +{ }
+                              
+#93 $e< [child custody.../57] Smith and Coukos (1997)>,
+ $[32--*33 @C2P22 ,, 207 @C7P17]
+ +{ }
+                              
+#94 $e< [child custody.../57] Stern and Oehme (2002)>,
+ $[30 @C2P13;C2P14]
+ +{ }
+                              
+#95 $e< [child custody.../57] Thoennes, Pearson, and Tjaden (1988)>,
+ $[lxxviii @C???]
+ +{ }
+                              
+#96 $e< [child custody.../57] Thoennes and Tjaden (1990)>,
+ $[lxxviii @C???]
+ +{ }
+                              
+#97 $e<:Child Welfare>,
+ $[8 @C1P17]
+ +{ }
+                              
+#98 $e<circumscribed psychosis>,
+ $[180 @C6P137 ,, 214 @C7P42;C7P44 ,, 215 @C7P46]
+ +{ }
+                              
+#99 $e<Civic Research Institute>,
+ $[329n10 @@C??? ,, 361n1 @@C9P1]
+ +{  <i>See also</i> Zorza, Joan}
+                              
+#100 $s<civil rights: (3 subentries)>
+ $[ ]
+ +{ }
+                              
+#101 $e< [civil rights/100] constitutional rights>
+ $[lxxiv @C??? ,, 31 @C2P16 ,, 66 @C4P28 ,, 97 @C4P131 ,, 281 @C9P12 ,, 284 @C9P18 
+   ,, 288 @C10P11 ,, 292 @C10P23;C10P24 ,, 300 @C10P46 ,, 302 @C10P48;C10P49]
+ +{ }
+
+                              
+#102 $e< [civil rights/100] due process>
+ $[lxxxiii @C??? ,, 8--*9 @C1P18;C1P19 ,, 17 @C1P43 ,, 35 @C2P29 ,, 51 @C3P38 ,, 82 @C4P84 
+   ,, 91 @C4P113 ,, 95--*96 @C4P125 ,, 281 @C9P12 ,, 284 @C9P18 ,, 289 @C10P11 ,, 302 @C10P49 ,, 322 @C11P52]
+ +{ }
+
+                              
+#103 $e< [civil rights/100] equal protection>,
+ $[lii @C??? ,, 9 @C1P19]
+ +{ }
+                              
+#104 $e<Cobb County Bar Association>,
+ $[234--*235 @C7P117 ,, 357n83 @@C7P117]
+ +{ }
+                              
+#105 $e<Code of Judicial Conduct>,
+ $[306 @C11P6 ,, 337n22 @@C4P25]
+ +{ }
+                              
+#106 $e<colposcopic examination>,
+ $[127 @C5P51 ,, 172 @C6P107 ,, 237 @C7P125]
+ +{ }
+                              
+#107 $e<:Conducting Scientifically Crafted Child Custody Evaluations>,
+ $[204 @C7P6]
+ +{ }
+                              
+#108 $e<confidentiality>
+ $[33 @C2P23 ,, 90 @C4P110 ,, 137 @C5P91 ,, 151 @C6P22;C6P23 ,, 286--*287 @C10P5::C10P8 ,, 319 @C11P45]
+ +{  <i>See also</i> ``gag'' order}
+                              
+#109 $e<contempt of court>,
+ $[lvi @C??? ,, 68 @C4P33 ,, lvii @C???]
+ +{ }
+                              
+#110 $e<Curran, William (1985)>,
+ $[31 @C2P16]
+ +{ }
+                              
+#111 $e<Curtis, April>,
+ $[4 @C1P5]
+ +{ }
+                              
+#112 $e<Dale, Sebe>,
+ $[23 @C1P59]
+ +{ }
+                              
+#113 $e<Deutsch, Leon>,
+ $[0 @C??? ,, 15--16 @C1P37;C1P38;]
+ +{  <i>See also</i> Brooklyn
+ Family Court; Paterson, David A.}
+                              
+#114 $e<``Diagnostic Impression'' chart>,
+ $[143 @C5P112]
+ +{ }
+                              
+#115 $e<Displaced Mother Syndrome>,
+ $[135--*140 @C5P82;C5P83]
+ +{ }
+                              
+#116 $e<:Divorced from Justice (Winner)>,
+ $[10 @C1P22 ,, 333n31 @@C1P41]
+ +{ }
+                              
+#117 $e<``domestic relations'' exception>,
+ $[302 @C10P48]
+ +{ }
+                              
+#118 $e<domestic violence>,
+ $[xiv @C??? ,, 165 @C6P73]
+ +{ }
+                              
+#119 $e<Ducote, Richard>,
+ $[114--*116 @C5P8;C5P9;C5P10;C5P11 ,, 234 @C5P12;C5P13;C5P14;C5P15]
+ +{ }
+                              
+#120 $e<Durkheim, Emile>,
+ $[41 @C3P6]
+ +{ }
+                              
+#121 $e<English common law>,
+ $[278 @C9P3]
+ +{ }
+                              
+#122 $e<ethics>
+ $[57 @C4P2 ,, 65 @C4P25 ,, 84 @C4P92 ,, 85 @C4P94 ,, 92 @C4P117 ,, 284 @C9P18 ,, 300 @C10P43 
+   ,, 306--*309 @C11P6::C11P13 ,, 313 @C11P24 ,, 316 @C11P35 ,, 335n8 @@C3P54 ,, 346n43 @@C5P59 ,, 364n13 @@C11P32]
+ +{ }
+
+#123 $s<ethnomethodological studies: (9 subentries)>
+ $[ ]
+ +{ }
+                              
+#124 $e< [ethnomethodological.../123] Garfinkel (1967)>,
+ $[40 @C3P4 ,, 41 @C3P6 ,, 42 @C3p11;C3p12 ,, 335n4 @@C3P11]
+ +{ }
+                              
+#125 $e< [ethnomethodological.../123] Garfinkel and Bittner (1967)>,
+ $[53 @C3P45 ,, 345n9 @@C5P24]
+ +{ }
+                              
+#126 $e< [ethnomethodological.../123] Garfinkel and Sacks (1970)>,
+ $[47 @C3P26 ,, 84 @C4P89]
+ +{ }
+                              
+#127 $e< [ethnomethodological.../123] Heritage and Sefi (1992)>,
+ $[52 @C3P41]
+ +{ }
+                              
+#128 $e< [ethnomethodological.../123] Heritage and Watson (1979)>,
+ $[84 @C4P90]
+ +{ }
+                              
+#129 $e< [ethnomethodological.../123] Holstein and Gubrium (1995)>,
+ $[lxxxii @C??? ,, 48 @C3P29]
+ +{ }
+                              
+#130 $e< [ethnomethodological.../123] Lynch (1997)>,
+ $[lxxxii @C??? ,, 40--*42 @C3P4 ,, 51 @C3P40]
+ +{ }
+                              
+#131 $e< [ethnomethodological.../123] Meehan (1997)>,
+ $[lxxxii @C??? ,, 53 @C3P46 ,, 55 @C3P50;C3P52 ,, 56 @C3P55 ,, 117--*118 @C5P22;23;24 ,, 335n7 @@C4P13]
+ +{ }
+                              
+#132 $e< [ethnomethodological.../123] Pollner (1979)>,
+ $[lxxxii @C??? ,, 45--*46 @C3P19;C3P20;21;22 ,, 87 @C4P104;105]
+ +{ }
+                              
+#133 $s<ethnomethodology: (12 subentries)>
+ $[ ]
+ +{ <i>See also</i> sociological inquiry }
+                              
+#134 $e< [ethnomethodology../133] ``accountable,'' ``publicly'' observable actions>
+ $[41 @C3P7 ,, 334n3 @@C3P7]
+ +{ }
+    
+#135 $e< [ethnomethodology../133] ``contractual'' use of records>,
+ $[53--*54 @C3P45;C3P46 ,, 124 @C5P42 ,, 161 @C6P57 ,, 118 @C5P24 ,, 176 @C6P120 ,, 345n9 @@C5P24]
+ +{ }
+                              
+#136 $e< [ethnomethodology../133] conversation analysis>,
+ $[66 @C3P4]
+ +{ }
+                              
+#137 $e< [ethnomethodology../133] documentary method of interpretation>,
+ $[42--*43 @C3P11;C3P12 ,, 93 @C4P122 ,, 174 @C6P115]
+ +{ }
+                              
+#138 $e< [ethnomethodology../133] explicative transactions>,
+ $[45--*46 @C3P19;C3P20 ,, 87 @C4P104]
+ +{ }
+                              
+#139 $e< [ethnomethodology../133] formulating>,
+ $[47 @C3P26;C3P27;C3P28 ,, 84 @C4P89;C4P90 ,, 85 @C4P96]
+ +{ }
+                              
+#140 $e< [ethnomethodology../133] ``methodically'' ordered social practices>,
+ $[lxxxii @C??? ,, 332n10 @@C???]
+ +{ }
+                              
+#141 $e< [ethnomethodology../133] practical accomplishment>,
+ $[50--*51 @C3P37;C3P38 ,, 53 @C3P45 ,, 145 @C6P1 ,, 239 @C7P133]
+ +{ }
+                              
+#142 $e< [ethnomethodology../133] practical reasoning>,
+ $[40 @C3P5 ,, 42 @C3P11 ,, 44--*45 @C3P13 ,, 50 @C3P37]
+ +{ }
+                              
+#143 $e< [ethnomethodology../133] reflexive>,
+ $[40--*41 @C3P5 ,, 42 @C3P10 ,, 45 @C3P19 ,, 58 @C4P2 ,, 204 @C7P7 ,, 335n4 @@C3P11]
+ +{ }
+                              
+#144 $e< [ethnomethodology../133] running record>,
+ $[55 @C3P50;C3P51;C3P52 ,, 56 @C3P53;C3P54;C3P55 ,, 150 @C6P19 ,, 168 @C6P85 ,, 172 @C6P104 
+   ,, 203 @C7P3 ,, 227 @C7P90 ,, 239 @C7P131 ,, 335n7 @@C3P51 ,, 335n9 @@C3P55 ,, 349n34 @@C6P81]
+ +{ }
+                              
+#145 $e< [ethnomethodology../133] situated meaning, accomplishment, achievement, definition, action>
+ $[40 @C3P3 ,, 41 @C3P5 ,, 41 @C3P9 ,, 45 @C3P19 ,, 49 @C3P33 ,, 56 @C3P56 ,, 81 @C4P77;C4P79 
+   ,, 87 @C4P104 ,, 91 @C4P116 ,, 96 @C4P129 ,, 118 @C5P24 ,, 136 @C5P89 ,, 140 @C5P104 ,, 234 @C7P114]
+ +{ }
+                              
+#146 $e<evidentiary hearing>,
+ $[33 @C2P23 ,, 66 @C4P28 ,, 301 @C10P47 ,, 337n15 @@C4P17 ,, 339n64 @@C4P95]
+ +{ }
+                              
+#147 $s<ex parte (without the knowledge of the other party): (4 subentries)>
+ $[ ]
+ +{ }
+                              
+#148 $e< [ex parte../147] communication>
+ $[56 @C3P54 ,, 65--*66 @C4P25;C4P26 ,, 66 @C4P28 ,, 308 @C11P7 ,, 316 @C11P35 
+   ,, 335n8 @@C3P54 ,, 346n43 @@C5P59 ,, 363n4 @@C11P7]
+ +{ }
+
+                              
+#149 $e< [ex parte../147] hearing>
+ $[290 @C10P18 ,, 292 @C10P20]
+ +{ }
+         
+#150 $e< [ex parte../147] motion>
+ $[77 @C4P61]
+ +{ }
+                              
+#151 $e< [ex parte../147] order>
+ $[78 @C4P65 ,, 266 @C8P27 ,, 272 @C8P51 ,, 291 @C10P20 ,, 349n36 @@C6P92 ,, 349n37 @@C6P94 ,, 349n38 @@C6P95 ,, 362n5 @@C10P18]
+ +{ }
+
+#152 $e<Faller, Kathleen Coulborn>,
+ $[lxxviii @C??? ,, 7 @C1P15 ,, 212 @C7P35 ,, 215--*216 @C7P48;C7P49 ,, 219 @C7P60;61 
+    ,, 232 @C7P108 ,, 331n8 @@C??? ,, 332n10 @@C??? ,, 332n11 @@C??? 
+    ,, 354n25 @@C7P35 ,, 355n33 @@C7P49 ,, 355n36 @@C7P52 ,, 355n45 @C7P60 
+    ,, 357n72 @@C7P107 ,, 357n73 @@C7P108]
+ +{  <i>See also</i> child custody and child sexual abuse, professional literature on}
+                              
+#153 $e<:Family Law Quarterly>,
+ $[217 @C7P53]
+ +{ }
+                              
+#154 $e<Fathers' Rights Association of Metro New York and Long Island>,
+ $[15 @C1P37]
+ +{  <i>See also</i> Deutsch, Leon; Middleton, Humberto; Shoulson, Jay}
+                              
+#155 $e<fathers' rights groups>,
+ $[xii @C??? ,, 15 @C1P36]
+ +{ }
+                              
+#156 $e<Fink, Paul>,
+ $[206 @C7P13]
+ +{ }
+                              
+#157 $e<fitness, parental>
+ $[48--*53 @C3P30::C3P44 ,, 64 @C4P22 ,, 96 @C4P129 ,, 164 @C6P67 ,, 168--*171 @C8P85::C6P98 
+   ,, 206 @C7P14 ,, 214 @C7P44 ,, 217 @C7P55 ,, 222 @C7P73 ,, 225 @C7P86 ,, 231 @C7P105 
+   ,, 242 @C7P142 ,, 283 @C9P17 ,, 337n19 @@C4P22]
+ +{ }
+        
+#158 $e<flight risk>,
+ $[122 @C5P38 ,, 155 @C6P34 ,, 159 @C6P49 ,, 263 @C8P18 ,, 285 @C10P2 ,, 356n50 @@C7P71]
+ +{  <i>See also</i> kidnapping, parental; ``Underground Railroad''}
+                              
+#159 $e<folie &agrave deux>,
+ $[216--217 @C7P48;C7P49;C7P50;C7P51;C7P52;C7P53 ,, 218 @C7P59 ,, 219 @C7P60 ,, 355n39 @@C7P53]
+ +{ }
+                              
+#160 $e<folie &agrave  trois>,
+ $[217 @C7P52]
+ +{ }
+                              
+#161 $e<Fox, Meera>,
+ $[313 @C11P25]
+ +{ }
+                              
+#162 $e<Fund for Modern Courts>,
+ $[34 @C2P25]
+ +{ }
+                              
+#163 $e<``gag'' order>,
+ $[33 @C2P24 ,, 177 @C6P124 ,, 269 @C8P41 ,, 288 @C10P10 ,, 361n19 @C???]
+ +{  <i>See also</i> confidentiality}
+                              
+#164 $e<Gallet, Jeffrey>,
+ $[90--*91 @C4P111;C4P113]
+ +{ }
+                              
+#165 $e<Gandy, Kim>,
+ $[lxxiii @C??? ,, lxxiv @C???]
+ +{ }
+                              
+#166 $e<Gardner, Richard A.>,
+ $[31--*32 @C2P18;C2P19;C2P20 ,, 32 @C2P21 ,, 127--*128 @C5P53;C5P54;C5P55 ,, 205--*207 @C5P10
+   ,, 209 @C7P25 ,, 216 @C7P50;C7P51;C7P52;C7P53 ,, 218 @C7P59 ,, 223--*224 @C7P79;C7P80;C7P81 
+   ,, 231--*232 @C7P107;C7P108 ,, 235 @C7P117 ,, 237--*239 @C7P127::C7P130 ,, 280 @C9P8;C9P9 
+   ,, 334n4 @@C2P18 ,, 354n8 @@C7P15 ,, 354n16 @@C7P25 ,, 354n21 @@C7P29 ,, 355n34 @@C7P50 
+   ,, 355n39 @@C7P53 ,, 357n72 @@C7P107]
+ +{  <i>See also</i> Parental Alienation Syndrome}
+                              
+#167 $e<Garfinkel, Harold>,
+ $[40 @C3P4]
+ +{  <i>See also</i> ethnomethodological studies}
+                              
+#168 $e<Geffner, Robert>,
+ $[338n42 @@C4P51 ,, 339n46 @@C4P55]
+ +{ }
+                              
+#169 $e<gender bias>,
+ $[xxvii @C??? ,, xxxv @C??? ,, xxxvii @C??? ,, xlvii @C??? ,, xli @C??? 
+   ,, lxx @C??? ,, lxxxi @C??? ,, 8 @c1P18 ,, 9 @C1P20 ,, 10 @C1P20;C1P21 
+   ,, 41 @C3P8 ,, 300 @C10P45 ,, 328n6 @@C??? ,, 333n19 @@C1P20]
+ +{ }
+                              
+#170 $e<:Geraldo Rivera Show>,
+ $[245 @C7P150]
+ +{ }
+                              
+#171 $e<Gill, John Edward>,
+ $[264 @C8P22]
+ +{ }
+                              
+#172 $e<Goodenough-Draw-A-Person test>,
+ $[358n108 @@C7P143]
+ +{ }
+                              
+#173 $e<:Good Housekeeping>,
+ $[4 @C1P4]
+ +{ }
+                              
+#174 $e<Goodhue, Mary B.>,
+ $[36 @C2P30 ,, 334n8 @@C7P143]
+ +{ }
+                              
+#175 $e<Gothard, Sol>,
+ $[303 @C10P50]
+ +{ }
+                              
+#176 $e<Grant, Lee>,
+ $[4 @C1P3]
+ +{ }
+                              
+#177 $e<Green, Arthur>
+ $[18 @C1P45;C1P46 ,, 31--*32 @C2P20;C2P21 ,, 64 @C4P22 ,, 71 @C4P39 ,, 90 @C4P113 
+   ,, 180 @C6P137 ,, 206--*207 @C7P14::C7P17 ,, 209--*212 @C7P26::C7P37 ,, 214--*215 @C7P42::C7P47 
+   ,, 226--*227 @C7P89::C7P91 ,, 316 @C11P35 ,, 338n37 @@C5P51 
+   ,, 347n61 @@C5P96 ,, 356nn58-59 @@7P89 ,, 358n111 @@C7P150]
+ +{  <i>See also</i> circumscribed psychosis}
+                                                               
+      
+#178 $e<Greenspan, Arthur>,
+ $[355n30 @@C7P46]
+ +{ }
+                              
+#179 $e<Grossman, Louis>,
+ $[338n33 @@C4P36]
+ +{  <i>See also</i> New York, state of, Commission on Judicial Conduct}
+                              
+#180 $e<Hannah, Maureen Therese>,
+ $[xxvii @C??? ,, xliii @C??? ,, 21 @C1P56]
+ +{ }
+                              
+#181 $e<Hanson, Graeme>,
+ $[18 @C1P45 ,, 209 @C7P26]
+ +{ }
+                              
+#182 $e<Harman, Rosalie>,
+ $[157--*158 @C6P45;C6P46 ,, 348n13 @@C6P46]
+ +{ }
+                              
+#183 $e<Heit, Julia>,
+ $[13--*14 @C1P31;C1P32 ,, 58 @C4P3 ,, 340n73 @@C4P108]
+ +{ }
+                              
+#184 $e<Help Us Regain The Children (HURT)>,
+ $[lxxv @C???]
+ +{ }
+                              
+#185 $e<Hobson's choice>,
+ $[lxvi @C???]
+ +{ }
+                              
+#186 $e<:Home Front, The (Armstrong)>,
+ $[20 @C1P50]
+ +{ }
+                              
+#187 $e<:Hostage Child, The (Rosen and Etlin)>,
+ $[xxi @C??? ,, xli @C???]
+ +{ }
+                              
+#188 $e<House Judiciary Committee (1992)>,
+ $[lxxiii @C??? ,, 24 @C1P64 ,, 33 @C2P24 ,, 288 @C10P10]
+ +{  <i>See also</i> Pennington}
+                              
+#189 $e<H. Joan hunger strike>,
+ $[lxxi @C??? ,, 177 @C6P124]
+ +{ }
+                              
+#190 $e<``Hunted'' Syndrome>,
+ $[261--*264 @C8P8;C8P11]
+ +{ }
+                              
+#191 $r<HURT>:
+ $[ ]
+ +{ <i>See</i> Help Us Regain The Children (HURT)}
+                              
+#192 $e<hypoglycemia>,
+ $[242 @C7P141]
+ +{ }
+                              
+#193 $e<Illinois Department of Children and Family Services>,
+ $[155--*6 @C6P37]
+ +{ }
+                              
+#194 $e<immunity>
+ $[31 @C2P16 ,, 115 @C5P14 ,, 132 @C5P74 ,, 162 @C6P60 ,, 294 @C10P26 
+   ,, 299 @C10P40 ,, 306 @C11P3;C11P4;C11P5 ,, 321 @C11P49 ,, 363n1 @@C11P3 ,, 363n2 @@C11P4]
+ +{ }
+                              
+#195 $e<:in camera (in judge's chambers)>,
+ $[69 @C4P36 ,, 73--*76 @C4P44 ,, 287 @C10P7 ,, 289 @C10P12]
+ +{  <i>See also</i> off-the-record conferences}
+                              
+#196 $e<infanticide, mothers who commit>
+ $[139 @C5P96;C5P97;C5P98;C5P99;C5P100 ,, 266 @C8P29;C8P30 ,, 350n54 @@C6P126]
+ +{ }
+
+#197 $e<:International Pediatrics>,
+ $[218 @C7P57]
+ +{ }
+                              
+#198 $e<intimate partner violence>,
+ $[9 @C1P18 ,, 333n17 @@C1P18]
+ +{  <i>See also</i> Battered Mothers Speak Out}
+                              
+#199 $e<:Issues in Child Abuse Accusations>,
+ $[218 @C7P59]
+ +{ }
+                              
+#200 $e<Jane Addams College of Social Work of the University of Illinois>,
+ $[155 @C6P37 ,, 43 @C3P12 ,, 155 @C6P37 ,, 262 @C8P12 ,, 348n10 @@C6P42]
+ +{  <i>See also</i> Lundy, Marta; Massat, Carol Rippey}
+                              
+#201 $e<Jensen, Rita Henley>,
+ $[liii @C??? ,, 331n4 @@C???]
+ +{ }
+                              
+#202 $e<:Journal of Child Sexual Abuse>,
+ $[7 @C1P13]
+ +{ }
+                              
+#203 $e<:Journal of Interpersonal Violence>,
+ $[lxxviii @C??? ,, 208 @C7P20]
+ +{ }
+                              
+#204 $e<:Journal of the American Academy of Child and Adolescent Psychiatry>,
+ $[18 @C1P45 ,, 209 @C7P26 ,, 212 @C7P35]
+ +{ }
+                              
+#205 $e<``Judge Judy'' (Judith Scheindlin)>,
+ $[14 @C1P34]
+ +{ }
+                              
+#206 $e<:Judges' Journal>,
+ $[32 @C3P22]
+ +{ }
+                              
+#207 $e<:Judicare>,
+ $[10 @C1P21]
+ +{ }
+                              
+#208 $e<Judicial Council of California Administrative Office of the Courts (1990)>,
+ $[9 @C1P20]
+ +{ }
+                              
+#209 $e<judicial hearing officer (JHO)>,
+ $[299 @C10P42 ,, 362n10 @@C10P43 ,, 362n15 @@C10P55]
+ +{  <i>See also</i> Deutsch, Leon}
+                              
+#210 $e<Judicial Training Act, The>,
+ $[331n3 @@C??? ,, 334n45 @@C1P64 ,, 334n6 @@C??? ,, 362n4 @@C10P10]
+ +{  <i>See also</i> Pennington, H. Joan}
+                              
+#211 $e<junk science>
+ $[lxxii @C???, 31--*33 @C2P18::C2P22, 202--*205 @C7P1::C7P5, 209 @C7P25, 213 @C7P39, 223--*224 @C7P77::C7P81, 229 @C7P99, 231 @C7P106, 281 @C9P10, 284 @C9P17, 313--*318 @C11P24::C11P39, 322 @C11P52, 347n61 @@C5P96, 358n112 @@C2P24]
+ +{ }
+                              
+#212 $e<Jurow, Abraham>,
+ $[18 @C1P46]
+ +{ }
+                              
+#213 $e<Justice for Children>,
+ $[24 @C1P67]
+ +{ }
+                              
+#214 $e<Justice Seekers, Inc.>,
+ $[11 @C1P22]
+ +{  <i>See also</i> Winner Karen}
+                              
+#215 $e<Kafkaesque, court experience as>,
+ $[83 @C4P85 ,, 146 @C6P3 ,, 260 @C8P3]
+ +{ }
+                              
+#216 $e<``kangaroo courts''>,
+ $[33 @C2P25]
+ +{ }
+                              
+#217 $e<Kaplan, S., and S. Kaplan>,
+ $[215 @C7P48]
+ +{ }
+                              
+#218 $e<:Katherine Crier Live>,
+ $[3 @C1P2]
+ +{ }
+                              
+#219 $e<``Kelly-Frye'' rule>,
+ $[205 @C7P12]
+ +{ }
+                              
+#220 $e<Kidnapping, parental>,
+ $[21 @C1P53]
+ +{  <i>See also</i> flight risk; ``Underground Railroad''}
+                              
+#221 $e<King, Eileen>,
+ $[24 @C1P67]
+ +{ }
+                              
+#222 $e<Koppell, Oliver>,
+ $[89 @C4P109]
+ +{ }
+                              
+#223 $e<Krause, Alanna>,
+ $[132--*134 @C5P72]
+ +{ }
+                              
+#224 $e<LaLonde, Virginia>,
+ $[23 @C1P61]
+ +{ }
+                              
+#225 $e<Lasswell, Harold>,
+ $[lxxx @C???]
+ +{ }
+                              
+#226 $e<Legal Aid Society>,
+ $[13 @C1P31 ,, 345n25 @@C5P44]
+ +{ }
+                              
+#227 $e<:Legal Issues and Legal Options in Civil Child Sexual Abuse Cases>,
+ $[20 @C1P52 ,, 113 @C5P6]
+ +{ }
+                              
+#228 $e<:Lexington Herald-Leader>,
+ $[129--*130 @C5P61]
+ +{ }
+                              
+#229 $e<Libow, J. A.>,
+ $[218 @C7P57]
+ +{ }
+                              
+#230 $e<``Lost Limb'' Syndrome>,
+ $[264--*265 @C8P21]
+ +{ }
+                              
+#231 $e<:Loyola Journal of Public Interest Law>,
+ $[114 @C5P8]
+ +{ }
+                              
+#232 $e<:Loyola Law Review>,
+ $[6 @C1P12]
+ +{ }
+                              
+#233 $e<Lundy, Marta>,
+ $[155--*156 @C6P37 ,, 348n8 @@C8P16]
+ +{  <i>See also</i> Jane Addams College of Social Work of the University of Illinois}
+                              
+#234 $e<Malicious Mother Syndrome (MMS)>,
+ $[lxxiv @C??? ,, 32 @C2P22 ,, 207--*208 @C7P17]
+ +{  <i>See also</i> Turkat, Ira}
+                              
+#235 $e<mandatory reporting laws>,
+ $[156 @C6P41]
+ +{ }
+                              
+#236 $e<Mandel, Steve>,
+ $[337n20 @@C4P24]
+ +{ }
+                              
+#237 $e<Marks, Bridget>,
+ $[5 @C1P9]
+ +{ }
+                              
+#238 $e<Martindale, David A.>,
+ $[317 @C11P37]
+ +{ }
+                              
+#239 $e<``Masochistic Mother'' Syndrome>,
+ $[266 @C8P28 ,, 266--*267 @C8P30]
+ +{ }
+                              
+#240 $e<Massachusetts Senate Committee on Post Audit and Oversight>,
+ $[114 @C5P7]
+ +{ }
+                              
+#241 $e<Massat, Carol Rippey>,
+ $[8 @C1P17 ,, 43 @C3P12 ,, 156 @C6P43 ,, 157 @C6P44 ,, 262 @C8P12 ,, 332n13 @@C1P17 
+   ,, 348n8 @@C6P38 ,, 360n4 @@C8P12 ,, 363n16 @@C10P56]
+ +{  <i>See also</i> Jane Addams College of Social Work of the University of Illinois}
+                              
+#242 $e<matrimonial bar>,
+ $[12 @C1P29 ,, 58 @C4P2 ,, 282 @C9P14]
+ +{ }
+                              
+#243 $e<Mazierski, Kathryn>,
+ $[lxxiv @C??? ,, lxxv @C???]
+ +{ }
+                              
+#244 $e<McAlary, Mike>,
+ $[333n28 @@C1P37]
+ +{ }
+                              
+#245 $e<McDonald, Michael, O.>,
+ $[128--*130 @C5P58]
+ +{ }
+                              
+#246 $e<McKenna, Jeremiah B.>,
+ $[xl @C??? ,, 301 @C10P46 ,, 337n16 @@C4P20 ,, 340n76 @@C4P112 ,, 360n5 @@C8P14]
+ +{  <i>See also</i> New York, state of, Senate Committee on Crime and Correction}
+                              
+#247 $e<Meadow, Roy>,
+ $[217 @C7P55]
+ +{ }
+                              
+#248 $e<Meltzer, Anne>,
+ $[35 @C2P28 ,, 71 @C4P40 ,, 354n28 @@C7P44]
+ +{ }
+                              
+#249 $e<Men's Equality Now International Coalition>,
+ $[15 @C1P35]
+ +{ }
+                              
+#250 $r<men's rights groups>:
+ $[ ]
+ +{ <i>See</i> fathers' rights groups}
+                              
+#251 $e<Metro Atlanta Board of Mental Health Professionals>,
+ $[234 @C7P117 ,, 357n83 @@C7P117]
+ +{ }
+                              
+#252 $e<Middleton, Humberto>,
+ $[16 @C1P39;C1P40 ,, 333n30 @@C1P39]
+ +{  <i>See also</i> Deutsch, Leon}
+                              
+#253 $e<Miller, Liliane Heller>,
+ $[21 @C1P56]
+ +{ }
+                              
+#254 $e<Millon Clinical Multiaxial Inventory (MCMI)>,
+ $[123 @C5P40 ,, 358n108 @@C7P143]
+ +{ }
+                              
+#255 $e<Minnesota Multiphasic Personality Inventory (MMPI)>,
+ $[243 @C7P143 ,, 315 @C11P29 ,, 358n108 @@C7P143]
+ +{ }
+                              
+#256 $e<Minnesota Office of the Legislative Auditor, Program Evaluation Division>,
+ $[116 @C5P16]
+ +{ }
+                              
+#257 $r<MMPI>:
+ $[ ]
+ +{ <i>See</i> Minnesota Multiphasic Personality Inventory (MMPI)}
+                              
+#258 $e<``moral earthquake>,
+ $[259 @C8P1;C8P2]
+ +{ }
+                              
+#259 $e<Moran, Grace>,
+ $[346n52 @@C5P67]
+ +{  <i>See also</i> New York, state of, Grievance Committee for the Tenth Judicial District}
+                              
+#260 $e<Morgan, Elizabeth>,
+ $[4 @C1P6 ,, 43 @C3P12 ,, 97 @C4P130]
+ +{ }
+                              
+#261 $e<Mostofsky, Steven>,
+ $[300 @C10P43]
+ +{  <i>See also</i> Deutsch Leon; Paterson, David A.}
+                              
+#262 $e<Mother's Day press conference>,
+ $[lxxiv @C???]
+ +{ }
+                              
+#263 $e<:Mothers on Trial (Chesler)>,
+ $[21 @C1P53]
+ +{ }
+                              
+#264 $r<MSBP>:
+ $[ ]
+ +{ <i>See</i> Munchausen Syndrome By Proxy (MSBP)}
+                              
+#265 $e<Munchausen Syndrome By Proxy (MSBP), factious disorder by proxy>,
+ $[191 @C6P165;C6P166 ,, 217--*221 @C7P54-C7P72 ,, 355n41 @@C7P57 
+   ,, 355n42 @@C7P58 ,, 355nn43-44 @@C7P59  ]
+ +{ }
+                              
+#266 $e<Nadler, Jerrold>,
+ $[17 @C1P43;C1P44;C1P45 ,, 21 @C1P55]
+ +{ }
+                              
+#267 $e<National Alliance for the Mentally Ill>,
+ $[222 @C7P75 ,, 356n51 @@C7P75]
+ +{ }
+                              
+#268 $e<National Association of Social Workers>,
+ $[319 @C11P42]
+ +{ }
+                              
+#269 $e<National Center on Child Abuse and Neglect (NCCAN)>,
+ $[157 @C6P43 ,, 348n7 @@C6P38 ,, 363n16 @@C10P56]
+ +{ }
+                              
+#270 $e<National Center for Protective Parents>,
+ $[xliii @C??? ,, 64 @C4P22]
+ +{  <i>See also</i> Pennington, H. Joan}
+                              
+#271 $e<National Center on Women and Family Law>,
+ $[20 @C1P52 ,, 113 @C5P6 ,, 344n3 @@C5P6]
+ +{  <i>See also</i> Pennington, H. Joan}
+                              
+#272 $e<National Child Abuse and Neglect Data System (NCANDS)>,
+ $[182 @C6P144 ,, 350n64 @@C6P144]
+ +{ }
+                              
+#273 $e<Child Maltreatment 2002>,
+ $[182 @C6P144]
+ +{ }
+                              
+#274 $e<National Judicial Education Program>,
+ $[313 @C11P25]
+ +{ }
+                              
+#275 $e<:National Law Journal>,
+ $[139 @C5P100]
+ +{ }
+                              
+#276 $e<National Organization for Women (NOW)>,
+ $[lxxiii @C??? ,, 4 @C1P4 ,, 8 @C1P18]
+ +{ }
+                              
+#277 $e< [National Organization for.../276] California state chapter>,
+ $[8 @C1P18 ,, 296 @C10P31]
+ +{ }
+                              
+#278 $e< [National Org.../276] New York state chapter>,
+ $[lxxiv @C???]
+ +{ }
+                              
+#279 $r<NCCAN>:
+ $[ ]
+ +{ <i>See</i> National Center on Child Abuse and Neglect (NCCAN)}
+                              
+#280 $r<NCANDS>:
+ $[ ]
+ +{ <i>See</i> National Child Abuse and Neglect Data System (NCANDS)}
+                              
+#281 $e<:New England Journal of Medicine>,
+ $[31 @C2P16]
+ +{ }
+                              
+#282 $e<New Jersey Administrative Code>,
+ $[348n3 @@C6P25]
+ +{ }
+                              
+#283 $e<Newsom, Karen>,
+ $[23 @C1P59;C1P60]
+ +{ }
+                              
+#284 $e<:Newsweek>,
+ $[4 @C1P6]
+ +{ }
+                              
+#285 $s<New York, city of: (5 subentries)>
+ $[ ]
+ +{ (see also Winner, Karen)}
+                              
+#286 $e< [New York, ci.../285] Administration for Children's Services (ACS)>,
+ $[19 @C1P49 ,, 20 @C1P50 ,, 28 @C2P9 ,, 256--*257 @C7P178;C7P179]
+ +{ }
+                              
+#287 $e< [New York, ci.../285] Child Fatality Review Panel>,
+ $[136 @C5P88]
+ +{ }
+                              
+#288 $e< [New York, ci.../285] Child Welfare Administration (CWA)>,
+ $[151 @C6P22]
+ +{ }
+                              
+#289 $e< [New York, ci.../285] Council>,
+ $[17 @C1P42]
+ +{ }
+                              
+#290 $e< [New York, ci.../285] Department of Consumer Affairs>,
+ $[10 @C1P22]
+ +{ }
+                              
+#291 $s<New York, state of: (10 subentries)>
+ $[ ]
+ +{ }
+                              
+#292 $e< [New York, st.../291] Assembly Committee on Children and Families>,
+ $[333n23 @@C1P28 ,, 333n29 @@C1P38 ,, 340n74 @@C4P109]
+ +{ }
+                              
+#293 $e< [New York, st.../291] Assembly Committee on Judiciary>,
+ $[333n23 @@C1P28 ,, 333n29 @@C1P38 ,, 337n18 @@C4P22 ,, 340n74 @@C4P109 ,, 355n31 @@C7P47]
+ +{ }
+                              
+#294 $e< [New York, st.../291] Assembly Subcommittee on Family Law>,
+ $[333n23 @@C1P28 ,, 333n29 @@C1P38 ,, 340n74 @@C4P109]
+ +{ }
+                              
+#295 $e< [New York, st.../291] Bar Association>,
+ $[17 @C1P44 ,, 202 @C7P1]
+ +{ }
+                              
+#296 $e< [New York, st.../291] Commission on Judicial Conduct>,
+ $[71 @C4P37 ,, 71 @C4P39 ,, 338n33 @@C4P36]
+ +{ }
+                              
+#297 $e< [New York, st.../291] Grievance Committee for the Tenth Judicial District>,
+ $[131 @C5P67 ,, 339n47 @@C4P57 ,, 339n48 @@C4P58 ,, 346n51 @@C5P66 ,, 346n52 @@C5P67 ,, 346n53 @@C5P68]
+ +{ }
+                              
+#298 $e< [New York, st.../291] Senate Committee on Child Care>,
+ $[36 @C2P30 ,, 333n23 @@C1P28 ,, 333n29 @@C1P38 ,, 340n74 @@C4P109]
+ +{ }
+                              
+#299 $e< [New York, st.../291] Senate Committee on Crime and Correction>,
+ $[301 @C10P46 ,, 350n56 @@C6P132 ,, 356n59 @@C7P89]
+ +{ }
+                              
+#300 $e< [New York, st.../291] Women's Office at the Archdiocese>,
+ $[22 @C1P57]
+ +{ }
+                              
+#301 $e< [New York, st.../291] Task Force on Gender Bias in the Courts>,
+ $[10 @C1P21]
+ +{ }
+                              
+#302 $e<:New York & Company (WNYC public radio)>,
+ $[338n40 @@C4P43]
+ +{ }
+                              
+#303 $e<:New York Daily News>,
+ $[li @C??? ,, 267 @C8P31]
+ +{ }
+                              
+#304 $e<:New York Law Journal>,
+ $[18 @C1P46 ,, 28 @C2P9 ,, 90 @C4P113 ,, 202 @C7P1 ,, 312 @C11P22 
+   ,, 332n3 @@C1P2 ,, 337n19 @@C4P22 ,, 347n60 @@C5P95]
+ +{ }
+                              
+#305 $e<New York Medical College>,
+ $[358n105 @@C7P141]
+ +{ }
+                              
+#306 $e<:New York Newsday>,
+ $[90 @C4P111 ,, 138 @C5P95 ,, 177 @C6P124]
+ +{ }
+                              
+#307 $e<:New York Post>,
+ $[li @C??? ,, 17 @C1P44 ,, 157 @C6P45 ,, 260 @C8P4]
+ +{ }
+                              
+#308 $e<:New York Times>,
+ $[5 @C1P7 ,, 360 @C???]
+ +{  <i>See also</i> Quindlen, Anna}
+                              
+#309 $e<:New York Woman>,
+ $[4 @C1P6]
+ +{ }
+                              
+#310 $e<:Nicholson v. ACS>,
+ $[19 @C1P49]
+ +{ }
+                              
+#311 $e<Niggemyer, Kathleen>,
+ $[205 @C7P11]
+ +{ }
+                              
+#312 $r<NOW>:
+ $[ ]
+ +{ <i>See</i> National Organization for Women}
+                              
+#313 $e<off-the-record conferences>,
+ $[289 @C10P13]
+ +{  <i>See also</i> in camera}
+                              
+#314 $e<Ortiz, Felix>,
+ $[22 @C1P56]
+ +{ }
+                              
+#315 $e<Pagnozzi, Amy>,
+ $[260 @C8P4]
+ +{ }
+                              
+#316 $e<:parens patriae>,
+ $[278--*282 @C9P3;C9P4;C9P5;C9P6]
+ +{    <i>See also</i> Gardner, Richard A.}
+                              
+#317 $e<Parental Alienation Syndrome (PAS)>
+ $[lxxxiv @C??? ,, 31--*32 @C2P18::C2P21 ,, 95 @C4P125 ,, 127--*128 @C5P53;C5P54 
+   ,, 205 @C7P10;C7P11;C7P12;C7P13 ,, 216 @C7P50 ,, 218 @C7P59 ,, 223 @C7P70;C7P80 
+   ,, 229 @C7P99 ,, 231--*232 @C7P107;C7P108 ,, 235 @C7P117 ,, 237--*238 @C7P127;C7P128 
+   ,, 313 @C11P24 ,, 318 @C11P39 ,, 334n4 @@C2P18 ,, 353n6 @@C7P13 ,, 355n34 @@C7P50 ,, 357n72 @@C7P107]
+ +{ <i>See also</i> Gardner, Richard A.}
+                              
+#318 $r<parental kidnapping>:
+ $[ ]
+ +{ <i>See</i> Kidnapping parental}
+                              
+#319 $e<Paterson, David A.>,
+ $[17 @C1P42 ,, 72 @C4P43 ,, 78 @C4P67 ,, 79 @C4P69 ,, 158 @C6P47;C6P48 ,, 299 @C10P43]
+ +{  <i>See also</i> Deutsch, Leon}
+                              
+#320 $e<pelvic inflammatory disease (PID)>,
+ $[173 @C6P108 ,, 175 @C6P117;C6P118]
+ +{ }
+                              
+#321 $e<Pennington, H. Joan>,
+ $[xliii @C??? ,, lxxiii @C??? ,, lxxv @C??? ,, 20 @C1P52 ,, 33 @C2P24 ,, 64 @C4P22 ,, 113 @C5P6 
+   ,, 288 @C10P10 ,, 303 @C10P50 ,, 329n20 @@C??? ,, 331n3 @@C??? ,, 334n45 @@C1P64 
+   ,, 334n6 @@C2P24 ,, 359n2 @@C8P9 ,, 362n4 @@C10P10 ,, 362n13 @@C10P50]
+ +{  <i>See also</i> Judicial Training Act, The}
+                              
+#322 $e<:Pittsburgh Post-Gazette>,
+ $[24 @C1P64]
+ +{ }
+                              
+#323 $e<pogroms, medieval Jewish>,
+ $[139 @C5P100]
+ +{ }
+                              
+#324 $e<Port, Bob>,
+ $[332n8 @@C1P11]
+ +{  <i>See also</i> Aylsworth John; Marks, Bridget}
+                              
+#325 $e<presentment agencies>,
+ $[26 @C2P3]
+ +{ }
+                              
+#326 $e<primary caretaker>,
+ $[lxxv @C??? ,, 19 @C1P47 ,, 95 @C4P125 ,, 219 @C7P63 ,, 341n93 @@C4P129]
+ +{ }
+                              
+#327 $e<pro se rebels>,
+ $[22 @C1P58]
+ +{ }
+                              
+#328 $e<protective parent, definition of>,
+ $[xlii @C??? ,, 331n2 @@C???]
+ +{ }
+                              
+#329 $r<pseudoscience>:
+ $[ ]
+ +{ <i>See</i> junk science}
+                              
+#330 $r<quackery>:
+ $[ ]
+ +{ <i>See</i> junk science}
+                              
+#331 $e<Quindlen, Anna>,
+ $[5 @C1P7 ,, 332n6 @@C1P7]
+ +{ }
+                              
+#332 $e<Quirk, Sherry>,
+ $[362n14 @@C10P51]
+ +{ }
+                              
+#333 $e<Radek, Lee J.>,
+ $[158 @C6P48]
+ +{ }
+                              
+#334 $e<Rand, Deirdre Conway>,
+ $[218 @C7P59 ,, 355n43 @@C7P59]
+ +{ }
+                              
+#335 $e<rape prosecutions>,
+ $[361n12 @@C9P14]
+ +{ }
+                              
+#336 $e<Rayner, Lydia, on <i|60 Minutes</i| (CBS)>,
+ $[24 @C1P63]
+ +{ }
+                              
+#337 $e<Reynolds, Barbara (USA Today)>,
+ $[xxi @C??? ,, 4 @C1P7 ,, 22 @C1P56]
+ +{ }
+                              
+#338 $e<:Rocking the Cradle of Sexual Politics (Armstrong)>,
+ $[lxxx @C??? ,, 15 @C1P35]
+ +{ }
+                              
+#339 $e<Rorschach>,
+ $[233 @C7P112 ,, 243 @C7P143 ,, 358n108 @@C7P143]
+ +{ }
+                              
+#340 $e<Rosen, Leora N., and Michelle Etlin>,
+ $[7 @C1P16 ,, 12 @C1P28]
+ +{ }
+                              
+#341 $e<Rosenthal, Kathy>,
+ $[360n3 @@C8P9]
+ +{ }
+                              
+#342 $e<Rosenfeld, A.>,
+ $[12 @C1P28]
+ +{ }
+                              
+#343 $e<:Sally Jessy Raphael>,
+ $[4 @C1P5]
+ +{  <i>See also</i> Curtis April}
+                              
+#344 $e<Schecter, Marjori>,
+ $[346n27 @@C5P45]
+ +{ }
+                              
+#345 $e<Schreier, Herbert A.>,
+ $[218 @C7P57]
+ +{ }
+                              
+#346 $e<search warrant>,
+ $[149 @C6P17]
+ +{ }
+                              
+#347 $e<Seventh Annual Northern New England Conference on Child Maltreatment>,
+ $[219 @C7P60]
+ +{ }
+                              
+#348 $e<:Sexual Assault Report>,
+ $[361n1 @@C9P1]
+ +{  <i>See also</i> Zorza, Joan}
+                              
+#349 $e<sexually transmitted disease>,
+ $[lxxviii @C??? ,, 4 @C1P5 ,, 64 @C4P20 ,, 173 @C6P107 ,, 174 @C6P110 ,, 262 @C8P15]
+ +{ }
+                              
+#350 $e<Shoulson, Jay>,
+ $[15--*16 @C1P37;C1P38]
+ +{  <i>See also</i> Deutsch, Leon; Middleton, Humberto}
+                              
+#351 $e<Siena College>,
+ $[xliii @C??? ,, 21 @C1P56]
+ +{ }
+                              
+#352 $e<Silbermann, Jacqueline>,
+ $[206 @C7P15;C7P16]
+ +{ }
+                              
+#353 $e<Sinanan, K., and H. Houghton>,
+ $[218--*219 @C7P58;C7P59]
+ +{ }
+                              
+#354 $e<Singer, Cecile>,
+ $[362n6 @@C10P22]
+ +{ }
+                              
+#355 $e<Singley, Dorrie Lyn>,
+ $[23 @C1P59;C1P60]
+ +{ }
+                              
+#356 $e<slaves, American>,
+ $[139 @C5P100 ,, 356n61 @@C7P92]
+ +{ }
+                              
+#357 $e<:Small Justice (prod. Waller)>,
+ $[3 @C1P2]
+ +{ }
+                              
+#358 $e<social variables>,
+ $[39 @C3P1 ,, 41 @C3P8]
+ +{ (see also gender bias)}
+                              
+#359 $e< [social varia.../358] education>
+ $[27 @C2P6 ,, 41 @C3P8 ,, 44 @C3P13]
+ +{ }
+                              
+#360 $e< [social varia.../358] ethnicity>,
+ $[xxxvi @C??? ,, 41 @C3P8]
+ +{ }
+                              
+#361 $e< [social varia.../358] gender>,
+ $[xxxvi @C??? ,, 41 @C3P8]
+ +{  (see also gender bias)}
+                              
+#362 $e< [social varia.../358] race>,
+ $[xxxvi @C??? ,, 44 @C3P14]
+ +{ }
+                              
+#363 $e< [social varia.../358] socioeconomic status>,
+ $[41 @C3P8 ,, 41 @C3P8 ,, 185 @C6P151]
+ +{ }
+                              
+#364 $e<sociology>,
+ $[lxxvii @C??? ,, 41 @C3P6 ,, 117 @C5P22 ,, 260 @C8P6]
+ +{ <i>See also</i> ethnomethodological studies; ethnomethodology}
+                              
+#365 $e< [sociology/364] Marxist arguments>,
+ $[44 @C3P14]
+ +{ }
+                              
+#366 $e< [sociology/364] sociohistorical analysis of sexual abuse awareness>,
+ $[11 @C1P25;C1P26]
+ +{ }
+                              
+#367 $e< [sociology/364] sociological inquiry>,
+ $[lxxxii @C??? ,, lxxxiv @C??? ,, 39 @C3P2 ,, 40 @C3P3 ,, 42 @C3P11 ,, 56 @C3P56]
+ +{ }
+                              
+#368 $e<Solomonic choice>,
+ $[207 @C7P19]
+ +{ }
+                              
+#369 $e<spina bifida>,
+ $[219 @C7P62]
+ +{ }
+                              
+#370 $e<``stepchild'' of the court system, family court as>,
+ $[283 @C9P16]
+ +{ }
+                              
+#371 $e<Strand, Virginia>,
+ $[347n63 @@C5P98]
+ +{ }
+                              
+#372 $s<suicide: (2 subentries)>
+ $[ ]
+ +{ }
+                              
+#373 $e< [suicide/372] children who are suicidal>,
+ $[79 @C4P69 ,, 120 @C5P30 ,, 161 @C6P56 ,, 282 @C8P15]
+ +{ }
+                              
+#374 $e< [suicide/372] mothers who commit>,
+ $[161 @C6P56 ,, 266 @C8P29 ,, 339n50 @@C4P67]
+ +{ }
+                              
+#375 $e<Summit, Roland>,
+ $[208 @C7P21]
+ +{  <i>See also</i> ``Child Abuse Accommodation Syndrome''}
+                              
+#376 $e<``superparent''>,
+ $[278 @C9P6 ,, 282 @C9P13]
+ +{ }
+                              
+#377 $e<supervised visitation>
+ $[30 @C2P13 ,, 46 @C3P24 ,, 77 @C4P60 ,, 148 @C6P14 ,, 152--*153 @C6P26::C6P30 
+   ,, 154 @C6P31;C6P32 ,, 159 @C6P49 ,, 160 @C6P53 ,, 167 @C6P81;C6P82 ,, 170 @C6P94 
+   ,, 171 @C6P100 ,, 204 @C7P6 ,, 221 @C7P71 ,, 227 @C7P91 ,, 229 @C7P98 ,, 239 @C7P131 
+   ,, 244 @C7P145;C7P146;C7P147;C7P148 ,, 269 @C8P40 ,, 272 @C8P51 ,, 294 @C10P27 
+   ,, 295 @C10P30 ,, 344--*345n8 @@C5P19]
+ +{ }
+                              
+#378 $e<symbiosis>,
+ $[224 @C7P82 ,, 231 @C7P106]
+ +{ }
+                              
+#379 $r<``System Failure Project''>:
+ $[ ]
+ +{ <i>See</i> Bell, Mariam}
+                              
+#380 $e<:Temple Law Review>,
+ $[30 @C2P13]
+ +{ }
+                              
+#381 $e<Temple University>,
+ $[206 @C7P13]
+ +{ }
+                              
+#382 $e<termination of parental rights>,
+ $[50 @C3P35 ,, 168 @C6P88 ,, 319 @C11P43]
+ +{ }
+                              
+#383 $e<Texas Supreme Court Task Force on Judicial Appointments>,
+ $[88 @C4P106]
+ +{ }
+                              
+#384 $e<Thompson, William>,
+ $[16 @C1P41]
+ +{ }
+                              
+#385 $e<Tippins, Timothy>,
+ $[202 @C7P1 ,, 312 @C11P22 ,, 316 @C11P36]
+ +{ }
+                              
+#386 $e<:True and False Accusations of Child Sexual Abuse (Gardner)>,
+ $[31 @C2P18 ,, 209 @C7P25]
+ +{ }
+                              
+#387 $e<Turkat, Ira>,
+ $[32 @C2P22 ,, 207 @C7P17]
+ +{ }
+                              
+#388 $s<``Underground Railroad'': (4 subentries)>
+ $[ ]
+ +{ <i>See also</i> flight risk; kidnapping, parental}
+                              
+#389 $e< [``Undergroun.../388] abscond or flee with child>
+ $[23 @C1P59 ,, 81 @C4P77 ,, 83 @C4P85 ,, 97 @C4P130 ,, 154 @C6P31 ,, 203 @C7P3 ,, 221 @C7P71 
+   ,, 227 @C7P92 ,, 235--236* @C7P119;C7P120 ,, 297 @C10P35 ,, 356n50 @@C7P71]
+ +{ }
+                              
+#390 $e< [``Undergroun.../388] history of modern-day underground movement>,
+ $[20 @C1P52 ,, 23 @C1P59;C1P62 ,, 24 @C1P64 ,, 20 @C1P52 ,, 23 @C1P59;C1P62 ,, 24 @C1P64]
+ +{ }
+                              
+#391 $e< [``Undergroun.../388] runner, profile of>,
+ $[228 @C7P92 ,, 228 @C7P92]
+ +{ }
+                              
+#392 $e< [``Undergroun.../388] underground fugitive mothers>
+ $[lxxix @C??? ,, lxxxiv @C??? ,, 4 @C1P5 ,, 21 @C1P53 ,, 23 @C1P59 ,, 23 @C1P62 ,, 24 @C1P64 
+   ,, 63 @C4P19 ,, 174 @C6P112 ,, 261 @C8P9;C8P10 ,, 359n2 @@C8P9]
+ +{ }
+                              
+#393 $e<:University of Arkansas Little Rock Law Review>,
+ $[7 @C1P15 ,, 7 @C1P15]
+ +{ }
+                              
+#394 $e<University of California, Los Angeles>,
+ $[208 @C7P21 ,, 208 @C7P21]
+ +{ }
+                              
+#395 $e<University of California, San Francisco>,
+ $[209 @C7P26 ,, 209 @C7P26]
+ +{ }
+                              
+#396 $e<University of Michigan School of Social Work>,
+ $[lxxviii @C??? ,, 219 @C7P60 ,, lxxviii @C??? ,, 219 @C7P60]
+ +{ }
+                              
+#397 $e<:USA Today>,
+ $[4 @C1P7 ,, 22 @C1P56 ,, 4 @C1P7 ,, 22 @C1P56]
+ +{ }
+                              
+#398 $s<U.S. Department of Justice: (3 subentries)>
+ $[ ]
+ +{ <i>see also</i> Campbell, Bonnie}
+                              
+#399 $e< [U.S. Departm.../398] Child Exploitation and Obscenity Section>,
+ $[25 @C1P68 ,, 156 @C6P43 ,, 363n16 @@C10P56]
+ +{ }
+                              
+#400 $e< [U.S. Departm.../398] Public Integrity Division>,
+ $[158 @C6P48 ,, 348n14 @@C6P48]
+ +{ }
+                              
+#401 $e< [U.S. Departm.../398] Violence Against Women Office>,
+ $[lxxiv @C???]
+ +{ }
+                              
+#402 $e<U.S. House Subcommittee on Select Education of the Committee on Education and Labor>,
+ $[150 @C6P21 ,, 340n74 @@C4P109 ,, 348n1 @@C6P21 ,, 349n39 @@C6P100 
+   ,, 350n48 @@C6P111 ,, 354n29 @@C7P44 ,, 355n31 @@C7P47 ,, 360n17 @@C8P38]
+ +{ }
+                              
+#403 $e<:U.S. News and World Report>,
+ $[4 @C1P5]
+ +{ }
+                              
+#404 $e<Valentine, Constance>,
+ $[313 @C11P25]
+ +{  <i>See also</i> California Protective Parents Association}
+                              
+#405 $e<``vexatious'' litigant>,
+ $[49 @C3P32]
+ +{ }
+                              
+#406 $e<vigilantism>,
+ $[65 @C4P23 ,, 66 @C4P28 ,, 69 @C4P35 ,, 270 @C8P42]
+ +{ }
+                              
+#407 $e<:Village Voice>,
+ $[5 @C1P8]
+ +{ }
+                              
+#408 $r<``Violence and the Family''>:
+ $[ ]
+ +{ <i>See</i> American Psychological Association, Presidential Task Force on Violence and the Family}
+                              
+#409 $e<:Violence Update>,
+ $[313 @C11P26]
+ +{ }
+                              
+#410 $e<voir dire>,
+ $[317 @C11P36]
+ +{ }
+                              
+#411 $e<von MÃƒÂ¼nchausen, Baron>,
+ $[217 @C7P55]
+ +{ }
+                              
+#412 $e<Walker, Lenore>,
+ $[68 @C4P32 ,, 346n33 @C5P49]
+ +{ }
+                              
+#413 $e<Waller, Garland>,
+ $[3 @C1P2]
+ +{ }
+                              
+#414 $e<Warren, William>,
+ $[139--*141 @C5P97]
+ +{ }
+                              
+#415 $e<Wechsler Adult Intelligence Scale (WAIS)>,
+ $[358n108 @@C7P143]
+ +{ }
+                              
+#416 $e<Weinstein, Jack>,
+ $[19--*20 @C1P48;C1P49;C1P50]
+ +{ }
+                              
+#417 $e<Wellesley Centers for Women>,
+ $[8 @C1P18 ,, 333n16 @@C1P18]
+ +{  <i>See also</i> Battered Mothers Speak Out}
+                              
+#418 $r<Whitehead, Mary Beth>:
+ $[ ]
+ +{ <i>See</i> ``Baby M'' case}
+                              
+#419 $e<White House Women's Office>,
+ $[277 @C9P1]
+ +{ }
+                              
+#420 $e<Wilson, Trish>,
+ $[333n27 @@C1P35]
+ +{ }
+                              
+#421 $e<Winner, Karen>,
+ $[10--*11 @C1P22 ,, 17 @C1P41 ,, 282 @C9P15]
+ +{ }
+                              
+#422 $e<Wittmann, Jeffrey>,
+ $[315 @C11P31]
+ +{ }
+                              
+#423 $e<:Women on Trial (prod. Grant)>,
+ $[4 @C1P3]
+ +{ }
+                              
+#424 $e<Women's eNews>,
+ $[xxvi @C??? ,, lii @C??? ,, liii @C???]
+ +{ }
+                              
+#425 $e<Yager, Faye>,
+ $[21 @C1P55 ,, 23--*24 @C1P62;C1P63]
+ +{ }
+                              
+#426 $e< [Yager, Faye/425] on <i|60 Minutes</i| (CBS)>
+ $[23 @C1P63]
+ +{ }
+                                                                     
+#427 $e<Yudes, James>,
+ $[355n40 @@C7P54]
+ +{ }
+                              
+#428 $e<Zorza, Joan>,
+ $[277 @C9P1 ,, 361n1 @@C9P1]
+ +{ }
+
+#429 $e<Visitation vagrancy>,
+ $[190 @C6P162]
+ +{<i>See also</i> Supervised Visitation}
+
+#430 $e<Edleson, Jeffrey L.>,
+ $[xxxiii @C???]
+ +{<i>See also</i> Green Book}
+
+#431 $e<:Effective Intervention in Domestic Violence and Child Maltreatment: Guidelines for Policy and Practice>,
+ $[xxxiii @C???]
+ +{<i>See also</i> Green Book; Edleson, Jeffrey L.}
+
+#432 $e<Institute on Violence, Abuse and Trauma (IVAT)>,
+ $[xxxiii @C???]
+ +{<i>See also</i> Robert Gefner}
+
+#433 $e<United Nations Human Rights Office of the High Commissioner>,
+ $[xxxv @C???, xxxvi @C???]
+ +{ }
+
+#434 $e<Dumas, Cindy>,
+ $[xxxvi @C???]
+ +{<i>See also</i> The Women's Coalition}
+
+#435 $e<``Call for Inputs''>,
+ $[xxxvi @C???]
+ +{<i>See also</i> UN Human Rights Office of the High Commissioner}
+
+#436 $e<Alsalem, Reem (UN Special Rapporteur)>,
+ $[xxxvii @C???]
+ +{ }
+
+#437 $r<UN Special Rapporteur>,
+ $[ ]
+ +{<i>See</i> Alsalem, Reem}
+
+#438 $e<breastfeeding>,
+ $[xxxviii @C??? ,, xxxix @C???]
+ +{ }
+
+#439 $e<Nursing Infants>,
+ $[xxxviii @C??? ,, xxxix @C???]
+ +{<i>See also</i> breastfeeding; breast milk, to expel their}
+
+#440 $e<World Health Organization>,
+ $[xxxviii @C???]
+ +{ }
+
+#441 $e<American Academy of Pediatrics>,
+ $[xxxviii @C???]
+ +{ }
+
+#442 $e<:The Washington Post>,
+ $[xxxix @C???]
+ +{<i>See also</i> Michele Etlin}
+
+#443 $e<Michele Etlin>,
+ $[xxxix @C???]
+ +{See also <i>The Washington Post</i>}
+
+#444 $e<jail, mothers thrown into>,
+ $[xl @C???]
+ +{<i>See also</i> incarceration}
+
+#445 $e<institutional violence>,
+ $[xl @C???]
+ +{ }
+
+#446 $e<United States Department of Justice>,
+ $[xl @C??? ,, lxvii @C??? ,, lxxiv @C???]
+ +{ }
+
+#447 $e<United States Attourney General>,
+ $[xl @C???]
+ +{<i>See also</i> Garland, Merrick; US Deptartment of Justice}
+
+#448 $e<Garland, Merrick>,
+ $[196 @C6P175]
+ +{ }
+
+#449 $e<King Solomon's Court>,
+ $[xli @C???]
+ +{ }
+
+#450 $e<National Safe Parents Organization>,
+ $[xlii!n12 @C???]
+ +{ }
+
+#451 $e<Mothers ReVolution>,
+ $[xlii!n13 @C???]
+ +{ }
+
+#452 $e<Custody Peace>,
+ $[xlii!n14 @C???]
+ +{ }
+
+#453 $e<The Women's Coalition>,
+ $[xlii!n15 @C???]
+ +{ }
+
+#454 $e<Safe Kids International>,
+ $[xlii!n16 @C???]
+ +{ }
+
+#455 $e<One Mom's Battle>,
+ $[xlii!n17 @C???]
+ +{ }
+
+#456 $e<The Leadership Council>,
+ $[xlii!n18 @C???]
+ +{ }
+
+#457 $e<American Professional Society on the Abuse of Children (APSAC)>,
+ $[xlii @C???]
+ +{ }
+
+#458 $e<Women's Law Forum at Rutgers State University School of Law>,
+ $[xliii @C???]
+ +{<i>See also</i> H. Joan Pennington}
+
+#459 $e<Battered Mothers Custody Conference>,
+ $[xliii @C???]
+ +{ }
+
+#460 $e<University of California Irvine (UCI) Initiative to End Family Violence>,
+ $[xliii @C???]
+ +{ }
+
+#461 $e<``Forward Together: Multidisciplinary Perspectives on Protecting
+Children from Abuse''>,
+ $[xliii!n21 @C???]
+ +{<i>See also</i> UCI Initiative to End Family Violence}
+
+#462 $e<Tristate Family Law Conference, National Judicial College>,
+ $[xliv @C???]
+ +{ }
+
+#463 $r<George Washington University Law School>,
+ $[ ]
+ +{<i>See</i> Meier, Joan S.; National Family Violence Law Center (NFVLC)}
+
+#464 $e<Meier, Joan S.>,
+ $[xliv @C??? ,, xlvi @C??? ,, xlvii @C???]
+ +{ }
+
+#465 $e<National Family Violence Law Center (NFVLC)>,
+ $[xliv @C???]
+ +{ }
+
+#466 $r<:Family and Intimate Partner Violence Quarterly>,
+ $[ ]
+ +{<i>See</i> ``Protective Mothers, Endangered Children'';  Stahly, Geraldine Butts}
+
+#467 $e<``Protective Mothers, Endangered Children''>,
+ $[xliv @C???]
+ +{ }
+
+#468 $e<Stahly, Geraldine Butts>,
+ $[xliv @C???]
+ +{ }
+
+#469 $e<Udesky, Laurie>,
+ $[xlvi @C???]
+ +{ }
+
+#470 $r<100Reporters>,
+ $[ ]
+ +{<i>See</i> Laurie Udesky}
+
+#471 $r<Journal of Family Trauma, Child Custody, and Child Development>,
+ $[ ]
+ +{<i>See</i> Meier, Joan S.}
+
+#472 $r<Gentile, Olivia>,
+ $[ ]
+ +{See <i>Insider</i>}
+
+#473 $r<Providence Journal>,
+ $[ ]
+ +{<i>See</i> Grant, Anne; Women's Center of Rhode Island}
+
+#474 $e<Grant, Anne>,
+ $[xlix @C???]
+ +{ }
+
+#475 $r<Rosen, Leora>,
+ $[ ]
+ +{See <i>Beyond the Hostage Child: Toward Empowering Protective Parents</i>}
+
+#476 $e<:Beyond the Hostage Child: Toward Empowering Protective Parents>,
+ $[xlix @C???]
+ +{<i>See also</i> Child At Risk Classification Office (CARCO)}
+
+#477 $e<Child At Risk Classification Office (CARCO)>,
+ $[l @C???]
+ +{ }
+
+#478 $r<CARCO>,
+ $[ ]
+ +{<i>See</i> Child At Risk Classification Office}
+
+#479 $r<Children of Undeground &emdash; FX 5 part docuseries>,
+ $[ ]
+ +{<i>See</i> Story Syndicate; Gesing, Ted}
+
+#480 $e<Gesing, Ted>,
+ $[l @C???]
+ +{ }
+
+#481 $e<Story Syndicate>,
+ $[l @C???]
+ +{ }
+
+#482 $r<Sokol, Lori>,
+ $[ ]
+ +{<i>See</i> Women's eNews}
+
+#483 $e<Carner, Talia>,
+ $[lii @C???]
+ +{ }
+
+#484 $e<breast milk, to expel their>,
+ $[lii @C???]
+ +{ }
+
+#485 $e<``Mothers' Vote,'' ad hoc voting block>,
+ $[lii @C???]
+ +{ }
+
+#486 $r<H.Con.Res. 72>,
+ $[ ]
+ +{<i>See</i> Raskine, Jamie}
+
+#487 $e<Raskine, Jamie>,
+ $[liii @C???]
+ +{ }
+
+#488 $e<``Keeping Children Safe From Family Violence Act''>,
+ $[liv @C???]
+ +{ }
+
+#489 $r<Kayden Mancuso>,
+ $[ ]
+ +{<i>See</i> ``Keeping Children Safe From Family Violence Act''}
+
+#490 $e<VAWA (Violence Against Women Act)>,
+ $[liv @C???]
+ +{ }
+
+#491 $e<Kyra's Law>,
+ $[liv @C???]
+ +{ }
+
+#492 $e<United Nations Human Rights Office>,
+ $[lv @C???]
+ +{ }
+
+#493 $s<BIPOC (Black, Indigenous, and People of Color): (3 subentries)>,
+ $[ ]
+ +{ }
+
+#494 $e< [BIPOC/493] population>,
+ $[lviii @C???]
+ +{ }
+
+#495 $e< [BIPOC/493] mother>,
+ $[lv @C???]
+ +{ }
+
+#496 $e< [BIPOC/493] supervised visitation, police station>,
+ $[lvii @C???]
+ +{ }
+
+#497 $e<``an hysterical Hispanic''>,
+ $[lv @C???]
+ +{<i>See also</i> Deutch, Leon}
+
+#498 $e<incarcerating mothers>,
+ $[lvi @C??? ,, lvi @C??? ,, 46 @C3P23 ]
+ +{ }
+
+#499 $e<incarceration, threat of>,
+ $[xl @C??? ,, 74 @C4P49]
+ +{ }
+
+#500 $e<ransom>,
+ $[lxiii @C??? ,, lxiv @C??? ,, lxv @C??? ,, lxvi @C???]
+ +{ }
+
+#501 $e<Family Ecosystem>,
+ $[lxv @C???]
+ +{ }
+
+#502 $e<Multiple Generations>,
+ $[lxvi @C???]
+ +{ }
+
+#503 $e<``Abstention Doctrines''>,
+ $[lxix @C???]
+ +{ }
+
+
