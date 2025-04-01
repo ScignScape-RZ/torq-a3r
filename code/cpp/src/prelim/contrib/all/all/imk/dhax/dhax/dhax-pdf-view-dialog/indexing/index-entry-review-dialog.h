@@ -492,7 +492,7 @@ public:
 
  ACCESSORS(QVector<QPair<QString, QVector<Index_Ref_Summary>>>* ,review_vector)
 
- void check_review_vector(QString outfile);
+ void check_review_vector(QString review_file);
 
 
  ~Index_Entry_Review_Dialog();

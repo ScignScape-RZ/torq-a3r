@@ -19,6 +19,14 @@ struct Index_Ref_Summary {
  QString first_page_string;
  u2 note_low;
  u2 note_high;
+
+ static u2 par_code_to_number(QString para);
+
+ static void split(const QVector<Index_Ref_Summary>& v,
+   QMap<u2, QVector<Index_Ref_Summary>>& result);
+
+ void to_string(QTextStream& qts);
+
 };
 
 

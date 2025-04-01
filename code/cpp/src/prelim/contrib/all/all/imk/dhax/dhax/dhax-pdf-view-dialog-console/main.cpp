@@ -122,7 +122,7 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
 
   int index = entry_id.toInt() - 1;
 
-  if(index == 430)
+  if(index == 168)
     qDebug() << entry_id;
 
   refs[index].entry_id = entry_id.toInt();
@@ -360,18 +360,21 @@ QVector<QPair<QString, QVector<Index_Ref_Summary>>>* make_review_vector(QVector<
 
  for(Index_Ref_Group& g : *refs)
  {
+  if(g.entry_id == 169)
+    qDebug() << g.entry_id;
+
   for(const Index_Ref& ir : g.index_refs)
   {
    for(QString para : ir.paragraph_codes)
    {
-    if(para.contains("Pr18"))
-      qDebug() << para;
-
     QRegularExpression rxp("(C\\d+P|Pr|Io)(\\d+)");
     QRegularExpressionMatch mp = rxp.match(para);
 
     if(mp.hasMatch())
       para = mp.captured();
+
+    if(g.entry_id == 169 && para == "Pr43")
+      qDebug() << g.entry_id;
 
     rmap[para].push_back({g.entry_id, ir});
    }
@@ -443,6 +446,14 @@ QVector<QPair<QString, QVector<Index_Ref_Summary>>>* make_review_vector(QVector<
 
    Index_Ref_Summary irs;
    irs.entry_id = pr.first;
+
+   if(irs.entry_id == 169)
+     qDebug() << irs.entry_id;
+
+   if( (irs.entry_id == 169) && (k == "Pr43") )
+     qDebug() << irs.entry_id;
+
+
    irs.heading = (*refs)[pr.first - 1].heading;
    irs.first_page_string = ir.first_page_to_string("r. ", "p. ");
 
@@ -475,7 +486,7 @@ QVector<QPair<QString, QVector<Index_Ref_Summary>>>* make_review_vector(QVector<
  return result;
 }
 
-int main(int argc, char *argv[])
+int main1(int argc, char *argv[])
 {
  QString afile = "/home/nlevisrael/Downloads/m2m/new/addenda-prcodes.txt";
  QVector<Index_Ref_Group>* refs = make_ref_group_vector(afile);
@@ -509,8 +520,6 @@ int main(int argc, char *argv[])
 
    qts << "\n";
   }
-
-
  }
 
  outfile.close();
@@ -1126,7 +1135,7 @@ int main4(int argc, char *argv[])
 
 
 
-int main1(int argc, char *argv[])
+int main31(int argc, char *argv[])
 {
  QApplication qapp(argc, argv);
 
@@ -1143,7 +1152,7 @@ int main1(int argc, char *argv[])
  return 0;
 }
 
-int main20(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
  QString ifile = "/home/nlevisrael/Downloads/m2m/w_pdf/dindex.txt";
  QString bfile = "/home/nlevisrael/Downloads/m2m/w_pdf/bookmarks.txt";

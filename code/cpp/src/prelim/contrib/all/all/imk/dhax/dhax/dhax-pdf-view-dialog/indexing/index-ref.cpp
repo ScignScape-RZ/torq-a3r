@@ -12,6 +12,11 @@ u2 _roman_to_u2(QString roman)
  roman = roman.toLower();
  u2 result = 0;
 
+ if(roman.endsWith("ix"))
+ {
+  result += 9;
+  roman.chop(2);
+ }
 
  if(roman.contains("xl"))
    result += 40;
@@ -19,12 +24,6 @@ u2 _roman_to_u2(QString roman)
  {
   if(roman.contains("l"))
    result += 50;
-
-  if(roman.endsWith("ix"))
-  {
-   result += 9;
-   roman.chop(2);
-  }
 
   if(roman.contains("xxx"))
     result += 30;
@@ -80,6 +79,52 @@ QString _to_roman(u2 value)
  }
 
  return result;
+}
+
+
+u2 Index_Ref_Summary::par_code_to_number(QString para)
+{
+ QRegularExpression rxp("(C\\d+P|Pr|Io)(\\d+)");
+ QRegularExpressionMatch mp = rxp.match(para);
+
+ if(mp.hasMatch())
+   return mp.captured(2).toInt();
+
+ return 0;
+}
+
+void Index_Ref_Summary::to_string(QTextStream& qts)
+{
+ qts << heading << " {" << entry_id << "} ";
+ qts << " " << first_page_string;
+
+ if(note_low)
+   qts << "  => n" << note_low;
+
+ if(note_high)
+   qts << ";" << note_high;
+
+ qts << "\n";
+
+}
+
+void Index_Ref_Summary::split(const QVector<Index_Ref_Summary>& v,
+  QMap<u2, QVector<Index_Ref_Summary>>& result)
+{
+ for(Index_Ref_Summary irs : v)
+ {
+  QString f = irs.first_page_string.mid(3);
+
+  int ix = f.indexOf("/");
+  if(ix != -1)
+  {
+   f = f.mid(0, ix);
+  }
+
+  u2 page = f.toInt();
+
+  result[page].push_back(irs);
+ }
 }
 
 

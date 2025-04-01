@@ -2756,9 +2756,47 @@ void Index_Entry_Review_Dialog::add_current_match_line()
 }
 
 
-void Index_Entry_Review_Dialog::check_review_vector(QString outfile)
+void Index_Entry_Review_Dialog::check_review_vector(QString review_file)
 {
+ QFile outfile(review_file);
+ if (!outfile.open(QIODevice::WriteOnly))
+   return;
 
+ QTextStream qts(&outfile);
+
+ for(const QPair<QString, QVector<Index_Ref_Summary>>& pr : *review_vector_)
+ {
+  qts << "\n\n" << pr.first << "\n";
+
+  QMap<u2, QVector<Index_Ref_Summary>> m;
+  Index_Ref_Summary::split(pr.second, m);
+
+  QList<u2> ks = m.keys();
+
+  std::sort(ks.begin(), ks.end());
+
+  u2 last_page = 0;
+
+  for(u2 page : ks)
+  {
+   if(last_page)
+   {
+    if(page - last_page > 1)
+    {
+     if(page < 328)
+       qDebug() << "Page? " << page << " (" << pr.first << ")";
+    }
+   }
+
+   for(Index_Ref_Summary& irs : m[page])
+   {
+    irs.to_string(qts);
+   }
+   qts << "=====\n";
+
+   last_page = page;
+  }
+ }
 
 }
 
