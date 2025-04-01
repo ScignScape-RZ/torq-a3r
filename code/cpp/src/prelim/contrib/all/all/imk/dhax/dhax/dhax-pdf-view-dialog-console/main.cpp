@@ -92,7 +92,7 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
  QVector<Index_Ref_Group>& refs = *result;
 
  // // //
- refs.resize(557);
+ refs.resize(575);
 
  QRegularExpression qre("#(\\d+)\\s+\\$([ser])<([^>]+)>([,:.]?)\\s+\\$\\[([^\\]]+)]\\s+\\+\\{([^}]+)\\}"
                         );
@@ -122,7 +122,7 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
 
   int index = entry_id.toInt() - 1;
 
-  if(index == 23)
+  if(index == 430)
     qDebug() << entry_id;
 
   refs[index].entry_id = entry_id.toInt();
@@ -161,7 +161,18 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
     QString range = match1.captured(1);
     QString para = match1.captured(2);
 
-    if(range.contains("nn"))
+    if(range.contains("!nn"))
+    {
+     QRegularExpression qre2("([\\divxl]+)!nn(\\d+)-(\\d+)");
+     QRegularExpressionMatch match2 = qre2.match(range.simplified());
+     if(match2.hasMatch())
+     {
+      low = match2.captured(1);
+      note_low = match2.captured(2);
+      note_high = match2.captured(3);
+     }
+    }
+    else if(range.contains("nn"))
     {
      QRegularExpression qre2("(\\d+)nn(\\d+)-(\\d+)");
      QRegularExpressionMatch match2 = qre2.match(range.simplified());
@@ -174,7 +185,7 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
     }
     else if(range.contains("!n"))
     {
-     QRegularExpression qre2("([ivxl]+)!n(\\d+)");
+     QRegularExpression qre2("([\\divxl]+)!n(\\d+)");
      QRegularExpressionMatch match2 = qre2.match(range.simplified());
      if(match2.hasMatch())
      {
@@ -338,15 +349,264 @@ int main13(int argc, char *argv[])
 }
 
 
+QVector<QPair<QString, QVector<Index_Ref_Summary>>>* make_review_vector(QVector<Index_Ref_Group>* refs)
+{
+ QVector<QPair<QString, QVector<Index_Ref_Summary>>>* result = new
+   QVector<QPair<QString, QVector<Index_Ref_Summary>>>;
 
+ QMap<QString, QVector<QPair<u2, Index_Ref>>> rmap;
+
+
+
+ for(Index_Ref_Group& g : *refs)
+ {
+  for(const Index_Ref& ir : g.index_refs)
+  {
+   for(QString para : ir.paragraph_codes)
+   {
+    if(para.contains("Pr18"))
+      qDebug() << para;
+
+    QRegularExpression rxp("(C\\d+P|Pr|Io)(\\d+)");
+    QRegularExpressionMatch mp = rxp.match(para);
+
+    if(mp.hasMatch())
+      para = mp.captured();
+
+    rmap[para].push_back({g.entry_id, ir});
+   }
+  }
+ }
+
+ QVector<QString> keys = rmap.keys().toVector();
+
+ result->resize(keys.size());
+
+ std::sort(keys.begin(), keys.end(), [](QString lhs, QString rhs)
+ {
+  QRegularExpression rx("(C(\\d+)P|Pr|Io)(\\d+)");
+  QRegularExpressionMatch ml = rx.match(lhs);
+  QRegularExpressionMatch mr = rx.match(rhs);
+
+  u1 lch = 0, rch = 0, lpar = 0, rpar = 0;
+
+  if(ml.hasMatch())
+  {
+   QString c1 = ml.captured(1);
+   QString c2 = ml.captured(2);
+   QString c3 = ml.captured(3);
+
+   if(c1.startsWith("C"))
+     lch = c2.toInt() + 2;
+   else if(c1 == "Pr")
+     lch = 1;
+   else if(c1 == "Io")
+     lch = 2;
+
+   lpar = c3.toInt();
+  }
+
+  if(mr.hasMatch())
+  {
+   QString c1 = mr.captured(1);
+   QString c2 = mr.captured(2);
+   QString c3 = mr.captured(3);
+
+   if(c1.startsWith("C"))
+     rch = c2.toInt() + 2;
+   else if(c1 == "Pr")
+     rch = 1;
+   else if(c1 == "Io")
+     rch = 2;
+
+   rpar = c3.toInt();
+  }
+
+  if(lch == rch)
+    return lpar < rpar;
+
+  return lch < rch;
+ });
+
+ u2 i = 0;
+ for(QString k : keys)
+ {
+  (*result)[i].first = k;
+
+  QVector<QPair<u2, Index_Ref>>& v = rmap[k];
+
+//  qts << "\n\n" << k << "\n";
+
+  for(QPair<u2, Index_Ref> pr : v)
+  {
+   Index_Ref ir = pr.second;
+
+   Index_Ref_Summary irs;
+   irs.entry_id = pr.first;
+   irs.heading = (*refs)[pr.first - 1].heading;
+   irs.first_page_string = ir.first_page_to_string("r. ", "p. ");
+
+//   qts << (*refs)[pr.first - 1].heading << " {" << pr.first << "} ";
+//   qts << " " << ir.first_page_to_string("r. ", "p. ");
+
+   if(pr.second.note_low)
+   {
+    irs.note_low = pr.second.note_low;
+//    qts << "  => n" << pr.second.note_low;
+   }
+   else
+     irs.note_low = 0;
+
+   if(pr.second.note_high)
+   {
+    irs.note_high = pr.second.note_high;
+//    qts << ";" << pr.second.note_high;
+   }
+   else
+     irs.note_high = 0;
+
+   (*result)[i].second.push_back(irs);
+
+//   qts << "\n";
+  }
+  ++i;
+ }
+
+ return result;
+}
 
 int main(int argc, char *argv[])
+{
+ QString afile = "/home/nlevisrael/Downloads/m2m/new/addenda-prcodes.txt";
+ QVector<Index_Ref_Group>* refs = make_ref_group_vector(afile);
+
+ QVector<QPair<QString, QVector<Index_Ref_Summary>>>* rsvec = make_review_vector(refs);
+
+
+ QString rfile = "/home/nlevisrael/Downloads/m2m/review/r.txt";
+
+ QFile outfile(rfile);
+ if (!outfile.open(QIODevice::WriteOnly))
+   return 0;
+
+ QTextStream qts(&outfile);
+
+
+ for(const QPair<QString, QVector<Index_Ref_Summary>>& pr : *rsvec)
+ {
+  qts << "\n\n" << pr.first << "\n";
+
+  for(Index_Ref_Summary irs : pr.second)
+  {
+   qts << irs.heading << " {" << irs.entry_id << "} ";
+   qts << " " << irs.first_page_string;
+
+   if(irs.note_low)
+     qts << "  => n" << irs.note_low;
+
+   if(irs.note_high)
+     qts << ";" << irs.note_high;
+
+   qts << "\n";
+  }
+
+
+ }
+
+ outfile.close();
+ return 0;
+}
+
+
+int main23(int argc, char *argv[])
+{
+ QString afile = "/home/nlevisrael/Downloads/m2m/new/addenda-prcodes.txt";
+ QVector<Index_Ref_Group>* refs = make_ref_group_vector(afile);
+
+// QString lfile = "/home/nlevisrael/Downloads/m2m/latex/prologue.tex";
+ QString lfile = "/home/nlevisrael/Downloads/m2m/latex/intro.tex";
+ QString ltext = KA::TextIO::load_file(lfile);
+
+ //QRegularExpression rx(" ")
+
+ QStringList pars = ltext.split("\\pfl{}");
+
+ QVector<QVector<QPair<u2, QString>>> par_pages;
+
+// // par_pages.resize(40);
+ par_pages.resize(14);
+
+// u2 current_page = 32, last_page = 0;
+// u2 ix = 0;
+ u2 current_page = 72, last_page = 0;
+
+ u1 par_code = 0;
+ for(QString par : pars)
+ {
+  //qDebug() << par.trimmed();
+
+  QRegularExpression rx("\\\\notePage\\{(\\w+)\\}");
+
+  QRegularExpressionMatch match = rx.match(par);
+  if(match.hasMatch())
+  {
+   int cs = match.capturedStart();
+   int ce = match.capturedEnd();
+   last_page = current_page;
+   current_page = _roman_to_u2(match.captured(1));
+
+   QString pre = par.mid(0, cs);
+   QString post = par.mid(ce);
+
+   par_pages[last_page - 72].push_back({par_code, pre});
+   par_pages[current_page - 72].push_back({par_code, post});
+  }
+  else
+  {
+   par_pages[current_page - 72].push_back({par_code, par});
+  }
+  ++par_code;
+ }
+
+ for(Index_Ref_Group& g : *refs)
+ {
+  QString h = g.heading.simplified();
+//  h.replace(QRegularExpression("[^a-zA-Z0-9'-]"), "");
+//  h.remove(QRegularExpression("[^a-zA-Z0-9'-]"));
+
+  h.remove("``");
+  h.remove("''");
+
+  QStringList hs = h.split(' ');
+  for(Index_Ref ir : g.index_refs)
+  {
+   if(ir.region_code == 1 && ir.low >= 72)
+   {
+    QVector<QPair<u2, QString>> par_page = par_pages[ir.low - 72];
+    for(QPair<u2, QString> pr : par_page)
+    {
+     if(pr.second.contains(hs.first()))
+     {
+      qDebug() << "\n" << g.entry_id << g.heading
+       << _to_roman(ir.low) << " => " << "@Pr%1"_qt.arg(pr.first);
+     }
+    }
+   }
+  }
+ }
+
+ return 0;
+}
+
+
+int main22(int argc, char *argv[])
 {
 // QString aofile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out.txt";
 // QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test.txt";
 
 //? QString aofile = "/home/nlevisrael/Downloads/m2m/new/all.txt";
- QString aofile = "/home/nlevisrael/Downloads/m2m/new/addenda.txt";
+// QString aofile = "/home/nlevisrael/Downloads/m2m/new/addenda.txt";
+ QString aofile = "/home/nlevisrael/Downloads/m2m/new/addenda-prcodes.txt";
 
  QVector<Index_Ref_Group>* refs = make_ref_group_vector(aofile);
 
@@ -556,7 +816,7 @@ div {padding-top:11pt; font-size:18pt;}
     sqts << " (%1 -> %2 = %3)"_qt.arg(g.parent_hint).arg(g.parent_id).arg(ie.count_in_parent);
 
 
-  if(g.entry_id >= 493 && g.entry_id <= 498)
+  if(g.entry_id == 431)
     qDebug() << i;
 
   if(!held.isEmpty() && !ie.parent_id)
@@ -568,7 +828,7 @@ div {padding-top:11pt; font-size:18pt;}
 
   if(g.entry_id)
   {
-   if(g.entry_id == 177)
+   if(g.entry_id == 431)
      qDebug() << g.entry_id;
 
 
@@ -612,16 +872,28 @@ div {padding-top:11pt; font-size:18pt;}
     divs.first.replace(QRegularExpression("\\d+--\\*?\\d+\\s+@@?"), "");
 
     // C\\d+P\\d+
-    divs.first.replace(QRegularExpression("\\d+(n\\d+)\\s+@([CP\\d]+)"), "\\2\\1");
+    divs.first.replace(QRegularExpression("\\d+(n\\d+)\\s+@([CPIor\\d]+)"), "\\2\\1");
+
+    if(divs.first.contains("!!nn"))
+    {
+     divs.first.replace(QRegularExpression("!!nn(\\d+)-(\\d+)\\s+(@+[CPIor\\d]+)"),
+       "\\3nn\\1&ndash;\\2");
+    }
+
+    if(divs.first.contains("!!n"))
+    {
+     divs.first.replace(QRegularExpression("!!n(\\d+)\\s+(@+[CPIor\\d]+)"), "\\2n\\1");
+    }
 
     divs.first.replace(QRegularExpression("\\d+\\s+@@?"), "");
 
     //    divs.first.replace(QRegularExpression(";C\\d+P\\d+;"), ";;");
 
-    divs.first.replace(QRegularExpression(";[CP\\d;]+;"), ";;");
-    divs.first.replace(QRegularExpression("(C\\d+P\\d+);+(C\\d+P\\d+)"), "\\1&ndash;\\2");
+    divs.first.replace(QRegularExpression(";[CPIor\\d;]+;"), ";;");
+    divs.first.replace(QRegularExpression("((?:C\\d+|Io|Pr)P\\d+);+((?:C\\d+|Io|Pr)P\\d+)"),
+      "\\1&ndash;\\2");
 
-    divs.first.replace(QRegularExpression("(C\\d+P\\d+)::(C\\d+P\\d+)"), "\\1&ndash;\\2");
+    divs.first.replace(QRegularExpression("((?:C\\d+|Io|Pr)P\\d+)::((?:C\\d+|Io|Pr)P\\d+)"), "\\1&ndash;\\2");
 
     divs.first.replace(QRegularExpression("Cn(\\d+)\\?\\?\\?"), "C?P?n\\1");
    }
@@ -871,7 +1143,7 @@ int main1(int argc, char *argv[])
  return 0;
 }
 
-int main6(int argc, char *argv[])
+int main20(int argc, char *argv[])
 {
  QString ifile = "/home/nlevisrael/Downloads/m2m/w_pdf/dindex.txt";
  QString bfile = "/home/nlevisrael/Downloads/m2m/w_pdf/bookmarks.txt";
@@ -891,8 +1163,14 @@ int main6(int argc, char *argv[])
 
 // return 0;
 
- QString aofile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out.txt";
- QVector<Index_Ref_Group>* refs = make_ref_group_vector(aofile);
+// QString aofile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out.txt";
+// QVector<Index_Ref_Group>* refs = make_ref_group_vector(aofile);
+
+ QString afile = "/home/nlevisrael/Downloads/m2m/new/addenda-prcodes.txt";
+ QVector<Index_Ref_Group>* refs = make_ref_group_vector(afile);
+
+ QVector<QPair<QString, QVector<Index_Ref_Summary>>>* rsvec = make_review_vector(refs);
+
 
  QApplication qapp(argc, argv);
 
@@ -900,6 +1178,7 @@ int main6(int argc, char *argv[])
 
  ierd->set_ref_groups(refs);
  ierd->filter_ref_groups();
+ ierd->set_review_vector(rsvec);
 
  DHAX_PDF_View_Dialog* pvd1 = new DHAX_PDF_View_Dialog(ierd, nullptr,
    "/home/nlevisrael/Downloads/m2m/m2m-2003.pdf",
@@ -930,8 +1209,14 @@ int main6(int argc, char *argv[])
  pvd2->setWindowTitle("Later Document");
  pvd2->show();
 
+ pvd2->show_status("Document Loaded");
+
  ierd->set_earlier_pdf_dialog(pvd1);
  ierd->set_later_pdf_dialog(pvd2);
+
+ QString rfile = "/home/nlevisrael/Downloads/m2m/review/rd.txt";
+
+ ierd->check_review_vector(rfile);
 
  ierd->show();
 

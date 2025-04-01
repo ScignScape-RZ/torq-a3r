@@ -84,6 +84,7 @@
 Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
     QString bookmarks_file, QString ftp_folder)
   : current_entry_id_(0), max_entry_id_(0), current_index_entry_(nullptr),
+    review_vector_(nullptr),
     active_earlier_match_code_index_(0), max_earlier_match_code_index_(0),
     earlier_match_file_(earlier_match_file), bookmarks_file_(bookmarks_file),
     ftp_folder_(ftp_folder), ref_groups_(nullptr), current_nav_filter_(Nav_Filters::None),
@@ -2751,6 +2752,13 @@ void Index_Entry_Review_Dialog::add_current_match_line()
 
  current_matches_grid_layout_->addWidget(cn, rc, 0);
  current_matches_grid_layout_->addWidget(cy, rc, 1);
+
+}
+
+
+void Index_Entry_Review_Dialog::check_review_vector(QString outfile)
+{
+
 
 }
 

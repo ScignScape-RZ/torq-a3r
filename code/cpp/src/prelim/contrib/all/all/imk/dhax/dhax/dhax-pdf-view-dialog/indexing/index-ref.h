@@ -7,7 +7,20 @@
 
 #include "global-types.h"
 
+u2 _roman_to_u2(QString roman);
+QString _to_roman(u2 value);
+
+
 struct Index_Entry;
+
+struct Index_Ref_Summary {
+ u2 entry_id;
+ QString heading;
+ QString first_page_string;
+ u2 note_low;
+ u2 note_high;
+};
+
 
 struct Index_Ref_Strings {
 
@@ -39,6 +52,7 @@ struct Index_Ref {
  static Index_Ref from_strings(const Index_Ref_Strings& strings);
 
  QString to_string() const;
+ QString first_page_to_string(QString rpre = QString(), QString pre = QString()) const;
 
 };
 

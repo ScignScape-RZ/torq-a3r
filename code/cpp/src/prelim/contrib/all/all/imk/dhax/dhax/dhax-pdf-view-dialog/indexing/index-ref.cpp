@@ -95,6 +95,9 @@ Index_Ref Index_Ref::from_strings(const Index_Ref_Strings& strings)
   if(strings_high)
     high = _roman_to_u2(strings.high);
   region_code = 1;
+
+  note_low = strings.note_low.toInt();
+  note_high = strings.note_high.toInt();
  }
  else
  {
@@ -111,6 +114,13 @@ Index_Ref Index_Ref::from_strings(const Index_Ref_Strings& strings)
 
 }
 
+QString Index_Ref::first_page_to_string(QString rpre, QString pre) const
+{
+ if(region_code == 1)
+   return rpre + "%1/%2"_qt.arg(low).arg(_to_roman(low));
+
+ return pre + QString::number(low);
+}
 
 QString Index_Ref::to_string() const
 {
@@ -122,6 +132,19 @@ QString Index_Ref::to_string() const
   {
    result += between;
    result += _to_roman(high);
+  }
+
+  if(note_low && note_high)
+  {
+   result += " !!nn";
+   result += QString::number(note_low);
+   result += "-";
+   result += QString::number(note_high);
+  }
+  else if(note_low)
+  {
+   result += " !!n";
+   result += QString::number(note_low);
   }
  }
  else
@@ -164,7 +187,7 @@ QPair<QString, QString> Index_Ref_Group::to_html_bookstyle(const Index_Entry& ie
 
  QString s ;// = supplement;
 
- if(ie.id == 24)
+ if(ie.id == 431)
  {
   qDebug() << ie.id;
  }

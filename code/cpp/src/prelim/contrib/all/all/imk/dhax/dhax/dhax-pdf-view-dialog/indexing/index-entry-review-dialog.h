@@ -69,6 +69,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  Q_OBJECT
 
+ QVector<QPair<QString, QVector<Index_Ref_Summary>>>* review_vector_;
 
  DHAX_PDF_View_Dialog* earlier_pdf_dialog_;
  DHAX_PDF_View_Dialog* later_pdf_dialog_;
@@ -486,7 +487,13 @@ public:
  ACCESSORS(DHAX_PDF_View_Dialog* ,earlier_pdf_dialog)
  ACCESSORS(DHAX_PDF_View_Dialog* ,later_pdf_dialog)
  ACCESSORS(QSet<int>* ,addendum_pages)
+
  ACCESSORS(QVector<Index_Ref_Group>* ,ref_groups)
+
+ ACCESSORS(QVector<QPair<QString, QVector<Index_Ref_Summary>>>* ,review_vector)
+
+ void check_review_vector(QString outfile);
+
 
  ~Index_Entry_Review_Dialog();
 
