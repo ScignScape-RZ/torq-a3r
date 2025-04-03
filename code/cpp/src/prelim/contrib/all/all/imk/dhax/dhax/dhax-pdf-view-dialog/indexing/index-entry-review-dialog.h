@@ -69,7 +69,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  Q_OBJECT
 
- QVector<QPair<QString, QVector<Index_Ref_Summary>>>* review_vector_;
+ QVector<QPair<QStringList, QVector<Index_Ref_Summary>>>* review_vector_;
 
  DHAX_PDF_View_Dialog* earlier_pdf_dialog_;
  DHAX_PDF_View_Dialog* later_pdf_dialog_;
@@ -387,6 +387,8 @@ class Index_Entry_Review_Dialog : public QMainWindow
  QPlainTextEdit* page_text_view_text_edit_later_;
  QDockWidget* page_text_view_dock_widget_;
 
+ QMap<QString, QPair<u2, u2>> par_map_;
+
 
  QMenu* create_confirms_list_widget_context_menu(QListWidgetItem* item);
 
@@ -490,10 +492,14 @@ public:
 
  ACCESSORS(QVector<Index_Ref_Group>* ,ref_groups)
 
- ACCESSORS(QVector<QPair<QString, QVector<Index_Ref_Summary>>>* ,review_vector)
+ ACCESSORS(QVector<QPair<QStringList, QVector<Index_Ref_Summary>>>* ,review_vector)
 
- void check_review_vector(QString review_file);
+ void check_review_vector(QString review_file, QString page_file,
+   QString freview_file, QString fpage_file);
 
+ void make_review_file(QString review_file);
+
+ void create_par_code_mapping(QString review_file);
 
  ~Index_Entry_Review_Dialog();
 

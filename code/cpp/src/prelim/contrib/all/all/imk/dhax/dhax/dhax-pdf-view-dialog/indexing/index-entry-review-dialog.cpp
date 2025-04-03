@@ -2755,8 +2755,7 @@ void Index_Entry_Review_Dialog::add_current_match_line()
 
 }
 
-
-void Index_Entry_Review_Dialog::check_review_vector(QString review_file)
+void Index_Entry_Review_Dialog::create_par_code_mapping(QString review_file)
 {
  QFile outfile(review_file);
  if (!outfile.open(QIODevice::WriteOnly))
@@ -2764,15 +2763,277 @@ void Index_Entry_Review_Dialog::check_review_vector(QString review_file)
 
  QTextStream qts(&outfile);
 
- for(const QPair<QString, QVector<Index_Ref_Summary>>& pr : *review_vector_)
+ u2 last_map_page = 1;
+ u2 max_map_page = 411;
+
+ for(const QPair<QStringList, QVector<Index_Ref_Summary>>& pr : *review_vector_)
  {
-  qts << "\n\n" << pr.first << "\n";
+  QString para = pr.first.last();
+
+  if(par_map_.contains(para))
+    continue;
+
+  QVector<Index_Ref_Summary> irss = pr.second;
+
+  u2 low_page = 999;
+  for(Index_Ref_Summary irs : irss)
+  {
+   u2 pn = irs.first_page_string_to_number();
+   if(irs.first_page_string.startsWith("p. "))
+     pn += 86;
+
+   if(pn < low_page)
+     low_page = pn;
+  }
+
+  u2 found_page = 0;
+
+  if(para == "C3P26")
+  {
+   found_page = 27;
+   last_map_page = 27;
+
+   par_map_[para] = {low_page, found_page};
+  }
+
+  else
+  {
+   for(u2 n = last_map_page; n <= max_map_page; ++n)
+   {
+    QString et = earlier_pdf_dialog_->get_page_text(n - 1);
+    if(et.contains(para))
+    {
+     par_map_[para] = {low_page, n};
+
+     if(pr.first.size() == 1)
+       qts << para << " => " << low_page << " -> " << n << "\n";
+
+     else
+       qts << para << " (" << pr.first.first() << ") => " << low_page << " -> " << n << "\n";
+
+     last_map_page = n;
+     found_page = n;
+     break;
+    }
+   }
+  }
+
+  if(!found_page)
+  {
+   if(pr.first.size() == 1)
+     qts << para << " => " << low_page << " ??\n";
+
+   else
+     qts << para << " (" << pr.first.first() << ") => " << low_page << "  ??\n";
+  }
+
+
+ }
+
+}
+
+
+void Index_Entry_Review_Dialog::check_review_vector(QString review_file, QString page_file,
+  QString freview_file, QString fpage_file)
+{
+ QFile outfile(review_file);
+ if (!outfile.open(QIODevice::WriteOnly))
+   return;
+
+ QTextStream qts(&outfile);
+
+
+ QFile foutfile(freview_file);
+ if (!foutfile.open(QIODevice::WriteOnly))
+   return;
+
+ QTextStream fqts(&foutfile);
+
+
+ QString pre;
+
+ u2 ix = 0;
+
+ for(const QPair<QStringList, QVector<Index_Ref_Summary>>& pr : *review_vector_)
+ {
+  u2 offset = 86;
+
+  if(pr.first.size() > 1)
+    offset = 0;
+
+  ++ix;
+
+//  if(ix > 1)
+//    break;
+
+  qts << "\n\n" << pre << pr.first.first();
+  if(pr.first.size() > 1)
+    qts << " [" << pr.first[1] << "]";
+  qts << "\n";
+
+  QString l = pr.first.last();
+  QPair<u2, u2> old_new = par_map_[l];
+
+  fqts << "\n\n" << pre << pr.first.first();
+  if(pr.first.size() > 1)
+    fqts << " [" << pr.first[1] << "]";
+  fqts << "\n";
+
+  QMap<u2, QStringList> ffound;
+  QMap<u2, QStringList> fdfound;
+  QVector<u2> funfound;
+
+  QMap<u2, QStringList> fwords;
+  QMap<u2, QString> note_low;
+
+  u2 fpage = old_new.second;
+  fqts << pre << " page " << fpage
+    << " (" << old_new.first << ") " << " ->\n";
+
+  for(const Index_Ref_Summary& irs : pr.second)
+  {
+   if(irs.note_low)
+     continue;
+
+   QString ftext = earlier_pdf_dialog_->get_page_text(fpage - 1);
+   QString fdtext = earlier_pdf_dialog_->get_page_text(fpage);
+
+   KA::TextIO::save_file(fpage_file, ftext + "\n\n=======\n\n" + fdtext);
+
+   ftext = ftext.toLower();
+   fdtext = fdtext.toLower();
+
+   QStringList words = irs.heading_to_words();
+
+   fwords[irs.entry_id] = words;
+
+   if(irs.note_low)
+     note_low[irs.entry_id] = "[%1]"_qt.arg(irs.note_low);
+
+   for(QString word : words)
+   {
+    if(ftext.contains(word.toLower()))
+      ffound[irs.entry_id].push_back(word);
+
+    else
+      if(fdtext.contains(word.toLower()))
+        fdfound[irs.entry_id].push_back(word);
+   }
+
+   if( !(ffound.contains(irs.entry_id)) && !(fdfound.contains(irs.entry_id)) )
+     funfound.push_back(irs.entry_id);
+  }
 
   QMap<u2, QVector<Index_Ref_Summary>> m;
   Index_Ref_Summary::split(pr.second, m);
 
   QList<u2> ks = m.keys();
+  std::sort(ks.begin(), ks.end());
 
+  for(u2 page : ks)
+  {
+   page += offset;
+
+   if(page >= 414)
+     continue;
+
+   qts << pre << " page " << page << " ->\n";
+
+   QString text = later_pdf_dialog_->get_page_text(page - 1);
+
+
+   KA::TextIO::save_file(page_file, text);
+
+   text = text.toLower();
+
+   for(const Index_Ref_Summary& irs : pr.second)
+   {
+    u2 pn = irs.first_page_string_to_number();
+
+//    if(pn == 0)
+//      qDebug() << "\n ------ 0 ------- \n";
+
+    if(pn + offset != page)
+      continue;
+
+    QStringList words = irs.heading_to_words();
+
+    qts << pre << " {" << irs.entry_id << "} \"" << words.join("-") << "\" ";
+
+    if(irs.note_low)
+      qts << "[" << irs.note_low << "]";
+
+    QStringList found;
+
+    for(QString word : words)
+    {
+     if(text.contains(word.toLower()))
+       found.push_back(word);
+    }
+
+    if(found.isEmpty())
+    {
+     if(irs.note_low)
+       qts << ".[?]\n";
+
+     else
+       qts << " ..?? \n";
+    }
+    else
+      qts << found.join(";") << "\n";
+   }
+  }
+
+  QSet<u2> fk = ffound.keys().toSet();
+  fk.unite(fdfound.keys().toSet());
+
+  QVector<u2> fks = fk.toList().toVector();
+  fks.append(funfound);
+
+  std::sort(fks.begin(), fks.end());
+
+  for(u2 uk : fks)
+  {
+   fqts << pre << " {" << uk << "} \"" << fwords[uk].join("-") << "\" ";
+   fqts << note_low.value(uk);
+
+   if(funfound.contains(uk))
+     fqts << " ..??\n";
+
+   else if(ffound.contains(uk))
+     fqts << ffound[uk].join(";") << "\n";
+
+   else if(fdfound.contains(uk))
+     fqts << "+" << fdfound[uk].join(";") << "\n";
+  }
+
+ }
+
+ outfile.close();
+ foutfile.close();
+}
+
+
+void Index_Entry_Review_Dialog::make_review_file(QString review_file)
+{
+ QFile outfile(review_file);
+ if (!outfile.open(QIODevice::WriteOnly))
+   return;
+
+ QTextStream qts(&outfile);
+ QString pre = "    ";
+
+ for(const QPair<QStringList, QVector<Index_Ref_Summary>>& pr : *review_vector_)
+ {
+  qts << "\n\n" << pre << pr.first.first();
+  if(pr.first.size() > 1)
+    qts << " [" << pr.first[1] << "]";
+  qts << "\n";
+
+  QMap<u2, QVector<Index_Ref_Summary>> m;
+  Index_Ref_Summary::split(pr.second, m);
+
+  QList<u2> ks = m.keys();
   std::sort(ks.begin(), ks.end());
 
   u2 last_page = 0;
@@ -2790,9 +3051,9 @@ void Index_Entry_Review_Dialog::check_review_vector(QString review_file)
 
    for(Index_Ref_Summary& irs : m[page])
    {
-    irs.to_string(qts);
+    irs.to_string(qts, pre);
    }
-   qts << "=====\n";
+   qts << pre << "=====\n";
 
    last_page = page;
   }

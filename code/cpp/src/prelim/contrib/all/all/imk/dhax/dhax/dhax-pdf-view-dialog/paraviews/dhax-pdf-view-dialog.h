@@ -151,6 +151,8 @@ class DHAX_PDF_View_Dialog : public QMainWindow
 
  QSet<int>* addendum_pages_;
 
+ QPair<int, QString> current_page_text_;
+
 public:
 
  DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dialog,
@@ -178,6 +180,8 @@ public:
  bool wants_box();
 
  void load_page(int number, QObject* origin = nullptr);
+
+ QString get_page_text(int number);
 
  void clear_most_recent_match(int index_entry_id, int page_number);
 

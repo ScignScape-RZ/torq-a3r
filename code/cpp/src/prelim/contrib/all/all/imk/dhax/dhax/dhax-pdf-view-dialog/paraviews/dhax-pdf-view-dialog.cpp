@@ -68,6 +68,8 @@ DHAX_PDF_View_Dialog::DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dial
    addendum_pages_(nullptr)
  //, antemodel_(antemodel)//, config_(config)
 {
+ current_page_text_.first = 0;
+
  arabic_start_ = ars;
  roman_end_ = ars - 1;
  roman_start_ = 1;
@@ -553,6 +555,23 @@ bool DHAX_PDF_View_Dialog::wants_box()
 {
  return refocus_entry_dialog_button_->isChecked();
 }
+
+
+QString DHAX_PDF_View_Dialog::get_page_text(int number)
+{
+ if(current_page_text_.first == number)
+   return current_page_text_.second;
+
+ current_page_text_.first = number;
+
+ Poppler::Document* popd = pdf_document_widget_->document();
+ Poppler::Page* popg = popd->page(number);
+
+ current_page_text_.second = popg->text(QRectF({0, 0}, popg->pageSizeF()));
+
+ return current_page_text_.second;
+}
+
 
 void DHAX_PDF_View_Dialog::load_page(int number, QObject* origin)
 {

@@ -20,12 +20,20 @@ struct Index_Ref_Summary {
  u2 note_low;
  u2 note_high;
 
+ QString parent;
+ QString parent_hint;
+ u2 parent_id;
+
  static u2 par_code_to_number(QString para);
 
  static void split(const QVector<Index_Ref_Summary>& v,
    QMap<u2, QVector<Index_Ref_Summary>>& result);
 
- void to_string(QTextStream& qts);
+ u2 first_page_string_to_number() const;
+
+ void to_string(QTextStream& qts, QString pre);
+
+ QStringList heading_to_words() const;
 
 };
 

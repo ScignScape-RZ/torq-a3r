@@ -92,7 +92,7 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
  QVector<Index_Ref_Group>& refs = *result;
 
  // // //
- refs.resize(575);
+ refs.resize(576);
 
  QRegularExpression qre("#(\\d+)\\s+\\$([ser])<([^>]+)>([,:.]?)\\s+\\$\\[([^\\]]+)]\\s+\\+\\{([^}]+)\\}"
                         );
@@ -348,11 +348,33 @@ int main13(int argc, char *argv[])
  return 0;
 }
 
-
-QVector<QPair<QString, QVector<Index_Ref_Summary>>>* make_review_vector(QVector<Index_Ref_Group>* refs)
+QString _par_to_F(QString para)
 {
- QVector<QPair<QString, QVector<Index_Ref_Summary>>>* result = new
-   QVector<QPair<QString, QVector<Index_Ref_Summary>>>;
+ u2 num = para.mid(2).toInt();
+
+ if(para.startsWith("Pr"))
+ {
+  if(num >= 49)  // //  grant quote business ,,,
+    num += 2;
+  else if(num >= 14)
+    num += 1;
+
+  return "F5P" + QString::number(num);
+ }
+
+ if(para.startsWith("Io"))
+ {
+  return "F6P" + QString::number(num);
+ }
+
+ return "????";
+
+}
+
+QVector<QPair<QStringList, QVector<Index_Ref_Summary>>>* make_review_vector(QVector<Index_Ref_Group>* refs)
+{
+ QVector<QPair<QStringList, QVector<Index_Ref_Summary>>>* result = new
+   QVector<QPair<QStringList, QVector<Index_Ref_Summary>>>;
 
  QMap<QString, QVector<QPair<u2, Index_Ref>>> rmap;
 
@@ -360,9 +382,6 @@ QVector<QPair<QString, QVector<Index_Ref_Summary>>>* make_review_vector(QVector<
 
  for(Index_Ref_Group& g : *refs)
  {
-  if(g.entry_id == 169)
-    qDebug() << g.entry_id;
-
   for(const Index_Ref& ir : g.index_refs)
   {
    for(QString para : ir.paragraph_codes)
@@ -372,9 +391,6 @@ QVector<QPair<QString, QVector<Index_Ref_Summary>>>* make_review_vector(QVector<
 
     if(mp.hasMatch())
       para = mp.captured();
-
-    if(g.entry_id == 169 && para == "Pr43")
-      qDebug() << g.entry_id;
 
     rmap[para].push_back({g.entry_id, ir});
    }
@@ -434,7 +450,11 @@ QVector<QPair<QString, QVector<Index_Ref_Summary>>>* make_review_vector(QVector<
  u2 i = 0;
  for(QString k : keys)
  {
-  (*result)[i].first = k;
+  (*result)[i].first.push_back(k);
+
+  if(!k.startsWith("C"))
+    (*result)[i].first.push_back( _par_to_F(k) );
+
 
   QVector<QPair<u2, Index_Ref>>& v = rmap[k];
 
@@ -447,14 +467,18 @@ QVector<QPair<QString, QVector<Index_Ref_Summary>>>* make_review_vector(QVector<
    Index_Ref_Summary irs;
    irs.entry_id = pr.first;
 
-   if(irs.entry_id == 169)
-     qDebug() << irs.entry_id;
+   Index_Ref_Group& g = (*refs)[pr.first - 1];
 
-   if( (irs.entry_id == 169) && (k == "Pr43") )
-     qDebug() << irs.entry_id;
+   irs.heading = g.heading;
+   irs.parent_id = g.parent_id;
+   irs.parent_hint = g.parent_hint;
 
+   if(irs.parent_id)
+   {
+    Index_Ref_Group& p = (*refs)[irs.parent_id - 1];
+    irs.parent = p.heading;
+   }
 
-   irs.heading = (*refs)[pr.first - 1].heading;
    irs.first_page_string = ir.first_page_to_string("r. ", "p. ");
 
 //   qts << (*refs)[pr.first - 1].heading << " {" << pr.first << "} ";
@@ -491,7 +515,7 @@ int main1(int argc, char *argv[])
  QString afile = "/home/nlevisrael/Downloads/m2m/new/addenda-prcodes.txt";
  QVector<Index_Ref_Group>* refs = make_ref_group_vector(afile);
 
- QVector<QPair<QString, QVector<Index_Ref_Summary>>>* rsvec = make_review_vector(refs);
+ QVector<QPair<QStringList, QVector<Index_Ref_Summary>>>* rsvec = make_review_vector(refs);
 
 
  QString rfile = "/home/nlevisrael/Downloads/m2m/review/r.txt";
@@ -503,9 +527,9 @@ int main1(int argc, char *argv[])
  QTextStream qts(&outfile);
 
 
- for(const QPair<QString, QVector<Index_Ref_Summary>>& pr : *rsvec)
+ for(const QPair<QStringList, QVector<Index_Ref_Summary>>& pr : *rsvec)
  {
-  qts << "\n\n" << pr.first << "\n";
+  qts << "\n\n" << pr.first.first() << "\n";
 
   for(Index_Ref_Summary irs : pr.second)
   {
@@ -698,7 +722,7 @@ int main30(int argc, char *argv[])
 }
 
 
-int main(int argc, char *argv[])
+int main22(int argc, char *argv[])
 {
 // QString aofile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out.txt";
 // QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test.txt";
@@ -1227,7 +1251,7 @@ int main31(int argc, char *argv[])
  return 0;
 }
 
-int main22(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
  QString ifile = "/home/nlevisrael/Downloads/m2m/w_pdf/dindex.txt";
  QString bfile = "/home/nlevisrael/Downloads/m2m/w_pdf/bookmarks.txt";
@@ -1253,7 +1277,7 @@ int main22(int argc, char *argv[])
  QString afile = "/home/nlevisrael/Downloads/m2m/new/addenda-prcodes.txt";
  QVector<Index_Ref_Group>* refs = make_ref_group_vector(afile);
 
- QVector<QPair<QString, QVector<Index_Ref_Summary>>>* rsvec = make_review_vector(refs);
+ QVector<QPair<QStringList, QVector<Index_Ref_Summary>>>* rsvec = make_review_vector(refs);
 
 
  QApplication qapp(argc, argv);
@@ -1264,14 +1288,22 @@ int main22(int argc, char *argv[])
  ierd->filter_ref_groups();
  ierd->set_review_vector(rsvec);
 
- DHAX_PDF_View_Dialog* pvd1 = new DHAX_PDF_View_Dialog(ierd, nullptr,
-   "/home/nlevisrael/Downloads/m2m/m2m-2003.pdf",
-   n1file,
-   13, 13);
+// DHAX_PDF_View_Dialog* pvd1 = new DHAX_PDF_View_Dialog(ierd, nullptr,
+//   "/home/nlevisrael/Downloads/m2m/m2m-2003.pdf",
+//   n1file,
+//   13, 13);
+// pvd1->set_arabic_start(24);
+// pvd1->set_roman_end(23);
+// pvd1->set_roman_start(1);
 
- pvd1->set_arabic_start(24);
- pvd1->set_roman_end(23);
- pvd1->set_roman_start(1);
+  DHAX_PDF_View_Dialog* pvd1 = new DHAX_PDF_View_Dialog(ierd, nullptr,
+    "/home/nlevisrael/Downloads/m2m/fs/Neustein_Lesher_9780197661222_US_BITS.pdf",
+    n1file,
+    85, 30);
+  pvd1->set_arabic_start(85);
+  pvd1->set_roman_end(84);
+  pvd1->set_roman_start(1);
+
 
  pvd1->setWindowTitle("Earlier Document");
  pvd1->show();
@@ -1298,9 +1330,19 @@ int main22(int argc, char *argv[])
  ierd->set_earlier_pdf_dialog(pvd1);
  ierd->set_later_pdf_dialog(pvd2);
 
- QString rfile = "/home/nlevisrael/Downloads/m2m/review/rd.txt";
+ QString mfile = "/home/nlevisrael/Downloads/m2m/review/pm.txt";
+ ierd->create_par_code_mapping(mfile);
 
- ierd->check_review_vector(rfile);
+// QString ffile = "/home/nlevisrael/Downloads/m2m/review/rf.txt";
+// ierd->make_review_file(ffile);
+
+ QString rfile = "/home/nlevisrael/Downloads/m2m/review/rp.txt";
+ QString pfile = "/home/nlevisrael/Downloads/m2m/review/rpf.txt";
+
+ QString r_file = "/home/nlevisrael/Downloads/m2m/review/rp_f.txt";
+ QString p_file = "/home/nlevisrael/Downloads/m2m/review/rpf_f.txt";
+
+ ierd->check_review_vector(rfile, pfile, r_file, p_file);
 
  ierd->show();
 

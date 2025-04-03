@@ -93,9 +93,9 @@ u2 Index_Ref_Summary::par_code_to_number(QString para)
  return 0;
 }
 
-void Index_Ref_Summary::to_string(QTextStream& qts)
+void Index_Ref_Summary::to_string(QTextStream& qts, QString pre)
 {
- qts << heading << " {" << entry_id << "} ";
+ qts << pre << heading << " {" << entry_id << "} ";
  qts << " " << first_page_string;
 
  if(note_low)
@@ -104,8 +104,42 @@ void Index_Ref_Summary::to_string(QTextStream& qts)
  if(note_high)
    qts << ";" << note_high;
 
+ if(parent_id)
+   qts << "  . . . . subentry of \n" << pre << "       #" << parent_id
+       << "  ~> " << parent;
+
  qts << "\n";
 
+}
+
+u2 Index_Ref_Summary::first_page_string_to_number() const
+{
+ QString f = first_page_string;
+
+ s4 ix = f.indexOf("/");
+
+ if(ix == -1)
+   f = f.mid(3);
+
+ else
+   f = f.mid(3, ix - 3);
+
+ return f.toInt();
+}
+
+QStringList Index_Ref_Summary::heading_to_words() const
+{
+ QStringList result;
+
+ QRegularExpression rx("([\\w]'(?!')|[\\w-])+");
+ QRegularExpressionMatchIterator it = rx.globalMatch(heading);
+ while(it.hasNext())
+ {
+  QRegularExpressionMatch match = it.next();
+  result.push_back(match.captured());
+ }
+
+ return result;
 }
 
 void Index_Ref_Summary::split(const QVector<Index_Ref_Summary>& v,
