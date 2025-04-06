@@ -2912,6 +2912,9 @@ void Index_Entry_Review_Dialog::check_review_vector(QString review_file, QString
 
    for(QString word : words)
    {
+    if(word.size() < 4)
+      continue;
+
     if(ftext.contains(word.toLower()))
       ffound[irs.entry_id].push_back(word);
 
@@ -2967,6 +2970,9 @@ void Index_Entry_Review_Dialog::check_review_vector(QString review_file, QString
 
     for(QString word : words)
     {
+     if(word.size() < 4)
+       continue;
+
      if(text.contains(word.toLower()))
        found.push_back(word);
     }

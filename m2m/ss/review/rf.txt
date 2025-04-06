@@ -1,0 +1,4601 @@
+
+
+    Pr3 [F5P3]
+    Edleson, Jeffrey L. {430}  r. 32/xxxii
+    =====
+    domestic violence {118}  r. 33/xxxiii
+    ``Greenbook'' {431}  r. 33/xxxiii
+    ``Greenbook'' {431}  r. 33/xxxiii  => n1;2
+    Schechter, Susan {492}  r. 33/xxxiii
+    =====
+
+
+    Pr4 [F5P4]
+    domestic violence {118}  r. 33/xxxiii
+    Salcido Carter, Lucy {558}  r. 33/xxxiii  => n3
+    =====
+
+
+    Pr5 [F5P5]
+    Institute on Violence, Abuse and Trauma (IVAT) {432}  r. 33/xxxiii
+    =====
+
+
+    Pr8 [F5P8]
+    gender bias {169}  r. 35/xxxv
+    =====
+
+
+    Pr9 [F5P9]
+    United Nations Human Rights Office of the High Commissioner {433}  r. 35/xxxv
+    =====
+
+
+    Pr12 [F5P12]
+    ethnicity {360}  r. 36/xxxvi  . . . . subentry of 
+           #358  ~> social variables
+    gender {361}  r. 36/xxxvi  . . . . subentry of 
+           #358  ~> social variables
+    race {362}  r. 36/xxxvi  . . . . subentry of 
+           #358  ~> social variables
+    =====
+
+
+    Pr13 [F5P13]
+    United Nations Human Rights Office of the High Commissioner {433}  r. 36/xxxvi
+    Dumas, Cindy {434}  r. 36/xxxvi
+    ``Call for Inputs'' {435}  r. 36/xxxvi
+    The Women's Coalition {453}  r. 36/xxxvi
+    The Women's Coalition News & Views {559}  r. 36/xxxvi  => n5
+    =====
+
+
+    Pr14 [F5P15]
+    gender bias {169}  r. 37/xxxvii
+    ``turned around cases'' {560}  r. 37/xxxvii  => n6
+    ``Urgent Reforms Needed to Protect Women and Children from Violence in Custody Battles'' {561}  r. 37/xxxvii  => n7
+    =====
+    gender bias {169}  p. 328  => n6
+    =====
+
+
+    Pr15 [F5P16]
+    Alsalem, Reem (UN Special Rapporteur) {436}  r. 37/xxxvii
+    =====
+
+
+    Pr16 [F5P17]
+    Nursing Infants {439}  r. 38/xxxviii
+    =====
+
+
+    Pr18 [F5P19]
+    breastfeeding {438}  r. 38/xxxviii
+    World Health Organization {440}  r. 38/xxxviii
+    American Academy of Pediatrics {441}  r. 38/xxxviii
+    =====
+
+
+    Pr19 [F5P20]
+    Moyer, Justin Wm {562}  r. 39/xxxix  => n8
+    =====
+
+
+    Pr20 [F5P21]
+    :Washington Post, The {442}  r. 39/xxxix
+    Etlin, Michele {443}  r. 39/xxxix
+    Etlin, Michele {443}  r. 39/xxxix  => n9
+    ``Infants are Being Penalized in the Name of Men's Rights'' (<i|The Washington Post</i|) {563}  r. 39/xxxix  => n9
+    =====
+
+
+    Pr21 [F5P22]
+    jail, mothers thrown into {444}  r. 40/xl
+    =====
+
+
+    Pr22 [F5P23]
+    jail, mothers thrown into {444}  r. 40/xl
+    threat of {501}  r. 40/xl  . . . . subentry of 
+           #499  ~> incarceration: (2 subentries)
+    =====
+
+
+    Pr23 [F5P24]
+    jail, mothers thrown into {444}  r. 40/xl
+    institutional violence {445}  r. 40/xl
+    =====
+
+
+    Pr24 [F5P25]
+    Civic Research Institute {99}  r. 40/xl  => n10
+    McKenna, Jeremiah B. {246}  r. 40/xl
+    United States Department of Justice {446}  r. 40/xl
+    United States Attorney General {447}  r. 40/xl
+    Garland, Merrick {448}  r. 40/xl
+    Goldstein, Barry {564}  r. 40/xl  => n10
+    =====
+
+
+    Pr25 [F5P26]
+    King Solomon's Court {449}  r. 41/xli
+    =====
+
+
+    Pr28 [F5P29]
+    California Protective Parents Association {38}  r. 42/xlii
+    National Safe Parents Organization {450}  r. 42/xlii  => n12
+    Mothers ReVolution {451}  r. 42/xlii  => n13
+    Custody Peace {452}  r. 42/xlii  => n14
+    The Women's Coalition {453}  r. 42/xlii  => n15
+    Safe Kids International {454}  r. 42/xlii  => n16
+    One Mom's Battle {455}  r. 42/xlii  => n17
+    The Leadership Council {456}  r. 42/xlii  => n18
+    =====
+
+
+    Pr29 [F5P30]
+    protective parent, definition of {328}  r. 42/xlii
+    American Professional Society on the Abuse of Children (APSAC) {457}  r. 42/xlii
+    =====
+
+
+    Pr30 [F5P31]
+    National Center for Protective Parents {270}  r. 43/xliii
+    Pennington, H. Joan {321}  r. 43/xliii
+    Women's Law Forum at Rutgers State University School of Law {458}  r. 43/xliii
+    Women's Law Forum at Rutgers State University School of Law {458}  r. 43/xliii  => n20
+    =====
+    Pennington, H. Joan {321}  p. 329  => n20
+    =====
+
+
+    Pr31 [F5P32]
+    Hannah, Maureen Therese {180}  r. 43/xliii
+    Siena College {351}  r. 43/xliii
+    Battered Mothers Custody Conference {459}  r. 43/xliii
+    University of California Irvine (UCI) Initiative to End Family Violence {460}  r. 43/xliii
+    ``Forward Together: Multidisciplinary Perspectives on Protecting
+Children from Abuse'' {461}  r. 43/xliii  => n21
+    =====
+
+
+    Pr32 [F5P33]
+    Tristate Family Law Conference, National Judicial College (University of Nevada) {462}  r. 44/xliv
+    =====
+
+
+    Pr33 [F5P34]
+    Meier, Joan S. {464}  r. 44/xliv
+    National Family Violence Law Center (NFVLC), at George Washington University Law School {465}  r. 44/xliv
+    =====
+
+
+    Pr34 [F5P35]
+    California Protective Parents Association {38}  r. 44/xliv
+    ``Protective Mothers, Endangered Children'' {467}  r. 44/xliv
+    Stahly, Geraldine Butts {468}  r. 44/xliv
+    York, Veronica {570}  r. 44/xliv  => n24
+    =====
+
+
+    Pr39 [F5P40]
+    Udesky, Laurie {469}  r. 46/xlvi
+    =====
+
+
+    Pr40 [F5P41]
+    Meier, Joan S. {464}  r. 46/xlvi
+    =====
+
+
+    Pr41 [F5P42]
+    Meier, Joan S. {464}  r. 46/xlvi
+    =====
+    U.S. Child Custody Outcomes in Cases Involving Parental Alienation and Abuse Allegations {565}  r. 47/xlvii  => n28
+    =====
+
+
+    Pr42 [F5P43]
+    Meier, Joan S. {464}  r. 46/xlvi
+    =====
+    :Journal of Family Trauma, Child Custody, and Child Development {471}  r. 47/xlvii
+    =====
+
+
+    Pr43 [F5P44]
+    gender bias {169}  r. 47/xlvii
+    Goldstein, Barry {564}  r. 47/xlvii  => n30
+    =====
+
+
+    Pr44 [F5P45]
+    Pollack, Danielle {566}  r. 47/xlvii  => n31
+    =====
+
+
+    Pr48 [F5P49]
+    gender bias {169}  r. 49/xlix
+    Grant, Anne {474}  r. 49/xlix
+    :Beyond the Hostage Child: Toward Empowering Protective Parents {476}  r. 49/xlix
+    =====
+    Child At Risk Classification Office (CARCO) {477}  r. 50/l
+    =====
+
+
+    Pr49 [F5P51]
+    Gesing, Ted {480}  r. 50/l
+    Story Syndicate {481}  r. 50/l
+    =====
+
+
+    Pr50 [F5P52]
+    :New York Post {307}  r. 51/li
+    =====
+
+
+    Pr53 [F5P55]
+    Women's eNews {424}  r. 52/lii
+    =====
+
+
+    Pr54 [F5P56]
+    equal protection {103}  r. 52/lii  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    Carner, Talia {483}  r. 52/lii
+    breast milk, to expel their {484}  r. 52/lii
+    =====
+
+
+    Pr55 [F5P57]
+    ``Mothers-' Vote,'' ad hoc voting block {485}  r. 52/lii
+    =====
+
+
+    Pr56 [F5P58]
+    Jensen, Rita Henley {201}  r. 53/liii
+    =====
+
+
+    Pr57 [F5P59]
+    California Protective Parents Association {38}  r. 53/liii
+    Valentine, Constance {404}  r. 53/liii
+    Raskine, Jamie {487}  r. 53/liii
+    =====
+
+
+    Pr59 [F5P61]
+    ``Keeping Children Safe From Family Violence Act'' (Kayden's Law, commonly referred to) {488}  r. 54/liv
+    VAWA (Violence Against Women Act) {490}  r. 54/liv
+    Pollack, Danielle {566}  r. 54/liv
+    McLean, Maralee {567}  r. 54/liv  => n42
+    ``Kayden's Law'' {568}  r. 54/liv
+    ``Kayden's Law'' {568}  r. 54/liv  => n42;43
+    =====
+
+
+    Pr60 [F5P62]
+    VAWA (Violence Against Women Act) {490}  r. 54/liv
+    Kyra's Law {491}  r. 54/liv
+    =====
+
+
+    Pr61 [F5P63]
+    United Nations Human Rights Office of the High Commissioner {433}  r. 55/lv
+    =====
+
+
+    Pr62 [F5P64]
+    protective mothers {496}  r. 55/lv  . . . . subentry of 
+           #493  ~> BIPOC (Black, Indigenous, and People of Color): (5 subentries)
+    =====
+
+
+    Pr63 [F5P65]
+    Brooklyn Family Court {27}  r. 56/lvi
+    Deutsch, Leon S. {113}  r. 56/lvi
+    ``an hysterical Hispanic'' {542}  r. 56/lvi
+    =====
+
+
+    Pr64 [F5P66]
+    contempt of court {109}  r. 56/lvi
+    incarcerating mothers {500}  r. 56/lvi  . . . . subentry of 
+           #499  ~> incarceration: (2 subentries)
+    =====
+
+
+    Pr65 [F5P67]
+    supervised visitation, police station {498}  r. 57/lvii  . . . . subentry of 
+           #493  ~> BIPOC (Black, Indigenous, and People of Color): (5 subentries)
+    =====
+
+
+    Pr66 [F5P68]
+    supervised visitation, police station {498}  r. 57/lvii  . . . . subentry of 
+           #493  ~> BIPOC (Black, Indigenous, and People of Color): (5 subentries)
+    =====
+    population {495}  r. 58/lviii  . . . . subentry of 
+           #493  ~> BIPOC (Black, Indigenous, and People of Color): (5 subentries)
+    =====
+
+
+    Pr73 [F5P75]
+    Douglas, Joshua (Family Law Specialist) {569}  r. 61/lxi  => n45
+    =====
+
+
+    Pr79 [F5P81]
+    visits {524}  r. 63/lxiii  . . . . subentry of 
+           #523  ~> ransom: (4 subentries)
+    =====
+
+
+    Pr80 [F5P82]
+    visits {524}  r. 63/lxiii  . . . . subentry of 
+           #523  ~> ransom: (4 subentries)
+    =====
+
+
+    Pr81 [F5P83]
+    custody evaluator report {525}  r. 64/lxiv  . . . . subentry of 
+           #523  ~> ransom: (4 subentries)
+    =====
+
+
+    Pr82 [F5P84]
+    DUI {519}  r. 64/lxiv  . . . . subentry of 
+           #512  ~> antisocial behavior, fathers-': (10 subentries)
+    custody evaluator report {525}  r. 64/lxiv  . . . . subentry of 
+           #523  ~> ransom: (4 subentries)
+    =====
+
+
+    Pr83 [F5P85]
+    court fees {526}  r. 65/lxv  . . . . subentry of 
+           #523  ~> ransom: (4 subentries)
+    =====
+
+
+    Pr85 [F5P87]
+    Family Ecosystem {543}  r. 65/lxv
+    =====
+
+
+    Pr86 [F5P88]
+    Family Ecosystem {543}  r. 65/lxv
+    =====
+
+
+    Pr87 [F5P89]
+    Hobson's choice {185}  r. 66/lxvi
+    =====
+
+
+    Pr88 [F5P90]
+    multiple generations {502}  r. 66/lxvi
+    =====
+
+
+    Pr89 [F5P91]
+    United States Department of Justice {446}  r. 67/lxvii
+    =====
+
+
+    Pr93 [F5P95]
+    ``abstention'' doctrines {544}  r. 69/lxix
+    =====
+
+
+    Pr96 [F5P98]
+    gender bias {169}  r. 70/lxx
+    =====
+
+
+    Pr100 [F5P102]
+    institutional violence {445}  r. 71/lxxi
+    =====
+
+
+    Io2 [F6P2]
+    junk science {211}  r. 72/lxxii
+    =====
+
+
+    Io5 [F6P5]
+    Pennington, H. Joan {321}  r. 73/lxxiii
+    =====
+    protective parent, definition of {328}  p. 331  => n2
+    =====
+
+
+    Io6 [F6P6]
+    House Judiciary Committee (1992) {188}  r. 73/lxxiii
+    Pennington, H. Joan {321}  r. 73/lxxiii
+    =====
+    Judicial Training Act, The {210}  p. 331  => n3
+    Pennington, H. Joan {321}  p. 331  => n3
+    =====
+
+
+    Io7 [F6P7]
+    Gandy, Kim {165}  r. 73/lxxiii
+    National Organization for Women (NOW) {276}  r. 73/lxxiii
+    =====
+
+
+    Io8 [F6P8]
+    constitutional rights {101}  r. 74/lxxiv  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    Mazierski, Kathryn {243}  r. 74/lxxiv
+    New York state chapter {278}  r. 74/lxxiv  . . . . subentry of 
+           #276  ~> National Organization for Women (NOW)
+    =====
+
+
+    Io9 [F6P9]
+    Mazierski, Kathryn {243}  r. 74/lxxiv
+    Office on Violence Against Women (OVW) {401}  r. 74/lxxiv  . . . . subentry of 
+           #398  ~> U.S. Department of Justice: (3 subentries)
+    United States Department of Justice {446}  r. 74/lxxiv
+    =====
+    Campbell, Bonnie {39}  p. 331  => n5
+    Jensen, Rita Henley {201}  p. 331  => n4
+    =====
+
+
+    Io10 [F6P10]
+    Mother's Day press conference {262}  r. 74/lxxiv
+    =====
+
+
+    Io11 [F6P11]
+    Help Us Regain The Children (HURT) {184}  r. 75/lxxv
+    =====
+
+
+    Io12 [F6P12]
+    Help Us Regain The Children (HURT) {184}  r. 75/lxxv
+    =====
+
+
+    Io13 [F6P13]
+    Gandy, Kim {165}  r. 75/lxxv
+    Help Us Regain The Children (HURT) {184}  r. 75/lxxv
+    Mazierski, Kathryn {243}  r. 75/lxxv
+    Pennington, H. Joan {321}  r. 75/lxxv
+    =====
+
+
+    Io14 [F6P14]
+    primary caretaker {326}  r. 75/lxxv
+    =====
+
+
+    Io19 [F6P19]
+    Childhelp USA {22}  r. 76/lxxvi  . . . . subentry of 
+           #21  ~> Bell, Mariam
+    =====
+    Bell, Mariam {21}  r. 77/lxxvii
+    ``System Failure Project'' {23}  r. 77/lxxvii  . . . . subentry of 
+           #21  ~> Bell, Mariam
+    =====
+    Bell, Mariam {21}  p. 331  => n6
+    =====
+
+
+    Io20 [F6P20]
+    sociology {364}  r. 77/lxxvii
+    =====
+
+
+    Io21 [F6P21]
+    Berliner (1988) {58}  r. 78/lxxviii  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Corwin, Berliner, Goodman, Goodwin, and White (1987) {59}  r. 78/lxxviii  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Denike, Huang, and Kachuk (1998) {61}  r. 78/lxxviii  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Dziech and Schudson (1989) {62}  r. 78/lxxviii  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Faller, Corwin, and Olafson (1993) {67}  r. 78/lxxviii  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Faller and DeVoe (1995) {68}  r. 78/lxxviii  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    McDonald (1998) {80}  r. 78/lxxviii  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Quinn (1988) {89}  r. 78/lxxviii  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Thoennes, Pearson, and Tjaden (1988) {95}  r. 78/lxxviii  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Thoennes and Tjaden (1990) {96}  r. 78/lxxviii  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    =====
+
+
+    Io22 [F6P22]
+    Faller and DeVoe (1995) {68}  r. 78/lxxviii  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Faller, Kathleen Coulborn {152}  r. 78/lxxviii
+    :Journal of Interpersonal Violence {203}  r. 78/lxxviii
+    sexually transmitted disease {349}  r. 78/lxxviii
+    University of Michigan School of Social Work {396}  r. 78/lxxviii
+    =====
+    Faller and DeVoe (1995) {68}  p. 331  => n8  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Lawson and Chaffin (1992) {76}  p. 331  => n7  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Faller, Kathleen Coulborn {152}  p. 331  => n8
+    =====
+
+
+    Io26 [F6P26]
+    hunger strike {189}  r. 79/lxxix
+    underground fugitive mothers {392}  r. 79/lxxix  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+
+
+    Io28 [F6P28]
+    Lasswell, Harold {225}  r. 80/lxxx
+    =====
+
+
+    Io30 [F6P30]
+    Armstrong, Louise {14}  r. 80/lxxx
+    =====
+
+
+    Io31 [F6P31]
+    :Rocking the Cradle of Sexual Politics (Armstrong) {338}  r. 80/lxxx
+    =====
+
+
+    Io33 [F6P33]
+    appellate review {12}  r. 81/lxxxi
+    gender bias {169}  r. 81/lxxxi
+    =====
+
+
+    Io34 [F6P34]
+    Holstein and Gubrium (1995) {129}  r. 82/lxxxii  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    Lynch (1997) {130}  r. 82/lxxxii  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    Meehan (1997) {131}  r. 82/lxxxii  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    Pollner (1979) {132}  r. 82/lxxxii  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    ``methodically'' ordered social practices {140}  r. 82/lxxxii  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    sociological inquiry {367}  r. 82/lxxxii  . . . . subentry of 
+           #364  ~> sociology
+    =====
+    ``methodically'' ordered social practices {140}  p. 332  => n10  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    Faller, Kathleen Coulborn {152}  p. 332  => n10
+    =====
+
+
+    Io35 [F6P35]
+    Faller, Kathleen Coulborn {152}  p. 332  => n11
+    =====
+
+
+    Io37 [F6P37]
+    due process {102}  r. 83/lxxxiii  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    =====
+
+
+    Io41 [F6P41]
+    underground fugitive mothers {392}  r. 84/lxxxiv  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+
+
+    Io42 [F6P42]
+    Malicious Mother Syndrome (MMS) {234}  r. 84/lxxxiv
+    Parental Alienation Syndrome (PAS) {317}  r. 84/lxxxiv
+    sociological inquiry {367}  r. 84/lxxxiv  . . . . subentry of 
+           #364  ~> sociology
+    =====
+
+
+    C1P1
+    Boston Phoenix (2003) {25}  p. 3
+    =====
+
+
+    C1P2
+    Boston Phoenix (2003) {25}  p. 3
+    :Katherine Crier Live {218}  p. 3
+    :Small Justice <span style='font-style:normal'|(prod. Waller)</span| {357}  p. 3
+    Waller, Garland {413}  p. 3
+    =====
+    :New York Law Journal {304}  p. 332  => n3
+    =====
+
+
+    C1P3
+    Grant, Lee {176}  p. 4
+    :Women on Trial <span style='font-style:normal'|(prod. Grant)</span| {423}  p. 4
+    =====
+
+
+    C1P4
+    :Good Housekeeping {173}  p. 4
+    National Organization for Women (NOW) {276}  p. 4
+    =====
+
+
+    C1P5
+    Curtis, April {111}  p. 4
+    :Sally Jessy Raphael {343}  p. 4
+    sexually transmitted disease {349}  p. 4
+    underground fugitive mothers {392}  p. 4  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    :U.S. News and World Report {403}  p. 4
+    =====
+
+
+    C1P6
+    Morgan, Elizabeth {260}  p. 4
+    :Newsweek {284}  p. 4
+    :New York Woman {309}  p. 4
+    =====
+
+
+    C1P7
+    Reynolds, Barbara (USA Today) {337}  p. 4
+    :USA Today {397}  p. 4
+    :USA Today {397}  p. 4
+    =====
+    :New York Times {308}  p. 5
+    Quindlen, Anna {331}  p. 5
+    =====
+    Quindlen, Anna {331}  p. 332  => n6
+    =====
+
+
+    C1P8
+    :Village Voice {407}  p. 5
+    =====
+
+
+    C1P9
+    Aylsworth, John {17}  p. 5
+    Marks, Bridget {237}  p. 5
+    =====
+
+
+    C1P10
+    Aylsworth, John {17}  p. 5
+    =====
+
+
+    C1P11
+    :New York Daily News {303}  p. 6  => n8
+    =====
+    Port, Bob {324}  p. 332  => n8
+    =====
+
+
+    C1P12
+    Keating (1998) {75}  p. 6  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    :Loyola Law Review {232}  p. 6
+    =====
+
+
+    C1P13
+    Neustein and Goetting (1999) {84}  p. 7  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    :Journal of Child Sexual Abuse {202}  p. 7
+    =====
+
+
+    C1P14
+    Finkelhor (1986) {69}  p. 7  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Myers (1997) {83}  p. 7  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Russell (1983) {90}  p. 7  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Russell (1986) {91}  p. 7  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    =====
+
+
+    C1P15
+    Faller (2000) {65}  p. 7  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Penfold (1997) {87}  p. 7  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Faller, Kathleen Coulborn {152}  p. 7
+    :University of Arkansas Little Rock Law Review {393}  p. 7
+    :University of Arkansas Little Rock Law Review {393}  p. 7
+    =====
+    Jones and McGraw (1987) {73}  p. 332  => n11  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Jones and Seig (1988) {74}  p. 332  => n11  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    McGraw and Smith (1992) {81}  p. 332  => n11  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    =====
+
+
+    C1P16
+    :Hostage Child, The <span style='font-style:normal'|(Rosen and Etlin)</span| {187}  p. 7
+    Rosen, Leora N., and Michelle Etlin {340}  p. 7
+    Etlin, Michele {443}  p. 7
+    =====
+
+
+    C1P17
+    Massat and Lundy (1998) {78}  p. 8  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    :Child Welfare {97}  p. 8
+    Massat, Carol Rippey {241}  p. 8
+    =====
+    Massat, Carol Rippey {241}  p. 332  => n13
+    =====
+
+
+    C1P18
+    due process {102}  p. 8  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    gender bias {169}  p. 8
+    National Organization for Women (NOW) {276}  p. 8
+    California state chapter {277}  p. 8  . . . . subentry of 
+           #276  ~> National Organization for Women (NOW)
+    Wellesley Centers for Women {417}  p. 8
+    =====
+    :American Journal of Public Health {5}  p. 9
+    :Battered Mothers Speak Out <span style='font-style:normal'|(November 2002)</span| {20}  p. 9
+    intimate partner violence {198}  p. 9
+    =====
+    intimate partner violence {198}  p. 333  => n17
+    Wellesley Centers for Women {417}  p. 333  => n16
+    =====
+
+
+    C1P19
+    due process {102}  p. 8  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    =====
+    :Battered Mothers-' Testimony Project {19}  p. 9
+    equal protection {103}  p. 9  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    =====
+
+
+    C1P20
+    gender bias {169}  p. 9
+    Judicial Council of California Administrative Office of the Courts (1990) {208}  p. 9
+    =====
+    gender bias {169}  p. 10
+    =====
+    gender bias {169}  p. 333  => n19
+    =====
+
+
+    C1P21
+    Schafran (1987) {92}  p. 10  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    gender bias {169}  p. 10
+    :Judicare {207}  p. 10
+    Task Force on Gender Bias in the Courts {301}  p. 10  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    =====
+
+
+    C1P22
+    :Divorced from Justice <span style='font-style:normal'|(Winner)</span| {116}  p. 10
+    Department of Consumer Affairs {290}  p. 10  . . . . subentry of 
+           #285  ~> New York, city of: (5 subentries)
+    Winner, Karen {421}  p. 10
+    =====
+    Justice Seekers, Inc. {214}  p. 11
+    =====
+
+
+    C1P25
+    Myers (1997) {83}  p. 11  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    sociohistorical analysis of sexual abuse awareness {366}  p. 11  . . . . subentry of 
+           #364  ~> sociology
+    =====
+
+
+    C1P26
+    sociohistorical analysis of sexual abuse awareness {366}  p. 11  . . . . subentry of 
+           #364  ~> sociology
+    =====
+
+
+    C1P28
+    Rosen, Leora N., and Michelle Etlin {340}  p. 12
+    Rosenfeld, A. {342}  p. 12
+    =====
+    Assembly Committee on Children and Families {292}  p. 333  => n23  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    Assembly Committee on Judiciary {293}  p. 333  => n23  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    Assembly Subcommittee on Family Law {294}  p. 333  => n23  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    Senate Committee on Child Care {298}  p. 333  => n23  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    =====
+
+
+    C1P29
+    American Bar Association, in cooperation with the Association of Family and Conciliation Courts 
+    (1988) {3}  p. 12
+    Nicholson and Bulkley (1988) {85}  p. 12  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    matrimonial bar {242}  p. 12
+    =====
+    :American Jurisprudence Proof of Facts {6}  p. 13
+    Brooklyn Bar Association, matrimonial committee of {26}  p. 13
+    =====
+
+
+    C1P31
+    Heit, Julia {183}  p. 13
+    Legal Aid Society {226}  p. 13
+    =====
+
+
+    C1P32
+    Heit, Julia {183}  p. 13
+    =====
+
+
+    C1P34
+    ``Judge Judy'' (Judith Scheindlin) {205}  p. 14
+    =====
+
+
+    C1P35
+    Armstrong, Louise {14}  p. 15
+    Men's Equality Now International Coalition {249}  p. 15
+    :Rocking the Cradle of Sexual Politics (Armstrong) {338}  p. 15
+    =====
+    Wilson, Trish {420}  p. 333  => n27
+    =====
+
+
+    C1P36
+    American Coalition for Fathers and Children (ACFC) {4}  p. 15
+    fathers-' rights groups {155}  p. 15
+    =====
+
+
+    C1P37
+    Brooklyn Family Court {27}  p. 15
+    Deutsch, Leon S. {113}  p. 15
+    Fathers-' Rights Association of Metro New York and Long Island {154}  p. 15
+    Shoulson, Jay {350}  p. 15
+    =====
+    McAlary, Mike {244}  p. 333  => n28
+    =====
+
+
+    C1P38
+    Brooklyn Family Court {27}  p. 15
+    Shoulson, Jay {350}  p. 15
+    =====
+    Assembly Committee on Children and Families {292}  p. 333  => n29  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    Assembly Committee on Judiciary {293}  p. 333  => n29  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    Assembly Subcommittee on Family Law {294}  p. 333  => n29  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    Senate Committee on Child Care {298}  p. 333  => n29  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    =====
+
+
+    C1P39
+    Brooklyn Family Court {27}  p. 16
+    Middleton, Humberto {252}  p. 16
+    =====
+    Middleton, Humberto {252}  p. 333  => n30
+    =====
+
+
+    C1P40
+    Middleton, Humberto {252}  p. 16
+    =====
+
+
+    C1P41
+    Thompson, William {384}  p. 16
+    =====
+    Winner, Karen {421}  p. 17
+    =====
+    :Divorced from Justice <span style='font-style:normal'|(Winner)</span| {116}  p. 333  => n31
+    =====
+
+
+    C1P42
+    Council {289}  p. 17  . . . . subentry of 
+           #285  ~> New York, city of: (5 subentries)
+    Paterson, David A. {319}  p. 17
+    =====
+
+
+    C1P43
+    due process {102}  p. 17  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    Nadler, Jerrold {266}  p. 17
+    =====
+
+
+    C1P44
+    Nadler, Jerrold {266}  p. 17
+    Bar Association {295}  p. 17  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    :New York Post {307}  p. 17
+    =====
+
+
+    C1P45
+    Nadler, Jerrold {266}  p. 17
+    =====
+    Green, Arthur {177}  p. 18
+    Hanson, Graeme {181}  p. 18
+    :Journal of the American Academy of Child and Adolescent Psychiatry {204}  p. 18
+    =====
+
+
+    C1P46
+    Green, Arthur {177}  p. 18
+    Jurow, Abraham {212}  p. 18
+    :New York Law Journal {304}  p. 18
+    =====
+
+
+    C1P47
+    appellate review {12}  p. 18
+    =====
+    primary caretaker {326}  p. 19
+    =====
+    appellate review {12}  p. 334  => n38
+    =====
+
+
+    C1P48
+    Weinstein, Jack {416}  p. 19
+    =====
+
+
+    C1P49
+    Administration for Children's Services (ACS) {286}  p. 19  . . . . subentry of 
+           #285  ~> New York, city of: (5 subentries)
+    :Nicholson v. ACS {310}  p. 19
+    Weinstein, Jack {416}  p. 19
+    =====
+
+
+    C1P50
+    Weinstein, Jack {416}  p. 19
+    =====
+    Armstrong, Louise {14}  p. 20
+    :Home Front, The <span style='font-style:normal'|(Armstrong)</span| {186}  p. 20
+    Administration for Children's Services (ACS) {286}  p. 20  . . . . subentry of 
+           #285  ~> New York, city of: (5 subentries)
+    =====
+
+
+    C1P52
+    Pennington and Woods (1990) {88}  p. 20  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    :Legal Issues and Legal Options in Civil Child Sexual Abuse Cases {227}  p. 20
+    National Center on Women and Family Law {271}  p. 20
+    Pennington, H. Joan {321}  p. 20
+    history of modern-day underground movement {390}  p. 20  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    history of modern-day underground movement {390}  p. 20  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+
+
+    C1P53
+    Chesler, Phyllis {42}  p. 21
+    Kidnapping, parental {220}  p. 21
+    :Mothers on Trial (Chesler) {263}  p. 21
+    underground fugitive mothers {392}  p. 21  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+
+
+    C1P55
+    ``Children of the Underground'' {55}  p. 21
+    Nadler, Jerrold {266}  p. 21
+    Yager, Faye {425}  p. 21
+    =====
+
+
+    C1P56
+    Hannah, Maureen Therese {180}  p. 21
+    Miller, Liliane Heller {253}  p. 21
+    Siena College {351}  p. 21
+    =====
+    Ortiz, Felix {314}  p. 22
+    Reynolds, Barbara (USA Today) {337}  p. 22
+    :USA Today {397}  p. 22
+    :USA Today {397}  p. 22
+    =====
+
+
+    C1P57
+    Women's Office at the Archdiocese {300}  p. 22  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    =====
+
+
+    C1P58
+    pro se rebels {327}  p. 22
+    =====
+
+
+    C1P59
+    Dale, Sebe {112}  p. 23
+    Newsom, Karen {283}  p. 23
+    Singley, Dorrie Lyn {355}  p. 23
+    abscond or flee with child {389}  p. 23  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    history of modern-day underground movement {390}  p. 23  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    history of modern-day underground movement {390}  p. 23  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    underground fugitive mothers {392}  p. 23  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+
+
+    C1P60
+    Newsom, Karen {283}  p. 23
+    Singley, Dorrie Lyn {355}  p. 23
+    =====
+
+
+    C1P61
+    LaLonde, Virginia {224}  p. 23
+    =====
+
+
+    C1P62
+    history of modern-day underground movement {390}  p. 23  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    history of modern-day underground movement {390}  p. 23  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    underground fugitive mothers {392}  p. 23  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    Yager, Faye {425}  p. 23
+    =====
+
+
+    C1P63
+    Yager, Faye {425}  p. 23
+    on <i|60 Minutes</i| (CBS) {426}  p. 23  . . . . subentry of 
+           #425  ~> Yager, Faye
+    =====
+    Rayner, Lydia, on <i|60 Minutes</i| (CBS) {336}  p. 24
+    =====
+
+
+    C1P64
+    Carpenter, McKenzie (Pittsburgh Post-Gazette) {41}  p. 24
+    ``Children of the Underground'' {55}  p. 24
+    House Judiciary Committee (1992) {188}  p. 24
+    :Pittsburgh Post-Gazette {322}  p. 24
+    history of modern-day underground movement {390}  p. 24  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    history of modern-day underground movement {390}  p. 24  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    underground fugitive mothers {392}  p. 24  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+    Judicial Training Act, The {210}  p. 334  => n45
+    Pennington, H. Joan {321}  p. 334  => n45
+    =====
+
+
+    C1P67
+    Justice for Children {213}  p. 24
+    King, Eileen {221}  p. 24
+    =====
+
+
+    C1P68
+    Child Exploitation and Obscenity Section {399}  p. 25  . . . . subentry of 
+           #398  ~> U.S. Department of Justice: (3 subentries)
+    =====
+
+
+    C2P3
+    presentment agencies {325}  p. 26
+    =====
+
+
+    C2P5
+    home study {536}  p. 27  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C2P6
+    Everson and Boat (1989) {63}  p. 27  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    education {359}  p. 27  . . . . subentry of 
+           #358  ~> social variables
+    =====
+
+
+    C2P9
+    Administration for Children's Services (ACS) {286}  p. 28  . . . . subentry of 
+           #285  ~> New York, city of: (5 subentries)
+    :New York Law Journal {304}  p. 28
+    =====
+
+
+    C2P10
+    appellate review {12}  p. 29
+    =====
+
+
+    C2P13
+    Stern and Oehme (2002) {94}  p. 30  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    supervised visitation {377}  p. 30
+    :Temple Law Review {380}  p. 30
+    =====
+
+
+    C2P14
+    Stern and Oehme (2002) {94}  p. 30  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    =====
+
+
+    C2P16
+    constitutional rights {101}  p. 31  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    Curran, William (1985) {110}  p. 31
+    immunity {194}  p. 31
+    :New England Journal of Medicine {281}  p. 31
+    =====
+
+
+    C2P18
+    Gardner, Richard A. {166}  p. 31
+    junk science {211}  p. 31
+    Parental Alienation Syndrome (PAS) {317}  p. 31
+    :True and False Accusations of Child Sexual Abuse <span style='font-style:normal'|(Gardner)</span| {386}  p. 31
+    =====
+    Gardner, Richard A. {166}  p. 334  => n4
+    Parental Alienation Syndrome (PAS) {317}  p. 334  => n4
+    =====
+
+
+    C2P19
+    American Psychological Association {8}  p. 31
+    Gardner, Richard A. {166}  p. 31
+    =====
+
+
+    C2P20
+    Gardner, Richard A. {166}  p. 31
+    Green, Arthur {177}  p. 31
+    =====
+
+
+    C2P21
+    Green, Arthur {177}  p. 31
+    =====
+    :American Jurisprudence Proof of Facts {6}  p. 32
+    Corwin, Berliner, Goodman, Goodwin, and White (1987) {59}  p. 32  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Gardner, Richard A. {166}  p. 32
+    =====
+
+
+    C2P22
+    Smith and Coukos (1997) {93}  p. 32  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    :Judges-' Journal {206}  p. 32
+    Malicious Mother Syndrome (MMS) {234}  p. 32
+    Turkat, Ira {387}  p. 32
+    =====
+
+
+    C2P23
+    confidentiality {108}  p. 33
+    evidentiary hearing {146}  p. 33
+    =====
+
+
+    C2P24
+    ``gag'' order {163}  p. 33
+    House Judiciary Committee (1992) {188}  p. 33
+    Pennington, H. Joan {321}  p. 33
+    =====
+    Judicial Training Act, The {210}  p. 334  => n6
+    Pennington, H. Joan {321}  p. 334  => n6
+    =====
+
+
+    C2P25
+    ``kangaroo courts'' {216}  p. 33
+    =====
+    Fund for Modern Courts {162}  p. 34
+    =====
+
+
+    C2P26
+    child neglect, charge of {533}  p. 34  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C2P28
+    Meltzer, Anne {248}  p. 35
+    =====
+
+
+    C2P29
+    appellate review {12}  p. 35
+    due process {102}  p. 35  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    =====
+
+
+    C2P30
+    appellate review {12}  p. 35
+    =====
+    adjournments in contemplation of dismissal (ACD) {1}  p. 36
+    Goodhue, Mary B. {174}  p. 36
+    Senate Committee on Child Care {298}  p. 36  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    =====
+    Goodhue, Mary B. {174}  p. 334  => n8
+    =====
+
+
+    C2P31
+    appellate review {12}  p. 35
+    =====
+
+
+    C3P1
+    social variables {358}  p. 39
+    =====
+
+
+    C3P2
+    sociological inquiry {367}  p. 39  . . . . subentry of 
+           #364  ~> sociology
+    =====
+
+
+    C3P3
+    situated meaning, accomplishment, achievement, definition, action {145}  p. 40  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    sociological inquiry {367}  p. 40  . . . . subentry of 
+           #364  ~> sociology
+    =====
+
+
+    C3P4
+    Garfinkel (1967) {124}  p. 40  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    Lynch (1997) {130}  p. 40  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    conversation analysis {136}  p. 40  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    Garfinkel, Harold {167}  p. 40
+    =====
+
+
+    C3P5
+    practical reasoning {142}  p. 40  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    reflexive {143}  p. 40  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+    situated meaning, accomplishment, achievement, definition, action {145}  p. 41  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C3P6
+    Durkheim, Emile {120}  p. 41
+    Garfinkel (1967) {124}  p. 41  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    sociology {364}  p. 41
+    =====
+
+
+    C3P7
+    ``accountable,'' ``publicly'' observable actions {134}  p. 41  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+    ``accountable,'' ``publicly'' observable actions {134}  p. 334  => n3  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C3P8
+    gender bias {169}  p. 41
+    social variables {358}  p. 41
+    education {359}  p. 41  . . . . subentry of 
+           #358  ~> social variables
+    ethnicity {360}  p. 41  . . . . subentry of 
+           #358  ~> social variables
+    gender {361}  p. 41  . . . . subentry of 
+           #358  ~> social variables
+    socioeconomic status {363}  p. 41  . . . . subentry of 
+           #358  ~> social variables
+    socioeconomic status {363}  p. 41  . . . . subentry of 
+           #358  ~> social variables
+    =====
+
+
+    C3P9
+    situated meaning, accomplishment, achievement, definition, action {145}  p. 41  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C3P10
+    reflexive {143}  p. 42  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C3P11
+    Garfinkel (1967) {124}  p. 42  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    documentary method of interpretation {137}  p. 42  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    practical reasoning {142}  p. 42  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    sociological inquiry {367}  p. 42  . . . . subentry of 
+           #364  ~> sociology
+    =====
+    Garfinkel (1967) {124}  p. 335  => n4  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    reflexive {143}  p. 335  => n4  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C3P12
+    Garfinkel (1967) {124}  p. 42  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    documentary method of interpretation {137}  p. 42  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+    Dziech and Schudson (1989) {62}  p. 43  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Massat and Lundy (1998) {78}  p. 43  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Massat and Lundy (1999) {79}  p. 43  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Jane Addams College of Social Work of the University of Illinois {200}  p. 43
+    Massat, Carol Rippey {241}  p. 43
+    Morgan, Elizabeth {260}  p. 43
+    =====
+
+
+    C3P13
+    practical reasoning {142}  p. 44  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    education {359}  p. 44  . . . . subentry of 
+           #358  ~> social variables
+    =====
+
+
+    C3P14
+    race {362}  p. 44  . . . . subentry of 
+           #358  ~> social variables
+    Marxist arguments {365}  p. 44  . . . . subentry of 
+           #364  ~> sociology
+    =====
+
+
+    C3P19
+    Pollner (1979) {132}  p. 45  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    explicative transactions {138}  p. 45  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    reflexive {143}  p. 45  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    situated meaning, accomplishment, achievement, definition, action {145}  p. 45  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C3P20
+    Pollner (1979) {132}  p. 45  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    explicative transactions {138}  p. 45  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C3P21
+    Pollner (1979) {132}  p. 45  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    =====
+
+
+    C3P22
+    Pollner (1979) {132}  p. 45  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    =====
+
+
+    C3P23
+    incarcerating mothers {500}  p. 46  . . . . subentry of 
+           #499  ~> incarceration: (2 subentries)
+    =====
+
+
+    C3P24
+    supervised visitation {377}  p. 46
+    =====
+
+
+    C3P26
+    Garfinkel and Sacks (1970) {126}  p. 47  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    formulating {139}  p. 47  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C3P27
+    formulating {139}  p. 47  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C3P28
+    formulating {139}  p. 47  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C3P29
+    Holstein and Gubrium (1995) {129}  p. 48  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    =====
+
+
+    C3P30
+    fitness, parental {157}  p. 48
+    =====
+
+
+    C3P32
+    ``vexatious'' litigant {405}  p. 49
+    =====
+
+
+    C3P33
+    situated meaning, accomplishment, achievement, definition, action {145}  p. 49  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C3P35
+    termination of parental rights {382}  p. 50
+    =====
+
+
+    C3P37
+    practical accomplishment {141}  p. 50  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    practical reasoning {142}  p. 50  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C3P38
+    practical accomplishment {141}  p. 50  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+    due process {102}  p. 51  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    =====
+
+
+    C3P40
+    Lynch (1997) {130}  p. 51  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    =====
+
+
+    C3P41
+    Heritage and Sefi (1992) {127}  p. 52  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    =====
+
+
+    C3P42
+    child neglect, charge of {533}  p. 52  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C3P45
+    Garfinkel and Bittner (1967) {125}  p. 53  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    ``contractual'' use of records {135}  p. 53  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    practical accomplishment {141}  p. 53  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C3P46
+    Meehan (1997) {131}  p. 53  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    ``contractual'' use of records {135}  p. 53  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C3P50
+    Meehan (1997) {131}  p. 55  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    running record {144}  p. 55  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C3P51
+    running record {144}  p. 55  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+    Meehan (1997) {131}  p. 335  => n7  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    running record {144}  p. 335  => n7  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C3P52
+    Meehan (1997) {131}  p. 55  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    running record {144}  p. 55  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C3P53
+    running record {144}  p. 56  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C3P54
+    running record {144}  p. 56  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    communication {148}  p. 56  . . . . subentry of 
+           #147  ~> ex parte (without the knowledge of the other party): (4 subentries)
+    =====
+    ethics {122}  p. 335  => n8
+    communication {148}  p. 335  => n8  . . . . subentry of 
+           #147  ~> ex parte (without the knowledge of the other party): (4 subentries)
+    =====
+
+
+    C3P55
+    Meehan (1997) {131}  p. 56  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    running record {144}  p. 56  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+    appellate review {12}  p. 335  => n9
+    running record {144}  p. 335  => n9  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C3P56
+    situated meaning, accomplishment, achievement, definition, action {145}  p. 56  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    sociological inquiry {367}  p. 56  . . . . subentry of 
+           #364  ~> sociology
+    =====
+
+
+    C4P2
+    ethics {122}  p. 57
+    =====
+    reflexive {143}  p. 58  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    matrimonial bar {242}  p. 58
+    =====
+
+
+    C4P3
+    Brooklyn Family Court {27}  p. 58
+    Heit, Julia {183}  p. 58
+    =====
+
+
+    C4P5
+    appellate review {12}  p. 336  => n3
+    =====
+
+
+    C4P6
+    child neglect, charge of {533}  p. 59  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C4P7
+    child neglect, charge of {533}  p. 59  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C4P17
+    appellate review {12}  p. 337  => n15
+    evidentiary hearing {146}  p. 337  => n15
+    =====
+
+
+    C4P19
+    underground fugitive mothers {392}  p. 63  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+
+
+    C4P20
+    sexually transmitted disease {349}  p. 64
+    =====
+    McKenna, Jeremiah B. {246}  p. 337  => n16
+    =====
+
+
+    C4P22
+    fitness, parental {157}  p. 64
+    Green, Arthur {177}  p. 64
+    National Center for Protective Parents {270}  p. 64
+    Pennington, H. Joan {321}  p. 64
+    =====
+    fitness, parental {157}  p. 337  => n19
+    Assembly Committee on Judiciary {293}  p. 337  => n18  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    :New York Law Journal {304}  p. 337  => n19
+    =====
+
+
+    C4P23
+    vigilantism {406}  p. 65
+    =====
+
+
+    C4P24
+    Mandel, Steve {236}  p. 337  => n20
+    =====
+
+
+    C4P25
+    ethics {122}  p. 65
+    communication {148}  p. 65  . . . . subentry of 
+           #147  ~> ex parte (without the knowledge of the other party): (4 subentries)
+    child neglect, charge of {533}  p. 65  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+    Code of Judicial Conduct {105}  p. 337  => n22
+    =====
+
+
+    C4P26
+    communication {148}  p. 65  . . . . subentry of 
+           #147  ~> ex parte (without the knowledge of the other party): (4 subentries)
+    =====
+
+
+    C4P28
+    appellate review {12}  p. 66
+    constitutional rights {101}  p. 66  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    evidentiary hearing {146}  p. 66
+    communication {148}  p. 66  . . . . subentry of 
+           #147  ~> ex parte (without the knowledge of the other party): (4 subentries)
+    vigilantism {406}  p. 66
+    =====
+
+
+    C4P32
+    Walker, Lenore {412}  p. 68
+    =====
+
+
+    C4P33
+    appellate review {12}  p. 68
+    contempt of court {109}  p. 68
+    =====
+
+
+    C4P35
+    vigilantism {406}  p. 69
+    =====
+
+
+    C4P36
+    :in camera <span style='font-style:normal'|(in judge's chambers)</span| {195}  p. 69
+    =====
+    Grossman, Louis {179}  p. 338  => n33
+    Commission on Judicial Conduct {296}  p. 338  => n33  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    =====
+
+
+    C4P37
+    Commission on Judicial Conduct {296}  p. 71  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    =====
+
+
+    C4P39
+    Green, Arthur {177}  p. 71
+    Commission on Judicial Conduct {296}  p. 71  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    =====
+    Green, Arthur {177}  p. 338  => n37
+    =====
+
+
+    C4P40
+    Meltzer, Anne {248}  p. 71
+    =====
+    appellate review {12}  p. 338  => n38
+    =====
+
+
+    C4P43
+    Paterson, David A. {319}  p. 72
+    =====
+    :New York & Company <span style='font-style:normal'|(WNYC public radio)</span| {302}  p. 338  => n40
+    =====
+
+
+    C4P44
+    :in camera <span style='font-style:normal'|(in judge's chambers)</span| {195}  p. 73
+    =====
+
+
+    C4P49
+    threat of {501}  p. 74  . . . . subentry of 
+           #499  ~> incarceration: (2 subentries)
+    =====
+
+
+    C4P51
+    Geffner, Robert {168}  p. 338  => n42
+    =====
+
+
+    C4P53
+    appellate review {12}  p. 75
+    =====
+
+
+    C4P55
+    Geffner, Robert {168}  p. 339  => n46
+    =====
+
+
+    C4P57
+    Grievance Committee for the Tenth Judicial District {297}  p. 339  => n47  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    =====
+
+
+    C4P58
+    Grievance Committee for the Tenth Judicial District {297}  p. 339  => n48  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    =====
+
+
+    C4P60
+    supervised visitation {377}  p. 77
+    child neglect, charge of {533}  p. 77  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C4P61
+    motion {150}  p. 77  . . . . subentry of 
+           #147  ~> ex parte (without the knowledge of the other party): (4 subentries)
+    =====
+
+
+    C4P65
+    order {151}  p. 78  . . . . subentry of 
+           #147  ~> ex parte (without the knowledge of the other party): (4 subentries)
+    =====
+
+
+    C4P67
+    Deutsch, Leon S. {113}  p. 78
+    Paterson, David A. {319}  p. 78
+    =====
+    Deutsch, Leon S. {113}  p. 339  => n50
+    mothers who commit {374}  p. 339  => n50  . . . . subentry of 
+           #372  ~> suicide: (2 subentries)
+    =====
+
+
+    C4P69
+    Paterson, David A. {319}  p. 79
+    children who are suicidal {373}  p. 79  . . . . subentry of 
+           #372  ~> suicide: (2 subentries)
+    =====
+
+
+    C4P77
+    situated meaning, accomplishment, achievement, definition, action {145}  p. 81  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    abscond or flee with child {389}  p. 81  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+
+
+    C4P79
+    situated meaning, accomplishment, achievement, definition, action {145}  p. 81  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C4P84
+    due process {102}  p. 82  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    =====
+
+
+    C4P85
+    Kafkaesque, court experience as {215}  p. 83
+    abscond or flee with child {389}  p. 83  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+
+
+    C4P89
+    Garfinkel and Sacks (1970) {126}  p. 84  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    formulating {139}  p. 84  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C4P90
+    Heritage and Watson (1979) {128}  p. 84  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    formulating {139}  p. 84  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C4P92
+    ethics {122}  p. 84
+    home study {536}  p. 84  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C4P94
+    ethics {122}  p. 85
+    =====
+
+
+    C4P95
+    appellate review {12}  p. 339  => n64
+    evidentiary hearing {146}  p. 339  => n64
+    =====
+
+
+    C4P96
+    formulating {139}  p. 85  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C4P101
+    appellate review {12}  p. 86
+    =====
+
+
+    C4P104
+    Pollner (1979) {132}  p. 87  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    explicative transactions {138}  p. 87  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    situated meaning, accomplishment, achievement, definition, action {145}  p. 87  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C4P105
+    Pollner (1979) {132}  p. 87  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    =====
+
+
+    C4P106
+    Burton, Randy {34}  p. 88
+    Texas Supreme Court Task Force on Judicial Appointments {383}  p. 88
+    =====
+
+
+    C4P108
+    Heit, Julia {183}  p. 340  => n73
+    =====
+
+
+    C4P109
+    Brooklyn Family Court {27}  p. 89
+    Deutsch, Leon S. {113}  p. 89
+    Koppell, Oliver {222}  p. 89
+    =====
+    Assembly Committee on Children and Families {292}  p. 340  => n74  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    Assembly Committee on Judiciary {293}  p. 340  => n74  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    Assembly Subcommittee on Family Law {294}  p. 340  => n74  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    Senate Committee on Child Care {298}  p. 340  => n74  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    U.S. House Subcommittee on Select Education of the Committee on Education and Labor {402}  p. 340  => n74
+    =====
+
+
+    C4P110
+    confidentiality {108}  p. 90
+    =====
+
+
+    C4P111
+    Gallet, Jeffrey {164}  p. 90
+    :New York Newsday {306}  p. 90
+    =====
+
+
+    C4P112
+    McKenna, Jeremiah B. {246}  p. 340  => n76
+    =====
+
+
+    C4P113
+    Gallet, Jeffrey {164}  p. 90
+    Green, Arthur {177}  p. 90
+    :New York Law Journal {304}  p. 90
+    =====
+    due process {102}  p. 91  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    =====
+
+
+    C4P116
+    situated meaning, accomplishment, achievement, definition, action {145}  p. 91  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C4P117
+    ethics {122}  p. 92
+    =====
+
+
+    C4P122
+    documentary method of interpretation {137}  p. 93  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C4P125
+    American Psychological Association {8}  p. 95
+    due process {102}  p. 95  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    Parental Alienation Syndrome (PAS) {317}  p. 95
+    primary caretaker {326}  p. 95
+    =====
+
+
+    C4P129
+    situated meaning, accomplishment, achievement, definition, action {145}  p. 96  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    fitness, parental {157}  p. 96
+    =====
+    primary caretaker {326}  p. 341  => n93
+    =====
+
+
+    C4P130
+    Morgan, Elizabeth {260}  p. 97
+    abscond or flee with child {389}  p. 97  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+
+
+    C4P131
+    constitutional rights {101}  p. 97  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    =====
+
+
+    C4P132
+    population {495}  p. 98  . . . . subentry of 
+           #493  ~> BIPOC (Black, Indigenous, and People of Color): (5 subentries)
+    =====
+
+
+    C4P136
+    supervised visitation, police station {498}  p. 99  . . . . subentry of 
+           #493  ~> BIPOC (Black, Indigenous, and People of Color): (5 subentries)
+    =====
+
+
+    C4P137
+    supervised visitation, police station {498}  p. 99  . . . . subentry of 
+           #493  ~> BIPOC (Black, Indigenous, and People of Color): (5 subentries)
+    =====
+    cursing out mother {517}  p. 100  . . . . subentry of 
+           #512  ~> antisocial behavior, fathers-': (10 subentries)
+    resisting arrest {522}  p. 100  . . . . subentry of 
+           #512  ~> antisocial behavior, fathers-': (10 subentries)
+    mothers, subjugation of {571}  p. 100  => n97
+    community, Orthodox Jewish {575}  p. 100  => n97
+    =====
+
+
+    C4P138
+    encopresis {505}  p. 100  . . . . subentry of 
+           #503  ~> psychological symptoms, children's manifestation: (8 subentries)
+    enuresis/bed wetting {506}  p. 100  . . . . subentry of 
+           #503  ~> psychological symptoms, children's manifestation: (8 subentries)
+    disrobing {507}  p. 100  . . . . subentry of 
+           #503  ~> psychological symptoms, children's manifestation: (8 subentries)
+    low self-esteem {508}  p. 100  . . . . subentry of 
+           #503  ~> psychological symptoms, children's manifestation: (8 subentries)
+    night terrors {509}  p. 100  . . . . subentry of 
+           #503  ~> psychological symptoms, children's manifestation: (8 subentries)
+    screaming in sleep {510}  p. 100  . . . . subentry of 
+           #503  ~> psychological symptoms, children's manifestation: (8 subentries)
+    sexually acting out {511}  p. 100  . . . . subentry of 
+           #503  ~> psychological symptoms, children's manifestation: (8 subentries)
+    cocaine use {514}  p. 100  => n98  . . . . subentry of 
+           #512  ~> antisocial behavior, fathers-': (10 subentries)
+    disorderly conduct {518}  p. 100  . . . . subentry of 
+           #512  ~> antisocial behavior, fathers-': (10 subentries)
+    DUI {519}  p. 100  . . . . subentry of 
+           #512  ~> antisocial behavior, fathers-': (10 subentries)
+    =====
+
+
+    C4P142
+    alcohol abuse {513}  p. 102  . . . . subentry of 
+           #512  ~> antisocial behavior, fathers-': (10 subentries)
+    cocaine use {514}  p. 102  . . . . subentry of 
+           #512  ~> antisocial behavior, fathers-': (10 subentries)
+    =====
+
+
+    C4P147
+    night terrors {509}  p. 104  . . . . subentry of 
+           #503  ~> psychological symptoms, children's manifestation: (8 subentries)
+    =====
+
+
+    C4P151
+    incarceration: (2 subentries) {499}  p. 105
+    ad hoc social networks, bred by family court {552}  p. 105
+    =====
+
+
+    C4P158
+    visits {524}  p. 108  . . . . subentry of 
+           #523  ~> ransom: (4 subentries)
+    =====
+
+
+    C4P160
+    visits {524}  p. 109  . . . . subentry of 
+           #523  ~> ransom: (4 subentries)
+    court order therapist {527}  p. 109  . . . . subentry of 
+           #523  ~> ransom: (4 subentries)
+    =====
+
+
+    C4P162
+    gaslighting {54}  p. 110
+    =====
+
+
+    C4P163
+    supervised visitation {377}  p. 111  => n116
+    ``modern day lynching'' {528}  p. 111
+    =====
+
+
+    C5P1
+    Lidman and Hollingsworth (1998) {77}  p. 112  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    =====
+
+
+    C5P6
+    Pennington and Woods (1990) {88}  p. 113  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    :Legal Issues and Legal Options in Civil Child Sexual Abuse Cases {227}  p. 113
+    National Center on Women and Family Law {271}  p. 113
+    Pennington, H. Joan {321}  p. 113
+    =====
+    National Center on Women and Family Law {271}  p. 344  => n3
+    =====
+
+
+    C5P7
+    Massachusetts Senate Committee on Post Audit and Oversight {240}  p. 114
+    =====
+
+
+    C5P8
+    Ducote, Richard {119}  p. 114
+    :Loyola Journal of Public Interest Law {231}  p. 114
+    =====
+
+
+    C5P9
+    Ducote, Richard {119}  p. 114
+    =====
+
+
+    C5P10
+    Ducote, Richard {119}  p. 114
+    =====
+
+
+    C5P11
+    Ducote, Richard {119}  p. 114
+    =====
+
+
+    C5P12
+    Ducote, Richard {119}  p. 114
+    =====
+
+
+    C5P13
+    Ducote, Richard {119}  p. 114
+    =====
+
+
+    C5P14
+    Ducote, Richard {119}  p. 114
+    =====
+    immunity {194}  p. 115
+    =====
+
+
+    C5P15
+    Ducote, Richard {119}  p. 114
+    =====
+    child neglect, charge of {533}  p. 115  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+    Child Abuse Prevention and Treatment Act of 1974 (CAPTA) {48}  p. 116
+    =====
+
+
+    C5P16
+    Minnesota Office of the Legislative Auditor, Program Evaluation Division {256}  p. 116
+    =====
+
+
+    C5P18
+    Lidman and Hollingsworth (1998) {77}  p. 116  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    =====
+
+
+    C5P19
+    appellate review {12}  p. 117
+    =====
+    child neglect, charge of {533}  p. 344  => n8  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+    supervised visitation {377}  p. 345  => n8
+    =====
+
+
+    C5P22
+    Meehan (1997) {131}  p. 117  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    sociology {364}  p. 117
+    =====
+
+
+    C5P23
+    Meehan (1997) {131}  p. 117  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    =====
+
+
+    C5P24
+    Meehan (1997) {131}  p. 117  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    =====
+    ``contractual'' use of records {135}  p. 118  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    situated meaning, accomplishment, achievement, definition, action {145}  p. 118  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+    Garfinkel and Bittner (1967) {125}  p. 345  => n9  . . . . subentry of 
+           #123  ~> ethnomethodological studies: (9 subentries)
+    ``contractual'' use of records {135}  p. 345  => n9  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C5P30
+    imminent danger or risk of harm {46}  p. 120  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    children who are suicidal {373}  p. 120  . . . . subentry of 
+           #372  ~> suicide: (2 subentries)
+    =====
+
+
+    C5P33
+    imminent danger or risk of harm {46}  p. 345  => n14  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    =====
+
+
+    C5P38
+    flight risk {158}  p. 122
+    =====
+
+
+    C5P40
+    Millon Clinical Multiaxial Inventory (MCMI) {254}  p. 123
+    =====
+
+
+    C5P42
+    ``contractual'' use of records {135}  p. 124  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C5P43
+    best interests of {44}  p. 124  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    =====
+
+
+    C5P44
+    child neglect, charge of {533}  p. 124  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+    Legal Aid Society {226}  p. 345  => n25
+    =====
+
+
+    C5P45
+    Schecter, Marjori {344}  p. 346  => n27
+    =====
+
+
+    C5P46
+    Brooklyn Family Court {27}  p. 125
+    =====
+
+
+    C5P49
+    Walker, Lenore {412}  p. 346  => n33
+    =====
+
+
+    C5P51
+    colposcopic examination {106}  p. 127
+    =====
+
+
+    C5P53
+    Gardner, Richard A. {166}  p. 127
+    Parental Alienation Syndrome (PAS) {317}  p. 127
+    =====
+
+
+    C5P54
+    Gardner, Richard A. {166}  p. 127
+    Parental Alienation Syndrome (PAS) {317}  p. 127
+    =====
+
+
+    C5P55
+    Gardner, Richard A. {166}  p. 127
+    =====
+
+
+    C5P57
+    appellate review {12}  p. 128
+    =====
+
+
+    C5P58
+    McDonald, Michael, O. {245}  p. 128
+    =====
+
+
+    C5P59
+    ethics {122}  p. 346  => n43
+    communication {148}  p. 346  => n43  . . . . subentry of 
+           #147  ~> ex parte (without the knowledge of the other party): (4 subentries)
+    =====
+
+
+    C5P61
+    :Lexington Herald-Leader {228}  p. 129
+    =====
+
+
+    C5P62
+    appellate review {12}  p. 130
+    =====
+
+
+    C5P66
+    appellate review {12}  p. 131
+    =====
+    Grievance Committee for the Tenth Judicial District {297}  p. 346  => n51  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    =====
+
+
+    C5P67
+    Grievance Committee for the Tenth Judicial District {297}  p. 131  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    =====
+    Moran, Grace {259}  p. 346  => n52
+    Grievance Committee for the Tenth Judicial District {297}  p. 346  => n52  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    =====
+
+
+    C5P68
+    Grievance Committee for the Tenth Judicial District {297}  p. 346  => n53  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    =====
+
+
+    C5P72
+    Krause, Alanna {223}  p. 132
+    =====
+
+
+    C5P74
+    immunity {194}  p. 132
+    =====
+
+
+    C5P76
+    best interests of {44}  p. 133  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    =====
+
+
+    C5P78
+    appellate review {12}  p. 134
+    =====
+
+
+    C5P79
+    ``Baby M'' case {18}  p. 134
+    =====
+
+
+    C5P80
+    ``Baby M'' case {18}  p. 134
+    =====
+
+
+    C5P82
+    Displaced Mother Syndrome {115}  p. 135
+    =====
+
+
+    C5P83
+    Displaced Mother Syndrome {115}  p. 135
+    =====
+
+
+    C5P87
+    anorexia nervosa {11}  p. 136
+    =====
+
+
+    C5P88
+    Child Fatality Review Panel {287}  p. 136  . . . . subentry of 
+           #285  ~> New York, city of: (5 subentries)
+    =====
+
+
+    C5P89
+    situated meaning, accomplishment, achievement, definition, action {145}  p. 136  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C5P91
+    confidentiality {108}  p. 137
+    =====
+
+
+    C5P95
+    :New York Newsday {306}  p. 138
+    =====
+    appellate review {12}  p. 347  => n60
+    imminent danger or risk of harm {46}  p. 347  => n60  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    :New York Law Journal {304}  p. 347  => n60
+    =====
+
+
+    C5P96
+    infanticide, mothers who commit {196}  p. 139
+    =====
+    Green, Arthur {177}  p. 347  => n61
+    child neglect, charge of {533}  p. 347  => n61  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C5P97
+    infanticide, mothers who commit {196}  p. 139
+    Warren, William {414}  p. 139
+    =====
+
+
+    C5P98
+    infanticide, mothers who commit {196}  p. 139
+    =====
+    Strand, Virginia {371}  p. 347  => n63
+    =====
+
+
+    C5P99
+    infanticide, mothers who commit {196}  p. 139
+    =====
+
+
+    C5P100
+    Buckmaster, Henrietta {32}  p. 139
+    infanticide, mothers who commit {196}  p. 139
+    :National Law Journal {275}  p. 139
+    pogroms, medieval Jewish {323}  p. 139
+    slaves, American {356}  p. 139
+    =====
+
+
+    C5P104
+    situated meaning, accomplishment, achievement, definition, action {145}  p. 140  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C5P108
+    conviction for criminal endangerment of welfare of child {515}  p. 142  . . . . subentry of 
+           #512  ~> antisocial behavior, fathers-': (10 subentries)
+    =====
+
+
+    C5P109
+    resisting arrest {522}  p. 142  . . . . subentry of 
+           #512  ~> antisocial behavior, fathers-': (10 subentries)
+    =====
+
+
+    C5P110
+    impulse control, lack of {521}  p. 142  . . . . subentry of 
+           #512  ~> antisocial behavior, fathers-': (10 subentries)
+    =====
+
+
+    C5P112
+    ``Diagnostic Impression'' chart {114}  p. 143
+    =====
+
+
+    C5P113
+    cursing child {516}  p. 143  . . . . subentry of 
+           #512  ~> antisocial behavior, fathers-': (10 subentries)
+    =====
+
+
+    C5P114
+    Woods-lamp {529}  p. 144
+    =====
+
+
+    C6P1
+    practical accomplishment {141}  p. 145  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C6P3
+    welfare of {47}  p. 146  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    Kafkaesque, court experience as {215}  p. 146
+    child neglect, charge of {533}  p. 146  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C6P14
+    supervised visitation {377}  p. 148
+    =====
+
+
+    C6P17
+    search warrant {346}  p. 149
+    =====
+
+
+    C6P18
+    child neglect, charge of {533}  p. 149  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C6P19
+    child neglect, charge of {533}  p. 149  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+    running record {144}  p. 150  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C6P21
+    Billings, Lucy {24}  p. 150
+    Bronx Legal Services {29}  p. 150
+    U.S. House Subcommittee on Select Education of the Committee on Education and Labor {402}  p. 150
+    =====
+    U.S. House Subcommittee on Select Education of the Committee on Education and Labor {402}  p. 348  => n1
+    =====
+
+
+    C6P22
+    confidentiality {108}  p. 151
+    Child Welfare Administration (CWA) {288}  p. 151  . . . . subentry of 
+           #285  ~> New York, city of: (5 subentries)
+    =====
+
+
+    C6P23
+    confidentiality {108}  p. 151
+    =====
+
+
+    C6P25
+    New Jersey Administrative Code {282}  p. 348  => n3
+    =====
+
+
+    C6P26
+    supervised visitation {377}  p. 152
+    =====
+
+
+    C6P29
+    child neglect, charge of {533}  p. 153  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C6P31
+    supervised visitation {377}  p. 154
+    abscond or flee with child {389}  p. 154  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+
+
+    C6P32
+    supervised visitation {377}  p. 154
+    =====
+
+
+    C6P33
+    ``surprise'' (unannounced) visits {537}  p. 154  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C6P34
+    flight risk {158}  p. 155
+    child neglect, charge of {533}  p. 155  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C6P36
+    Billings, Lucy {24}  p. 155
+    =====
+
+
+    C6P37
+    Illinois Department of Children and Family Services {193}  p. 155
+    Jane Addams College of Social Work of the University of Illinois {200}  p. 155
+    Jane Addams College of Social Work of the University of Illinois {200}  p. 155
+    Lundy, Marta {233}  p. 155
+    =====
+
+
+    C6P38
+    Lundy, Marta {233}  p. 348  => n8
+    Massat, Carol Rippey {241}  p. 348  => n8
+    National Center on Child Abuse and Neglect (NCCAN) {269}  p. 348  => n7
+    =====
+
+
+    C6P41
+    mandatory reporting laws {235}  p. 156
+    =====
+
+
+    C6P42
+    Jane Addams College of Social Work of the University of Illinois {200}  p. 348  => n10
+    =====
+
+
+    C6P43
+    Burgasser, George {33}  p. 156
+    Massat, Carol Rippey {241}  p. 156
+    Child Exploitation and Obscenity Section {399}  p. 156  . . . . subentry of 
+           #398  ~> U.S. Department of Justice: (3 subentries)
+    =====
+    Child Abuse Prevention and Treatment Act of 1974 (CAPTA) {48}  p. 157
+    National Center on Child Abuse and Neglect (NCCAN) {269}  p. 157
+    =====
+
+
+    C6P44
+    Massat, Carol Rippey {241}  p. 157
+    =====
+
+
+    C6P45
+    Harman, Rosalie {182}  p. 157
+    :New York Post {307}  p. 157
+    =====
+
+
+    C6P46
+    anorexia nervosa {11}  p. 157
+    Harman, Rosalie {182}  p. 157
+    =====
+    Harman, Rosalie {182}  p. 348  => n13
+    =====
+
+
+    C6P47
+    Paterson, David A. {319}  p. 158
+    =====
+
+
+    C6P48
+    Paterson, David A. {319}  p. 158
+    Radek, Lee J. {333}  p. 158
+    Public Integrity Division {400}  p. 158  . . . . subentry of 
+           #398  ~> U.S. Department of Justice: (3 subentries)
+    =====
+    Public Integrity Division {400}  p. 348  => n14  . . . . subentry of 
+           #398  ~> U.S. Department of Justice: (3 subentries)
+    =====
+
+
+    C6P49
+    flight risk {158}  p. 159
+    supervised visitation {377}  p. 159
+    =====
+
+
+    C6P53
+    supervised visitation {377}  p. 160
+    =====
+
+
+    C6P55
+    child neglect, charge of {533}  p. 160  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C6P56
+    children who are suicidal {373}  p. 161  . . . . subentry of 
+           #372  ~> suicide: (2 subentries)
+    mothers who commit {374}  p. 161  . . . . subentry of 
+           #372  ~> suicide: (2 subentries)
+    =====
+
+
+    C6P57
+    ``contractual'' use of records {135}  p. 161  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C6P60
+    immunity {194}  p. 162
+    =====
+
+
+    C6P61
+    child neglect, charge of {533}  p. 162  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C6P62
+    imminent danger or risk of harm {46}  p. 162  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    =====
+
+
+    C6P64
+    imminent danger or risk of harm {46}  p. 163  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    =====
+
+
+    C6P67
+    fitness, parental {157}  p. 164
+    =====
+
+
+    C6P68
+    child neglect, charge of {533}  p. 349  => n27  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C6P70
+    community, Orthodox Jewish {575}  p. 165
+    =====
+
+
+    C6P73
+    domestic violence {118}  p. 165
+    =====
+
+
+    C6P75
+    Brooklyn Family Court {27}  p. 166
+    child neglect, charge of {533}  p. 166  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C6P81
+    imminent danger or risk of harm {46}  p. 167  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    supervised visitation {377}  p. 167
+    =====
+    running record {144}  p. 349  => n34  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C6P82
+    supervised visitation {377}  p. 167
+    =====
+
+
+    C6P85
+    running record {144}  p. 168  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    fitness, parental {157}  p. 168
+    =====
+
+
+    C6P88
+    termination of parental rights {382}  p. 168
+    =====
+
+
+    C6P89
+    child neglect, charge of {533}  p. 169  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C6P92
+    order {151}  p. 349  => n36  . . . . subentry of 
+           #147  ~> ex parte (without the knowledge of the other party): (4 subentries)
+    =====
+
+
+    C6P94
+    supervised visitation {377}  p. 170
+    =====
+    order {151}  p. 349  => n37  . . . . subentry of 
+           #147  ~> ex parte (without the knowledge of the other party): (4 subentries)
+    =====
+
+
+    C6P95
+    order {151}  p. 349  => n38  . . . . subentry of 
+           #147  ~> ex parte (without the knowledge of the other party): (4 subentries)
+    =====
+
+
+    C6P100
+    supervised visitation {377}  p. 171
+    =====
+    U.S. House Subcommittee on Select Education of the Committee on Education and Labor {402}  p. 349  => n39
+    =====
+
+
+    C6P104
+    running record {144}  p. 172  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C6P107
+    colposcopic examination {106}  p. 172
+    =====
+    sexually transmitted disease {349}  p. 173
+    =====
+
+
+    C6P108
+    pelvic inflammatory disease (PID) {320}  p. 173
+    =====
+
+
+    C6P110
+    sexually transmitted disease {349}  p. 174
+    =====
+
+
+    C6P111
+    U.S. House Subcommittee on Select Education of the Committee on Education and Labor {402}  p. 350  => n48
+    =====
+
+
+    C6P112
+    underground fugitive mothers {392}  p. 174  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+
+
+    C6P115
+    documentary method of interpretation {137}  p. 174  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C6P117
+    pelvic inflammatory disease (PID) {320}  p. 175
+    =====
+
+
+    C6P118
+    pelvic inflammatory disease (PID) {320}  p. 175
+    child neglect, charge of {533}  p. 175  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C6P120
+    ``contractual'' use of records {135}  p. 176  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C6P124
+    ``gag'' order {163}  p. 177
+    hunger strike {189}  p. 177
+    :New York Newsday {306}  p. 177
+    =====
+
+
+    C6P126
+    infanticide, mothers who commit {196}  p. 350  => n54
+    =====
+
+
+    C6P130
+    Brooklyn Society for the Prevention of Cruelty to Children (BSPCC) {28}  p. 178
+    child neglect, charge of {533}  p. 178  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C6P132
+    Senate Committee on Crime and Correction {299}  p. 350  => n56  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    =====
+
+
+    C6P137
+    circumscribed psychosis {98}  p. 180
+    Green, Arthur {177}  p. 180
+    =====
+
+
+    C6P139
+    child neglect, charge of {533}  p. 181  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C6P142
+    best interests of {44}  p. 182  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    =====
+
+
+    C6P144
+    National Child Abuse and Neglect Data System (NCANDS) {272}  p. 182
+    :Child Maltreatment 2002 {273}  p. 182  . . . . subentry of 
+           #272  ~> National Child Abuse and Neglect Data System (NCANDS)
+    child fatalities {532}  p. 182  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+    National Child Abuse and Neglect Data System (NCANDS) {272}  p. 350  => n64
+    =====
+
+
+    C6P146
+    adjournments in contemplation of dismissal (ACD) {1}  p. 183  => n68
+    Office of Justice Programs {50}  p. 183
+    ``not established,'' finding of {572}  p. 183  => n68
+    =====
+
+
+    C6P147
+    child abuse, charge of {531}  p. 183  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    child neglect, charge of {533}  p. 183  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C6P148
+    protective mothers {496}  p. 184  . . . . subentry of 
+           #493  ~> BIPOC (Black, Indigenous, and People of Color): (5 subentries)
+    =====
+
+
+    C6P149
+    protective mothers {496}  p. 184  . . . . subentry of 
+           #493  ~> BIPOC (Black, Indigenous, and People of Color): (5 subentries)
+    documents, gratuitous statements {534}  p. 184  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+    psychopathological labels {497}  p. 185  => n70  . . . . subentry of 
+           #493  ~> BIPOC (Black, Indigenous, and People of Color): (5 subentries)
+    =====
+
+
+    C6P151
+    Department of Children and Family Services (DCFS) {51}  p. 185
+    socioeconomic status {363}  p. 185  . . . . subentry of 
+           #358  ~> social variables
+    =====
+
+
+    C6P153
+    hallucinations {52}  p. 186
+    =====
+
+
+    C6P156
+    Department of Children and Family Services (DCFS) {51}  p. 187
+    =====
+
+
+    C6P157
+    Department of Children and Family Services (DCFS) {51}  p. 187
+    =====
+
+
+    C6P158
+    Department of Children and Family Services (DCFS) {51}  p. 188
+    =====
+
+
+    C6P160
+    foster care, convenient segue toward transferring custody to father {535}  p. 189  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C6P162
+    supervised visitation {377}  p. 190  => n77
+    Visitation vagrancy {429}  p. 190
+    =====
+
+
+    C6P165
+    Munchausen Syndrome By Proxy (MSBP), factious disorder by proxy {265}  p. 191
+    =====
+
+
+    C6P166
+    Munchausen Syndrome By Proxy (MSBP), factious disorder by proxy {265}  p. 191
+    =====
+
+
+    C6P171
+    ward of the state, child becomes {573}  p. 193  => n85
+    =====
+    child abuse, charge of {531}  p. 194  => n85  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    child neglect, charge of {533}  p. 194  => n85  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    ``medical child abuse'' {538}  p. 194  => n85
+    =====
+
+
+    C6P172
+    ``medical child abuse'' {538}  p. 194
+    =====
+
+
+    C6P173
+    Due Process Clause, Fourteenth Amendment {539}  p. 194
+    =====
+
+
+    C6P174
+    jail, mothers thrown into {444}  p. 195
+    child neglect, charge of {533}  p. 195  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C6P175
+    gaslighting {54}  p. 195
+    modern day gulag {576}  p. 195
+    =====
+    Garland, Merrick {448}  p. 196
+    =====
+
+
+    C6P176
+    documents, gratuitous statements {534}  p. 196  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C6P178
+    Department of Children and Family Services (DCFS) {51}  p. 197
+    =====
+
+
+    C6P179
+    lawyers, retaliation from {540}  p. 197
+    =====
+
+
+    C6P181
+    lawyers, retaliation from {540}  p. 197
+    =====
+
+
+    C6P182
+    lawyers, retaliation from {540}  p. 197
+    =====
+    ``medical child abuse'' {538}  p. 198
+    =====
+
+
+    C6P183
+    gifted {45}  p. 198  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    =====
+
+
+    C6P184
+    night terrors {509}  p. 199  . . . . subentry of 
+           #503  ~> psychological symptoms, children's manifestation: (8 subentries)
+    =====
+
+
+    C6P185
+    racist views, system saturated by {551}  p. 199
+    =====
+
+
+    C6P186
+    foster placement {494}  p. 199  . . . . subentry of 
+           #493  ~> BIPOC (Black, Indigenous, and People of Color): (5 subentries)
+    ``medical child abuse'' {538}  p. 199
+    =====
+
+
+    C6P187
+    foster placement {494}  p. 199  . . . . subentry of 
+           #493  ~> BIPOC (Black, Indigenous, and People of Color): (5 subentries)
+    =====
+    foster placement {494}  p. 200  => n100  . . . . subentry of 
+           #493  ~> BIPOC (Black, Indigenous, and People of Color): (5 subentries)
+    enuresis/bed wetting {506}  p. 200  . . . . subentry of 
+           #503  ~> psychological symptoms, children's manifestation: (8 subentries)
+    night terrors {509}  p. 200  . . . . subentry of 
+           #503  ~> psychological symptoms, children's manifestation: (8 subentries)
+    community, Orthodox Jewish {575}  p. 200  => n100
+    =====
+
+
+    C6P188
+    ``medical child abuse'' {538}  p. 200
+    =====
+
+
+    C6P190
+    psychopathological labels {497}  p. 200  . . . . subentry of 
+           #493  ~> BIPOC (Black, Indigenous, and People of Color): (5 subentries)
+    =====
+
+
+    C6P192
+    ``medical child abuse'' {538}  p. 201
+    =====
+
+
+    C7P1
+    junk science {211}  p. 202
+    Bar Association {295}  p. 202  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    :New York Law Journal {304}  p. 202
+    Tippins, Timothy {385}  p. 202
+    =====
+
+
+    C7P3
+    running record {144}  p. 203  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    abscond or flee with child {389}  p. 203  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+
+
+    C7P6
+    Gould (1998) {72}  p. 204  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    :Conducting Scientifically Crafted Child Custody Evaluations {107}  p. 204
+    supervised visitation {377}  p. 204
+    =====
+
+
+    C7P7
+    reflexive {143}  p. 204  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C7P10
+    Gardner, Richard A. {166}  p. 205
+    Parental Alienation Syndrome (PAS) {317}  p. 205
+    =====
+
+
+    C7P11
+    Niggemyer, Kathleen {311}  p. 205
+    Parental Alienation Syndrome (PAS) {317}  p. 205
+    =====
+
+
+    C7P12
+    Presidential Task Force on Violence and the Family (1996) {9}  p. 205  . . . . subentry of 
+           #8  ~> American Psychological Association
+    ``Kelly-Frye'' rule {219}  p. 205
+    Parental Alienation Syndrome (PAS) {317}  p. 205
+    =====
+
+
+    C7P13
+    Parental Alienation Syndrome (PAS) {317}  p. 205
+    =====
+    American Psychiatric Association {7}  p. 206
+    Fink, Paul {156}  p. 206
+    Temple University {381}  p. 206
+    =====
+    appellate review {12}  p. 353  => n6
+    Parental Alienation Syndrome (PAS) {317}  p. 353  => n6
+    =====
+
+
+    C7P14
+    fitness, parental {157}  p. 206
+    Green, Arthur {177}  p. 206
+    =====
+
+
+    C7P15
+    Silbermann, Jacqueline {352}  p. 206
+    =====
+    Gardner, Richard A. {166}  p. 354  => n8
+    =====
+
+
+    C7P16
+    Silbermann, Jacqueline {352}  p. 206
+    =====
+
+
+    C7P17
+    Smith and Coukos (1997) {93}  p. 207  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Malicious Mother Syndrome (MMS) {234}  p. 207
+    Turkat, Ira {387}  p. 207
+    =====
+
+
+    C7P19
+    Solomonic choice {368}  p. 207
+    =====
+
+
+    C7P20
+    Corwin, Berliner, Goodman, Goodwin, and White (1987) {59}  p. 208  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    :Journal of Interpersonal Violence {203}  p. 208
+    =====
+    Corwin, Berliner, Goodman, Goodwin, and White (1987) {59}  p. 354  => n12  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    =====
+
+
+    C7P21
+    Summit, Roland {375}  p. 208
+    University of California, Los Angeles {394}  p. 208
+    University of California, Los Angeles {394}  p. 208
+    ``Child Abuse Accommodation Syndrome'' {541}  p. 208
+    =====
+    ``Child Abuse Accommodation Syndrome'' {541}  p. 354  => n13
+    =====
+
+
+    C7P22
+    Arizona Coalition against Domestic Violence {15}  p. 208
+    Palmer and Brown (1999) {86}  p. 208  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    =====
+
+
+    C7P25
+    Gardner, Richard A. {166}  p. 209
+    junk science {211}  p. 209
+    :True and False Accusations of Child Sexual Abuse <span style='font-style:normal'|(Gardner)</span| {386}  p. 209
+    =====
+    Gardner, Richard A. {166}  p. 354  => n16
+    =====
+
+
+    C7P26
+    Green, Arthur {177}  p. 209
+    Hanson, Graeme {181}  p. 209
+    :Journal of the American Academy of Child and Adolescent Psychiatry {204}  p. 209
+    University of California, San Francisco {395}  p. 209
+    University of California, San Francisco {395}  p. 209
+    =====
+
+
+    C7P27
+    Deblinger, Stauffer, and Steer (2001) {60}  p. 210  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    =====
+
+
+    C7P29
+    Gardner, Richard A. {166}  p. 354  => n21
+    =====
+
+
+    C7P34
+    Corwin, Berliner, Goodman, Goodwin, and White (1987) {59}  p. 211  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    =====
+
+
+    C7P35
+    Froning (1988) {71}  p. 212  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Faller, Kathleen Coulborn {152}  p. 212
+    :Journal of the American Academy of Child and Adolescent Psychiatry {204}  p. 212
+    =====
+    Faller, Kathleen Coulborn {152}  p. 354  => n25
+    =====
+
+
+    C7P39
+    junk science {211}  p. 213
+    =====
+
+
+    C7P42
+    circumscribed psychosis {98}  p. 214
+    Green, Arthur {177}  p. 214
+    =====
+
+
+    C7P44
+    circumscribed psychosis {98}  p. 214
+    fitness, parental {157}  p. 214
+    =====
+    Alonso, Carmen {2}  p. 354  => n28
+    Meltzer, Anne {248}  p. 354  => n28
+    U.S. House Subcommittee on Select Education of the Committee on Education and Labor {402}  p. 354  => n29
+    =====
+
+
+    C7P46
+    circumscribed psychosis {98}  p. 215
+    =====
+    Greenspan, Arthur {178}  p. 355  => n30
+    =====
+
+
+    C7P47
+    Assembly Committee on Judiciary {293}  p. 355  => n31  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    U.S. House Subcommittee on Select Education of the Committee on Education and Labor {402}  p. 355  => n31
+    =====
+
+
+    C7P48
+    Faller, Corwin, and Olafson (1993) {67}  p. 215  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Faller, Kathleen Coulborn {152}  p. 215
+    Kaplan, S., and S. Kaplan {217}  p. 215
+    =====
+    folie &agrave; deux {159}  p. 216
+    =====
+
+
+    C7P49
+    Faller, Kathleen Coulborn {152}  p. 215
+    =====
+    Faller, Corwin, and Olafson (1993) {67}  p. 216  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    folie &agrave; deux {159}  p. 216
+    =====
+    Faller, Kathleen Coulborn {152}  p. 355  => n33
+    =====
+
+
+    C7P50
+    folie &agrave; deux {159}  p. 216
+    Gardner, Richard A. {166}  p. 216
+    Parental Alienation Syndrome (PAS) {317}  p. 216
+    =====
+    Gardner, Richard A. {166}  p. 355  => n34
+    Parental Alienation Syndrome (PAS) {317}  p. 355  => n34
+    =====
+
+
+    C7P51
+    folie &agrave; deux {159}  p. 216
+    Gardner, Richard A. {166}  p. 216
+    =====
+
+
+    C7P52
+    folie &agrave; deux {159}  p. 216
+    Gardner, Richard A. {166}  p. 216
+    =====
+    folie &agrave; trois {160}  p. 217
+    =====
+    Faller, Kathleen Coulborn {152}  p. 355  => n36
+    =====
+
+
+    C7P53
+    folie &agrave; deux {159}  p. 216
+    Gardner, Richard A. {166}  p. 216
+    =====
+    Bruch, Carol {30}  p. 217
+    :Family Law Quarterly {153}  p. 217
+    =====
+    folie &agrave; deux {159}  p. 355  => n39
+    Gardner, Richard A. {166}  p. 355  => n39
+    =====
+
+
+    C7P54
+    Munchausen Syndrome By Proxy (MSBP), factious disorder by proxy {265}  p. 217
+    =====
+    Yudes, James {427}  p. 355  => n40
+    =====
+
+
+    C7P55
+    fitness, parental {157}  p. 217
+    Meadow, Roy {247}  p. 217
+    von Munchausen, Baron {411}  p. 217
+    =====
+
+
+    C7P57
+    Apolo, Julio {13}  p. 218
+    :International Pediatrics {197}  p. 218
+    Libow, J. A. {229}  p. 218
+    Schreier, Herbert A. {345}  p. 218
+    =====
+    Munchausen Syndrome By Proxy (MSBP), factious disorder by proxy {265}  p. 355  => n41
+    =====
+
+
+    C7P58
+    Sinanan, K., and H. Houghton {353}  p. 218
+    =====
+    Munchausen Syndrome By Proxy (MSBP), factious disorder by proxy {265}  p. 355  => n42
+    =====
+
+
+    C7P59
+    folie &agrave; deux {159}  p. 218
+    Gardner, Richard A. {166}  p. 218
+    :Issues in Child Abuse Accusations {199}  p. 218
+    Parental Alienation Syndrome (PAS) {317}  p. 218
+    Rand, Deirdre Conway {334}  p. 218
+    Sinanan, K., and H. Houghton {353}  p. 218
+    =====
+    Munchausen Syndrome By Proxy (MSBP), factious disorder by proxy {265}  p. 355  => n43;44
+    Rand, Deirdre Conway {334}  p. 355  => n43
+    =====
+
+
+    C7P60
+    Faller (2002) {66}  p. 219  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    Faller, Kathleen Coulborn {152}  p. 219
+    folie &agrave; deux {159}  p. 219
+    Seventh Annual Northern New England Conference on Child Maltreatment {347}  p. 219
+    University of Michigan School of Social Work {396}  p. 219
+    University of Michigan School of Social Work {396}  p. 219
+    =====
+    Faller, Kathleen Coulborn {152}  p. 355  => n45
+    =====
+
+
+    C7P61
+    Faller, Kathleen Coulborn {152}  p. 219
+    =====
+
+
+    C7P62
+    spina bifida {369}  p. 219
+    =====
+
+
+    C7P63
+    primary caretaker {326}  p. 219
+    =====
+
+
+    C7P70
+    Parental Alienation Syndrome (PAS) {317}  p. 223
+    =====
+
+
+    C7P71
+    supervised visitation {377}  p. 221
+    abscond or flee with child {389}  p. 221  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+    flight risk {158}  p. 356  => n50
+    abscond or flee with child {389}  p. 356  => n50  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+
+
+    C7P73
+    fitness, parental {157}  p. 222
+    =====
+
+
+    C7P75
+    National Alliance for the Mentally Ill {267}  p. 222
+    =====
+    National Alliance for the Mentally Ill {267}  p. 356  => n51
+    =====
+
+
+    C7P77
+    junk science {211}  p. 223
+    =====
+
+
+    C7P79
+    Gardner, Richard A. {166}  p. 223
+    =====
+
+
+    C7P80
+    Gardner, Richard A. {166}  p. 223
+    Parental Alienation Syndrome (PAS) {317}  p. 223
+    =====
+
+
+    C7P81
+    Gardner, Richard A. {166}  p. 223
+    =====
+    Gould (1998) {72}  p. 224  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    =====
+
+
+    C7P82
+    symbiosis {378}  p. 224
+    =====
+
+
+    C7P83
+    welfare of {47}  p. 225  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    =====
+
+
+    C7P86
+    fitness, parental {157}  p. 225
+    =====
+
+
+    C7P89
+    Green, Arthur {177}  p. 226
+    =====
+    Green, Arthur {177}  p. 356  => n58;59
+    Senate Committee on Crime and Correction {299}  p. 356  => n59  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    =====
+
+
+    C7P90
+    running record {144}  p. 227  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C7P91
+    supervised visitation {377}  p. 227
+    =====
+
+
+    C7P92
+    abscond or flee with child {389}  p. 227  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+    runner, profile of {391}  p. 228  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    runner, profile of {391}  p. 228  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+    slaves, American {356}  p. 356  => n61
+    =====
+
+
+    C7P96
+    appellate review {12}  p. 228
+    =====
+
+
+    C7P98
+    supervised visitation {377}  p. 229
+    =====
+
+
+    C7P99
+    junk science {211}  p. 229
+    Parental Alienation Syndrome (PAS) {317}  p. 229
+    =====
+
+
+    C7P105
+    child neglect, charge of {533}  p. 230  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+    fitness, parental {157}  p. 231
+    =====
+
+
+    C7P106
+    junk science {211}  p. 231
+    symbiosis {378}  p. 231
+    =====
+    Faller (1998) {64}  p. 232  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    =====
+
+
+    C7P107
+    Gardner, Richard A. {166}  p. 231
+    Parental Alienation Syndrome (PAS) {317}  p. 231
+    =====
+    Faller, Kathleen Coulborn {152}  p. 357  => n72
+    Gardner, Richard A. {166}  p. 357  => n72
+    Parental Alienation Syndrome (PAS) {317}  p. 357  => n72
+    =====
+
+
+    C7P108
+    Gardner, Richard A. {166}  p. 231
+    Parental Alienation Syndrome (PAS) {317}  p. 231
+    =====
+    Faller, Kathleen Coulborn {152}  p. 232
+    =====
+    Faller, Kathleen Coulborn {152}  p. 357  => n73
+    =====
+
+
+    C7P112
+    Rorschach {339}  p. 233
+    =====
+
+
+    C7P114
+    situated meaning, accomplishment, achievement, definition, action {145}  p. 234  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C7P117
+    Cobb County Bar Association {104}  p. 234
+    Ducote, Richard {119}  p. 234
+    Metro Atlanta Board of Mental Health Professionals {251}  p. 234
+    =====
+    Gardner, Richard A. {166}  p. 235
+    Parental Alienation Syndrome (PAS) {317}  p. 235
+    =====
+    Cobb County Bar Association {104}  p. 357  => n83
+    Metro Atlanta Board of Mental Health Professionals {251}  p. 357  => n83
+    =====
+
+
+    C7P119
+    abscond or flee with child {389}  p. 235  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+
+
+    C7P120
+    abscond or flee with child {389}  p. 235  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+
+
+    C7P125
+    colposcopic examination {106}  p. 237
+    =====
+
+
+    C7P127
+    Gardner, Richard A. {166}  p. 237
+    Parental Alienation Syndrome (PAS) {317}  p. 237
+    =====
+
+
+    C7P128
+    Parental Alienation Syndrome (PAS) {317}  p. 237
+    =====
+
+
+    C7P131
+    running record {144}  p. 239  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    supervised visitation {377}  p. 239
+    =====
+
+
+    C7P133
+    practical accomplishment {141}  p. 239  . . . . subentry of 
+           #133  ~> ethnomethodology: (12 subentries)
+    =====
+
+
+    C7P141
+    hypoglycemia {192}  p. 242
+    =====
+    New York Medical College {305}  p. 358  => n105
+    =====
+
+
+    C7P142
+    fitness, parental {157}  p. 242
+    =====
+
+
+    C7P143
+    Minnesota Multiphasic Personality Inventory (MMPI) {255}  p. 243
+    Rorschach {339}  p. 243
+    =====
+    Goodenough-Draw-A-Person test {172}  p. 358  => n108
+    Millon Clinical Multiaxial Inventory (MCMI) {254}  p. 358  => n108
+    Minnesota Multiphasic Personality Inventory (MMPI) {255}  p. 358  => n108
+    Rorschach {339}  p. 358  => n108
+    Wechsler Adult Intelligence Scale (WAIS) {415}  p. 358  => n108
+    =====
+
+
+    C7P145
+    supervised visitation {377}  p. 244
+    =====
+
+
+    C7P146
+    supervised visitation {377}  p. 244
+    =====
+
+
+    C7P147
+    supervised visitation {377}  p. 244
+    =====
+
+
+    C7P148
+    supervised visitation {377}  p. 244
+    =====
+
+
+    C7P150
+    :Geraldo Rivera Show {170}  p. 245
+    =====
+    Green, Arthur {177}  p. 358  => n111
+    =====
+
+
+    C7P151
+    Australian mothers, study of {16}  p. 358  => n112
+    =====
+
+
+    C7P152
+    junk science {211}  p. 246
+    Parental Alienation Syndrome (PAS) {317}  p. 246
+    ``Alienation (A)'' {546}  p. 246  . . . . subentry of 
+           #545  ~> Parental Alienation Syndrome (PAS), variants: (4 subentries)
+    Parental Alienation (PA) {548}  p. 246  . . . . subentry of 
+           #545  ~> Parental Alienation Syndrome (PAS), variants: (4 subentries)
+    ``Resist and Refuse Dynamics'' (R-RD) {549}  p. 246  . . . . subentry of 
+           #545  ~> Parental Alienation Syndrome (PAS), variants: (4 subentries)
+    =====
+
+
+    C7P158
+    emotional regression {504}  p. 249  . . . . subentry of 
+           #503  ~> psychological symptoms, children's manifestation: (8 subentries)
+    night terrors {509}  p. 249  . . . . subentry of 
+           #503  ~> psychological symptoms, children's manifestation: (8 subentries)
+    night terrors {509}  p. 249  . . . . subentry of 
+           #503  ~> psychological symptoms, children's manifestation: (8 subentries)
+    =====
+
+
+    C7P160
+    enmeshment {547}  p. 250  . . . . subentry of 
+           #545  ~> Parental Alienation Syndrome (PAS), variants: (4 subentries)
+    =====
+
+
+    C7P169
+    ``Resist and Refuse Dynamics'' (R-RD) {549}  p. 253  . . . . subentry of 
+           #545  ~> Parental Alienation Syndrome (PAS), variants: (4 subentries)
+    =====
+
+
+    C7P170
+    Parental Alienation (PA) {548}  p. 253  . . . . subentry of 
+           #545  ~> Parental Alienation Syndrome (PAS), variants: (4 subentries)
+    =====
+
+
+    C7P173
+    Parental Alienation Syndrome (PAS) {317}  p. 254
+    criminal undertones {550}  p. 254
+    =====
+
+
+    C7P174
+    Administration for Children's Services (ACS) {286}  p. 255  . . . . subentry of 
+           #285  ~> New York, city of: (5 subentries)
+    Parental Alienation Syndrome (PAS) {317}  p. 255
+    =====
+
+
+    C7P175
+    enuresis/bed wetting {506}  p. 255  . . . . subentry of 
+           #503  ~> psychological symptoms, children's manifestation: (8 subentries)
+    =====
+
+
+    C7P177
+    Parental Alienation Syndrome (PAS) {317}  p. 256
+    =====
+
+
+    C7P178
+    Administration for Children's Services (ACS) {286}  p. 256  . . . . subentry of 
+           #285  ~> New York, city of: (5 subentries)
+    =====
+
+
+    C7P179
+    Administration for Children's Services (ACS) {286}  p. 256  . . . . subentry of 
+           #285  ~> New York, city of: (5 subentries)
+    =====
+
+
+    C7P182
+    alcohol abuse {513}  p. 258  . . . . subentry of 
+           #512  ~> antisocial behavior, fathers-': (10 subentries)
+    cocaine use {514}  p. 258  . . . . subentry of 
+           #512  ~> antisocial behavior, fathers-': (10 subentries)
+    disorderly conduct {518}  p. 258  . . . . subentry of 
+           #512  ~> antisocial behavior, fathers-': (10 subentries)
+    DUI {519}  p. 258  . . . . subentry of 
+           #512  ~> antisocial behavior, fathers-': (10 subentries)
+    illegal possession of firearms {520}  p. 258  . . . . subentry of 
+           #512  ~> antisocial behavior, fathers-': (10 subentries)
+    resisting arrest {522}  p. 258  . . . . subentry of 
+           #512  ~> antisocial behavior, fathers-': (10 subentries)
+    =====
+
+
+    C8P1
+    ``moral earthquake {258}  p. 259
+    =====
+
+
+    C8P2
+    ``moral earthquake {258}  p. 259
+    =====
+
+
+    C8P3
+    Kafkaesque, court experience as {215}  p. 260
+    =====
+
+
+    C8P4
+    :New York Post {307}  p. 260
+    Pagnozzi, Amy {315}  p. 260
+    =====
+
+
+    C8P6
+    sociology {364}  p. 260
+    =====
+
+
+    C8P8
+    ``Hunted'' Syndrome {190}  p. 261
+    =====
+
+
+    C8P9
+    underground fugitive mothers {392}  p. 261  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+    Pennington, H. Joan {321}  p. 359  => n2
+    underground fugitive mothers {392}  p. 359  => n2  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+    Children's Rights of America {56}  p. 360  => n3
+    Rosenthal, Kathy {341}  p. 360  => n3
+    =====
+
+
+    C8P10
+    underground fugitive mothers {392}  p. 261  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+
+
+    C8P11
+    ``Hunted'' Syndrome {190}  p. 261
+    =====
+
+
+    C8P12
+    Jane Addams College of Social Work of the University of Illinois {200}  p. 262
+    Massat, Carol Rippey {241}  p. 262
+    =====
+    Massat, Carol Rippey {241}  p. 360  => n4
+    =====
+
+
+    C8P14
+    child neglect, charge of {533}  p. 262  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+    McKenna, Jeremiah B. {246}  p. 360  => n5
+    =====
+
+
+    C8P15
+    :New York Daily News {303}  p. 262  => n6
+    sexually transmitted disease {349}  p. 262
+    children who are suicidal {373}  p. 262  . . . . subentry of 
+           #372  ~> suicide: (2 subentries)
+    Herbert, Bob {574}  p. 262  => n6
+    =====
+    :New York Times {308}  p. 360  => n6
+    =====
+
+
+    C8P16
+    ``surprise'' (unannounced) visits {537}  p. 263  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+    ``surprise'' (unannounced) visits {537}  p. 360  => n8  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C8P18
+    flight risk {158}  p. 263
+    =====
+
+
+    C8P21
+    ``Lost Limb'' Syndrome {230}  p. 264
+    =====
+
+
+    C8P22
+    Gill, John Edward {171}  p. 264
+    =====
+
+
+    C8P27
+    order {151}  p. 266  . . . . subentry of 
+           #147  ~> ex parte (without the knowledge of the other party): (4 subentries)
+    =====
+
+
+    C8P28
+    ``Masochistic Mother'' Syndrome {239}  p. 266
+    =====
+
+
+    C8P29
+    infanticide, mothers who commit {196}  p. 266
+    mothers who commit {374}  p. 266  . . . . subentry of 
+           #372  ~> suicide: (2 subentries)
+    community, Orthodox Jewish {575}  p. 266
+    community, Orthodox Jewish {575}  p. 266  => n13
+    =====
+
+
+    C8P30
+    infanticide, mothers who commit {196}  p. 266
+    ``Masochistic Mother'' Syndrome {239}  p. 266
+    =====
+
+
+    C8P31
+    :New York Daily News {303}  p. 267
+    =====
+
+
+    C8P38
+    U.S. House Subcommittee on Select Education of the Committee on Education and Labor {402}  p. 360  => n17
+    =====
+
+
+    C8P40
+    supervised visitation {377}  p. 269
+    =====
+
+
+    C8P41
+    ``gag'' order {163}  p. 269
+    =====
+    ``gag'' order {163}  p. 361  => n19
+    =====
+
+
+    C8P42
+    vigilantism {406}  p. 270
+    =====
+
+
+    C8P51
+    order {151}  p. 272  . . . . subentry of 
+           #147  ~> ex parte (without the knowledge of the other party): (4 subentries)
+    supervised visitation {377}  p. 272
+    =====
+
+
+    C9P1
+    White House Women's Office {419}  p. 277
+    Zorza, Joan {428}  p. 277
+    =====
+    Civic Research Institute {99}  p. 361  => n1
+    :Sexual Assault Report {348}  p. 361  => n1
+    Zorza, Joan {428}  p. 361  => n1
+    =====
+
+
+    C9P3
+    English common law {121}  p. 278
+    :parens patriae {316}  p. 278
+    =====
+
+
+    C9P4
+    :parens patriae {316}  p. 278
+    =====
+
+
+    C9P5
+    best interests of {44}  p. 278  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    :parens patriae {316}  p. 278
+    =====
+
+
+    C9P6
+    :parens patriae {316}  p. 278
+    ``superparent'' {376}  p. 278
+    =====
+    welfare of {47}  p. 279  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    =====
+
+
+    C9P7
+    welfare of {47}  p. 279  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    =====
+
+
+    C9P8
+    Gardner, Richard A. {166}  p. 280
+    =====
+    American Psychiatric Association {7}  p. 361  => n9
+    =====
+
+
+    C9P9
+    Gardner, Richard A. {166}  p. 280
+    =====
+
+
+    C9P10
+    junk science {211}  p. 281
+    =====
+
+
+    C9P11
+    welfare of {47}  p. 281  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    =====
+
+
+    C9P12
+    constitutional rights {101}  p. 281  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    due process {102}  p. 281  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    Due Process Clause, Fourteenth Amendment {539}  p. 281
+    =====
+
+
+    C9P13
+    ``superparent'' {376}  p. 282
+    =====
+
+
+    C9P14
+    matrimonial bar {242}  p. 282
+    =====
+    rape prosecutions {335}  p. 361  => n12
+    =====
+
+
+    C9P15
+    American Bar Association, in cooperation with the Association of Family and Conciliation Courts 
+    (1988) {3}  p. 282
+    Winner, Karen {421}  p. 282
+    =====
+
+
+    C9P16
+    ``stepchild'' of the court system, family court as {370}  p. 283
+    =====
+
+
+    C9P17
+    fitness, parental {157}  p. 283
+    =====
+    junk science {211}  p. 284
+    =====
+
+
+    C9P18
+    constitutional rights {101}  p. 284  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    due process {102}  p. 284  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    ethics {122}  p. 284
+    =====
+
+
+    C10P2
+    flight risk {158}  p. 285
+    =====
+
+
+    C10P3
+    Child Abuse Prevention and Treatment Act of 1974 (CAPTA) {48}  p. 286
+    =====
+
+
+    C10P5
+    confidentiality {108}  p. 286
+    =====
+
+
+    C10P7
+    :in camera <span style='font-style:normal'|(in judge's chambers)</span| {195}  p. 287
+    =====
+
+
+    C10P10
+    best interests of {44}  p. 288  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    ``gag'' order {163}  p. 288
+    House Judiciary Committee (1992) {188}  p. 288
+    Pennington, H. Joan {321}  p. 288
+    =====
+    Judicial Training Act, The {210}  p. 362  => n4
+    Pennington, H. Joan {321}  p. 362  => n4
+    =====
+
+
+    C10P11
+    constitutional rights {101}  p. 288  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    =====
+    due process {102}  p. 289  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    =====
+
+
+    C10P12
+    :in camera <span style='font-style:normal'|(in judge's chambers)</span| {195}  p. 289
+    child neglect, charge of {533}  p. 289  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C10P13
+    off-the-record conferences {313}  p. 289
+    =====
+
+
+    C10P18
+    hearing {149}  p. 290  . . . . subentry of 
+           #147  ~> ex parte (without the knowledge of the other party): (4 subentries)
+    =====
+    order {151}  p. 362  => n5  . . . . subentry of 
+           #147  ~> ex parte (without the knowledge of the other party): (4 subentries)
+    =====
+
+
+    C10P20
+    order {151}  p. 291  . . . . subentry of 
+           #147  ~> ex parte (without the knowledge of the other party): (4 subentries)
+    =====
+    hearing {149}  p. 292  . . . . subentry of 
+           #147  ~> ex parte (without the knowledge of the other party): (4 subentries)
+    =====
+
+
+    C10P22
+    imminent danger or risk of harm {46}  p. 292  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    =====
+    Singer, Cecile {354}  p. 362  => n6
+    child neglect, charge of {533}  p. 362  => n6  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C10P23
+    constitutional rights {101}  p. 292  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    =====
+
+
+    C10P24
+    constitutional rights {101}  p. 292  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    =====
+    child neglect, charge of {533}  p. 293  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C10P26
+    Child Abuse Prevention and Treatment Act of 1974 (CAPTA) {48}  p. 294
+    immunity {194}  p. 294
+    =====
+
+
+    C10P27
+    welfare of {47}  p. 294  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    supervised visitation {377}  p. 294
+    =====
+
+
+    C10P30
+    best interests of {44}  p. 295  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    supervised visitation {377}  p. 295
+    =====
+
+
+    C10P31
+    women's and children's advocacy groups and organizations {36}  p. 296  . . . . subentry of 
+           #35  ~> California: (2 subentries)
+    commissions and professional associations {37}  p. 296  . . . . subentry of 
+           #35  ~> California: (2 subentries)
+    California state chapter {277}  p. 296  . . . . subentry of 
+           #276  ~> National Organization for Women (NOW)
+    =====
+
+
+    C10P35
+    abscond or flee with child {389}  p. 297  . . . . subentry of 
+           #388  ~> ``Underground Railroad'': (4 subentries)
+    =====
+
+
+    C10P39
+    Child Abuse Prevention and Treatment Act of 1974 (CAPTA) {48}  p. 298
+    =====
+    Child Abuse Prevention and Treatment Act of 1974 (CAPTA) {48}  p. 362  => n9
+    =====
+
+
+    C10P40
+    immunity {194}  p. 299
+    =====
+
+
+    C10P42
+    judicial hearing officer (JHO) {209}  p. 299
+    =====
+
+
+    C10P43
+    Deutsch, Leon S. {113}  p. 299
+    Paterson, David A. {319}  p. 299
+    =====
+    ethics {122}  p. 300
+    Mostofsky, Steven {261}  p. 300
+    =====
+    Deutsch, Leon S. {113}  p. 362  => n10
+    judicial hearing officer (JHO) {209}  p. 362  => n10
+    =====
+
+
+    C10P45
+    gender bias {169}  p. 300
+    =====
+
+
+    C10P46
+    appellate review {12}  p. 300
+    constitutional rights {101}  p. 300  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    =====
+    best interests of {44}  p. 301  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    McKenna, Jeremiah B. {246}  p. 301
+    Senate Committee on Crime and Correction {299}  p. 301  . . . . subentry of 
+           #291  ~> New York, state of: (10 subentries)
+    =====
+
+
+    C10P47
+    evidentiary hearing {146}  p. 301
+    =====
+
+
+    C10P48
+    constitutional rights {101}  p. 302  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    ``domestic relations'' exception {117}  p. 302
+    =====
+
+
+    C10P49
+    constitutional rights {101}  p. 302  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    due process {102}  p. 302  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    =====
+
+
+    C10P50
+    Gothard, Sol {175}  p. 303
+    Pennington, H. Joan {321}  p. 303
+    =====
+    Pennington, H. Joan {321}  p. 362  => n13
+    =====
+
+
+    C10P51
+    Quirk, Sherry {332}  p. 362  => n14
+    =====
+
+
+    C10P55
+    judicial hearing officer (JHO) {209}  p. 362  => n15
+    =====
+
+
+    C10P56
+    Child Abuse Prevention and Treatment Act of 1974 (CAPTA) {48}  p. 304
+    =====
+    Child Abuse Prevention and Treatment Act of 1974 (CAPTA) {48}  p. 362  => n16
+    =====
+    Burgasser, George {33}  p. 363  => n16
+    Massat, Carol Rippey {241}  p. 363  => n16
+    National Center on Child Abuse and Neglect (NCCAN) {269}  p. 363  => n16
+    Child Exploitation and Obscenity Section {399}  p. 363  => n16  . . . . subentry of 
+           #398  ~> U.S. Department of Justice: (3 subentries)
+    =====
+
+
+    C11P3
+    best interests of {44}  p. 305  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    =====
+    immunity {194}  p. 306
+    =====
+    immunity {194}  p. 363  => n1
+    =====
+
+
+    C11P4
+    immunity {194}  p. 306
+    =====
+    immunity {194}  p. 363  => n2
+    =====
+
+
+    C11P5
+    immunity {194}  p. 306
+    =====
+
+
+    C11P6
+    Code of Judicial Conduct {105}  p. 306
+    ethics {122}  p. 306
+    =====
+
+
+    C11P7
+    best interests of {44}  p. 307  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    =====
+    communication {148}  p. 308  . . . . subentry of 
+           #147  ~> ex parte (without the knowledge of the other party): (4 subentries)
+    =====
+    imminent danger or risk of harm {46}  p. 363  => n3  . . . . subentry of 
+           #43  ~> child: (4 subentries)
+    communication {148}  p. 363  => n4  . . . . subentry of 
+           #147  ~> ex parte (without the knowledge of the other party): (4 subentries)
+    =====
+
+
+    C11P17
+    appellate review {12}  p. 310
+    =====
+    appellate review {12}  p. 363  => n5
+    =====
+
+
+    C11P19
+    appellate review {12}  p. 311
+    =====
+
+
+    C11P22
+    :New York Law Journal {304}  p. 312
+    Tippins, Timothy {385}  p. 312
+    =====
+
+
+    C11P23
+    Melton, Petrila, Poythress, and Slobogin (1997) {82}  p. 312  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    =====
+
+
+    C11P24
+    ethics {122}  p. 313
+    junk science {211}  p. 313
+    Parental Alienation Syndrome (PAS) {317}  p. 313
+    =====
+
+
+    C11P25
+    Anderson, Karen {10}  p. 313
+    Fox, Meera {161}  p. 313
+    National Judicial Education Program {274}  p. 313
+    Valentine, Constance {404}  p. 313
+    =====
+
+
+    C11P26
+    Friedrich (1993) {70}  p. 313  . . . . subentry of 
+           #57  ~> child custody and child sexual abuse, professional literature on: (39 subentries)
+    :Violence Update {409}  p. 313
+    =====
+
+
+    C11P28
+    appellate review {12}  p. 314
+    =====
+
+
+    C11P29
+    Minnesota Multiphasic Personality Inventory (MMPI) {255}  p. 315
+    =====
+
+
+    C11P31
+    Wittmann, Jeffrey {422}  p. 315
+    =====
+
+
+    C11P32
+    ethics {122}  p. 364  => n13
+    =====
+
+
+    C11P35
+    ethics {122}  p. 316
+    communication {148}  p. 316  . . . . subentry of 
+           #147  ~> ex parte (without the knowledge of the other party): (4 subentries)
+    Green, Arthur {177}  p. 316
+    =====
+
+
+    C11P36
+    Tippins, Timothy {385}  p. 316
+    =====
+    voir dire {410}  p. 317
+    =====
+
+
+    C11P37
+    Martindale, David A. {238}  p. 317
+    =====
+
+
+    C11P39
+    Child Abuse Prevention and Treatment Act of 1974 (CAPTA) {48}  p. 318
+    Parental Alienation Syndrome (PAS) {317}  p. 318
+    =====
+
+
+    C11P40
+    Child Abuse Prevention and Treatment Act of 1974 (CAPTA) {48}  p. 318
+    =====
+
+
+    C11P42
+    National Association of Social Workers {268}  p. 319
+    child neglect, charge of {533}  p. 319  . . . . subentry of 
+           #530  ~> Child Protective Services (CPS): (7 subentries)
+    =====
+
+
+    C11P43
+    termination of parental rights {382}  p. 319
+    =====
+
+
+    C11P45
+    confidentiality {108}  p. 319
+    =====
+
+
+    C11P49
+    immunity {194}  p. 321
+    =====
+
+
+    C11P52
+    due process {102}  p. 322  . . . . subentry of 
+           #100  ~> civil rights: (3 subentries)
+    =====
+
+
+    C11P56
+    Edleson, Jeffrey L. {430}  p. 323
+    ``Greenbook'' {431}  p. 323
+    ``Greenbook'' {431}  p. 323  => n17;18
+    Schechter, Susan {492}  p. 323
+    =====
+
+
+    C11P57
+    Child Abuse Prevention and Treatment Act of 1974 (CAPTA) {48}  p. 323
+    =====
+    ``Greenbook'' {431}  p. 324  => n20
+    =====
+
+
+    C11P58
+    Child Abuse Prevention and Treatment Act of 1974 (CAPTA) {48}  p. 323
+    =====
+    ``Greenbook'' {431}  p. 324  => n21;22
+    =====
+
+
+    C11P59
+    ``Greenbook'' {431}  p. 324  => n23
+    =====
+    Salcido Carter, Lucy {558}  p. 364  => n23
+    =====
+
+
+    C11P60
+    ``Greenbook'' {431}  p. 325  => n24
+    =====
+
+
+    C11P61
+    ``cross-system dialogues'' {554}  p. 325
+    David and Lucille Packard Foundation {555}  p. 325
+    Edwards, Leonard {556}  p. 325
+    Lucero, Katherine {557}  p. 325
+    =====
+
+
+    C11P62
+    Edwards, Leonard {556}  p. 325
+    Lucero, Katherine {557}  p. 325
+    =====
+    ``Greenbook'' {431}  p. 326  => n25
+    =====
+
+
+    C11P63
+    Edleson, Jeffrey L. {430}  p. 326  => n26
+    ``Greenbook'' {431}  p. 326
+    ``cross-system dialogues'' {554}  p. 326
+    =====
+
+
+    C11P64
+    ``Greenbook'' {431}  p. 326
+    ``Greenbook'' {431}  p. 326  => n29
+    =====

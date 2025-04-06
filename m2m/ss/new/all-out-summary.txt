@@ -1,0 +1,578 @@
+
+1: 100Reporters = 470
+2: ``abstention'' doctrines = 544
+3: ad hoc social networks, bred by family court = 552
+4: adjournments in contemplation of dismissal (ACD) = 1
+5: Alonso, Carmen = 2
+6: Alsalem, Reem (UN Special Rapporteur) = 436
+7: American Academy of Pediatrics = 441
+8: American Bar Association, in cooperation with the Association of Family and Conciliation Courts 
+    (1988) = 3
+9: American Coalition for Fathers and Children (ACFC) = 4
+10: :American Journal of Public Health = 5
+11: :American Jurisprudence Proof of Facts = 6
+12: American Professional Society on the Abuse of Children (APSAC) = 457
+13: American Psychiatric Association = 7
+14: American Psychological Association = 8
+15: Presidential Task Force on Violence and the Family (1996) = 9 (American Psychological Association -> 8 = 1)
+16: ``an hysterical Hispanic'' = 542
+17: Anderson, Karen = 10
+18: anorexia nervosa = 11
+19: antisocial behavior, fathers-': (10 subentries) = 512
+20: alcohol abuse = 513 (antisoc -> 512 = 1)
+21: cocaine use = 514 (antisoc -> 512 = 2)
+22: conviction for criminal endangerment of welfare of child = 515 (antisoc -> 512 = 3)
+23: cursing child = 516 (antisoc -> 512 = 4)
+24: cursing out mother = 517 (antisoc -> 512 = 5)
+25: disorderly conduct = 518 (antisoc -> 512 = 6)
+26: DUI = 519 (antisoc -> 512 = 7)
+27: illegal possession of firearms = 520 (antisoc -> 512 = 8)
+28: impulse control, lack of = 521 (antisoc -> 512 = 9)
+29: resisting arrest = 522 (antisoc -> 512 = 10)
+30: Apolo, Julio = 13
+31: appellate review = 12
+32: Arizona Coalition against Domestic Violence = 15
+33: Armstrong, Louise = 14
+34: Australian mothers, study of = 16
+35: Aylsworth, John = 17
+36: ``Baby M'' case = 18
+37: Battered Mothers Custody Conference = 459
+38: :Battered Mothers Speak Out <span style='font-style:normal'|(November 2002)</span| = 20
+39: :Battered Mothers-' Testimony Project = 19
+40: Bell, Mariam = 21
+41: Childhelp USA = 22 (Bell, Mariam -> 21 = 1)
+42: ``System Failure Project'' = 23 (Bell, Mariam -> 21 = 2)
+43: :Beyond the Hostage Child: Toward Empowering Protective Parents = 476
+44: Billings, Lucy = 24
+45: BIPOC (Black, Indigenous, and People of Color): (5 subentries) = 493
+46: foster placement = 494 (BIPOC -> 493 = 1)
+47: population = 495 (BIPOC -> 493 = 2)
+48: protective mothers = 496 (BIPOC -> 493 = 3)
+49: psychopathological labels = 497 (BIPOC -> 493 = 4)
+50: supervised visitation, police station = 498 (BIPOC -> 493 = 5)
+51: Boston Phoenix (2003) = 25
+52: breast milk, to expel their = 484
+53: breastfeeding = 438
+54: Bronx Legal Services = 29
+55: Brooklyn Bar Association, matrimonial committee of = 26
+56: Brooklyn Family Court = 27
+57: Brooklyn Society for the Prevention of Cruelty to Children (BSPCC) = 28
+58: Bruch, Carol = 30
+59: BSPCC = 31
+60: Buckmaster, Henrietta = 32
+61: Burgasser, George = 33
+62: Burton, Randy = 34
+63: California: (2 subentries) = 35
+64: women's and children's advocacy groups and organizations = 36 (California -> 35 = 1)
+65: commissions and professional associations = 37 (California -> 35 = 2)
+66: California Protective Parents Association = 38
+67: ``Call for Inputs'' = 435
+68: Campbell, Bonnie = 39
+69: CAPTA = 40
+70: CARCO = 478
+71: Carner, Talia = 483
+72: Carpenter, McKenzie (Pittsburgh Post-Gazette) = 41
+73: Chesler, Phyllis = 42
+74: child: (4 subentries) = 43
+75: best interests of = 44 (child -> 43 = 1)
+76: gifted = 45 (child -> 43 = 2)
+77: imminent danger or risk of harm = 46 (child -> 43 = 3)
+78: welfare of = 47 (child -> 43 = 4)
+79: ``Child Abuse Accommodation Syndrome'' = 541
+80: Child Abuse Prevention and Treatment Act of 1974 (CAPTA) = 48
+81: Child At Risk Classification Office (CARCO) = 477
+82: child custody and child sexual abuse, professional literature on: (39 subentries) = 57
+83: Berliner (1988) = 58 (child custody... -> 57 = 1)
+84: Corwin, Berliner, Goodman, Goodwin, and White (1987) = 59 (child custody... -> 57 = 2)
+85: Deblinger, Stauffer, and Steer (2001) = 60 (child custody... -> 57 = 3)
+86: Denike, Huang, and Kachuk (1998) = 61 (child custody... -> 57 = 4)
+87: Dziech and Schudson (1989) = 62 (child custody... -> 57 = 5)
+88: Everson and Boat (1989) = 63 (child custody... -> 57 = 6)
+89: Faller (1998) = 64 (child custody... -> 57 = 7)
+90: Faller (2000) = 65 (child custody... -> 57 = 8)
+91: Faller (2002) = 66 (child custody... -> 57 = 9)
+92: Faller, Corwin, and Olafson (1993) = 67 (child custody... -> 57 = 10)
+93: Faller and DeVoe (1995) = 68 (child custody... -> 57 = 11)
+94: Finkelhor (1986) = 69 (child custody... -> 57 = 12)
+95: Friedrich (1993) = 70 (child custody... -> 57 = 13)
+96: Froning (1988) = 71 (child custody... -> 57 = 14)
+97: Gould (1998) = 72 (child custody... -> 57 = 15)
+98: Jones and McGraw (1987) = 73 (child custody... -> 57 = 16)
+99: Jones and Seig (1988) = 74 (child custody... -> 57 = 17)
+100: Keating (1998) = 75 (child custody... -> 57 = 18)
+101: Lawson and Chaffin (1992) = 76 (child custody... -> 57 = 19)
+102: Lidman and Hollingsworth (1998) = 77 (child custody... -> 57 = 20)
+103: Massat and Lundy (1998) = 78 (child custody... -> 57 = 21)
+104: Massat and Lundy (1999) = 79 (child custody... -> 57 = 22)
+105: McDonald (1998) = 80 (child custody... -> 57 = 23)
+106: McGraw and Smith (1992) = 81 (child custody... -> 57 = 24)
+107: Melton, Petrila, Poythress, and Slobogin (1997) = 82 (child custody... -> 57 = 25)
+108: Myers (1997) = 83 (child custody... -> 57 = 26)
+109: Neustein and Goetting (1999) = 84 (child custody... -> 57 = 27)
+110: Nicholson and Bulkley (1988) = 85 (child custody... -> 57 = 28)
+111: Palmer and Brown (1999) = 86 (child custody... -> 57 = 29)
+112: Penfold (1997) = 87 (child custody... -> 57 = 30)
+113: Pennington and Woods (1990) = 88 (child custody... -> 57 = 31)
+114: Quinn (1988) = 89 (child custody... -> 57 = 32)
+115: Russell (1983) = 90 (child custody... -> 57 = 33)
+116: Russell (1986) = 91 (child custody... -> 57 = 34)
+117: Schafran (1987) = 92 (child custody... -> 57 = 35)
+118: Smith and Coukos (1997) = 93 (child custody... -> 57 = 36)
+119: Stern and Oehme (2002) = 94 (child custody... -> 57 = 37)
+120: Thoennes, Pearson, and Tjaden (1988) = 95 (child custody... -> 57 = 38)
+121: Thoennes and Tjaden (1990) = 96 (child custody... -> 57 = 39)
+122: Child Protective Services (CPS): (7 subentries) = 530
+123: child abuse, charge of = 531 (Child Protective... -> 530 = 1)
+124: child fatalities = 532 (Child Protective... -> 530 = 2)
+125: child neglect, charge of = 533 (Child Protective... -> 530 = 3)
+126: documents, gratuitous statements = 534 (Child Protective... -> 530 = 4)
+127: foster care, convenient segue toward transferring custody to father = 535 (Child Protective... -> 530 = 5)
+128: home study = 536 (Child Protective... -> 530 = 6)
+129: ``surprise'' (unannounced) visits = 537 (Child Protective... -> 530 = 7)
+130: :Child Welfare = 97
+131: ChildhelpUSA = 49
+132: ``Children of the Underground'' = 55
+133: Children of Underground &mdash; FX 5 part docuseries = 479
+134: Children's Rights of America = 56
+135: circumscribed psychosis = 98
+136: Civic Research Institute = 99
+137: civil rights: (3 subentries) = 100
+138: constitutional rights = 101 (civil rights -> 100 = 1)
+139: due process = 102 (civil rights -> 100 = 2)
+140: equal protection = 103 (civil rights -> 100 = 3)
+141: Cobb County Bar Association = 104
+142: Code of Judicial Conduct = 105
+143: colposcopic examination = 106
+144: community, Orthodox Jewish = 575
+145: :Conducting Scientifically Crafted Child Custody Evaluations = 107
+146: confidentiality = 108
+147: contempt of court = 109
+148: CPS = 53
+149: criminal undertones = 550
+150: ``cross-system dialogues'' = 554
+151: Curran, William (1985) = 110
+152: Curtis, April = 111
+153: Custody Peace = 452
+154: Dale, Sebe = 112
+155: David and Lucille Packard Foundation = 555
+156: Department of Children and Family Services (DCFS) = 51
+157: Deutsch, Leon S. = 113
+158: ``Diagnostic Impression'' chart = 114
+159: Displaced Mother Syndrome = 115
+160: :Divorced from Justice <span style='font-style:normal'|(Winner)</span| = 116
+161: ``domestic relations'' exception = 117
+162: domestic violence = 118
+163: Douglas, Joshua (Family Law Specialist) = 569
+164: Ducote, Richard = 119
+165: Due Process Clause, Fourteenth Amendment = 539
+166: Dumas, Cindy = 434
+167: Durkheim, Emile = 120
+168: Edleson, Jeffrey L. = 430
+169: Edwards, Leonard = 556
+170: :Effective Intervention in Domestic Violence and Child Maltreatment: Guidelines for Policy and Practice = 553
+171: English common law = 121
+172: ethics = 122
+173: ethnomethodological studies: (9 subentries) = 123
+174: Garfinkel (1967) = 124 (ethnomethodological... -> 123 = 1)
+175: Garfinkel and Bittner (1967) = 125 (ethnomethodological... -> 123 = 2)
+176: Garfinkel and Sacks (1970) = 126 (ethnomethodological... -> 123 = 3)
+177: Heritage and Sefi (1992) = 127 (ethnomethodological... -> 123 = 4)
+178: Heritage and Watson (1979) = 128 (ethnomethodological... -> 123 = 5)
+179: Holstein and Gubrium (1995) = 129 (ethnomethodological... -> 123 = 6)
+180: Lynch (1997) = 130 (ethnomethodological... -> 123 = 7)
+181: Meehan (1997) = 131 (ethnomethodological... -> 123 = 8)
+182: Pollner (1979) = 132 (ethnomethodological... -> 123 = 9)
+183: ethnomethodology: (12 subentries) = 133
+184: ``accountable,'' ``publicly'' observable actions = 134 (ethnomethodology.. -> 133 = 1)
+185: ``contractual'' use of records = 135 (ethnomethodology.. -> 133 = 2)
+186: conversation analysis = 136 (ethnomethodology.. -> 133 = 3)
+187: documentary method of interpretation = 137 (ethnomethodology.. -> 133 = 4)
+188: explicative transactions = 138 (ethnomethodology.. -> 133 = 5)
+189: formulating = 139 (ethnomethodology.. -> 133 = 6)
+190: ``methodically'' ordered social practices = 140 (ethnomethodology.. -> 133 = 7)
+191: practical accomplishment = 141 (ethnomethodology.. -> 133 = 8)
+192: practical reasoning = 142 (ethnomethodology.. -> 133 = 9)
+193: reflexive = 143 (ethnomethodology.. -> 133 = 10)
+194: running record = 144 (ethnomethodology.. -> 133 = 11)
+195: situated meaning, accomplishment, achievement, definition, action = 145 (ethnomethodology.. -> 133 = 12)
+196: Etlin, Michele = 443
+197: evidentiary hearing = 146
+198: ex parte (without the knowledge of the other party): (4 subentries) = 147
+199: communication = 148 (ex parte.. -> 147 = 1)
+200: hearing = 149 (ex parte.. -> 147 = 2)
+201: motion = 150 (ex parte.. -> 147 = 3)
+202: order = 151 (ex parte.. -> 147 = 4)
+203: Faller, Kathleen Coulborn = 152
+204: :Family and Intimate Partner Violence Quarterly = 466
+205: Family Ecosystem = 543
+206: :Family Law Quarterly = 153
+207: Fathers-' Rights Association of Metro New York and Long Island = 154
+208: fathers-' rights groups = 155
+209: Fink, Paul = 156
+210: fitness, parental = 157
+211: flight risk = 158
+212: folie &agrave; deux = 159
+213: folie &agrave; trois = 160
+214: ``Forward Together: Multidisciplinary Perspectives on Protecting
+Children from Abuse'' = 461
+215: Fox, Meera = 161
+216: Fund for Modern Courts = 162
+217: ``gag'' order = 163
+218: Gallet, Jeffrey = 164
+219: Gandy, Kim = 165
+220: Gardner, Richard A. = 166
+221: Garfinkel, Harold = 167
+222: Garland, Merrick = 448
+223: gaslighting = 54
+224: Geffner, Robert = 168
+225: gender bias = 169
+226: Gentile, Olivia = 472
+227: George Washington University Law School = 463
+228: :Geraldo Rivera Show = 170
+229: Gesing, Ted = 480
+230: Gill, John Edward = 171
+231: Goldstein, Barry = 564
+232: :Good Housekeeping = 173
+233: Goodenough-Draw-A-Person test = 172
+234: Goodhue, Mary B. = 174
+235: Gothard, Sol = 175
+236: Grant, Anne = 474
+237: Grant, Lee = 176
+238: Green, Arthur = 177
+239: ``Greenbook'' = 431
+240: Greenspan, Arthur = 178
+241: Grossman, Louis = 179
+242: ``H.Con.Res.72'' = 486
+243: hallucinations = 52
+244: Hannah, Maureen Therese = 180
+245: Hanson, Graeme = 181
+246: Harman, Rosalie = 182
+247: Heit, Julia = 183
+248: Help Us Regain The Children (HURT) = 184
+249: Herbert, Bob = 574
+250: Hobson's choice = 185
+251: :Home Front, The <span style='font-style:normal'|(Armstrong)</span| = 186
+252: :Hostage Child, The <span style='font-style:normal'|(Rosen and Etlin)</span| = 187
+253: House Judiciary Committee (1992) = 188
+254: hunger strike = 189
+255: ``Hunted'' Syndrome = 190
+256: HURT = 191
+257: hypoglycemia = 192
+258: Illinois Department of Children and Family Services = 193
+259: immunity = 194
+260: :in camera <span style='font-style:normal'|(in judge's chambers)</span| = 195
+261: incarceration: (2 subentries) = 499
+262: incarcerating mothers = 500 (incarceration -> 499 = 1)
+263: threat of = 501 (incarceration -> 499 = 2)
+264: infanticide, mothers who commit = 196
+265: ``Infants are Being Penalized in the Name of Men's Rights'' (<i|The Washington Post</i|) = 563
+266: Institute on Violence, Abuse and Trauma (IVAT) = 432
+267: institutional violence = 445
+268: :International Pediatrics = 197
+269: intimate partner violence = 198
+270: :Issues in Child Abuse Accusations = 199
+271: jail, mothers thrown into = 444
+272: Jane Addams College of Social Work of the University of Illinois = 200
+273: Jensen, Rita Henley = 201
+274: :Journal of Child Sexual Abuse = 202
+275: :Journal of Family Trauma, Child Custody, and Child Development = 471
+276: :Journal of Interpersonal Violence = 203
+277: :Journal of the American Academy of Child and Adolescent Psychiatry = 204
+278: ``Judge Judy'' (Judith Scheindlin) = 205
+279: :Judges-' Journal = 206
+280: :Judicare = 207
+281: Judicial Council of California Administrative Office of the Courts (1990) = 208
+282: judicial hearing officer (JHO) = 209
+283: Judicial Training Act, The = 210
+284: junk science = 211
+285: Jurow, Abraham = 212
+286: Justice for Children = 213
+287: Justice Seekers, Inc. = 214
+288: Kafkaesque, court experience as = 215
+289: ``kangaroo courts'' = 216
+290: Kaplan, S., and S. Kaplan = 217
+291: :Katherine Crier Live = 218
+292: ``Kayden's Law'' = 568
+293: ``Keeping Children Safe From Family Violence Act'' (Kayden's Law, commonly referred to) = 488
+294: ``Kelly-Frye'' rule = 219
+295: Kidnapping, parental = 220
+296: King Solomon's Court = 449
+297: King, Eileen = 221
+298: Koppell, Oliver = 222
+299: Krause, Alanna = 223
+300: Kyra's Law = 491
+301: LaLonde, Virginia = 224
+302: Lasswell, Harold = 225
+303: lawyers, retaliation from = 540
+304: Legal Aid Society = 226
+305: :Legal Issues and Legal Options in Civil Child Sexual Abuse Cases = 227
+306: :Lexington Herald-Leader = 228
+307: Libow, J. A. = 229
+308: ``Lost Limb'' Syndrome = 230
+309: :Loyola Journal of Public Interest Law = 231
+310: :Loyola Law Review = 232
+311: Lucero, Katherine = 557
+312: Lundy, Marta = 233
+313: Malicious Mother Syndrome (MMS) = 234
+314: Mancuso, Kayden = 489
+315: mandatory reporting laws = 235
+316: Mandel, Steve = 236
+317: Marks, Bridget = 237
+318: Martindale, David A. = 238
+319: ``Masochistic Mother'' Syndrome = 239
+320: Massachusetts Senate Committee on Post Audit and Oversight = 240
+321: Massat, Carol Rippey = 241
+322: matrimonial bar = 242
+323: Mazierski, Kathryn = 243
+324: McAlary, Mike = 244
+325: McDonald, Michael, O. = 245
+326: McKenna, Jeremiah B. = 246
+327: McLean, Maralee = 567
+328: Meadow, Roy = 247
+329: ``medical child abuse'' = 538
+330: Meier, Joan S. = 464
+331: Meltzer, Anne = 248
+332: Men's Equality Now International Coalition = 249
+333: men's rights groups = 250
+334: Metro Atlanta Board of Mental Health Professionals = 251
+335: Middleton, Humberto = 252
+336: Miller, Liliane Heller = 253
+337: Millon Clinical Multiaxial Inventory (MCMI) = 254
+338: Minnesota Multiphasic Personality Inventory (MMPI) = 255
+339: Minnesota Office of the Legislative Auditor, Program Evaluation Division = 256
+340: MMPI = 257
+341: ``modern day lynching'' = 528
+342: ``moral earthquake = 258
+343: Moran, Grace = 259
+344: Morgan, Elizabeth = 260
+345: Mostofsky, Steven = 261
+346: Mother's Day press conference = 262
+347: :Mothers on Trial (Chesler) = 263
+348: Mothers ReVolution = 451
+349: mothers, subjugation of = 571
+350: ``Mothers-' Vote,'' ad hoc voting block = 485
+351: Moyer, Justin Wm = 562
+352: MSBP = 264
+353: multiple generations = 502
+354: Munchausen Syndrome By Proxy (MSBP), factious disorder by proxy = 265
+355: Nadler, Jerrold = 266
+356: National Alliance for the Mentally Ill = 267
+357: National Association of Social Workers = 268
+358: National Center for Protective Parents = 270
+359: National Center on Child Abuse and Neglect (NCCAN) = 269
+360: National Center on Women and Family Law = 271
+361: National Child Abuse and Neglect Data System (NCANDS) = 272
+362: :Child Maltreatment 2002 = 273 (National... -> 272 = 1)
+363: National Family Violence Law Center (NFVLC), at George Washington University Law School = 465
+364: National Judicial Education Program = 274
+365: :National Law Journal = 275
+366: National Organization for Women (NOW) = 276
+367: California state chapter = 277 (National Organization for... -> 276 = 1)
+368: New York state chapter = 278 (National Org... -> 276 = 2)
+369: National Safe Parents Organization = 450
+370: NCANDS = 280
+371: NCCAN = 279
+372: :New England Journal of Medicine = 281
+373: New Jersey Administrative Code = 282
+374: :New York & Company <span style='font-style:normal'|(WNYC public radio)</span| = 302
+375: :New York Daily News = 303
+376: :New York Law Journal = 304
+377: New York Medical College = 305
+378: :New York Newsday = 306
+379: :New York Post = 307
+380: :New York Times = 308
+381: :New York Woman = 309
+382: New York, city of: (5 subentries) = 285
+383: Administration for Children's Services (ACS) = 286 (New York, ci... -> 285 = 1)
+384: Child Fatality Review Panel = 287 (New York, ci... -> 285 = 2)
+385: Child Welfare Administration (CWA) = 288 (New York, ci... -> 285 = 3)
+386: Council = 289 (New York, ci... -> 285 = 4)
+387: Department of Consumer Affairs = 290 (New York, ci... -> 285 = 5)
+388: New York, state of: (10 subentries) = 291
+389: Assembly Committee on Children and Families = 292 (New York, st... -> 291 = 1)
+390: Assembly Committee on Judiciary = 293 (New York, st... -> 291 = 2)
+391: Assembly Subcommittee on Family Law = 294 (New York, st... -> 291 = 3)
+392: Bar Association = 295 (New York, st... -> 291 = 4)
+393: Commission on Judicial Conduct = 296 (New York, st... -> 291 = 5)
+394: Grievance Committee for the Tenth Judicial District = 297 (New York, st... -> 291 = 6)
+395: Senate Committee on Child Care = 298 (New York, st... -> 291 = 7)
+396: Senate Committee on Crime and Correction = 299 (New York, st... -> 291 = 8)
+397: Women's Office at the Archdiocese = 300 (New York, st... -> 291 = 9)
+398: Task Force on Gender Bias in the Courts = 301 (New York, st... -> 291 = 10)
+399: Newsom, Karen = 283
+400: :Newsweek = 284
+401: :Nicholson v. ACS = 310
+402: Niggemyer, Kathleen = 311
+403: ``not established,'' finding of = 572
+404: NOW = 312
+405: Nursing Infants = 439
+406: off-the-record conferences = 313
+407: Office of Justice Programs = 50
+408: One Mom's Battle = 455
+409: Ortiz, Felix = 314
+410: Pagnozzi, Amy = 315
+411: :parens patriae = 316
+412: Parental Alienation Syndrome (PAS) = 317
+413: Parental Alienation Syndrome (PAS), variants: (4 subentries) = 545
+414: ``Alienation (A)'' = 546 (par -> 545 = 1)
+415: enmeshment = 547 (par -> 545 = 2)
+416: Parental Alienation (PA) = 548 (par -> 545 = 3)
+417: ``Resist and Refuse Dynamics'' (R-RD) = 549 (par -> 545 = 4)
+418: parental kidnapping = 318
+419: Paterson, David A. = 319
+420: pelvic inflammatory disease (PID) = 320
+421: Pennington, H. Joan = 321
+422: :Pittsburgh Post-Gazette = 322
+423: pogroms, medieval Jewish = 323
+424: Pollack, Danielle = 566
+425: Port, Bob = 324
+426: presentment agencies = 325
+427: primary caretaker = 326
+428: pro se rebels = 327
+429: ``Protective Mothers, Endangered Children'' = 467
+430: protective parent, definition of = 328
+431: Providence Journal = 473
+432: pseudoscience = 329
+433: psychological symptoms, children's manifestation: (8 subentries) = 503
+434: emotional regression = 504 (psych -> 503 = 1)
+435: encopresis = 505 (psych -> 503 = 2)
+436: enuresis/bed wetting = 506 (psych -> 503 = 3)
+437: disrobing = 507 (psych -> 503 = 4)
+438: low self-esteem = 508 (psych -> 503 = 5)
+439: night terrors = 509 (psych -> 503 = 6)
+440: screaming in sleep = 510 (psych -> 503 = 7)
+441: sexually acting out = 511 (psych -> 503 = 8)
+442: quackery = 330
+443: Quindlen, Anna = 331
+444: Quirk, Sherry = 332
+445: racist views, system saturated by = 551
+446: Radek, Lee J. = 333
+447: Rand, Deirdre Conway = 334
+448: ransom: (4 subentries) = 523
+449: visits = 524 (ransom -> 523 = 1)
+450: custody evaluator report = 525 (ransom -> 523 = 2)
+451: court fees = 526 (ransom -> 523 = 3)
+452: court order therapist = 527 (ransom -> 523 = 4)
+453: rape prosecutions = 335
+454: Raskine, Jamie = 487
+455: Rayner, Lydia, on <i|60 Minutes</i| (CBS) = 336
+456: Reynolds, Barbara (USA Today) = 337
+457: :Rocking the Cradle of Sexual Politics (Armstrong) = 338
+458: Rorschach = 339
+459: Rosen, Leora = 475
+460: Rosen, Leora N., and Michelle Etlin = 340
+461: Rosenfeld, A. = 342
+462: Rosenthal, Kathy = 341
+463: Safe Kids International = 454
+464: Salcido Carter, Lucy = 558
+465: :Sally Jessy Raphael = 343
+466: Schechter, Susan = 492
+467: Schecter, Marjori = 344
+468: Schreier, Herbert A. = 345
+469: search warrant = 346
+470: Seventh Annual Northern New England Conference on Child Maltreatment = 347
+471: :Sexual Assault Report = 348
+472: sexually transmitted disease = 349
+473: Shoulson, Jay = 350
+474: Siena College = 351
+475: Silbermann, Jacqueline = 352
+476: Sinanan, K., and H. Houghton = 353
+477: Singer, Cecile = 354
+478: Singley, Dorrie Lyn = 355
+479: slaves, American = 356
+480: :Small Justice <span style='font-style:normal'|(prod. Waller)</span| = 357
+481: social variables = 358
+482: education = 359 (social varia... -> 358 = 1)
+483: ethnicity = 360 (social varia... -> 358 = 2)
+484: gender = 361 (social varia... -> 358 = 3)
+485: race = 362 (social varia... -> 358 = 4)
+486: socioeconomic status = 363 (social varia... -> 358 = 5)
+487: sociology = 364
+488: Marxist arguments = 365 (sociology -> 364 = 1)
+489: sociohistorical analysis of sexual abuse awareness = 366 (sociology -> 364 = 2)
+490: sociological inquiry = 367 (sociology -> 364 = 3)
+491: Sokol, Lori = 482
+492: Solomonic choice = 368
+493: spina bifida = 369
+494: Stahly, Geraldine Butts = 468
+495: ``stepchild'' of the court system, family court as = 370
+496: Story Syndicate = 481
+497: Strand, Virginia = 371
+498: suicide: (2 subentries) = 372
+499: children who are suicidal = 373 (suicide -> 372 = 1)
+500: mothers who commit = 374 (suicide -> 372 = 2)
+501: Summit, Roland = 375
+502: ``superparent'' = 376
+503: supervised visitation = 377
+504: symbiosis = 378
+505: ``System Failure Project'' = 379
+506: :Temple Law Review = 380
+507: Temple University = 381
+508: termination of parental rights = 382
+509: Texas Supreme Court Task Force on Judicial Appointments = 383
+510: The Leadership Council = 456
+511: The Women's Coalition = 453
+512: The Women's Coalition News & Views = 559
+513: Thompson, William = 384
+514: Tippins, Timothy = 385
+515: Tristate Family Law Conference, National Judicial College (University of Nevada) = 462
+516: :True and False Accusations of Child Sexual Abuse <span style='font-style:normal'|(Gardner)</span| = 386
+517: Turkat, Ira = 387
+518: ``turned around cases'' = 560
+519: U.S. Child Custody Outcomes in Cases Involving Parental Alienation and Abuse Allegations = 565
+520: U.S. Department of Justice: (3 subentries) = 398
+521: Child Exploitation and Obscenity Section = 399 (U.S. Departm... -> 398 = 1)
+522: Public Integrity Division = 400 (U.S. Departm... -> 398 = 2)
+523: Office on Violence Against Women (OVW) = 401 (U.S. Departm... -> 398 = 3)
+524: U.S. House Subcommittee on Select Education of the Committee on Education and Labor = 402
+525: :U.S. News and World Report = 403
+526: Udesky, Laurie = 469
+527: UN Special Rapporteur = 437
+528: ``Underground Railroad'': (4 subentries) = 388
+529: abscond or flee with child = 389 (``Undergroun... -> 388 = 1)
+530: history of modern-day underground movement = 390 (``Undergroun... -> 388 = 2)
+531: runner, profile of = 391 (``Undergroun... -> 388 = 3)
+532: underground fugitive mothers = 392 (``Undergroun... -> 388 = 4)
+533: United Nations Human Rights Office of the High Commissioner = 433
+534: United States Attorney General = 447
+535: United States Department of Justice = 446
+536: :University of Arkansas Little Rock Law Review = 393
+537: University of California Irvine (UCI) Initiative to End Family Violence = 460
+538: University of California, Los Angeles = 394
+539: University of California, San Francisco = 395
+540: University of Michigan School of Social Work = 396
+541: ``Urgent Reforms Needed to Protect Women and Children from Violence in Custody Battles'' = 561
+542: :USA Today = 397
+543: Valentine, Constance = 404
+544: VAWA (Violence Against Women Act) = 490
+545: ``vexatious'' litigant = 405
+546: vigilantism = 406
+547: :Village Voice = 407
+548: ``Violence and the Family'' = 408
+549: :Violence Update = 409
+550: Visitation vagrancy = 429
+551: voir dire = 410
+552: von Munchausen, Baron = 411
+553: Walker, Lenore = 412
+554: Waller, Garland = 413
+555: ward of the state, child becomes = 573
+556: Warren, William = 414
+557: :Washington Post, The = 442
+558: Wechsler Adult Intelligence Scale (WAIS) = 415
+559: Weinstein, Jack = 416
+560: Wellesley Centers for Women = 417
+561: White House Women's Office = 419
+562: Whitehead, Mary Beth = 418
+563: Wilson, Trish = 420
+564: Winner, Karen = 421
+565: Wittmann, Jeffrey = 422
+566: :Women on Trial <span style='font-style:normal'|(prod. Grant)</span| = 423
+567: Women's eNews = 424
+568: Women's Law Forum at Rutgers State University School of Law = 458
+569: Woods-lamp = 529
+570: World Health Organization = 440
+571: Yager, Faye = 425
+572: on <i|60 Minutes</i| (CBS) = 426 (Yager, Faye -> 425 = 1)
+573: York, Veronica = 570
+574: Yudes, James = 427
+575: Zorza, Joan = 428

@@ -1,0 +1,3698 @@
+
+
+Pr3 [F5P3]
+ page 30 (32)  ->
+ {118} "domestic-violence" +domestic;violence
+ {430} "Edleson-Jeffrey-L" Edleson;Jeffrey
+ {431} "Greenbook" +Greenbook
+ {492} "Schechter-Susan" +Schechter;Susan
+
+
+Pr4 [F5P4]
+ page 31 (33)  ->
+ {118} "domestic-violence" domestic;violence
+
+
+Pr5 [F5P5]
+ page 31 (33)  ->
+ {432} "Institute-on-Violence-Abuse-and-Trauma-IVAT" Institute;Violence;Abuse;Trauma;IVAT
+
+
+Pr8 [F5P8]
+ page 32 (35)  ->
+ {169} "gender-bias" gender;bias
+
+
+Pr9 [F5P9]
+ page 33 (35)  ->
+ {433} "United-Nations-Human-Rights-Office-of-the-High-Commissioner" United;Nations;Human;Rights;Office;High;Commissioner
+
+
+Pr12 [F5P12]
+ page 34 (36)  ->
+ {360} "ethnicity" ethnicity
+ {361} "gender" gender
+ {362} "race" race
+
+
+Pr13 [F5P13]
+ page 34 (36)  ->
+ {433} "United-Nations-Human-Rights-Office-of-the-High-Commissioner" United;Human;Rights;Office;High;Commissioner
+ {434} "Dumas-Cindy" Dumas;Cindy
+ {435} "Call-for-Inputs" Call;Inputs
+ {453} "The-Women's-Coalition" Coalition
+
+
+Pr14 [F5P15]
+ page 35 (37)  ->
+ {169} "gender-bias" gender;bias
+
+
+Pr15 [F5P16]
+ page 35 (37)  ->
+ {436} "Alsalem-Reem-UN-Special-Rapporteur" Alsalem;Reem;Special;Rapporteur
+
+
+Pr16 [F5P17]
+ page 35 (38)  ->
+ {439} "Nursing-Infants" Nursing;Infants
+
+
+Pr18 [F5P19]
+ page 36 (38)  ->
+ {438} "breastfeeding" breastfeeding
+ {440} "World-Health-Organization" World;Health;Organization
+ {441} "American-Academy-of-Pediatrics" American;Academy;Pediatrics
+
+
+Pr19 [F5P20]
+ page 37 (39)  ->
+
+
+Pr20 [F5P21]
+ page 37 (39)  ->
+ {442} "Washington-Post-The" Washington;Post
+ {443} "Etlin-Michele" Etlin
+
+
+Pr21 [F5P22]
+ page 37 (40)  ->
+ {444} "jail-mothers-thrown-into" jail;mothers
+
+
+Pr22 [F5P23]
+ page 38 (40)  ->
+ {444} "jail-mothers-thrown-into" jail;mothers;thrown;into
+ {501} "threat-of" threat
+
+
+Pr23 [F5P24]
+ page 38 (40)  ->
+ {444} "jail-mothers-thrown-into" jail;mothers;thrown;into
+ {445} "institutional-violence" institutional;violence
+
+
+Pr24 [F5P25]
+ page 38 (40)  ->
+ {246} "McKenna-Jeremiah-B" McKenna;Jeremiah
+ {446} "United-States-Department-of-Justice" United;States;Department;Justice
+ {447} "United-States-Attorney-General" United;States;Attorney;General
+ {448} "Garland-Merrick" Garland
+
+
+Pr25 [F5P26]
+ page 39 (41)  ->
+ {449} "King-Solomon's-Court" King;Court
+
+
+Pr28 [F5P29]
+ page 40 (42)  ->
+ {38} "California-Protective-Parents-Association" Protective;Parents;Association
+
+
+Pr29 [F5P30]
+ page 40 (42)  ->
+ {328} "protective-parent-definition-of" protective;parent
+ {457} "American-Professional-Society-on-the-Abuse-of-Children-APSAC" American;Professional;Society;Abuse;Children;APSAC
+
+
+Pr30 [F5P31]
+ page 41 (43)  ->
+ {270} "National-Center-for-Protective-Parents" National;Center;Protective;Parents
+ {321} "Pennington-H-Joan" Pennington;Joan
+ {458} "Women's-Law-Forum-at-Rutgers-State-University-School-of-Law" Forum;Rutgers;State;University;School
+
+
+Pr31 [F5P32]
+ page 41 (43)  ->
+ {180} "Hannah-Maureen-Therese" Hannah;Therese
+ {351} "Siena-College" Siena;College
+ {459} "Battered-Mothers-Custody-Conference" Battered;Mothers;Custody;Conference
+ {460} "University-of-California-Irvine-UCI-Initiative-to-End-Family-Violence" University;California;Irvine;Initiative;Family;Violence
+
+
+Pr32 [F5P33]
+ page 41 (44)  ->
+ {462} "Tristate-Family-Law-Conference-National-Judicial-College-University-of-Nevada" Family;Conference;National;College;University
+
+
+Pr33 [F5P34]
+ page 42 (44)  ->
+ {464} "Meier-Joan-S" Meier;Joan
+ {465} "National-Family-Violence-Law-Center-NFVLC-at-George-Washington-University-Law-School" National;Family;Violence;Center;NFVLC;George;Washington;University;School
+
+
+Pr34 [F5P35]
+ page 42 (44)  ->
+ {38} "California-Protective-Parents-Association" California;Protective;Parents;Association
+ {467} "Protective-Mothers-Endangered-Children" Protective;Mothers;Endangered;Children
+ {468} "Stahly-Geraldine-Butts" Stahly;Geraldine;Butts
+
+
+Pr39 [F5P40]
+ page 44 (46)  ->
+ {469} "Udesky-Laurie" Udesky;Laurie
+
+
+Pr40 [F5P41]
+ page 44 (46)  ->
+ {464} "Meier-Joan-S" Meier
+
+
+Pr41 [F5P42]
+ page 44 (46)  ->
+ {464} "Meier-Joan-S" Meier
+
+
+Pr42 [F5P43]
+ page 45 (46)  ->
+ {464} "Meier-Joan-S" Meier
+ {471} "Journal-of-Family-Trauma-Child-Custody-and-Child-Development" Journal;Family;Trauma;Child;Custody;Child;Development
+
+
+Pr43 [F5P44]
+ page 45 (47)  ->
+ {169} "gender-bias" gender;bias
+
+
+Pr44 [F5P45]
+ page 45 (47)  ->
+
+
+Pr48 [F5P49]
+ page 47 (49)  ->
+ {169} "gender-bias" gender;bias
+ {474} "Grant-Anne" Grant;Anne
+ {476} "Beyond-the-Hostage-Child-Toward-Empowering-Protective-Parents" Beyond;Hostage;Child;Toward;Empowering;Protective;Parents
+ {477} "Child-At-Risk-Classification-Office-CARCO" Child
+
+
+Pr49 [F5P51]
+ page 48 (50)  ->
+ {480} "Gesing-Ted" Gesing
+ {481} "Story-Syndicate" Story;Syndicate
+
+
+Pr50 [F5P52]
+ page 49 (51)  ->
+ {307} "New-York-Post" York;Post
+
+
+Pr53 [F5P55]
+ page 50 (52)  ->
+ {424} "Women's-eNews" eNews
+
+
+Pr54 [F5P56]
+ page 50 (52)  ->
+ {103} "equal-protection" equal;protection
+ {483} "Carner-Talia" Carner;Talia
+ {484} "breast-milk-to-expel-their" breast;milk;expel;their
+
+
+Pr55 [F5P57]
+ page 50 (52)  ->
+ {485} "Mothers--Vote-ad-hoc-voting-block" Vote;voting
+
+
+Pr56 [F5P58]
+ page 51 (53)  ->
+ {201} "Jensen-Rita-Henley" Jensen;Rita;Henley
+
+
+Pr57 [F5P59]
+ page 51 (53)  ->
+ {38} "California-Protective-Parents-Association" California;Protective;Parents;Association
+ {404} "Valentine-Constance" Valentine;Constance
+ {487} "Raskine-Jamie" Jamie
+
+
+Pr59 [F5P61]
+ page 52 (54)  ->
+ {488} "Keeping-Children-Safe-From-Family-Violence-Act-Kayden's-Law-commonly-referred-to" Keeping;Children;Safe;From;Family;Violence;commonly;referred
+ {490} "VAWA-Violence-Against-Women-Act" VAWA;Violence;Against;Women
+ {566} "Pollack-Danielle" Pollack
+ {568} "Kayden's-Law"  ..??
+
+
+Pr60 [F5P62]
+ page 52 (54)  ->
+ {490} "VAWA-Violence-Against-Women-Act" VAWA;Violence;Against;Women
+ {491} "Kyra's-Law"  ..??
+
+
+Pr61 [F5P63]
+ page 53 (55)  ->
+ {433} "United-Nations-Human-Rights-Office-of-the-High-Commissioner" United;Nations;Human;Rights;Office;High;Commissioner
+
+
+Pr62 [F5P64]
+ page 53 (55)  ->
+ {496} "protective-mothers" mothers
+
+
+Pr63 [F5P65]
+ page 54 (56)  ->
+ {27} "Brooklyn-Family-Court" Brooklyn;Family;Court
+ {113} "Deutsch-Leon-S" Deutsch;Leon
+ {542} "an-hysterical-Hispanic" hysterical;Hispanic
+
+
+Pr64 [F5P66]
+ page 54 (56)  ->
+ {109} "contempt-of-court" contempt;court
+ {500} "incarcerating-mothers" mothers
+
+
+Pr65 [F5P67]
+ page 55 (57)  ->
+ {498} "supervised-visitation-police-station" supervised;visitation;police;station
+
+
+Pr66 [F5P68]
+ page 55 (57)  ->
+ {495} "population" population
+ {498} "supervised-visitation-police-station" supervised;visitation;police;station
+
+
+Pr73 [F5P75]
+ page 58 (61)  ->
+
+
+Pr79 [F5P81]
+ page 61 (63)  ->
+ {524} "visits"  ..??
+
+
+Pr80 [F5P82]
+ page 62 (63)  ->
+ {524} "visits"  ..??
+
+
+Pr81 [F5P83]
+ page 62 (64)  ->
+ {525} "custody-evaluator-report" custody;evaluator;report
+
+
+Pr82 [F5P84]
+ page 62 (64)  ->
+ {519} "DUI"  ..??
+ {525} "custody-evaluator-report" custody;evaluator;report
+
+
+Pr83 [F5P85]
+ page 62 (65)  ->
+ {526} "court-fees" court;fees
+
+
+Pr85 [F5P87]
+ page 63 (65)  ->
+ {543} "Family-Ecosystem" Family;Ecosystem
+
+
+Pr86 [F5P88]
+ page 63 (65)  ->
+ {543} "Family-Ecosystem" Family;Ecosystem
+
+
+Pr87 [F5P89]
+ page 64 (66)  ->
+ {185} "Hobson's-choice" choice
+
+
+Pr88 [F5P90]
+ page 64 (66)  ->
+ {502} "multiple-generations" multiple;generations
+
+
+Pr89 [F5P91]
+ page 65 (67)  ->
+ {446} "United-States-Department-of-Justice" States;Department;Justice
+
+
+Pr93 [F5P95]
+ page 66 (69)  ->
+ {544} "abstention-doctrines" +abstention;doctrines
+
+
+Pr96 [F5P98]
+ page 67 (70)  ->
+ {169} "gender-bias" +gender;bias
+
+
+Pr100 [F5P102]
+ page 69 (71)  ->
+ {445} "institutional-violence" institutional;violence
+
+
+Io2 [F6P2]
+ page 70 (72)  ->
+ {211} "junk-science" junk;science
+
+
+Io5 [F6P5]
+ page 71 (73)  ->
+ {321} "Pennington-H-Joan" Pennington;Joan
+
+
+Io6 [F6P6]
+ page 71 (73)  ->
+ {188} "House-Judiciary-Committee-1992" House;Judiciary;Committee;1992
+ {321} "Pennington-H-Joan" Pennington;Joan
+
+
+Io7 [F6P7]
+ page 71 (73)  ->
+ {165} "Gandy-Kim" Gandy
+ {276} "National-Organization-for-Women-NOW" National;Women
+
+
+Io8 [F6P8]
+ page 72 (74)  ->
+ {101} "constitutional-rights" constitutional;rights
+ {243} "Mazierski-Kathryn" Mazierski;Kathryn
+ {278} "New-York-state-chapter" York;state;chapter
+
+
+Io9 [F6P9]
+ page 72 (74)  ->
+ {243} "Mazierski-Kathryn" Mazierski;Kathryn
+ {401} "Office-on-Violence-Against-Women-OVW" Office;Violence;Against;Women
+ {446} "United-States-Department-of-Justice" States;Department;Justice
+
+
+Io10 [F6P10]
+ page 72 (74)  ->
+ {262} "Mother's-Day-press-conference" press;conference
+
+
+Io11 [F6P11]
+ page 73 (75)  ->
+ {184} "Help-Us-Regain-The-Children-HURT" Help;Regain;Children;HURT
+
+
+Io12 [F6P12]
+ page 73 (75)  ->
+ {184} "Help-Us-Regain-The-Children-HURT" Help;Regain;Children;HURT
+
+
+Io13 [F6P13]
+ page 73 (75)  ->
+ {165} "Gandy-Kim" Gandy
+ {184} "Help-Us-Regain-The-Children-HURT" Help;Regain;Children;HURT
+ {243} "Mazierski-Kathryn" Mazierski
+ {321} "Pennington-H-Joan" Pennington
+
+
+Io14 [F6P14]
+ page 73 (75)  ->
+ {326} "primary-caretaker" primary;caretaker
+
+
+Io19 [F6P19]
+ page 74 (76)  ->
+ {21} "Bell-Mariam" +Bell;Mariam
+ {22} "Childhelp-USA" Childhelp
+ {23} "System-Failure-Project" System
+
+
+Io20 [F6P20]
+ page 75 (77)  ->
+ {364} "sociology"  ..??
+
+
+Io21 [F6P21]
+ page 75 (78)  ->
+ {58} "Berliner-1988" +Berliner;1988
+ {59} "Corwin-Berliner-Goodman-Goodwin-and-White-1987" +Corwin;Berliner;Goodman;Goodwin;White;1987
+ {61} "Denike-Huang-and-Kachuk-1998" +Denike;Huang;Kachuk;1998
+ {62} "Dziech-and-Schudson-1989" +Dziech;Schudson;1989
+ {67} "Faller-Corwin-and-Olafson-1993" +Faller;Corwin;Olafson;1993
+ {68} "Faller-and-DeVoe-1995" +Faller;DeVoe;1995
+ {80} "McDonald-1998" +McDonald;1998
+ {89} "Quinn-1988" +Quinn;1988
+ {95} "Thoennes-Pearson-and-Tjaden-1988" +Thoennes;Pearson;Tjaden;1988
+ {96} "Thoennes-and-Tjaden-1990" +Thoennes;Tjaden;1990
+
+
+Io22 [F6P22]
+ page 76 (78)  ->
+ {68} "Faller-and-DeVoe-1995" Faller;DeVoe;1995
+ {152} "Faller-Kathleen-Coulborn" Faller
+ {203} "Journal-of-Interpersonal-Violence" Journal;Interpersonal;Violence
+ {349} "sexually-transmitted-disease" sexually;transmitted;disease
+ {396} "University-of-Michigan-School-of-Social-Work" University;Michigan
+
+
+Io26 [F6P26]
+ page 77 (79)  ->
+ {189} "hunger-strike" hunger;strike
+ {392} "underground-fugitive-mothers" underground;fugitive;mothers
+
+
+Io28 [F6P28]
+ page 78 (80)  ->
+ {225} "Lasswell-Harold" Lasswell;Harold
+
+
+Io30 [F6P30]
+ page 78 (80)  ->
+ {14} "Armstrong-Louise" Armstrong;Louise
+
+
+Io31 [F6P31]
+ page 78 (80)  ->
+ {338} "Rocking-the-Cradle-of-Sexual-Politics-Armstrong" Rocking;Cradle;Sexual;Armstrong
+
+
+Io33 [F6P33]
+ page 79 (81)  ->
+ {12} "appellate-review" appellate;review
+ {169} "gender-bias" gender;bias
+
+
+Io34 [F6P34]
+ page 80 (82)  ->
+ {129} "Holstein-and-Gubrium-1995" Holstein;Gubrium;1995
+ {130} "Lynch-1997" Lynch;1997
+ {131} "Meehan-1997" Meehan;1997
+ {132} "Pollner-1979" Pollner;1979
+ {140} "methodically-ordered-social-practices" methodically;social
+ {367} "sociological-inquiry" sociological;inquiry
+
+
+Io35 [F6P35]
+ page 80 (418)  ->
+
+
+Io37 [F6P37]
+ page 80 (83)  ->
+ {102} "due-process" process
+
+
+Io41 [F6P41]
+ page 82 (84)  ->
+ {392} "underground-fugitive-mothers" underground;mothers
+
+
+Io42 [F6P42]
+ page 82 (84)  ->
+ {234} "Malicious-Mother-Syndrome-MMS" Mother;Syndrome
+ {317} "Parental-Alienation-Syndrome-PAS" Parental;Alienation;Syndrome
+ {367} "sociological-inquiry" sociological;inquiry
+
+
+C1P1
+ page 87 (89)  ->
+ {25} "Boston-Phoenix-2003" Boston;Phoenix;2003
+
+
+C1P2
+ page 87 (89)  ->
+ {25} "Boston-Phoenix-2003" Boston;Phoenix;2003
+ {218} "Katherine-Crier-Live" Katherine;Crier;Live
+ {357} "Small-Justice-span-style-font-style-normal'-prod-Waller-span" Small;Justice;prod;Waller
+ {413} "Waller-Garland" Waller;Garland
+
+
+C1P3
+ page 88 (90)  ->
+ {176} "Grant-Lee" Grant
+ {423} "Women-on-Trial-span-style-font-style-normal'-prod-Grant-span" Women;Trial;prod;Grant
+
+
+C1P4
+ page 88 (90)  ->
+ {173} "Good-Housekeeping" Good;Housekeeping
+ {276} "National-Organization-for-Women-NOW" National;Organization;Women
+
+
+C1P5
+ page 88 (90)  ->
+ {111} "Curtis-April" Curtis;April
+ {343} "Sally-Jessy-Raphael" Sally;Jessy;Raphael
+ {349} "sexually-transmitted-disease" sexually;transmitted;disease
+ {392} "underground-fugitive-mothers" underground;mothers
+ {403} "U-S-News-and-World-Report" News;World;Report
+
+
+C1P6
+ page 88 (90)  ->
+ {260} "Morgan-Elizabeth" Morgan;Elizabeth
+ {284} "Newsweek" Newsweek
+ {309} "New-York-Woman" York;Woman
+
+
+C1P7
+ page 88 (90)  ->
+ {308} "New-York-Times" York
+ {331} "Quindlen-Anna" +Quindlen;Anna
+ {337} "Reynolds-Barbara-USA-Today" Reynolds;Barbara;Today
+ {397} "USA-Today" Today;Today
+
+
+C1P8
+ page 89 (91)  ->
+ {407} "Village-Voice" Village;Voice
+
+
+C1P9
+ page 89 (91)  ->
+ {17} "Aylsworth-John" Aylsworth;John
+ {237} "Marks-Bridget" Marks;Bridget
+
+
+C1P10
+ page 89 (91)  ->
+ {17} "Aylsworth-John" Aylsworth;John
+
+
+C1P11
+ page 90 (92)  ->
+
+
+C1P12
+ page 90 (92)  ->
+ {75} "Keating-1998" Keating
+ {232} "Loyola-Law-Review" Loyola;Review
+
+
+C1P13
+ page 91 (93)  ->
+ {84} "Neustein-and-Goetting-1999" Neustein;Goetting;1999
+ {202} "Journal-of-Child-Sexual-Abuse" Journal;Child;Sexual;Abuse
+
+
+C1P14
+ page 91 (93)  ->
+ {69} "Finkelhor-1986" Finkelhor;1986
+ {83} "Myers-1997" Myers;1997
+ {90} "Russell-1983" Russell;1983
+ {91} "Russell-1986" Russell;1986
+
+
+C1P15
+ page 91 (93)  ->
+ {65} "Faller-2000" Faller;2000
+ {87} "Penfold-1997" Penfold;1997
+ {152} "Faller-Kathleen-Coulborn" Faller
+ {393} "University-of-Arkansas-Little-Rock-Law-Review" University;Arkansas;Little;Rock;Review;University;Arkansas;Little;Rock;Review
+
+
+C1P16
+ page 91 (93)  ->
+ {187} "Hostage-Child-The-span-style-font-style-normal'-Rosen-and-Etlin-span" Hostage;Child;Rosen;Etlin
+ {340} "Rosen-Leora-N-and-Michelle-Etlin" Rosen;Etlin
+ {443} "Etlin-Michele" Etlin
+
+
+C1P17
+ page 92 (94)  ->
+ {78} "Massat-and-Lundy-1998" Massat;Lundy;1998
+ {97} "Child-Welfare" Child;Welfare
+ {241} "Massat-Carol-Rippey" Massat
+
+
+C1P18
+ page 92 (94)  ->
+ {5} "American-Journal-of-Public-Health" Public
+ {20} "Battered-Mothers-Speak-Out-span-style-font-style-normal'-November-2002-span" Battered;Mothers;November;2002
+ {102} "due-process" process
+ {169} "gender-bias" gender;bias
+ {198} "intimate-partner-violence" +intimate;partner;violence
+ {276} "National-Organization-for-Women-NOW" Women
+ {277} "California-state-chapter" California;state;chapter
+ {417} "Wellesley-Centers-for-Women" Wellesley;Centers;Women
+
+
+C1P19
+ page 93 (94)  ->
+ {19} "Battered-Mothers--Testimony-Project" Battered;Testimony;Project
+ {102} "due-process" process
+ {103} "equal-protection" equal;protection
+
+
+C1P20
+ page 93 (95)  ->
+ {169} "gender-bias" gender;bias;gender;bias
+ {208} "Judicial-Council-of-California-Administrative-Office-of-the-Courts-1990" Judicial;Council;Administrative;Office;Courts;1990
+
+
+C1P21
+ page 94 (96)  ->
+ {92} "Schafran-1987" Schafran;1987
+ {169} "gender-bias" gender;bias
+ {207} "Judicare" Judicare
+ {301} "Task-Force-on-Gender-Bias-in-the-Courts" Task;Force;Gender;Bias;Courts
+
+
+C1P22
+ page 94 (96)  ->
+ {116} "Divorced-from-Justice-span-style-font-style-normal'-Winner-span" Divorced;from;Justice;Winner
+ {214} "Justice-Seekers-Inc" Justice
+ {290} "Department-of-Consumer-Affairs" Department;Consumer;Affairs
+ {421} "Winner-Karen" Winner;Karen
+
+
+C1P25
+ page 95 (97)  ->
+ {83} "Myers-1997" Myers;1997
+ {366} "sociohistorical-analysis-of-sexual-abuse-awareness" sociohistorical;analysis;sexual;abuse;awareness
+
+
+C1P26
+ page 95 (97)  ->
+ {366} "sociohistorical-analysis-of-sexual-abuse-awareness" sociohistorical;analysis;sexual;abuse;awareness
+
+
+C1P28
+ page 96 (98)  ->
+ {340} "Rosen-Leora-N-and-Michelle-Etlin" Rosen;Etlin
+ {342} "Rosenfeld-A" Rosenfeld
+
+
+C1P29
+ page 96 (98)  ->
+ {3} "American-Bar-Association-in-cooperation-with-the-Association-of-Family-and-Conciliation-Courts-1988" American;Association;cooperation;with;Association;Family;Conciliation;Courts;1988
+ {6} "American-Jurisprudence-Proof-of-Facts" American;Proof
+ {26} "Brooklyn-Bar-Association-matrimonial-committee-of" Association;matrimonial
+ {85} "Nicholson-and-Bulkley-1988" Nicholson;Bulkley;1988
+ {242} "matrimonial-bar" matrimonial
+
+
+C1P31
+ page 97 (99)  ->
+ {183} "Heit-Julia" Heit;Julia
+ {226} "Legal-Aid-Society" Legal;Society
+
+
+C1P32
+ page 98 (99)  ->
+ {183} "Heit-Julia" Heit
+
+
+C1P34
+ page 98 (100)  ->
+ {205} "Judge-Judy-Judith-Scheindlin" Judge;Judy;Judith;Scheindlin
+
+
+C1P35
+ page 99 (101)  ->
+ {14} "Armstrong-Louise" Armstrong;Louise
+ {249} "Men's-Equality-Now-International-Coalition" Equality;International;Coalition
+ {338} "Rocking-the-Cradle-of-Sexual-Politics-Armstrong" Rocking;Cradle;Sexual;Politics;Armstrong
+
+
+C1P36
+ page 99 (101)  ->
+ {4} "American-Coalition-for-Fathers-and-Children-ACFC" American;Coalition;Fathers;Children;ACFC
+ {155} "fathers--rights-groups" rights;groups
+
+
+C1P37
+ page 99 (101)  ->
+ {27} "Brooklyn-Family-Court" Brooklyn;Family;Court
+ {113} "Deutsch-Leon-S" Deutsch;Leon
+ {154} "Fathers--Rights-Association-of-Metro-New-York-and-Long-Island" Rights;Association;Metro;York;Long;Island
+ {350} "Shoulson-Jay" Shoulson
+
+
+C1P38
+ page 99 (101)  ->
+ {27} "Brooklyn-Family-Court" Brooklyn;Family;Court
+ {350} "Shoulson-Jay" Shoulson
+
+
+C1P39
+ page 100 (102)  ->
+ {27} "Brooklyn-Family-Court" Brooklyn;Family;Court
+ {252} "Middleton-Humberto" Middleton;Humberto
+
+
+C1P40
+ page 100 (102)  ->
+ {252} "Middleton-Humberto" Middleton;Humberto
+
+
+C1P41
+ page 100 (102)  ->
+ {384} "Thompson-William" Thompson;William
+ {421} "Winner-Karen" +Winner
+
+
+C1P42
+ page 101 (103)  ->
+ {289} "Council" Council
+ {319} "Paterson-David-A" Paterson;David
+
+
+C1P43
+ page 101 (103)  ->
+ {102} "due-process" process
+ {266} "Nadler-Jerrold" Nadler;Jerrold
+
+
+C1P44
+ page 101 (103)  ->
+ {266} "Nadler-Jerrold" Nadler;Jerrold
+ {295} "Bar-Association" Association
+ {307} "New-York-Post" York;Post
+
+
+C1P45
+ page 101 (103)  ->
+ {177} "Green-Arthur" +Green;Arthur
+ {181} "Hanson-Graeme" +Hanson;Graeme
+ {204} "Journal-of-the-American-Academy-of-Child-and-Adolescent-Psychiatry" Child
+ {266} "Nadler-Jerrold" Nadler;Jerrold
+
+
+C1P46
+ page 102 (104)  ->
+ {177} "Green-Arthur" Green;Arthur
+ {212} "Jurow-Abraham" Jurow;Abraham
+ {304} "New-York-Law-Journal" York;Journal
+
+
+C1P47
+ page 102 (104)  ->
+ {12} "appellate-review" appellate;review
+ {326} "primary-caretaker" +primary;caretaker
+
+
+C1P48
+ page 103 (105)  ->
+ {416} "Weinstein-Jack" Weinstein;Jack
+
+
+C1P49
+ page 103 (105)  ->
+ {286} "Administration-for-Children's-Services-ACS" Services
+ {310} "Nicholson-v-ACS" Nicholson
+ {416} "Weinstein-Jack" Weinstein;Jack
+
+
+C1P50
+ page 103 (105)  ->
+ {14} "Armstrong-Louise" +Armstrong
+ {186} "Home-Front-The-span-style-font-style-normal'-Armstrong-span" +Home;Front;Armstrong
+ {286} "Administration-for-Children's-Services-ACS" Services
+ {416} "Weinstein-Jack" Weinstein;Jack
+
+
+C1P52
+ page 104 (106)  ->
+ {88} "Pennington-and-Woods-1990" Pennington;Woods;1990
+ {227} "Legal-Issues-and-Legal-Options-in-Civil-Child-Sexual-Abuse-Cases" Legal;Issues;Legal;Options;Civil;Child;Sexual;Abuse;Cases
+ {271} "National-Center-on-Women-and-Family-Law" National;Center;Women;Family
+ {321} "Pennington-H-Joan" Pennington;Joan
+ {390} "history-of-modern-day-underground-movement" +underground;movement;underground;movement
+
+
+C1P53
+ page 105 (107)  ->
+ {42} "Chesler-Phyllis" Chesler
+ {220} "Kidnapping-parental" Kidnapping;parental
+ {263} "Mothers-on-Trial-Chesler" Mothers;Trial;Chesler
+ {392} "underground-fugitive-mothers" underground;mothers
+
+
+C1P55
+ page 105 (107)  ->
+ {55} "Children-of-the-Underground" Children;Underground
+ {266} "Nadler-Jerrold" Nadler
+ {425} "Yager-Faye" Yager;Faye
+
+
+C1P56
+ page 105 (107)  ->
+ {180} "Hannah-Maureen-Therese" Hannah;Therese
+ {253} "Miller-Liliane-Heller" Miller;Liliane;Heller
+ {314} "Ortiz-Felix" +Ortiz;Felix
+ {337} "Reynolds-Barbara-USA-Today" Today
+ {351} "Siena-College" Siena;College
+ {397} "USA-Today" Today;Today
+
+
+C1P57
+ page 106 (108)  ->
+ {300} "Women's-Office-at-the-Archdiocese" Office;Archdiocese
+
+
+C1P58
+ page 106 (108)  ->
+ {327} "pro-se-rebels" rebels
+
+
+C1P59
+ page 107 (109)  ->
+ {112} "Dale-Sebe" Dale;Sebe
+ {283} "Newsom-Karen" Newsom;Karen
+ {355} "Singley-Dorrie-Lyn" Singley;Dorrie
+ {389} "abscond-or-flee-with-child" flee;with;child
+ {390} "history-of-modern-day-underground-movement" underground;movement;underground;movement
+ {392} "underground-fugitive-mothers" underground;fugitive;mothers
+
+
+C1P60
+ page 107 (109)  ->
+ {283} "Newsom-Karen" Newsom;Karen
+ {355} "Singley-Dorrie-Lyn" Singley;Dorrie
+
+
+C1P61
+ page 107 (109)  ->
+ {224} "LaLonde-Virginia" LaLonde;Virginia
+
+
+C1P62
+ page 107 (109)  ->
+ {390} "history-of-modern-day-underground-movement" underground;movement;underground;movement
+ {392} "underground-fugitive-mothers" underground;fugitive;mothers
+ {425} "Yager-Faye" Yager
+
+
+C1P63
+ page 107 (109)  ->
+ {336} "Rayner-Lydia-on-i-60-Minutes-i-CBS" Minutes
+ {425} "Yager-Faye" Yager
+ {426} "on-i-60-Minutes-i-CBS" Minutes
+
+
+C1P64
+ page 108 (110)  ->
+ {41} "Carpenter-McKenzie-Pittsburgh-Post-Gazette" Carpenter;McKenzie;Pittsburgh;Post-Gazette
+ {55} "Children-of-the-Underground" Children;Underground
+ {188} "House-Judiciary-Committee-1992" House;Judiciary;Committee;1992
+ {322} "Pittsburgh-Post-Gazette" Pittsburgh;Post-Gazette
+ {390} "history-of-modern-day-underground-movement" underground;underground
+ {392} "underground-fugitive-mothers" underground;fugitive;mothers
+
+
+C1P67
+ page 108 (110)  ->
+ {213} "Justice-for-Children" Justice;Children
+ {221} "King-Eileen" King;Eileen
+
+
+C1P68
+ page 109 (111)  ->
+ {399} "Child-Exploitation-and-Obscenity-Section" Child;Exploitation;Obscenity;Section
+
+
+C2P3
+ page 110 (112)  ->
+ {325} "presentment-agencies" presentment;agencies
+
+
+C2P5
+ page 111 (113)  ->
+ {536} "home-study" home;study
+
+
+C2P6
+ page 111 (113)  ->
+ {63} "Everson-and-Boat-1989" Everson;Boat;1989
+ {359} "education"  ..??
+
+
+C2P9
+ page 112 (114)  ->
+ {286} "Administration-for-Children's-Services-ACS" Services
+ {304} "New-York-Law-Journal" York;Journal
+
+
+C2P10
+ page 113 (115)  ->
+ {12} "appellate-review" appellate
+
+
+C2P13
+ page 114 (116)  ->
+ {94} "Stern-and-Oehme-2002" Stern;Oehme;2002
+ {377} "supervised-visitation" supervised;visitation
+ {380} "Temple-Law-Review" Temple;Review
+
+
+C2P14
+ page 114 (116)  ->
+ {94} "Stern-and-Oehme-2002" Stern;Oehme;2002
+
+
+C2P16
+ page 115 (117)  ->
+ {101} "constitutional-rights" constitutional;rights
+ {110} "Curran-William-1985" Curran;William;1985
+ {194} "immunity" immunity
+ {281} "New-England-Journal-of-Medicine" England;Journal;Medicine
+
+
+C2P18
+ page 115 (117)  ->
+ {166} "Gardner-Richard-A" Gardner;Richard
+ {211} "junk-science"  ..??
+ {317} "Parental-Alienation-Syndrome-PAS" Parental;Alienation;Syndrome
+ {386} "True-and-False-Accusations-of-Child-Sexual-Abuse-span-style-font-style-normal'-Gardner-span" True;False;Accusations;Child;Sexual;Abuse;Gardner
+
+
+C2P19
+ page 115 (117)  ->
+ {8} "American-Psychological-Association" American;Psychological;Association
+ {166} "Gardner-Richard-A" Gardner;Richard
+
+
+C2P20
+ page 115 (117)  ->
+ {166} "Gardner-Richard-A" Gardner;Richard
+ {177} "Green-Arthur" Green;Arthur
+
+
+C2P21
+ page 116 (117)  ->
+ {6} "American-Jurisprudence-Proof-of-Facts" American;Jurisprudence;Proof;Facts
+ {59} "Corwin-Berliner-Goodman-Goodwin-and-White-1987" Corwin;1987
+ {166} "Gardner-Richard-A" Gardner
+ {177} "Green-Arthur" Green
+
+
+C2P22
+ page 116 (118)  ->
+ {93} "Smith-and-Coukos-1997" Smith;Coukos;1997
+ {206} "Judges--Journal" Journal
+ {234} "Malicious-Mother-Syndrome-MMS" Malicious;Mother;Syndrome
+ {387} "Turkat-Ira" Turkat
+
+
+C2P23
+ page 117 (119)  ->
+ {108} "confidentiality" confidentiality
+ {146} "evidentiary-hearing" evidentiary;hearing
+
+
+C2P24
+ page 117 (119)  ->
+ {163} "gag-order" order
+ {188} "House-Judiciary-Committee-1992" House;Judiciary;Committee;1992
+ {321} "Pennington-H-Joan" Pennington
+
+
+C2P25
+ page 117 (119)  ->
+ {162} "Fund-for-Modern-Courts" Courts
+ {216} "kangaroo-courts" kangaroo;courts
+
+
+C2P26
+ page 118 (120)  ->
+ {533} "child-neglect-charge-of" child;neglect;charge
+
+
+C2P28
+ page 119 (121)  ->
+ {248} "Meltzer-Anne" Meltzer;Anne
+
+
+C2P29
+ page 119 (121)  ->
+ {12} "appellate-review" appellate;review
+ {102} "due-process" process
+
+
+C2P30
+ page 119 (121)  ->
+ {1} "adjournments-in-contemplation-of-dismissal-ACD" +adjournments;contemplation;dismissal
+ {12} "appellate-review" appellate;review
+ {174} "Goodhue-Mary-B" +Goodhue;Mary
+ {298} "Senate-Committee-on-Child-Care" Child
+
+
+C2P31
+ page 120 (121)  ->
+ {12} "appellate-review" appellate;review
+
+
+C3P1
+ page 123 (125)  ->
+ {358} "social-variables" social;variables
+
+
+C3P2
+ page 123 (125)  ->
+ {367} "sociological-inquiry" sociological;inquiry
+
+
+C3P3
+ page 123 (126)  ->
+ {145} "situated-meaning-accomplishment-achievement-definition-action" meaning;action
+ {367} "sociological-inquiry" sociological;inquiry
+
+
+C3P4
+ page 124 (126)  ->
+ {124} "Garfinkel-1967" Garfinkel
+ {130} "Lynch-1997" Lynch;1997
+ {136} "conversation-analysis" conversation
+ {167} "Garfinkel-Harold" Garfinkel;Harold
+
+
+C3P5
+ page 124 (126)  ->
+ {142} "practical-reasoning" practical;reasoning
+ {143} "reflexive" reflexive
+ {145} "situated-meaning-accomplishment-achievement-definition-action" situated;meaning;achievement;action
+
+
+C3P6
+ page 125 (127)  ->
+ {120} "Durkheim-Emile" Durkheim
+ {124} "Garfinkel-1967" Garfinkel
+ {364} "sociology" sociology
+
+
+C3P7
+ page 125 (127)  ->
+ {134} "accountable-publicly-observable-actions" publicly;observable;actions
+
+
+C3P8
+ page 125 (127)  ->
+ {169} "gender-bias" gender;bias
+ {358} "social-variables" social;variables
+ {359} "education"  ..??
+ {360} "ethnicity" ethnicity
+ {361} "gender" gender
+ {363} "socioeconomic-status" status;status
+
+
+C3P9
+ page 125 (127)  ->
+ {145} "situated-meaning-accomplishment-achievement-definition-action" situated;meaning;achievement;action
+
+
+C3P10
+ page 126 (128)  ->
+ {143} "reflexive" reflexive
+
+
+C3P11
+ page 126 (128)  ->
+ {124} "Garfinkel-1967" Garfinkel;1967
+ {137} "documentary-method-of-interpretation" documentary;method;interpretation
+ {142} "practical-reasoning" practical;reasoning
+ {367} "sociological-inquiry" sociological;inquiry
+
+
+C3P12
+ page 126 (128)  ->
+ {62} "Dziech-and-Schudson-1989" +Dziech;Schudson;1989
+ {78} "Massat-and-Lundy-1998" +Massat;Lundy
+ {79} "Massat-and-Lundy-1999" +Massat;Lundy;1999
+ {124} "Garfinkel-1967" Garfinkel;1967
+ {137} "documentary-method-of-interpretation" documentary;method;interpretation
+ {200} "Jane-Addams-College-of-Social-Work-of-the-University-of-Illinois" Social;Work
+ {241} "Massat-Carol-Rippey" +Massat
+ {260} "Morgan-Elizabeth" +Morgan;Elizabeth
+
+
+C3P13
+ page 127 (130)  ->
+ {142} "practical-reasoning" practical
+ {359} "education" +education
+
+
+C3P14
+ page 128 (130)  ->
+ {362} "race" race
+ {365} "Marxist-arguments" Marxist;arguments
+
+
+C3P19
+ page 129 (131)  ->
+ {132} "Pollner-1979" Pollner;1979
+ {138} "explicative-transactions" explicative;transactions
+ {143} "reflexive" reflexive
+ {145} "situated-meaning-accomplishment-achievement-definition-action" situated;action
+
+
+C3P20
+ page 129 (131)  ->
+ {132} "Pollner-1979" Pollner;1979
+ {138} "explicative-transactions" explicative;transactions
+
+
+C3P21
+ page 130 (131)  ->
+ {132} "Pollner-1979" Pollner
+
+
+C3P22
+ page 130 (131)  ->
+ {132} "Pollner-1979" Pollner
+
+
+C3P23
+ page 130 (132)  ->
+ {500} "incarcerating-mothers" incarcerating
+
+
+C3P24
+ page 130 (132)  ->
+ {377} "supervised-visitation" supervised;visitation
+
+
+C3P26
+ page 27 (133)  ->
+ {126} "Garfinkel-and-Sacks-1970"  ..??
+ {139} "formulating"  ..??
+
+
+C3P27
+ page 131 (133)  ->
+ {139} "formulating" formulating
+
+
+C3P28
+ page 131 (133)  ->
+ {139} "formulating" formulating
+
+
+C3P29
+ page 132 (134)  ->
+ {129} "Holstein-and-Gubrium-1995" Holstein;Gubrium;1995
+
+
+C3P30
+ page 132 (134)  ->
+ {157} "fitness-parental" fitness
+
+
+C3P32
+ page 133 (135)  ->
+ {405} "vexatious-litigant" vexatious;litigant
+
+
+C3P33
+ page 133 (135)  ->
+ {145} "situated-meaning-accomplishment-achievement-definition-action" definition;action
+
+
+C3P35
+ page 134 (136)  ->
+ {382} "termination-of-parental-rights" parental;rights
+
+
+C3P37
+ page 134 (136)  ->
+ {141} "practical-accomplishment" practical;accomplishment
+ {142} "practical-reasoning" practical;reasoning
+
+
+C3P38
+ page 134 (136)  ->
+ {102} "due-process" +process
+ {141} "practical-accomplishment" practical;accomplishment
+
+
+C3P40
+ page 135 (137)  ->
+ {130} "Lynch-1997" Lynch;1997
+
+
+C3P41
+ page 136 (138)  ->
+ {127} "Heritage-and-Sefi-1992" Heritage;Sefi;1992
+
+
+C3P42
+ page 136 (138)  ->
+ {533} "child-neglect-charge-of" child;neglect
+
+
+C3P45
+ page 137 (139)  ->
+ {125} "Garfinkel-and-Bittner-1967" Garfinkel;Bittner;1967
+ {135} "contractual-use-of-records" contractual;records
+ {141} "practical-accomplishment" practical
+
+
+C3P46
+ page 137 (139)  ->
+ {131} "Meehan-1997" Meehan;1997
+ {135} "contractual-use-of-records" contractual;records
+
+
+C3P50
+ page 139 (141)  ->
+ {131} "Meehan-1997" Meehan;1997
+ {144} "running-record" running;record
+
+
+C3P51
+ page 139 (141)  ->
+ {144} "running-record" running;record
+
+
+C3P52
+ page 139 (141)  ->
+ {131} "Meehan-1997" Meehan;1997
+ {144} "running-record" running;record
+
+
+C3P53
+ page 139 (142)  ->
+ {144} "running-record" running;record
+
+
+C3P54
+ page 140 (142)  ->
+ {144} "running-record" running;record
+ {148} "communication" communication
+
+
+C3P55
+ page 140 (142)  ->
+ {131} "Meehan-1997" Meehan
+ {144} "running-record" running;record
+
+
+C3P56
+ page 140 (142)  ->
+ {145} "situated-meaning-accomplishment-achievement-definition-action" situated;achievement
+ {367} "sociological-inquiry" sociological;inquiry
+
+
+C4P2
+ page 141 (143)  ->
+ {122} "ethics" ethics
+ {143} "reflexive" +reflexive
+ {242} "matrimonial-bar" +matrimonial
+
+
+C4P3
+ page 142 (144)  ->
+ {27} "Brooklyn-Family-Court" Brooklyn;Family;Court
+ {183} "Heit-Julia" Heit;Julia
+
+
+C4P5
+ page 142 (422)  ->
+
+
+C4P6
+ page 143 (145)  ->
+ {533} "child-neglect-charge-of" child;neglect;charge
+
+
+C4P7
+ page 143 (145)  ->
+ {533} "child-neglect-charge-of" child;neglect;charge
+
+
+C4P17
+ page 146 (423)  ->
+
+
+C4P19
+ page 147 (149)  ->
+ {392} "underground-fugitive-mothers" underground;mothers
+
+
+C4P20
+ page 147 (150)  ->
+ {349} "sexually-transmitted-disease" +sexually;transmitted;disease
+
+
+C4P22
+ page 148 (150)  ->
+ {157} "fitness-parental"  ..??
+ {177} "Green-Arthur" Green;Arthur
+ {270} "National-Center-for-Protective-Parents" National;Center;Protective;Parents
+ {321} "Pennington-H-Joan" Pennington;Joan
+
+
+C4P23
+ page 149 (151)  ->
+ {406} "vigilantism"  ..??
+
+
+C4P24
+ page 149 (423)  ->
+
+
+C4P25
+ page 149 (151)  ->
+ {122} "ethics" ethics
+ {148} "communication" communication
+ {533} "child-neglect-charge-of" child;neglect;charge
+
+
+C4P26
+ page 149 (151)  ->
+ {148} "communication" communication
+
+
+C4P28
+ page 150 (152)  ->
+ {12} "appellate-review" appellate
+ {101} "constitutional-rights" rights
+ {146} "evidentiary-hearing" evidentiary;hearing
+ {148} "communication" communication
+ {406} "vigilantism"  ..??
+
+
+C4P32
+ page 152 (154)  ->
+ {412} "Walker-Lenore" Walker;Lenore
+
+
+C4P33
+ page 152 (154)  ->
+ {12} "appellate-review" appellate
+ {109} "contempt-of-court" contempt;court
+
+
+C4P35
+ page 153 (155)  ->
+ {406} "vigilantism"  ..??
+
+
+C4P36
+ page 153 (155)  ->
+ {195} "in-camera-span-style-font-style-normal'-in-judge's-chambers-span" camera;chambers
+
+
+C4P37
+ page 154 (157)  ->
+ {296} "Commission-on-Judicial-Conduct" Commission;Judicial;Conduct
+
+
+C4P39
+ page 155 (157)  ->
+ {177} "Green-Arthur" Green
+ {296} "Commission-on-Judicial-Conduct" Commission;Judicial;Conduct
+
+
+C4P40
+ page 155 (157)  ->
+ {248} "Meltzer-Anne" Meltzer;Anne
+
+
+C4P43
+ page 156 (158)  ->
+ {319} "Paterson-David-A" Paterson;David
+
+
+C4P44
+ page 157 (159)  ->
+ {195} "in-camera-span-style-font-style-normal'-in-judge's-chambers-span" camera
+
+
+C4P49
+ page 158 (160)  ->
+ {501} "threat-of" threat
+
+
+C4P51
+ page 158 (424)  ->
+
+
+C4P53
+ page 159 (161)  ->
+ {12} "appellate-review" appellate
+
+
+C4P55
+ page 160 (425)  ->
+
+
+C4P57
+ page 160 (425)  ->
+
+
+C4P58
+ page 160 (425)  ->
+
+
+C4P60
+ page 161 (163)  ->
+ {377} "supervised-visitation" supervised;visitation
+ {533} "child-neglect-charge-of" child;neglect;charge
+
+
+C4P61
+ page 161 (163)  ->
+ {150} "motion" motion
+
+
+C4P65
+ page 162 (164)  ->
+ {151} "order" order
+
+
+C4P67
+ page 162 (164)  ->
+ {113} "Deutsch-Leon-S" Deutsch;Leon
+ {319} "Paterson-David-A" Paterson
+
+
+C4P69
+ page 163 (165)  ->
+ {319} "Paterson-David-A" Paterson
+ {373} "children-who-are-suicidal" suicidal
+
+
+C4P77
+ page 165 (167)  ->
+ {145} "situated-meaning-accomplishment-achievement-definition-action" situated;action
+ {389} "abscond-or-flee-with-child" abscond;with;child
+
+
+C4P79
+ page 165 (167)  ->
+ {145} "situated-meaning-accomplishment-achievement-definition-action" situated;action
+
+
+C4P84
+ page 166 (168)  ->
+ {102} "due-process"  ..??
+
+
+C4P85
+ page 166 (169)  ->
+ {215} "Kafkaesque-court-experience-as" court
+ {389} "abscond-or-flee-with-child" with;child
+
+
+C4P89
+ page 168 (170)  ->
+ {126} "Garfinkel-and-Sacks-1970" Garfinkel;Sacks;1970
+ {139} "formulating" formulating
+
+
+C4P90
+ page 168 (170)  ->
+ {128} "Heritage-and-Watson-1979" Heritage;Watson;1979
+ {139} "formulating" formulating
+
+
+C4P92
+ page 168 (170)  ->
+ {122} "ethics" ethics
+ {536} "home-study" home;study
+
+
+C4P94
+ page 169 (171)  ->
+ {122} "ethics" ethics
+
+
+C4P95
+ page 169 (425)  ->
+
+
+C4P96
+ page 169 (171)  ->
+ {139} "formulating" formulating
+
+
+C4P101
+ page 170 (172)  ->
+ {12} "appellate-review" appellate
+
+
+C4P104
+ page 171 (173)  ->
+ {132} "Pollner-1979" Pollner;1979
+ {138} "explicative-transactions" explicative;transactions
+ {145} "situated-meaning-accomplishment-achievement-definition-action" situated;meaning;definition;action
+
+
+C4P105
+ page 172 (173)  ->
+ {132} "Pollner-1979"  ..??
+
+
+C4P106
+ page 172 (174)  ->
+ {34} "Burton-Randy" Burton;Randy
+ {383} "Texas-Supreme-Court-Task-Force-on-Judicial-Appointments" Texas;Supreme;Court;Task;Force;Judicial
+
+
+C4P108
+ page 173 (426)  ->
+
+
+C4P109
+ page 173 (175)  ->
+ {27} "Brooklyn-Family-Court" Brooklyn;Family;Court
+ {113} "Deutsch-Leon-S" Deutsch
+ {222} "Koppell-Oliver" Koppell;Oliver
+
+
+C4P110
+ page 174 (176)  ->
+ {108} "confidentiality" confidentiality
+
+
+C4P111
+ page 174 (176)  ->
+ {164} "Gallet-Jeffrey" Gallet;Jeffrey
+ {306} "New-York-Newsday" York;Newsday
+
+
+C4P112
+ page 174 (426)  ->
+
+
+C4P113
+ page 174 (176)  ->
+ {102} "due-process"  ..??
+ {164} "Gallet-Jeffrey" Gallet;Jeffrey
+ {177} "Green-Arthur" Green
+ {304} "New-York-Law-Journal" York;Journal
+
+
+C4P116
+ page 175 (177)  ->
+ {145} "situated-meaning-accomplishment-achievement-definition-action" situated;meaning;action
+
+
+C4P117
+ page 176 (178)  ->
+ {122} "ethics"  ..??
+
+
+C4P122
+ page 177 (179)  ->
+ {137} "documentary-method-of-interpretation" documentary;method;interpretation
+
+
+C4P125
+ page 178 (181)  ->
+ {8} "American-Psychological-Association" +American;Psychological;Association
+ {102} "due-process" +process
+ {317} "Parental-Alienation-Syndrome-PAS" +Alienation
+ {326} "primary-caretaker" +primary;caretaker
+
+
+C4P129
+ page 180 (182)  ->
+ {145} "situated-meaning-accomplishment-achievement-definition-action" situated;definition
+ {157} "fitness-parental" fitness;parental
+
+
+C4P130
+ page 180 (183)  ->
+ {260} "Morgan-Elizabeth" +Morgan;Elizabeth
+ {389} "abscond-or-flee-with-child" with;child
+
+
+C4P131
+ page 181 (183)  ->
+ {101} "constitutional-rights" rights
+
+
+C4P132
+ page 181 (184)  ->
+ {495} "population" +population
+
+
+C4P136
+ page 183 (185)  ->
+ {498} "supervised-visitation-police-station" visitation
+
+
+C4P137
+ page 184 (185)  ->
+ {498} "supervised-visitation-police-station" visitation
+ {517} "cursing-out-mother" cursing;mother
+ {522} "resisting-arrest"  ..??
+
+
+C4P138
+ page 184 (186)  ->
+ {505} "encopresis" +encopresis
+ {506} "enuresis-bed-wetting" +enuresis
+ {507} "disrobing" +disrobing
+ {508} "low-self-esteem" +self-esteem
+ {509} "night-terrors" night
+ {510} "screaming-in-sleep" +screaming;sleep
+ {511} "sexually-acting-out" +acting
+ {518} "disorderly-conduct" disorderly;conduct
+ {519} "DUI"  ..??
+
+
+C4P142
+ page 186 (188)  ->
+ {513} "alcohol-abuse" alcohol;abuse
+ {514} "cocaine-use" cocaine
+
+
+C4P147
+ page 188 (190)  ->
+ {509} "night-terrors" night;terrors
+
+
+C4P151
+ page 189 (191)  ->
+ {499} "incarceration-2-subentries"  ..??
+ {552} "ad-hoc-social-networks-bred-by-family-court" social;networks;bred;family;court
+
+
+C4P158
+ page 192 (194)  ->
+ {524} "visits" visits
+
+
+C4P160
+ page 193 (195)  ->
+ {524} "visits" visits
+ {527} "court-order-therapist" court;order;therapist
+
+
+C4P162
+ page 194 (196)  ->
+ {54} "gaslighting" gaslighting
+
+
+C4P163
+ page 195 (197)  ->
+ {528} "modern-day-lynching" modern;lynching
+
+
+C5P1
+ page 196 (198)  ->
+ {77} "Lidman-and-Hollingsworth-1998" Lidman;Hollingsworth;1998
+
+
+C5P6
+ page 197 (199)  ->
+ {88} "Pennington-and-Woods-1990" Pennington;Woods;1990
+ {227} "Legal-Issues-and-Legal-Options-in-Civil-Child-Sexual-Abuse-Cases" Legal;Issues;Legal;Options;Civil;Child;Sexual;Abuse;Cases
+ {271} "National-Center-on-Women-and-Family-Law" National;Center;Women;Family
+ {321} "Pennington-H-Joan" Pennington;Joan
+
+
+C5P7
+ page 198 (200)  ->
+ {240} "Massachusetts-Senate-Committee-on-Post-Audit-and-Oversight" Massachusetts;Senate;Committee;Post;Audit;Oversight
+
+
+C5P8
+ page 198 (200)  ->
+ {119} "Ducote-Richard" Ducote;Richard
+ {231} "Loyola-Journal-of-Public-Interest-Law" Loyola;Journal;Public;Interest
+
+
+C5P9
+ page 198 (200)  ->
+ {119} "Ducote-Richard" Ducote;Richard
+
+
+C5P10
+ page 198 (200)  ->
+ {119} "Ducote-Richard" Ducote;Richard
+
+
+C5P11
+ page 198 (200)  ->
+ {119} "Ducote-Richard" Ducote;Richard
+
+
+C5P12
+ page 199 (200)  ->
+ {119} "Ducote-Richard" Ducote
+
+
+C5P13
+ page 199 (200)  ->
+ {119} "Ducote-Richard" Ducote
+
+
+C5P14
+ page 199 (200)  ->
+ {119} "Ducote-Richard" Ducote
+ {194} "immunity" immunity
+
+
+C5P15
+ page 199 (200)  ->
+ {48} "Child-Abuse-Prevention-and-Treatment-Act-of-1974-CAPTA" Child;Abuse;Prevention;1974
+ {119} "Ducote-Richard" Ducote
+ {533} "child-neglect-charge-of" child
+
+
+C5P16
+ page 200 (202)  ->
+ {256} "Minnesota-Office-of-the-Legislative-Auditor-Program-Evaluation-Division" Minnesota;Office;Legislative;Auditor;Program;Evaluation;Division
+
+
+C5P18
+ page 200 (202)  ->
+ {77} "Lidman-and-Hollingsworth-1998" Lidman;Hollingsworth;1998
+
+
+C5P19
+ page 201 (203)  ->
+ {12} "appellate-review" appellate
+
+
+C5P22
+ page 201 (203)  ->
+ {131} "Meehan-1997" Meehan;1997
+ {364} "sociology"  ..??
+
+
+C5P23
+ page 202 (203)  ->
+ {131} "Meehan-1997" Meehan
+
+
+C5P24
+ page 202 (203)  ->
+ {131} "Meehan-1997" Meehan
+ {135} "contractual-use-of-records" contractual;records
+ {145} "situated-meaning-accomplishment-achievement-definition-action" situated;accomplishment
+
+
+C5P30
+ page 203 (206)  ->
+ {46} "imminent-danger-or-risk-of-harm" harm
+ {373} "children-who-are-suicidal" children
+
+
+C5P33
+ page 205 (431)  ->
+
+
+C5P38
+ page 206 (208)  ->
+ {158} "flight-risk" flight;risk
+
+
+C5P40
+ page 207 (209)  ->
+ {254} "Millon-Clinical-Multiaxial-Inventory-MCMI" MCMI
+
+
+C5P42
+ page 208 (210)  ->
+ {135} "contractual-use-of-records" contractual
+
+
+C5P43
+ page 208 (210)  ->
+ {44} "best-interests-of" best;interests
+
+
+C5P44
+ page 208 (210)  ->
+ {533} "child-neglect-charge-of" child
+
+
+C5P45
+ page 209 (432)  ->
+
+
+C5P46
+ page 209 (211)  ->
+ {27} "Brooklyn-Family-Court" Brooklyn;Family;Court
+
+
+C5P49
+ page 210 (432)  ->
+
+
+C5P51
+ page 211 (213)  ->
+ {106} "colposcopic-examination" colposcopic;examination
+
+
+C5P53
+ page 211 (213)  ->
+ {166} "Gardner-Richard-A" Gardner;Richard
+ {317} "Parental-Alienation-Syndrome-PAS" Parental;Alienation;Syndrome
+
+
+C5P54
+ page 212 (213)  ->
+ {166} "Gardner-Richard-A" Gardner
+ {317} "Parental-Alienation-Syndrome-PAS"  ..??
+
+
+C5P55
+ page 212 (213)  ->
+ {166} "Gardner-Richard-A" Gardner
+
+
+C5P57
+ page 212 (214)  ->
+ {12} "appellate-review" appellate
+
+
+C5P58
+ page 212 (214)  ->
+ {245} "McDonald-Michael-O" McDonald;Michael
+
+
+C5P59
+ page 212 (432)  ->
+
+
+C5P61
+ page 213 (215)  ->
+ {228} "Lexington-Herald-Leader" Lexington;Herald-Leader
+
+
+C5P62
+ page 214 (216)  ->
+ {12} "appellate-review" appellate
+
+
+C5P66
+ page 215 (217)  ->
+ {12} "appellate-review" appellate
+
+
+C5P67
+ page 215 (217)  ->
+ {297} "Grievance-Committee-for-the-Tenth-Judicial-District" Grievance;Committee
+
+
+C5P68
+ page 215 (432)  ->
+
+
+C5P72
+ page 216 (218)  ->
+ {223} "Krause-Alanna" Krause;Alanna
+
+
+C5P74
+ page 216 (218)  ->
+ {194} "immunity" immunity
+
+
+C5P76
+ page 217 (219)  ->
+ {44} "best-interests-of" best;interests
+
+
+C5P78
+ page 218 (220)  ->
+ {12} "appellate-review" appellate
+
+
+C5P79
+ page 218 (220)  ->
+ {18} "Baby-M-case" Baby;case
+
+
+C5P80
+ page 218 (220)  ->
+ {18} "Baby-M-case" Baby;case
+
+
+C5P82
+ page 219 (221)  ->
+ {115} "Displaced-Mother-Syndrome" Displaced;Mother;Syndrome
+
+
+C5P83
+ page 219 (221)  ->
+ {115} "Displaced-Mother-Syndrome" Displaced;Mother;Syndrome
+
+
+C5P87
+ page 220 (222)  ->
+ {11} "anorexia-nervosa" anorexia;nervosa
+
+
+C5P88
+ page 220 (222)  ->
+ {287} "Child-Fatality-Review-Panel" Child;Fatality;Review;Panel
+
+
+C5P89
+ page 220 (222)  ->
+ {145} "situated-meaning-accomplishment-achievement-definition-action" situated;achievement
+
+
+C5P91
+ page 221 (223)  ->
+ {108} "confidentiality"  ..??
+
+
+C5P95
+ page 222 (224)  ->
+ {306} "New-York-Newsday" York;Newsday
+
+
+C5P96
+ page 222 (225)  ->
+ {196} "infanticide-mothers-who-commit" +mothers
+
+
+C5P97
+ page 223 (225)  ->
+ {196} "infanticide-mothers-who-commit" mothers
+ {414} "Warren-William" Warren;William
+
+
+C5P98
+ page 223 (225)  ->
+ {196} "infanticide-mothers-who-commit" mothers
+
+
+C5P99
+ page 223 (225)  ->
+ {196} "infanticide-mothers-who-commit" mothers
+
+
+C5P100
+ page 223 (225)  ->
+ {32} "Buckmaster-Henrietta" Buckmaster;Henrietta
+ {196} "infanticide-mothers-who-commit" mothers
+ {275} "National-Law-Journal" National;Journal
+ {323} "pogroms-medieval-Jewish" pogroms;medieval;Jewish
+ {356} "slaves-American" slaves;American
+
+
+C5P104
+ page 224 (226)  ->
+ {145} "situated-meaning-accomplishment-achievement-definition-action" situated
+
+
+C5P108
+ page 226 (228)  ->
+ {515} "conviction-for-criminal-endangerment-of-welfare-of-child" conviction;criminal;endangerment;welfare;child
+
+
+C5P109
+ page 226 (228)  ->
+ {522} "resisting-arrest"  ..??
+
+
+C5P110
+ page 226 (228)  ->
+ {521} "impulse-control-lack-of" impulse;control
+
+
+C5P112
+ page 227 (229)  ->
+ {114} "Diagnostic-Impression-chart" Diagnostic;Impression
+
+
+C5P113
+ page 227 (229)  ->
+ {516} "cursing-child" child
+
+
+C5P114
+ page 228 (230)  ->
+ {529} "Woods-lamp" Woods-lamp
+
+
+C6P1
+ page 229 (231)  ->
+ {141} "practical-accomplishment" practical;accomplishment
+
+
+C6P3
+ page 230 (232)  ->
+ {47} "welfare-of" welfare
+ {215} "Kafkaesque-court-experience-as" Kafkaesque;court;experience
+ {533} "child-neglect-charge-of" child;neglect;charge
+
+
+C6P14
+ page 232 (234)  ->
+ {377} "supervised-visitation"  ..??
+
+
+C6P17
+ page 233 (235)  ->
+ {346} "search-warrant" search;warrant
+
+
+C6P18
+ page 233 (235)  ->
+ {533} "child-neglect-charge-of" child;neglect
+
+
+C6P19
+ page 233 (235)  ->
+ {144} "running-record" record
+ {533} "child-neglect-charge-of" child;neglect
+
+
+C6P21
+ page 234 (236)  ->
+ {24} "Billings-Lucy" Billings;Lucy
+ {29} "Bronx-Legal-Services" Bronx;Legal;Services
+ {402} "U-S-House-Subcommittee-on-Select-Education-of-the-Committee-on-Education-and-Labor" House;Subcommittee;Select;Education;Committee;Education;Labor
+
+
+C6P22
+ page 235 (237)  ->
+ {108} "confidentiality" confidentiality
+ {288} "Child-Welfare-Administration-CWA" Child;Welfare;Administration
+
+
+C6P23
+ page 235 (237)  ->
+ {108} "confidentiality" confidentiality
+
+
+C6P25
+ page 235 (434)  ->
+
+
+C6P26
+ page 236 (238)  ->
+ {377} "supervised-visitation" supervised;visitation
+
+
+C6P29
+ page 237 (239)  ->
+ {533} "child-neglect-charge-of" child;neglect
+
+
+C6P31
+ page 238 (240)  ->
+ {377} "supervised-visitation" supervised
+ {389} "abscond-or-flee-with-child" abscond;with;child
+
+
+C6P32
+ page 238 (240)  ->
+ {377} "supervised-visitation" supervised
+
+
+C6P33
+ page 238 (240)  ->
+ {537} "surprise-unannounced-visits" visits
+
+
+C6P34
+ page 239 (241)  ->
+ {158} "flight-risk" flight
+ {533} "child-neglect-charge-of" child;neglect
+
+
+C6P36
+ page 239 (241)  ->
+ {24} "Billings-Lucy" Billings;Lucy
+
+
+C6P37
+ page 239 (241)  ->
+ {193} "Illinois-Department-of-Children-and-Family-Services" Illinois;Department;Children;Family;Services
+ {200} "Jane-Addams-College-of-Social-Work-of-the-University-of-Illinois" Jane;Addams;College;Social;Work;University;Illinois;Jane;Addams;College;Social;Work;University;Illinois
+ {233} "Lundy-Marta" Lundy;Marta
+
+
+C6P38
+ page 240 (434)  ->
+
+
+C6P41
+ page 240 (242)  ->
+ {235} "mandatory-reporting-laws" mandatory;reporting;laws
+
+
+C6P42
+ page 240 (434)  ->
+
+
+C6P43
+ page 240 (242)  ->
+ {33} "Burgasser-George" Burgasser;George
+ {48} "Child-Abuse-Prevention-and-Treatment-Act-of-1974-CAPTA" Child;Abuse;Treatment
+ {241} "Massat-Carol-Rippey" Massat;Carol;Rippey
+ {269} "National-Center-on-Child-Abuse-and-Neglect-NCCAN" Child;Abuse
+ {399} "Child-Exploitation-and-Obscenity-Section" Child;Exploitation
+
+
+C6P44
+ page 241 (243)  ->
+ {241} "Massat-Carol-Rippey" Massat
+
+
+C6P45
+ page 241 (243)  ->
+ {182} "Harman-Rosalie" Harman;Rosalie
+ {307} "New-York-Post" York;Post
+
+
+C6P46
+ page 241 (243)  ->
+ {11} "anorexia-nervosa" anorexia;nervosa
+ {182} "Harman-Rosalie" Harman;Rosalie
+
+
+C6P47
+ page 242 (244)  ->
+ {319} "Paterson-David-A" Paterson;David
+
+
+C6P48
+ page 242 (244)  ->
+ {319} "Paterson-David-A" Paterson;David
+ {333} "Radek-Lee-J" Radek
+ {400} "Public-Integrity-Division" Public;Integrity;Division
+
+
+C6P49
+ page 242 (245)  ->
+ {158} "flight-risk" +flight;risk
+ {377} "supervised-visitation" +supervised;visitation
+
+
+C6P53
+ page 244 (246)  ->
+ {377} "supervised-visitation" supervised;visitation
+
+
+C6P55
+ page 244 (246)  ->
+ {533} "child-neglect-charge-of" child;neglect
+
+
+C6P56
+ page 244 (247)  ->
+ {373} "children-who-are-suicidal" children
+ {374} "mothers-who-commit"  ..??
+
+
+C6P57
+ page 245 (247)  ->
+ {135} "contractual-use-of-records" contractual;records
+
+
+C6P60
+ page 246 (248)  ->
+ {194} "immunity" immunity
+
+
+C6P61
+ page 246 (248)  ->
+ {533} "child-neglect-charge-of" child;neglect
+
+
+C6P62
+ page 246 (248)  ->
+ {46} "imminent-danger-or-risk-of-harm" imminent;danger
+
+
+C6P64
+ page 247 (249)  ->
+ {46} "imminent-danger-or-risk-of-harm" imminent;danger;risk;harm
+
+
+C6P67
+ page 248 (250)  ->
+ {157} "fitness-parental" fitness
+
+
+C6P68
+ page 248 (435)  ->
+
+
+C6P70
+ page 249 (251)  ->
+ {575} "community-Orthodox-Jewish"  ..??
+
+
+C6P73
+ page 249 (251)  ->
+ {118} "domestic-violence" domestic;violence
+
+
+C6P75
+ page 250 (252)  ->
+ {27} "Brooklyn-Family-Court" Brooklyn;Family;Court
+ {533} "child-neglect-charge-of" child;neglect;charge
+
+
+C6P81
+ page 251 (253)  ->
+ {46} "imminent-danger-or-risk-of-harm" imminent;danger
+ {377} "supervised-visitation" supervised;visitation
+
+
+C6P82
+ page 251 (253)  ->
+ {377} "supervised-visitation" supervised;visitation
+
+
+C6P85
+ page 252 (254)  ->
+ {144} "running-record" running;record
+ {157} "fitness-parental" fitness;parental
+
+
+C6P88
+ page 252 (254)  ->
+ {382} "termination-of-parental-rights" parental;rights
+
+
+C6P89
+ page 253 (255)  ->
+ {533} "child-neglect-charge-of" child;neglect;charge
+
+
+C6P92
+ page 253 (435)  ->
+
+
+C6P94
+ page 254 (256)  ->
+ {377} "supervised-visitation" +supervised;visitation
+
+
+C6P95
+ page 254 (435)  ->
+
+
+C6P100
+ page 255 (257)  ->
+ {377} "supervised-visitation" supervised;visitation
+
+
+C6P104
+ page 256 (258)  ->
+ {144} "running-record" running;record
+
+
+C6P107
+ page 256 (258)  ->
+ {106} "colposcopic-examination" examination
+ {349} "sexually-transmitted-disease" sexually;transmitted
+
+
+C6P108
+ page 257 (259)  ->
+ {320} "pelvic-inflammatory-disease-PID" pelvic;inflammatory;disease
+
+
+C6P110
+ page 257 (260)  ->
+ {349} "sexually-transmitted-disease" sexually;transmitted;disease
+
+
+C6P111
+ page 257 (436)  ->
+
+
+C6P112
+ page 257 (260)  ->
+ {392} "underground-fugitive-mothers" +underground;fugitive
+
+
+C6P115
+ page 258 (260)  ->
+ {137} "documentary-method-of-interpretation" documentary;method;interpretation
+
+
+C6P117
+ page 259 (261)  ->
+ {320} "pelvic-inflammatory-disease-PID" pelvic;inflammatory;disease
+
+
+C6P118
+ page 259 (261)  ->
+ {320} "pelvic-inflammatory-disease-PID" pelvic;inflammatory;disease
+ {533} "child-neglect-charge-of" child;neglect
+
+
+C6P120
+ page 260 (262)  ->
+ {135} "contractual-use-of-records" contractual
+
+
+C6P124
+ page 261 (263)  ->
+ {163} "gag-order" order
+ {189} "hunger-strike" hunger;strike
+ {306} "New-York-Newsday" York;Newsday
+
+
+C6P126
+ page 261 (436)  ->
+
+
+C6P130
+ page 262 (264)  ->
+ {28} "Brooklyn-Society-for-the-Prevention-of-Cruelty-to-Children-BSPCC" Brooklyn;Society;Prevention;Cruelty;Children;BSPCC
+ {533} "child-neglect-charge-of" child;neglect;charge
+
+
+C6P132
+ page 263 (436)  ->
+
+
+C6P137
+ page 264 (266)  ->
+ {98} "circumscribed-psychosis" circumscribed
+ {177} "Green-Arthur" Green;Arthur
+
+
+C6P139
+ page 265 (267)  ->
+ {533} "child-neglect-charge-of" child;neglect;charge
+
+
+C6P142
+ page 266 (268)  ->
+ {44} "best-interests-of" interests
+
+
+C6P144
+ page 266 (268)  ->
+ {272} "National-Child-Abuse-and-Neglect-Data-System-NCANDS" National;Child;Abuse;Neglect;Data;System;NCANDS
+ {273} "Child-Maltreatment-2002" Child;Maltreatment;2002
+ {532} "child-fatalities" child;fatalities
+
+
+C6P146
+ page 267 (269)  ->
+ {50} "Office-of-Justice-Programs" Office;Justice;Programs
+
+
+C6P147
+ page 267 (269)  ->
+ {531} "child-abuse-charge-of" child;abuse;charge
+ {533} "child-neglect-charge-of" child;neglect;charge
+
+
+C6P148
+ page 268 (270)  ->
+ {496} "protective-mothers" protective;mothers
+
+
+C6P149
+ page 268 (270)  ->
+ {496} "protective-mothers" protective;mothers
+ {534} "documents-gratuitous-statements" documents;gratuitous;statements
+
+
+C6P151
+ page 269 (271)  ->
+ {51} "Department-of-Children-and-Family-Services-DCFS" Department;Children;Family;Services;DCFS
+ {363} "socioeconomic-status" socioeconomic;status
+
+
+C6P153
+ page 270 (272)  ->
+ {52} "hallucinations" hallucinations
+
+
+C6P156
+ page 271 (273)  ->
+ {51} "Department-of-Children-and-Family-Services-DCFS" Family;Services;DCFS
+
+
+C6P157
+ page 271 (273)  ->
+ {51} "Department-of-Children-and-Family-Services-DCFS" Family;Services;DCFS
+
+
+C6P158
+ page 272 (274)  ->
+ {51} "Department-of-Children-and-Family-Services-DCFS" Children;Family;Services;DCFS
+
+
+C6P160
+ page 273 (275)  ->
+ {535} "foster-care-convenient-segue-toward-transferring-custody-to-father" foster;care;convenient;segue;toward;transferring;custody;father
+
+
+C6P162
+ page 274 (276)  ->
+ {429} "Visitation-vagrancy" Visitation;vagrancy
+
+
+C6P165
+ page 275 (277)  ->
+ {265} "Munchausen-Syndrome-By-Proxy-MSBP-factious-disorder-by-proxy" Munchausen;Syndrome;Proxy;disorder;proxy
+
+
+C6P166
+ page 275 (277)  ->
+ {265} "Munchausen-Syndrome-By-Proxy-MSBP-factious-disorder-by-proxy" Munchausen;Syndrome;Proxy;disorder;proxy
+
+
+C6P171
+ page 277 (279)  ->
+
+
+C6P172
+ page 278 (280)  ->
+ {538} "medical-child-abuse" medical;child;abuse
+
+
+C6P173
+ page 278 (280)  ->
+ {539} "Due-Process-Clause-Fourteenth-Amendment"  ..??
+
+
+C6P174
+ page 279 (281)  ->
+ {444} "jail-mothers-thrown-into" jail;mothers;into
+ {533} "child-neglect-charge-of" child;neglect
+
+
+C6P175
+ page 279 (281)  ->
+ {54} "gaslighting" gaslighting
+ {448} "Garland-Merrick" +Garland;Merrick
+ {576} "modern-day-gulag" modern;gulag
+
+
+C6P176
+ page 280 (282)  ->
+ {534} "documents-gratuitous-statements" gratuitous
+
+
+C6P178
+ page 281 (283)  ->
+ {51} "Department-of-Children-and-Family-Services-DCFS" Services;DCFS
+
+
+C6P179
+ page 281 (283)  ->
+ {540} "lawyers-retaliation-from" lawyers;retaliation;from
+
+
+C6P181
+ page 282 (283)  ->
+ {540} "lawyers-retaliation-from" from
+
+
+C6P182
+ page 282 (283)  ->
+ {538} "medical-child-abuse" medical;child;abuse
+ {540} "lawyers-retaliation-from" from
+
+
+C6P183
+ page 282 (284)  ->
+ {45} "gifted" +gifted
+
+
+C6P184
+ page 283 (285)  ->
+ {509} "night-terrors" night;terrors
+
+
+C6P185
+ page 283 (285)  ->
+ {551} "racist-views-system-saturated-by" racist;views;system
+
+
+C6P186
+ page 284 (285)  ->
+ {494} "foster-placement" foster;placement
+ {538} "medical-child-abuse" medical;child;abuse
+
+
+C6P187
+ page 284 (285)  ->
+ {494} "foster-placement" foster;placement
+ {506} "enuresis-bed-wetting" enuresis
+ {509} "night-terrors" night;terrors
+
+
+C6P188
+ page 284 (286)  ->
+ {538} "medical-child-abuse" medical;child;abuse
+
+
+C6P190
+ page 285 (286)  ->
+ {497} "psychopathological-labels" psychopathological;labels
+
+
+C6P192
+ page 285 (287)  ->
+ {538} "medical-child-abuse" medical;child;abuse
+
+
+C7P1
+ page 286 (288)  ->
+ {211} "junk-science" science
+ {295} "Bar-Association" Association
+ {304} "New-York-Law-Journal" York;Journal
+ {385} "Tippins-Timothy" Tippins;Timothy
+
+
+C7P3
+ page 287 (289)  ->
+ {144} "running-record" running;record
+ {389} "abscond-or-flee-with-child" flee;with;child
+
+
+C7P6
+ page 288 (290)  ->
+ {72} "Gould-1998" Gould;1998
+ {107} "Conducting-Scientifically-Crafted-Child-Custody-Evaluations" Conducting;Scientifically;Crafted;Child;Custody;Evaluations
+ {377} "supervised-visitation" visitation
+
+
+C7P7
+ page 288 (290)  ->
+ {143} "reflexive" reflexive
+
+
+C7P10
+ page 289 (291)  ->
+ {166} "Gardner-Richard-A" Gardner;Richard
+ {317} "Parental-Alienation-Syndrome-PAS" Parental;Alienation;Syndrome
+
+
+C7P11
+ page 289 (291)  ->
+ {311} "Niggemyer-Kathleen" Niggemyer;Kathleen
+ {317} "Parental-Alienation-Syndrome-PAS" Parental;Alienation;Syndrome
+
+
+C7P12
+ page 289 (291)  ->
+ {9} "Presidential-Task-Force-on-Violence-and-the-Family-1996" Presidential;Task;Force;Violence;Family;1996
+ {219} "Kelly-Frye-rule" Kelly-Frye;rule
+ {317} "Parental-Alienation-Syndrome-PAS" Parental;Alienation;Syndrome
+
+
+C7P13
+ page 289 (291)  ->
+ {7} "American-Psychiatric-Association" American;Association
+ {156} "Fink-Paul" +Fink;Paul
+ {317} "Parental-Alienation-Syndrome-PAS" Parental;Alienation;Syndrome
+ {381} "Temple-University" +Temple;University
+
+
+C7P14
+ page 290 (292)  ->
+ {157} "fitness-parental"  ..??
+ {177} "Green-Arthur" Green;Arthur
+
+
+C7P15
+ page 290 (292)  ->
+ {352} "Silbermann-Jacqueline" Silbermann;Jacqueline
+
+
+C7P16
+ page 290 (292)  ->
+ {352} "Silbermann-Jacqueline" Silbermann;Jacqueline
+
+
+C7P17
+ page 291 (293)  ->
+ {93} "Smith-and-Coukos-1997" Smith;Coukos;1997
+ {234} "Malicious-Mother-Syndrome-MMS" Malicious;Mother;Syndrome
+ {387} "Turkat-Ira" Turkat
+
+
+C7P19
+ page 291 (293)  ->
+ {368} "Solomonic-choice" Solomonic;choice
+
+
+C7P20
+ page 292 (294)  ->
+ {59} "Corwin-Berliner-Goodman-Goodwin-and-White-1987" Corwin;1987
+ {203} "Journal-of-Interpersonal-Violence" Journal;Violence
+
+
+C7P21
+ page 292 (294)  ->
+ {375} "Summit-Roland" Summit;Roland
+ {394} "University-of-California-Los-Angeles" University;Angeles;University;Angeles
+ {541} "Child-Abuse-Accommodation-Syndrome" Child;Abuse;Syndrome
+
+
+C7P22
+ page 292 (294)  ->
+ {15} "Arizona-Coalition-against-Domestic-Violence" Arizona;Coalition;against;Domestic;Violence
+ {86} "Palmer-and-Brown-1999" Palmer;Brown;1999
+
+
+C7P25
+ page 293 (295)  ->
+ {166} "Gardner-Richard-A" Gardner
+ {211} "junk-science"  ..??
+ {386} "True-and-False-Accusations-of-Child-Sexual-Abuse-span-style-font-style-normal'-Gardner-span" True;False;Child;Abuse;Gardner
+
+
+C7P26
+ page 293 (295)  ->
+ {177} "Green-Arthur" Green
+ {181} "Hanson-Graeme" Hanson;Graeme
+ {204} "Journal-of-the-American-Academy-of-Child-and-Adolescent-Psychiatry" Journal;American;Academy;Child;Adolescent;Psychiatry
+ {395} "University-of-California-San-Francisco" University;California;Francisco;University;California;Francisco
+
+
+C7P27
+ page 294 (296)  ->
+ {60} "Deblinger-Stauffer-and-Steer-2001" Deblinger;2001
+
+
+C7P29
+ page 294 (440)  ->
+
+
+C7P34
+ page 295 (297)  ->
+ {59} "Corwin-Berliner-Goodman-Goodwin-and-White-1987" Corwin
+
+
+C7P35
+ page 296 (298)  ->
+ {71} "Froning-1988" Froning;1988
+ {152} "Faller-Kathleen-Coulborn" Faller;Kathleen
+ {204} "Journal-of-the-American-Academy-of-Child-and-Adolescent-Psychiatry" Journal;American;Academy;Child;Adolescent;Psychiatry
+
+
+C7P39
+ page 297 (299)  ->
+ {211} "junk-science"  ..??
+
+
+C7P42
+ page 298 (300)  ->
+ {98} "circumscribed-psychosis" circumscribed;psychosis
+ {177} "Green-Arthur" Green
+
+
+C7P44
+ page 298 (300)  ->
+ {98} "circumscribed-psychosis" circumscribed;psychosis
+ {157} "fitness-parental"  ..??
+
+
+C7P46
+ page 299 (301)  ->
+ {98} "circumscribed-psychosis" circumscribed;psychosis
+
+
+C7P47
+ page 299 (441)  ->
+
+
+C7P48
+ page 299 (301)  ->
+ {67} "Faller-Corwin-and-Olafson-1993" Faller;Corwin;1993
+ {152} "Faller-Kathleen-Coulborn" Faller
+ {159} "folie-agrave-deux" +folie;deux
+ {217} "Kaplan-S-and-S-Kaplan" Kaplan;Kaplan
+
+
+C7P49
+ page 300 (301)  ->
+ {67} "Faller-Corwin-and-Olafson-1993" Faller;Corwin;Olafson
+ {152} "Faller-Kathleen-Coulborn" Faller
+ {159} "folie-agrave-deux" folie;deux
+
+
+C7P50
+ page 300 (302)  ->
+ {159} "folie-agrave-deux" folie;deux
+ {166} "Gardner-Richard-A" Gardner
+ {317} "Parental-Alienation-Syndrome-PAS" Syndrome
+
+
+C7P51
+ page 300 (302)  ->
+ {159} "folie-agrave-deux" folie;deux
+ {166} "Gardner-Richard-A" Gardner
+
+
+C7P52
+ page 300 (302)  ->
+ {159} "folie-agrave-deux" folie;deux
+ {160} "folie-agrave-trois" folie
+ {166} "Gardner-Richard-A" Gardner
+
+
+C7P53
+ page 301 (302)  ->
+ {30} "Bruch-Carol" Bruch;Carol
+ {153} "Family-Law-Quarterly" Family;Quarterly
+ {159} "folie-agrave-deux" folie;deux
+ {166} "Gardner-Richard-A" Gardner
+
+
+C7P54
+ page 301 (303)  ->
+ {265} "Munchausen-Syndrome-By-Proxy-MSBP-factious-disorder-by-proxy" Munchausen;Syndrome;Proxy;MSBP;disorder;proxy
+
+
+C7P55
+ page 301 (303)  ->
+ {157} "fitness-parental"  ..??
+ {247} "Meadow-Roy" Meadow
+ {411} "von-Munchausen-Baron" Munchausen;Baron
+
+
+C7P57
+ page 302 (304)  ->
+ {13} "Apolo-Julio" Apolo;Julio
+ {197} "International-Pediatrics" International;Pediatrics
+ {229} "Libow-J-A" Libow
+ {345} "Schreier-Herbert-A" Schreier;Herbert
+
+
+C7P58
+ page 302 (304)  ->
+ {353} "Sinanan-K-and-H-Houghton" Sinanan
+
+
+C7P59
+ page 302 (304)  ->
+ {159} "folie-agrave-deux" folie;deux
+ {166} "Gardner-Richard-A" Gardner
+ {199} "Issues-in-Child-Abuse-Accusations" Issues;Child;Abuse;Accusations
+ {317} "Parental-Alienation-Syndrome-PAS" Syndrome
+ {334} "Rand-Deirdre-Conway" Rand;Deirdre;Conway
+ {353} "Sinanan-K-and-H-Houghton" Sinanan
+
+
+C7P60
+ page 303 (305)  ->
+ {66} "Faller-2002" Faller;2002
+ {152} "Faller-Kathleen-Coulborn" Faller
+ {159} "folie-agrave-deux" folie;deux
+ {347} "Seventh-Annual-Northern-New-England-Conference-on-Child-Maltreatment" Seventh;Northern;England;Conference;Child;Maltreatment
+ {396} "University-of-Michigan-School-of-Social-Work" University;Michigan;School;Social;Work;University;Michigan;School;Social;Work
+
+
+C7P61
+ page 303 (305)  ->
+ {152} "Faller-Kathleen-Coulborn" Faller
+
+
+C7P62
+ page 303 (305)  ->
+ {369} "spina-bifida" spina;bifida
+
+
+C7P63
+ page 303 (305)  ->
+ {326} "primary-caretaker" primary;caretaker
+
+
+C7P70
+ page 305 (309)  ->
+ {317} "Parental-Alienation-Syndrome-PAS" Parental
+
+
+C7P71
+ page 305 (307)  ->
+ {377} "supervised-visitation" supervised;visitation
+ {389} "abscond-or-flee-with-child" with;child
+
+
+C7P73
+ page 306 (308)  ->
+ {157} "fitness-parental"  ..??
+
+
+C7P75
+ page 306 (308)  ->
+ {267} "National-Alliance-for-the-Mentally-Ill" National;Alliance;Mentally
+
+
+C7P77
+ page 307 (309)  ->
+ {211} "junk-science" +science
+
+
+C7P79
+ page 307 (309)  ->
+ {166} "Gardner-Richard-A" Gardner
+
+
+C7P80
+ page 307 (309)  ->
+ {166} "Gardner-Richard-A" Gardner
+ {317} "Parental-Alienation-Syndrome-PAS"  ..??
+
+
+C7P81
+ page 308 (309)  ->
+ {72} "Gould-1998" Gould
+ {166} "Gardner-Richard-A" Gardner
+
+
+C7P82
+ page 308 (310)  ->
+ {378} "symbiosis" symbiosis
+
+
+C7P83
+ page 308 (311)  ->
+ {47} "welfare-of" +welfare
+
+
+C7P86
+ page 309 (311)  ->
+ {157} "fitness-parental"  ..??
+
+
+C7P89
+ page 310 (312)  ->
+ {177} "Green-Arthur" Green
+
+
+C7P90
+ page 311 (313)  ->
+ {144} "running-record" running;record
+
+
+C7P91
+ page 311 (313)  ->
+ {377} "supervised-visitation" supervised;visitation
+
+
+C7P92
+ page 311 (313)  ->
+ {389} "abscond-or-flee-with-child" with;child
+ {391} "runner-profile-of" +runner;profile;runner;profile
+
+
+C7P96
+ page 312 (314)  ->
+ {12} "appellate-review" appellate
+
+
+C7P98
+ page 313 (315)  ->
+ {377} "supervised-visitation"  ..??
+
+
+C7P99
+ page 313 (315)  ->
+ {211} "junk-science"  ..??
+ {317} "Parental-Alienation-Syndrome-PAS" +Parental;Alienation
+
+
+C7P105
+ page 314 (316)  ->
+ {157} "fitness-parental" parental
+ {533} "child-neglect-charge-of" child
+
+
+C7P106
+ page 315 (317)  ->
+ {64} "Faller-1998" 1998
+ {211} "junk-science"  ..??
+ {378} "symbiosis" symbiosis
+
+
+C7P107
+ page 315 (317)  ->
+ {166} "Gardner-Richard-A" Gardner
+ {317} "Parental-Alienation-Syndrome-PAS" Parental;Alienation;Syndrome
+
+
+C7P108
+ page 316 (317)  ->
+ {152} "Faller-Kathleen-Coulborn" Faller
+ {166} "Gardner-Richard-A" Gardner
+ {317} "Parental-Alienation-Syndrome-PAS" Parental;Alienation;Syndrome
+
+
+C7P112
+ page 317 (319)  ->
+ {339} "Rorschach" Rorschach
+
+
+C7P114
+ page 318 (320)  ->
+ {145} "situated-meaning-accomplishment-achievement-definition-action" situated
+
+
+C7P117
+ page 318 (320)  ->
+ {104} "Cobb-County-Bar-Association" Cobb;County;Association
+ {119} "Ducote-Richard" Ducote;Richard
+ {166} "Gardner-Richard-A" Richard
+ {251} "Metro-Atlanta-Board-of-Mental-Health-Professionals" Metro;Atlanta;Board;Mental;Health
+ {317} "Parental-Alienation-Syndrome-PAS" +Parental;Alienation
+
+
+C7P119
+ page 319 (321)  ->
+ {389} "abscond-or-flee-with-child" with;child
+
+
+C7P120
+ page 319 (321)  ->
+ {389} "abscond-or-flee-with-child" with;child
+
+
+C7P125
+ page 321 (323)  ->
+ {106} "colposcopic-examination" examination
+
+
+C7P127
+ page 321 (323)  ->
+ {166} "Gardner-Richard-A" Gardner
+ {317} "Parental-Alienation-Syndrome-PAS" +Parental;Alienation;Syndrome
+
+
+C7P128
+ page 322 (323)  ->
+ {317} "Parental-Alienation-Syndrome-PAS" Parental;Alienation;Syndrome
+
+
+C7P131
+ page 323 (325)  ->
+ {144} "running-record" running;record
+ {377} "supervised-visitation" supervised;visitation
+
+
+C7P133
+ page 323 (325)  ->
+ {141} "practical-accomplishment" practical;accomplishment
+
+
+C7P141
+ page 326 (328)  ->
+ {192} "hypoglycemia" hypoglycemia
+
+
+C7P142
+ page 326 (328)  ->
+ {157} "fitness-parental" fitness
+
+
+C7P143
+ page 327 (329)  ->
+ {255} "Minnesota-Multiphasic-Personality-Inventory-MMPI" Personality;MMPI
+ {339} "Rorschach" Rorschach
+
+
+C7P145
+ page 328 (330)  ->
+ {377} "supervised-visitation" visitation
+
+
+C7P146
+ page 328 (330)  ->
+ {377} "supervised-visitation" visitation
+
+
+C7P147
+ page 328 (330)  ->
+ {377} "supervised-visitation" visitation
+
+
+C7P148
+ page 328 (330)  ->
+ {377} "supervised-visitation" visitation
+
+
+C7P150
+ page 329 (331)  ->
+ {170} "Geraldo-Rivera-Show" Geraldo;Rivera;Show
+
+
+C7P151
+ page 329 (444)  ->
+
+
+C7P152
+ page 330 (332)  ->
+ {211} "junk-science" junk;science
+ {317} "Parental-Alienation-Syndrome-PAS" Parental;Alienation;Syndrome
+ {546} "Alienation-A" Alienation
+ {548} "Parental-Alienation-PA" Parental;Alienation
+ {549} "Resist-and-Refuse-Dynamics-R-RD" Resist;Refuse;Dynamics;R-RD
+
+
+C7P158
+ page 333 (335)  ->
+ {504} "emotional-regression" regression
+ {509} "night-terrors" night;terrors;night;terrors
+
+
+C7P160
+ page 334 (336)  ->
+ {547} "enmeshment" enmeshment
+
+
+C7P169
+ page 337 (339)  ->
+ {549} "Resist-and-Refuse-Dynamics-R-RD" Resist;Refuse;Dynamics;R-RD
+
+
+C7P170
+ page 337 (339)  ->
+ {548} "Parental-Alienation-PA" Parental;Alienation
+
+
+C7P173
+ page 338 (340)  ->
+ {317} "Parental-Alienation-Syndrome-PAS" +Alienation
+ {550} "criminal-undertones" criminal;undertones
+
+
+C7P174
+ page 339 (341)  ->
+ {286} "Administration-for-Children's-Services-ACS" Services
+ {317} "Parental-Alienation-Syndrome-PAS" Alienation
+
+
+C7P175
+ page 339 (341)  ->
+ {506} "enuresis-bed-wetting" wetting
+
+
+C7P177
+ page 340 (342)  ->
+ {317} "Parental-Alienation-Syndrome-PAS"  ..??
+
+
+C7P178
+ page 340 (342)  ->
+ {286} "Administration-for-Children's-Services-ACS" Administration
+
+
+C7P179
+ page 341 (342)  ->
+ {286} "Administration-for-Children's-Services-ACS" Administration;Services
+
+
+C7P182
+ page 342 (344)  ->
+ {513} "alcohol-abuse" alcohol;abuse
+ {514} "cocaine-use"  ..??
+ {518} "disorderly-conduct" disorderly;conduct
+ {519} "DUI"  ..??
+ {520} "illegal-possession-of-firearms" illegal;possession;firearms
+ {522} "resisting-arrest" resisting;arrest
+
+
+C8P1
+ page 343 (345)  ->
+ {258} "moral-earthquake" moral;earthquake
+
+
+C8P2
+ page 343 (345)  ->
+ {258} "moral-earthquake" moral;earthquake
+
+
+C8P3
+ page 344 (346)  ->
+ {215} "Kafkaesque-court-experience-as" Kafkaesque;court;experience
+
+
+C8P4
+ page 344 (346)  ->
+ {307} "New-York-Post" York;Post
+ {315} "Pagnozzi-Amy" Pagnozzi
+
+
+C8P6
+ page 344 (346)  ->
+ {364} "sociology"  ..??
+
+
+C8P8
+ page 345 (347)  ->
+ {190} "Hunted-Syndrome" Hunted;Syndrome
+
+
+C8P9
+ page 345 (347)  ->
+ {392} "underground-fugitive-mothers" fugitive;mothers
+
+
+C8P10
+ page 345 (347)  ->
+ {392} "underground-fugitive-mothers" fugitive;mothers
+
+
+C8P11
+ page 345 (347)  ->
+ {190} "Hunted-Syndrome" Hunted;Syndrome
+
+
+C8P12
+ page 346 (348)  ->
+ {200} "Jane-Addams-College-of-Social-Work-of-the-University-of-Illinois" University;Illinois
+ {241} "Massat-Carol-Rippey" Massat
+
+
+C8P14
+ page 346 (348)  ->
+ {533} "child-neglect-charge-of" child;neglect;charge
+
+
+C8P15
+ page 346 (348)  ->
+ {349} "sexually-transmitted-disease" sexually;transmitted;disease
+ {373} "children-who-are-suicidal" children
+
+
+C8P16
+ page 346 (349)  ->
+ {537} "surprise-unannounced-visits" visits
+
+
+C8P18
+ page 347 (349)  ->
+ {158} "flight-risk" flight
+
+
+C8P21
+ page 348 (350)  ->
+ {230} "Lost-Limb-Syndrome" Lost;Limb;Syndrome
+
+
+C8P22
+ page 348 (350)  ->
+ {171} "Gill-John-Edward" Gill;John;Edward
+
+
+C8P27
+ page 350 (352)  ->
+ {151} "order" order
+
+
+C8P28
+ page 350 (352)  ->
+ {239} "Masochistic-Mother-Syndrome" Masochistic;Mother;Syndrome
+
+
+C8P29
+ page 350 (352)  ->
+ {196} "infanticide-mothers-who-commit" mothers
+ {374} "mothers-who-commit" mothers
+ {575} "community-Orthodox-Jewish" community;Orthodox;Jewish
+
+
+C8P30
+ page 350 (352)  ->
+ {196} "infanticide-mothers-who-commit" mothers
+ {239} "Masochistic-Mother-Syndrome" Masochistic;Mother;Syndrome
+
+
+C8P31
+ page 351 (353)  ->
+ {303} "New-York-Daily-News" York;Daily;News
+
+
+C8P38
+ page 352 (446)  ->
+
+
+C8P40
+ page 353 (355)  ->
+ {377} "supervised-visitation" supervised
+
+
+C8P41
+ page 353 (355)  ->
+ {163} "gag-order" order
+
+
+C8P42
+ page 354 (356)  ->
+ {406} "vigilantism"  ..??
+
+
+C8P51
+ page 356 (358)  ->
+ {151} "order" order
+ {377} "supervised-visitation" supervised;visitation
+
+
+C9P1
+ page 361 (363)  ->
+ {419} "White-House-Women's-Office" White;House;Office
+ {428} "Zorza-Joan" Zorza;Joan
+
+
+C9P3
+ page 362 (364)  ->
+ {121} "English-common-law" English;common
+ {316} "parens-patriae" parens;patriae
+
+
+C9P4
+ page 362 (364)  ->
+ {316} "parens-patriae" parens;patriae
+
+
+C9P5
+ page 362 (364)  ->
+ {44} "best-interests-of" best;interests
+ {316} "parens-patriae" parens;patriae
+
+
+C9P6
+ page 362 (364)  ->
+ {47} "welfare-of" +welfare
+ {316} "parens-patriae" parens;patriae
+ {376} "superparent" superparent
+
+
+C9P7
+ page 363 (365)  ->
+ {47} "welfare-of" welfare
+
+
+C9P8
+ page 363 (366)  ->
+ {166} "Gardner-Richard-A" +Gardner;Richard
+
+
+C9P9
+ page 364 (366)  ->
+ {166} "Gardner-Richard-A" Gardner;Richard
+
+
+C9P10
+ page 364 (367)  ->
+ {211} "junk-science" +junk;science
+
+
+C9P11
+ page 365 (367)  ->
+ {47} "welfare-of" welfare
+
+
+C9P12
+ page 365 (367)  ->
+ {101} "constitutional-rights" rights
+ {102} "due-process" process
+ {539} "Due-Process-Clause-Fourteenth-Amendment" Process;Fourteenth;Amendment
+
+
+C9P13
+ page 366 (368)  ->
+ {376} "superparent" superparent
+
+
+C9P14
+ page 366 (368)  ->
+ {242} "matrimonial-bar" matrimonial
+
+
+C9P15
+ page 366 (368)  ->
+ {3} "American-Bar-Association-in-cooperation-with-the-Association-of-Family-and-Conciliation-Courts-1988" American;Association;with;Association;Family
+ {421} "Winner-Karen" Winner;Karen
+
+
+C9P16
+ page 367 (369)  ->
+ {370} "stepchild-of-the-court-system-family-court-as" stepchild;court;system;family;court
+
+
+C9P17
+ page 367 (369)  ->
+ {157} "fitness-parental"  ..??
+ {211} "junk-science"  ..??
+
+
+C9P18
+ page 368 (370)  ->
+ {101} "constitutional-rights" rights
+ {102} "due-process" process
+ {122} "ethics" ethics
+
+
+C10P2
+ page 369 (371)  ->
+ {158} "flight-risk" flight;risk
+
+
+C10P3
+ page 369 (372)  ->
+ {48} "Child-Abuse-Prevention-and-Treatment-Act-of-1974-CAPTA" Child;Abuse
+
+
+C10P5
+ page 370 (372)  ->
+ {108} "confidentiality" confidentiality
+
+
+C10P7
+ page 371 (373)  ->
+ {195} "in-camera-span-style-font-style-normal'-in-judge's-chambers-span"  ..??
+
+
+C10P10
+ page 372 (374)  ->
+ {44} "best-interests-of" best
+ {163} "gag-order" order
+ {188} "House-Judiciary-Committee-1992" House;Judiciary;Committee;1992
+ {321} "Pennington-H-Joan" Pennington;Joan
+
+
+C10P11
+ page 372 (374)  ->
+ {101} "constitutional-rights" +constitutional;rights
+ {102} "due-process" +process
+
+
+C10P12
+ page 373 (375)  ->
+ {195} "in-camera-span-style-font-style-normal'-in-judge's-chambers-span" chambers
+ {533} "child-neglect-charge-of" child;neglect
+
+
+C10P13
+ page 373 (375)  ->
+ {313} "off-the-record-conferences" off-the-record;conferences
+
+
+C10P18
+ page 374 (376)  ->
+ {149} "hearing" hearing
+
+
+C10P20
+ page 375 (377)  ->
+ {149} "hearing" +hearing
+ {151} "order" order
+
+
+C10P22
+ page 376 (378)  ->
+ {46} "imminent-danger-or-risk-of-harm" imminent;danger;risk
+
+
+C10P23
+ page 376 (378)  ->
+ {101} "constitutional-rights" rights
+
+
+C10P24
+ page 377 (378)  ->
+ {101} "constitutional-rights" rights
+ {533} "child-neglect-charge-of" child;neglect
+
+
+C10P26
+ page 377 (380)  ->
+ {48} "Child-Abuse-Prevention-and-Treatment-Act-of-1974-CAPTA" Child;Abuse
+ {194} "immunity" +immunity
+
+
+C10P27
+ page 378 (380)  ->
+ {47} "welfare-of" welfare
+ {377} "supervised-visitation" supervised;visitation
+
+
+C10P30
+ page 379 (381)  ->
+ {44} "best-interests-of" best;interests
+ {377} "supervised-visitation" supervised;visitation
+
+
+C10P31
+ page 380 (382)  ->
+ {36} "women's-and-children's-advocacy-groups-and-organizations"  ..??
+ {37} "commissions-and-professional-associations" professional
+ {277} "California-state-chapter" California;state
+
+
+C10P35
+ page 381 (383)  ->
+ {389} "abscond-or-flee-with-child" with;child
+
+
+C10P39
+ page 382 (384)  ->
+ {48} "Child-Abuse-Prevention-and-Treatment-Act-of-1974-CAPTA" Child;Abuse;CAPTA
+
+
+C10P40
+ page 383 (385)  ->
+ {194} "immunity" immunity
+
+
+C10P42
+ page 383 (385)  ->
+ {209} "judicial-hearing-officer-JHO" judicial;hearing
+
+
+C10P43
+ page 383 (385)  ->
+ {113} "Deutsch-Leon-S" Deutsch;Leon
+ {122} "ethics" +ethics
+ {261} "Mostofsky-Steven" +Mostofsky;Steven
+ {319} "Paterson-David-A" Paterson;David
+
+
+C10P45
+ page 384 (386)  ->
+ {169} "gender-bias" gender;bias
+
+
+C10P46
+ page 384 (386)  ->
+ {12} "appellate-review" review
+ {44} "best-interests-of" +best
+ {101} "constitutional-rights" rights
+ {246} "McKenna-Jeremiah-B" +McKenna;Jeremiah
+ {299} "Senate-Committee-on-Crime-and-Correction" +Committee;Crime;Correction
+
+
+C10P47
+ page 385 (387)  ->
+ {146} "evidentiary-hearing" evidentiary;hearing
+
+
+C10P48
+ page 386 (388)  ->
+ {101} "constitutional-rights" rights
+ {117} "domestic-relations-exception" domestic;relations;exception
+
+
+C10P49
+ page 386 (388)  ->
+ {101} "constitutional-rights" rights
+ {102} "due-process" process
+
+
+C10P50
+ page 386 (389)  ->
+ {175} "Gothard-Sol" +Gothard
+ {321} "Pennington-H-Joan" +Pennington
+
+
+C10P51
+ page 387 (448)  ->
+
+
+C10P55
+ page 388 (448)  ->
+
+
+C10P56
+ page 388 (390)  ->
+ {48} "Child-Abuse-Prevention-and-Treatment-Act-of-1974-CAPTA" Child;Abuse;CAPTA
+
+
+C11P3
+ page 389 (391)  ->
+ {44} "best-interests-of" best;interests
+ {194} "immunity" +immunity
+
+
+C11P4
+ page 390 (392)  ->
+ {194} "immunity" immunity
+
+
+C11P5
+ page 390 (392)  ->
+ {194} "immunity" immunity
+
+
+C11P6
+ page 390 (392)  ->
+ {105} "Code-of-Judicial-Conduct" Code;Judicial;Conduct
+ {122} "ethics"  ..??
+
+
+C11P7
+ page 391 (393)  ->
+ {44} "best-interests-of" best
+ {148} "communication" +communication
+
+
+C11P17
+ page 394 (396)  ->
+ {12} "appellate-review" +appellate
+
+
+C11P19
+ page 395 (397)  ->
+ {12} "appellate-review" appellate
+
+
+C11P22
+ page 396 (398)  ->
+ {304} "New-York-Law-Journal" York;Journal
+ {385} "Tippins-Timothy" Tippins;Timothy
+
+
+C11P23
+ page 396 (398)  ->
+ {82} "Melton-Petrila-Poythress-and-Slobogin-1997" Melton
+
+
+C11P24
+ page 397 (399)  ->
+ {122} "ethics"  ..??
+ {211} "junk-science" science
+ {317} "Parental-Alienation-Syndrome-PAS" Parental;Alienation;Syndrome
+
+
+C11P25
+ page 397 (399)  ->
+ {10} "Anderson-Karen" Anderson;Karen
+ {161} "Fox-Meera" Meera
+ {274} "National-Judicial-Education-Program" National;Judicial;Education;Program
+ {404} "Valentine-Constance" Valentine;Constance
+
+
+C11P26
+ page 397 (399)  ->
+ {70} "Friedrich-1993" Friedrich;1993
+ {409} "Violence-Update" Violence;Update
+
+
+C11P28
+ page 398 (400)  ->
+ {12} "appellate-review" appellate;review
+
+
+C11P29
+ page 398 (401)  ->
+ {255} "Minnesota-Multiphasic-Personality-Inventory-MMPI" +Personality;MMPI
+
+
+C11P31
+ page 399 (401)  ->
+ {422} "Wittmann-Jeffrey" Wittmann;Jeffrey
+
+
+C11P32
+ page 400 (450)  ->
+
+
+C11P35
+ page 400 (402)  ->
+ {122} "ethics"  ..??
+ {148} "communication" communication
+ {177} "Green-Arthur" Green;Arthur
+
+
+C11P36
+ page 400 (402)  ->
+ {385} "Tippins-Timothy" Tippins
+ {410} "voir-dire" +voir;dire
+
+
+C11P37
+ page 401 (403)  ->
+ {238} "Martindale-David-A" Martindale;David
+
+
+C11P39
+ page 402 (404)  ->
+ {48} "Child-Abuse-Prevention-and-Treatment-Act-of-1974-CAPTA" Child;Abuse;Prevention;Treatment;CAPTA
+ {317} "Parental-Alienation-Syndrome-PAS" +Parental
+
+
+C11P40
+ page 402 (404)  ->
+ {48} "Child-Abuse-Prevention-and-Treatment-Act-of-1974-CAPTA" Child;Abuse;Prevention;Treatment;CAPTA
+
+
+C11P42
+ page 403 (405)  ->
+ {268} "National-Association-of-Social-Workers" National;Association;Social;Workers
+ {533} "child-neglect-charge-of" child;neglect
+
+
+C11P43
+ page 403 (405)  ->
+ {382} "termination-of-parental-rights" termination;parental;rights
+
+
+C11P45
+ page 403 (405)  ->
+ {108} "confidentiality"  ..??
+
+
+C11P49
+ page 405 (407)  ->
+ {194} "immunity" immunity
+
+
+C11P52
+ page 406 (408)  ->
+ {102} "due-process" process
+
+
+C11P56
+ page 407 (409)  ->
+ {430} "Edleson-Jeffrey-L" Edleson;Jeffrey
+ {431} "Greenbook" Greenbook
+ {492} "Schechter-Susan" Schechter;Susan
+
+
+C11P57
+ page 407 (409)  ->
+ {48} "Child-Abuse-Prevention-and-Treatment-Act-of-1974-CAPTA" Child;Abuse;Treatment;CAPTA
+
+
+C11P58
+ page 408 (409)  ->
+ {48} "Child-Abuse-Prevention-and-Treatment-Act-of-1974-CAPTA" Child;Abuse;CAPTA
+
+
+C11P59
+ page 408 (410)  ->
+
+
+C11P60
+ page 408 (411)  ->
+
+
+C11P61
+ page 409 (411)  ->
+ {554} "cross-system-dialogues" cross-system;dialogues
+ {555} "David-and-Lucille-Packard-Foundation" David;Lucille;Packard;Foundation
+ {556} "Edwards-Leonard" Edwards;Leonard
+ {557} "Lucero-Katherine" Lucero
+
+
+C11P62
+ page 409 (411)  ->
+ {556} "Edwards-Leonard" Edwards;Leonard
+ {557} "Lucero-Katherine" Lucero
+
+
+C11P63
+ page 410 (412)  ->
+ {431} "Greenbook" Greenbook
+ {554} "cross-system-dialogues" cross-system;dialogues
+
+
+C11P64
+ page 410 (412)  ->
+ {431} "Greenbook" Greenbook
