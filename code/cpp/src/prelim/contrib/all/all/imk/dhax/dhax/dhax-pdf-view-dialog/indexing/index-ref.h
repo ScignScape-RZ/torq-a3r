@@ -31,7 +31,7 @@ struct Index_Ref_Summary {
 
  u2 first_page_string_to_number() const;
 
- void to_string(QTextStream& qts, QString pre);
+ void to_string(QTextStream& qts, QString pre, QString alt_page);
 
  QStringList heading_to_words() const;
 

@@ -3057,7 +3057,9 @@ void Index_Entry_Review_Dialog::make_review_file(QString review_file)
 
    for(Index_Ref_Summary& irs : m[page])
    {
-    irs.to_string(qts, pre);
+    QStringList qsl = pr.first;
+    auto pr1 = par_map_.value(pr.first.last());
+    irs.to_string(qts, pre, QString::number(par_map_[pr.first.last()].second));
    }
    qts << pre << "=====\n";
 

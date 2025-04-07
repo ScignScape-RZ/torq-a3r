@@ -92,7 +92,7 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
  QVector<Index_Ref_Group>& refs = *result;
 
  // // //
- refs.resize(576);
+ refs.resize(579);
 
  QRegularExpression qre("#(\\d+)\\s+\\$([ser])<([^>]+)>([,:.]?)\\s+\\$\\[([^\\]]+)]\\s+\\+\\{([^}]+)\\}"
                         );
@@ -1333,8 +1333,8 @@ int main22(int argc, char *argv[])
  QString mfile = "/home/nlevisrael/Downloads/m2m/review/pm.txt";
  ierd->create_par_code_mapping(mfile);
 
-// QString ffile = "/home/nlevisrael/Downloads/m2m/review/rf.txt";
-// ierd->make_review_file(ffile);
+ QString ffile = "/home/nlevisrael/Downloads/m2m/review/rf.txt";
+ ierd->make_review_file(ffile);
 
  QString rfile = "/home/nlevisrael/Downloads/m2m/review/rp.txt";
  QString pfile = "/home/nlevisrael/Downloads/m2m/review/rpf.txt";

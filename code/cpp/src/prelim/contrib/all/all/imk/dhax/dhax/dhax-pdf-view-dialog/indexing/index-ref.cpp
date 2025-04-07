@@ -93,10 +93,10 @@ u2 Index_Ref_Summary::par_code_to_number(QString para)
  return 0;
 }
 
-void Index_Ref_Summary::to_string(QTextStream& qts, QString pre)
+void Index_Ref_Summary::to_string(QTextStream& qts, QString pre, QString alt_page)
 {
  qts << pre << heading << " {" << entry_id << "} ";
- qts << " " << first_page_string;
+ qts << " " << first_page_string << " |" << alt_page << "| ";
 
  if(note_low)
    qts << "  => n" << note_low;

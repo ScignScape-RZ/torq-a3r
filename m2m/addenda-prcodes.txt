@@ -46,11 +46,14 @@
  +{ }
                               
 #12 $e<appellate review>
- $[lxxxi @Io33 ,, 18 @C1P47 ,, 29 @C2P10 ,, 35--*36 @C2P29;C2P30;C2P31 ,, 66 @C4P28 
+ $[xxxvii!n6 @@Pr14 ,, lxxxi @Io33 ,, 18 @C1P47 ,, 29 @C2P10 ,, 35--*36 @C2P29;C2P30;C2P31 
+  ,, 66 @C4P28 
   ,, 68 @C4P33 ,, 75 @C4P53 ,, 86--*87 @C4P101 ,, 117 @C5P19 ,, 128 @C5P57 ,, 130 @C5P62 
   ,, 131 @C5P66 ,, 134 @C5P78 ,, 228 @C7P96 ,, 300--*301 @C10P46 ,, 310 @C11P17 ,, 311 @C11P19 
-  ,, 314 @C11P28 ,, 334n38 @@C1P47 ,, 335n9 @@C3P55 ,, 336n3 @@C4P5 ,, 337n15 @@CC4P17 ,, 338n38 @@C4P40 
-  ,, 339n64 @@C4P95 ,, 347n60 @@C5P95 ,, 353n6 @@C7P13 ,, 363n5 @@C11P17]
+  ,, 314 @C11P28 ,, 334n38 @@C1P47 ,, 335n9 @@C3P55 
+  ,, 336n3 @@C4P5 ,, 337n15 @@C4P17 ,, 338n38 @@C4P40 
+  ,, 339n64 @@C4P95 ,, 86!n67 @@C4P100  ,, 111!n116 @@C4P163 ,, 347n60 @@C5P95 ,, 183!n68 @@C6P146 
+  ,, 353n6 @@C7P13 ,, 363n5 @@C11P17]
  +{ }
 
                               
@@ -235,7 +238,7 @@
  $[360n3 @@C8P9]
  +{ }
                               
-#57 $s<child custody and child sexual abuse, professional literature on: (39 subentries)>
+#57 $s<child custody and child sexual abuse, professional literature on: (40 subentries)>
  $[ ]
  +{ <i>See also</i> Gardner Richard A.; Green, Arthur; Niggemyer, Kathleen; Pennington, H. Joan; Summit, Roland}
                               
@@ -378,27 +381,27 @@
 #92 $e< [child custody.../57] Schafran (1987)>,
  $[10 @C1P21]
  +{ }
+
+#93 $e< [child custody.../57] Silberg and Dallam (2019)>,
+ $[xxxvii!n6 @@Pr14]
+ +{ }
                               
-#93 $e< [child custody.../57] Smith and Coukos (1997)>,
+#94 $e< [child custody.../57] Smith and Coukos (1997)>,
  $[32--*33 @C2P22 ,, 207 @C7P17]
  +{ }
                               
-#94 $e< [child custody.../57] Stern and Oehme (2002)>,
+#95 $e< [child custody.../57] Stern and Oehme (2002)>,
  $[30 @C2P13;C2P14]
  +{ }
                               
-#95 $e< [child custody.../57] Thoennes, Pearson, and Tjaden (1988)>,
+#96 $e< [child custody.../57] Thoennes, Pearson, and Tjaden (1988)>,
  $[lxxviii @Io21]
  +{ }
                               
-#96 $e< [child custody.../57] Thoennes and Tjaden (1990)>,
+#97 $e< [child custody.../57] Thoennes and Tjaden (1990)>,
  $[lxxviii @Io21]
  +{ }
-                              
-#97 $e<:Child Welfare>,
- $[8 @C1P17]
- +{ }
-                              
+                                                  
 #98 $e<circumscribed psychosis>,
  $[180 @C6P137 ,, 214 @C7P42;C7P44 ,, 215 @C7P46]
  +{ }
@@ -2313,7 +2316,7 @@ Children from Abuse''>,
  +{ <i>See also</i> Dumas, Cindy; The Women's Coalition}
 
 #560 $e<``turned around cases''>,
- $[xxxvii!n6 @Pr14]
+ $[xxxvii!n6 @@Pr14]
  +{ <i>See also</i> The Leadership Council}
 
 #561 $e<``Urgent Reforms Needed to Protect Women and Children from Violence in Custody Battles''>,
@@ -2381,8 +2384,17 @@ Children from Abuse''>,
  $[195 @@C6P175]
  +{<i>See also</i> gaslighting}
 
+#577 $e<Abusers Gaining Custody in Family Courts>,
+ $[xxxvii!n6 @@Pr14]
+ +{ }
 
-
+#578 $e<:Child Welfare>,
+ $[8 @C1P17]
+ +{ }
+       
+#579 $e<``unaggrieved'' party>,
+ $[183 @C6P146 ,, 183!n68 @@C6P146]
+ +{ }
 
 
 
