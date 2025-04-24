@@ -389,6 +389,7 @@ class Index_Entry_Review_Dialog : public QMainWindow
 
  QMap<QString, QPair<u2, u2>> par_map_;
 
+ QMap<QString, QString> front_par_map_;
 
  QMenu* create_confirms_list_widget_context_menu(QListWidgetItem* item);
 
@@ -470,6 +471,11 @@ public:
 
  void confirm_match(QPair<u2, s2> pr, int page_number, QString paragraph_code);
  void clear_most_recent_match(int page_number);
+
+ QMap<QString, QString>& get_front_par_map()
+ {
+  return front_par_map_;
+ }
 
 
  void set_page_text_view_text_earlier(QString text);

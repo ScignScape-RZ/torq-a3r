@@ -130,11 +130,14 @@ HEADERS += \
   $$SRC_DIR/indexing/m2m.h \
   $$SRC_DIR/indexing/index-ref.h \
   $$SRC_DIR/indexing/index-entry-review-dialog.h \
+  $$SRC_DIR/indexing/pdf-enhanced-search-dialog.h \
+
 
 SOURCES += \
   $$SRC_DIR/indexing/m2m.cpp \
   $$SRC_DIR/indexing/index-ref.cpp \
   $$SRC_DIR/indexing/index-entry-review-dialog.cpp \
+  $$SRC_DIR/indexing/pdf-enhanced-search-dialog.cpp \
 
 
 

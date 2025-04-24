@@ -2770,6 +2770,12 @@ void Index_Entry_Review_Dialog::create_par_code_mapping(QString review_file)
  {
   QString para = pr.first.last();
 
+  if(pr.first.size() > 1)
+  {
+   if(!front_par_map_.contains(pr.first.first()))
+     front_par_map_.insert(pr.first.first(), pr.first.last());
+  }
+
   if(par_map_.contains(para))
     continue;
 

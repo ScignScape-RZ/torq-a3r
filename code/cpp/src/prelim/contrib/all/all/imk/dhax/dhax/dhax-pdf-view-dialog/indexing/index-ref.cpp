@@ -201,7 +201,7 @@ QString Index_Ref::first_page_to_string(QString rpre, QString pre) const
  return pre + QString::number(low);
 }
 
-QString Index_Ref::to_string() const
+QString Index_Ref::to_string(QMap<QString, QString>* front_par_map) const
 {
  QString result;
  if(region_code == 1)
@@ -248,8 +248,35 @@ QString Index_Ref::to_string() const
   }
  }
 
+
  if(!paragraph_codes.isEmpty())
-   result += " @" + paragraph_codes.join(";");
+ {
+  QStringList mapped_paragraph_codes;
+  for(QString pc : paragraph_codes)
+  {
+   bool handled = false;
+   QStringList temp;
+   QStringList qsl = pc.split("::");
+   for(QString qs : qsl)
+   {
+    if(front_par_map && front_par_map->contains(qs))
+    {
+     handled = true;
+//     temp.push_back("%1(=%2)"_qt
+//       .arg(front_par_map->value(qs)).arg(qs));
+
+     temp.push_back(front_par_map->value(qs));
+    }
+   }
+   if(handled)
+     mapped_paragraph_codes.push_back(temp.join("&ndash;"));
+
+   else
+     mapped_paragraph_codes.push_back(pc);
+  }
+
+  result += " @" + mapped_paragraph_codes.join(";");
+ }
 
 
  return result;
@@ -257,7 +284,7 @@ QString Index_Ref::to_string() const
 
 
 QPair<QString, QString> Index_Ref_Group::to_html_bookstyle(const Index_Entry& ie,
-   Index_Entry* parent, Index_Ref_Group* pg)  const
+   QMap<QString, QString>* front_par_map, Index_Entry* parent, Index_Ref_Group* pg)  const
 {
  QString div;
  QString close;
@@ -266,7 +293,7 @@ QPair<QString, QString> Index_Ref_Group::to_html_bookstyle(const Index_Entry& ie
 
  QString s ;// = supplement;
 
- if(ie.id == 431)
+ if(ie.id == 580)
  {
   qDebug() << ie.id;
  }
@@ -366,12 +393,15 @@ QPair<QString, QString> Index_Ref_Group::to_html_bookstyle(const Index_Entry& ie
 
  QStringList pages;
 
+ if(entry_id == 363)
+   qDebug() << entry_id;
+
  for(const Index_Ref& ir : index_refs)
  {
   if(ir.region_code == 1 && ir.low <= 31)
     continue; //qDebug() << ir.low << ": " << _to_roman(ir.low);
 
-  pages.push_back(ir.to_string());
+  pages.push_back(ir.to_string(front_par_map));
  }
 
  QString join = pages.join(", ");

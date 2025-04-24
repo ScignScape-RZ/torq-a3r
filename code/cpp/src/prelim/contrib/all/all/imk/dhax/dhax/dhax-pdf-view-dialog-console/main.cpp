@@ -92,12 +92,12 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
  QVector<Index_Ref_Group>& refs = *result;
 
  // // //
- refs.resize(579);
+ refs.resize(622);
 
- QRegularExpression qre("#(\\d+)\\s+\\$([ser])<([^>]+)>([,:.]?)\\s+\\$\\[([^\\]]+)]\\s+\\+\\{([^}]+)\\}"
+ QRegularExpression qre("#(\\d+)\\s+\\$([serv])<([^>]+)>([,:.]?)\\s+\\$\\[([^\\]]+)]\\s+\\+\\{([^}]+)\\}"
                         );
 
-// QRegularExpression qre1("#(\\d+)\\s+\\$([ser])<([^>]+)>([,:.])\\s+\\$\\[([^\\]]+)]\\s+" //\\s+\\+\\{([^}]+)\\}"
+// QRegularExpression qre1("#(\\d+)\\s+\\$([serv])<([^>]+)>([,:.])\\s+\\$\\[([^\\]]+)]\\s+" //\\s+\\+\\{([^}]+)\\}"
 //                        );
 
 
@@ -722,16 +722,33 @@ int main30(int argc, char *argv[])
 }
 
 
-int main(int argc, char *argv[])
+
+
+void make_html(QVector<Index_Ref_Group>* refs,
+  QMap<QString, QString>* front_par_map = nullptr)
 {
+
+ QVector<QPair<u2, u2>> chapter_ranges_m {
+  {3, 25},
+  {26, 36},
+  {39, 56},
+  {57, 111},
+  {112, 144},
+
+  {145, 201},
+  {202, 258},
+  {259, 273},
+  {277, 284},
+  {285, 304},
+  {305, 327},
+ };
+
 // QString aofile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out.txt";
 // QString aotfile = "/home/nlevisrael/Downloads/m2m/w_pdf/all-out-test.txt";
 
 //? QString aofile = "/home/nlevisrael/Downloads/m2m/new/all.txt";
 // QString aofile = "/home/nlevisrael/Downloads/m2m/new/addenda.txt";
- QString aofile = "/home/nlevisrael/Downloads/m2m/new/addenda-prcodes.txt";
 
- QVector<Index_Ref_Group>* refs = make_ref_group_vector(aofile);
 
  //? QString ifile = "/home/nlevisrael/Downloads/m2m/new/dindex-updated.txt";
  QString ifile = "/home/nlevisrael/Downloads/m2m/new/dindex-add.txt";
@@ -747,15 +764,15 @@ int main(int argc, char *argv[])
 
  QFile outfile(aotfile);
  if (!outfile.open(QIODevice::WriteOnly))
-   return 0;
+   return;
 
  QFile soutfile(aosfile);
  if (!soutfile.open(QIODevice::WriteOnly))
-   return 0;
+   return;
 
  QFile boutfile(aotbfile);
  if (!boutfile.open(QIODevice::WriteOnly))
-   return 0;
+   return;
 
  QTextStream qts(&outfile);
  QTextStream bqts(&boutfile);
@@ -826,11 +843,11 @@ div {padding-top:11pt; font-size:18pt;}
 //  if(rid == 43)
 //    qDebug() << "rid";
 
-  if(lid == 43 && rid == 97)
-    qDebug() << "lr";
+//  if(lid == 43 && rid == 97)
+//    qDebug() << "lr";
 
-  if(rid == 43 && lid == 97)
-    qDebug() << "rl";
+//  if(rid == 43 && lid == 97)
+//    qDebug() << "rl";
 
   u2 lpid = lhs.parent_id;
   u2 rpid = rhs.parent_id;
@@ -893,6 +910,7 @@ div {padding-top:11pt; font-size:18pt;}
  u2 i = 0;
  for(Index_Ref_Group& g : *refs)
  {
+#ifdef HIDE
   for(Index_Ref ir : g.index_refs)
   {
    if(ir.note_low)
@@ -911,7 +929,7 @@ div {padding-top:11pt; font-size:18pt;}
     }
    }
   }
-
+#endif //def HIDE
 
 
   //Index_Entry& ie = ies[i];
@@ -936,16 +954,73 @@ div {padding-top:11pt; font-size:18pt;}
 
   if(g.entry_id)
   {
-   if(g.entry_id == 431)
+   if(g.entry_id == 580)
      qDebug() << g.entry_id;
+
+   if(g.entry_id == 24)
+     qDebug() << g.entry_id;
+
+   if(g.type == "v")
+     continue;
+
+   for(const Index_Ref& ir : g.index_refs)
+   {
+    if(ir.region_code == 1 && ir.low <= 31)
+      continue; //qDebug() << ir.low << ": " << _to_roman(ir.low);
+
+    for(QString pc : ir.paragraph_codes)
+    {
+     QRegularExpression rx ("C(\\d+)");
+     QRegularExpressionMatchIterator it = rx.globalMatch(pc);
+     while(it.hasNext())
+     {
+      QRegularExpressionMatch m = it.next();
+      int ch = m.captured(1).toInt();
+
+      QPair<u2, u2> range = chapter_ranges_m[ch - 1];
+      if(ir.low < range.first || ir.high > range.second)
+      {
+       qDebug() << "\n\n\n!!!\n!!!" << g.entry_id;
+      }
+     }
+
+    }
+
+    //ir.low
+   }
 
 
    Index_Entry* parent = g.parent_id? &ies[g.parent_id - 1] : nullptr;
    Index_Ref_Group* pg = g.parent_id? &((*refs)[g.parent_id - 1]) : nullptr;
 
-   QPair<QString, QString> divs = g.to_html_bookstyle(ie, parent, pg);
+   QPair<QString, QString> divs = g.to_html_bookstyle(ie, front_par_map, parent, pg);
 
    QString div = g.to_html(ie);
+
+   if(g.entry_id == 406)
+     qDebug() << "\n\n" << divs.first;
+
+   if(divs.first.contains("::"))
+   {
+    divs.first.replace("@C4P23::C4P35", "@C4S2");
+    divs.first.replace("@C8P42::C8P55", "@C8S7");
+    divs.first.replace("@C7P41::C7P47", "@C7S4");
+    divs.first.replace("@C10P34::C10P39", "@C10S4");
+    divs.first.replace("@C5P82::C5P89", "@C5S5");
+    divs.first.replace("@C5P90::C5P93", "@C5S6");
+    divs.first.replace("@C9P3::C9P13", "@C9S1");
+
+    divs.first.replace("@C8P11::C8P21", "@C8S2");
+
+    divs.first.replace("@C8P22::C8P27", "@C8S3");
+
+    divs.first.replace("@C6P176::C6P182", "@C6S23");
+    divs.first.replace("@C6P183::C6P187", "@C6S24");
+    divs.first.replace("@C6P188::C6P192", "@C6S25");
+
+    divs.first.replace("@C4P154::C4P157", "@C4S12");
+    divs.first.replace("@C4P162::C4P163", "@C4S16");
+   }
 
 
    if(div.contains(";</span>,"))
@@ -971,46 +1046,103 @@ div {padding-top:11pt; font-size:18pt;}
    bool clean = true;
    if(clean)
    {
+
 //    if(divs.first.contains("Trish"))
 //      qDebug() << divs.first;
 
-    divs.first.replace(QRegularExpression("\\d+nn(\\d+)-(\\d+)\\s+@@?([CP\\d]+)"),
+    divs.first.replace(QRegularExpression("\\d+nn(\\d+)-(\\d+)\\s+@@?([FCP\\d]+)"),
                        "\\3nn\\1&ndash;\\2");
 
     divs.first.replace(QRegularExpression("\\d+--\\*?\\d+\\s+@@?"), "");
 
     // C\\d+P\\d+
-    divs.first.replace(QRegularExpression("\\d+(n\\d+)\\s+@([CPIor\\d]+)"), "\\2\\1");
+    divs.first.replace(QRegularExpression("\\d+(n\\d+)\\s+@([FCPIor\\d]+)"), "\\2\\1");
 
     if(divs.first.contains("!!nn"))
     {
-     divs.first.replace(QRegularExpression("!!nn(\\d+)-(\\d+)\\s+(@+[CPIor\\d]+)"),
+     divs.first.replace(QRegularExpression("!!nn(\\d+)-(\\d+)\\s+(@+[FCPIor\\d]+)"),
        "\\3nn\\1&ndash;\\2");
     }
 
     if(divs.first.contains("!!n"))
     {
-     divs.first.replace(QRegularExpression("!!n(\\d+)\\s+(@+[CPIor\\d]+)"), "\\2n\\1");
+     divs.first.replace(QRegularExpression("!!n(\\d+)\\s+(@+[FCPIor\\d]+)"), "\\2n\\1");
     }
 
     divs.first.replace(QRegularExpression("\\d+\\s+@@?"), "");
 
+//    divs.first.replace(QRegularExpression("::"), "&ndash;");
+
+    if(divs.first.contains("&ndash;"))
+    {
+//     if(divs.first.contains("Pr16"))
+//     {
+//      qDebug() << "\n\n" << divs.first;
+//      divs.first.replace("@Pr16&ndashPr20", "@F5S4");
+//     }
+
+     divs.first.replace("@F5P17&ndash;F5P21", "@F5S4");
+
+    }
+
+
     //    divs.first.replace(QRegularExpression(";C\\d+P\\d+;"), ";;");
 
-    divs.first.replace(QRegularExpression(";[CPIor\\d;]+;"), ";;");
-    divs.first.replace(QRegularExpression("((?:C\\d+|Io|Pr)P\\d+);+((?:C\\d+|Io|Pr)P\\d+)"),
+    divs.first.replace(QRegularExpression("(F5P\\d+\\(=Pr\\d+\\));(F5P\\d+\\(=Pr\\d+\\))"),
+      "\\1&ndash;\\2");
+    divs.first.replace(QRegularExpression("(F6P\\d+\\(=Io\\d+\\));(F6P\\d+\\(=Io\\d+\\))"),
       "\\1&ndash;\\2");
 
-    divs.first.replace(QRegularExpression("((?:C\\d+|Io|Pr)P\\d+)::((?:C\\d+|Io|Pr)P\\d+)"), "\\1&ndash;\\2");
+    divs.first.replace(QRegularExpression(";[FCPIor\\d;]+;"), ";;");
+    divs.first.replace(QRegularExpression("((?:C\\d+|Io|Pr|F5|F6)P\\d+);+((?:C\\d+|Io|Pr|F5|F6)P\\d+)"),
+      "\\1&ndash;\\2");
+
+    divs.first.replace(QRegularExpression("((?:C\\d+|Io|Pr|F5|F6)P\\d+)::((?:C\\d+|Io|Pr|F5|F6)P\\d+)"), "\\1&ndash;\\2");
 
     divs.first.replace(QRegularExpression("Cn(\\d+)\\?\\?\\?"), "C?P?n\\1");
+
+
+    divs.first.replace(QRegularExpression("[ivxl]+\\s+@"), "");
+
    }
+
+
+   // for anne grant
+   if(g.entry_id == 474)
+     divs.first.replace("51", "50");
 
    //?divs.first.replace(QRegularExpression("\\s+;"), ";");
    //divs.first.replace(QRegularExpression("\\.\\s*;"), ";");
 
    div.replace(QRegularExpression("\\s+\\.</span>"), ".</span>");
    div.replace(QRegularExpression("\\s+</span>;"), "</span>;");
+
+
+
+   {
+    u2 chapter = 0;
+    u2 par = 0;
+    QRegularExpression rx("C(\\d+)P(\\d+)(?![\\dn])");
+    QRegularExpressionMatchIterator it = rx.globalMatch(divs.first);
+    while(it.hasNext())
+    {
+     QRegularExpressionMatch match = it.next();
+     u2 this_chapter = match.captured(1).toInt();
+     u2 this_par = match.captured(2).toInt();
+     if(this_chapter < chapter)
+       qDebug() << "\n\nerr: " << g.entry_id << " " << match.captured();
+     else if(this_chapter == chapter && this_par < par)
+       qDebug() << "\n\nerr: " << g.entry_id << " " << match.captured();
+     else if(this_chapter == chapter && this_par == par)
+       qDebug() << "\n\n= err: " << g.entry_id << " " << match.captured();
+     chapter = this_chapter;
+     par = this_par;
+    }
+
+
+
+   }
+
 
    if(ie.sub_count > 0 && g.type == "e")
    {
@@ -1044,6 +1176,15 @@ div {padding-top:11pt; font-size:18pt;}
  outfile.close();
  boutfile.close();
  soutfile.close();
+}
+
+int main44(int argc, char *argv[])
+{
+ QString aofile = "/home/nlevisrael/Downloads/m2m/new/addenda-prcodes.txt";
+
+ QVector<Index_Ref_Group>* refs = make_ref_group_vector(aofile);
+
+ make_html(refs);
 
  return 0;
 }
@@ -1251,8 +1392,27 @@ int main31(int argc, char *argv[])
  return 0;
 }
 
-int main22(int argc, char *argv[])
+#include "indexing/pdf-enhanced-search-dialog.h"
+
+int main(int argc, char *argv[])
 {
+ QApplication qapp(argc, argv);
+
+ PDF_Enhanced_Search_Dialog* pesd = new
+   PDF_Enhanced_Search_Dialog;
+
+ pesd->show();
+
+ return qapp.exec();
+
+}
+
+int main00(int argc, char *argv[])
+{
+
+// return 0;
+
+
  QString ifile = "/home/nlevisrael/Downloads/m2m/w_pdf/dindex.txt";
  QString bfile = "/home/nlevisrael/Downloads/m2m/w_pdf/bookmarks.txt";
 
@@ -1278,7 +1438,6 @@ int main22(int argc, char *argv[])
  QVector<Index_Ref_Group>* refs = make_ref_group_vector(afile);
 
  QVector<QPair<QStringList, QVector<Index_Ref_Summary>>>* rsvec = make_review_vector(refs);
-
 
  QApplication qapp(argc, argv);
 
@@ -1306,7 +1465,6 @@ int main22(int argc, char *argv[])
 
 
  pvd1->setWindowTitle("Earlier Document");
- pvd1->show();
 
  DHAX_PDF_View_Dialog* pvd2 = new DHAX_PDF_View_Dialog(ierd, pvd1,
    "/home/nlevisrael/Downloads/m2m/Neustein_Lesher_9780197661222_US_BITS.pdf",
@@ -1323,7 +1481,6 @@ int main22(int argc, char *argv[])
  ierd->set_addendum_pages(addendum);
 
  pvd2->setWindowTitle("Later Document");
- pvd2->show();
 
  pvd2->show_status("Document Loaded");
 
@@ -1332,6 +1489,12 @@ int main22(int argc, char *argv[])
 
  QString mfile = "/home/nlevisrael/Downloads/m2m/review/pm.txt";
  ierd->create_par_code_mapping(mfile);
+
+ QMap<QString, QString>& front_par_map = ierd->get_front_par_map();
+
+ make_html(refs, &front_par_map);
+
+ return 0;
 
  QString ffile = "/home/nlevisrael/Downloads/m2m/review/rf.txt";
  ierd->make_review_file(ffile);
@@ -1343,6 +1506,10 @@ int main22(int argc, char *argv[])
  QString p_file = "/home/nlevisrael/Downloads/m2m/review/rpf_f.txt";
 
  ierd->check_review_vector(rfile, pfile, r_file, p_file);
+
+ pvd1->show();
+
+ pvd2->show();
 
  ierd->show();
 

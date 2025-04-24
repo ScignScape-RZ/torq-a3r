@@ -67,7 +67,7 @@ struct Index_Ref {
 
  static Index_Ref from_strings(const Index_Ref_Strings& strings);
 
- QString to_string() const;
+ QString to_string(QMap<QString, QString>* front_par_map = nullptr) const;
  QString first_page_to_string(QString rpre = QString(), QString pre = QString()) const;
 
 };
@@ -90,6 +90,7 @@ struct Index_Ref_Group {
   QString to_html(const Index_Entry& ie) const;
 
   QPair<QString, QString> to_html_bookstyle(const Index_Entry& ie,
+    QMap<QString, QString>* front_par_map,
     Index_Entry* parent = nullptr, Index_Ref_Group* pg = nullptr) const;
 
 };
