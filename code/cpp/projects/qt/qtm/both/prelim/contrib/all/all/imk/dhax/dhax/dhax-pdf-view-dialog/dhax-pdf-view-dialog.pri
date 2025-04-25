@@ -140,6 +140,12 @@ SOURCES += \
   $$SRC_DIR/indexing/pdf-enhanced-search-dialog.cpp \
 
 
+HEADERS += \
+  $$SRC_ROOT_DIR/$$PROJECT_AREA/add-minimize-frame.h \
+
+SOURCES += \
+  $$SRC_ROOT_DIR/$$PROJECT_AREA/add-minimize-frame.cpp \
+
 
 #POPPLER_DIR = ~/gits/okular/poppler-install/lib
 

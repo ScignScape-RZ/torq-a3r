@@ -479,6 +479,7 @@ inline void make_light_double_forward_button(WIDGET_Type* w)
  w->setMaximumHeight(15);
 }
 
+
 inline QString qmessagebox_button_style_sheet()
 {
  return
@@ -1463,6 +1464,14 @@ inline  QString toggle_button_style_sheet_()
 
 }
 
+
+
+inline void style_minimize_button(QPushButton* btn)
+{
+ btn->setStyleSheet(tight_button_style_sheet_());
+ btn->setMaximumHeight(21);
+ btn->setMaximumWidth(43);
+}
 
 
 #endif

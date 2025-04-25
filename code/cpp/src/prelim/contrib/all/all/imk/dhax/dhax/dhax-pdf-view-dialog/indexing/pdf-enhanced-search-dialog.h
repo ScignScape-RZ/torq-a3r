@@ -61,7 +61,7 @@ class PDF_Enhanced_Search_Dialog : public QDialog
  QPushButton* button_cancel_;
  QPushButton* button_proceed_;
 
- QPushButton* button_do_map_;
+// QPushButton* button_do_map_;
 
  QHBoxLayout* bottom_layout_;
 
@@ -71,21 +71,37 @@ class PDF_Enhanced_Search_Dialog : public QDialog
 
  QGroupBox* info_group_box_;
  QGroupBox* sources_group_box_;
- QGroupBox* children_group_box_;
+ QGroupBox* index_entry_group_box_;
 
  QGridLayout* info_group_box_layout_;
+
 
  QVBoxLayout* sources_group_box_layout_;
  QHBoxLayout* sources_group_box_top_layout_;
  QHBoxLayout* sources_group_box_bottom_layout_;
  QFormLayout* sources_group_box_left_layout_;
- QVBoxLayout* sources_group_box_right_layout_;
+ QGridLayout* sources_group_box_right_layout_;
 
-// QVBoxLayout* children_group_box_layout_;
-// QFormLayout* children_group_box_layout_top_;
-// QGridLayout* children_grid_layout_;
+ QGridLayout* index_entry_group_box_layout_;
 
-// QComboBox* cb_number_of_children_;
+ QLabel* lbl_index_file_;
+ QLineEdit* le_index_file_;
+ QPushButton* btn_index_entry_data_;
+
+ QLabel* lbl_index_entry_term_;
+ QLineEdit* le_index_entry_term_;
+ QLabel* lbl_index_entry_number_;
+ QLineEdit* le_index_entry_number_;
+
+ QLabel* lbl_parent_entry_term_;
+ QLineEdit* le_parent_entry_term_;
+ QLabel* lbl_parent_entry_number_;
+ QLineEdit* le_parent_entry_number_;
+
+// QFormLayout* index_entry_group_box_layout_top_;
+// QGridLayout* index_entry_grid_layout_;
+
+// QComboBox* cb_number_of_index_entry_;
 
  QLabel* lbl_local_file_;
  QLineEdit* le_local_file_;
@@ -94,16 +110,17 @@ class PDF_Enhanced_Search_Dialog : public QDialog
  QLineEdit* le_meta_index_;
  QComboBox* cbb_access_type_;
 
+ QComboBox* cbb_user_type_;
+
  QLabel* lbl_search_term_;
  QLineEdit* le_search_term_;
 
+ QLabel* lbl_credentials_file_;
+ QLineEdit* le_credentials_file_;
  QPushButton* btn_load_credentials_;
  QPushButton* btn_set_credentials_file_;
  QHBoxLayout* credentials_file_layout_;
 
-// QCheckBox* lbl_as_phrase_;
-// QCheckBox* cb_or_;
-// QCheckBox* cb_and_;
 
  QCheckBox* cb_fixed_phrase_;
  QCheckBox* cb_free_phrase_;
@@ -111,9 +128,32 @@ class PDF_Enhanced_Search_Dialog : public QDialog
  QCheckBox* cb_and_;
  QCheckBox* cb_case_sensitive_;
 
+ QLabel* lbl_filter_;
+
+ QVBoxLayout* filters_layout_;
+ QHBoxLayout* filters_layout1_;
+ QHBoxLayout* filters_layout2_;
+ QHBoxLayout* filters_layout3_;
+ QHBoxLayout* filters_layout4_;
+
+ QCheckBox* cb_main_text_;
+ QCheckBox* cb_footnote_text_;
+ QCheckBox* cb_sentences_with_footnote_;
+ QCheckBox* cb_block_quotes_;
+ QCheckBox* cb_all_quotes_;
+ QCheckBox* cb_chapter_titles_;
+ QCheckBox* cb_section_titles_;
+ QCheckBox* cb_bibliography_;
+ QCheckBox* cb_local_index_;
+ QCheckBox* cb_current_chapter_;
+ QCheckBox* cb_current_section_;
+ QCheckBox* cb_comments_edits_;
+// QCheckBox* cb_current_section_;
+
+
  //QLabel* sentence_label_;
 
- void add_children_line();
+ void add_index_entry_line();
 
 
 public:
