@@ -36,7 +36,9 @@ Single_Index_Entry_Dialog::Single_Index_Entry_Dialog(Index_Entry_Info* info)
 
  button_ok_->setDefault(true);
 
- button_ok_->setStyleSheet(basic_button_style_sheet_());
+ button_ok_->setStyleSheet(colorful_toggle_button_mixed_style_sheet_());
+
+// button_ok_->setStyleSheet(basic_button_style_sheet_());
  button_cancel_->setStyleSheet(basic_button_style_sheet_());
 
  button_box_->addButton(button_ok_, QDialogButtonBox::AcceptRole);
@@ -50,22 +52,21 @@ Single_Index_Entry_Dialog::Single_Index_Entry_Dialog(Index_Entry_Info* info)
 
  main_tab_widget_ = new QTabWidget(this);
 
- QString styles = tab_style_sheet_();
+ QString styles = quiet_tab_style_sheet_();
 
- QString line_clr = "rgb(197, 212, 217)";
- QString normal_bkg = "rgb(237, 232, 237)";
- QString back_bkg = "rgb(207, 217, 219)"; // "rgb(197, 212, 217)";
- QString mid_bkg = "rgb(207, 217, 219)";
+// QString line_clr = "rgb(197, 212, 217)";
+// QString normal_bkg = "rgb(237, 232, 237)";
+// QString back_bkg = "rgb(207, 217, 219)"; // "rgb(197, 212, 217)";
+// QString mid_bkg = "rgb(207, 217, 219)";
 
+//// styles.append(group_box_style_sheet_().arg(normal_bkg).arg(mid_bkg).arg(line_clr));
 
- styles.append(group_box_style_sheet_().arg(normal_bkg).arg(mid_bkg).arg(line_clr));
+// styles.append(QString(
+//   "QFrame {background-color: %1;}\n"
+//   "QLabel {background-color: %2;}\n").arg(back_bkg).arg(normal_bkg)
+// );
 
- styles.append(QString(
-   "QFrame {background-color: %1;}\n"
-   "QLabel {background-color: %2;}\n").arg(back_bkg).arg(normal_bkg)
-);
-
-//? main_tab_widget_->setStyleSheet(styles);
+ main_tab_widget_->setStyleSheet(styles);
 
  basic_info_frame_ = new QFrame(this);
 
@@ -93,10 +94,15 @@ Single_Index_Entry_Dialog::Single_Index_Entry_Dialog(Index_Entry_Info* info)
  le_entry_number_->setMaximumWidth(40);
 
  btn_view_entry_list_ = new QPushButton("view list", basic_info_frame_);
+ btn_view_entry_list_->setStyleSheet(colorful_small_button_style_sheet_alt_());
+
+ btn_view_entry_list_->setMaximumWidth(65);
+
  entry_number_layout_->addWidget(btn_view_entry_list_);
  entry_number_layout_->addStretch();
 
  btn_deactivate_entry_ = new QPushButton("deactivate", basic_info_frame_);
+ btn_deactivate_entry_->setStyleSheet(basic_button_style_sheet_());
  entry_number_layout_->addWidget(btn_deactivate_entry_);
 
  basic_form_layout_->addRow("Context:", entry_number_layout_);
@@ -273,7 +279,11 @@ Single_Index_Entry_Dialog::Single_Index_Entry_Dialog(Index_Entry_Info* info)
  preview_layout_->addWidget(le_preview_index_pdf_, 0, 1);
 
  btn_preview_index_pdf_browse_ = new QPushButton("browse", basic_info_frame_);
+ btn_preview_index_pdf_browse_->setStyleSheet(colorful_toggle_button_style_sheet_());
+
+
  btn_preview_index_pdf_load_ = new QPushButton("load", basic_info_frame_);
+ btn_preview_index_pdf_load_->setStyleSheet(colorful_toggle_button_style_sheet_());
 
  btn_preview_index_pdf_browse_->setMaximumWidth(48);
  btn_preview_index_pdf_load_->setMaximumWidth(38);
@@ -291,7 +301,12 @@ Single_Index_Entry_Dialog::Single_Index_Entry_Dialog(Index_Entry_Info* info)
  preview_layout_->addWidget(le_web_index_pdf_, 1, 1);
 
  btn_web_index_pdf_browse_ = new QPushButton("browse", basic_info_frame_);
+ btn_web_index_pdf_browse_->setStyleSheet(colorful_toggle_button_style_sheet_());
+
+
  btn_web_index_pdf_load_ = new QPushButton("load", basic_info_frame_);
+ btn_web_index_pdf_load_->setStyleSheet(colorful_toggle_button_style_sheet_());
+
 
  btn_web_index_pdf_browse_->setMaximumWidth(48);
  btn_web_index_pdf_load_->setMaximumWidth(38);
@@ -309,7 +324,12 @@ Single_Index_Entry_Dialog::Single_Index_Entry_Dialog(Index_Entry_Info* info)
  preview_layout_->addWidget(le_book_pdf_, 2, 1);
 
  btn_book_pdf_browse_ = new QPushButton("browse", basic_info_frame_);
+ btn_book_pdf_browse_->setStyleSheet(colorful_toggle_button_style_sheet_());
+
+
  btn_book_pdf_load_ = new QPushButton("load", basic_info_frame_);
+ btn_book_pdf_load_->setStyleSheet(colorful_toggle_button_style_sheet_());
+
 
  btn_book_pdf_browse_->setMaximumWidth(48);
  btn_book_pdf_load_->setMaximumWidth(38);
@@ -383,6 +403,7 @@ Single_Index_Entry_Dialog::Single_Index_Entry_Dialog(Index_Entry_Info* info)
 
  main_tab_widget_->addTab(new QFrame(), "Meta-Index");
  main_tab_widget_->addTab(new QFrame(), "History/Versioning");
+ main_tab_widget_->addTab(new QFrame(), "Cloud Services");
 
  main_layout_->addWidget(main_tab_widget_);
 

@@ -1401,10 +1401,11 @@ int main(int argc, char *argv[])
  QApplication qapp(argc, argv);
 
  Single_Index_Entry_Dialog* dlg = new Single_Index_Entry_Dialog(nullptr);
-// PDF_Enhanced_Search_Dialog* pesd = new
-//   PDF_Enhanced_Search_Dialog;
 
-// pesd->show();
+  PDF_Enhanced_Search_Dialog* pesd = new
+   PDF_Enhanced_Search_Dialog;
+
+ pesd->show();
  dlg->show();
 
  return qapp.exec();
