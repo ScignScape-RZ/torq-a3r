@@ -141,6 +141,12 @@ SOURCES += \
 
 
 HEADERS += \
+  $$SRC_DIR/indexing/single-index-entry-dialog.h \
+
+SOURCES += \
+  $$SRC_DIR/indexing/single-index-entry-dialog.cpp \
+
+HEADERS += \
   $$SRC_ROOT_DIR/$$PROJECT_AREA/add-minimize-frame.h \
 
 SOURCES += \

@@ -1394,14 +1394,18 @@ int main31(int argc, char *argv[])
 
 #include "indexing/pdf-enhanced-search-dialog.h"
 
+#include "indexing/single-index-entry-dialog.h"
+
 int main(int argc, char *argv[])
 {
  QApplication qapp(argc, argv);
 
- PDF_Enhanced_Search_Dialog* pesd = new
-   PDF_Enhanced_Search_Dialog;
+ Single_Index_Entry_Dialog* dlg = new Single_Index_Entry_Dialog(nullptr);
+// PDF_Enhanced_Search_Dialog* pesd = new
+//   PDF_Enhanced_Search_Dialog;
 
- pesd->show();
+// pesd->show();
+ dlg->show();
 
  return qapp.exec();
 
@@ -1494,7 +1498,7 @@ int main00(int argc, char *argv[])
 
  make_html(refs, &front_par_map);
 
- return 0;
+// return 0;
 
  QString ffile = "/home/nlevisrael/Downloads/m2m/review/rf.txt";
  ierd->make_review_file(ffile);
@@ -1512,6 +1516,13 @@ int main00(int argc, char *argv[])
  pvd2->show();
 
  ierd->show();
+
+ PDF_Enhanced_Search_Dialog* pesd = new
+   PDF_Enhanced_Search_Dialog;
+
+ pesd->show();
+
+
 
 // ierd->reclaim_focus();
 // ierd->setWindowFlags(ierd->windowFlags() | Qt::WindowStaysOnTopHint);
