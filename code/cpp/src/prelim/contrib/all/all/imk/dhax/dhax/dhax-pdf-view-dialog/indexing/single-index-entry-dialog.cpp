@@ -10,6 +10,7 @@
 
 #include "styles.h"
 
+
 #include "add-minimize-frame.h"
 
 #include <QPushButton>
@@ -21,6 +22,57 @@
 
 //USING_KANS(MPF)
 
+
+
+template<typename WIDGET_Type>
+inline void make_index_entry_forward_button(WIDGET_Type* w)
+{
+ make_unicode_text(w, 0x21E2);
+// QString unicode = QString(QChar(0x21E2));
+// w->setText(unicode);
+ w->setMaximumWidth(19);
+ w->setMaximumHeight(15);
+}
+
+template<typename WIDGET_Type>
+inline void make_index_entry_backward_button(WIDGET_Type* w)
+{
+ make_unicode_text(w, 0x21E0);
+// QString unicode = QString(QChar(0x21E0));
+// w->setText(unicode);
+ w->setMaximumWidth(19);
+ w->setMaximumHeight(15);
+}
+
+
+template<typename WIDGET_Type>
+inline void make_index_entry_fforward_button(WIDGET_Type* w)
+{
+ make_unicode_text(w, 0x23e9);
+// QString unicode = QString(QChar(0x21E2));
+// w->setText(unicode);
+ w->setMaximumWidth(19);
+ w->setMaximumHeight(15);
+}
+
+template<typename WIDGET_Type>
+inline void make_index_entry_bbackward_button(WIDGET_Type* w)
+{
+ make_unicode_text(w, 0x23ea);
+// QString unicode = QString(QChar(0x21E0));
+// w->setText(unicode);
+ w->setMaximumWidth(19);
+ w->setMaximumHeight(15);
+}
+
+inline void style_nav_button(QPushButton* btn)
+{
+ btn->setStyleSheet(mid_tight_button_style_sheet_());
+ btn->setMaximumHeight(21);
+ btn->setMaximumWidth(53);
+}
+
+
 Single_Index_Entry_Dialog::Single_Index_Entry_Dialog(Index_Entry_Info* info)
 {
  setWindowTitle("Single Index Entry");
@@ -28,7 +80,7 @@ Single_Index_Entry_Dialog::Single_Index_Entry_Dialog(Index_Entry_Info* info)
  button_box_ = new QDialogButtonBox(this);
 
  button_ok_ = new QPushButton("OK");
-
+ button_save_ = new QPushButton("Save");
  button_cancel_ = new QPushButton("Cancel");
 
  button_ok_->setDefault(false);
@@ -40,9 +92,10 @@ Single_Index_Entry_Dialog::Single_Index_Entry_Dialog(Index_Entry_Info* info)
 
 // button_ok_->setStyleSheet(basic_button_style_sheet_());
  button_cancel_->setStyleSheet(basic_button_style_sheet_());
+ button_save_->setStyleSheet(basic_button_style_sheet_());
 
  button_box_->addButton(button_ok_, QDialogButtonBox::AcceptRole);
-
+ button_box_->addButton(button_save_, QDialogButtonBox::ApplyRole);
  button_box_->addButton(button_cancel_, QDialogButtonBox::RejectRole);
 
  connect(button_box_, SIGNAL(accepted()), this, SLOT(accept()));
@@ -407,18 +460,106 @@ Single_Index_Entry_Dialog::Single_Index_Entry_Dialog(Index_Entry_Info* info)
 
  main_layout_->addWidget(main_tab_widget_);
 
+ nav_layout_ = new QHBoxLayout;
 
- minimize_layout_ = add_minimize_frame(button_box_, [this]
- {
-#ifdef USE_UBUNTU_MINIMIZE
-   this->setWindowFlags(Qt::Window);
-   showMinimized();
-#else
-   setWindowState(Qt::WindowMinimized);
-#endif
- });
+ btn_forward_ = new QPushButton("->", basic_info_frame_);
+ btn_back_ = new QPushButton("<-", basic_info_frame_);
+ btn_forward_to_end_  = new QPushButton("=>", basic_info_frame_);
+ btn_back_to_start_ = new QPushButton("<=", basic_info_frame_);
 
- main_layout_->addLayout(minimize_layout_);
+ btn_forward_->setMaximumWidth(20);
+ btn_forward_to_end_->setMaximumWidth(30);
+ btn_back_->setMaximumWidth(20);
+ btn_back_to_start_->setMaximumWidth(30);
+
+
+ make_index_entry_fforward_button(btn_forward_to_end_);
+ style_nav_button(btn_forward_to_end_);
+
+ make_index_entry_forward_button(btn_forward_);
+ style_nav_button(btn_forward_);
+
+ make_index_entry_backward_button(btn_back_);
+ style_nav_button(btn_back_);
+
+ make_index_entry_bbackward_button(btn_back_to_start_);
+ style_nav_button(btn_back_to_start_);
+
+
+
+ nav_layout_->addWidget(btn_back_);
+ nav_layout_->addWidget(btn_forward_);
+
+ nav_layout_->addSpacing(10);
+
+ nav_layout_->addWidget(btn_back_to_start_);
+ nav_layout_->addWidget(btn_forward_to_end_);
+
+ nav_layout_->addStretch();
+
+ nav_layout_->addWidget(button_box_);
+
+ main_layout_->addLayout(nav_layout_ );
+
+
+ setStyleSheet(R"_(
+
+               QCheckBox::indicator {
+                   width: 12px;
+                   height: 12;
+                   background-color: rgb(244, 250, 255);
+                   border-radius: 2px;
+                   border-style: solid;
+                   border-width: 1px;
+                   border-color: white white black black;
+               }
+
+               QCheckBox:hover {
+                   width: 12px;
+                   height: 12;
+                   background-color: rgb(244, 25, 255);
+                   border-radius: 2px;
+                   border-style: solid;
+                   border-width: 1px;
+                   border-color: white white black black;
+               }
+
+               QCheckBox::indicator:hover {
+                   width: 12px;
+                   height: 12;
+                   background-color: rgb(244, 125, 125);
+                   border-radius: 2px;
+                   border-style: solid;
+                   border-width: 1px;
+                   border-color: white white black black;
+               }
+
+               QCheckBox::indicator:checked {
+                   background-color: qradialgradient(spread:pad,
+                                           cx:0.5,
+                                           cy:0.5,
+                                           radius:0.3,
+                                           fx:0.5,
+                                           fy:0.5,
+                                           stop:0 rgba(0, 0, 255, 255),
+                                           stop:1 rgba(255, 214, 110, 255)
+               );
+               }
+               QCheckBox:checked, QCheckBox::indicator:checked {
+                   border-color: black black white white;
+               }
+               QCheckBox:checked {
+                   background-color: qradialgradient(spread:pad,
+                                           cx:0.739,
+                                           cy:0.278364,
+                                           radius:0.378,
+                                           fx:0.997289,
+                                           fy:0.00289117,
+                                           stop:0 rgba(255, 255, 255, 255),
+                                           stop:1 rgba(220, 220, 160, 255));
+               }
+
+               )_");
 
  setLayout(main_layout_);
 }

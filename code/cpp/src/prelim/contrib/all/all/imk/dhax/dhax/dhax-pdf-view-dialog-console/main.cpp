@@ -92,7 +92,7 @@ QVector<Index_Ref_Group>* make_ref_group_vector(QString file)
  QVector<Index_Ref_Group>& refs = *result;
 
  // // //
- refs.resize(622);
+ refs.resize(623);
 
  QRegularExpression qre("#(\\d+)\\s+\\$([serv])<([^>]+)>([,:.]?)\\s+\\$\\[([^\\]]+)]\\s+\\+\\{([^}]+)\\}"
                         );
@@ -1415,6 +1415,7 @@ int main(int argc, char *argv[])
 int main00(int argc, char *argv[])
 {
 
+
 // return 0;
 
 
@@ -1518,10 +1519,18 @@ int main00(int argc, char *argv[])
 
  ierd->show();
 
- PDF_Enhanced_Search_Dialog* pesd = new
-   PDF_Enhanced_Search_Dialog;
+// Single_Index_Entry_Dialog* dlg = new Single_Index_Entry_Dialog(nullptr);
 
- pesd->show();
+//  PDF_Enhanced_Search_Dialog* pesd = new
+//   PDF_Enhanced_Search_Dialog;
+
+
+// pesd->setModal(false);
+// pesd->show();
+
+// dlg->setModal(false);
+
+// dlg->show();
 
 
 

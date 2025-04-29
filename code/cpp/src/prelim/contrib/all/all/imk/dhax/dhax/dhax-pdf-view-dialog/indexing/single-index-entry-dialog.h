@@ -34,10 +34,16 @@ class Single_Index_Entry_Dialog : public QDialog
 {
  Q_OBJECT
 
- QHBoxLayout* minimize_layout_;
+ QHBoxLayout* nav_layout_;
+
+ QPushButton* btn_forward_;
+ QPushButton* btn_back_;
+ QPushButton* btn_forward_to_end_;
+ QPushButton* btn_back_to_start_;
 
  QDialogButtonBox* button_box_;
  QPushButton* button_ok_;
+ QPushButton* button_save_;
  QPushButton* button_cancel_;
  QVBoxLayout* main_layout_;
 

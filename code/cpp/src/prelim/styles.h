@@ -820,6 +820,12 @@ width: 0; height: 0; margin: 0; padding: 0; border: none;
 }
 
 
+
+
+
+
+
+
 inline QString quiet_tab_style_sheet_()
 {
  return "QTabBar::tab {"
@@ -1459,6 +1465,49 @@ inline  QString tight_button_style_sheet_()
 "  ); min-width: 80px; } ";
 
 }
+
+
+
+
+
+inline  QString mid_tight_button_style_sheet_()
+{
+ return
+
+
+" QPushButton:hover {background:rgb(150,240,190);"
+"  border-left: 4px groove rgb(150,240,190); "
+"  border-right: 4px ridge rgb(150,240,190); "
+" }\n "
+
+" QPushButton { background:rgb(220,220,230); "
+"  border: 2px groove rgb(0,90,50); "
+"  font-family:\"Comic Sans MS\", cursive, sans-serif; "
+"  border-bottom: 2px groove rgb(240,190,150); "
+"  border-top: 2px groove rgb(240,90,150); "
+"  border-radius: 10px; font-weight:600; color:rgb(0, 90, 105); "
+"  padding-left:8px;padding-right:8px;padding-top:2px;padding-bottom:2px; "
+
+//   " border-left: 4px groove rgb(0,190,150);   "
+//   " border-right: 4px ridge rgb(240,190,150); "
+
+" }\n"
+
+" QPushButton[enabled=false] { color:grey; } "
+
+
+
+" QPushButton:pressed{ color:black; padding:1px; "
+"  border: 1px solid rgb(150,240,190); "
+"  border-bottom: 1px solid #CEF51D; "
+"  border-radius: 0px; "
+"  background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, "
+"   stop: 0 white, stop: 0.1 #C0C0C0, stop: 0.6 #C6CCBC "
+"   stop: 0.8 #A0ECCF, stop: 0.9 darkseagreen,  stop: 1 blue"
+"  ); min-width: 80px; } ";
+
+}
+
 
 
 inline  QString toggle_button_style_sheet_()

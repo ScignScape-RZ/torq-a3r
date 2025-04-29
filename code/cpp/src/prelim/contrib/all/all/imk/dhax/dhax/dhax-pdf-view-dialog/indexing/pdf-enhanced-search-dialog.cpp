@@ -80,33 +80,40 @@ PDF_Enhanced_Search_Dialog::PDF_Enhanced_Search_Dialog(QWidget* parent)
 
  button_box_ = new QDialogButtonBox(this);
 
- button_ok_ = new QPushButton("OK");
- button_proceed_ = new QPushButton("Edit");
+ button_ok_ = new QPushButton("Proceed");
+// button_proceed_ = new QPushButton("Edit");
  button_cancel_ = new QPushButton("Cancel");
 
  button_ok_->setDefault(false);
  button_ok_->setAutoDefault(false);
 
- button_proceed_->setDefault(false);
- button_proceed_->setAutoDefault(false);
+// button_proceed_->setDefault(false);
+// button_proceed_->setAutoDefault(false);
 
  button_cancel_->setDefault(true);
 
  button_ok_->setEnabled(false);
 
  // // unless this is being embedded ...
- button_proceed_->setEnabled(false);
+// button_proceed_->setEnabled(false);
  button_cancel_->setText("Close");
 
  button_box_->addButton(button_ok_, QDialogButtonBox::AcceptRole);
- button_box_->addButton(button_proceed_, QDialogButtonBox::ApplyRole);
+// button_box_->addButton(button_proceed_, QDialogButtonBox::ApplyRole);
  button_box_->addButton(button_cancel_, QDialogButtonBox::RejectRole);
+
+// button_ok_->setStyleSheet(colorful_toggle_button_mixed_style_sheet_());
+
+ button_ok_->setStyleSheet(basic_button_style_sheet_());
+ button_cancel_->setStyleSheet(basic_button_style_sheet_());
+// button_proceed_->setStyleSheet(basic_button_style_sheet_());
+
 
 // button_ok_->setStyleSheet(basic_button_style_sheet_());
 // button_proceed_->setStyleSheet(basic_button_style_sheet_());
 // button_cancel_->setStyleSheet(basic_button_style_sheet_());
 
- connect(button_proceed_, SIGNAL(clicked()), this, SLOT(proceed()));
+// connect(button_proceed_, SIGNAL(clicked()), this, SLOT(proceed()));
  connect(button_box_, SIGNAL(accepted()), this, SLOT(accept()));
  connect(button_box_, SIGNAL(rejected()), this, SLOT(cancel()));
 

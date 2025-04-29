@@ -59,7 +59,7 @@ class PDF_Enhanced_Search_Dialog : public QDialog
  QDialogButtonBox* button_box_;
  QPushButton* button_ok_;
  QPushButton* button_cancel_;
- QPushButton* button_proceed_;
+// QPushButton* button_proceed_;
 
 // QPushButton* button_do_map_;
 
