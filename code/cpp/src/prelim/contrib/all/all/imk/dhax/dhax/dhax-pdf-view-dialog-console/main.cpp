@@ -1396,7 +1396,7 @@ int main31(int argc, char *argv[])
 
 #include "indexing/single-index-entry-dialog.h"
 
-int main(int argc, char *argv[])
+int main00(int argc, char *argv[])
 {
  QApplication qapp(argc, argv);
 
@@ -1412,7 +1412,7 @@ int main(int argc, char *argv[])
 
 }
 
-int main00(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 
 

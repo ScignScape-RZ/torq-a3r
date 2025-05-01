@@ -543,6 +543,26 @@ connect(refocus_entry_dialog_button_, &QPushButton::clicked, [this]()
  }
 
  //?show();
+
+
+ setContextMenuPolicy(Qt::CustomContextMenu);
+ connect(this, &QMainWindow::customContextMenuRequested,
+   [this](const QPoint& qp)
+ {
+  qDebug() << "qp = " << qp;
+
+  QMenu* menu = new QMenu; //(item);
+  menu->setAttribute(Qt::WA_DeleteOnClose);
+
+  menu->addAction("View in Index");
+  menu->addAction("Meta-Index Search");
+  menu->addAction("Copy");
+  menu->addAction("Annotate/Comment");
+
+  menu->popup(mapToGlobal(qp));
+
+ });
+
 }
 
 void DHAX_PDF_View_Dialog::show_status(QString text)

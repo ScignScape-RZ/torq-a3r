@@ -41,6 +41,10 @@
 #include <QPushButton>
 #include <QLabel>
 
+#include <QTimer>
+#include <QScreen>
+
+
 //#include <QNetworkAccessManager>
 //#include <QNetworkReply>
 
@@ -1128,6 +1132,27 @@ Index_Entry_Review_Dialog::Index_Entry_Review_Dialog(QString earlier_match_file,
     activate_nav_filter(Nav_Filters::None);
    });
   }
+
+  menu->addAction("Take Screenshot", [this]()
+  {
+   QScreen* screen = QGuiApplication::primaryScreen();
+   if (!screen)
+    return;
+   int target_window_id = winId();//?((QWidget*)this->parent())->winId();
+
+   QTimer::singleShot(10000, [=]
+   {
+    QPixmap pixmap = screen->grabWindow(target_window_id );
+    QString path = SCREENSHOTS_FOLDER "/ss.png";
+    qDebug() << "Saving to path: " << path;
+
+    QFile file(path);
+    if(file.open(QIODevice::WriteOnly))
+    {
+     pixmap.save(&file, "PNG");
+    }
+   });
+  });
 
   menu->addAction("Close All", [this]()
   {

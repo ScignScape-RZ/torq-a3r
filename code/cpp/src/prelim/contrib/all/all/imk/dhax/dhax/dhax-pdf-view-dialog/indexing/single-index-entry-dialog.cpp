@@ -147,7 +147,7 @@ Single_Index_Entry_Dialog::Single_Index_Entry_Dialog(Index_Entry_Info* info)
  le_entry_number_->setMaximumWidth(40);
 
  btn_view_entry_list_ = new QPushButton("view list", basic_info_frame_);
- btn_view_entry_list_->setStyleSheet(colorful_small_button_style_sheet_alt_());
+ btn_view_entry_list_->setStyleSheet(colorful_toggle_button_style_sheet_());
 
  btn_view_entry_list_->setMaximumWidth(65);
 
@@ -277,7 +277,7 @@ Single_Index_Entry_Dialog::Single_Index_Entry_Dialog(Index_Entry_Info* info)
 
  subentries_layout_->setColumnStretch(4, 1);
 
- subentries_heading_list_ = QStringList {"test 1", "test 2", "test 3"};
+ subentries_heading_list_ = QStringList {"Id 1", "Id 2", "Id 3"};
  subentries_id_list_ = {144, 145, 503};
 
  subentries_pair_list_.resize(subentries_heading_list_.size());
@@ -289,7 +289,6 @@ Single_Index_Entry_Dialog::Single_Index_Entry_Dialog(Index_Entry_Info* info)
      new QLabel("   %1"_qt.arg(subentries_id_list_[count]), basic_info_frame_),
      new QLineEdit(qs, basic_info_frame_)
    };
-   subentries_pair_list_[count].second->setPlaceholderText("(subheading)");
 
    subentries_layout_->addWidget(subentries_pair_list_[count].first, count + 1, 0);
 
@@ -299,6 +298,9 @@ Single_Index_Entry_Dialog::Single_Index_Entry_Dialog(Index_Entry_Info* info)
 
    ++count;
   }
+
+//  subentries_pair_list_[0].first->setPlaceholderText("(subheading)");
+
  }
 
  subentries_scroll_area_->setWidget(subentries_area_frame_);
@@ -332,13 +334,13 @@ Single_Index_Entry_Dialog::Single_Index_Entry_Dialog(Index_Entry_Info* info)
  preview_layout_->addWidget(le_preview_index_pdf_, 0, 1);
 
  btn_preview_index_pdf_browse_ = new QPushButton("browse", basic_info_frame_);
- btn_preview_index_pdf_browse_->setStyleSheet(colorful_toggle_button_style_sheet_());
+ btn_preview_index_pdf_browse_->setStyleSheet(colorful_small_button_style_sheet_alt_());
 
 
  btn_preview_index_pdf_load_ = new QPushButton("load", basic_info_frame_);
- btn_preview_index_pdf_load_->setStyleSheet(colorful_toggle_button_style_sheet_());
+ btn_preview_index_pdf_load_->setStyleSheet(colorful_small_button_style_sheet_alt_());
 
- btn_preview_index_pdf_browse_->setMaximumWidth(48);
+ btn_preview_index_pdf_browse_->setMaximumWidth(54);
  btn_preview_index_pdf_load_->setMaximumWidth(38);
 
  preview_layout_->addWidget(btn_preview_index_pdf_browse_, 0, 2);
@@ -354,14 +356,14 @@ Single_Index_Entry_Dialog::Single_Index_Entry_Dialog(Index_Entry_Info* info)
  preview_layout_->addWidget(le_web_index_pdf_, 1, 1);
 
  btn_web_index_pdf_browse_ = new QPushButton("browse", basic_info_frame_);
- btn_web_index_pdf_browse_->setStyleSheet(colorful_toggle_button_style_sheet_());
+ btn_web_index_pdf_browse_->setStyleSheet(colorful_small_button_style_sheet_alt_());
 
 
  btn_web_index_pdf_load_ = new QPushButton("load", basic_info_frame_);
- btn_web_index_pdf_load_->setStyleSheet(colorful_toggle_button_style_sheet_());
+ btn_web_index_pdf_load_->setStyleSheet(colorful_small_button_style_sheet_alt_());
 
 
- btn_web_index_pdf_browse_->setMaximumWidth(48);
+ btn_web_index_pdf_browse_->setMaximumWidth(54);
  btn_web_index_pdf_load_->setMaximumWidth(38);
 
  preview_layout_->addWidget(btn_web_index_pdf_browse_, 1, 2);
@@ -377,14 +379,14 @@ Single_Index_Entry_Dialog::Single_Index_Entry_Dialog(Index_Entry_Info* info)
  preview_layout_->addWidget(le_book_pdf_, 2, 1);
 
  btn_book_pdf_browse_ = new QPushButton("browse", basic_info_frame_);
- btn_book_pdf_browse_->setStyleSheet(colorful_toggle_button_style_sheet_());
+ btn_book_pdf_browse_->setStyleSheet(colorful_small_button_style_sheet_alt_());
 
 
  btn_book_pdf_load_ = new QPushButton("load", basic_info_frame_);
- btn_book_pdf_load_->setStyleSheet(colorful_toggle_button_style_sheet_());
+ btn_book_pdf_load_->setStyleSheet(colorful_small_button_style_sheet_alt_());
 
 
- btn_book_pdf_browse_->setMaximumWidth(48);
+ btn_book_pdf_browse_->setMaximumWidth(54);
  btn_book_pdf_load_->setMaximumWidth(38);
 
  preview_layout_->addWidget(btn_book_pdf_browse_, 2, 2);
