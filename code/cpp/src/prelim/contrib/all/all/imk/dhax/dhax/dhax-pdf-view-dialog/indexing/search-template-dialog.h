@@ -52,6 +52,8 @@ class QFormLayout;
 class QComboBox;
 
 #include <QRadioButton>
+#include <QListWidget>
+#include <QSplitter>
 
 class Search_Template_Dialog : public QDialog
 {
@@ -78,11 +80,13 @@ class Search_Template_Dialog : public QDialog
  QGridLayout* info_group_box_layout_;
 
 
- QVBoxLayout* sources_group_box_layout_;
- QHBoxLayout* sources_group_box_top_layout_;
- QHBoxLayout* sources_group_box_bottom_layout_;
- QFormLayout* sources_group_box_left_layout_;
- QGridLayout* sources_group_box_right_layout_;
+ QGridLayout* sources_group_box_layout_;
+
+// QHBoxLayout* sources_group_box_top_layout_;
+// QHBoxLayout* sources_group_box_bottom_layout_;
+// QFormLayout* sources_group_box_left_layout_;
+// QGridLayout* sources_group_box_right_layout_;
+
 
  QGridLayout* index_entry_group_box_layout_;
 
@@ -105,23 +109,35 @@ class Search_Template_Dialog : public QDialog
 
 // QComboBox* cb_number_of_index_entry_;
 
- QLabel* lbl_local_file_;
- QLineEdit* le_local_file_;
- QPushButton* btn_local_file_browse_;
+ QLabel* lbl_base_query_write_;
+ QLineEdit* le_base_query_write_;
 
- QLineEdit* le_meta_index_;
- QComboBox* cbb_access_type_;
 
- QComboBox* cbb_user_type_;
+ QLabel* lbl_stemming_protocol_;
+ QComboBox* cbb_stemming_protocol_;
+ QLineEdit* le_stemming_protocol_file_;
+
+ QLabel* lbl_record_boundary_;
+ QRadioButton* rb_record_boundary_sentence_;
+ QRadioButton* rb_record_boundary_text_line_;
+ QRadioButton* rb_record_boundary_markup_tags_;
+ QRadioButton* rb_record_boundary_intersectional_;
+ QRadioButton* rb_record_boundary_contextual_;
+
+ QLineEdit* le_word_vector_protocol_;
+ QPushButton* btn_word_vector_protocol_file_browse_;
+
+
+ QLabel* lbl_column_data_;
+ QListWidget* lw_column_names_;
+ QListWidget* lw_column_types_;
+
+ QSplitter* spl_column_data_;
+
 
  QLabel* lbl_search_term_;
  QLineEdit* le_search_term_;
 
- QLabel* lbl_credentials_file_;
- QLineEdit* le_credentials_file_;
- QPushButton* btn_load_credentials_;
- QPushButton* btn_set_credentials_file_;
- QHBoxLayout* credentials_file_layout_;
 
 
  QLabel* lbl_back_end_;

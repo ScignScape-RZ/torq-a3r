@@ -126,112 +126,112 @@ Search_Template_Dialog::Search_Template_Dialog(QWidget* parent)
 
  info_group_box_layout_ = new QGridLayout(info_group_box_);
 
- sources_group_box_layout_ = new QVBoxLayout;
-
- sources_group_box_top_layout_ = new QHBoxLayout;
- sources_group_box_bottom_layout_ = new QHBoxLayout;
+ sources_group_box_layout_ = new QGridLayout;
 
 
- sources_group_box_left_layout_ = new QFormLayout;
- sources_group_box_right_layout_ = new QGridLayout;
+ lbl_base_query_write_ = new QLabel("Base Query:", this);
+ le_base_query_write_ = new QLineEdit(this);
+// le_local_file_->setPlaceholderText("(local file path)");
+
+ sources_group_box_layout_->addWidget(lbl_base_query_write_, 0, 0);
+ sources_group_box_layout_->addWidget(le_base_query_write_, 0, 1, 1, 4);
 
 
- lbl_local_file_ = new QLabel("Local File", this);
- le_local_file_ = new QLineEdit(this);
- le_local_file_->setPlaceholderText("(local file path)");
+ lbl_stemming_protocol_ = new QLabel("Stemming Protocol:", this);
+ cbb_stemming_protocol_ = new QComboBox(this);
+ cbb_stemming_protocol_->addItem("None");
 
- sources_group_box_top_layout_->addWidget(lbl_local_file_);
- sources_group_box_top_layout_->addWidget(le_local_file_);
+ le_stemming_protocol_file_ = new QLineEdit(this);
+ le_stemming_protocol_file_->setPlaceholderText("(script file path)");
 
- btn_local_file_browse_ = new QPushButton("Browse", this);
- sources_group_box_top_layout_->addWidget(btn_local_file_browse_);
+// le_local_file_->setPlaceholderText("(local file path)");
 
- btn_local_file_browse_->setStyleSheet(colorful_toggle_button_style_sheet_());
-
-
- le_meta_index_ = new QLineEdit(this);
- le_meta_index_->setPlaceholderText("(URL)");
- sources_group_box_left_layout_->addRow("Meta-Index", le_meta_index_);
-
- cbb_access_type_ = new QComboBox(this);
- cbb_access_type_->addItem("Public");
- cbb_access_type_->addItem("Login");
- cbb_access_type_->addItem("Keyring");
- sources_group_box_left_layout_->addRow("Access Type", cbb_access_type_);
-
- cbb_user_type_ = new QComboBox(this);
- cbb_user_type_->addItem("Reader");
- cbb_user_type_->addItem("Author");
- cbb_user_type_->addItem("Editor");
- cbb_user_type_->addItem("Admin");
- sources_group_box_left_layout_->addRow("User Type", cbb_user_type_);
-
-  QTextEdit* address_text_edit = new QTextEdit(this);
-  address_text_edit->setPlaceholderText("Enter username then password, or enter security code");
-  sources_group_box_right_layout_->addWidget(address_text_edit, 0, 0, 1, 2);
-  address_text_edit->setMaximumHeight(65);
-  sources_group_box_right_layout_->addWidget(
-    new QLabel("Credentials (if needed)", this), 1, 1);
-  sources_group_box_right_layout_->setColumnStretch(0, 1);
+ sources_group_box_layout_->addWidget(lbl_stemming_protocol_, 1, 0);
+ sources_group_box_layout_->addWidget(cbb_stemming_protocol_, 1, 1);
+ sources_group_box_layout_->addWidget(le_stemming_protocol_file_, 1, 2, 1, 3);
 
 
 
-// cb_state_or_province_ = new QComboBox(this);
+ lbl_record_boundary_ = new QLabel("Record Boundary:");
+ rb_record_boundary_sentence_ = new QRadioButton("Sentence");
+ rb_record_boundary_text_line_ = new QRadioButton("Text Line");
+ rb_record_boundary_markup_tags_ = new QRadioButton("Markup Tags");
+ rb_record_boundary_intersectional_ = new QRadioButton("Intersectional");
+
+ rb_record_boundary_contextual_ = new QRadioButton("Contextual");
+
+ sources_group_box_layout_->addWidget(lbl_record_boundary_, 2, 0);
+ sources_group_box_layout_->addWidget(rb_record_boundary_sentence_, 2, 1);
+ sources_group_box_layout_->addWidget(rb_record_boundary_text_line_, 2, 2);
+ sources_group_box_layout_->addWidget(rb_record_boundary_markup_tags_, 2, 3);
+ sources_group_box_layout_->addWidget(rb_record_boundary_intersectional_, 2, 4);
+
+ QHBoxLayout* hbl = new QHBoxLayout;
+ hbl->addSpacing(14);
 
 
-// cb_state_or_province_->setMaxVisibleItems(12);
-// cb_state_or_province_->setStyleSheet("combobox-popup: 0;");
+ hbl->addWidget(rb_record_boundary_contextual_);
 
-// sources_group_box_left_layout_->addRow("Meta-Index", le_meta_index_);
-// sources_group_box_left_layout_->addRow("State/Territory\nor Province", cb_state_or_province_);
-
-// sources_group_box_bottom_layout_->addLayout(sources_group_box_left_layout_);
-
-// sources_group_box_right_layout_ = new QVBoxLayout;
-// sources_group_box_right_layout_->addWidget(new QLabel("Your address (optional):", this));
-// QTextEdit* address_text_edit = new QTextEdit(this);
-// address_text_edit->setPlaceholderText("Enter address here, or leave empty");
-// sources_group_box_right_layout_->addWidget(address_text_edit);
-// address_text_edit->setMaximumHeight(65);
+ le_word_vector_protocol_ = new QLineEdit(this);
+ le_word_vector_protocol_->setPlaceholderText("(word vector protocol file)");
+ hbl->addWidget(le_word_vector_protocol_);
+ btn_word_vector_protocol_file_browse_ = new QPushButton("View", this);
+ hbl->addWidget(btn_word_vector_protocol_file_browse_);
+ btn_word_vector_protocol_file_browse_->setStyleSheet(colorful_toggle_button_style_sheet_());
 
 
- sources_group_box_bottom_layout_->addLayout(sources_group_box_left_layout_);
- sources_group_box_bottom_layout_->addLayout(sources_group_box_right_layout_);
+ sources_group_box_layout_->addLayout(hbl, 3, 0, 1, 5, Qt::AlignRight);
 
- credentials_file_layout_ = new QHBoxLayout;
 
- lbl_credentials_file_ = new QLabel("Credentials File", this);
- le_credentials_file_ = new QLineEdit("(local file path)");
+ QFrame* line = new QFrame();
+ line->setFrameShape(QFrame::Box); // Replace by VLine for vertical line
+ line->setFrameShadow(QFrame::Sunken);
+ sources_group_box_layout_->addWidget(line, 4, 1, 1, 4, Qt::AlignHCenter);
 
- btn_load_credentials_ = new QPushButton("load", this);
- btn_load_credentials_->setMaximumHeight(30);
- btn_load_credentials_->setMaximumWidth(50);
- btn_set_credentials_file_ = new QPushButton("set", this);
- btn_set_credentials_file_->setMaximumHeight(30);
- btn_set_credentials_file_->setMaximumWidth(50);
-
- btn_load_credentials_->setStyleSheet(colorful_small_button_style_sheet_alt_());
- btn_set_credentials_file_->setStyleSheet(colorful_small_button_style_sheet_alt_());
-
- btn_load_credentials_->setMaximumHeight(21);
- btn_set_credentials_file_->setMaximumHeight(21);
-
- credentials_file_layout_->addWidget(lbl_credentials_file_);
- credentials_file_layout_->addWidget(le_credentials_file_);
- credentials_file_layout_->addWidget(btn_load_credentials_);
- credentials_file_layout_->addWidget(btn_set_credentials_file_);
+ QPushButton* b = new QPushButton("ted");
+ sources_group_box_layout_->addWidget(b, 4, 0);
 
 
 
- sources_group_box_layout_->addLayout(sources_group_box_top_layout_);
- sources_group_box_layout_->addLayout(sources_group_box_bottom_layout_);
 
- QFrame* hl = new QFrame(this);
- hl->setFrameShape(QFrame::HLine);
- hl->setFrameShadow(QFrame::Sunken);
- sources_group_box_layout_->addWidget(hl);
+ lbl_column_data_ = new QLabel("Column Data", this);
+ lw_column_names_ = new QListWidget;
+ lw_column_types_ = new QListWidget;
 
- sources_group_box_layout_->addLayout(credentials_file_layout_);
+ QHBoxLayout* hbl_column_data_ = new QHBoxLayout;
+
+ spl_column_data_ = new QSplitter(this);
+ spl_column_data_->addWidget(lw_column_names_);
+ spl_column_data_->addWidget(lw_column_types_);
+
+ lw_column_names_->addItem("(name 1)");
+ lw_column_names_->addItem("(name 2)");
+ lw_column_names_->addItem(" ... ");
+
+ lw_column_types_->addItem("(type 1)");
+ lw_column_types_->addItem("(type 2)");
+ lw_column_types_->addItem(" ... ");
+
+ for(u1 r = 0; r < 3; ++r)
+ {
+  lw_column_names_->item(r)->setForeground(Qt::gray);
+  lw_column_types_->item(r)->setForeground(Qt::gray);
+ }
+
+
+// QListWidgetItem* l3 = new QListWidgetItem;
+
+ //lw_column_types_->setMaximumWidth(55);
+
+ sources_group_box_layout_->addWidget(lbl_column_data_, 5, 0);
+
+ hbl_column_data_->addSpacing(15);
+ hbl_column_data_->addWidget(spl_column_data_);
+
+ sources_group_box_layout_->addLayout(hbl_column_data_, 6, 0, 1, 5);
+
+
+
 
  sources_group_box_->setLayout(sources_group_box_layout_);
 
@@ -401,19 +401,19 @@ Search_Template_Dialog::Search_Template_Dialog(QWidget* parent)
 
  index_entry_group_box_layout_ = new QGridLayout(index_entry_group_box_);
 
- lbl_index_file_ = new QLabel("File", this);
+ lbl_index_file_ = new QLabel("Base Query:", this);
  le_index_file_ = new  QLineEdit(this);
- le_index_file_->setPlaceholderText("(local file)");
- btn_index_entry_data_ = new QPushButton("data", this);
- btn_index_entry_data_->setMaximumWidth(40);
- btn_index_entry_data_->setMaximumHeight(20);
+ //le_index_file_->setPlaceholderText("(local file)");
+// btn_index_entry_data_ = new QPushButton("data", this);
+// btn_index_entry_data_->setMaximumWidth(40);
+// btn_index_entry_data_->setMaximumHeight(20);
 
- btn_index_entry_data_->setStyleSheet(qmessagebox_button_style_sheet());
+// btn_index_entry_data_->setStyleSheet(qmessagebox_button_style_sheet());
 
 
  index_entry_group_box_layout_->addWidget(lbl_index_file_, 0, 0);
- index_entry_group_box_layout_->addWidget(le_index_file_, 0, 1, 1, 2);
- index_entry_group_box_layout_->addWidget(btn_index_entry_data_, 0, 3);
+ index_entry_group_box_layout_->addWidget(le_index_file_, 0, 1, 1, 3);
+// index_entry_group_box_layout_->addWidget(btn_index_entry_data_, 0, 3);
 
  lbl_index_entry_term_ = new QLabel("Term", this);
  le_index_entry_term_ = new QLineEdit(this);
