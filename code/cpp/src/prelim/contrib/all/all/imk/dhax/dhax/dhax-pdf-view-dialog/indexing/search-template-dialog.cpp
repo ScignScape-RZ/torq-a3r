@@ -311,11 +311,59 @@ Search_Template_Dialog::Search_Template_Dialog(QWidget* parent)
 // lbl_filter_ = new QLabel("Filters", this);
 // info_group_box_layout_->addWidget(lbl_filter_, 2, 0);
 
- QFormLayout* qfl = new QFormLayout;
 
- QFrame* options_f = new QFrame(this);
 
- options_f->setFrameStyle(QFrame::Box | QFrame::Sunken);
+
+
+ QFrame* scope_l = new QFrame(this);
+ QHBoxLayout* scope_l_layout_ = new QHBoxLayout(scope_l);
+
+ rb_sentence_ = new QRadioButton("Sentence", this);
+ scope_l_layout_->addWidget(rb_sentence_);
+
+ rb_paragraph_ = new QRadioButton("Paragraph", this);
+ scope_l_layout_->addWidget(rb_paragraph_);
+
+
+ QFrame* scope_r = new QFrame(this);
+ QHBoxLayout* scope_r_layout_ = new QHBoxLayout(scope_r);
+
+ rb_zone_ = new QRadioButton("Zone", this);
+ scope_r_layout_->addWidget(rb_zone_);
+
+ rb_zonespan_ = new QRadioButton("Zonespan", this);
+ scope_r_layout_->addWidget(rb_zonespan_);
+
+ scope_l->setFrameStyle(QFrame::Box | QFrame::Sunken);
+ scope_r->setFrameStyle(QFrame::Box | QFrame::Sunken);
+
+// QFormLayout* qfl = new QFormLayout;
+// qfl->addRow("Scope:", options_f);
+
+ lbl_scope_ = new QLabel("Scope:", this);
+// info_group_box_layout_->addWidget(lbl_scope_, 4, 0);
+
+ QHBoxLayout* scope_layout_ = new QHBoxLayout;
+ scope_layout_->addWidget(lbl_scope_);
+
+ rb_scope_all_ = new QCheckBox("All", this);
+
+ scope_layout_->addStretch();
+ scope_layout_->addWidget(rb_scope_all_);
+ scope_layout_->addStretch();
+
+
+ scope_layout_->addWidget(scope_l);
+ scope_layout_->addStretch();
+
+ scope_layout_->addWidget(scope_r);
+ scope_layout_->addStretch();
+
+ info_group_box_layout_->addLayout(scope_layout_, 5, 0, 1, 12);
+
+
+// QFrame* options_f = new QFrame(this);
+// options_f->setFrameStyle(QFrame::Box | QFrame::Sunken);
 
 //  QGridLayout* fl = new QGridLayout;
 //  fl->addWidget(new QLabel("xxx"), 0, 0);
@@ -329,9 +377,7 @@ Search_Template_Dialog::Search_Template_Dialog(QWidget* parent)
 
  // // options_f->setLayout(filters_layout_);
 
- qfl->addRow("Options:", options_f);
 
- info_group_box_layout_->addLayout(qfl, 4, 0, 1, 12);
 
 //  info_group_box_layout_->addWidget(new QLabel("xxx"), 2, 1, 1, 8);
 

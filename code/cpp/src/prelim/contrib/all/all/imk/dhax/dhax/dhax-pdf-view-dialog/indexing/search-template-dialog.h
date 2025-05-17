@@ -132,6 +132,7 @@ class Search_Template_Dialog : public QDialog
  QRadioButton* rb_whitedb_;
  QRadioButton* rb_tkrzw_;
 
+
  QLabel* lbl_text_window_options_;
  QCheckBox* cb_proximity_distance_;
  QComboBox* cbb_proximity_distance_;
@@ -142,6 +143,17 @@ class Search_Template_Dialog : public QDialog
  QComboBox* cbb_near_;
 
  QPushButton* btn_preview_;
+
+
+
+ QLabel* lbl_scope_;
+
+ QCheckBox* rb_scope_all_;
+
+ QRadioButton* rb_sentence_;
+ QRadioButton* rb_paragraph_;
+ QRadioButton* rb_zone_;
+ QRadioButton* rb_zonespan_;
 
 
 
