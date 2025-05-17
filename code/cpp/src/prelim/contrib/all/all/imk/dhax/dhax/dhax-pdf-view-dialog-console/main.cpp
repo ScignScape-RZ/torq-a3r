@@ -1396,7 +1396,22 @@ int main31(int argc, char *argv[])
 
 #include "indexing/single-index-entry-dialog.h"
 
-int main00(int argc, char *argv[])
+#include "indexing/search-template-dialog.h"
+
+int main(int argc, char *argv[])
+{
+ QApplication qapp(argc, argv);
+
+ Search_Template_Dialog* dlg = new Search_Template_Dialog(nullptr);
+
+ dlg->show();
+
+ return qapp.exec();
+
+}
+
+
+int main01(int argc, char *argv[])
 {
  QApplication qapp(argc, argv);
 
@@ -1412,7 +1427,8 @@ int main00(int argc, char *argv[])
 
 }
 
-int main(int argc, char *argv[])
+
+int main00(int argc, char *argv[])
 {
 
 

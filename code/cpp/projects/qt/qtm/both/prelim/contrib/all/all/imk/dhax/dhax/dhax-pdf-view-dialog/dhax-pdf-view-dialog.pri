@@ -135,6 +135,8 @@ HEADERS += \
   $$SRC_DIR/indexing/index-ref.h \
   $$SRC_DIR/indexing/index-entry-review-dialog.h \
   $$SRC_DIR/indexing/pdf-enhanced-search-dialog.h \
+  $$SRC_DIR/indexing/index-entry-review-dialog.h \
+  $$SRC_DIR/indexing/search-template-dialog.h \
 
 
 SOURCES += \
@@ -142,6 +144,7 @@ SOURCES += \
   $$SRC_DIR/indexing/index-ref.cpp \
   $$SRC_DIR/indexing/index-entry-review-dialog.cpp \
   $$SRC_DIR/indexing/pdf-enhanced-search-dialog.cpp \
+  $$SRC_DIR/indexing/search-template-dialog.cpp \
 
 
 HEADERS += \
