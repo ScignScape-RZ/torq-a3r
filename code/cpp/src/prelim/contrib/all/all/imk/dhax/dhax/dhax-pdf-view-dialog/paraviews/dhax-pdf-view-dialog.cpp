@@ -470,10 +470,13 @@ connect(refocus_entry_dialog_button_, &QPushButton::clicked, [this]()
 
  append_to_file(notes_file, "\n///////////\n", text);
 
- if(earlier_document_ref_)
-   entry_dialog_->set_page_text_view_text_later(text);
- else
-   entry_dialog_->set_page_text_view_text_earlier(text);
+ if(entry_dialog_)
+ {
+  if(earlier_document_ref_)
+    entry_dialog_->set_page_text_view_text_later(text);
+  else
+    entry_dialog_->set_page_text_view_text_earlier(text);
+ }
 
  QList<Poppler::Annotation*> popas = popg->annotations();
 
@@ -609,10 +612,13 @@ void DHAX_PDF_View_Dialog::load_page(int number, QObject* origin)
 
  save_file(notes_file_, QString::number(number) + "\n///////////\n" + text);
 
- if(earlier_document_ref_)
-   entry_dialog_->set_page_text_view_text_later(text);
- else
-   entry_dialog_->set_page_text_view_text_earlier(text);
+ if(entry_dialog_)
+ {
+  if(earlier_document_ref_)
+    entry_dialog_->set_page_text_view_text_later(text);
+  else
+    entry_dialog_->set_page_text_view_text_earlier(text);
+ }
 
 
  //append_to_file(notes_file, "\n///////////\n", text);

@@ -1398,13 +1398,48 @@ int main31(int argc, char *argv[])
 
 #include "indexing/search-template-dialog.h"
 
-int main(int argc, char *argv[])
+
+
+
+int main02(int argc, char *argv[])
 {
  QApplication qapp(argc, argv);
 
- Search_Template_Dialog* dlg = new Search_Template_Dialog(nullptr);
+ DHAX_PDF_View_Dialog* pvd = new DHAX_PDF_View_Dialog(nullptr, nullptr,
+   "/home/nlevisrael/Downloads/xml-db/pisa-readthedocs-io-en-latest.pdf",
+   "",
+   0, 1);
 
- dlg->show();
+ pvd->show();
+
+
+ return qapp.exec();
+
+}
+
+
+int main(int argc, char *argv[])
+{
+// QString pdf_file = "pisa-readthedocs-io-en-latest.pdf"
+
+ QApplication qapp(argc, argv);
+
+
+ DHAX_PDF_View_Dialog* pvd = new DHAX_PDF_View_Dialog(nullptr, nullptr,
+    "/home/nlevisrael/Downloads/m2m/Neustein_Lesher_9780197661222_US_BITS.pdf",
+    "",
+    86, 32);
+
+ pvd->set_arabic_start(86);
+ pvd->set_roman_end(85);
+ pvd->set_roman_start(1);
+
+ pvd->load_page(292);
+
+ pvd->setWindowFlags(pvd->windowFlags() | Qt::WindowStaysOnTopHint);
+
+ pvd->show();
+
 
  return qapp.exec();
 

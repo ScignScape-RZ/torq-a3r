@@ -290,8 +290,9 @@ Search_Template_Dialog::Search_Template_Dialog(QWidget* parent)
  info_group_box_layout_->addWidget(cb_proximity_distance_, 3, 0, 1, 2, Qt::AlignRight);
  cbb_proximity_distance_ = new QComboBox(this);
 
- cbb_proximity_distance_->addItem("1");
- cbb_proximity_distance_->addItem("2");
+ cbb_proximity_distance_->addItem("+ 1");
+ cbb_proximity_distance_->addItem("+ 2");
+ cbb_proximity_distance_->addItem("+ 3");
 
  info_group_box_layout_->addWidget(cbb_proximity_distance_, 3, 2, 1, 2);
 
@@ -299,8 +300,9 @@ Search_Template_Dialog::Search_Template_Dialog(QWidget* parent)
  cb_quorum_ = new QCheckBox("Quorum", this);
  cbb_quorum_ = new QComboBox(this);
 
- cbb_quorum_->addItem("1");
- cbb_quorum_->addItem("2");
+ cbb_quorum_->addItem("- 1");
+ cbb_quorum_->addItem("- 2");
+ cbb_quorum_->addItem("- 3");
 
  info_group_box_layout_->addWidget(cb_quorum_, 3, 5, 1, 2, Qt::AlignRight);
  info_group_box_layout_->addWidget(cbb_quorum_, 3, 7, 1, 2);
