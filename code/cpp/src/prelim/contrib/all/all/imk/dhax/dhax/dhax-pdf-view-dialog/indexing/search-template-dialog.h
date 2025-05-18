@@ -75,7 +75,7 @@ class Search_Template_Dialog : public QDialog
 
  QGroupBox* info_group_box_;
  QGroupBox* sources_group_box_;
- QGroupBox* index_entry_group_box_;
+ QGroupBox* forward_index_group_box_;
 
  QGridLayout* info_group_box_layout_;
 
@@ -88,26 +88,32 @@ class Search_Template_Dialog : public QDialog
 // QGridLayout* sources_group_box_right_layout_;
 
 
- QGridLayout* index_entry_group_box_layout_;
+ QGridLayout* forward_index_group_box_layout_;
 
- QLabel* lbl_index_file_;
- QLineEdit* le_index_file_;
- QPushButton* btn_index_entry_data_;
+ QLabel* lbl_forward_index_num_terms_;
+ QLineEdit* le_forward_index_num_terms_;
 
- QLabel* lbl_index_entry_term_;
- QLineEdit* le_index_entry_term_;
- QLabel* lbl_index_entry_number_;
- QLineEdit* le_index_entry_number_;
+ QLabel* lbl_meta_index_num_terms_;
+ QLineEdit* le_meta_index_num_terms_;
 
- QLabel* lbl_parent_entry_term_;
- QLineEdit* le_parent_entry_term_;
- QLabel* lbl_parent_entry_number_;
- QLineEdit* le_parent_entry_number_;
+ QLabel* lbl_forward_index_num_records_;
+ QLineEdit* le_forward_index_num_records_;
 
-// QFormLayout* index_entry_group_box_layout_top_;
-// QGridLayout* index_entry_grid_layout_;
 
-// QComboBox* cb_number_of_index_entry_;
+ QLabel* lbl_measure_points_;
+ QCheckBox* cb_measure_points_sentence_;
+ QCheckBox* cb_measure_points_paragraph_;
+ QCheckBox* cb_measure_points_page_;
+ QCheckBox* cb_measure_points_section_;
+ QCheckBox* cb_measure_points_subsection_;
+ QCheckBox* cb_measure_points_chapter_;
+ QCheckBox* cb_measure_points_article_;
+ QCheckBox* cb_measure_points_other_;
+
+
+// QPushButton* btn_index_entry_data_;
+
+
 
  QLabel* lbl_base_query_write_;
  QLineEdit* le_base_query_write_;

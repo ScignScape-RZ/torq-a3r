@@ -122,7 +122,7 @@ Search_Template_Dialog::Search_Template_Dialog(QWidget* parent)
 
  info_group_box_ = new QGroupBox("Read", this);
  sources_group_box_ = new QGroupBox("Write", this);
- index_entry_group_box_ = new QGroupBox("Index Entry", this);
+ forward_index_group_box_ = new QGroupBox("Forward Index", this);
 
  info_group_box_layout_ = new QGridLayout(info_group_box_);
 
@@ -184,12 +184,16 @@ Search_Template_Dialog::Search_Template_Dialog(QWidget* parent)
 
 
  QFrame* line = new QFrame();
- line->setFrameShape(QFrame::Box); // Replace by VLine for vertical line
- line->setFrameShadow(QFrame::Sunken);
- sources_group_box_layout_->addWidget(line, 4, 1, 1, 4, Qt::AlignHCenter);
+ line->setMinimumHeight(3);
+ line->setMinimumWidth(133);
+// line->setFrameShape(QFrame::Box); // Replace by VLine for vertical line
+// line->setFrameShadow(QFrame::Sunken);
+ line->setFrameStyle(QFrame::Box | QFrame::Sunken);
 
- QPushButton* b = new QPushButton("ted");
- sources_group_box_layout_->addWidget(b, 4, 0);
+ sources_group_box_layout_->addWidget(line, 4, 0, 1, 5, Qt::AlignHCenter | Qt::AlignBottom);
+
+// QPushButton* b = new QPushButton("ted");
+// sources_group_box_layout_->addWidget(b, 4, 0);
 
 
 
@@ -399,57 +403,98 @@ Search_Template_Dialog::Search_Template_Dialog(QWidget* parent)
  entry_layout_->addWidget(sources_group_box_);
 
 
- index_entry_group_box_layout_ = new QGridLayout(index_entry_group_box_);
+ forward_index_group_box_layout_ = new QGridLayout(forward_index_group_box_);
 
- lbl_index_file_ = new QLabel("Base Query:", this);
- le_index_file_ = new  QLineEdit(this);
- //le_index_file_->setPlaceholderText("(local file)");
-// btn_index_entry_data_ = new QPushButton("data", this);
-// btn_index_entry_data_->setMaximumWidth(40);
-// btn_index_entry_data_->setMaximumHeight(20);
+ lbl_forward_index_num_terms_ = new QLabel("Number of Terms:", this);
+ le_forward_index_num_terms_ = new  QLineEdit(this);
 
-// btn_index_entry_data_->setStyleSheet(qmessagebox_button_style_sheet());
+ le_forward_index_num_terms_->setPlaceholderText("(number of search-index terms in current document)");
 
-
- index_entry_group_box_layout_->addWidget(lbl_index_file_, 0, 0);
- index_entry_group_box_layout_->addWidget(le_index_file_, 0, 1, 1, 3);
-// index_entry_group_box_layout_->addWidget(btn_index_entry_data_, 0, 3);
-
- lbl_index_entry_term_ = new QLabel("Term", this);
- le_index_entry_term_ = new QLineEdit(this);
- le_index_entry_term_->setPlaceholderText("(heading)");
- lbl_index_entry_number_ = new QLabel("#", this);
- le_index_entry_number_ = new QLineEdit(this);
- le_index_entry_number_->setPlaceholderText("(code)");
- le_index_entry_number_->setMaximumWidth(50);
-
- index_entry_group_box_layout_->addWidget(lbl_index_entry_term_, 1, 0);
- index_entry_group_box_layout_->addWidget(le_index_entry_term_, 1, 1);
- index_entry_group_box_layout_->addWidget(lbl_index_entry_number_, 1, 2);
- index_entry_group_box_layout_->addWidget(le_index_entry_number_, 1, 3);
-
- index_entry_group_box_layout_->setColumnStretch(1, 1);
-
-
- lbl_parent_entry_term_ = new QLabel("Parent", this);
- le_parent_entry_term_ = new QLineEdit(this);
- le_parent_entry_term_->setPlaceholderText("(heading)");
- lbl_parent_entry_number_ = new QLabel("#", this);
- le_parent_entry_number_ = new QLineEdit(this);
- le_parent_entry_number_->setPlaceholderText("(code)");
- le_parent_entry_number_->setMaximumWidth(50);
-
- index_entry_group_box_layout_->addWidget(lbl_parent_entry_term_, 2, 0);
- index_entry_group_box_layout_->addWidget(le_parent_entry_term_, 2, 1);
- index_entry_group_box_layout_->addWidget(lbl_parent_entry_number_, 2, 2);
- index_entry_group_box_layout_->addWidget(le_parent_entry_number_, 2, 3);
-
- entry_layout_->addWidget(index_entry_group_box_);
+ forward_index_group_box_layout_->addWidget(lbl_forward_index_num_terms_, 0, 0);
+ forward_index_group_box_layout_->addWidget(le_forward_index_num_terms_, 0, 1, 1, 4);
 
 
 
-// index_entry_group_box_layout_ = new QVBoxLayout(index_entry_group_box_);
-// index_entry_group_box_layout_top_ = new QFormLayout; //(index_entry_group_box_)
+ lbl_meta_index_num_terms_ = new QLabel("Number of Meta-Index Terms:", this);
+ le_meta_index_num_terms_ = new  QLineEdit(this);
+
+ le_meta_index_num_terms_->setPlaceholderText("(number of meta-index terms in current document)");
+
+ forward_index_group_box_layout_->addWidget(lbl_meta_index_num_terms_, 1, 0, 1, 2);
+ forward_index_group_box_layout_->addWidget(le_meta_index_num_terms_, 1, 2, 1, 3);
+
+
+
+ lbl_forward_index_num_records_ = new QLabel("Number of Records:", this);
+ le_forward_index_num_records_ = new  QLineEdit(this);
+
+ le_forward_index_num_records_->setPlaceholderText("(number of search-index records in current document)");
+
+ forward_index_group_box_layout_->addWidget(lbl_forward_index_num_records_, 2, 0);
+ forward_index_group_box_layout_->addWidget(le_forward_index_num_records_, 2, 1, 1, 4);
+
+
+ lbl_measure_points_ = new QLabel("Frequency/Relevance Measure Points:");
+ forward_index_group_box_layout_->addWidget(lbl_measure_points_, 3, 0, 1, 2);
+
+ cb_measure_points_sentence_ = new QCheckBox("Sentence");
+ cb_measure_points_paragraph_ = new QCheckBox("Paragraph");
+ cb_measure_points_page_ = new QCheckBox("Page");
+ cb_measure_points_section_ = new QCheckBox("Section");
+ cb_measure_points_subsection_ = new QCheckBox("Subsection");
+ cb_measure_points_chapter_ = new QCheckBox("Chapter");
+ cb_measure_points_article_ = new QCheckBox("Article");
+ cb_measure_points_other_ = new QCheckBox("Other");
+
+ QHBoxLayout* forward_index_top_hbl = new QHBoxLayout;
+ forward_index_top_hbl->addStretch();
+ forward_index_top_hbl->addWidget(cb_measure_points_sentence_);
+ forward_index_top_hbl->addStretch();
+ forward_index_top_hbl->addWidget(cb_measure_points_paragraph_);
+
+ forward_index_group_box_layout_->addLayout(forward_index_top_hbl, 3, 2, 1, 3, Qt::AlignRight);
+
+ QHBoxLayout* forward_index_hbl = new QHBoxLayout;
+
+ forward_index_hbl->addSpacing(16);
+ forward_index_hbl->addWidget(cb_measure_points_page_);
+ forward_index_hbl->addWidget(cb_measure_points_section_);
+ forward_index_hbl->addWidget(cb_measure_points_subsection_);
+ forward_index_hbl->addSpacing(16);
+ forward_index_hbl->addWidget(cb_measure_points_chapter_);
+ forward_index_hbl->addSpacing(9);
+ forward_index_hbl->addWidget(cb_measure_points_article_);
+ forward_index_hbl->addWidget(cb_measure_points_other_);
+
+ forward_index_group_box_layout_->addLayout(forward_index_hbl, 4, 0, 1, 5);
+
+
+
+ // forward_index_group_box_layout_->addWidget(btn_index_entry_data_, 0, 3);
+
+// lbl_index_entry_term_ = new QLabel("Term", this);
+// le_index_entry_term_ = new QLineEdit(this);
+// le_index_entry_term_->setPlaceholderText("(heading)");
+// lbl_index_entry_number_ = new QLabel("#", this);
+// le_index_entry_number_ = new QLineEdit(this);
+// le_index_entry_number_->setPlaceholderText("(code)");
+// le_index_entry_number_->setMaximumWidth(50);
+
+// forward_index_group_box_layout_->addWidget(lbl_index_entry_term_, 1, 0);
+// forward_index_group_box_layout_->addWidget(le_index_entry_term_, 1, 1);
+// forward_index_group_box_layout_->addWidget(lbl_index_entry_number_, 1, 2);
+// forward_index_group_box_layout_->addWidget(le_index_entry_number_, 1, 3);
+
+ forward_index_group_box_layout_->setColumnStretch(2, 1);
+
+
+
+ entry_layout_->addWidget(forward_index_group_box_);
+
+
+
+// forward_index_group_box_layout_ = new QVBoxLayout(index_entry_group_box_);
+// forward_index_group_box_layout_top_ = new QFormLayout; //(index_entry_group_box_)
 
 // cb_number_of_index_entry_ = new QComboBox(this);
 // cb_number_of_index_entry_->addItems({QString::number(1),
@@ -457,15 +502,15 @@ Search_Template_Dialog::Search_Template_Dialog(QWidget* parent)
 //   QString::number(5), QString::number(6), QString::number(7),
 //   QString::number(8) });
 
-// index_entry_group_box_layout_top_->addRow("Number of Children: ",  cb_number_of_index_entry_);
+// forward_index_group_box_layout_top_->addRow("Number of Children: ",  cb_number_of_index_entry_);
 
-// index_entry_group_box_layout_->addLayout(index_entry_group_box_layout_top_);
+// forward_index_group_box_layout_->addLayout(forward_index_group_box_layout_top_);
 
 // index_entry_grid_layout_ = new QGridLayout;
 
 // index_entry_grid_layout_->addWidget(new QLabel("Child's Name:", this), 0, 0);
 // index_entry_grid_layout_->addWidget(new QLabel("Birth Year:", this), 0, 1);
-// index_entry_group_box_layout_->addLayout(index_entry_grid_layout_);
+// forward_index_group_box_layout_->addLayout(index_entry_grid_layout_);
 
 // entry_layout_->addWidget(index_entry_group_box_);
 
