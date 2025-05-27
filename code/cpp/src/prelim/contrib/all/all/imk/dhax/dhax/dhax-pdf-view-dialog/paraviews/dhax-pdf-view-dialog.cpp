@@ -625,6 +625,88 @@ void DHAX_PDF_View_Dialog::load_page(int number, QObject* origin)
 }
 
 
+void DHAX_PDF_View_Dialog::run_pages(u2 from, u2 to, QTextStream& summary)
+{
+ for(u2 num = from; num <= to; ++num)
+ {
+  run_page(num, summary);
+ }
+}
+
+void DHAX_PDF_View_Dialog::run_page(u2 number, QTextStream& summary)
+{
+ summary << "\n\n" << number << " => ";
+
+ Poppler::Document* popd = pdf_document_widget_->document();
+ //Poppler::Page* popg = popd->page(pdf_document_widget_->get_current_page());
+ Poppler::Page* popg = popd->page(number - 1);
+ QString text = popg->text(QRectF({0, 0}, popg->pageSizeF()));
+ text.replace("’", "'");
+
+ KA::TextIO::save_file("%1/p%2.txt"_qt.arg(pages_folder_).arg(number), text);
+
+ Poppler::Page* popg1 = popd->page(number);
+ QString text1 = popg1->text(QRectF({0, 0}, popg->pageSizeF()));
+ text1.replace("’", "'");
+
+ QString text_alt = text.simplified();
+
+// text_alt.replace(QRegularExpression("-\\s+"), "");
+ text_alt.replace("- ", "");
+// text_alt.replace("-\n", "");
+ text_alt.replace("'", "");
+
+ KA::TextIO::save_file("%1/p%2-alt.txt"_qt.arg(pages_folder_).arg(number), text_alt);
+
+ QString text1_alt = text1.simplified();
+ text1_alt.replace("- ", "");
+ text1_alt.replace("'", "");
+
+ QStringList headers = reverse_map_->value(number);
+
+ for(QString header : headers)
+ {
+  summary << "\n\n " << header << " -> ";
+
+  header.replace(QRegularExpression("[^\\w\\s']"), "");
+  QStringList qsl = header.simplified().split(" ");
+
+  QStringList found, unfound, pfound;
+
+  static QSet<QString> ignore = QSet<QString>::fromList(R"(
+and the on of a A The
+  )"_qt.simplified().split(" "));
+
+  for(QString word: qsl)
+  {
+   if(ignore.contains(word))
+     continue;
+
+   if(word.endsWith("'s"))
+     word.chop(2);
+
+   word.replace("'", "");
+
+   if(text.contains(word) || text_alt.contains(word))
+     found.push_back(word);
+   else if(text1.contains(word) || text1_alt.contains(word))
+     pfound.push_back(word);
+   else
+     unfound.push_back(word);
+  }
+
+  summary << "\n  = " << found.join("; ");
+  summary << "\n  + " << pfound.join("; ");
+  summary << "\n  ? " << unfound.join("; ");
+ }
+
+}
+
+
+
+
+
+
 void DHAX_PDF_View_Dialog::clear_most_recent_match(int index_entry_id, int page_number)
 {
  QMapIterator<PDF_Document_Widget::Highlight_Key,

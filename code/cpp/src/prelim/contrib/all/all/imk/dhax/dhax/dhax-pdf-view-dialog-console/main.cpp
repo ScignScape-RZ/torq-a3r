@@ -1418,7 +1418,278 @@ int main02(int argc, char *argv[])
 }
 
 
+QStringList parse_locators(QString text)
+{
+ static QRegularExpression locators_rx("[\\d-]+|[lxvi-]+|\\[.+?\\]|[.]");
+
+ QRegularExpressionMatchIterator lit = locators_rx.globalMatch(text);
+
+ QStringList locators;
+
+ while(lit.hasNext())
+ {
+  QRegularExpressionMatch m = lit.next();
+
+  QString c = m.captured();
+
+  if(c == ".")
+    break;
+
+  if(c.startsWith("["))
+  {
+   c = c.mid(1);
+   c.chop(1);
+  }
+
+  locators.push_back(c);
+ }
+
+ return locators;
+}
+
+
+void parse_index(QString index_text, QMap<QString, QStringList>& result)
+{
+ static QRegularExpression entry_rx(">([^|/]+?)([|/]+)");
+
+ QRegularExpressionMatchIterator it = entry_rx.globalMatch(index_text);
+
+
+ while(it.hasNext())
+ {
+  QRegularExpressionMatch match = it.next();
+
+  QString heading = match.captured(1);
+  QString end_text = match.captured(2);
+
+
+
+  QString locators_text;
+  if(heading.contains("@"))
+  {
+   s4 ux = heading.indexOf("@");
+   locators_text = heading.mid(ux + 1);
+   heading = heading.left(ux);
+  }
+
+  if(end_text == "|")
+  {
+   s4 pos = match.capturedStart(2);
+
+   s4 end_pos = index_text.indexOf("//", pos);
+
+   QString subs = index_text.mid(pos, end_pos - pos + 1);
+
+   static QRegularExpression subs_rx("\\|([^/]+)/");
+
+   QRegularExpressionMatchIterator subs_it = subs_rx.globalMatch(subs);
+
+   while(subs_it.hasNext())
+   {
+    QString sub = subs_it.next().captured(1);
+
+    if(sub.contains("@"))
+    {
+     s4 ux = sub.indexOf("@");
+     QString sub_text = sub.mid(ux + 1);
+     sub = sub.left(ux);
+
+     QStringList qsl = parse_locators(sub_text);
+
+     result[heading + ":" + sub] = qsl;
+    }
+
+   }
+
+  }
+
+
+  QStringList locators = parse_locators(locators_text);
+
+  if(!locators.isEmpty())
+    result[heading] = locators;
+
+
+  //QStringList qsl = locators_text.split(",");
+
+ }
+
+}
+
+
+void parse_page_numbers(QStringList& qsl, QVector<u2>& result)
+{
+ u2 count = 0;
+ result.resize(qsl.size());
+ for(QString& locator : qsl)
+ {
+  u2& page_num = result[count];
+  ++count;
+
+  QRegularExpression rx ("^[\\dlxvi]+");
+
+  QRegularExpressionMatch m = rx.match(locator);
+
+  if(m.hasMatch())
+  {
+   locator = m.captured();
+   if(locator.contains("x") || locator.contains("v") || locator.contains("l") || locator.contains("i"))
+     page_num = _roman_to_u2(locator);
+   else
+     page_num = locator.toUInt() + 90;
+  }
+ }
+}
+
+
 int main(int argc, char *argv[])
+{
+ QString index_file = "/home/nlevisrael/Downloads/m2m/index.txt";
+
+ QString index_text = KA::TextIO::load_file(index_file);
+
+ QMap<QString, QStringList> index_qsl;
+ QMap<QString, QVector<u2>> index_vec;
+
+ parse_index(index_text, index_qsl);
+
+ QMapIterator<QString, QStringList> it(index_qsl);
+
+// QFile outfile(out_path);
+// if (!outfile.open(QIODevice::WriteOnly | QIODevice::Text))
+//   return 0;
+
+ while(it.hasNext())
+ {
+  it.next();
+
+  QStringList qsl = it.value();
+  QVector<u2> numbers;
+  parse_page_numbers(qsl, numbers);
+  index_qsl[it.key()] = qsl;
+  index_vec[it.key()] = numbers;
+ }
+
+
+ QMap<u2, QStringList> reverse_map;
+
+ {
+  QMapIterator<QString, QVector<u2>> it(index_vec);
+
+  while(it.hasNext())
+  {
+   it.next();
+
+   QString key = it.key().simplified();
+
+   key.replace(QRegularExpression("[^\\w,()\\s:]"), "");
+
+   if(key.endsWith(","))
+     key.chop(1);
+
+   key.replace(" :", ": ");
+   key.replace(",:", ":");
+
+   for(u2 page : it.value())
+   {
+    reverse_map[page].push_back(key);
+   }
+  }
+ }
+
+ {
+  QString out_path = "/home/nlevisrael/Downloads/m2m/out.txt";
+
+  QMapIterator<u2, QStringList> it(reverse_map);
+
+  QFile outfile(out_path);
+  if (!outfile.open(QIODevice::WriteOnly | QIODevice::Text))
+    return 0;
+
+  QTextStream outstream(&outfile);
+
+  while(it.hasNext())
+  {
+   it.next();
+   outstream << "\n\n >> " << it.key() << "\n -> \n" << it.value().join("  \n");
+  }
+ }
+
+// outfile.close();
+
+
+ QApplication qapp(argc, argv);
+
+
+ DHAX_PDF_View_Dialog* pvd = new DHAX_PDF_View_Dialog(nullptr, nullptr,
+    "/home/nlevisrael/Downloads/m2m/Neustein_Lesher_9780197661222_US_BITS.pdf",
+    "",
+    91, 32);
+
+ pvd->set_arabic_start(91);
+ pvd->set_roman_end(90);
+ pvd->set_roman_start(1);
+
+ pvd->setWindowFlags(pvd->windowFlags() | Qt::WindowStaysOnTopHint);
+
+ pvd->set_pages_folder("/home/nlevisrael/Downloads/m2m/pages");
+
+ pvd->set_reverse_map(&reverse_map);
+
+ QString out_path = "/home/nlevisrael/Downloads/m2m/summary.txt";
+
+ QFile outfile(out_path);
+ if (outfile.open(QIODevice::WriteOnly | QIODevice::Text))
+ {
+  QTextStream outstream(&outfile);
+  pvd->run_pages(37, 365, outstream);
+ }
+
+ outfile.close();
+
+ pvd->load_page(93);
+
+ pvd->show();
+
+
+
+
+
+
+ return qapp.exec();
+}
+
+
+int main05(int argc, char *argv[])
+{
+
+ QApplication qapp(argc, argv);
+
+
+ DHAX_PDF_View_Dialog* pvd = new DHAX_PDF_View_Dialog(nullptr, nullptr,
+    "/home/nlevisrael/Downloads/m2m/Neustein_Lesher_9780197661222_US_BITS.pdf",
+    "",
+    86, 32);
+
+ pvd->set_arabic_start(86);
+ pvd->set_roman_end(85);
+ pvd->set_roman_start(1);
+
+ pvd->load_page(292);
+
+ pvd->setWindowFlags(pvd->windowFlags() | Qt::WindowStaysOnTopHint);
+
+ pvd->show();
+
+
+ return qapp.exec();
+
+}
+
+
+
+
+int main03(int argc, char *argv[])
 {
 // QString pdf_file = "pisa-readthedocs-io-en-latest.pdf"
 

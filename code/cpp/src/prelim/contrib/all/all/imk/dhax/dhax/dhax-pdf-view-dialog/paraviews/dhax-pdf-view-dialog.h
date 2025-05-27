@@ -153,6 +153,10 @@ class DHAX_PDF_View_Dialog : public QMainWindow
 
  QPair<int, QString> current_page_text_;
 
+ QMap<u2, QStringList>* reverse_map_;
+
+ QString pages_folder_;
+
 public:
 
  DHAX_PDF_View_Dialog(Index_Entry_Review_Dialog* entry_dialog,
@@ -167,6 +171,13 @@ public:
  ACCESSORS(int ,roman_end)
  ACCESSORS(int ,arabic_start)
  ACCESSORS(QSet<int>* ,addendum_pages)
+
+ ACCESSORS(QMap<u2, QStringList>* ,reverse_map)
+
+ ACCESSORS(QString ,pages_folder)
+
+ void run_pages(u2 from, u2 to, QTextStream& summary);
+ void run_page(u2 number, QTextStream& summary);
 
 
  int page_number_to_text(int i, QString& result, QString fallback_template = "(%1)");

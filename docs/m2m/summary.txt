@@ -1,0 +1,4784 @@
+
+
+37 => 
+
+ Edleson, Jeffrey L -> 
+  = Edleson; Jeffrey; L
+  + 
+  ? 
+
+ Schechter, Susan -> 
+  = 
+  + Schechter; Susan
+  ? 
+
+ Greenbook, the -> 
+  = 
+  + Greenbook
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Schechter and Edleson (1999) -> 
+  = child; custody; child; abuse; Edleson
+  + sexual; professional; literature; Schechter; 1999
+  ? 
+
+ domestic violence -> 
+  = 
+  + domestic; violence
+  ? 
+
+38 => 
+
+ Institute on Violence, Abuse and Trauma (IVAT) -> 
+  = Institute; Violence; Abuse; Trauma; IVAT
+  + 
+  ? 
+
+39 => 
+
+ gender bias -> 
+  = gender; bias
+  + 
+  ? 
+
+40 => 
+
+ United Nations Human Rights Office of the High Commissioner -> 
+  = United; Nations; Human; Rights; Office; High; Commissioner
+  + 
+  ? 
+
+41 => 
+
+ Dumas, Cindy -> 
+  = Dumas; Cindy
+  + 
+  ? 
+
+ The Womens Coalition -> 
+  = Womens; Coalition
+  + 
+  ? 
+
+ United Nations Human Rights Office of the High Commissioner -> 
+  = United; Human; Rights; Office; High; Commissioner
+  + 
+  ? Nations
+
+ Call for Inputs -> 
+  = Call; for; Inputs
+  + 
+  ? 
+
+ social variables: ethnicity -> 
+  = ethnicity
+  + 
+  ? social; variables
+
+ social variables: gender -> 
+  = gender
+  + 
+  ? social; variables
+
+ social variables: race -> 
+  = race
+  + 
+  ? social; variables
+
+42 => 
+
+ Alsalem, Reem (UN Special Rapporteur) -> 
+  = Alsalem; Reem; UN; Special; Rapporteur
+  + 
+  ? 
+
+ gender bias -> 
+  = gender; bias
+  + 
+  ? 
+
+ nursing mothers -> 
+  = nursing; mothers
+  + 
+  ? 
+
+43 => 
+
+ American Academy of Pediatrics -> 
+  = American; Academy; Pediatrics
+  + 
+  ? 
+
+ World Health Organization (WHO) -> 
+  = World; Health; Organization; WHO
+  + 
+  ? 
+
+44 => 
+
+ Etlin, Michelle -> 
+  = Etlin; Michelle
+  + 
+  ? 
+
+ Washington Post -> 
+  = Washington; Post
+  + 
+  ? 
+
+ incarceration: threat of -> 
+  = incarceration; threat
+  + 
+  ? 
+
+ institutional violence -> 
+  = 
+  + institutional; violence
+  ? 
+
+ jail, mothers thrown into -> 
+  = jail; mothers
+  + into
+  ? thrown
+
+45 => 
+
+ Garland, Merrick -> 
+  = Garland; Merrick
+  + 
+  ? 
+
+ King Solomons Court -> 
+  = King; Solomons; Court
+  + 
+  ? 
+
+ McKenna, Jeremiah B -> 
+  = McKenna; Jeremiah; B
+  + 
+  ? 
+
+ US Department of Justice -> 
+  = US; Department; Justice
+  + 
+  ? 
+
+46 => 
+
+ California Protective Parents Association -> 
+  = California; Protective; Parents; Association
+  + 
+  ? 
+
+ Custody Peace -> 
+  = Custody; Peace
+  + 
+  ? 
+
+ Mothers ReVolution -> 
+  = Mothers; ReVolution
+  + 
+  ? 
+
+ National Safe Parents Organization (NSPO) -> 
+  = National; Safe; Parents; Organization; NSPO
+  + 
+  ? 
+
+ One Moms Battle -> 
+  = One; Moms; Battle
+  + 
+  ? 
+
+ The Womens Coalition -> 
+  = Womens; Coalition
+  + 
+  ? 
+
+47 => 
+
+ American Professional Society on the Abuse of Children (APSAC) -> 
+  = American; Professional; Society; Abuse; Children; APSAC
+  + 
+  ? 
+
+ National Center for Protective Parents -> 
+  = National; Center; for; Protective; Parents
+  + 
+  ? 
+
+ Pennington, H Joan -> 
+  = Pennington; H; Joan
+  + 
+  ? 
+
+ Womens Law Forum at Rutgers State University School of Law -> 
+  = Womens; Law; Forum; at; Rutgers; State; University; School; Law
+  + 
+  ? 
+
+ protective parent, definition of -> 
+  = protective; parent
+  + 
+  ? definition
+
+48 => 
+
+ Battered Mothers Custody Conference -> 
+  = Battered; Mothers; Custody; Conference
+  + 
+  ? 
+
+ Hannah, Maureen Therese -> 
+  = Hannah; Therese
+  + 
+  ? Maureen
+
+ Meier, Joan S -> 
+  = Joan; S
+  + Meier
+  ? 
+
+ Siena College -> 
+  = Siena; College
+  + 
+  ? 
+
+ Tristate Family Law Conference, National Judicial College (University of Nevada) -> 
+  = Tristate; Family; Law; Conference; National; Judicial; College; University
+  + 
+  ? Nevada
+
+ University of California Irvine (UCI) Initiative to End Family Violence -> 
+  = University; California; Irvine; UCI; Initiative; to; End; Family; Violence
+  + 
+  ? 
+
+49 => 
+
+ California Protective Parents Association -> 
+  = California; Protective; Parents; Association
+  + 
+  ? 
+
+ Stahly, Geraldine Butts -> 
+  = Stahly; Geraldine; Butts
+  + 
+  ? 
+
+ Protective Mothers, Endangered Children -> 
+  = Protective; Mothers; Endangered; Children
+  + 
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Stahly, Valentine, and York (2021) -> 
+  = child; custody; child; abuse; professional; Stahly; 2021
+  + 
+  ? sexual; literature; Valentine; York
+
+50 => 
+
+ Udesky, Laurie -> 
+  = Udesky; Laurie
+  + 
+  ? 
+
+51 => 
+
+ Journal of Family Trauma, Child Custody, and Child Development -> 
+  = Journal; Family; Trauma; Child; Custody; Child; Development
+  + 
+  ? 
+
+ Meier, Joan S -> 
+  = Meier; S
+  + 
+  ? Joan
+
+ A Gendered Trap -> 
+  = Gendered; Trap
+  + 
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Meier, Dickson, OSullivan, Rosen, and Hayes (2019) -> 
+  = child; custody; child; abuse; Meier; 2019
+  + sexual; professional
+  ? literature; Dickson; OSullivan; Rosen; Hayes
+
+ child custody and child sexual abuse, professional literature on: Meier, Dickson, OSullivan, and Rosen (2022) -> 
+  = child; custody; child; abuse; Meier; 2022
+  + sexual; professional
+  ? literature; Dickson; OSullivan; Rosen
+
+52 => 
+
+ Gentile, Olivia -> 
+  = Gentile; Olivia
+  + 
+  ? 
+
+ Insider -> 
+  = Insider
+  + 
+  ? 
+
+ gender bias -> 
+  = gender; bias
+  + 
+  ? 
+
+53 => 
+
+ Beyond the Hostage Child: Towards Empowering Protective Parents (Rosen) -> 
+  = Beyond; Hostage; Child; Towards; Empowering; Protective; Parents; Rosen
+  + 
+  ? 
+
+ Child At Risk Classification Office (CARCO) -> 
+  = Child
+  + At; Risk; Classification; Office; CARCO
+  ? 
+
+ Grant, Anne -> 
+  = Grant; Anne
+  + 
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Rosen (2017) -> 
+  = child; custody; child; sexual; Rosen
+  + abuse
+  ? professional; literature; 2017
+
+ gender bias -> 
+  = gender; bias
+  + 
+  ? 
+
+54 => 
+
+ Gesing, Ted -> 
+  = 
+  + Gesing; Ted
+  ? 
+
+ Story Syndicate -> 
+  = 
+  + Story; Syndicate
+  ? 
+
+55 => 
+
+ New York Post -> 
+  = New; York; Post
+  + 
+  ? 
+
+56 => 
+
+ Carner, Talia -> 
+  = Carner; Talia
+  + 
+  ? 
+
+ Womens eNews -> 
+  = Womens; eNews
+  + 
+  ? 
+
+ Mothers Vote, ad hoc voting block -> 
+  = ad
+  + Mothers; Vote; hoc; voting
+  ? block
+
+ civil rights: equal protection -> 
+  = civil; rights; equal; protection
+  + 
+  ? 
+
+ nursing mothers -> 
+  = nursing; mothers
+  + 
+  ? 
+
+57 => 
+
+ California Protective Parents Association -> 
+  = California; Protective; Parents; Association
+  + 
+  ? 
+
+ Jensen, Rita Henley -> 
+  = Jensen; Rita; Henley
+  + 
+  ? 
+
+ Raskin, Jamie -> 
+  = 
+  + Raskin; Jamie
+  ? 
+
+ Valentine, Constance -> 
+  = Valentine; Constance
+  + 
+  ? 
+
+58 => 
+
+ Kyras Law -> 
+  = Law
+  + Kyras
+  ? 
+
+ Pollack, Danielle -> 
+  = Pollack
+  + 
+  ? Danielle
+
+ VAWA (Violence Against Women Act) -> 
+  = VAWA; Violence; Against; Women; Act
+  + 
+  ? 
+
+ Kaydens Law -> 
+  = Kaydens; Law
+  + 
+  ? 
+
+59 => 
+
+ BIPOC (Black, Indigenous, and People of Color): protective mothers -> 
+  = BIPOC; Black; Indigenous; People; Color; mothers
+  + protective
+  ? 
+
+ United Nations Human Rights Office of the High Commissioner -> 
+  = United; Nations; Human; Rights; Office; High; Commissioner
+  + 
+  ? 
+
+60 => 
+
+ Brooklyn Family Court -> 
+  = Brooklyn; Family; Court
+  + 
+  ? 
+
+ Deutsch, Leon S -> 
+  = Deutsch; Leon; S
+  + 
+  ? 
+
+ an hysterical Hispanic -> 
+  = an; hysterical; Hispanic
+  + 
+  ? 
+
+ incarceration: incarcerating mothers -> 
+  = mothers
+  + incarceration
+  ? incarcerating
+
+61 => 
+
+ BIPOC (Black, Indigenous, and People of Color): population -> 
+  = BIPOC; population
+  + Black
+  ? Indigenous; People; Color
+
+ BIPOC (Black, Indigenous, and People of Color): supervised visitation, police station -> 
+  = BIPOC; supervised; visitation; police; station
+  + Black
+  ? Indigenous; People; Color
+
+62 => 
+
+63 => 
+
+64 => 
+
+65 => 
+
+66 => 
+
+67 => 
+
+ Ransom: custody evaluator report -> 
+  = Ransom; custody; evaluator; report
+  + 
+  ? 
+
+ Ransom: visits -> 
+  = Ransom
+  + 
+  ? visits
+
+68 => 
+
+ Ransom: court fees -> 
+  = Ransom; court; fees
+  + 
+  ? 
+
+ antisocial behavior, fathers: DUI -> 
+  = DUI
+  + 
+  ? antisocial; behavior; fathers
+
+69 => 
+
+ family ecosystem, disruption of -> 
+  = family; ecosystem; disruption
+  + 
+  ? 
+
+70 => 
+
+ Hobsons choice -> 
+  = Hobsons; choice
+  + 
+  ? 
+
+ US Department of Justice -> 
+  = 
+  + US; Department; Justice
+  ? 
+
+ multiple generations, weakening the family structure of -> 
+  = multiple; generations; weakening; family; structure
+  + 
+  ? 
+
+71 => 
+
+72 => 
+
+ abstention doctrines -> 
+  = abstention; doctrines
+  + 
+  ? 
+
+73 => 
+
+ gender bias -> 
+  = gender; bias
+  + 
+  ? 
+
+74 => 
+
+ US Department of Justice -> 
+  = US; Department; Justice
+  + 
+  ? 
+
+ institutional violence -> 
+  = institutional; violence
+  + 
+  ? 
+
+75 => 
+
+76 => 
+
+77 => 
+
+ junk science -> 
+  = junk; science
+  + 
+  ? 
+
+78 => 
+
+ Gandy, Kim -> 
+  = Gandy; Kim
+  + 
+  ? 
+
+ House Judiciary Committee (1992) -> 
+  = House; Judiciary; Committee; 1992
+  + 
+  ? 
+
+ National Organization for Women (NOW) -> 
+  = National; Organization; for; Women; NOW
+  + 
+  ? 
+
+ Pennington, H Joan -> 
+  = Pennington; H; Joan
+  + 
+  ? 
+
+79 => 
+
+ Help Us Regain The Children (HURT) -> 
+  = 
+  + Help; Us; Regain; Children; HURT
+  ? 
+
+ Mazierski, Kathryn -> 
+  = Mazierski; Kathryn
+  + 
+  ? 
+
+ Mothers Day press conference -> 
+  = Mothers; Day; press; conference
+  + 
+  ? 
+
+ National Organization for Women (NOW): New York state chapter -> 
+  = for; Women; NOW; New; York; state; chapter
+  + 
+  ? National; Organization
+
+ US Department of Justice: Office on Violence Against Women (OVW) -> 
+  = US; Department; Justice; Office; Violence; Against; Women; OVW
+  + 
+  ? 
+
+ civil rights: constitutional rights -> 
+  = civil; rights; rights
+  + 
+  ? constitutional
+
+80 => 
+
+ Gandy, Kim -> 
+  = Gandy
+  + 
+  ? Kim
+
+ Mazierski, Kathryn -> 
+  = Mazierski
+  + 
+  ? Kathryn
+
+ Pennington, H Joan -> 
+  = Pennington; H
+  + 
+  ? Joan
+
+ primary caretaker -> 
+  = primary; caretaker
+  + 
+  ? 
+
+81 => 
+
+ Bell, Mariam -> 
+  = 
+  + Bell; Mariam
+  ? 
+
+ Bell, Mariam: Childhelp USA -> 
+  = Childhelp; USA
+  + Bell; Mariam
+  ? 
+
+ Bell, Mariam: System Failure Project -> 
+  = System; Failure; Project
+  + Bell; Mariam
+  ? 
+
+82 => 
+
+ child custody and child sexual abuse, professional literature on: Berliner (1988) -> 
+  = child; custody; child; sexual; abuse; literature
+  + professional; Berliner; 1988
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Corwin, Berliner, Goodman, Goodwin, and White (1987) -> 
+  = child; custody; child; sexual; abuse; literature
+  + professional; Corwin; Berliner; Goodman; Goodwin; White; 1987
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Denike, Huang, and Kachuk (1998) -> 
+  = child; custody; child; sexual; abuse; literature
+  + professional; Denike; Huang; Kachuk; 1998
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Dziech and Schudson (1989) -> 
+  = child; custody; child; sexual; abuse; literature; Dziech
+  + professional; Schudson; 1989
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Faller and DeVoe (1995) -> 
+  = child; custody; child; sexual; abuse; literature
+  + professional; Faller; DeVoe; 1995
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Faller, Corwin, and Olafson (1993) -> 
+  = child; custody; child; sexual; abuse; literature
+  + professional; Faller; Corwin; Olafson; 1993
+  ? 
+
+ child custody and child sexual abuse, professional literature on: McDonald (1998) -> 
+  = child; custody; child; sexual; abuse; literature
+  + professional; McDonald; 1998
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Quinn (1988) -> 
+  = child; custody; child; sexual; abuse; literature
+  + professional; Quinn; 1988
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Thoennes and Tjaden (1990) -> 
+  = child; custody; child; sexual; abuse; literature
+  + professional; Thoennes; Tjaden; 1990
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Thoennes, Pearson, and Tjaden (1988) -> 
+  = child; custody; child; sexual; abuse; literature
+  + professional; Thoennes; Pearson; Tjaden; 1988
+  ? 
+
+ sociology -> 
+  = 
+  + 
+  ? sociology
+
+83 => 
+
+ Faller, Kathleen Coulborn -> 
+  = Faller
+  + 
+  ? Kathleen; Coulborn
+
+ Journal of Interpersonal Violence -> 
+  = Journal; Interpersonal; Violence
+  + 
+  ? 
+
+ University of Michigan School of Social Work -> 
+  = University; Michigan
+  + 
+  ? School; Social; Work
+
+ sexually transmitted disease -> 
+  = sexually; transmitted; disease
+  + 
+  ? 
+
+84 => 
+
+ Underground Railroad: underground fugitive mothers -> 
+  = Underground; Railroad; fugitive; mothers
+  + 
+  ? underground
+
+ hunger strike -> 
+  = hunger; strike
+  + 
+  ? 
+
+85 => 
+
+ Armstrong, Louise -> 
+  = Armstrong; Louise
+  + 
+  ? 
+
+ Lasswell, Harold -> 
+  = Lasswell; Harold
+  + 
+  ? 
+
+ Rocking the Cradle of Sexual Politics (Armstrong) -> 
+  = Rocking; Cradle; Sexual; Politics; Armstrong
+  + 
+  ? 
+
+86 => 
+
+ Ethnomethodology: methodically ordered social practices -> 
+  = social
+  + methodically
+  ? Ethnomethodology; ordered; practices
+
+ appellate review -> 
+  = appellate; review
+  + 
+  ? 
+
+ ethnomethodological studies: Atkinson (1979) -> 
+  = 
+  + ethnomethodological; studies; Atkinson; 1979
+  ? 
+
+ ethnomethodological studies: Atkinson and Drew (1979) -> 
+  = 
+  + ethnomethodological; studies; Atkinson; Drew; 1979
+  ? 
+
+ ethnomethodological studies: Drew (1992) -> 
+  = 
+  + ethnomethodological; studies; Drew; 1992
+  ? 
+
+ ethnomethodological studies: Holstein (1983) -> 
+  = 
+  + ethnomethodological; studies; Holstein; 1983
+  ? 
+
+ ethnomethodological studies: Holstein (1985) -> 
+  = 
+  + ethnomethodological; studies; Holstein
+  ? 1985
+
+ ethnomethodological studies: Holstein and Gubrium (1995) -> 
+  = 
+  + ethnomethodological; studies; Holstein; Gubrium; 1995
+  ? 
+
+ ethnomethodological studies: Komter (1995) -> 
+  = 
+  + ethnomethodological; studies; Komter; 1995
+  ? 
+
+ ethnomethodological studies: Komter (1998) -> 
+  = 
+  + ethnomethodological; studies; Komter; 1998
+  ? 
+
+ ethnomethodological studies: Lynch (1997) -> 
+  = 
+  + ethnomethodological; studies; Lynch; 1997
+  ? 
+
+ ethnomethodological studies: Matoesian (1993) -> 
+  = 
+  + ethnomethodological; studies; Matoesian; 1993
+  ? 
+
+ ethnomethodological studies: Maynard (1984) -> 
+  = 
+  + ethnomethodological; studies; Maynard; 1984
+  ? 
+
+ ethnomethodological studies: Meehan (1997) -> 
+  = 
+  + ethnomethodological; studies; Meehan; 1997
+  ? 
+
+ ethnomethodological studies: Pollner (1979) -> 
+  = 
+  + ethnomethodological; studies; Pollner; 1979
+  ? 
+
+ ethnomethodological studies: Travers and Manzo (1997) -> 
+  = 
+  + ethnomethodological; studies; Travers; Manzo; 1997
+  ? 
+
+ ethnomethodological studies: Watson (1990) -> 
+  = 
+  + ethnomethodological; studies; Watson; 1990
+  ? 
+
+ ethnomethodological studies: Watson (1997) -> 
+  = 
+  + ethnomethodological; studies; Watson; 1997
+  ? 
+
+ gender bias -> 
+  = gender; bias
+  + 
+  ? 
+
+ sociology: sociological inquiry -> 
+  = sociological; inquiry
+  + 
+  ? sociology
+
+87 => 
+
+ civil rights: due process -> 
+  = process
+  + due
+  ? civil; rights
+
+88 => 
+
+89 => 
+
+ Malicious Mother Syndrome (MMS) -> 
+  = Malicious; Mother; Syndrome; MMS
+  + 
+  ? 
+
+ Parental Alienation Syndrome (PAS) -> 
+  = Parental; Alienation; Syndrome; PAS
+  + 
+  ? 
+
+ Underground Railroad: underground fugitive mothers -> 
+  = Underground; Railroad; mothers
+  + 
+  ? underground; fugitive
+
+ sociology: sociological inquiry -> 
+  = sociological; inquiry
+  + 
+  ? sociology
+
+90 => 
+
+91 => 
+
+ Greenbook, the -> 
+  = 
+  + 
+  ? Greenbook
+
+92 => 
+
+93 => 
+
+ Boston Phoenix (2003) -> 
+  = Boston; Phoenix; 2003
+  + 
+  ? 
+
+ Katherine Crier Live -> 
+  = Katherine; Crier; Live
+  + 
+  ? 
+
+ Small Justice (prod Waller) -> 
+  = Small; Justice; prod; Waller
+  + 
+  ? 
+
+ Waller, Garland -> 
+  = Waller; Garland
+  + 
+  ? 
+
+ Greenbook, the -> 
+  = 
+  + 
+  ? Greenbook
+
+94 => 
+
+ Curtis, April -> 
+  = Curtis; April
+  + 
+  ? 
+
+ Good Housekeeping -> 
+  = Good; Housekeeping
+  + 
+  ? 
+
+ Grant, Lee -> 
+  = Grant; Lee
+  + 
+  ? 
+
+ Morgan, Elizabeth -> 
+  = Morgan; Elizabeth
+  + 
+  ? 
+
+ National Organization for Women (NOW) -> 
+  = National; Organization; for; Women; NOW
+  + 
+  ? 
+
+ New York Times -> 
+  = New; York
+  + Times
+  ? 
+
+ New York Woman -> 
+  = New; York; Woman
+  + 
+  ? 
+
+ Newsweek -> 
+  = Newsweek
+  + 
+  ? 
+
+ Quindlen, Anna -> 
+  = 
+  + Quindlen; Anna
+  ? 
+
+ Reynolds, Barbara (USA Today) -> 
+  = Reynolds; Barbara; USA; Today
+  + 
+  ? 
+
+ Sally Jessy Raphael -> 
+  = Sally; Jessy; Raphael
+  + 
+  ? 
+
+ US News and World Report -> 
+  = US; News; World; Report
+  + 
+  ? 
+
+ USA Today -> 
+  = USA; Today
+  + 
+  ? 
+
+ Women on Trial (prod Grant) -> 
+  = Women; Trial; prod; Grant
+  + 
+  ? 
+
+ Underground Railroad: underground fugitive mothers -> 
+  = Underground; Railroad; mothers
+  + 
+  ? underground; fugitive
+
+ sexually transmitted disease -> 
+  = sexually; transmitted; disease
+  + 
+  ? 
+
+95 => 
+
+ Aylsworth, John -> 
+  = Aylsworth; John
+  + 
+  ? 
+
+ Marks, Bridget -> 
+  = Marks; Bridget
+  + 
+  ? 
+
+ Village Voice -> 
+  = Village; Voice
+  + 
+  ? 
+
+ Greenbook, the -> 
+  = 
+  + 
+  ? Greenbook
+
+ Kaydens Law -> 
+  = 
+  + Law
+  ? Kaydens
+
+96 => 
+
+ Loyola Law Review -> 
+  = Loyola; Law; Review
+  + 
+  ? 
+
+ Schafran, Lynn Hecht -> 
+  = 
+  + 
+  ? Schafran; Lynn; Hecht
+
+ child custody and child sexual abuse, professional literature on: Keating (1998) -> 
+  = child; custody; child; sexual; abuse; professional; literature; Keating
+  + 1998
+  ? 
+
+97 => 
+
+ Faller, Kathleen Coulborn -> 
+  = Faller
+  + 
+  ? Kathleen; Coulborn
+
+ Journal of Child Sexual Abuse -> 
+  = Journal; Child; Sexual; Abuse
+  + 
+  ? 
+
+ University of Arkansas Little Rock Law Review -> 
+  = University; Arkansas; Little; Rock; Law; Review
+  + 
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Faller (2000) -> 
+  = child; custody; child; sexual; abuse; literature; Faller; 2000
+  + 
+  ? professional
+
+ child custody and child sexual abuse, professional literature on: Finkelhor (1986) -> 
+  = child; custody; child; sexual; abuse; literature; Finkelhor; 1986
+  + 
+  ? professional
+
+ child custody and child sexual abuse, professional literature on: Myers (1997) -> 
+  = child; custody; child; sexual; abuse; literature; Myers; 1997
+  + 
+  ? professional
+
+ child custody and child sexual abuse, professional literature on: Neustein and Goetting (1999) -> 
+  = child; custody; child; sexual; abuse; literature; Neustein; Goetting; 1999
+  + 
+  ? professional
+
+ child custody and child sexual abuse, professional literature on: Penfold (1997) -> 
+  = child; custody; child; sexual; abuse; literature; Penfold; 1997
+  + 
+  ? professional
+
+ child custody and child sexual abuse, professional literature on: Russell (1983) -> 
+  = child; custody; child; sexual; abuse; literature; Russell; 1983
+  + 
+  ? professional
+
+ child custody and child sexual abuse, professional literature on: Russell (1986) -> 
+  = child; custody; child; sexual; abuse; literature; Russell; 1986
+  + 
+  ? professional
+
+98 => 
+
+ American Journal of Public Health -> 
+  = 
+  + American; Journal; Public; Health
+  ? 
+
+ Battered Mothers Speak Out (November 2002) -> 
+  = 2002
+  + Battered; Mothers; Speak; Out; November
+  ? 
+
+ Child Welfare -> 
+  = Child; Welfare
+  + 
+  ? 
+
+ Etlin, Michelle -> 
+  = Etlin
+  + 
+  ? Michelle
+
+ Hostage Child, The (Rosen and Etlin) -> 
+  = Hostage; Child; Rosen; Etlin
+  + 
+  ? 
+
+ National Organization for Women (NOW) -> 
+  = for; NOW
+  + Women
+  ? National; Organization
+
+ National Organization for Women (NOW): California state chapter -> 
+  = for; NOW; California; state; chapter
+  + Women
+  ? National; Organization
+
+ Rosen, Leora, and Michelle Etlin -> 
+  = Rosen; Etlin
+  + 
+  ? Leora; Michelle
+
+ Wellesley Centers for Women -> 
+  = for
+  + Wellesley; Centers; Women
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Massat and Lundy (1998) -> 
+  = child; custody; child; sexual; abuse; Massat; Lundy; 1998
+  + 
+  ? professional; literature
+
+ civil rights: due process -> 
+  = rights; due; process
+  + 
+  ? civil
+
+ gender bias -> 
+  = gender; bias
+  + 
+  ? 
+
+ intimate partner violence -> 
+  = 
+  + intimate; partner; violence
+  ? 
+
+99 => 
+
+ Battered Mothers Testimony Project -> 
+  = Battered; Mothers; Testimony; Project
+  + 
+  ? 
+
+ Judicial Council of California Administrative Office of the Courts (1990) -> 
+  = Judicial; Council; California; Courts
+  + Administrative; Office; 1990
+  ? 
+
+ civil rights: equal protection -> 
+  = rights; equal; protection
+  + 
+  ? civil
+
+100 => 
+
+ Divorced from Justice (Winner) -> 
+  = Divorced; from; Justice; Winner
+  + 
+  ? 
+
+ Judicare -> 
+  = Judicare
+  + 
+  ? 
+
+ Justice Seekers, Inc -> 
+  = Justice
+  + Seekers; Inc
+  ? 
+
+ New York, city of: Department of Consumer Affairs -> 
+  = New; York
+  + Department; Consumer; Affairs
+  ? city
+
+ New York, state of: Task Force on Gender Bias in the Courts -> 
+  = New; York; Task; Force; Gender; Bias; in; Courts
+  + 
+  ? state
+
+ Winner, Karen -> 
+  = Winner; Karen
+  + 
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Schafran (1987) -> 
+  = sexual; Schafran; 1987
+  + child; child; abuse; professional; literature
+  ? custody
+
+101 => 
+
+ Greenbook, the -> 
+  = 
+  + 
+  ? Greenbook
+
+ Greenbook, the -> 
+  = 
+  + 
+  ? Greenbook
+
+ child custody and child sexual abuse, professional literature on: Myers (1997) -> 
+  = child; child; sexual; abuse; professional; literature; Myers; 1997
+  + custody
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Olafson, Corwin, and Summit (1993) -> 
+  = child; child; sexual; abuse; professional; literature; Olafson; Corwin; Summit; 1993
+  + custody
+  ? 
+
+ sociology: sociohistorical analysis of sexual abuse awareness -> 
+  = sociohistorical; analysis; sexual; abuse; awareness
+  + 
+  ? sociology
+
+102 => 
+
+ American Bar Association, in coopera tion with the Association of Family and Conciliation Courts (1988) -> 
+  = American; Bar; Association; in; coopera; tion; with; Association; Family; Conciliation; Courts; 1988
+  + 
+  ? 
+
+ American Jurisprudence Proof of Facts -> 
+  = American
+  + Jurisprudence; Proof; Facts
+  ? 
+
+ Brooklyn Bar Association, matrimonial committee of -> 
+  = Bar; Association; matrimonial
+  + Brooklyn; committee
+  ? 
+
+ Child: best interests of -> 
+  = Child; best; interests
+  + 
+  ? 
+
+ Rosen, Leora, and Michelle Etlin -> 
+  = Rosen; Etlin
+  + 
+  ? Leora; Michelle
+
+ Rosenfeld, A -> 
+  = Rosenfeld
+  + 
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Nicholson and Bulkley (1988) -> 
+  = child; custody; child; sexual; abuse; Nicholson; Bulkley; 1988
+  + professional
+  ? literature
+
+ matrimonial bar -> 
+  = matrimonial; bar
+  + 
+  ? 
+
+103 => 
+
+ Heit, Julia -> 
+  = Heit; Julia
+  + 
+  ? 
+
+ Legal Aid Society -> 
+  = Legal; Aid; Society
+  + 
+  ? 
+
+104 => 
+
+ Judge Judy (Judith Scheindlin) -> 
+  = Judge; Judy; Judith; Scheindlin
+  + 
+  ? 
+
+105 => 
+
+ American Coalition for Fathers and Children (ACFC) -> 
+  = American; Coalition; for; Fathers; Children; ACFC
+  + 
+  ? 
+
+ Armstrong, Louise -> 
+  = Armstrong; Louise
+  + 
+  ? 
+
+ Brooklyn Family Court -> 
+  = Brooklyn; Family; Court
+  + 
+  ? 
+
+ Deutsch, Leon S -> 
+  = Deutsch; Leon; S
+  + 
+  ? 
+
+ Fathers Rights Association of Metro New York and Long Island -> 
+  = Fathers; Rights; Association; Metro; New; York; Long; Island
+  + 
+  ? 
+
+ Mens Equality Now International Coalition -> 
+  = Mens; Equality; Now; International; Coalition
+  + 
+  ? 
+
+ Rocking the Cradle of Sexual Politics (Armstrong) -> 
+  = Rocking; Cradle; Sexual; Politics; Armstrong
+  + 
+  ? 
+
+ Shoulson, Jay -> 
+  = Shoulson; Jay
+  + 
+  ? 
+
+106 => 
+
+ Middleton, Humberto -> 
+  = Middleton; Humberto
+  + 
+  ? 
+
+ Thompson, William -> 
+  = Thompson; William
+  + 
+  ? 
+
+ Winner, Karen -> 
+  = Winner
+  + 
+  ? Karen
+
+107 => 
+
+ Hanson, Graeme -> 
+  = 
+  + Hanson; Graeme
+  ? 
+
+ Journal of the American Academy of Child and Adolescent Psychiatry -> 
+  = Journal; American; Academy; Child; Adolescent; Psychiatry
+  + 
+  ? 
+
+ Nadler, Jerrold -> 
+  = Nadler; Jerrold
+  + 
+  ? 
+
+ New York Post -> 
+  = New; York; Post
+  + 
+  ? 
+
+ New York, city of: Council -> 
+  = New; York; Council
+  + 
+  ? city
+
+ New York, state of: Bar Association -> 
+  = New; York; state; Bar; Association
+  + 
+  ? 
+
+ Paterson, David A -> 
+  = Paterson; David
+  + 
+  ? 
+
+ Greenbook, the -> 
+  = 
+  + 
+  ? Greenbook
+
+ civil rights: due process -> 
+  = rights; due; process
+  + 
+  ? civil
+
+108 => 
+
+ Jurow, Abraham -> 
+  = Jurow; Abraham
+  + 
+  ? 
+
+ New York Law Journal -> 
+  = New; York; Law; Journal
+  + 
+  ? 
+
+ appellate review -> 
+  = appellate; review
+  + 
+  ? 
+
+ primary caretaker -> 
+  = primary
+  + caretaker
+  ? 
+
+109 => 
+
+ Armstrong, Louise -> 
+  = Armstrong
+  + 
+  ? Louise
+
+ Home Front, The (Armstrong) -> 
+  = Home; Front; Armstrong
+  + 
+  ? 
+
+ New York, city of: Administration for Childrens Services (ACS) -> 
+  = New; York; for; Services; ACS
+  + Administration; Childrens
+  ? city
+
+ Nicholson v ACS -> 
+  = Nicholson; v; ACS
+  + 
+  ? 
+
+ Weinstein, Jack -> 
+  = Weinstein; Jack
+  + 
+  ? 
+
+110 => 
+
+ Legal Issues and Legal Options in Civil Child Sexual Abuse Cases -> 
+  = Legal; Issues; Legal; Options; in; Civil; Child; Sexual; Abuse; Cases
+  + 
+  ? 
+
+ National Center on Women and Family Law -> 
+  = National; Center; Women; Family; Law
+  + 
+  ? 
+
+ Pennington, H Joan -> 
+  = Pennington; H; Joan
+  + 
+  ? 
+
+ Underground Railroad: history of modernday underground movement -> 
+  = Underground
+  + movement
+  ? Railroad; history; modernday; underground
+
+ child custody and child sexual abuse, professional literature on: Pennington and Woods (1990) -> 
+  = child; custody; child; sexual; abuse; Pennington; Woods; 1990
+  + literature
+  ? professional
+
+111 => 
+
+ Chesler, Phyllis -> 
+  = Chesler; Phyllis
+  + 
+  ? 
+
+ Children of the Underground -> 
+  = Children; Underground
+  + 
+  ? 
+
+ Hannah, Maureen Therese -> 
+  = Hannah; Maureen; Therese
+  + 
+  ? 
+
+ Kidnapping, parental -> 
+  = parental
+  + 
+  ? Kidnapping
+
+ Miller, Liliane Heller -> 
+  = Miller; Liliane; Heller
+  + 
+  ? 
+
+ Mothers on Trial (Chesler) -> 
+  = Mothers; Trial; Chesler
+  + 
+  ? 
+
+ Nadler, Jerrold -> 
+  = Nadler
+  + 
+  ? Jerrold
+
+ Ortiz, Felix -> 
+  = Ortiz; Felix
+  + 
+  ? 
+
+ Reynolds, Barbara (USA Today) -> 
+  = Reynolds; USA; Today
+  + 
+  ? Barbara
+
+ Siena College -> 
+  = Siena; College
+  + 
+  ? 
+
+ USA Today -> 
+  = USA; Today
+  + 
+  ? 
+
+ Yager, Faye -> 
+  = Yager; Faye
+  + 
+  ? 
+
+ Greenbook, the -> 
+  = 
+  + 
+  ? Greenbook
+
+ Underground Railroad: underground fugitive mothers -> 
+  = Underground; mothers
+  + 
+  ? Railroad; underground; fugitive
+
+112 => 
+
+ Dale, Sebe -> 
+  = 
+  + Dale; Sebe
+  ? 
+
+ New York, state of: Womens Office at the Archdiocese -> 
+  = New; York; Womens; Office; at; Archdiocese
+  + 
+  ? state
+
+ Newsom, Karen -> 
+  = 
+  + Newsom; Karen
+  ? 
+
+ Singley, Dorrie Lynn -> 
+  = 
+  + Singley; Dorrie; Lynn
+  ? 
+
+ Underground Railroad: abscond or flee with child -> 
+  = or; with; child
+  + Underground; Railroad
+  ? abscond; flee
+
+ Underground Railroad: history of modernday underground movement -> 
+  = movement
+  + Underground; Railroad; underground
+  ? history; modernday
+
+ pro se rebels -> 
+  = pro; se
+  + 
+  ? rebels
+
+113 => 
+
+ Carpenter, McKenzie (Pittsburgh PostGazette) -> 
+  = 
+  + Carpenter; McKenzie; Pittsburgh
+  ? PostGazette
+
+ Children of the Underground -> 
+  = Children; Underground
+  + 
+  ? 
+
+ House Judiciary Committee (1992) -> 
+  = 
+  + House; Judiciary; Committee; 1992
+  ? 
+
+ LaLonde, Virginia -> 
+  = LaLonde; Virginia
+  + 
+  ? 
+
+ Pittsburgh PostGazette -> 
+  = 
+  + Pittsburgh
+  ? PostGazette
+
+ Rayner, Lydia, on 60 Minutes (CBS) -> 
+  = Rayner; Lydia; 60; Minutes; CBS
+  + 
+  ? 
+
+ Yager, Faye -> 
+  = Yager
+  + 
+  ? Faye
+
+ Yager, Faye: on 60 Minutes (CBS) -> 
+  = Yager; 60; Minutes; CBS
+  + 
+  ? Faye
+
+114 => 
+
+ Justice for Children -> 
+  = Justice; for; Children
+  + 
+  ? 
+
+ King, Eileen -> 
+  = King; Eileen
+  + 
+  ? 
+
+115 => 
+
+ Paterson, David A -> 
+  = Paterson
+  + 
+  ? David
+
+ US Department of Justice: Child Exploitation and Obscenity Section -> 
+  = US; Department; Justice; Child; Exploitation; Obscenity; Section
+  + 
+  ? 
+
+116 => 
+
+ presentment agencies -> 
+  = presentment; agencies
+  + 
+  ? 
+
+117 => 
+
+ Child Protective Services (CPS): home study -> 
+  = CPS; home; study
+  + 
+  ? Child; Protective; Services
+
+ child custody and child sexual abuse, professional literature on: Everson and Boat (1989) -> 
+  = child; custody; child; sexual; abuse; Everson; Boat; 1989
+  + 
+  ? professional; literature
+
+ social variables: education -> 
+  = social
+  + 
+  ? variables; education
+
+118 => 
+
+ New York Law Journal -> 
+  = New; York; Law; Journal
+  + 
+  ? 
+
+ New York, city of: Administration for Childrens Services (ACS) -> 
+  = New; York; for; ACS
+  + 
+  ? city; Administration; Childrens; Services
+
+119 => 
+
+ appellate review -> 
+  = appellate
+  + 
+  ? review
+
+120 => 
+
+ Child: best interests of -> 
+  = best; interests
+  + Child
+  ? 
+
+ Temple Law Review -> 
+  = Temple; Law; Review
+  + 
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Stern and Oehme (2002) -> 
+  = child; custody; child; abuse; Stern; Oehme; 2002
+  + sexual; professional
+  ? literature
+
+ supervised visitation -> 
+  = supervised; visitation
+  + 
+  ? 
+
+121 => 
+
+ American Psychological Association -> 
+  = American; Psychological; Association
+  + 
+  ? 
+
+ Curran, William (1985) -> 
+  = Curran; William; 1985
+  + 
+  ? 
+
+ Gardner, Richard A -> 
+  = Gardner; Richard
+  + 
+  ? 
+
+ New England Journal of Medicine -> 
+  = New; England; Journal; Medicine
+  + 
+  ? 
+
+ Parental Alienation Syndrome (PAS) -> 
+  = Parental; Alienation; Syndrome; PAS
+  + 
+  ? 
+
+ True and False Accusations of Child Sexual Abuse (Gardner) -> 
+  = True; False; Accusations; Child; Abuse; Gardner
+  + 
+  ? Sexual
+
+ civil rights: constitutional rights -> 
+  = rights; constitutional; rights
+  + 
+  ? civil
+
+ immunity -> 
+  = immunity
+  + 
+  ? 
+
+ junk science -> 
+  = 
+  + 
+  ? junk; science
+
+122 => 
+
+ American Jurisprudence Proof of Facts -> 
+  = American; Jurisprudence; Proof; Facts
+  + 
+  ? 
+
+ Judges Journal -> 
+  = Judges; Journal
+  + 
+  ? 
+
+ Malicious Mother Syndrome (MMS) -> 
+  = Malicious; Mother; Syndrome; MMS
+  + 
+  ? 
+
+ Turkat, Ira -> 
+  = Turkat; Ira
+  + 
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Corwin, Berliner, Goodman, Goodwin, and White (1987) -> 
+  = child; custody; child; abuse; Corwin; 1987
+  + 
+  ? sexual; professional; literature; Berliner; Goodman; Goodwin; White
+
+ child custody and child sexual abuse, professional literature on: Smith and Coukos (1997) -> 
+  = child; custody; child; abuse; Smith; Coukos; 1997
+  + 
+  ? sexual; professional; literature
+
+123 => 
+
+ Fund for Modern Courts -> 
+  = for
+  + Fund; Modern; Courts
+  ? 
+
+ House Judiciary Committee (1992) -> 
+  = House; Judiciary; Committee; 1992
+  + 
+  ? 
+
+ Pennington, H Joan -> 
+  = Pennington; H
+  + 
+  ? Joan
+
+ gag order -> 
+  = gag; order
+  + 
+  ? 
+
+ kangaroo courts -> 
+  = kangaroo; courts
+  + 
+  ? 
+
+ confidentiality -> 
+  = 
+  + 
+  ? confidentiality
+
+ evidentiary hearing -> 
+  = evidentiary; hearing
+  + 
+  ? 
+
+124 => 
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = CPS; child; neglect; charge
+  + 
+  ? Child; Protective; Services
+
+125 => 
+
+ Meltzer, Anne -> 
+  = Meltzer; Anne
+  + 
+  ? 
+
+ appellate review -> 
+  = appellate; review
+  + 
+  ? 
+
+ civil rights: due process -> 
+  = due; process
+  + 
+  ? civil; rights
+
+126 => 
+
+ Goodhue, Mary B -> 
+  = Goodhue; Mary; B
+  + 
+  ? 
+
+ New York, state of: Senate Committee on Child Care -> 
+  = New; York; state; Senate; Committee; Child; Care
+  + 
+  ? 
+
+ adjournment in contemplation of dismissal (ACD) -> 
+  = adjournment; in; contemplation; dismissal
+  + 
+  ? ACD
+
+127 => 
+
+128 => 
+
+129 => 
+
+ Ethnomethodology: situated meaning, accomplishment, achievement, definition, action -> 
+  = meaning; action
+  + situated; achievement
+  ? Ethnomethodology; accomplishment; definition
+
+ social variables -> 
+  = social; variables
+  + 
+  ? 
+
+ sociology: sociological inquiry -> 
+  = sociological; inquiry
+  + 
+  ? sociology
+
+130 => 
+
+ Ethnomethodology: conversation analysis -> 
+  = 
+  + analysis
+  ? Ethnomethodology; conversation
+
+ Ethnomethodology: practical reasoning -> 
+  = practical; reasoning
+  + 
+  ? Ethnomethodology
+
+ Ethnomethodology: reflexive -> 
+  = reflexive
+  + 
+  ? Ethnomethodology
+
+ Garfinkel, Harold -> 
+  = Garfinkel; Harold
+  + 
+  ? 
+
+ ethnomethodological studies: Garfinkel (1967) -> 
+  = ethnomethodological; studies; Garfinkel
+  + 
+  ? 1967
+
+ ethnomethodological studies: Lynch (1997) -> 
+  = ethnomethodological; studies; Lynch; 1997
+  + 
+  ? 
+
+131 => 
+
+ Durkheim, Emile -> 
+  = Durkheim
+  + 
+  ? Emile
+
+ Ethnomethodology: accountable, publicly observable actions -> 
+  = publicly; observable; actions
+  + 
+  ? Ethnomethodology; accountable
+
+ ethnomethodological studies: Lynch (1997) -> 
+  = ethnomethodological; Lynch; 1997
+  + 
+  ? studies
+
+ gender bias -> 
+  = gender; bias
+  + 
+  ? 
+
+ social variables -> 
+  = social; variables
+  + 
+  ? 
+
+ social variables: education -> 
+  = social; variables; education
+  + 
+  ? 
+
+ social variables: ethnicity -> 
+  = social; variables; ethnicity
+  + 
+  ? 
+
+ social variables: gender -> 
+  = social; variables; gender
+  + 
+  ? 
+
+ social variables: socioeconomic status -> 
+  = social; variables; status
+  + 
+  ? socioeconomic
+
+ sociology -> 
+  = sociology
+  + 
+  ? 
+
+132 => 
+
+ Ethnomethodology: documentary method of interpretation -> 
+  = documentary; method; interpretation
+  + 
+  ? Ethnomethodology
+
+ Jane Addams College of Social Work of the University of Illinois -> 
+  = 
+  + Jane; Addams; College; Social; Work; University; Illinois
+  ? 
+
+ Morgan, Elizabeth -> 
+  = 
+  + Morgan; Elizabeth
+  ? 
+
+ Kaydens Law -> 
+  = 
+  + 
+  ? Kaydens; Law
+
+ child custody and child sexual abuse, professional literature on: Dziech and Schudson (1989) -> 
+  = 
+  + child; custody; child; abuse; Dziech; Schudson; 1989
+  ? sexual; professional; literature
+
+ child custody and child sexual abuse, professional literature on: Massat and Lundy (1999) -> 
+  = 
+  + child; custody; child; abuse; Massat; Lundy; 1999
+  ? sexual; professional; literature
+
+ sociology: sociological inquiry -> 
+  = sociological; inquiry
+  + 
+  ? sociology
+
+133 => 
+
+ Ethnomethodology: practical reasoning -> 
+  = practical
+  + reasoning
+  ? Ethnomethodology
+
+ social variables -> 
+  = social
+  + 
+  ? variables
+
+ social variables: education -> 
+  = social
+  + education
+  ? variables
+
+ social variables: race -> 
+  = social
+  + race
+  ? variables
+
+134 => 
+
+ sociology: Marxist arguments -> 
+  = Marxist; arguments
+  + 
+  ? sociology
+
+135 => 
+
+ Ethnomethodology: explicative transactions -> 
+  = explicative; transactions
+  + 
+  ? Ethnomethodology
+
+ Ethnomethodology: reflexive -> 
+  = reflexive
+  + 
+  ? Ethnomethodology
+
+ Ethnomethodology: situated meaning, accomplishment, achievement, definition, action -> 
+  = situated; definition; action
+  + 
+  ? Ethnomethodology; meaning; accomplishment; achievement
+
+ ethnomethodological studies: Pollner (1979) -> 
+  = Pollner; 1979
+  + 
+  ? ethnomethodological; studies
+
+136 => 
+
+ incarceration: incarcerating mothers -> 
+  = incarcerating; mothers
+  + 
+  ? incarceration
+
+ supervised visitation -> 
+  = visitation
+  + supervised
+  ? 
+
+137 => 
+
+ Ethnomethodology: formulating -> 
+  = formulating
+  + 
+  ? Ethnomethodology
+
+ ethnomethodological studies: Garfinkel and Sacks (1970) -> 
+  = ethnomethodological; Garfinkel; Sacks; 1970
+  + 
+  ? studies
+
+138 => 
+
+ ethnomethodological studies: Holstein and Gubrium (1995) -> 
+  = Holstein; Gubrium; 1995
+  + 
+  ? ethnomethodological; studies
+
+139 => 
+
+ Ethnomethodology: situated meaning, accomplishment, achievement, definition, action -> 
+  = situated; definition; action
+  + meaning; accomplishment; achievement
+  ? Ethnomethodology
+
+ vexatious litigant -> 
+  = vexatious; litigant
+  + 
+  ? 
+
+140 => 
+
+ Ethnomethodology: practical accomplishment -> 
+  = practical; accomplishment
+  + 
+  ? Ethnomethodology
+
+ Ethnomethodology: practical reasoning -> 
+  = practical; reasoning
+  + 
+  ? Ethnomethodology
+
+ civil rights: due process -> 
+  = rights
+  + due; process
+  ? civil
+
+ termination of parental rights -> 
+  = parental; rights
+  + 
+  ? termination
+
+141 => 
+
+ ethnomethodological studies: Lynch (1997) -> 
+  = Lynch; 1997
+  + 
+  ? ethnomethodological; studies
+
+142 => 
+
+ Child: best interests of -> 
+  = 
+  + 
+  ? Child; best; interests
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = CPS; child; neglect
+  + charge
+  ? Child; Protective; Services
+
+ ethnomethodological studies: Heritage and Sefi (1992) -> 
+  = Heritage; Sefi; 1992
+  + ethnomethodological; studies
+  ? 
+
+143 => 
+
+ Ethnomethodology: contractual use of records -> 
+  = contractual; use; records
+  + 
+  ? Ethnomethodology
+
+ Ethnomethodology: practical accomplishment -> 
+  = practical; accomplishment
+  + 
+  ? Ethnomethodology
+
+ ethnomethodological studies: Garfinkel and Bittner (1967) -> 
+  = ethnomethodological; studies; Garfinkel; Bittner; 1967
+  + 
+  ? 
+
+ ethnomethodological studies: Meehan (1997) -> 
+  = ethnomethodological; studies; Meehan; 1997
+  + 
+  ? 
+
+144 => 
+
+145 => 
+
+ Ethnomethodology: running record -> 
+  = running; record
+  + 
+  ? Ethnomethodology
+
+146 => 
+
+ Ethnomethodology: situated meaning, accomplishment, achievement, definition, action -> 
+  = situated; achievement
+  + action
+  ? Ethnomethodology; meaning; accomplishment; definition
+
+ Greenbook, the -> 
+  = 
+  + 
+  ? Greenbook
+
+ ex parte (without the knowledge of the other party): communication -> 
+  = ex; parte; without; knowledge; other; communication
+  + 
+  ? party
+
+ sociology: sociological inquiry -> 
+  = sociological; inquiry
+  + 
+  ? sociology
+
+147 => 
+
+ Ethnomethodology: reflexive -> 
+  = reflexive
+  + 
+  ? Ethnomethodology
+
+ ethics -> 
+  = ethics
+  + 
+  ? 
+
+ matrimonial bar -> 
+  = 
+  + matrimonial; bar
+  ? 
+
+148 => 
+
+ Brooklyn Family Court -> 
+  = Brooklyn; Family; Court
+  + 
+  ? 
+
+ Heit, Julia -> 
+  = Heit; Julia
+  + 
+  ? 
+
+ Greenbook, the -> 
+  = 
+  + 
+  ? Greenbook
+
+149 => 
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = Child; Protective; Services; CPS; child; neglect; charge
+  + 
+  ? 
+
+150 => 
+
+151 => 
+
+ Kaydens Law -> 
+  = 
+  + 
+  ? Kaydens; Law
+
+152 => 
+
+153 => 
+
+ Underground Railroad: underground fugitive mothers -> 
+  = underground; mothers
+  + 
+  ? Underground; Railroad; fugitive
+
+ sexually transmitted disease -> 
+  = sexually; transmitted; disease
+  + 
+  ? 
+
+154 => 
+
+ National Center for Protective Parents -> 
+  = National; Center; for; Protective; Parents
+  + 
+  ? 
+
+ Pennington, H Joan -> 
+  = Pennington; H; Joan
+  + 
+  ? 
+
+155 => 
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = CPS; child; neglect; charge
+  + 
+  ? Child; Protective; Services
+
+ ethics -> 
+  = ethics
+  + 
+  ? 
+
+ ex parte (without the knowledge of the other party): communication -> 
+  = ex; parte; without; knowledge; other; communication
+  + 
+  ? party
+
+ vigilantism -> 
+  = 
+  + 
+  ? vigilantism
+
+156 => 
+
+ appellate review -> 
+  = appellate
+  + 
+  ? review
+
+ civil rights: constitutional rights -> 
+  = civil; rights; rights
+  + 
+  ? constitutional
+
+ evidentiary hearing -> 
+  = evidentiary; hearing
+  + 
+  ? 
+
+157 => 
+
+158 => 
+
+ Walker, Lenore -> 
+  = Walker; Lenore
+  + 
+  ? 
+
+ appellate review -> 
+  = appellate
+  + 
+  ? review
+
+159 => 
+
+ in camera (in judges chambers) -> 
+  = in; camera; in; judges; chambers
+  + 
+  ? 
+
+160 => 
+
+ New York, state of: Commission on Judicial Conduct -> 
+  = New; York; state; Commission; Judicial; Conduct
+  + 
+  ? 
+
+161 => 
+
+ Meltzer, Anne -> 
+  = Meltzer; Anne
+  + 
+  ? 
+
+162 => 
+
+ Paterson, David A -> 
+  = Paterson; David
+  + 
+  ? 
+
+163 => 
+
+ in camera (in judges chambers) -> 
+  = in; camera; in; judges
+  + 
+  ? chambers
+
+164 => 
+
+ incarceration: threat of -> 
+  = incarceration; threat
+  + 
+  ? 
+
+165 => 
+
+ appellate review -> 
+  = appellate
+  + 
+  ? review
+
+166 => 
+
+167 => 
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = CPS; child; neglect; charge
+  + 
+  ? Child; Protective; Services
+
+ ex parte (without the knowledge of the other party): motion -> 
+  = ex; parte; without; other; motion
+  + 
+  ? knowledge; party
+
+ supervised visitation -> 
+  = supervised; visitation
+  + 
+  ? 
+
+168 => 
+
+ Deutsch, Leon S -> 
+  = Deutsch; Leon; S
+  + 
+  ? 
+
+ Paterson, David A -> 
+  = Paterson
+  + 
+  ? David
+
+ ex parte (without the knowledge of the other party): order -> 
+  = ex; parte; without; other; order
+  + 
+  ? knowledge; party
+
+169 => 
+
+ Paterson, David A -> 
+  = Paterson
+  + 
+  ? David
+
+ Suicide: children who are suicidal -> 
+  = who; suicidal
+  + are
+  ? Suicide; children
+
+170 => 
+
+171 => 
+
+ Ethnomethodology: situated meaning, accomplishment, achievement, definition, action -> 
+  = situated; action
+  + 
+  ? Ethnomethodology; meaning; accomplishment; achievement; definition
+
+ Underground Railroad: abscond or flee with child -> 
+  = abscond; or; with; child
+  + 
+  ? Underground; Railroad; flee
+
+172 => 
+
+ Kafkaesque, court experience as -> 
+  = court; as
+  + Kafkaesque
+  ? experience
+
+ Underground Railroad: abscond or flee with child -> 
+  = or; with; child
+  + abscond
+  ? Underground; Railroad; flee
+
+ civil rights: due process -> 
+  = due; process
+  + 
+  ? civil; rights
+
+173 => 
+
+174 => 
+
+ Child Protective Services (CPS): home study -> 
+  = home; study
+  + 
+  ? Child; Protective; Services; CPS
+
+ Ethnomethodology: formulating -> 
+  = formulating
+  + 
+  ? Ethnomethodology
+
+ ethics -> 
+  = ethics
+  + 
+  ? 
+
+ ethnomethodological studies: Garfinkel and Sacks (1970) -> 
+  = Garfinkel; Sacks; 1970
+  + 
+  ? ethnomethodological; studies
+
+ ethnomethodological studies: Heritage and Watson (1979) -> 
+  = Heritage; Watson; 1979
+  + 
+  ? ethnomethodological; studies
+
+175 => 
+
+176 => 
+
+ appellate review -> 
+  = appellate
+  + 
+  ? review
+
+177 => 
+
+ Ethnomethodology: explicative transactions -> 
+  = explicative; transactions
+  + 
+  ? Ethnomethodology
+
+ Ethnomethodology: situated meaning, accomplishment, achievement, definition, action -> 
+  = situated; meaning; definition; action
+  + 
+  ? Ethnomethodology; accomplishment; achievement
+
+ ethnomethodological studies: Pollner (1979) -> 
+  = Pollner; 1979
+  + 
+  ? ethnomethodological; studies
+
+178 => 
+
+ Burton, Randy -> 
+  = Burton; Randy
+  + 
+  ? 
+
+ Reno, Janet F -> 
+  = Reno; Janet; F
+  + 
+  ? 
+
+ Texas Supreme Court Task Force on Judicial Appointments -> 
+  = Texas; Supreme; Court; Task; Force; Judicial; Appointments
+  + 
+  ? 
+
+179 => 
+
+ Brooklyn Family Court -> 
+  = Brooklyn; Family; Court
+  + 
+  ? 
+
+ Deutsch, Leon S -> 
+  = Deutsch; S
+  + 
+  ? Leon
+
+ Koppell, Oliver -> 
+  = Koppell; Oliver
+  + 
+  ? 
+
+180 => 
+
+ Gallet, Jeffrey -> 
+  = Gallet; Jeffrey
+  + 
+  ? 
+
+ New York Law Journal -> 
+  = New; York; Law; Journal
+  + 
+  ? 
+
+ New York Newsday -> 
+  = New; York; Newsday
+  + 
+  ? 
+
+ civil rights: due process -> 
+  = 
+  + due; process
+  ? civil; rights
+
+ confidentiality -> 
+  = confidentiality
+  + 
+  ? 
+
+181 => 
+
+ Ethnomethodology: situated meaning, accomplishment, achievement, definition, action -> 
+  = situated; meaning; action
+  + 
+  ? Ethnomethodology; accomplishment; achievement; definition
+
+182 => 
+
+ ethics -> 
+  = 
+  + 
+  ? ethics
+
+183 => 
+
+ Ethnomethodology: documentary method of interpretation -> 
+  = documentary; method; interpretation
+  + 
+  ? Ethnomethodology
+
+184 => 
+
+ American Psychological Association -> 
+  = 
+  + American; Psychological; Association
+  ? 
+
+ Parental Alienation Syndrome (PAS) -> 
+  = 
+  + 
+  ? Parental; Alienation; Syndrome; PAS
+
+ civil rights: due process -> 
+  = 
+  + rights; due; process
+  ? civil
+
+ primary caretaker -> 
+  = 
+  + primary; caretaker
+  ? 
+
+185 => 
+
+ Child: best interests of -> 
+  = 
+  + best; interests
+  ? Child
+
+186 => 
+
+ Ethnomethodology: situated meaning, accomplishment, achievement, definition, action -> 
+  = situated; definition
+  + 
+  ? Ethnomethodology; meaning; accomplishment; achievement; action
+
+ Morgan, Elizabeth -> 
+  = 
+  + Morgan; Elizabeth
+  ? 
+
+ Underground Railroad: abscond or flee with child -> 
+  = or; with; child
+  + 
+  ? Underground; Railroad; abscond; flee
+
+187 => 
+
+ BIPOC (Black, Indigenous, and People of Color): population -> 
+  = BIPOC
+  + Black; Indigenous; People; Color; population
+  ? 
+
+ civil rights: constitutional rights -> 
+  = civil; rights; rights
+  + 
+  ? constitutional
+
+188 => 
+
+ ad hoc social networks, mothers -> 
+  = ad; hoc; social; networks; mothers
+  + 
+  ? 
+
+189 => 
+
+ BIPOC (Black, Indigenous, and People of Color): supervised visitation, police station -> 
+  = BIPOC; visitation
+  + 
+  ? Black; Indigenous; People; Color; supervised; police; station
+
+190 => 
+
+ antisocial behavior, fathers: DUI -> 
+  = behavior; DUI
+  + fathers
+  ? antisocial
+
+ antisocial behavior, fathers: cursing out mother -> 
+  = behavior; cursing; out; mother
+  + fathers
+  ? antisocial
+
+ antisocial behavior, fathers: disorderly conduct -> 
+  = behavior; disorderly; conduct
+  + fathers
+  ? antisocial
+
+ psychological symptoms, childrens manifestation of: disrobing -> 
+  = 
+  + symptoms; childrens; disrobing
+  ? psychological; manifestation
+
+ psychological symptoms, childrens manifestation of: encopresis -> 
+  = 
+  + symptoms; childrens; encopresis
+  ? psychological; manifestation
+
+ psychological symptoms, childrens manifestation of: enuresisbed wetting -> 
+  = 
+  + symptoms; childrens
+  ? psychological; manifestation; enuresisbed; wetting
+
+ psychological symptoms, childrens manifestation of: low selfesteem -> 
+  = 
+  + symptoms; childrens; low
+  ? psychological; manifestation; selfesteem
+
+ psychological symptoms, childrens manifestation of: night terrors -> 
+  = night
+  + symptoms; childrens; terrors
+  ? psychological; manifestation
+
+ psychological symptoms, childrens manifestation of: screaming in sleep -> 
+  = in
+  + symptoms; childrens; screaming; sleep
+  ? psychological; manifestation
+
+ psychological symptoms, childrens manifestation of: sexually acting out -> 
+  = out
+  + symptoms; childrens; sexually; acting
+  ? psychological; manifestation
+
+191 => 
+
+192 => 
+
+ antisocial behavior, fathers: alcohol abuse -> 
+  = fathers; alcohol; abuse
+  + behavior
+  ? antisocial
+
+ antisocial behavior, fathers: cocaine use -> 
+  = fathers; cocaine; use
+  + behavior
+  ? antisocial
+
+193 => 
+
+ psychological symptoms, childrens manifestation of: night terrors -> 
+  = childrens; night; terrors
+  + 
+  ? psychological; symptoms; manifestation
+
+194 => 
+
+195 => 
+
+ ad hoc social networks, mothers -> 
+  = ad; hoc; social; networks; mothers
+  + 
+  ? 
+
+ social variables: race -> 
+  = social
+  + 
+  ? variables; race
+
+196 => 
+
+ social variables: race -> 
+  = social
+  + 
+  ? variables; race
+
+197 => 
+
+198 => 
+
+ Ransom: visits -> 
+  = 
+  + visits
+  ? Ransom
+
+199 => 
+
+ Ransom: court order therapist -> 
+  = court; order; therapist
+  + 
+  ? Ransom
+
+200 => 
+
+ gaslighting -> 
+  = gaslighting
+  + 
+  ? 
+
+ social variables: race -> 
+  = 
+  + 
+  ? social; variables; race
+
+201 => 
+
+ modernday lynching -> 
+  = lynching
+  + 
+  ? modernday
+
+202 => 
+
+ child custody and child sexual abuse, professional literature on: Lidman and Hollingsworth (1998) -> 
+  = child; custody; child; abuse; Lidman; Hollingsworth; 1998
+  + sexual; professional
+  ? literature
+
+203 => 
+
+ Legal Issues and Legal Options in Civil Child Sexual Abuse Cases -> 
+  = Legal; Issues; Legal; Options; in; Civil; Child; Sexual; Abuse; Cases
+  + 
+  ? 
+
+ National Center on Women and Family Law -> 
+  = National; Center; Women; Family; Law
+  + 
+  ? 
+
+ Pennington, H Joan -> 
+  = Pennington; H; Joan
+  + 
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Pennington and Woods (1990) -> 
+  = child; child; sexual; abuse; professional; Pennington; Woods; 1990
+  + custody
+  ? literature
+
+204 => 
+
+ Ducote, Richard -> 
+  = Ducote; Richard
+  + 
+  ? 
+
+ Loyola Journal of Public Interest Law -> 
+  = Loyola; Journal; Public; Interest; Law
+  + 
+  ? 
+
+ Massachusetts Senate Committee on Post Audit and Oversight -> 
+  = Massachusetts; Senate; Committee; Post; Audit; Oversight
+  + 
+  ? 
+
+205 => 
+
+ Child Abuse Prevention and Treatment Act of 1974 (CAPTA) -> 
+  = Child; Abuse; Prevention
+  + Treatment; Act; 1974; CAPTA
+  ? 
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = Child; child
+  + neglect; charge
+  ? Protective; Services; CPS
+
+ immunity -> 
+  = immunity
+  + 
+  ? 
+
+206 => 
+
+ Minnesota Office of the Legislative Auditor, Program Evaluation Division -> 
+  = Minnesota; Office; Legislative; Auditor; Program; Evaluation; Division
+  + 
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Lidman and Hollingsworth (1998) -> 
+  = child; custody; child; abuse; Lidman; Hollingsworth; 1998
+  + sexual
+  ? professional; literature
+
+207 => 
+
+ appellate review -> 
+  = appellate
+  + 
+  ? review
+
+ sociology -> 
+  = 
+  + 
+  ? sociology
+
+208 => 
+
+ Ethnomethodology: contractual use of records -> 
+  = contractual; use; records
+  + 
+  ? Ethnomethodology
+
+209 => 
+
+ Child: imminent danger or risk of harm -> 
+  = or; harm
+  + imminent; danger
+  ? Child; risk
+
+ Suicide: children who are suicidal -> 
+  = children; who; are
+  + suicidal
+  ? Suicide
+
+210 => 
+
+211 => 
+
+212 => 
+
+ flight risk -> 
+  = flight; risk
+  + 
+  ? 
+
+213 => 
+
+ Millon Clinical Multiaxial Inventory (MCMI) -> 
+  = MCMI
+  + 
+  ? Millon; Clinical; Multiaxial; Inventory
+
+214 => 
+
+ Child: best interests of -> 
+  = best; interests
+  + 
+  ? Child
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = child
+  + neglect; charge
+  ? Child; Protective; Services; CPS
+
+ Ethnomethodology: contractual use of records -> 
+  = contractual; use
+  + 
+  ? Ethnomethodology; records
+
+215 => 
+
+ Brooklyn Family Court -> 
+  = Brooklyn; Family; Court
+  + 
+  ? 
+
+216 => 
+
+217 => 
+
+ Gardner, Richard A -> 
+  = Gardner; Richard
+  + 
+  ? 
+
+ Parental Alienation Syndrome (PAS) -> 
+  = Parental; Alienation; Syndrome; PAS
+  + 
+  ? 
+
+ colposcopic examination -> 
+  = colposcopic; examination
+  + 
+  ? 
+
+218 => 
+
+ McDonald, Michael O -> 
+  = McDonald; Michael; O
+  + 
+  ? 
+
+ appellate review -> 
+  = appellate
+  + review
+  ? 
+
+219 => 
+
+ Lexington HeraldLeader -> 
+  = Lexington
+  + 
+  ? HeraldLeader
+
+220 => 
+
+ appellate review -> 
+  = appellate
+  + 
+  ? review
+
+221 => 
+
+ appellate review -> 
+  = appellate
+  + review
+  ? 
+
+222 => 
+
+ Krause, Alanna -> 
+  = Krause; Alanna
+  + 
+  ? 
+
+ immunity -> 
+  = immunity
+  + 
+  ? 
+
+223 => 
+
+ Child: best interests of -> 
+  = best; interests
+  + 
+  ? Child
+
+224 => 
+
+ Baby M case -> 
+  = Baby; M; case
+  + 
+  ? 
+
+ appellate review -> 
+  = appellate
+  + 
+  ? review
+
+225 => 
+
+ Displaced Mother Syndrome -> 
+  = Displaced; Mother; Syndrome
+  + 
+  ? 
+
+226 => 
+
+ New York, city of: Child Fatality Review Panel -> 
+  = New; York; Child; Fatality; Review; Panel
+  + 
+  ? city
+
+ anorexia nervosa -> 
+  = anorexia; nervosa
+  + 
+  ? 
+
+227 => 
+
+ confidentiality -> 
+  = 
+  + 
+  ? confidentiality
+
+228 => 
+
+ New York Newsday -> 
+  = New; York; Newsday
+  + 
+  ? 
+
+ infanticide, mothers who commit -> 
+  = mothers; who
+  + 
+  ? infanticide; commit
+
+229 => 
+
+ Buckmaster, Henrietta -> 
+  = Buckmaster; Henrietta
+  + 
+  ? 
+
+ National Law Journal -> 
+  = National; Law; Journal
+  + 
+  ? 
+
+ Warren, William -> 
+  = Warren; William
+  + 
+  ? 
+
+ pogroms, medieval Jewish -> 
+  = pogroms; medieval; Jewish
+  + 
+  ? 
+
+ slaves, American -> 
+  = slaves; American
+  + 
+  ? 
+
+230 => 
+
+231 => 
+
+232 => 
+
+ antisocial behavior, fathers: conviction for criminal endangerment of welfare of child -> 
+  = fathers; conviction; for; criminal; endangerment; welfare; child
+  + 
+  ? antisocial; behavior
+
+ antisocial behavior, fathers: impulse control, lack of -> 
+  = fathers; impulse; control
+  + 
+  ? antisocial; behavior; lack
+
+ antisocial behavior, fathers: resisting arrest -> 
+  = fathers
+  + 
+  ? antisocial; behavior; resisting; arrest
+
+233 => 
+
+ Diagnostic Impression chart -> 
+  = Diagnostic; Impression
+  + 
+  ? chart
+
+ antisocial behavior, fathers: cursing child -> 
+  = fathers; child
+  + 
+  ? antisocial; behavior; cursing
+
+234 => 
+
+ Woodslamp -> 
+  = 
+  + 
+  ? Woodslamp
+
+235 => 
+
+ Ethnomethodology: practical accomplishment -> 
+  = practical; accomplishment
+  + 
+  ? Ethnomethodology
+
+236 => 
+
+ Child: welfare of -> 
+  = welfare
+  + 
+  ? Child
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = Protective; CPS; child; neglect; charge
+  + Services
+  ? Child
+
+ Kafkaesque, court experience as -> 
+  = Kafkaesque; court; experience; as
+  + 
+  ? 
+
+237 => 
+
+238 => 
+
+ supervised visitation -> 
+  = 
+  + 
+  ? supervised; visitation
+
+239 => 
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = Services; CPS; child; neglect
+  + 
+  ? Child; Protective; charge
+
+ Ethnomethodology: running record -> 
+  = record
+  + running
+  ? Ethnomethodology
+
+ search warrant -> 
+  = search; warrant
+  + 
+  ? 
+
+240 => 
+
+ Billings, Lucy -> 
+  = Billings; Lucy
+  + 
+  ? 
+
+ Bronx Legal Services -> 
+  = Bronx; Legal; Services
+  + 
+  ? 
+
+ US House Subcommittee on Select Education of the Committee on Education and Labor -> 
+  = US; House; Subcommittee; Select; Education; Committee; Education; Labor
+  + 
+  ? 
+
+241 => 
+
+ New York, city of: Child Welfare Administration (CWA) -> 
+  = Child; Welfare; Administration; CWA
+  + New; York
+  ? city
+
+ confidentiality -> 
+  = confidentiality
+  + 
+  ? 
+
+242 => 
+
+ supervised visitation -> 
+  = supervised; visitation
+  + 
+  ? 
+
+243 => 
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = Services; CPS; child; neglect
+  + charge
+  ? Child; Protective
+
+ Underground Railroad: abscond or flee with child -> 
+  = abscond; or; with; child
+  + 
+  ? Underground; Railroad; flee
+
+244 => 
+
+ Child Protective Services (CPS): surprise (unannounced) visits -> 
+  = CPS; surprise; visits
+  + Child; Services
+  ? Protective; unannounced
+
+ flight risk -> 
+  = 
+  + flight
+  ? risk
+
+245 => 
+
+ Billings, Lucy -> 
+  = Billings; Lucy
+  + 
+  ? 
+
+ Illinois Department of Children and Family Services -> 
+  = Illinois; Department; Children; Family; Services
+  + 
+  ? 
+
+ Jane Addams College of Social Work of the University of Illinois -> 
+  = Jane; Addams; College; Social; Work; University; Illinois
+  + 
+  ? 
+
+246 => 
+
+ Burgasser, George -> 
+  = Burgasser; George
+  + 
+  ? 
+
+ Child Abuse Prevention and Treatment Act of 1974 (CAPTA) -> 
+  = Child
+  + CAPTA
+  ? Abuse; Prevention; Treatment; Act; 1974
+
+ Massat, Carol Rippey -> 
+  = Massat; Carol; Rippey
+  + 
+  ? 
+
+ National Center on Child Abuse and Neglect (NCCAN) -> 
+  = Child
+  + NCCAN
+  ? National; Center; Abuse; Neglect
+
+ US Department of Justice: Child Exploitation and Obscenity Section -> 
+  = Child; Exploitation
+  + US; Department; Justice; Obscenity; Section
+  ? 
+
+ mandatory reporting laws -> 
+  = mandatory; reporting; laws
+  + 
+  ? 
+
+247 => 
+
+ Harman, Rosalie -> 
+  = Harman; Rosalie
+  + 
+  ? 
+
+ New York Post -> 
+  = New; York; Post
+  + 
+  ? 
+
+ anorexia nervosa -> 
+  = anorexia; nervosa
+  + 
+  ? 
+
+248 => 
+
+ Paterson, David A -> 
+  = Paterson; David
+  + 
+  ? 
+
+ Radek, Lee J -> 
+  = Radek; Lee; J
+  + 
+  ? 
+
+ US Department of Justice: Public Integrity Section -> 
+  = US; Department; Justice; Public; Integrity; Section
+  + 
+  ? 
+
+ flight risk -> 
+  = 
+  + flight; risk
+  ? 
+
+ supervised visitation -> 
+  = 
+  + supervised; visitation
+  ? 
+
+249 => 
+
+250 => 
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = CPS; child; neglect
+  + Services; charge
+  ? Child; Protective
+
+ Suicide: children who are suicidal -> 
+  = children; are
+  + 
+  ? Suicide; who; suicidal
+
+ Suicide: mothers who commit -> 
+  = mothers
+  + 
+  ? Suicide; who; commit
+
+ supervised visitation -> 
+  = supervised; visitation
+  + 
+  ? 
+
+251 => 
+
+ Ethnomethodology: contractual use of records -> 
+  = contractual; records
+  + use
+  ? Ethnomethodology
+
+252 => 
+
+ Child: imminent danger or risk of harm -> 
+  = imminent; danger; or
+  + risk; harm
+  ? Child
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = CPS; child; neglect
+  + Services
+  ? Child; Protective; charge
+
+ immunity -> 
+  = immunity
+  + 
+  ? 
+
+253 => 
+
+254 => 
+
+255 => 
+
+ community, Orthodox Jewish -> 
+  = Orthodox; Jewish
+  + 
+  ? community
+
+ domestic violence -> 
+  = domestic; violence
+  + 
+  ? 
+
+256 => 
+
+ Brooklyn Family Court -> 
+  = Brooklyn; Family; Court
+  + 
+  ? 
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = CPS; child; neglect; charge
+  + Services
+  ? Child; Protective
+
+257 => 
+
+ Child: imminent danger or risk of harm -> 
+  = imminent; danger; or
+  + 
+  ? Child; risk; harm
+
+ supervised visitation -> 
+  = supervised; visitation
+  + 
+  ? 
+
+258 => 
+
+ Ethnomethodology: running record -> 
+  = running; record
+  + 
+  ? Ethnomethodology
+
+ community, Orthodox Jewish -> 
+  = Orthodox
+  + 
+  ? community; Jewish
+
+ termination of parental rights -> 
+  = parental; rights
+  + 
+  ? termination
+
+259 => 
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = Services; CPS; child; neglect; charge
+  + 
+  ? Child; Protective
+
+260 => 
+
+ supervised visitation -> 
+  = 
+  + supervised; visitation
+  ? 
+
+261 => 
+
+262 => 
+
+ Ethnomethodology: running record -> 
+  = running; record
+  + 
+  ? Ethnomethodology
+
+ colposcopic examination -> 
+  = examination
+  + 
+  ? colposcopic
+
+ sexually transmitted disease -> 
+  = sexually; transmitted
+  + disease
+  ? 
+
+263 => 
+
+ Underground Railroad: underground fugitive mothers -> 
+  = mothers
+  + Underground; Railroad; fugitive
+  ? underground
+
+ pelvic inflammatory disease (PID) -> 
+  = pelvic; inflammatory; disease
+  + 
+  ? PID
+
+264 => 
+
+ Ethnomethodology: documentary method of interpretation -> 
+  = documentary; method; interpretation
+  + 
+  ? Ethnomethodology
+
+265 => 
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = Services; CPS; child; neglect
+  + charge
+  ? Child; Protective
+
+ pelvic inflammatory disease (PID) -> 
+  = pelvic; inflammatory; disease; PID
+  + 
+  ? 
+
+266 => 
+
+ Ethnomethodology: contractual use of records -> 
+  = contractual; use
+  + records
+  ? Ethnomethodology
+
+267 => 
+
+ New York Newsday -> 
+  = New; York; Newsday
+  + 
+  ? 
+
+ gag order -> 
+  = gag; order
+  + 
+  ? 
+
+ hunger strike -> 
+  = hunger; strike
+  + 
+  ? 
+
+268 => 
+
+ Brooklyn Society for the Prevention of Cruelty to Children (BSPCC) -> 
+  = Brooklyn; Society; for; Prevention; Cruelty; to; Children; BSPCC
+  + 
+  ? 
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = Child; CPS; child; neglect; charge
+  + Services
+  ? Protective
+
+269 => 
+
+270 => 
+
+ circumscribed psychosis -> 
+  = circumscribed; psychosis
+  + 
+  ? 
+
+271 => 
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = Services; CPS; child; neglect; charge
+  + Child
+  ? Protective
+
+ anorexia nervosa -> 
+  = anorexia
+  + 
+  ? nervosa
+
+272 => 
+
+ Child: best interests of -> 
+  = Child; interests
+  + 
+  ? best
+
+ Child Protective Services (CPS): child fatalities -> 
+  = Child; CPS; child; fatalities
+  + Protective; Services
+  ? 
+
+ National Child Abuse and Neglect Data System (NCANDS) -> 
+  = National; Child; Abuse; Neglect; Data; System; NCANDS
+  + 
+  ? 
+
+273 => 
+
+ Child Protective Services (CPS): child abuse (in lieu of neglect), charge of -> 
+  = Child; Protective; Services; CPS; child; abuse; in; lieu; neglect; charge
+  + 
+  ? 
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = Child; Protective; Services; CPS; child; neglect; charge
+  + 
+  ? 
+
+ Office of Justice Programs -> 
+  = Office; Justice; Programs
+  + 
+  ? 
+
+ unaggrieved party -> 
+  = unaggrieved; party
+  + 
+  ? 
+
+274 => 
+
+ BIPOC (Black, Indigenous, and People of Color): protective mothers -> 
+  = BIPOC; Black; Indigenous; People; Color; protective; mothers
+  + 
+  ? 
+
+ Child Protective Services (CPS): documents, gratuitous statementscomments in -> 
+  = Child; Protective; Services; CPS; documents; gratuitous; in
+  + 
+  ? statementscomments
+
+275 => 
+
+ Department of Children and Family Services (DCFS) -> 
+  = Services
+  + 
+  ? Department; Children; Family; DCFS
+
+ social variables -> 
+  = variables
+  + 
+  ? social
+
+ social variables: socioeconomic status -> 
+  = variables; socioeconomic; status
+  + 
+  ? social
+
+276 => 
+
+ hallucinations -> 
+  = hallucinations
+  + 
+  ? 
+
+277 => 
+
+ Department of Children and Family Services (DCFS) -> 
+  = Services; DCFS
+  + 
+  ? Department; Children; Family
+
+278 => 
+
+ Child Protective Services (CPS): foster care, convenient segue toward transferring custody to father -> 
+  = CPS; foster; care; to; father
+  + Child; Protective; Services; convenient; segue; toward; transferring; custody
+  ? 
+
+279 => 
+
+280 => 
+
+ Visitation vagrancy -> 
+  = Visitation; vagrancy
+  + 
+  ? 
+
+281 => 
+
+282 => 
+
+283 => 
+
+284 => 
+
+ Due Process Clause, Fourteenth Amendment -> 
+  = 
+  + Due; Process; Clause; Fourteenth; Amendment
+  ? 
+
+ medical child abuse -> 
+  = medical; child; abuse
+  + 
+  ? 
+
+ civil rights: due process -> 
+  = 
+  + 
+  ? civil; rights; due; process
+
+ civil rights: equal protection -> 
+  = protection
+  + 
+  ? civil; rights; equal
+
+285 => 
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = Services; CPS; child; neglect
+  + 
+  ? Child; Protective; charge
+
+ jail, mothers thrown into -> 
+  = jail; mothers; into
+  + 
+  ? thrown
+
+286 => 
+
+ Garland, Merrick -> 
+  = Garland; Merrick
+  + 
+  ? 
+
+ gaslighting -> 
+  = gaslighting
+  + 
+  ? 
+
+ modernday gulag -> 
+  = gulag
+  + 
+  ? modernday
+
+287 => 
+
+ Child Protective Services (CPS): documents, gratuitous statementscomments in -> 
+  = Child; Protective; Services; CPS; gratuitous; in
+  + 
+  ? documents; statementscomments
+
+ Department of Children and Family Services (DCFS) -> 
+  = Services; DCFS
+  + 
+  ? Department; Children; Family
+
+ lawyers, retaliation from -> 
+  = retaliation; from
+  + lawyers
+  ? 
+
+ social variables: race -> 
+  = 
+  + 
+  ? social; variables; race
+
+288 => 
+
+ medical child abuse -> 
+  = medical; child; abuse
+  + 
+  ? 
+
+289 => 
+
+ Child: gifted -> 
+  = Child; gifted
+  + 
+  ? 
+
+ psychological symptoms, childrens manifestation of: night terrors -> 
+  = night; terrors
+  + 
+  ? psychological; symptoms; childrens; manifestation
+
+290 => 
+
+ BIPOC (Black, Indigenous, and People of Color): foster placement -> 
+  = BIPOC; foster
+  + 
+  ? Black; Indigenous; People; Color; placement
+
+ psychological symptoms, childrens manifestation of: enuresisbed wetting -> 
+  = 
+  + symptoms
+  ? psychological; childrens; manifestation; enuresisbed; wetting
+
+ racist views, system saturated by -> 
+  = racist; views; system; saturated; by
+  + 
+  ? 
+
+291 => 
+
+ medical child abuse -> 
+  = medical; child; abuse
+  + 
+  ? 
+
+ social variables: race -> 
+  = 
+  + 
+  ? social; variables; race
+
+292 => 
+
+293 => 
+
+ New York Law Journal -> 
+  = New; York; Law; Journal
+  + 
+  ? 
+
+ New York, state of: Bar Association -> 
+  = New; York; state; Bar; Association
+  + 
+  ? 
+
+ Tippins, Timothy -> 
+  = Tippins; Timothy
+  + 
+  ? 
+
+ junk science -> 
+  = science
+  + 
+  ? junk
+
+294 => 
+
+ Ethnomethodology: running record -> 
+  = running; record
+  + 
+  ? Ethnomethodology
+
+ Underground Railroad: abscond or flee with child -> 
+  = or; flee; with; child
+  + 
+  ? Underground; Railroad; abscond
+
+295 => 
+
+ Conducting Scientifically Crafted Child Custody Evaluations -> 
+  = Conducting; Scientifically; Crafted; Child; Custody; Evaluations
+  + 
+  ? 
+
+ Ethnomethodology: reflexive -> 
+  = reflexive
+  + 
+  ? Ethnomethodology
+
+ child custody and child sexual abuse, professional literature on: Gould (1998) -> 
+  = child; child; abuse; professional; Gould; 1998
+  + custody
+  ? sexual; literature
+
+ supervised visitation -> 
+  = visitation
+  + 
+  ? supervised
+
+296 => 
+
+ American Psychiatric Association -> 
+  = American; Association
+  + Psychiatric
+  ? 
+
+ Fink, Paul -> 
+  = 
+  + Fink; Paul
+  ? 
+
+ Gardner, Richard A -> 
+  = Gardner; Richard
+  + 
+  ? 
+
+ Niggemyer, Kathleen -> 
+  = Niggemyer; Kathleen
+  + 
+  ? 
+
+ Parental Alienation Syndrome (PAS) -> 
+  = Parental; Alienation; Syndrome; PAS
+  + 
+  ? 
+
+ Presidential Task Force on Violence and the Family (1996) -> 
+  = Presidential; Task; Force; Violence; Family; 1996
+  + 
+  ? 
+
+ Temple University -> 
+  = 
+  + Temple; University
+  ? 
+
+ KellyFrye rule -> 
+  = rule
+  + 
+  ? KellyFrye
+
+297 => 
+
+ Silbermann, Jacqueline -> 
+  = Silbermann; Jacqueline
+  + 
+  ? 
+
+ circumscribed psychosis -> 
+  = 
+  + 
+  ? circumscribed; psychosis
+
+298 => 
+
+ Malicious Mother Syndrome (MMS) -> 
+  = Malicious; Mother; Syndrome; MMS
+  + 
+  ? 
+
+ Solomonic choice -> 
+  = Solomonic; choice
+  + 
+  ? 
+
+ Turkat, Ira -> 
+  = Turkat; Ira
+  + 
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Smith and Coukos (1997) -> 
+  = child; child; abuse; Smith; Coukos; 1997
+  + sexual; literature
+  ? custody; professional
+
+299 => 
+
+ Arizona Coalition against Domestic Violence -> 
+  = Arizona; Coalition; against; Domestic; Violence
+  + 
+  ? 
+
+ Journal of Interpersonal Violence -> 
+  = Journal; Interpersonal; Violence
+  + 
+  ? 
+
+ Summit, Roland -> 
+  = Summit; Roland
+  + 
+  ? 
+
+ University of California, Los Angeles -> 
+  = University; California; Los; Angeles
+  + 
+  ? 
+
+ Child Abuse Accommodation Syndrome -> 
+  = Child; Abuse; Accommodation; Syndrome
+  + 
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Corwin, Berliner, Goodman, Goodwin, and White (1987) -> 
+  = child; child; sexual; abuse; literature; Corwin; 1987
+  + custody; professional
+  ? Berliner; Goodman; Goodwin; White
+
+ child custody and child sexual abuse, professional literature on: Palmer and Brown (1999) -> 
+  = child; child; sexual; abuse; literature; Palmer; Brown; 1999
+  + custody; professional
+  ? 
+
+300 => 
+
+ Gardner, Richard A -> 
+  = Gardner
+  + 
+  ? Richard
+
+ Hanson, Graeme -> 
+  = Hanson; Graeme
+  + 
+  ? 
+
+ Journal of the American Academy of Child and Adolescent Psychiatry -> 
+  = Journal; American; Academy; Child; Adolescent; Psychiatry
+  + 
+  ? 
+
+ True and False Accusations of Child Sexual Abuse (Gardner) -> 
+  = True; False; Accusations; Child; Abuse; Gardner
+  + 
+  ? Sexual
+
+ University of California, San Francisco -> 
+  = University; California; San; Francisco
+  + 
+  ? 
+
+ junk science -> 
+  = 
+  + 
+  ? junk; science
+
+301 => 
+
+ child custody and child sexual abuse, professional literature on: Deblinger, Stauffer, and Steer (2001) -> 
+  = child; custody; child; sexual; abuse; professional; Deblinger; 2001
+  + literature
+  ? Stauffer; Steer
+
+302 => 
+
+ child custody and child sexual abuse, professional literature on: Corwin, Berliner, Goodman, Goodwin, and White (1987) -> 
+  = child; child; sexual; abuse; literature; Corwin
+  + 
+  ? custody; professional; Berliner; Goodman; Goodwin; White; 1987
+
+303 => 
+
+ Faller, Kathleen Coulborn -> 
+  = Faller; Kathleen
+  + 
+  ? Coulborn
+
+ Journal of the American Academy of Child and Adolescent Psychiatry -> 
+  = Journal; American; Academy; Child; Adolescent; Psychiatry
+  + 
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Froning (1988) -> 
+  = child; child; sexual; abuse; Froning; 1988
+  + 
+  ? custody; professional; literature
+
+304 => 
+
+ circumscribed psychosis -> 
+  = 
+  + circumscribed; psychosis
+  ? 
+
+ junk science -> 
+  = 
+  + 
+  ? junk; science
+
+305 => 
+
+306 => 
+
+ Faller, Kathleen Coulborn -> 
+  = Faller
+  + 
+  ? Kathleen; Coulborn
+
+ Kaplan, S L, and S J Kaplan -> 
+  = Kaplan; S; L; S; J; Kaplan
+  + 
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Faller, Corwin, and Olafson (1993) -> 
+  = child; child; abuse; Faller; Corwin; Olafson; 1993
+  + sexual
+  ? custody; professional; literature
+
+ folie a deux -> 
+  = 
+  + folie; deux
+  ? 
+
+307 => 
+
+ Gardner, Richard A -> 
+  = Gardner
+  + 
+  ? Richard
+
+ Parental Alienation Syndrome (PAS) -> 
+  = PAS
+  + Syndrome
+  ? Parental; Alienation
+
+ folie a trois -> 
+  = folie
+  + trois
+  ? 
+
+308 => 
+
+ Bruch, Carol -> 
+  = Bruch; Carol
+  + 
+  ? 
+
+ Family Law Quarterly -> 
+  = Family; Law; Quarterly
+  + 
+  ? 
+
+ Meadow, Roy -> 
+  = Meadow; Roy
+  + 
+  ? 
+
+ von Munchausen, Baron -> 
+  = von; Munchausen; Baron
+  + 
+  ? 
+
+309 => 
+
+ Apolo, Julio -> 
+  = Apolo; Julio
+  + 
+  ? 
+
+ International Pediatrics -> 
+  = International; Pediatrics
+  + 
+  ? 
+
+ Issues in Child Abuse Accusations -> 
+  = Issues; in; Child; Abuse; Accusations
+  + 
+  ? 
+
+ Libow, J A -> 
+  = Libow; J
+  + 
+  ? 
+
+ Parental Alienation Syndrome (PAS) -> 
+  = PAS
+  + 
+  ? Parental; Alienation; Syndrome
+
+ Rand, Deirdre Conway -> 
+  = Rand; Deirdre; Conway
+  + 
+  ? 
+
+ Schreier, Herbert A -> 
+  = Schreier; Herbert
+  + 
+  ? 
+
+ Sinanan, K, and H Houghton -> 
+  = Sinanan; H
+  + 
+  ? K; Houghton
+
+310 => 
+
+ Faller, Kathleen Coulborn -> 
+  = Faller
+  + 
+  ? Kathleen; Coulborn
+
+ Seventh Annual Northern New England Conference on Child Maltreatment -> 
+  = Seventh; Annual; Northern; New; England; Conference; Child; Maltreatment
+  + 
+  ? 
+
+ University of Michigan School of Social Work -> 
+  = University; Michigan; School; Social; Work
+  + 
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Faller (2002) -> 
+  = child; custody; child; sexual; abuse; professional; Faller; 2002
+  + 
+  ? literature
+
+ primary caretaker -> 
+  = primary; caretaker
+  + 
+  ? 
+
+ spina bifida -> 
+  = spina; bifida
+  + 
+  ? 
+
+311 => 
+
+312 => 
+
+ Underground Railroad: abscond or flee with child -> 
+  = or; with; child
+  + 
+  ? Underground; Railroad; abscond; flee
+
+ supervised visitation -> 
+  = supervised; visitation
+  + 
+  ? 
+
+313 => 
+
+ National Alliance for the Mentally Ill -> 
+  = National; Alliance; for; Mentally; Ill
+  + 
+  ? 
+
+314 => 
+
+ Gardner, Richard A -> 
+  = Gardner
+  + 
+  ? Richard
+
+ Parental Alienation Syndrome (PAS) -> 
+  = PAS
+  + 
+  ? Parental; Alienation; Syndrome
+
+ junk science -> 
+  = 
+  + science
+  ? junk
+
+315 => 
+
+ Child: welfare of -> 
+  = 
+  + welfare
+  ? Child
+
+ child custody and child sexual abuse, professional literature on: Gould (1998) -> 
+  = child; custody; child; abuse; Gould
+  + sexual; professional
+  ? literature; 1998
+
+ symbiosis -> 
+  = symbiosis
+  + 
+  ? 
+
+316 => 
+
+317 => 
+
+318 => 
+
+ Ethnomethodology: running record -> 
+  = running; record
+  + 
+  ? Ethnomethodology
+
+ Underground Railroad: abscond or flee with child -> 
+  = or; with; child
+  + 
+  ? Underground; Railroad; abscond; flee
+
+ Underground Railroad: runner, profile of -> 
+  = 
+  + runner; profile
+  ? Underground; Railroad
+
+ supervised visitation -> 
+  = supervised; visitation
+  + 
+  ? 
+
+319 => 
+
+ appellate review -> 
+  = appellate
+  + 
+  ? review
+
+320 => 
+
+ Parental Alienation Syndrome (PAS) -> 
+  = PAS
+  + 
+  ? Parental; Alienation; Syndrome
+
+ junk science -> 
+  = 
+  + 
+  ? junk; science
+
+ supervised visitation -> 
+  = 
+  + 
+  ? supervised; visitation
+
+321 => 
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = CPS; child
+  + neglect
+  ? Child; Protective; Services; charge
+
+322 => 
+
+ Gardner, Richard A -> 
+  = Gardner
+  + 
+  ? Richard
+
+ Parental Alienation Syndrome (PAS) -> 
+  = Parental; Alienation; Syndrome; PAS
+  + 
+  ? 
+
+ child custody and child sexual abuse, professional literature on: Faller (1998) -> 
+  = child; custody; child; abuse; 1998
+  + sexual; professional; literature; Faller
+  ? 
+
+ junk science -> 
+  = 
+  + 
+  ? junk; science
+
+ symbiosis -> 
+  = 
+  + 
+  ? symbiosis
+
+323 => 
+
+ Faller, Kathleen Coulborn -> 
+  = Faller
+  + 
+  ? Kathleen; Coulborn
+
+324 => 
+
+ Rorschach -> 
+  = Rorschach
+  + 
+  ? 
+
+325 => 
+
+ Cobb County Bar Association -> 
+  = Cobb; County; Bar; Association
+  + 
+  ? 
+
+ Ducote, Richard -> 
+  = Ducote; Richard
+  + 
+  ? 
+
+ Gardner, Richard A -> 
+  = Richard
+  + Gardner
+  ? 
+
+ Metro Atlanta Board of Mental Health Professionals -> 
+  = Metro; Atlanta; Board; Mental; Health; Professionals
+  + 
+  ? 
+
+ Parental Alienation Syndrome (PAS) -> 
+  = 
+  + PAS
+  ? Parental; Alienation; Syndrome
+
+326 => 
+
+ Underground Railroad: abscond or flee with child -> 
+  = or; with; child
+  + 
+  ? Underground; Railroad; abscond; flee
+
+327 => 
+
+328 => 
+
+ Gardner, Richard A -> 
+  = Gardner
+  + 
+  ? Richard
+
+ Parental Alienation Syndrome (PAS) -> 
+  = PAS
+  + Parental; Alienation; Syndrome
+  ? 
+
+ colposcopic examination -> 
+  = examination
+  + 
+  ? colposcopic
+
+329 => 
+
+330 => 
+
+ Ethnomethodology: practical accomplishment -> 
+  = practical; accomplishment
+  + 
+  ? Ethnomethodology
+
+ Ethnomethodology: running record -> 
+  = running; record
+  + 
+  ? Ethnomethodology
+
+ supervised visitation -> 
+  = supervised; visitation
+  + 
+  ? 
+
+331 => 
+
+332 => 
+
+333 => 
+
+ hypoglycemia -> 
+  = hypoglycemia
+  + 
+  ? 
+
+334 => 
+
+ Minnesota Multiphasic Personality Inventory (MMPI) -> 
+  = Personality; MMPI
+  + 
+  ? Minnesota; Multiphasic; Inventory
+
+ Rorschach -> 
+  = Rorschach
+  + 
+  ? 
+
+335 => 
+
+ supervised visitation -> 
+  = visitation
+  + 
+  ? supervised
+
+336 => 
+
+ Geraldo Rivera Show -> 
+  = Geraldo; Rivera; Show
+  + 
+  ? 
+
+337 => 
+
+ Parental Alienation Syndrome (PAS), variants of: Parental Alienation (PA) -> 
+  = Parental; Alienation; Syndrome; PAS; Parental; Alienation; PA
+  + 
+  ? variants
+
+ Parental Alienation Syndrome (PAS), variants of: Alienation (A) -> 
+  = Parental; Alienation; Syndrome; PAS; Alienation
+  + 
+  ? variants
+
+ Parental Alienation Syndrome (PAS) -> 
+  = Parental; Alienation; Syndrome; PAS
+  + 
+  ? 
+
+ junk science -> 
+  = junk; science
+  + 
+  ? 
+
+338 => 
+
+339 => 
+
+340 => 
+
+ Parental Alienation Syndrome (PAS), variants of: enmeshment -> 
+  = 
+  + PAS; enmeshment
+  ? Parental; Alienation; Syndrome; variants
+
+ psychological symptoms, childrens manifestation of: emotional regression -> 
+  = emotional; regression
+  + 
+  ? psychological; symptoms; childrens; manifestation
+
+ psychological symptoms, childrens manifestation of: night terrors -> 
+  = night; terrors
+  + 
+  ? psychological; symptoms; childrens; manifestation
+
+341 => 
+
+342 => 
+
+343 => 
+
+344 => 
+
+ Parental Alienation Syndrome (PAS), variants of: Parental Alienation (PA) -> 
+  = PAS; PA
+  + 
+  ? Parental; Alienation; Syndrome; variants; Parental; Alienation
+
+345 => 
+
+ New York, city of: Administration for Childrens Services (ACS) -> 
+  = New; York; Administration; for; Childrens; Services
+  + 
+  ? city; ACS
+
+ Parental Alienation Syndrome (PAS) -> 
+  = PAS
+  + 
+  ? Parental; Alienation; Syndrome
+
+ criminal conduct, terms that connote -> 
+  = criminal; conduct; that; connote
+  + terms
+  ? 
+
+ psychological symptoms, childrens manifestation of: enuresisbed wetting -> 
+  = 
+  + 
+  ? psychological; symptoms; childrens; manifestation; enuresisbed; wetting
+
+346 => 
+
+ Child: best interests of -> 
+  = best; interests
+  + Child
+  ? 
+
+347 => 
+
+ New York, city of: Administration for Childrens Services (ACS) -> 
+  = New; York; Administration; for; Childrens; Services; ACS
+  + city
+  ? 
+
+348 => 
+
+ antisocial behavior, fathers: DUI -> 
+  = fathers; DUI
+  + 
+  ? antisocial; behavior
+
+ antisocial behavior, fathers: alcohol abuse -> 
+  = fathers; alcohol; abuse
+  + 
+  ? antisocial; behavior
+
+ antisocial behavior, fathers: cocaine use -> 
+  = fathers; cocaine; use
+  + 
+  ? antisocial; behavior
+
+ antisocial behavior, fathers: disorderly conduct -> 
+  = fathers; disorderly; conduct
+  + 
+  ? antisocial; behavior
+
+ antisocial behavior, fathers: illegal possession of firearms -> 
+  = fathers; illegal; possession; firearms
+  + 
+  ? antisocial; behavior
+
+ antisocial behavior, fathers: resisting arrest -> 
+  = fathers; resisting; arrest
+  + 
+  ? antisocial; behavior
+
+ junk science -> 
+  = junk; science
+  + 
+  ? 
+
+349 => 
+
+ moral earthquake -> 
+  = moral; earthquake
+  + 
+  ? 
+
+350 => 
+
+ Kafkaesque, court experience as -> 
+  = Kafkaesque; court; experience; as
+  + 
+  ? 
+
+ New York Post -> 
+  = New; York; Post
+  + 
+  ? 
+
+ Pagnozzi, Amy -> 
+  = Pagnozzi; Amy
+  + 
+  ? 
+
+ sociology -> 
+  = 
+  + 
+  ? sociology
+
+351 => 
+
+ Hunted Syndrome -> 
+  = Hunted; Syndrome
+  + 
+  ? 
+
+ Underground Railroad: underground fugitive mothers -> 
+  = fugitive; mothers
+  + 
+  ? Underground; Railroad; underground
+
+352 => 
+
+ Child Protective Services (CPS): child neglect, charge of -> 
+  = Child; Protective; Services; CPS; child; neglect; charge
+  + 
+  ? 
+
+ Jane Addams College of Social Work of the University of Illinois -> 
+  = University; Illinois
+  + 
+  ? Jane; Addams; College; Social; Work
+
+ Suicide: children who are suicidal -> 
+  = children; who; are
+  + 
+  ? Suicide; suicidal
+
+ child custody and child sexual abuse, professional literature on: Massat and Lundy (1998) -> 
+  = child; custody; child; sexual; abuse; Massat; Lundy; 1998
+  + 
+  ? professional; literature
+
+ sexually transmitted disease -> 
+  = sexually; transmitted; disease
+  + 
+  ? 
+
+353 => 
+
+ flight risk -> 
+  = flight
+  + 
+  ? risk
+
+354 => 
+
+ Gill, John Edward -> 
+  = Gill; John; Edward
+  + 
+  ? 
+
+ Lost Limb Syndrome -> 
+  = Lost; Limb; Syndrome
+  + 
+  ? 
+
+355 => 
+
+356 => 
+
+ Masochistic Mother Syndrome -> 
+  = Masochistic; Mother; Syndrome
+  + 
+  ? 
+
+ Suicide: mothers who commit -> 
+  = mothers; who
+  + 
+  ? Suicide; commit
+
+ community, Orthodox Jewish -> 
+  = community; Orthodox; Jewish
+  + 
+  ? 
+
+ ex parte (without the knowledge of the other party): order -> 
+  = ex; parte; other; order
+  + 
+  ? without; knowledge; party
+
+ infanticide, mothers who commit -> 
+  = mothers; who
+  + 
+  ? infanticide; commit
+
+357 => 
+
+ New York Daily News -> 
+  = New; York; Daily; News
+  + 
+  ? 
+
+358 => 
+
+359 => 
+
+ gag order -> 
+  = gag; order
+  + 
+  ? 
+
+ supervised visitation -> 
+  = supervised
+  + visitation
+  ? 
+
+360 => 
+
+ vigilantism -> 
+  = 
+  + 
+  ? vigilantism
+
+361 => 
+
+362 => 
+
+ ex parte (without the knowledge of the other party): order -> 
+  = ex; parte; without; other; order
+  + knowledge
+  ? party
+
+ supervised visitation -> 
+  = supervised; visitation
+  + 
+  ? 
+
+363 => 
+
+364 => 
+
+365 => 
